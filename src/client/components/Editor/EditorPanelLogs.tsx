@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, css } from 'aphrodite';
-import CollapsibleObject from './shared/CollapsibleObject';
-import colors from '../configs/colors';
+import CollapsibleObject from '../shared/CollapsibleObject';
+import colors from '../../configs/colors';
 
 type Device = {
   name: string;

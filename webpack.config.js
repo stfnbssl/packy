@@ -111,4 +111,10 @@ module.exports = {
       aphrodite: 'aphrodite/no-important',
     },
   },
+  node: {
+    fs: 'empty', 
+    module: 'empty', 
+    mongodb: 'empty', 
+    'mongodb-core': 'empty'
+  }
 };

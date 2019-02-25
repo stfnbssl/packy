@@ -59,6 +59,7 @@ export default class Modal extends React.PureComponent<Props, State> {
     ) {
       return;
     }
+    console.log('_handleDismiss', this._content.current, e.target)
 
     this.props.onDismiss && this.props.onDismiss();
   };

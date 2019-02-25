@@ -123,6 +123,6 @@ class PreferencesProvider extends React.Component<Props, State> {
 }
 
 export default connect((state: any) => ({
-  testPreviewPlatform: state.splitTestSettings.defaultPreviewPlatform,
-  testConnectionMethod: state.splitTestSettings.defaultConnectionMethod,
+  //testPreviewPlatform: state.splitTestSettings.defaultPreviewPlatform,
+  //testConnectionMethod: state.splitTestSettings.defaultConnectionMethod,
 }))(PreferencesProvider);

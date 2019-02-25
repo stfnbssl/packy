@@ -24,6 +24,12 @@ type RequiredPackyFileAttributes = {
 export type PackyFiles = {
     [x: string]: RequiredPackyFileAttributes;
 };
+
+export type PackyFilesOrKind = PackyFiles | string;
+export type CreatePackyOptions = {
+    name: string;
+    data: PackyFilesOrKind
+}
   
 export type SaveStatus = 'changed' | 'saving-draft' | 'saved-draft' | 'publishing' | 'published';
 

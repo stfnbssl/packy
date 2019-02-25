@@ -8,6 +8,7 @@ import { packyTypes/*, packyDefaults*/ } from '../../features/packy';
 import FileList from '../filelist/FileList'
 import KeybindingsManager from '../shared/KeybindingsManager'
 import LazyLoad from '../shared/LazyLoad'
+import ModalDialog from '../shared/ModalDialog'
 import ProgressIndicator from '../shared/ProgressIndicator'
 import ContentShell from '../Shell/ContentShell'
 import LayoutShell from '../Shell/LayoutShell'
@@ -17,7 +18,9 @@ import EditorPanels from './EditorPanels'
 import EditorToolbar from './EditorToolbar'
 import EditorFooter from './EditorFooter'
 import NoFileSelected from './NoFileSelected'
-import /*KeyboardShortcuts,*/ { Shortcuts } from './KeyboardShortcuts';
+import KeyboardShortcuts, { Shortcuts } from './KeyboardShortcuts';
+import PackyManager from './PackyManager';
+import PreviousSaves from './PreviousSaves';
 import mockFn from '../../mocks/functions'
 
 const EDITOR_LOAD_FALLBACK_TIMEOUT = 3000;
@@ -28,6 +31,7 @@ type EditorProps = {
     saveHistory: packyTypes.SaveHistory;
     saveStatus: packyTypes.SaveStatus;
     creatorUsername?: string;
+    packyNames: string[];
     fileEntries: filelistTypes.FileSystemEntry[];
     entry: filelistTypes.TextFileEntry | filelistTypes.AssetFileEntry | undefined;
     name: string;
@@ -49,6 +53,8 @@ type EditorProps = {
     // initialSdkVersion: SDKVersion;
     // sdkVersion: SDKVersion;
     sendCodeOnChangeEnabled: boolean;
+    onSelectPacky: (packyName: string) => void;
+    onCreatePacky: (packyName: string) => void;
     onSendCode: () => void;
     onToggleSendCode: () => void;
     // onClearDeviceLogs: () => void;
@@ -88,6 +94,7 @@ export type Props = prefTypes.PreferencesContextType &
 type ModalName =
   // | PublishModals
   // | 'device-instructions'
+  | 'packy-manager'
   // | 'embed'
   | 'edit-info'
   | 'shortcuts'
@@ -170,6 +177,10 @@ class EditorView extends React.Component<Props, State> {
       this.setState({ currentModal: 'edit-info' });
     };
   
+    _handleShowPackyManager = () => {
+      this.setState({ currentModal: 'packy-manager' });
+    };
+
     /*
     _handleShowDeviceInstructions = () => {
       Segment.getInstance().logEvent('REQUESTED_QR_CODE');
@@ -182,6 +193,7 @@ class EditorView extends React.Component<Props, State> {
     */
   
     _handleShowShortcuts = () => {
+      console.log("_handleShowShortcuts");
       this.setState({ currentModal: 'shortcuts' });
     };
   
@@ -210,6 +222,16 @@ class EditorView extends React.Component<Props, State> {
     };
     */
   
+    _handleSelectPacky = (name: any) => {
+      this._handleDismissEditModal();
+      this.props.onSelectPacky && this.props.onSelectPacky(name);
+    };
+
+    _handleCreatePacky = (name: any) => {
+      this._handleDismissEditModal();
+      this.props.onCreatePacky && this.props.onCreatePacky(name);
+    };
+
     _handleOpenPath = (path: string): Promise<void> =>
       this.props.onFileEntriesChange(fileActions.openEntry(this.props.fileEntries, path, true));
   
@@ -310,6 +332,7 @@ class EditorView extends React.Component<Props, State> {
 
       const {
         // channel,
+        packyNames,
         entry,
         // params,
         createdAt,
@@ -403,6 +426,7 @@ class EditorView extends React.Component<Props, State> {
               onSubmitMetadata={this.props.onSubmitMetadata}
               // onShowAuthModal={this._handleShowAuthModal}
               // onDismissAuthModal={this._handleHideModal}
+              onShowPackyManager={this._handleShowPackyManager}
               // onShowQRCode={this._handleShowDeviceInstructions}
               // onShowEmbedCode={this._handleShowEmbedCode}
               // onDownloadCode={handleDownloadCode}
@@ -530,6 +554,26 @@ class EditorView extends React.Component<Props, State> {
               // onPrettifyCode={this._prettier}
               theme={this.props.preferences.theme}
             />
+            <ModalDialog
+              visible={currentModal === 'packy-manager'}
+              onDismiss={this._handleHideModal}>
+              <PackyManager 
+                packyNames={packyNames}
+                onSelectPacky={this._handleSelectPacky}
+                onCreatePacky={this._handleCreatePacky}
+              />
+            </ModalDialog>
+            <ModalDialog
+              visible={currentModal === 'previous-saves'}
+              title="Previous saves"
+              onDismiss={this._handleHideModal}>
+              <PreviousSaves saveHistory={saveHistory} />
+            </ModalDialog>
+            <ModalDialog
+              visible={currentModal === 'shortcuts'}
+              onDismiss={this._handleHideModal}>
+              <KeyboardShortcuts />
+            </ModalDialog>
         </React.Fragment>
         </ContentShell>
       ) 
@@ -538,7 +582,7 @@ class EditorView extends React.Component<Props, State> {
 
 export default withPreferences(
   connect((state: any) => ({
-    viewer: state.viewer,
+    viewer: state.app.viewer,
   }))(EditorView)
 );
 

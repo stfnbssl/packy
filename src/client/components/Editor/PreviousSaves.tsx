@@ -1,12 +1,12 @@
 import * as React from 'react';
 import format from 'date-fns/format';
 import { StyleSheet, css } from 'aphrodite';
-import withThemeName, { ThemeName } from './Preferences/withThemeName';
-import { SaveHistory } from '../types';
+import { prefTypes, withThemeName } from '../../features/preferences';
+import { packyTypes } from '../../features/packy';
 
 type Props = {
-  saveHistory: SaveHistory;
-  theme: ThemeName;
+  saveHistory: packyTypes.SaveHistory;
+  theme: prefTypes.ThemeName;
 };
 
 class PreviousSaves extends React.Component<Props> {
@@ -36,8 +36,8 @@ class PreviousSaves extends React.Component<Props> {
                   className={css(styles.icon)}
                   src={
                     theme === 'dark'
-                      ? require('../assets/open-link-icon-light.png')
-                      : require('../assets/open-link-icon.png')
+                      ? require('../../assets/open-link-icon-light.png')
+                      : require('../../assets/open-link-icon.png')
                   }
                   alt="Open in new tab"
                 />

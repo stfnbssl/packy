@@ -2,8 +2,7 @@ import * as React from 'react';
 import classnames from 'classnames';
 import { StyleSheet, css } from 'aphrodite';
 import ShortcutLabel from './ShortcutLabel';
-import { prefTypes, withThemeName } from '../../features/preferences';
-import { c } from '../../features/preferences/ColorsProvider';
+import { prefTypes, withThemeName, prefColors } from '../../features/preferences';
 
 export type Action = {
   label: string;
@@ -95,6 +94,8 @@ export default withThemeName(
     <ContextMenu {...props} innerRef={ref} />
   ))
 );
+
+const c = prefColors.c;
 
 const fadeIn = {
   from: { opacity: 0 },

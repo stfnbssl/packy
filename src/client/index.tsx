@@ -18,7 +18,12 @@ const __INITIAL_DATA__ = {
   splitTestSettings: {}
 };
 
-const store = createStore({ splitTestSettings: __INITIAL_DATA__.splitTestSettings });
+const store = createStore({ 
+  app: {splitTestSettings: __INITIAL_DATA__.splitTestSettings},
+  packy: {
+    loading: false
+  }
+});
 
 class FileListEntry extends React.Component {
   render() {

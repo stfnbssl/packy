@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "cwd": "${workspaceFolder}",
+        "type": "chrome",
+        "request": "launch",
+        "name": "Launch Chrome Debugger",
+        "port": 9222,
+        "url": "http://localhost:8080/",
+        "webRoot": "${workspaceRoot}/src",
+        "sourceMaps": true,
+        "timeout": 15000,
+        "trace":"verbose"//,
+        //"preLaunchTask": "start_server_task"
+      }
+    ]
+}

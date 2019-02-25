@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { FormValidationContext, FormValidation } from './Form';
+import { FormValidationContext } from './Form';
+import { FormValidation} from './types';
 import { $Subtract } from '../../types';
 
 type Props = {

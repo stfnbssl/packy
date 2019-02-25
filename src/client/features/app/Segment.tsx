@@ -43,11 +43,13 @@ export default class Segment {
       }
     }
     eventTenures.sessionTenure = this._eventTenure('sessionStart');
-    analytics.track(name, {
-      ...eventTenures,
-      ...this.commonData,
-      ...data,
-    });
+    if (typeof(analytics) !== 'undefined') {
+      analytics.track(name, {
+        ...eventTenures,
+        ...this.commonData,
+        ...data,
+      });
+    }
   }
 
   identify = (viewer: object) => {

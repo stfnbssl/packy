@@ -42,6 +42,7 @@ type Props = {
   // onDismissAuthModal: () => void;
   // onShowEmbedCode: () => void;
   // onDownloadCode: () => Promise<void>;
+  onShowPackyManager: () => void;
   // onShowQRCode: () => void;
   // onPublishAsync: () => Promise<void>;
   creatorUsername?: string;
@@ -83,6 +84,7 @@ class EditorToolbar extends React.PureComponent<Props, State> {
       onDismissEditModal,
       // onShowEmbedCode,
       // onDownloadCode,
+      onShowPackyManager,
       // onShowQRCode,
       // onPublishAsync,
       creatorUsername,
@@ -125,11 +127,16 @@ class EditorToolbar extends React.PureComponent<Props, State> {
         </ToolbarTitleShell>
         <div className={css(styles.buttons)}>
           {/*<SearchButton />
-          <IconButton title="Run on device" label="Run" onClick={onShowQRCode}>
+           <IconButton title="Manage Packies" label="Packies" onClick={onShowQRCode}>
             <svg width="16px" height="20px" viewBox="0 0 16 20">
               <polygon points="0 0 0 20 16 10" />
             </svg>
           </IconButton>*/}
+          <IconButton title="Manage Packies" label="Packies" onClick={onShowPackyManager}>
+            <svg width="16px" height="20px" viewBox="0 0 16 20">
+              <polygon points="0 0 0 20 16 10" />
+            </svg>
+          </IconButton>
           <IconButton
             title="Export to expo-cli"
             label="Export"

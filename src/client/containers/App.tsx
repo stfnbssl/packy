@@ -1,16 +1,19 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { AppReduxState } from '../store/createStore';
 import { appTypes } from '../features/app'
 import { authTypes } from '../features/auth'
-import { packyTypes, packyDefaults } from '../features/packy'
+import { packyTypes, packyDefaults, packyActions } from '../features/packy'
 import { FileSystemEntry, TextFileEntry, AssetFileEntry } from '../features/filelist/types'
-import { packyToEntryArray/*, entryArrayToPacky*/ } from '../features/packy/convertFileStructure'
+import { packyToEntryArray, entryArrayToPacky } from '../features/packy/convertFileStructure'
 import updateEntry from '../features/filelist/actions/updateEntry';
 import debounce from 'lodash/debounce';
 import { isPackageJson } from '../features/filelist/fileUtilities';
 import LazyLoad from '../components/shared/LazyLoad'
 import AppShell from '../components/Shell/AppShell'
 import mockFn from '../mocks/functions'
+import { SSL_OP_MSIE_SSLV2_RSA_PADDING } from 'constants';
 
 // TODO: App container specific or App feature ?
 type Params = {
@@ -20,7 +23,43 @@ type Params = {
   projectName?: string;
 };
 
-type Props = authTypes.AuthProps & {
+interface StateProps {
+  viewer?: appTypes.Viewer,
+  packyNames?: string[],
+  currentPacky?: packyTypes.Packy,
+}
+
+interface DispatchProps {
+  dispatchFetchPackyList: () => void;
+  dispatchFetchPacky: (packyName: string) => void;
+  dispatchSavePacky: (packyName: string, code: packyTypes.PackyFiles) => void;
+}
+
+const mapStateToProps = (state: AppReduxState) => ({
+  viewer: state.app.viewer,
+  packyNames: state.packy.packyNames,
+  currentPacky: state.packy.currentPacky,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
+  dispatchFetchPackyList: () => {
+    dispatch(packyActions.fetchPackyListRequest());
+  },
+  dispatchFetchPacky: (packyName: string) => {
+    dispatch(packyActions.fetchPackyRequest({name: packyName}));
+  },
+  dispatchSavePacky: (packyName: string, code: packyTypes.PackyFiles) => {
+    dispatch(packyActions.savePackyRequest({
+      packy: {
+        id: packyName,
+        created: 'unavailable',
+        code: code
+      }
+    }));
+  },
+});
+
+type Props = authTypes.AuthProps & StateProps & DispatchProps & {
   packy?: packyTypes.Packy;
   // from router
   history: {
@@ -41,7 +80,8 @@ type Props = authTypes.AuthProps & {
   // isEmbedded?: boolean;
 };
 
-type State = {
+type State = StateProps & {
+  packyStoreName?: string;
   packySessionState: packyTypes.PackySessionState;
   packySessionReady: boolean;
   // channel: string;
@@ -69,6 +109,22 @@ type SaveOptions = {
 */
 
 class App extends React.Component<Props, State> {
+
+  static getDerivedStateFromProps(props: Props, state: State) {
+    if (props.currentPacky && props.currentPacky.id !== state.packyStoreName) {
+      const { code } = props.currentPacky;
+      if (code) {
+        const fileEntries = packyToEntryArray(code);
+        console.log("App.getDerivedStateFromProps.Loaded packy", props.currentPacky.id);
+        return {
+          fileEntries,
+          packyStoreName: props.currentPacky.id,
+        };
+      }
+    }
+    return null;
+  }
+
   constructor(props: Props) {
     super(props);
 
@@ -156,6 +212,7 @@ class App extends React.Component<Props, State> {
     };
 
     this.state = {
+      packyStoreName: undefined,
       packySessionState,
       packySessionReady: false,
       sendCodeOnChangeEnabled: true,
@@ -183,7 +240,8 @@ class App extends React.Component<Props, State> {
     // Raven
     // Session worker
     this._initializePackySession();
-
+    this.props.dispatchFetchPackyList();
+    this.props.dispatchFetchPacky(packyDefaults.DEFAULT_PACKY_NAME);
   }  
 
   componentDidUpdate(_: Props, prevState: State) {
@@ -230,6 +288,14 @@ class App extends React.Component<Props, State> {
       // snackSessionState: sessionState,
       packySessionReady: true,
     });
+  }
+
+  _handleSelectPacky = async (packyName: string) => {
+
+  }
+
+  _handleCreatePacky = async (packyName: string) => {
+
   }
 
   _findFocusedEntry = (entries: FileSystemEntry[]): TextFileEntry | AssetFileEntry | undefined =>
@@ -281,12 +347,17 @@ class App extends React.Component<Props, State> {
   };
 
   _sendCodeNotDebounced = () => {
-    throw new Error("_sendCodeNotDebounced not implemented");
-    /*this._packy.session.sendCodeAsync(
-      // map state.fileEntries to the correct type before sending to snackSession
-
+    // throw new Error("_sendCodeNotDebounced not implemented");
+    this.props.dispatchSavePacky(
+      this.state.packyStoreName as string,
       entryArrayToPacky(this.state.fileEntries.filter(e => !e.item.virtual))
-    );*/
+    );
+    /*
+    this._packy.session.sendCodeAsync(
+      // map state.fileEntries to the correct type before sending to snackSession
+      entryArrayToPacky(this.state.fileEntries.filter(e => !e.item.virtual))
+    );
+    */
   }
 
   _sendCode = debounce(this._sendCodeNotDebounced, 1000);
@@ -333,6 +404,7 @@ class App extends React.Component<Props, State> {
           loaded && Comp && this.state.packySessionReady ? (
             <Comp
               packy={this.props.packy}
+              packyNames={this.props.packyNames || []}
               createdAt={this.props.packy ? this.props.packy.created : undefined}
               autosaveEnabled={this.state.autosaveEnabled}
               sendCodeOnChangeEnabled={this.state.sendCodeOnChangeEnabled}
@@ -351,6 +423,8 @@ class App extends React.Component<Props, State> {
               loadingMessage={this.state.packySessionState.loadingMessage}
               dependencies={this.state.packySessionState.dependencies}
               params={this.state.params}
+              onSelectPacky={this._handleSelectPacky}
+              onCreatePacky={this._handleCreatePacky}
               onSendCode={this._sendCodeNotDebounced}
               onFileEntriesChange={this._handleFileEntriesChange}
               onChangeCode={this._handleChangeCode}
@@ -384,7 +458,8 @@ class App extends React.Component<Props, State> {
   }
 }
 
-export default connect((state: any) => ({
-  viewer: state.viewer,
-}))(App/*withAuth(App)*/);
+export default connect<StateProps, DispatchProps>(
+  mapStateToProps, mapDispatchToProps
+)(App/*withAuth(App)*/);
+
 
