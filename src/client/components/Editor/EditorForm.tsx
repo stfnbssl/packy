@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import classnames from 'classnames';
+import Select from 'react-select';
 import { Form, withStatus, withValidation } from '../../features/form'
 import { prefTypes, withThemeName } from '../../features/preferences';
 import Button from '../shared/Button';
@@ -11,6 +12,8 @@ export type FormField = {
     label?: string;
     type?: string;
     default?: string;
+    options?: {label: string, value: string}[];
+    // options?: any;
     onValidate?: (value: string)=> Error | null;
 }
 
@@ -96,20 +99,33 @@ class EditorForm extends React.Component<Props, State> {
                     {
                         Object.keys(fields).map((k,i) => {
                             const field = fields[k];
-                            return (
-                            <div key={i}>
-                                {field.label ? (<h4 className={css(styles.subtitle)}>{field.label}</h4>) : null}
-                                <ValidatedInput
-                                    autoFocus
-                                    value={this.state.values[k]}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                        this.setState({ values: { [k]: e.target.value} })
-                                    }
-                                    placeholder={field.label}
-                                    validate={field.onValidate || validationOk}
+                            const Title = () => field.label ? (<h4 className={css(styles.subtitle)}>{field.label}</h4>) : null;
+                            return field.type === 'text' ? (
+                              <div key={i}>
+                                  <Title />
+                                  <ValidatedInput
+                                      autoFocus
+                                      value={this.state.values[k]}
+                                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                          this.setState({ values: { [k]: e.target.value} })
+                                      }
+                                      placeholder={field.label}
+                                      validate={field.onValidate || validationOk}
+                                  />
+                              </div>) : field.type === 'select' ? (
+                              <div key={i}>
+                                <Title />
+                                <Select 
+                                  options={field.options} 
+                                  onChange={(value) =>{
+                                    console.log('onChange', k, value);
+                                    this.setState({ values: { ...this.state.values,  [k]: (value as any).value as string} })
+                                  }}
                                 />
-                            </div> )
-                        })
+                              </div>
+                              ) : null
+                            }
+                        )
                     }
                     <div className={css(styles.buttons)}>
                         <FormButton type="submit" large variant="secondary" loading={false}>

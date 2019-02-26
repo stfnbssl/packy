@@ -120,3 +120,44 @@ export const INITIAL_CODE: PackyFiles = {
     },
   };
   
+  export const INITIAL_PACKY_KINDS: {[key: string]: PackyFiles} = {
+    'react': {
+      '.wizzi/root/package.json.ittf': {
+        type: 'CODE',
+        contents: `{
+    name "helloreact"`
+      },
+      '.wizzi/generate.wfjob.ittf': {
+        type: 'CODE',
+        contents: `wfjob helloreact
+    $
+      var rootFolder = __dirname;`
+      }
+    },
+    'react-redux': {
+      '.wizzi/root/package.json.ittf': {
+        type: 'CODE',
+        contents: `{
+    name "helloreactredux"`
+      },
+      '.wizzi/generate.wfjob.ittf': {
+        type: 'CODE',
+        contents: `wfjob helloreactredux
+    $
+      var rootFolder = __dirname;`
+      }
+    },
+    'react-redux-router': {
+      '.wizzi/root/package.json.ittf': {
+        type: 'CODE',
+        contents: `{
+    name "helloreactreduxrouter"`
+      },
+      '.wizzi/generate.wfjob.ittf': {
+        type: 'CODE',
+        contents: `wfjob helloreactreduxrouter
+    $
+      var rootFolder = __dirname;`
+      }
+    }
+  }

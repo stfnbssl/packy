@@ -76,11 +76,12 @@ export async function savePackyFiles(packyName: string, files: PackyFiles): Prom
 
 export async function assertDefaultPacky(): Promise<void> {
     const folderPath = path.join(BROWSERFS_PACKIES_FOLDER, DEFAULT_PACKY_NAME);
+    console.log('assertDefaultPacky.folderPath', folderPath);
     return new Promise(async (resolve) => {
         const isDirectory = await bfs.isDirectory(folderPath);
-        // console.log('assertDefaultPacky.isDirectory', isDirectory, folderPath);
+        console.log('assertDefaultPacky.isDirectory', isDirectory, folderPath);
         const files = await bfs.getFiles(folderPath, {deep: true});
-        // console.log('assertDefaultPacky.files', files, folderPath);
+        console.log('assertDefaultPacky.files', files, folderPath);
         if (isDirectory) {
             console.log('assertDefaultPacky.already exists', folderPath)
             return resolve();

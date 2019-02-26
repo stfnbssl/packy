@@ -54,7 +54,7 @@ type EditorProps = {
     // sdkVersion: SDKVersion;
     sendCodeOnChangeEnabled: boolean;
     onSelectPacky: (packyName: string) => void;
-    onCreatePacky: (packyName: string) => void;
+    onCreatePacky: (packyName: string, packyKind: string) => void;
     onSendCode: () => void;
     onToggleSendCode: () => void;
     // onClearDeviceLogs: () => void;
@@ -227,9 +227,9 @@ class EditorView extends React.Component<Props, State> {
       this.props.onSelectPacky && this.props.onSelectPacky(name);
     };
 
-    _handleCreatePacky = (name: any) => {
+    _handleCreatePacky = (name: string, kind: string) => {
       this._handleDismissEditModal();
-      this.props.onCreatePacky && this.props.onCreatePacky(name);
+      this.props.onCreatePacky && this.props.onCreatePacky(name, kind);
     };
 
     _handleOpenPath = (path: string): Promise<void> =>

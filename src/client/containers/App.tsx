@@ -33,6 +33,7 @@ interface DispatchProps {
   dispatchFetchPackyList: () => void;
   dispatchFetchPacky: (packyName: string) => void;
   dispatchSavePacky: (packyName: string, code: packyTypes.PackyFiles) => void;
+  dispatchCreatePacky: (packyName: string, code: packyTypes.PackyFiles) => void;
 }
 
 const mapStateToProps = (state: AppReduxState) => ({
@@ -54,6 +55,15 @@ const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
         id: packyName,
         created: 'unavailable',
         code: code
+      }
+    }));
+  },
+  dispatchCreatePacky: (packyName: string, code: packyTypes.PackyFiles) => {
+    dispatch(packyActions.createPackyRequest({
+      name: packyName,
+      options: {
+        name: packyName, 
+        data: code
       }
     }));
   },
@@ -291,11 +301,12 @@ class App extends React.Component<Props, State> {
   }
 
   _handleSelectPacky = async (packyName: string) => {
-
+    this.props.dispatchFetchPacky(packyName);
   }
 
-  _handleCreatePacky = async (packyName: string) => {
-
+  _handleCreatePacky = async (packyName: string, packyKind: string) => {
+    const packyFiles = packyDefaults.INITIAL_PACKY_KINDS[packyKind];
+    this.props.dispatchCreatePacky(packyName, packyFiles);
   }
 
   _findFocusedEntry = (entries: FileSystemEntry[]): TextFileEntry | AssetFileEntry | undefined =>
