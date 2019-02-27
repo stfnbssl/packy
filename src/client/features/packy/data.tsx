@@ -4,10 +4,17 @@ import { BROWSERFS_PACKIES_FOLDER } from '../../configs/browserfs';
 import { PackyFiles, CreatePackyOptions } from './types';
 import { INITIAL_CODE, DEFAULT_PACKY_NAME } from './defaults';
 
+
+
+
+    
+
+
 export async function getPackyList(): Promise<string[]> {
     return new Promise(async (resolve) => {
         console.log('getPackyList')
         await assertDefaultPacky();
+        
         const folders = await bfs.getFolders(BROWSERFS_PACKIES_FOLDER, {deep: false});
         console.log('getPackyList', folders)
         const ret:string[] = []

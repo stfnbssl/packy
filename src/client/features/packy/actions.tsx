@@ -15,6 +15,13 @@ const SAVE_PACKY_ERROR = '@@packy/SAVE_PACKY_ERROR';
 const DELETE_PACKY_REQUEST = '@@packy/DELETE_PACKY_REQUEST';
 const DELETE_PACKY_SUCCESS = '@@packy/DELETE_PACKY_SUCCESS';
 const DELETE_PACKY_ERROR = '@@packy/DELETE_PACKY_ERROR';
+const FETCH_PACKY_TEMPLATE_LIST_REQUEST = '@@packy/FETCH_PACKY_TEMPLATE_LIST_REQUEST';
+const FETCH_PACKY_TEMPLATE_LIST_SUCCESS = '@@packy/FETCH_PACKY_TEMPLATE_LIST_SUCCESS';
+const FETCH_PACKY_TEMPLATE_LIST_ERROR = '@@packy/FETCH_PACKY_TEMPLATE_LIST_ERROR';
+const FETCH_PACKY_TEMPLATE_REQUEST = '@@packy/FETCH_PACKY_TEMPLATE_REQUEST';
+const FETCH_PACKY_TEMPLATE_SUCCESS = '@@packy/FETCH_PACKY_TEMPLATE_SUCCESS';
+const FETCH_PACKY_TEMPLATE_ERROR = '@@packy/FETCH_PACKY_TEMPLATE_ERROR';
+
 
 export interface ResponsePayload {
     error?: boolean;
@@ -54,3 +61,9 @@ export const savePackyError = createStandardAction(SAVE_PACKY_ERROR)<any>();
 export const deletePackyRequest = createStandardAction(DELETE_PACKY_REQUEST)<PackyPayload>();
 export const deletePackySuccess = createStandardAction(DELETE_PACKY_SUCCESS)<ResponsePayload>();
 export const deletePackyError = createStandardAction(DELETE_PACKY_ERROR)<any>();
+export const fetchPackyTemplateListRequest = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_REQUEST)<void>();
+export const fetchPackyTemplateListSuccess = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_SUCCESS)<PackyListPayload>();
+export const fetchPackyTemplateListError = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_ERROR)<any>();
+export const fetchPackyTemplateRequest = createStandardAction(FETCH_PACKY_TEMPLATE_REQUEST)<FetchPackyPayload>();
+export const fetchPackyTemplateSuccess = createStandardAction(FETCH_PACKY_TEMPLATE_SUCCESS)<PackyPayload>();
+export const fetchPackyTemplateError = createStandardAction(FETCH_PACKY_TEMPLATE_ERROR)<any>();

@@ -86,7 +86,7 @@ class PackyManager extends React.PureComponent<Props, State> {
               kind: {type: 'select', label: 'Kind', options: [
                 { label: 'React', value: 'react' },
                 { label: 'React + Redux', value: 'react-redux' },
-                { label: 'React + Redux + Router', value: 'react-redux' }
+                { label: 'React + Redux + Router', value: 'react-redux-router' }
               ] },
             }} />
       </div>

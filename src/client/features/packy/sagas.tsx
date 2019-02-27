@@ -1,13 +1,17 @@
-import { all, fork, put, takeEvery /*, call, takeLatest */} from 'redux-saga/effects';
+import { all, fork, put, takeEvery, call/*, takeLatest */} from 'redux-saga/effects';
 import { getType } from 'typesafe-actions';
 import * as packyActions from './actions';
 import * as packyData from './data';
 import * as packyTypes from './types';
+import { callApi } from '../../utils/api';
+
+const API_ENDPOINT = process.env.PACKY_API_ENDPOINT || 'http://localhost:5000';
 
 function* handleFetchPackyListRequest(action: ReturnType<typeof packyActions.fetchPackyListRequest>) {
     try {
         console.log('sagas.handleFetchPackyListRequest.action', action);
-        const res: string[] = yield packyData.getPackyList();
+        //const res: string[] = yield packyData.getPackyList();
+        const res = yield call(callApi, 'get', API_ENDPOINT, 'templates');
         console.log('sagas.handleFetchPackyListRequest.res', res);
         yield put(packyActions.fetchPackyListSuccess({packyNames: res}));
     } catch (err) {
@@ -22,15 +26,23 @@ function* handleFetchPackyListRequest(action: ReturnType<typeof packyActions.fet
 function* handleFetchPackyRequest(action: ReturnType<typeof packyActions.fetchPackyRequest>) {
     try {
         console.log('sagas.handleFetchPackyRequest', action);
-        const res: packyTypes.PackyFiles = yield packyData.getPackyFiles(action.payload.name);
+        // const res: packyTypes.PackyFiles = yield packyData.getPackyFiles(action.payload.name);
+        const res = yield call(callApi, 'get', API_ENDPOINT, 'templates/' + action.payload.name);
         if (res.error) {
             yield put(packyActions.fetchPackyError(res.message));
         } else {
+            const gotCode:packyTypes.PackyFiles = {};
+            res.array.forEach(element => {
+                gotCode[element.relPath] = {
+                    contents: element.content,
+                    type: 'CODE'
+                }
+            });
             yield put(packyActions.fetchPackySuccess({
                 packy: {
                     id: action.payload.name,
                     created: 'unavailable',
-                    code: res
+                    code: gotCode
                 }
             }));
         } 
