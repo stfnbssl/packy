@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';
 import {
-    Packy,
+    Packy, PackyTemplate,
 } from './types';
 import * as packyActions from './actions';
 
@@ -11,7 +11,8 @@ export interface PackyState {
     readonly packyNames?: string[];
     readonly currentPacky?: Packy;
     readonly packyTemplateNames?: string[];
-    readonly currentPackyTemplate?: Packy;
+    readonly currentPackyTemplate?: PackyTemplate;
+    readonly generatedArtifactContent?: string;
 }
 
 const initialState: PackyState = {
@@ -21,6 +22,7 @@ const initialState: PackyState = {
     packyTemplateNames: undefined,
     currentPacky: undefined,
     currentPackyTemplate: undefined,
+    generatedArtifactContent: undefined,
 };
 
 export type PackyAction = ActionType<typeof packyActions>;
@@ -54,7 +56,7 @@ const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action)
         } 
         case getType(packyActions.createPackyRequest): {
             console .log("packyActions.createPackyRequest", action);
-            return { ...state, loading: true };
+            return { ...state, loading: true, tobeCreatedPackyName: action.payload.name };
         } 
         case getType(packyActions.createPackySuccess): {
             console .log("packyActions.createPackySuccess", action);
@@ -91,6 +93,18 @@ const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action)
         }
         case getType(packyActions.fetchPackyTemplateError): {
             console .log("packyActions.fetchPackyTemplateError", action);
+            return { ...state, loading: false, errors: action.payload };
+        } 
+        case getType(packyActions.generateArtifactRequest): {
+            console .log("packyActions.generateArtifactRequest");
+            return { ...state, loading: true };
+        }
+        case getType(packyActions.generateArtifactSuccess): {
+            console .log("packyActions.generateArtifactSuccess", action);
+            return { ...state, loading: false, generatedArtifactContent: action.payload.artifactContent };
+        }
+        case getType(packyActions.generateArtifactError): {
+            console .log("packyActions.generateArtifactError", action);
             return { ...state, loading: false, errors: action.payload };
         } 
 

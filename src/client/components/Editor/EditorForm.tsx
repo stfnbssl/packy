@@ -107,7 +107,7 @@ class EditorForm extends React.Component<Props, State> {
                                       autoFocus
                                       value={this.state.values[k]}
                                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                          this.setState({ values: { [k]: e.target.value} })
+                                          this.setState({ values: { ...this.state.values,  [k]: e.target.value} })
                                       }
                                       placeholder={field.label}
                                       validate={field.onValidate || validationOk}
@@ -119,7 +119,7 @@ class EditorForm extends React.Component<Props, State> {
                                   options={field.options} 
                                   onChange={(value) =>{
                                     console.log('onChange', k, value);
-                                    this.setState({ values: { ...this.state.values,  [k]: (value as any).value as string} })
+                                    this.setState({ values: { ...this.state.values,  [k]: (value as any).value as string} });
                                   }}
                                 />
                               </div>

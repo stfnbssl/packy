@@ -32,6 +32,7 @@ type EditorProps = {
     saveStatus: packyTypes.SaveStatus;
     creatorUsername?: string;
     packyNames: string[];
+    packyTemplateNames: string[];
     fileEntries: filelistTypes.FileSystemEntry[];
     entry: filelistTypes.TextFileEntry | filelistTypes.AssetFileEntry | undefined;
     name: string;
@@ -333,6 +334,7 @@ class EditorView extends React.Component<Props, State> {
       const {
         // channel,
         packyNames,
+        packyTemplateNames,
         entry,
         // params,
         createdAt,
@@ -559,6 +561,7 @@ class EditorView extends React.Component<Props, State> {
               onDismiss={this._handleHideModal}>
               <PackyManager 
                 packyNames={packyNames}
+                packyTemplateNames={packyTemplateNames}
                 onSelectPacky={this._handleSelectPacky}
                 onCreatePacky={this._handleCreatePacky}
               />

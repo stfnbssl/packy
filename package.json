@@ -58,6 +58,7 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.1",
     "wizzi": "latest",
+    "wizzi-browser": "latest",
     "wizzi-core": "latest",
     "wizzi-js": "latest",
     "wizzi-web": "latest"

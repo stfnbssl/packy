@@ -16,6 +16,14 @@ export type Packy = {
     isDraft?: boolean;
 };
 
+export type PackyTemplate = {
+  id: string;
+  code: PackyFiles;
+  dependencies?: {
+    [key: string]: string;
+  };
+};
+
 type RequiredPackyFileAttributes = {
     contents: string;
     type: 'ASSET' | 'CODE';
@@ -27,7 +35,6 @@ export type PackyFiles = {
 
 export type PackyFilesOrKind = PackyFiles | string;
 export type CreatePackyOptions = {
-    name: string;
     data: PackyFilesOrKind
 }
   

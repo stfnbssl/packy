@@ -27,19 +27,26 @@ interface StateProps {
   viewer?: appTypes.Viewer,
   packyNames?: string[],
   currentPacky?: packyTypes.Packy,
+  packyTemplateNames?: string[],
+  currentPackyTemplate?: packyTypes.PackyTemplate,
 }
 
 interface DispatchProps {
   dispatchFetchPackyList: () => void;
   dispatchFetchPacky: (packyName: string) => void;
   dispatchSavePacky: (packyName: string, code: packyTypes.PackyFiles) => void;
-  dispatchCreatePacky: (packyName: string, code: packyTypes.PackyFiles) => void;
+  dispatchCreatePacky: (packyName: string, packyKind: string) => void;
+  dispatchFetchPackyTemplateList: () => void;
+  dispatchFetchPackyTemplate: (packyName: string) => void;
+  dispatchGenerateArtifact: (fileName: string, code: packyTypes.PackyFiles) => void;
 }
 
 const mapStateToProps = (state: AppReduxState) => ({
   viewer: state.app.viewer,
   packyNames: state.packy.packyNames,
   currentPacky: state.packy.currentPacky,
+  packyTemplateNames: state.packy.packyTemplateNames,
+  currentPackyTemplate: state.packy.currentPackyTemplate,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
@@ -58,14 +65,22 @@ const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
       }
     }));
   },
-  dispatchCreatePacky: (packyName: string, code: packyTypes.PackyFiles) => {
+  dispatchCreatePacky: (packyName: string, packyKind: string) => {
     dispatch(packyActions.createPackyRequest({
       name: packyName,
-      options: {
-        name: packyName, 
-        data: code
-      }
+      options: { data: packyKind}
     }));
+  },
+  dispatchFetchPackyTemplateList: () => {
+    dispatch(packyActions.fetchPackyTemplateListRequest());
+  },
+  dispatchFetchPackyTemplate: (packyName: string) => {
+    dispatch(packyActions.fetchPackyTemplateRequest({name: packyName}));
+  },
+  dispatchGenerateArtifact: (filePath: string, code: packyTypes.PackyFiles) => {
+    if (filePath.endsWith('.ittf') && !filePath.endsWith('wfjob.ittf')) {
+      dispatch(packyActions.generateArtifactRequest({filePath: filePath, files:code}));
+    }
   },
 });
 
@@ -252,6 +267,7 @@ class App extends React.Component<Props, State> {
     this._initializePackySession();
     this.props.dispatchFetchPackyList();
     this.props.dispatchFetchPacky(packyDefaults.DEFAULT_PACKY_NAME);
+    this.props.dispatchFetchPackyTemplateList();
   }  
 
   componentDidUpdate(_: Props, prevState: State) {
@@ -305,8 +321,8 @@ class App extends React.Component<Props, State> {
   }
 
   _handleCreatePacky = async (packyName: string, packyKind: string) => {
-    const packyFiles = packyDefaults.INITIAL_PACKY_KINDS[packyKind];
-    this.props.dispatchCreatePacky(packyName, packyFiles);
+    // const packyFiles = packyDefaults.INITIAL_PACKY_KINDS[packyKind];
+    this.props.dispatchCreatePacky(packyName, packyKind);
   }
 
   _findFocusedEntry = (entries: FileSystemEntry[]): TextFileEntry | AssetFileEntry | undefined =>
@@ -332,6 +348,13 @@ class App extends React.Component<Props, State> {
         const nextFocusedEntry = this._findFocusedEntry(nextFileEntries);
 
         let fileEntries = nextFileEntries;
+
+        if (nextFocusedEntry) {
+          this.props.dispatchGenerateArtifact(
+            nextFocusedEntry.item.path,
+            entryArrayToPacky(this.state.fileEntries.filter(e => !e.item.virtual && e.item.path.endsWith('.ittf')))
+          );
+        }
 
         if (
           // Don't update package.json if we're resolving
@@ -416,6 +439,7 @@ class App extends React.Component<Props, State> {
             <Comp
               packy={this.props.packy}
               packyNames={this.props.packyNames || []}
+              packyTemplateNames={this.props.packyTemplateNames || []}
               createdAt={this.props.packy ? this.props.packy.created : undefined}
               autosaveEnabled={this.state.autosaveEnabled}
               sendCodeOnChangeEnabled={this.state.sendCodeOnChangeEnabled}
@@ -469,7 +493,7 @@ class App extends React.Component<Props, State> {
   }
 }
 
-export default connect<StateProps, DispatchProps>(
+export default connect<AppReduxState, DispatchProps>(
   mapStateToProps, mapDispatchToProps
 )(App/*withAuth(App)*/);
 

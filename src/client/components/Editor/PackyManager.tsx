@@ -7,6 +7,7 @@ import EditorForm from './EditorForm';
 
 type PackyManagerProps = {
   packyNames: string[];
+  packyTemplateNames: string[];
   onSelectPacky: (name: string) => void;
   onCreatePacky: (name: string, kind: string) => void;
 };
@@ -41,7 +42,7 @@ class PackyManager extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { packyNames, onSelectPacky } = this.props;
+    const { packyNames, packyTemplateNames, onSelectPacky } = this.props;
     const { isEditModalVisible } = this.state;
 
     return (
@@ -78,16 +79,15 @@ class PackyManager extends React.PureComponent<Props, State> {
             visible={isEditModalVisible}
             onDismiss={this._handleDismissEditModal}
             onSubmit={values => {
+              alert(JSON.stringify(values));
               this._handleCreatePacky(values['name'], values['kind']);
               this._handleDismissEditModal();
             }}
             fields={{
               name: {type: 'text', label: 'Name', onValidate: packyValids.validatePackyName },
-              kind: {type: 'select', label: 'Kind', options: [
-                { label: 'React', value: 'react' },
-                { label: 'React + Redux', value: 'react-redux' },
-                { label: 'React + Redux + Router', value: 'react-redux-router' }
-              ] },
+              kind: {type: 'select', label: 'Kind', options: packyTemplateNames.map((name)=> {
+                return { label: name, value: name };
+              })},
             }} />
       </div>
     );

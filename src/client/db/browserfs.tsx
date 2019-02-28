@@ -1,6 +1,6 @@
 import * as wizziUtils from 'wizzi-utils';
 import { VFile, GetFoldersOptions, GetFilesOptions, FolderDef, FileDef } from 'wizzi-utils';
-import { BROWSERFS_PACKY_STORE } from '../configs/browserfs';
+import { BROWSERFS_PACKY_STORE } from '../configs/data';
 
 type cb<T> = (err: any, result?: T) => void;
 

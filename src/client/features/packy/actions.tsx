@@ -1,5 +1,5 @@
 import { createStandardAction } from 'typesafe-actions';
-import { Packy, CreatePackyOptions } from './types';
+import { Packy, PackyTemplate, PackyFiles, CreatePackyOptions } from './types';
 const FETCH_PACKY_LIST_REQUEST = '@@packy/FETCH_PACKY_LIST_REQUEST';
 const FETCH_PACKY_LIST_SUCCESS = '@@packy/FETCH_PACKY_LIST_SUCCESS';
 const FETCH_PACKY_LIST_ERROR = '@@packy/FETCH_PACKY_LIST_ERROR';
@@ -21,6 +21,9 @@ const FETCH_PACKY_TEMPLATE_LIST_ERROR = '@@packy/FETCH_PACKY_TEMPLATE_LIST_ERROR
 const FETCH_PACKY_TEMPLATE_REQUEST = '@@packy/FETCH_PACKY_TEMPLATE_REQUEST';
 const FETCH_PACKY_TEMPLATE_SUCCESS = '@@packy/FETCH_PACKY_TEMPLATE_SUCCESS';
 const FETCH_PACKY_TEMPLATE_ERROR = '@@packy/FETCH_PACKY_TEMPLATE_ERROR';
+const GENERATE_ARTIFACT_REQUEST = '@@packy/GENERATE_ARTIFACT_REQUEST';
+const GENERATE_ARTIFACT_SUCCESS = '@@packy/GENERATE_ARTIFACT_SUCCESS';
+const GENERATE_ARTIFACT_ERROR = '@@packy/GENERATE_ARTIFACT_ERROR';
 
 
 export interface ResponsePayload {
@@ -46,6 +49,19 @@ export interface PackyPayload extends ResponsePayload {
     packy: Packy;
 };
 
+export interface ArtifactRequestPayload  {
+    filePath: string;
+    files: PackyFiles;
+};
+
+export interface ArtifactResponsePayload extends ResponsePayload {
+    artifactContent: string;
+};
+
+export interface PackyTemplatePayload extends ResponsePayload {
+    packy: PackyTemplate;
+};
+
 export const fetchPackyListRequest = createStandardAction(FETCH_PACKY_LIST_REQUEST)<void>();
 export const fetchPackyListSuccess = createStandardAction(FETCH_PACKY_LIST_SUCCESS)<PackyListPayload>();
 export const fetchPackyListError = createStandardAction(FETCH_PACKY_LIST_ERROR)<any>();
@@ -65,5 +81,8 @@ export const fetchPackyTemplateListRequest = createStandardAction(FETCH_PACKY_TE
 export const fetchPackyTemplateListSuccess = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_SUCCESS)<PackyListPayload>();
 export const fetchPackyTemplateListError = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_ERROR)<any>();
 export const fetchPackyTemplateRequest = createStandardAction(FETCH_PACKY_TEMPLATE_REQUEST)<FetchPackyPayload>();
-export const fetchPackyTemplateSuccess = createStandardAction(FETCH_PACKY_TEMPLATE_SUCCESS)<PackyPayload>();
+export const fetchPackyTemplateSuccess = createStandardAction(FETCH_PACKY_TEMPLATE_SUCCESS)<PackyTemplatePayload>();
 export const fetchPackyTemplateError = createStandardAction(FETCH_PACKY_TEMPLATE_ERROR)<any>();
+export const generateArtifactRequest = createStandardAction(GENERATE_ARTIFACT_REQUEST)<ArtifactRequestPayload>();
+export const generateArtifactSuccess = createStandardAction(GENERATE_ARTIFACT_SUCCESS)<ArtifactResponsePayload>();
+export const generateArtifactError = createStandardAction(GENERATE_ARTIFACT_ERROR)<any>();

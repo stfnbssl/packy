@@ -1,14 +1,9 @@
 import * as path from 'path';
+import { callApi } from '../../utils/api';
 import * as bfs from '../../db/browserfs';
-import { BROWSERFS_PACKIES_FOLDER } from '../../configs/browserfs';
-import { PackyFiles, CreatePackyOptions } from './types';
+import { BROWSERFS_PACKIES_FOLDER, API_ENDPOINT } from '../../configs/data';
+import { PackyFiles, CreatePackyOptions, PackyTemplate } from './types';
 import { INITIAL_CODE, DEFAULT_PACKY_NAME } from './defaults';
-
-
-
-
-    
-
 
 export async function getPackyList(): Promise<string[]> {
     return new Promise(async (resolve) => {
@@ -40,11 +35,33 @@ export async function getPackyFiles(packyName: string): Promise<PackyFiles> {
     });
 }
 
+export async function getPackyTemplate(templateName: string): Promise<PackyTemplate> {
+    console.log('packy.data.getPackyTemplate', templateName);
+    return new Promise(async (resolve, reject) =>{
+        const res = await callApi('get', API_ENDPOINT, 'templates/' + templateName);
+        console.log('packy.data.getPackyTemplate.res', res);
+        if (res.error) { return reject(res.error); }
+        const code: PackyFiles = {};
+        res.forEach((element: any) => {
+            code[element.relPath] = {
+                contents: element.content,
+                type: 'CODE'
+            }
+        });
+        resolve({
+            id: templateName,
+            code: code
+        });
+    });
+} 
+
+
 export async function createPacky(packyName: string, options: CreatePackyOptions): Promise<PackyFiles> {
     return new Promise(async (resolve) => {
         if (typeof(options.data) === 'string') {
-            await savePackyFiles(packyName, INITIAL_CODE);
-            return resolve(INITIAL_CODE);
+            const packyTemplate = await getPackyTemplate(options.data as string);
+            await savePackyFiles(packyName, packyTemplate.code);
+            return resolve(packyTemplate.code);
         } else {
             await savePackyFiles(packyName, options.data);
             return resolve(options.data);
