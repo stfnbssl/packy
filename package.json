@@ -57,7 +57,7 @@
     "react-textarea-autosize": "^7.1.0",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.1",
-    "wizzi-browser": "^0.6.7"
+    "wizzi-browser": "^0.6.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
