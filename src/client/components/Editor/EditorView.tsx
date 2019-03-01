@@ -5,6 +5,7 @@ import { appTypes, Segment } from '../../features/app';
 import { prefTypes, prefColors, withPreferences } from '../../features/preferences';
 import { filelistTypes, fileActions, fileUtils } from '../../features/filelist'
 import { packyTypes/*, packyDefaults*/ } from '../../features/packy';
+import { wizziTypes } from '../../features/wizzi';
 import FileList from '../filelist/FileList'
 import KeybindingsManager from '../shared/KeybindingsManager'
 import LazyLoad from '../shared/LazyLoad'
@@ -21,6 +22,7 @@ import NoFileSelected from './NoFileSelected'
 import KeyboardShortcuts, { Shortcuts } from './KeyboardShortcuts';
 import PackyManager from './PackyManager';
 import PreviousSaves from './PreviousSaves';
+import SimpleEditor from './SimpleEditor';
 import mockFn from '../../mocks/functions'
 
 const EDITOR_LOAD_FALLBACK_TIMEOUT = 3000;
@@ -28,6 +30,7 @@ const EDITOR_LOAD_FALLBACK_TIMEOUT = 3000;
 type EditorProps = {
     packy?: packyTypes.Packy;
     createdAt: string | undefined;
+    generatedArtifact?: wizziTypes.GeneratedArtifact;
     saveHistory: packyTypes.SaveHistory;
     saveStatus: packyTypes.SaveStatus;
     creatorUsername?: string;
@@ -338,6 +341,7 @@ class EditorView extends React.Component<Props, State> {
         entry,
         // params,
         createdAt,
+        generatedArtifact,
         saveHistory,
         saveStatus,
         viewer,
@@ -355,6 +359,8 @@ class EditorView extends React.Component<Props, State> {
         // name,
         description,
       } = this.props;
+
+      console.log('EditorView', generatedArtifact);
   
       // const annotations: Annotation[] = [];
   
@@ -378,7 +384,7 @@ class EditorView extends React.Component<Props, State> {
   
       const {fileEntries} = this.props;
       if (fileEntries.length == 0) {
-        return (<h1>loading ...</h1>)
+        // return (<h1>loading ...</h1>)
       }
 
       return (
@@ -517,6 +523,13 @@ class EditorView extends React.Component<Props, State> {
                   return <EditorShell />;
                 }}
               </LazyLoad>
+              { generatedArtifact ? (
+                <SimpleEditor
+                    path=""
+                    value={generatedArtifact.artifactContent}
+                    onValueChange={()=>null}
+                    lineNumbers="on"
+                  />) : null }
               </LayoutShell>
               {preferences.panelsShown ? (
                       <EditorPanels

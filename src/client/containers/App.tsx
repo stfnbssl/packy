@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { AppReduxState } from '../store/createStore';
+import { storeTypes } from '../store';
 import { appTypes } from '../features/app'
 import { authTypes } from '../features/auth'
 import { packyTypes, packyDefaults, packyActions } from '../features/packy'
+import { wizziTypes, wizziActions } from '../features/wizzi'
 import { FileSystemEntry, TextFileEntry, AssetFileEntry } from '../features/filelist/types'
 import { packyToEntryArray, entryArrayToPacky } from '../features/packy/convertFileStructure'
 import updateEntry from '../features/filelist/actions/updateEntry';
@@ -29,6 +30,7 @@ interface StateProps {
   currentPacky?: packyTypes.Packy,
   packyTemplateNames?: string[],
   currentPackyTemplate?: packyTypes.PackyTemplate,
+  generatedArtifact?: wizziTypes.GeneratedArtifact;
 }
 
 interface DispatchProps {
@@ -41,12 +43,13 @@ interface DispatchProps {
   dispatchGenerateArtifact: (fileName: string, code: packyTypes.PackyFiles) => void;
 }
 
-const mapStateToProps = (state: AppReduxState) => ({
+const mapStateToProps = (state: storeTypes.StoreState) => ({
   viewer: state.app.viewer,
   packyNames: state.packy.packyNames,
   currentPacky: state.packy.currentPacky,
   packyTemplateNames: state.packy.packyTemplateNames,
   currentPackyTemplate: state.packy.currentPackyTemplate,
+  generatedArtifact: state.wizzi.generatedArtifact,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
@@ -79,7 +82,7 @@ const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
   },
   dispatchGenerateArtifact: (filePath: string, code: packyTypes.PackyFiles) => {
     if (filePath.endsWith('.ittf') && !filePath.endsWith('wfjob.ittf')) {
-      dispatch(packyActions.generateArtifactRequest({filePath: filePath, files:code}));
+      dispatch(wizziActions.generateArtifactRequest({filePath: filePath, files:code}));
     }
   },
 });
@@ -249,6 +252,7 @@ class App extends React.Component<Props, State> {
       saveStatus:
         props.packy && props.packy.isDraft ? 'saved-draft' : params.id ? 'published' : 'changed',
       fileEntries: fileEntries /*[...fileEntries, this._getPackageJson(packySessionState)]*/,
+      generatedArtifact: undefined,
       // connectedDevices: [],
       // deviceLogs: [],
       // deviceError: undefined,
@@ -266,7 +270,7 @@ class App extends React.Component<Props, State> {
     // Session worker
     this._initializePackySession();
     this.props.dispatchFetchPackyList();
-    this.props.dispatchFetchPacky(packyDefaults.DEFAULT_PACKY_NAME);
+    // this.props.dispatchFetchPacky(packyDefaults.DEFAULT_PACKY_NAME);
     this.props.dispatchFetchPackyTemplateList();
   }  
 
@@ -334,7 +338,12 @@ class App extends React.Component<Props, State> {
       saveStatus: 'changed',
       fileEntries: state.fileEntries.map(entry => {
         if (entry.item.type === 'file' && entry.state.isFocused) {
-          return updateEntry(entry, { item: { content } });
+          const temp = updateEntry(entry, { item: { content } });
+          this.props.dispatchGenerateArtifact(
+            temp.item.path,
+            entryArrayToPacky(state.fileEntries.filter(e => !e.item.virtual && e.item.path.endsWith('.ittf'))) 
+          );
+          return temp;
         }
         return entry;
       }),
@@ -406,10 +415,12 @@ class App extends React.Component<Props, State> {
 
   _handleSaveDraft = debounce(this._handleSaveDraftNotDebounced, 3000);
 
-
+  
   render() {
     const title =
       this.props.packy && this.props.packy.manifest ? this.props.packy.manifest.name : null;
+
+      console.log('App container', this.props.generatedArtifact);
 
     /*
       if (this.state.isPreview) {
@@ -441,6 +452,7 @@ class App extends React.Component<Props, State> {
               packyNames={this.props.packyNames || []}
               packyTemplateNames={this.props.packyTemplateNames || []}
               createdAt={this.props.packy ? this.props.packy.created : undefined}
+              generatedArtifact={this.props.generatedArtifact}
               autosaveEnabled={this.state.autosaveEnabled}
               sendCodeOnChangeEnabled={this.state.sendCodeOnChangeEnabled}
               saveHistory={this.state.saveHistory}
@@ -493,7 +505,7 @@ class App extends React.Component<Props, State> {
   }
 }
 
-export default connect<AppReduxState, DispatchProps>(
+export default connect<storeTypes.StoreState, DispatchProps>(
   mapStateToProps, mapDispatchToProps
 )(App/*withAuth(App)*/);
 

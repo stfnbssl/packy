@@ -17,7 +17,6 @@ const initialState: AppState = {
 export type AppAction = ActionType<typeof appActions>;
 
 const reducer: Reducer<AppState, AppAction> = (state = initialState, action) => {
-    console .log("appReducer.enterAction", action);
     switch (action.type) {
         case getType(appActions.updateViewer): {
             console .log("appActions.updateViewer");

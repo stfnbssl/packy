@@ -133,20 +133,6 @@ function* handleFetchPackyTemplateRequest(action: ReturnType<typeof packyActions
     } 
 } 
 
-function* handleGenerateArtifactRequest(action: ReturnType<typeof packyActions.generateArtifactRequest>) {
-    try {
-        console.log('sagas.handleGenerateArtifactRequest.action', action);
-        const res = yield call(callApi, 'post', API_ENDPOINT, 'productions/artifact/' + encodeURIComponent(action.payload.filePath), action.payload.files);
-        console.log('sagas.handleGenerateArtifactRequest.res', res);
-        yield put(packyActions.generateArtifactSuccess(res));
-    } catch (err) {
-        if (err instanceof Error) {
-            yield put(packyActions.fetchPackyTemplateListError(err.stack!));
-        } else {
-            yield put(packyActions.fetchPackyTemplateListError('An unknown error occured.'));
-        } 
-    } 
-} 
 
 function* watchFetchRequest() {
     yield takeEvery(getType(packyActions.fetchPackyListRequest), handleFetchPackyListRequest);
@@ -160,15 +146,10 @@ function* watchCrudRequest() {
     yield takeEvery(getType(packyActions.savePackyRequest), handleSavePackyRequest);
 } 
 
-function* wizziRequest() {
-    yield takeEvery(getType(packyActions.generateArtifactRequest), handleGenerateArtifactRequest);
-} 
-
 function* packySaga() {
     yield all([
         fork (watchFetchRequest),
         fork (watchCrudRequest),
-        fork (wizziRequest),
     ]);
 }
 

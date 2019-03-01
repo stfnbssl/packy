@@ -1,5 +1,6 @@
 import { createStandardAction } from 'typesafe-actions';
-import { Packy, PackyTemplate, PackyFiles, CreatePackyOptions } from './types';
+import { storeTypes } from '../../store';
+import { Packy, PackyTemplate, CreatePackyOptions } from './types';
 const FETCH_PACKY_LIST_REQUEST = '@@packy/FETCH_PACKY_LIST_REQUEST';
 const FETCH_PACKY_LIST_SUCCESS = '@@packy/FETCH_PACKY_LIST_SUCCESS';
 const FETCH_PACKY_LIST_ERROR = '@@packy/FETCH_PACKY_LIST_ERROR';
@@ -21,44 +22,25 @@ const FETCH_PACKY_TEMPLATE_LIST_ERROR = '@@packy/FETCH_PACKY_TEMPLATE_LIST_ERROR
 const FETCH_PACKY_TEMPLATE_REQUEST = '@@packy/FETCH_PACKY_TEMPLATE_REQUEST';
 const FETCH_PACKY_TEMPLATE_SUCCESS = '@@packy/FETCH_PACKY_TEMPLATE_SUCCESS';
 const FETCH_PACKY_TEMPLATE_ERROR = '@@packy/FETCH_PACKY_TEMPLATE_ERROR';
-const GENERATE_ARTIFACT_REQUEST = '@@packy/GENERATE_ARTIFACT_REQUEST';
-const GENERATE_ARTIFACT_SUCCESS = '@@packy/GENERATE_ARTIFACT_SUCCESS';
-const GENERATE_ARTIFACT_ERROR = '@@packy/GENERATE_ARTIFACT_ERROR';
 
-
-export interface ResponsePayload {
-    error?: boolean;
-    code?: string;
-    message?: string;
-};
-
-export interface PackyListPayload extends ResponsePayload {
+export interface PackyListPayload extends storeTypes.ResponsePayload {
     packyNames: string[];
 };
 
-export interface FetchPackyPayload  {
+export interface FetchPackyPayload {
     name: string;
 };
 
-export interface CreatePackyPayload  {
+export interface CreatePackyPayload {
     name: string;
     options: CreatePackyOptions;
 };
 
-export interface PackyPayload extends ResponsePayload {
+export interface PackyPayload extends storeTypes.ResponsePayload {
     packy: Packy;
 };
 
-export interface ArtifactRequestPayload  {
-    filePath: string;
-    files: PackyFiles;
-};
-
-export interface ArtifactResponsePayload extends ResponsePayload {
-    artifactContent: string;
-};
-
-export interface PackyTemplatePayload extends ResponsePayload {
+export interface PackyTemplatePayload extends storeTypes.ResponsePayload {
     packy: PackyTemplate;
 };
 
@@ -72,10 +54,10 @@ export const createPackyRequest = createStandardAction(CREATE_PACKY_REQUEST)<Cre
 export const createPackySuccess = createStandardAction(CREATE_PACKY_SUCCESS)<PackyPayload>();
 export const createPackyError = createStandardAction(CREATE_PACKY_ERROR)<any>();
 export const savePackyRequest = createStandardAction(SAVE_PACKY_REQUEST)<PackyPayload>();
-export const savePackySuccess = createStandardAction(SAVE_PACKY_SUCCESS)<ResponsePayload>();
+export const savePackySuccess = createStandardAction(SAVE_PACKY_SUCCESS)<storeTypes.ResponsePayload>();
 export const savePackyError = createStandardAction(SAVE_PACKY_ERROR)<any>();
 export const deletePackyRequest = createStandardAction(DELETE_PACKY_REQUEST)<PackyPayload>();
-export const deletePackySuccess = createStandardAction(DELETE_PACKY_SUCCESS)<ResponsePayload>();
+export const deletePackySuccess = createStandardAction(DELETE_PACKY_SUCCESS)<storeTypes.ResponsePayload>();
 export const deletePackyError = createStandardAction(DELETE_PACKY_ERROR)<any>();
 export const fetchPackyTemplateListRequest = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_REQUEST)<void>();
 export const fetchPackyTemplateListSuccess = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_SUCCESS)<PackyListPayload>();
@@ -83,6 +65,3 @@ export const fetchPackyTemplateListError = createStandardAction(FETCH_PACKY_TEMP
 export const fetchPackyTemplateRequest = createStandardAction(FETCH_PACKY_TEMPLATE_REQUEST)<FetchPackyPayload>();
 export const fetchPackyTemplateSuccess = createStandardAction(FETCH_PACKY_TEMPLATE_SUCCESS)<PackyTemplatePayload>();
 export const fetchPackyTemplateError = createStandardAction(FETCH_PACKY_TEMPLATE_ERROR)<any>();
-export const generateArtifactRequest = createStandardAction(GENERATE_ARTIFACT_REQUEST)<ArtifactRequestPayload>();
-export const generateArtifactSuccess = createStandardAction(GENERATE_ARTIFACT_SUCCESS)<ArtifactResponsePayload>();
-export const generateArtifactError = createStandardAction(GENERATE_ARTIFACT_ERROR)<any>();

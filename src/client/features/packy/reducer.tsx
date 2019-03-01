@@ -28,7 +28,6 @@ const initialState: PackyState = {
 export type PackyAction = ActionType<typeof packyActions>;
 
 const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action) => {
-    console .log("packyReducer.enterAction", action);
     switch (action.type) {
         case getType(packyActions.fetchPackyListRequest): {
             console .log("packyActions.fetchPackyListRequest");
@@ -95,19 +94,6 @@ const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action)
             console .log("packyActions.fetchPackyTemplateError", action);
             return { ...state, loading: false, errors: action.payload };
         } 
-        case getType(packyActions.generateArtifactRequest): {
-            console .log("packyActions.generateArtifactRequest");
-            return { ...state, loading: true };
-        }
-        case getType(packyActions.generateArtifactSuccess): {
-            console .log("packyActions.generateArtifactSuccess", action);
-            return { ...state, loading: false, generatedArtifactContent: action.payload.artifactContent };
-        }
-        case getType(packyActions.generateArtifactError): {
-            console .log("packyActions.generateArtifactError", action);
-            return { ...state, loading: false, errors: action.payload };
-        } 
-
         default: {
             return state;
         } 
