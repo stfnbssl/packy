@@ -28,6 +28,7 @@ type Props = {
   isResolving: boolean;
   isAuthModalVisible: boolean;
   isEditModalVisible: boolean;
+  isWizziJobWaiting: boolean;
   onSubmitMetadata: (
     details: {
       name: string;
@@ -42,6 +43,7 @@ type Props = {
   // onDismissAuthModal: () => void;
   // onShowEmbedCode: () => void;
   // onDownloadCode: () => Promise<void>;
+  onExecuteWizziJob: () => void;
   onShowPackyManager: () => void;
   // onShowQRCode: () => void;
   // onPublishAsync: () => Promise<void>;
@@ -78,12 +80,14 @@ class EditorToolbar extends React.PureComponent<Props, State> {
       isResolving,
       isEditModalVisible,
       // isAuthModalVisible,
+      isWizziJobWaiting,
       onSubmitMetadata,
       onShowPreviousSaves,
       onShowEditModal,
       onDismissEditModal,
       // onShowEmbedCode,
       // onDownloadCode,
+      onExecuteWizziJob,
       onShowPackyManager,
       // onShowQRCode,
       // onPublishAsync,
@@ -167,6 +171,13 @@ class EditorToolbar extends React.PureComponent<Props, State> {
             className={css(styles.saveButton)}>
             {isPublishing ? 'Saving…' : isPublished ? 'Saved' : 'Save'}
           </Button>
+          <Button
+            variant="accent"
+            onClick={onExecuteWizziJob}
+            disabled={!isWizziJobWaiting}
+            className={css(styles.execWizziJobButton)}>
+            {'Exec wizzi job'}
+          </Button>
           {/*<UserMenu onLogInClick={this._handleShowAuthModal} />
           <ModalAuthentication
             visible={this.state.isLoggingIn && isAuthModalVisible}
@@ -197,6 +208,9 @@ const styles = StyleSheet.create({
   },
 
   saveButton: {
+    minWidth: 100,
+  },
+  execWizziJobButton: {
     minWidth: 100,
   },
 });

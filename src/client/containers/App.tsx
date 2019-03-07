@@ -2,12 +2,14 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { storeTypes } from '../store';
+import { getEventServiceInstance } from '../services';
 import { appTypes } from '../features/app'
 import { authTypes } from '../features/auth'
+import { prefTypes, withPreferences } from '../features/preferences';
 import { packyTypes, packyDefaults, packyActions } from '../features/packy'
 import { wizziTypes, wizziActions } from '../features/wizzi'
 import { FileSystemEntry, TextFileEntry, AssetFileEntry } from '../features/filelist/types'
-import { packyToEntryArray, entryArrayToPacky } from '../features/packy/convertFileStructure'
+import { packyToEntryArray, entryArrayToPacky, realAndGeneratedPackyToEntryArray, entryArrayDiff } from '../features/packy/convertFileStructure'
 import updateEntry from '../features/filelist/actions/updateEntry';
 import debounce from 'lodash/debounce';
 import { isPackageJson } from '../features/filelist/fileUtilities';
@@ -31,6 +33,7 @@ interface StateProps {
   packyTemplateNames?: string[],
   currentPackyTemplate?: packyTypes.PackyTemplate,
   generatedArtifact?: wizziTypes.GeneratedArtifact;
+  jobGeneratedArtifacts: packyTypes.PackyFiles;
 }
 
 interface DispatchProps {
@@ -41,6 +44,8 @@ interface DispatchProps {
   dispatchFetchPackyTemplateList: () => void;
   dispatchFetchPackyTemplate: (packyName: string) => void;
   dispatchGenerateArtifact: (fileName: string, code: packyTypes.PackyFiles) => void;
+  dispatchExecuteJob: (code: packyTypes.PackyFiles) => void;
+  dispatchSetTimedService: (name: string, onOff:boolean, payload?: any, frequence?: number) => void;
 }
 
 const mapStateToProps = (state: storeTypes.StoreState) => ({
@@ -50,6 +55,7 @@ const mapStateToProps = (state: storeTypes.StoreState) => ({
   packyTemplateNames: state.packy.packyTemplateNames,
   currentPackyTemplate: state.packy.currentPackyTemplate,
   generatedArtifact: state.wizzi.generatedArtifact,
+  jobGeneratedArtifacts: state.wizzi.jobGeneratedArtifacts,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
@@ -85,9 +91,23 @@ const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
       dispatch(wizziActions.generateArtifactRequest({filePath: filePath, files:code}));
     }
   },
+  dispatchExecuteJob: (code: packyTypes.PackyFiles) => {
+      dispatch(wizziActions.executeJobRequest({files:code}));
+  },
+  dispatchSetTimedService: (name: string, onOff:boolean, payload?: any, frequence?: number) => {
+    dispatch(wizziActions.setTimedService({
+      serviceName: name,
+      onOff: onOff,
+      payload: payload,
+      frequence: frequence
+    }));
+  }
 });
 
-type Props = authTypes.AuthProps & StateProps & DispatchProps & {
+type Props = authTypes.AuthProps & 
+      prefTypes.PreferencesContextType & 
+      StateProps & 
+      DispatchProps & {
   packy?: packyTypes.Packy;
   // from router
   history: {
@@ -121,6 +141,8 @@ type State = StateProps & {
   saveStatus: packyTypes.SaveStatus;
   params: Params;
   fileEntries: FileSystemEntry[];
+  isWizziJobWaiting: boolean;
+  lastJobfileEntries: FileSystemEntry[];
   // connectedDevices: Device[];
   // deviceError: DeviceError | undefined;
   // deviceLogs: DeviceLog[];
@@ -147,8 +169,18 @@ class App extends React.Component<Props, State> {
         return {
           fileEntries,
           packyStoreName: props.currentPacky.id,
+          isWizziJobWaiting: fileEntries.filter(e => e.item.path.endsWith('.wfjob.ittf')).length > 0 ? true : false,
+          lastJobfileEntries: fileEntries,
         };
       }
+    }
+    if (props.jobGeneratedArtifacts !== state.jobGeneratedArtifacts) {
+      const notGenerated = entryArrayToPacky(state.fileEntries.filter(e=> !e.item.generated));
+      console.log("App.getDerivedStateFromProps.notGenerated", notGenerated, 'jobGeneratedArtifacts', props.jobGeneratedArtifacts);
+      return {
+        fileEntries: realAndGeneratedPackyToEntryArray(notGenerated, props.jobGeneratedArtifacts),
+        jobGeneratedArtifacts: props.jobGeneratedArtifacts,
+      };
     }
     return null;
   }
@@ -253,6 +285,9 @@ class App extends React.Component<Props, State> {
         props.packy && props.packy.isDraft ? 'saved-draft' : params.id ? 'published' : 'changed',
       fileEntries: fileEntries /*[...fileEntries, this._getPackageJson(packySessionState)]*/,
       generatedArtifact: undefined,
+      jobGeneratedArtifacts: {},
+      isWizziJobWaiting: fileEntries.filter(e => e.item.path.endsWith('.wfjob.ittf')).length > 0 ? true : false,
+      lastJobfileEntries: fileEntries,
       // connectedDevices: [],
       // deviceLogs: [],
       // deviceError: undefined,
@@ -272,36 +307,56 @@ class App extends React.Component<Props, State> {
     this.props.dispatchFetchPackyList();
     // this.props.dispatchFetchPacky(packyDefaults.DEFAULT_PACKY_NAME);
     this.props.dispatchFetchPackyTemplateList();
+    if (this.props.preferences.timedJobRunning) {
+      this.props.dispatchSetTimedService(
+        'EXECUTE_JOB', true, this.state.fileEntries, 3000
+      )
+    }
+    getEventServiceInstance().on('EXECUTE_JOB', (payload: any) => {
+      // this.props.dispatchExecuteJob();
+    });
   }  
 
   componentDidUpdate(_: Props, prevState: State) {
     if (this.state.fileEntries === prevState.fileEntries) {
       return;
     }
-
+    
+    let diff = entryArrayDiff(prevState.fileEntries, this.state.fileEntries);
+    
     let didFilesChange = false;
 
-    if (this.state.fileEntries.length !== prevState.fileEntries.length) {
-      didFilesChange = true;
-    } else {
-      const items: { [key: string]: FileSystemEntry['item'] } = prevState.fileEntries.reduce(
-        (acc: { [key: string]: FileSystemEntry['item'] }, { item }) => {
-          acc[item.path] = item;
-          return acc;
-        },
-        {}
-      );
-
-      didFilesChange = this.state.fileEntries.some(
-        ({ item }) => !item.virtual && items[item.path] !== item
-      );
-    }
+    Object.keys(diff).forEach(k => {
+      console.log('componentDidUpdate.changed', k, diff[k].kind);
+      if (diff[k].kind === '+' || diff[k].kind === '-') {
+        didFilesChange = true;
+      } else {
+        if (diff[k].b && (diff[k].b as FileSystemEntry['item']).virtual) {
+            didFilesChange = true;
+        } 
+      }
+    });
+    
+    diff = entryArrayDiff(prevState.fileEntries, this.state.lastJobfileEntries);
+    let didIttfFilesChange = false;
+    Object.keys(diff).forEach(k => {
+      console.log('componentDidUpdate.changed', k, diff[k].kind);
+      if (k.endsWith('.ittf')) {
+        didIttfFilesChange = true;
+      }
+    });
 
     if (didFilesChange) {
       if (this.state.sendCodeOnChangeEnabled) {
         this._sendCode();
       }
-
+      if (didIttfFilesChange) {
+        // this._generateArtifact();
+        // this._executeJob();
+        this.setState({
+          isWizziJobWaiting: true
+        })
+      }
       this._handleSaveDraft();
     }
   }
@@ -333,23 +388,28 @@ class App extends React.Component<Props, State> {
     // @ts-ignore
     entries.find(({ item, state }) => item.type === 'file' && state.isFocused === true);
 
-  _handleChangeCode = (content: string) =>
-    this.setState((state: State) => ({
-      saveStatus: 'changed',
-      fileEntries: state.fileEntries.map(entry => {
-        if (entry.item.type === 'file' && entry.state.isFocused) {
-          const temp = updateEntry(entry, { item: { content } });
-          this.props.dispatchGenerateArtifact(
-            temp.item.path,
-            entryArrayToPacky(state.fileEntries.filter(e => !e.item.virtual && e.item.path.endsWith('.ittf'))) 
-          );
-          return temp;
-        }
-        return entry;
-      }),
+  _handleChangeCode = (content: string) => {
+    let focusedEntry: FileSystemEntry;
+    this.setState((state: State) => {
+      return {
+        saveStatus: 'changed',
+        fileEntries: state.fileEntries.map(entry => {
+          if (entry.item.type === 'file' && entry.state.isFocused) {
+            focusedEntry = entry;
+            return updateEntry(entry, { item: { content } });
+          }
+          return entry;
+        })
       // deviceError: undefined,
-    }));
-
+      };
+    }, () => {
+      if (focusedEntry.item.path.endsWith('.ittf')) {
+        this._generateArtifact();
+        // this._executeJob();
+      }
+    });
+  }
+  
   _handleFileEntriesChange = (nextFileEntries: FileSystemEntry[]): Promise<void> => {
     return new Promise(resolve =>
       this.setState(state => {
@@ -357,13 +417,6 @@ class App extends React.Component<Props, State> {
         const nextFocusedEntry = this._findFocusedEntry(nextFileEntries);
 
         let fileEntries = nextFileEntries;
-
-        if (nextFocusedEntry) {
-          this.props.dispatchGenerateArtifact(
-            nextFocusedEntry.item.path,
-            entryArrayToPacky(this.state.fileEntries.filter(e => !e.item.virtual && e.item.path.endsWith('.ittf')))
-          );
-        }
 
         if (
           // Don't update package.json if we're resolving
@@ -384,16 +437,48 @@ class App extends React.Component<Props, State> {
           );
         }
 
+        if (nextFocusedEntry) {
+          //??? this._generateArtifact();
+        }
+
         return { fileEntries };
       }, resolve)
     );
   };
 
+  _generateArtifactNotDebounced = () => {
+    const focusedEntry = this._findFocusedEntry(this.state.fileEntries);
+    if (focusedEntry) {
+      // TODO send only fileEntries of the same schema of focusedEntry
+      this.props.dispatchGenerateArtifact(
+        focusedEntry.item.path,
+        entryArrayToPacky(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
+      );
+    }
+  }
+
+  _generateArtifact = debounce(this._generateArtifactNotDebounced, 1000);
+
+  _executeJobNotDebounced = () => {
+    const jobEntries = this.state.fileEntries.filter(e => e.item.path.endsWith('.wfjob.ittf'));
+    if (jobEntries.length > 0) {
+      this.setState({
+        lastJobfileEntries: this.state.fileEntries,
+        isWizziJobWaiting: false
+      });
+      this.props.dispatchExecuteJob(
+        entryArrayToPacky(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
+      );
+    }
+  }
+
+  _executeJob = debounce(this._executeJobNotDebounced, 5000);
+
   _sendCodeNotDebounced = () => {
     // throw new Error("_sendCodeNotDebounced not implemented");
     this.props.dispatchSavePacky(
       this.state.packyStoreName as string,
-      entryArrayToPacky(this.state.fileEntries.filter(e => !e.item.virtual))
+      entryArrayToPacky(this.state.fileEntries.filter(e => !e.item.virtual && !e.item.generated))
     );
     /*
     this._packy.session.sendCodeAsync(
@@ -467,6 +552,7 @@ class App extends React.Component<Props, State> {
               dependencyQueryParam={this.props.query.dependencies}
               // sdkVersion={this.state.packySessionState.sdkVersion}
               isResolving={this.state.packySessionState.isResolving}
+              isWizziJobWaiting={this.state.isWizziJobWaiting}
               loadingMessage={this.state.packySessionState.loadingMessage}
               dependencies={this.state.packySessionState.dependencies}
               params={this.state.params}
@@ -476,6 +562,7 @@ class App extends React.Component<Props, State> {
               onFileEntriesChange={this._handleFileEntriesChange}
               onChangeCode={this._handleChangeCode}
               onSubmitMetadata={(details)=>mockFn.promise<void>(details)/*this._handleSubmitMetadata*/}
+              onExecuteWizziJob={this._executeJobNotDebounced}
               // onChangeSDKVersion={this._handleChangeSDKVersion}
               // onClearDeviceLogs={this._handleClearDeviceLogs}
               // onPublishAsync={this._handlePublishAsync}
@@ -507,6 +594,6 @@ class App extends React.Component<Props, State> {
 
 export default connect<storeTypes.StoreState, DispatchProps>(
   mapStateToProps, mapDispatchToProps
-)(App/*withAuth(App)*/);
+)(withPreferences(App/*withAuth(App)*/));
 
 

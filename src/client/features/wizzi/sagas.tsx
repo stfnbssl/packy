@@ -3,6 +3,7 @@ import { getType } from 'typesafe-actions';
 import { API_ENDPOINT } from '../../configs/data';
 import * as wizziActions from './actions';
 import { callApi } from '../../utils/api';
+import { getInstance } from '../../services/EventService';
 
 function* handleGenerateArtifactRequest(action: ReturnType<typeof wizziActions.generateArtifactRequest>) {
     try {
@@ -19,8 +20,24 @@ function* handleGenerateArtifactRequest(action: ReturnType<typeof wizziActions.g
     } 
 } 
 
+function* handleExecuteJobRequest(action: ReturnType<typeof wizziActions.executeJobRequest>) {
+    try {
+        console.log('sagas.handleExecuteJobRequest.action', action);
+        const res = yield call(callApi, 'post', API_ENDPOINT, 'productions/job/', action.payload.files);
+        console.log('sagas.handleExecuteJobRequest.res', res);
+        yield put(wizziActions.executeJobSuccess(res));
+    } catch (err) {
+        if (err instanceof Error) {
+            yield put(wizziActions.executeJobError(err.stack!));
+        } else {
+            yield put(wizziActions.executeJobError('An unknown error occured.'));
+        } 
+    } 
+} 
+
 function* wizziRequest() {
     yield takeEvery(getType(wizziActions.generateArtifactRequest), handleGenerateArtifactRequest);
+    yield takeEvery(getType(wizziActions.executeJobRequest), handleExecuteJobRequest);
 } 
 
 function* wizziSaga() {

@@ -57,6 +57,7 @@ type EditorProps = {
     // initialSdkVersion: SDKVersion;
     // sdkVersion: SDKVersion;
     sendCodeOnChangeEnabled: boolean;
+    isWizziJobWaiting: boolean;
     onSelectPacky: (packyName: string) => void;
     onCreatePacky: (packyName: string, packyKind: string) => void;
     onSendCode: () => void;
@@ -64,6 +65,7 @@ type EditorProps = {
     // onClearDeviceLogs: () => void;
     onFileEntriesChange: (entries: filelistTypes.FileSystemEntry[]) => Promise<void>;
     onChangeCode: (code: string) => void;
+    onExecuteWizziJob: () => void;
     onSubmitMetadata: (
       details: {
         name: string;
@@ -169,6 +171,13 @@ class EditorView extends React.Component<Props, State> {
       // shouldPreventRedirectWarning: false,
       previousEntry: undefined,
     };
+
+    componentDidMount() {
+      if (this.props.preferences.timedJobRunning) {
+        
+
+      }
+    }
 
     _handleDismissEditModal = () => {
       Segment.getInstance().logEvent('DISMISSED_AUTH_MODAL', {
@@ -276,10 +285,12 @@ class EditorView extends React.Component<Props, State> {
         panelType: 'errors',
       });
   
-    _showDeviceLogs = () =>
+    /*
+      _showDeviceLogs = () =>
       this.props.setPreferences({
         panelType: 'logs',
       });
+    */
   
     _togglePanels = () =>
       this.props.setPreferences({
@@ -330,6 +341,10 @@ class EditorView extends React.Component<Props, State> {
         shouldPreventRedirectWarning: false,
       });
     */
+    _toggleTimedJob = () =>
+      this.props.setPreferences({
+        timedJobRunning: !this.props.preferences.timedJobRunning,
+    });
 
     render() {
       const { currentModal/*, currentBanner*/, isDownloading/*, lintErrors*/ } = this.state;
@@ -351,7 +366,9 @@ class EditorView extends React.Component<Props, State> {
         // connectedDevices,
         // deviceLogs,
         // deviceError,
+        isWizziJobWaiting,
         onSendCode,
+        onExecuteWizziJob,
         // onClearDeviceLogs,
         // onToggleSendCode,
         // uploadFileAsync,
@@ -428,17 +445,20 @@ class EditorView extends React.Component<Props, State> {
               isResolving={this.props.isResolving}
               isEditModalVisible={currentModal === 'edit-info'}
               isAuthModalVisible={currentModal === 'auth'}
+              isWizziJobWaiting={isWizziJobWaiting}
               onShowPreviousSaves={this._handleShowPreviousSaves}
               onShowEditModal={this._handleShowTitleDescriptionModal}
               onDismissEditModal={this._handleDismissEditModal}
               onSubmitMetadata={this.props.onSubmitMetadata}
               // onShowAuthModal={this._handleShowAuthModal}
               // onDismissAuthModal={this._handleHideModal}
+              onExecuteWizziJob={onExecuteWizziJob}
               onShowPackyManager={this._handleShowPackyManager}
               // onShowQRCode={this._handleShowDeviceInstructions}
               // onShowEmbedCode={this._handleShowEmbedCode}
               // onDownloadCode={handleDownloadCode}
               // onPublishAsync={onPublishAsync}
+
               creatorUsername={this.props.creatorUsername}
             />
             <div className={css(styles.editorAreaOuterWrapper)}>
@@ -555,6 +575,7 @@ class EditorView extends React.Component<Props, State> {
               // editorMode={preferences.editorMode}
               // sendCodeOnChangeEnabled={sendCodeOnChangeEnabled}
               // sdkVersion={sdkVersion}
+              timedJobRunning={preferences.timedJobRunning}
               // onSendCode={onSendCode}
               onToggleTheme={this._toggleTheme}
               onTogglePanels={this._togglePanels}
@@ -567,6 +588,7 @@ class EditorView extends React.Component<Props, State> {
               // onChangeSDKVersion={this.props.onChangeSDKVersion}
               onShowShortcuts={this._handleShowShortcuts}
               // onPrettifyCode={this._prettier}
+              onToggleTimedJob={this._toggleTimedJob}
               theme={this.props.preferences.theme}
             />
             <ModalDialog

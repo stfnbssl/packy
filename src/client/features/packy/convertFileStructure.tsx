@@ -1,5 +1,5 @@
 import { isEntryPoint } from '../filelist/fileUtilities';
-import { FileSystemEntry } from '../filelist/types';
+import { FileSystemEntry, FileSystemEntryDiff } from '../filelist/types';
 import { PackyFiles } from './types';
 
 const getFolders = (path: string): string[] => {
@@ -54,6 +54,7 @@ export const packyToEntryArray = (sourceFormat: PackyFiles): FileSystemEntry[] =
               path: filename,
               type: 'file',
               content: sourceFormat[filename].contents,
+              generated: sourceFormat[filename].generated,
             },
             state: {
               isOpen: isEntry,
@@ -65,6 +66,17 @@ export const packyToEntryArray = (sourceFormat: PackyFiles): FileSystemEntry[] =
   }
   return fileSystem;
 };
+
+export const realAndGeneratedPackyToEntryArray = (real: PackyFiles, generated: PackyFiles): FileSystemEntry[] => {
+  const packyFiles = Object.assign({}, real);
+  Object.keys(generated).forEach(k=>{
+    if (real[k]) {
+      generated[k].bothRealAndGenerated = true;
+    }
+    packyFiles[k] = generated[k]
+  });
+  return packyToEntryArray(packyFiles);
+}
 
 export const entryArrayToPacky = (entryArray: FileSystemEntry[]): PackyFiles => {
   const sourceResult: PackyFiles = {};
@@ -85,3 +97,39 @@ export const entryArrayToPacky = (entryArray: FileSystemEntry[]): PackyFiles => 
   }
   return sourceResult;
 };
+
+export const entryArrayToObject = (entryArray: FileSystemEntry[]): { [key: string]: FileSystemEntry['item'] } => {
+  const entriesObject: { [key: string]: FileSystemEntry['item'] } = entryArray.reduce(
+    (acc: { [key: string]: FileSystemEntry['item'] }, { item }) => {
+      acc[item.path] = item;
+      return acc;
+    },
+    {}
+  );
+  return entriesObject;
+}
+
+export const entryArrayDiff = (a: FileSystemEntry[], b: FileSystemEntry[]): {[k: string] : FileSystemEntryDiff} => {
+  const diff: {[k: string] : FileSystemEntryDiff} = {};
+  a.forEach(entry => {
+    console.log('-', entry.item.path)
+    diff[entry.item.path] = { kind: '-', a: entry.item };
+  });
+  b.forEach(entry => {
+    if (diff[entry.item.path]) {
+      if (diff[entry.item.path].a === entry.item){
+        console.log('delete', entry.item.path)
+        delete diff[entry.item.path];
+      } else {
+        console.log('<>', entry.item.path)
+        diff[entry.item.path].kind === '<>';
+        diff[entry.item.path].b === entry.item;
+      }
+    } else {
+      console.log('+', entry.item.path)
+      diff[entry.item.path] = { kind: '+', b: entry.item };
+    }
+  });
+  return diff;
+}
+

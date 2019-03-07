@@ -7,6 +7,7 @@ export type PreferencesType = {
     panelsShown: boolean;
     panelType: 'errors' | 'logs';
     theme: ThemeName;
+    timedJobRunning: boolean;
   };
   
 export type SetPreferencesType = (overrides: Partial<PreferencesType>) => void;

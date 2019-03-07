@@ -3,6 +3,8 @@ export type TextFileEntry = Readonly<{
       path: string;
       type: 'file';
       content: string;
+      generated?: boolean;
+      bothRealAndGenerated?: boolean;
       virtual?: true;
       asset?: false;
     };
@@ -20,6 +22,7 @@ export type TextFileEntry = Readonly<{
       path: string;
       type: 'file';
       uri: string;
+      generated?: false;
       asset: true;
       virtual?: true;
     };
@@ -38,6 +41,7 @@ export type TextFileEntry = Readonly<{
       type: 'folder';
       asset?: false;
       virtual?: false;
+      generated?: false;
     };
     state: {
       isOpen?: boolean;
@@ -49,6 +53,12 @@ export type TextFileEntry = Readonly<{
   }>;
   
   export type FileSystemEntry = TextFileEntry | AssetFileEntry | FolderEntry;
+  
+  export type FileSystemEntryDiff = {
+    kind: string;
+    a?: FileSystemEntry['item'];
+    b?: FileSystemEntry['item'];
+  }
   
   export type Viewer = {
     username: string;

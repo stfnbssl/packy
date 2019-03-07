@@ -27,7 +27,9 @@ export type PackyTemplate = {
 type RequiredPackyFileAttributes = {
     contents: string;
     type: 'ASSET' | 'CODE';
-  };
+    generated?: boolean;
+    bothRealAndGenerated?: boolean;
+};
   
 export type PackyFiles = {
     [x: string]: RequiredPackyFileAttributes;
