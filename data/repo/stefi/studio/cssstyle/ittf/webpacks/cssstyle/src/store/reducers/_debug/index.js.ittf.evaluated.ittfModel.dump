@@ -1,0 +1,10 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import { combineReducers } from 'redux' ids: undefined undefined
+    import commonsReducer from './commonsReducer' ids: undefined undefined
+    +  ids: undefined undefined
+    export default ids: undefined undefined
+      _ combineReducers ids: undefined undefined
+        {  ids: undefined undefined
+          @ commons commonsReducer ids: undefined undefined

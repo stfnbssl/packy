@@ -1,0 +1,28 @@
+h/bs/list_group()
+	
+	h/bs/li_a( "Html", /ittf/demo/ttech/html/index.html.ittf )
+	h/bs/li_a( "Css", /ittf/demo/ttech/css/index.html.ittf )
+	h/bs/li_a( "Svg", /ittf/demo/ttech/svg/index.html.ittf )
+	h/bs/li_a( "Javascript", /ittf/demo/ttech/javascript/index.html.ittf )
+	h/bs/li_a( "React", /ittf/demo/ttech/react/index.html.ittf )
+	h/bs/li_a( "WebApi", /ittf/demo/ttech/webapi/index.html.ittf )
+	
+	$*
+	h/bs/li_a( "Darvin", /ittf/demo/ttech/darvin/index.html.ittf )
+	h/bs/li_a( "Develop", /ittf/demo/ttech/develop/index.html.ittf )
+	h/bs/li_a( "Javascript", /ittf/demo/ttech/javascript/index.html.ittf )
+	h/bs/li_a( "Graph visualization", /ittf/demo/ttech/graph/index.html.ittf )
+	h/bs/li_a( "Semantic UI", /ittf/demo/ttech/semantic/index.html.ittf )
+	h/bs/li_a( "Bootstrap", /ittf/demo/ttech/bootstrap/index.html.ittf )
+	h/bs/li_a( "AngularJS", /ittf/demo/ttech/angular/index.html.ittf )
+	h/bs/li_a( "JQuery", /ittf/demo/ttech/jquery/index.html.ittf )
+	h/bs/li_a( "Google apis", /ittf/demo/ttech/googleapis/index.html.ittf )
+	h/bs/li_a( "Chrome", /ittf/demo/ttech/chrome/index.html.ittf )
+	h/bs/li_a( "OrientDb", /ittf/demo/ttech/orientdb/index.html.ittf )
+	h/bs/li_a( "Widgets", /ittf/demo/ttech/widgets/index.html.ittf )
+	h/bs/li_a( "Neo4j", /ittf/demo/ttech/neo4j/index.html.ittf )
+	h/bs/li_a( "Knockout", /ittf/demo/ttech/knockout/index.html.ittf )
+	h/bs/li_a( "Backbone", /ittf/demo/ttech/backbone/index.html.ittf )
+	h/bs/li_a( "DustJs", /ittf/demo/ttech/dustjs/index.html.ittf )
+	*$
+

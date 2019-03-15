@@ -1,0 +1,69 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    import util ids: undefined undefined
+    import _ from 'lodash' ids: undefined undefined
+    import utils from '../lib/utils' ids: undefined undefined
+    import http from './http' ids: undefined undefined
+    import config from './config' ids: undefined undefined
+    +  ids: undefined undefined
+    const { notEmptyString } = utils ids: undefined undefined
+    const error = utils.error('reduxstarter/middleware/api') ids: undefined undefined
+    const throwError = utils.throwError('reduxstarter/middleware/api') ids: undefined undefined
+    +  ids: undefined undefined
+    const timers = {} ids: undefined undefined
+    +  ids: undefined undefined
+    function validateHttpRequest ids: undefined undefined
+      param store ids: undefined undefined
+      param actionHttpRequest ids: undefined undefined
+      +  ids: undefined undefined
+      const { types } = actionHttpRequest ids: undefined undefined
+      +  ids: undefined undefined
+      if !types || !types.length || types.length != 3 ids: undefined undefined
+        _ throwError ids: undefined undefined
+          @ 'The requestType, successType and failureType action types are required. actionHttpRequest: ' + util.inspect(actionHttpRequest, { depth:null }) ids: undefined undefined
+          @ 'validateHttpRequest' ids: undefined undefined
+    var api ids: undefined undefined
+      function  ids: undefined undefined
+        param store ids: undefined undefined
+        return  ids: undefined undefined
+          function  ids: undefined undefined
+            param next ids: undefined undefined
+            return  ids: undefined undefined
+              function  ids: undefined undefined
+                param action ids: undefined undefined
+                +  ids: undefined undefined
+                log 'reduxstarter.middleware.api.action:', action ids: undefined undefined
+                +  ids: undefined undefined
+                # The action requires an http request? ids: undefined undefined
+                const actionHttpRequest = action[config.HTTP_REQUEST] ids: undefined undefined
+                if typeof actionHttpRequest === 'undefined' ids: undefined undefined
+                  # NO ids: undefined undefined
+                  return next(action) ids: undefined undefined
+                # YES ids: undefined undefined
+                _ validateHttpRequest ids: undefined undefined
+                  @ store ids: undefined undefined
+                  @ actionHttpRequest ids: undefined undefined
+                #  ids: undefined undefined
+                if actionHttpRequest.delayId ids: undefined undefined
+                  if timers[actionHttpRequest.delayId] ids: undefined undefined
+                    _ clearInterval(timers[actionHttpRequest.delayId]) ids: undefined undefined
+                  log new Date().getSeconds(), 'setting delayed request', actionHttpRequest.delayId ids: undefined undefined
+                  set timers[actionHttpRequest.delayId] ids: undefined undefined
+                    _ setInterval ids: undefined undefined
+                      function  ids: undefined undefined
+                        log new Date().getSeconds(), 'executing delayed', actionHttpRequest.delayId ids: undefined undefined
+                        _ http.sendRequest ids: undefined undefined
+                          @ actionHttpRequest ids: undefined undefined
+                          @ action ids: undefined undefined
+                          @ next ids: undefined undefined
+                        _ clearInterval(timers[actionHttpRequest.delayId]) ids: undefined undefined
+                        delete timers[actionHttpRequest.delayId] ids: undefined undefined
+                      @ actionHttpRequest.delay ids: undefined undefined
+                  return timers[actionHttpRequest.delayId] ids: undefined undefined
+                else  ids: undefined undefined
+                  return  ids: undefined undefined
+                    _ http.sendRequest ids: undefined undefined
+                      @ actionHttpRequest ids: undefined undefined
+                      @ action ids: undefined undefined
+                      @ next ids: undefined undefined
+    export default api ids: undefined undefined

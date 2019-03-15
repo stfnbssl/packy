@@ -1,0 +1,11 @@
+f_h_group( ${id}, ${label}, ${labelclass}, ${errorModel} )
+	$params id, label, labelclass, model|@@null, value|@@null, errorModel|@@null
+	select
+		class form-control input-sm
+		id ${id}
+		name ${id}
+		$if value
+			value ${value}
+		$if model
+			data-ng-model ${model}
+		$hook

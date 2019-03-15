@@ -1,0 +1,29 @@
+$group
+		
+	$if isWizziStudio
+    	script
+    		module
+    			_ document.addEventListener
+    				@ 'keydown'
+    				=>
+    					param event
+    					var keyName = event.key
+    					if keyName === 'Control'
+    						# do not alert when only Control key is pressed.
+    						return
+    
+    					if event.ctrlKey && keyName === 'j'
+    						set location.href= location.pathname + '?meta=json'
+    						_ event.preventDefault
+    						_ event.stopPropagation
+    
+    					if event.ctrlKey && keyName === 'h'
+    						set location.href= location.pathname + '?meta=html'
+    						_ event.preventDefault
+    						_ event.stopPropagation
+    						
+    					if event.ctrlKey && keyName === 'b'
+    					    var i = location.pathname.lastIndexOf('/')
+    						set location.href= location.pathname.substr(0, i) + '?meta=html'
+    						_ event.preventDefault
+    						_ event.stopPropagation						

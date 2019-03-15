@@ -1,0 +1,3 @@
+﻿js
+	ready
+		new Spa.RootApp().start();

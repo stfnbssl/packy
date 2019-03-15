@@ -1,0 +1,11 @@
+/*
+    artifact generator: C:\My\wizzi\v5\apps\node_modules\wizzi-js\lib\artifacts\js\module\gen\main.js
+    primary source IttfDocument: c:/my/wizzi/v5/apps/wizzi-studio/wizzi-studio-express/dist/server/data/jobs/gists/stefi/gist_or_snippet.js.ittf
+    utc time: Wed, 05 Sep 2018 09:48:17 GMT
+*/
+'use strict';
+var filePath = "C:\\My\\wizzi\\v5\\apps\\wizzi-studio\\wizzi-studio-express\\dist\\server\\data\\jobs\\batches\\ittf\\kernel.json.ittf";
+var jobsBasePath = "C:\\My\\wizzi\\v5\\apps\\wizzi-studio\\wizzi-studio-express\\dist\\server\\data\\jobs";
+var relFolder = filePath.substr(jobsBasePath.length + 1);
+var ss = relFolder.split('\\');
+console.log(relFolder, ss, ss[0]);

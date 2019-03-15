@@ -1,0 +1,116 @@
+﻿module
+	kind react
+
+	import {createSelector} from 'reselect'
+	import isEqual from 'lodash.isequal'
+	import {getGeneratorByID} from '../schemas'
+
+	# UI related
+	export 
+		function getFormattingState
+			param state
+			return state.enableFormatting
+
+	export
+		function getCursor
+			param state
+			return state.cursor
+
+	export
+		function getError
+			param state
+			return state.error
+
+
+	export 
+		function isLoadingSnippet
+			param state
+			return state.loadingSnippet
+
+	export
+		function showSettingsDialog
+			param state
+			return state.showSettingsDialog
+
+
+	export
+		function isSaving
+			param state
+			return state.saving
+
+	# Generator related
+	export
+		function getGenerator
+			param state
+			return getGeneratorByID(state.workbench.generator)
+	
+	export
+		function getGeneratorSettings
+			param state
+			return state.workbench.generatorSettings
+
+	export
+		function getParseError
+			param state
+			return state.workbench.parseError
+
+	# Code related
+	export
+		function getRevision
+			param state
+			return state.activeRevision
+
+	export
+		function getCode
+			param state
+			return state.workbench.code
+
+	export
+		function getInitialCode
+			param state
+			return state.workbench.initialCode
+
+	const isCodeDirty
+		_ createSelector
+			@ [getCode, getInitialCode]
+			=>
+				param code
+				param initialCode
+				return code !== initialCode
+
+	const canSaveCode
+		_ createSelector
+			@ [getRevision, isCodeDirty]
+			=>
+				param revision
+				param dirty
+				return !revision || /* can always save if there is no revision */
+					\b dirty
+  
+	const didGeneratorSettingsChange
+		_ createSelector
+			@ [getGeneratorSettings, getRevision, getGenerator]
+			=>
+				param generatorSettings
+				param revision
+				param generator
+				const savedGeneratorSettings = revision && revision.getGeneratorSettings()
+				return (
+					\b   !!revision &&
+					\b   (
+					\b      generator.id !== revision.getGeneratorID() ||
+					\b      !!savedGeneratorSettings && !isEqual(generatorSettings, savedGeneratorSettings)
+					\b   )
+					\b )
+
+	export
+		const canSave
+			_ createSelector
+				@ [getRevision, canSaveCode, canSaveTransform, didGeneratorSettingsChange]
+				=>
+					param revision
+					param canSaveCode
+					param canSaveTransform
+					param didGeneratorSettingsChange
+					return (canSaveCode || canSaveTransform || didGeneratorSettingsChange) 
+						\b && (!revision || revision.canSave())

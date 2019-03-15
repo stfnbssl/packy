@@ -1,0 +1,48 @@
+﻿$group
+
+	#
+	# params
+	# { ctx
+	#
+	class NotifyManager
+		ctor
+			param ctx
+			set this.ctx = ctx
+			set this.history = []
+
+		m error
+			param message
+			param data
+			_ this.history.push
+				{
+					@ kind 'error'
+					@ message message
+					@ data data
+			var m = message
+			if data
+				set m += '\n'
+				try
+					set m += data.toString() + '\n'
+					set m += JSON.stringify(data, null, 2)
+				catch ex
+					set m += data.toString()
+			_ alert
+				@ m
+
+		m info
+			param message
+			param data
+			_ this.history.push
+				{
+					@ kind 'info'
+					@ message message
+					@ data data
+			var m = message
+			if data
+				set m += '\n'
+				try
+					set m += data.toString() + '\n'
+					set m += JSON.stringify(data, null, 2)
+				catch ex
+					set m += data.toString()
+			log '***INFO', m

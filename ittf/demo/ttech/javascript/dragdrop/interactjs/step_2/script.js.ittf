@@ -1,0 +1,265 @@
+﻿module
+    kind react
+    let 
+        decl canvas
+        decl context
+        decl guidesCanvas
+        decl guidesContext
+        decl width = 800
+        decl height = 800
+        decl status
+        decl prevX = 0
+        decl prevY = 0
+        decl blue = '#2299ee'
+        decl lightBlue = '#88ccff'
+        decl tango = '#ff4400'
+        decl draggingAnchor = null
+        decl snapOffset
+            { 
+                @ x 0
+                @ y 0
+        decl snapGrid
+            { 
+                @ x 10
+                @ y 10
+                @ range 10
+                { offset
+                    @ x 0
+                    @ y 0
+        decl gridFunc = interact.createSnapGrid(snapGrid)
+        decl anchors
+            [ 
+                { 
+                    @ x 100
+                    @ y 100
+                    @ range 200
+                { 
+                    @ x 600
+                    @ y 400
+                    @ range Infinity
+                { 
+                    @ x 500
+                    @ y 150
+                    @ range Infinity
+                { 
+                    @ x 250
+                    @ y 250
+                    @ range Infinity
+    function drawGrid
+        param grid
+        param gridOffset
+        param range
+        if !grid.x || !grid.y
+            return 
+        let 
+            decl barLength = 16
+            decl offset
+                { 
+                    @ x gridOffset.x + snapOffset.x
+                    @ y gridOffset.y + snapOffset.y
+        _ guidesContext.clearRect(0, 0, width, height)
+        set guidesContext.fillStyle = lightBlue
+        if range < 0 || range === Infinity
+            _ guidesContext.fillRect(0, 0, width, height)
+        for let i = -(1 + offset.x / grid.x | 0), lenX = width / grid.x + 1; i < lenX; i++
+            for let j = -(1 + offset.y / grid.y | 0), lenY = height / grid.y + 1; j < lenY; j++
+                if range > 0 && range !== Infinity
+                    _ guidesContext.circle(i * grid.x + offset.x, j * grid.y + offset.y, range, blue).fill
+                _ guidesContext.beginPath
+                _ guidesContext.moveTo(i * grid.x + offset.x, j * grid.y + offset.y - barLength / 2)
+                _ guidesContext.lineTo(i * grid.x + offset.x, j * grid.y + offset.y + barLength / 2)
+                _ guidesContext.stroke
+                _ guidesContext.beginPath
+                _ guidesContext.moveTo(i * grid.x + offset.x - barLength / 2, j * grid.y + offset.y)
+                _ guidesContext.lineTo(i * grid.x + offset.x + barLength / 2, j * grid.y + offset.y)
+                _ guidesContext.stroke
+    function drawAnchors
+        param anchors
+        param defaultRange
+        const barLength = 16
+        _ guidesContext.clearRect(0, 0, width, height)
+        if range < 0 && range !== Infinity
+            set guidesContext.fillStyle = lightBlue
+            _ guidesContext.fillRect(0, 0, width, height)
+        for let i = 0, len = anchors.length; i < len; i++
+            var 
+                decl anchor
+                    { 
+                        @ x anchors[i].x + snapOffset.x
+                        @ y anchors[i].y + snapOffset.y
+                        @ range anchors[i].range
+                decl range
+                    iif typeof anchor.range === 'number'
+                        then anchor.range
+                        else defaultRange
+            if range > 0 && range !== Infinity
+                _ guidesContext.circle(anchor.x, anchor.y, range, blue).fill
+            _ guidesContext.beginPath
+            _ guidesContext.moveTo(anchor.x, anchor.y - barLength / 2)
+            _ guidesContext.lineTo(anchor.x, anchor.y + barLength / 2)
+            _ guidesContext.stroke
+            _ guidesContext.beginPath
+            _ guidesContext.moveTo(anchor.x - barLength / 2, anchor.y)
+            _ guidesContext.lineTo(anchor.x + barLength / 2, anchor.y)
+            _ guidesContext.stroke
+    function drawSnap
+        param snap
+        _ context.clearRect(0, 0, width, height)
+        _ guidesContext.clearRect(0, 0, width, height)
+        if status.gridMode.checked
+            _ drawGrid(snapGrid, snapGrid.offset, snapGrid.range)
+        else
+            if status.anchorMode.checked
+                _ drawAnchors(anchors, snap.range)
+    function circle
+        param x
+        param y
+        param radius
+        param color
+        set this.fillStyle = color || this.fillStyle
+        _ this.beginPath
+        _ this.arc(x, y, radius, 0, 2 * Math.PI)
+        return this
+    set window.CanvasRenderingContext2D.prototype.circle = circle
+    function dragMove
+        param event
+        const snap = event.snap
+        _ context.clearRect(0, 0, width, height)
+        if snap && snap.range !== Infinity && typeof snap.x === 'number' && typeof snap.y === 'number'
+            _ context.circle(snap.x, snap.y, snap.range + 1, 'rgba(102, 225, 117, 0.8)').fill
+        _ context.circle(event.pageX, event.pageY, 10, tango).fill
+        set prevX = event.pageX
+        set prevY = event.pageY
+    function dragEnd
+        param event
+        _ context.clearRect(0, 0, width, height)
+        _ context.circle(event.pageX, event.pageY, 10, tango).fill
+        set prevX = event.pageX
+        set prevY = event.pageY
+    function anchorDragStart
+        param event
+        if event.snap.locked
+            _ interact(canvas).snap(false)
+            set draggingAnchor = event.snap.anchors.closest
+    function anchorDragMove
+        param event
+        if draggingAnchor
+            const snap = interact(canvas).snap().drag
+            set draggingAnchor.x += event.dx
+            set draggingAnchor.y += event.dy
+            _ drawAnchors(anchors, snap.range)
+    function anchorDragEnd
+        param event
+        _ interact(canvas).draggable
+            { 
+                { snap
+                    @ enabled true
+        set draggingAnchor = null
+    function sliderChange
+        param event
+        param valid
+        if !valid
+            return 
+        set snapGrid.x = Number(status.gridX.value)
+        set snapGrid.y = Number(status.gridY.value)
+        set snapGrid.range = Number(status.range.value)
+        set snapGrid.offset.x = Number(status.offsetX.value)
+        set snapGrid.offset.y = Number(status.offsetY.value)
+        if snapGrid.range < 0
+            set snapGrid.range = Infinity
+        _ drawSnap(interact(canvas).draggable().snap)
+    function modeChange
+        param event
+        const snap = interact(canvas).draggable().snap
+        if status.anchorDrag.checked && !status.anchorMode.checked
+            set status.anchorMode.checked = true
+        if status.anchorDrag.checked
+            set status.gridMode.disabled = true
+            set status.modes.className += ' disabled'
+            _ interact(canvas).off('dragstart', dragMove).off('dragmove', dragMove).off('dragend', dragEnd).on('dragstart', anchorDragStart).on('dragmove', anchorDragMove).on('dragend', anchorDragEnd)
+        else
+            set status.gridMode.disabled = false
+            set status.modes.className = status.modes.className.replace(/ *\<disabled\>/g, '')
+            _ interact(canvas).on('dragstart', dragMove).on('dragmove', dragMove).on('dragend', dragEnd).off('dragstart', anchorDragStart).off('dragmove', anchorDragMove).off('dragend', anchorDragEnd)
+        _ interact(canvas).draggable
+            { 
+                { inertia
+                    @ enabled status.inertia.checked
+                    @ zeroResumeDelta false
+                { snap
+                    @ targets
+                        iif status.gridMode.checked
+                            then
+                                [ 
+                                    @ gridFunc
+                            else
+                                iif status.anchorMode.checked
+                                    then anchors
+                                    else null
+                    @ enabled !status.offMode.checked
+                    @ endOnly status.endOnly.checked
+                    @ offset
+                        iif status.relative.checked
+                            then 'startCoords'
+                            else null
+        if !status.relative.checked
+            set snapOffset.y = 0
+        _ drawSnap(interact(canvas).draggable().snap)
+    function sliderInput
+        param event
+        if event.target.type === 'range' && (Number(event.target.value) > Number(event.target.max)) || Number(event.target.value) < Number(event.target.min)
+            return 
+        _ sliderChange(event, true)
+    _ interact(document).on
+        @ 'DOMContentLoaded'
+        function 
+            set canvas = document.getElementById('drag')
+            set canvas.width = width
+            set canvas.height = height
+            set context = canvas.getContext('2d')
+            _ interact(canvas).draggable
+                { 
+                    { restrict
+                        @ enabled true
+                        @ restriction 'self'
+                ._ on
+                    @ 'move down'
+                    function 
+                        param event
+                        if event.type === 'down' || !event.interaction.pointerIsDown && status.relative.checked
+                            const rect = interact.getElementRect(canvas)
+                            set snapOffset.x = event.pageX - rect.left
+                            set snapOffset.y = event.pageY - rect.top
+                            _ drawSnap(interact(canvas).draggable().snap)
+                ._ origin
+                    @ 'self'
+                ._ draggable
+                    @ true
+            set guidesCanvas = document.getElementById('grid')
+            set guidesCanvas.width = width
+            set guidesCanvas.height = height
+            set guidesContext = guidesCanvas.getContext('2d')
+            set status =
+                { 
+                    @ container document.getElementById('status')
+                    @ sliders document.getElementById('sliders')
+                    @ gridX document.getElementById('grid-x')
+                    @ gridY document.getElementById('grid-y')
+                    @ offsetX document.getElementById('offset-x')
+                    @ offsetY document.getElementById('offset-y')
+                    @ range document.getElementById('snap-range')
+                    @ modes document.getElementById('modes')
+                    @ offMode document.getElementById('off-mode')
+                    @ gridMode document.getElementById('grid-mode')
+                    @ anchorMode document.getElementById('anchor-mode')
+                    @ anchorDrag document.getElementById('drag-anchors')
+                    @ endOnly document.getElementById('end-only')
+                    @ inertia document.getElementById('inertia')
+                    @ relative document.getElementById('relative')
+            _ interact(status.sliders).on('change', sliderChange).on('input', sliderInput)
+            _ interact(document.getElementById('modes')).on('change', modeChange)
+            _ sliderChange(null, true)
+            _ modeChange
+    set window.grid =
+        { 
+            @ drawGrid drawGrid

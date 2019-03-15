@@ -1,0 +1,3281 @@
+{
+  "name": "wfschema",
+  "preserveTags": true,
+  "requires": [],
+  "exportTos": [],
+  "elements": [
+    {
+      "name": "comment",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "#"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "schemaitem",
+          "tags": [
+            "schemaitem"
+          ]
+        },
+        {
+          "name": "wfschema",
+          "tags": [
+            "wfschema"
+          ]
+        },
+        {
+          "name": "include",
+          "tags": [
+            "include"
+          ]
+        },
+        {
+          "name": "element",
+          "tags": [
+            "e"
+          ]
+        },
+        {
+          "name": "attribute",
+          "tags": [
+            "a"
+          ]
+        },
+        {
+          "name": "relation",
+          "tags": [
+            "r"
+          ]
+        },
+        {
+          "name": "restrict",
+          "tags": [
+            "restrict"
+          ]
+        },
+        {
+          "name": "facet",
+          "tags": [
+            "facet"
+          ]
+        },
+        {
+          "name": "enumFacet",
+          "tags": [
+            "enum"
+          ]
+        },
+        {
+          "name": "maxLengthFacet",
+          "tags": [
+            "max-length"
+          ]
+        },
+        {
+          "name": "minLengthFacet",
+          "tags": [
+            "min-length"
+          ]
+        },
+        {
+          "name": "maxValueFacet",
+          "tags": [
+            "max-value"
+          ]
+        },
+        {
+          "name": "minValueFacet",
+          "tags": [
+            "min-value"
+          ]
+        },
+        {
+          "name": "regexpFacet",
+          "tags": [
+            "regexp"
+          ]
+        },
+        {
+          "name": "elementFacet",
+          "tags": [
+            "element"
+          ]
+        },
+        {
+          "name": "exportTo",
+          "tags": [
+            "export-to"
+          ]
+        },
+        {
+          "name": "xrequire",
+          "tags": [
+            "require"
+          ]
+        },
+        {
+          "name": "declare",
+          "tags": [
+            "declare"
+          ]
+        },
+        {
+          "name": "method",
+          "tags": [
+            "m"
+          ]
+        },
+        {
+          "name": "param",
+          "tags": [
+            "param"
+          ]
+        },
+        {
+          "name": "statement",
+          "tags": [
+            "statement"
+          ]
+        },
+        {
+          "name": "xvar",
+          "tags": [
+            "var"
+          ]
+        },
+        {
+          "name": "decl",
+          "tags": [
+            "decl"
+          ]
+        },
+        {
+          "name": "iif",
+          "tags": [
+            "iif"
+          ]
+        },
+        {
+          "name": "xif",
+          "tags": [
+            "if"
+          ]
+        },
+        {
+          "name": "elif",
+          "tags": [
+            "elif"
+          ]
+        },
+        {
+          "name": "then",
+          "tags": [
+            "then"
+          ]
+        },
+        {
+          "name": "xelse",
+          "tags": [
+            "else"
+          ]
+        },
+        {
+          "name": "xswitch",
+          "tags": [
+            "switch"
+          ]
+        },
+        {
+          "name": "xcase",
+          "tags": [
+            "case"
+          ]
+        },
+        {
+          "name": "xfor",
+          "tags": [
+            "for"
+          ]
+        },
+        {
+          "name": "foreach",
+          "tags": [
+            "foreach"
+          ]
+        },
+        {
+          "name": "xbreak",
+          "tags": [
+            "break"
+          ]
+        },
+        {
+          "name": "xcontinue",
+          "tags": [
+            "continue"
+          ]
+        },
+        {
+          "name": "xwhile",
+          "tags": [
+            "while"
+          ]
+        },
+        {
+          "name": "xdo",
+          "tags": [
+            "do"
+          ]
+        },
+        {
+          "name": "xtry",
+          "tags": [
+            "try"
+          ]
+        },
+        {
+          "name": "xcatch",
+          "tags": [
+            "catch"
+          ]
+        },
+        {
+          "name": "xfinally",
+          "tags": [
+            "finally"
+          ]
+        },
+        {
+          "name": "xthrow",
+          "tags": [
+            "throw"
+          ]
+        },
+        {
+          "name": "xreturn",
+          "tags": [
+            "return"
+          ]
+        },
+        {
+          "name": "set",
+          "tags": [
+            "set"
+          ]
+        },
+        {
+          "name": "log",
+          "tags": [
+            "log"
+          ]
+        },
+        {
+          "name": "call",
+          "tags": [
+            "_"
+          ]
+        },
+        {
+          "name": "jsObject",
+          "tags": [
+            "{"
+          ]
+        },
+        {
+          "name": "jsArray",
+          "tags": [
+            "["
+          ]
+        },
+        {
+          "name": "jsPropertyOrValue",
+          "tags": [
+            "@"
+          ]
+        },
+        {
+          "name": "xfunction",
+          "tags": [
+            "function"
+          ]
+        },
+        {
+          "name": "xnew",
+          "tags": [
+            "new"
+          ]
+        },
+        {
+          "name": "codeline",
+          "tags": [
+            "+"
+          ]
+        },
+        {
+          "name": "param",
+          "tags": [
+            "param"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A comment line for describing entities."
+      ]
+    },
+    {
+      "name": "schemaitem",
+      "super": "comment",
+      "isRoot": false,
+      "tags": [
+        "schemaitem"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "wfschema",
+          "tags": [
+            "wfschema"
+          ]
+        },
+        {
+          "name": "include",
+          "tags": [
+            "include"
+          ]
+        },
+        {
+          "name": "element",
+          "tags": [
+            "e"
+          ]
+        },
+        {
+          "name": "attribute",
+          "tags": [
+            "a"
+          ]
+        },
+        {
+          "name": "relation",
+          "tags": [
+            "r"
+          ]
+        },
+        {
+          "name": "restrict",
+          "tags": [
+            "restrict"
+          ]
+        },
+        {
+          "name": "facet",
+          "tags": [
+            "facet"
+          ]
+        },
+        {
+          "name": "enumFacet",
+          "tags": [
+            "enum"
+          ]
+        },
+        {
+          "name": "maxLengthFacet",
+          "tags": [
+            "max-length"
+          ]
+        },
+        {
+          "name": "minLengthFacet",
+          "tags": [
+            "min-length"
+          ]
+        },
+        {
+          "name": "maxValueFacet",
+          "tags": [
+            "max-value"
+          ]
+        },
+        {
+          "name": "minValueFacet",
+          "tags": [
+            "min-value"
+          ]
+        },
+        {
+          "name": "regexpFacet",
+          "tags": [
+            "regexp"
+          ]
+        },
+        {
+          "name": "elementFacet",
+          "tags": [
+            "element"
+          ]
+        },
+        {
+          "name": "exportTo",
+          "tags": [
+            "export-to"
+          ]
+        },
+        {
+          "name": "xrequire",
+          "tags": [
+            "require"
+          ]
+        },
+        {
+          "name": "declare",
+          "tags": [
+            "declare"
+          ]
+        },
+        {
+          "name": "method",
+          "tags": [
+            "m"
+          ]
+        },
+        {
+          "name": "param",
+          "tags": [
+            "param"
+          ]
+        },
+        {
+          "name": "statement",
+          "tags": [
+            "statement"
+          ]
+        },
+        {
+          "name": "xvar",
+          "tags": [
+            "var"
+          ]
+        },
+        {
+          "name": "decl",
+          "tags": [
+            "decl"
+          ]
+        },
+        {
+          "name": "iif",
+          "tags": [
+            "iif"
+          ]
+        },
+        {
+          "name": "xif",
+          "tags": [
+            "if"
+          ]
+        },
+        {
+          "name": "elif",
+          "tags": [
+            "elif"
+          ]
+        },
+        {
+          "name": "then",
+          "tags": [
+            "then"
+          ]
+        },
+        {
+          "name": "xelse",
+          "tags": [
+            "else"
+          ]
+        },
+        {
+          "name": "xswitch",
+          "tags": [
+            "switch"
+          ]
+        },
+        {
+          "name": "xcase",
+          "tags": [
+            "case"
+          ]
+        },
+        {
+          "name": "xfor",
+          "tags": [
+            "for"
+          ]
+        },
+        {
+          "name": "foreach",
+          "tags": [
+            "foreach"
+          ]
+        },
+        {
+          "name": "xbreak",
+          "tags": [
+            "break"
+          ]
+        },
+        {
+          "name": "xcontinue",
+          "tags": [
+            "continue"
+          ]
+        },
+        {
+          "name": "xwhile",
+          "tags": [
+            "while"
+          ]
+        },
+        {
+          "name": "xdo",
+          "tags": [
+            "do"
+          ]
+        },
+        {
+          "name": "xtry",
+          "tags": [
+            "try"
+          ]
+        },
+        {
+          "name": "xcatch",
+          "tags": [
+            "catch"
+          ]
+        },
+        {
+          "name": "xfinally",
+          "tags": [
+            "finally"
+          ]
+        },
+        {
+          "name": "xthrow",
+          "tags": [
+            "throw"
+          ]
+        },
+        {
+          "name": "xreturn",
+          "tags": [
+            "return"
+          ]
+        },
+        {
+          "name": "set",
+          "tags": [
+            "set"
+          ]
+        },
+        {
+          "name": "log",
+          "tags": [
+            "log"
+          ]
+        },
+        {
+          "name": "call",
+          "tags": [
+            "_"
+          ]
+        },
+        {
+          "name": "jsObject",
+          "tags": [
+            "{"
+          ]
+        },
+        {
+          "name": "jsArray",
+          "tags": [
+            "["
+          ]
+        },
+        {
+          "name": "jsPropertyOrValue",
+          "tags": [
+            "@"
+          ]
+        },
+        {
+          "name": "xfunction",
+          "tags": [
+            "function"
+          ]
+        },
+        {
+          "name": "xnew",
+          "tags": [
+            "new"
+          ]
+        },
+        {
+          "name": "codeline",
+          "tags": [
+            "+"
+          ]
+        },
+        {
+          "name": "param",
+          "tags": [
+            "param"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "wfschema",
+      "super": "schemaitem",
+      "isRoot": true,
+      "tags": [
+        "wfschema"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "preserveTags",
+          "type": "boolean",
+          "tags": [
+            "preserve-tags"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "If declared, the WizziModelLoader will preserve, in the loaded WizziModelInstance,",
+            "the tags used in the source IttfDocuments."
+          ]
+        },
+        {
+          "name": "mTreeIsPreprocessed",
+          "type": "boolean",
+          "tags": [
+            "mtree-is-preprocessed"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "If declared, the WizziModelLoader will preprocess the builded mTree",
+            "before loading the WizziModelInstance,"
+          ]
+        },
+        {
+          "name": "unknownElementReplacer",
+          "type": "string",
+          "tags": [
+            "unknown-element-replacer"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "v4 (pre-release) implementation"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "element",
+          "role": "elements",
+          "tags": [
+            "e"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "exportTo",
+          "role": "exportTos",
+          "tags": [
+            "export-to"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "require",
+          "role": "requires",
+          "tags": [
+            "require"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "method",
+          "role": "methods",
+          "tags": [
+            "m"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "declare",
+          "role": "declares",
+          "tags": [
+            "declare"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "The root element of a wizzi factory schema.",
+        "r include/s"
+      ]
+    },
+    {
+      "name": "include",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "include"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "Represent the root node of another external schema.",
+        "The wzName contains a blank separated name-value pair:",
+        "- the name is the type name of the external wfschema",
+        "- the value is the wzTag of the root node of the external wfschema (defaults to name)",
+        "see wizzi/models/bootstrap/t/wfschema/include.js.ittf",
+        "examples",
+        "include js module",
+        "- js : the external wfschema",
+        "- module : the wzTag of the root node of the js wfschema",
+        "include css",
+        "- css : the external wfschema",
+        "- css : the wzTag of the root node of the css wfschema",
+        "Children nodes will be loaded by the model factory of the external schema,",
+        "whose plugin must be listed in the plugin configuration when creating",
+        "the wizzi.wizziFactory instance."
+      ]
+    },
+    {
+      "name": "element",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "e"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "super",
+          "type": "string",
+          "tags": [
+            "super"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The base (super) element from which this element derives.",
+            "Attributes and relations of the base element are inherited."
+          ]
+        },
+        {
+          "name": "isAbstract",
+          "type": "boolean",
+          "tags": [
+            "is-abstract"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "This element is abstract and cannot be declared in Ittf documents."
+          ]
+        },
+        {
+          "name": "isRoot",
+          "type": "boolean",
+          "tags": [
+            "is-root"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "Mark the element as the root element of the schema.",
+            "If not explicit, the root element is inferred,",
+            "and the first element declared in the schema is assumed as the root."
+          ]
+        },
+        {
+          "name": "tagInternal",
+          "type": "string",
+          "tags": [
+            "tag"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The tag used to declare this element in Ittf documents.",
+            "Optional. The default is the element IttfNodeValue"
+          ]
+        },
+        {
+          "name": "xmlTagInternal",
+          "type": "string",
+          "tags": [
+            "xml-tag"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The Xml tag used for this element when persisted in Xml Format."
+          ]
+        },
+        {
+          "name": "tagType",
+          "type": "string",
+          "tags": [
+            "tag-type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "number",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "css-length",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": [
+            "Any node tag of this type will match this element"
+          ]
+        },
+        {
+          "name": "acceptAnyTag",
+          "type": "string",
+          "tags": [
+            "any"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "This element can have any text as a child element.",
+            "The IttfNodeValue of this attribute must be the name of the element collection",
+            "to which child text nodes will be appended.",
+            "Any child node produces an internal ANY element that is appended to this collection.",
+            "TODO example"
+          ]
+        },
+        {
+          "name": "nameIsRequired",
+          "type": "boolean",
+          "tags": [
+            "name-is-required"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "This element must have a not empty IttfNodeValue"
+          ]
+        },
+        {
+          "name": "addToChildren",
+          "type": "boolean",
+          "tags": [
+            "add-to-children"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "Every child node of this element will be added to the wzChildren collection.",
+            "Artifact generators will use the wzElement attribute to distinguish child elements."
+          ]
+        },
+        {
+          "name": "suppressCollectionEmit",
+          "type": "boolean",
+          "tags": [
+            "suppress-collection-emit"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "TODO ???"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "attribute",
+          "role": "attributes",
+          "tags": [
+            "a"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "relation",
+          "role": "relations",
+          "tags": [
+            "r"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "restrict",
+          "role": "restricts",
+          "tags": [
+            "restrict"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "method",
+          "role": "methods",
+          "tags": [
+            "m"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "include",
+          "role": "includes",
+          "tags": [
+            "include"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A schema element. A classifier model element that may have attributes and relations."
+      ]
+    },
+    {
+      "name": "attribute",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "a"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "tagInternal",
+          "type": "string",
+          "tags": [
+            "tag"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The tag used to declare the attribute in IttfDocuments.",
+            "Optional. The default is the attribute IttfNodeValue"
+          ]
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "default": "string",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "string",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "boolean",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "integer",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "float",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "date",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "regexp",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "code",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": [
+            "The attribute data type"
+          ]
+        },
+        {
+          "name": "default",
+          "type": "string",
+          "tags": [
+            "default"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The attribute default value"
+          ]
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "is-required"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "If true the attribute must be declared."
+          ]
+        },
+        {
+          "name": "isDataType",
+          "type": "boolean",
+          "tags": [
+            "is-datatype"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "This attribute is a datatype attribute and type services will be available to artifact generators."
+          ]
+        },
+        {
+          "name": "defaultWhenDeclared",
+          "type": "string",
+          "tags": [
+            "default-when-declared"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "When the attribute is declared without a IttfNodeValue, this will be its value."
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "restrict",
+          "role": "restricts",
+          "tags": [
+            "restrict"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "An element attribute."
+      ]
+    },
+    {
+      "name": "relation",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "r"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "isOneToOne",
+          "type": "boolean",
+          "tags": [
+            "one-to-one"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "noGetMethod",
+          "type": "boolean",
+          "tags": [
+            "no-get"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "hasAddOnce",
+          "type": "boolean",
+          "tags": [
+            "add-once"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A relation to a child element.",
+        "By default is a one-to-many relation.",
+        "Can be set to a one-to-one, declaring the attribute isOneToOne."
+      ]
+    },
+    {
+      "name": "restrict",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "restrict"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "facet",
+          "role": "facets",
+          "tags": [
+            "facet"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "Group of restrictions to the element or attribute values"
+      ]
+    },
+    {
+      "name": "facet",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "facet"
+      ],
+      "flags": "is-abstract ",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "enumFacet",
+          "tags": [
+            "enum"
+          ]
+        },
+        {
+          "name": "maxLengthFacet",
+          "tags": [
+            "max-length"
+          ]
+        },
+        {
+          "name": "minLengthFacet",
+          "tags": [
+            "min-length"
+          ]
+        },
+        {
+          "name": "maxValueFacet",
+          "tags": [
+            "max-value"
+          ]
+        },
+        {
+          "name": "minValueFacet",
+          "tags": [
+            "min-value"
+          ]
+        },
+        {
+          "name": "regexpFacet",
+          "tags": [
+            "regexp"
+          ]
+        },
+        {
+          "name": "elementFacet",
+          "tags": [
+            "element"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "The abstract base class for facet restrictions"
+      ]
+    },
+    {
+      "name": "enumFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "enum"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type enumeration applied to an attribute."
+      ]
+    },
+    {
+      "name": "maxLengthFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "max-length"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type maximum length applied to an attribute."
+      ]
+    },
+    {
+      "name": "minLengthFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "min-length"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type minimum length applied to an attribute."
+      ]
+    },
+    {
+      "name": "maxValueFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "max-value"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type maximum value applied to an attribute."
+      ]
+    },
+    {
+      "name": "minValueFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "min-value"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type minimum value applied to an attribute."
+      ]
+    },
+    {
+      "name": "regexpFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "regexp"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type regexp test applied to an attribute."
+      ]
+    },
+    {
+      "name": "elementFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "element"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type allowed child element applied to an element."
+      ]
+    },
+    {
+      "name": "exportTo",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "export-to"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [
+        {
+          "facets": [
+            {
+              "type": "enumFacet",
+              "value": "json",
+              "comments": []
+            },
+            {
+              "type": "enumFacet",
+              "value": "xml",
+              "comments": []
+            },
+            {
+              "type": "enumFacet",
+              "value": "prettify",
+              "comments": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "methods": [],
+      "comments": [
+        "Require the emission, in the WizziModelType of the schema, of a function",
+        "for exporting the model instance to a different format.",
+        "There are a few built-in ExportTo functions. New export formats may be created",
+        "by WizziPackage developers using methods."
+      ]
+    },
+    {
+      "name": "xrequire",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "require"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "kind",
+          "type": "string",
+          "tags": [
+            "kind"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "function",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "module",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "context-method",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "declareVar",
+          "type": "string",
+          "tags": [
+            "declare-var"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A node-js require statement that is emitted in the WizziModelType of the schema.",
+        "The IttfNodeValue is the package name. It is also the variable name of the required package",
+        "unless a declare-var attribute is present."
+      ]
+    },
+    {
+      "name": "declare",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "declare"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "a section for top level (module scope) variable and functions declarations"
+      ]
+    },
+    {
+      "name": "method",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "m"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "emitkey",
+          "type": "string",
+          "tags": [
+            "emitkey"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The emit key of the artifact which should insert this method.",
+            "Can be any string that artifact generators will filter."
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "param",
+          "role": "params",
+          "tags": [
+            "param"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "require",
+          "role": "requires",
+          "tags": [
+            "require"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A method of an element pseudo-class generated in the WizziModelType."
+      ]
+    },
+    {
+      "name": "param",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "param"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A parameter of a method or function element."
+      ]
+    },
+    {
+      "name": "statement",
+      "super": "schemaitem",
+      "isRoot": false,
+      "tags": [
+        "statement"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "xvar",
+          "tags": [
+            "var"
+          ]
+        },
+        {
+          "name": "decl",
+          "tags": [
+            "decl"
+          ]
+        },
+        {
+          "name": "iif",
+          "tags": [
+            "iif"
+          ]
+        },
+        {
+          "name": "xif",
+          "tags": [
+            "if"
+          ]
+        },
+        {
+          "name": "elif",
+          "tags": [
+            "elif"
+          ]
+        },
+        {
+          "name": "then",
+          "tags": [
+            "then"
+          ]
+        },
+        {
+          "name": "xelse",
+          "tags": [
+            "else"
+          ]
+        },
+        {
+          "name": "xswitch",
+          "tags": [
+            "switch"
+          ]
+        },
+        {
+          "name": "xcase",
+          "tags": [
+            "case"
+          ]
+        },
+        {
+          "name": "xfor",
+          "tags": [
+            "for"
+          ]
+        },
+        {
+          "name": "foreach",
+          "tags": [
+            "foreach"
+          ]
+        },
+        {
+          "name": "xbreak",
+          "tags": [
+            "break"
+          ]
+        },
+        {
+          "name": "xcontinue",
+          "tags": [
+            "continue"
+          ]
+        },
+        {
+          "name": "xwhile",
+          "tags": [
+            "while"
+          ]
+        },
+        {
+          "name": "xdo",
+          "tags": [
+            "do"
+          ]
+        },
+        {
+          "name": "xtry",
+          "tags": [
+            "try"
+          ]
+        },
+        {
+          "name": "xcatch",
+          "tags": [
+            "catch"
+          ]
+        },
+        {
+          "name": "xfinally",
+          "tags": [
+            "finally"
+          ]
+        },
+        {
+          "name": "xthrow",
+          "tags": [
+            "throw"
+          ]
+        },
+        {
+          "name": "xreturn",
+          "tags": [
+            "return"
+          ]
+        },
+        {
+          "name": "set",
+          "tags": [
+            "set"
+          ]
+        },
+        {
+          "name": "log",
+          "tags": [
+            "log"
+          ]
+        },
+        {
+          "name": "call",
+          "tags": [
+            "_"
+          ]
+        },
+        {
+          "name": "jsObject",
+          "tags": [
+            "{"
+          ]
+        },
+        {
+          "name": "jsArray",
+          "tags": [
+            "["
+          ]
+        },
+        {
+          "name": "jsPropertyOrValue",
+          "tags": [
+            "@"
+          ]
+        },
+        {
+          "name": "xfunction",
+          "tags": [
+            "function"
+          ]
+        },
+        {
+          "name": "xnew",
+          "tags": [
+            "new"
+          ]
+        },
+        {
+          "name": "codeline",
+          "tags": [
+            "+"
+          ]
+        },
+        {
+          "name": "param",
+          "tags": [
+            "param"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xvar",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "var"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "decl",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "decl"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "iif",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "iif"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xif",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "if"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "elif",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "elif"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "then",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "then"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xelse",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "else"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xswitch",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "switch"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xcase",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "case"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xfor",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "for"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "foreach",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "foreach"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xbreak",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "break"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xcontinue",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "continue"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xwhile",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "while"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xdo",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "do"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xtry",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "try"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xcatch",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "catch"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xfinally",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "finally"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xthrow",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "throw"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xreturn",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "return"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "set",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "set"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "log",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "log"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "call",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "_"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "jsObject",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "{"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "jsArray",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "["
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "jsPropertyOrValue",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "@"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xfunction",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "function"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xnew",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "new"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "codeline",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "+"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "param",
+      "super": "statement",
+      "isRoot": false,
+      "tags": [
+        "param"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "statement",
+          "role": "statements",
+          "tags": [
+            "statement"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "statement",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+﻿module
+	kind react
+
+    import React from 'react'
+    import ReactDOM from 'react-dom'
+	import { Button } from './components/Button'
+    const msg = 'Hello World!'
+    
+	_ ReactDOM.render
+		div
+			h1 
+				+ {msg}
+			< Button
+        _ document.getElementById('app')
+
+
+	

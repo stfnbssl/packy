@@ -1,0 +1,39 @@
+﻿meta
+
+	positioning-scheme normal-flow 
+		spec CSS 2.1
+
+		# The parent (container) establishes the formatting context for 
+		# its children based on whether the child boxes are considered to be 
+		# inline-level or block-level.
+
+		formatting-context block
+		formatting-context inline
+		formatting-context relative
+
+		box-level inline
+		box-level block
+
+	positioning-scheme floats
+		spec CSS 2.1
+		# interact with normal flow
+
+	positioning-scheme absolute-positioning 
+		spec CSS 2.1
+		# deals with absolute and fixed elements relative to the normal flow
+
+	layout-mode display: table
+	
+	layout-mode display: inline-table
+
+	attribute display
+		default block or inline
+		# Determines the layout algorithm to use
+	attribute position
+		default static
+		# Controls the positioning of the element
+	attribute float
+		default none
+		# Allows other elements to float around the element
+
+

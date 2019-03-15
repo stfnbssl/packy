@@ -1,0 +1,65 @@
+﻿r-component( Styles )
+
+	$append imports
+		import Typography from 'material-ui/Typography'
+		import Form from './mui/Form'
+		import Control from './mui/Control'
+
+	prop classes
+		{
+
+	prop selectedStyledId
+	
+	prop styledIds
+		[
+
+	prop onStyledChange
+		func
+
+	prop onStyleChange
+		func
+		required
+
+	prop metaForm
+		{
+		required
+
+	style
+		@ styles
+			{
+				@ border '1px solid green'
+
+	render
+
+		prop classes
+		prop selectedStyledId
+		prop styledIds
+		prop onStyledChange
+		prop metaForm
+		prop onStyleChange
+
+		return
+			. {classes.styles}
+				< Typography
+					@ type "title"
+					@ color 'inherit'
+					@ noWrap
+					+ Styles
+
+				. {classes.margin10}
+					< Control
+						@ id "styledId"
+						@ key "styledId"
+						@ type "select"
+						@ label "Select styled"
+						@ value {selectedStyledId}
+						@ data
+							{
+								@ options styledIds
+						@ onChangeValue {onStyledChange}
+
+				< Form
+					@ id test
+					@ caption Styles Form
+					@ meta {metaForm}
+					@ onChangeValues {onStyleChange}

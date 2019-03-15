@@ -1,0 +1,47 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    import React, { PropTypes, Component } from 'react' ids: undefined undefined
+    import ElementList from './schemadoc/ElementList' ids: undefined undefined
+    import Element from './schemadoc/Element' ids: undefined undefined
+    class SchemaDoc ids: undefined undefined
+      super Component ids: undefined undefined
+      ctor  ids: undefined undefined
+        param props ids: undefined undefined
+        base props ids: undefined undefined
+        set this.state ids: undefined undefined
+          {  ids: undefined undefined
+            @ selectedElement null ids: undefined undefined
+        set this.handleElementSelected = this.handleElementSelected.bind(this) ids: undefined undefined
+      m handleElementSelected ids: undefined undefined
+        param element ids: undefined undefined
+        _ this.setState ids: undefined undefined
+          {  ids: undefined undefined
+            @ selectedElement element ids: undefined undefined
+      m render ids: undefined undefined
+        const { jsonDoc } = this.props ids: undefined undefined
+        if !jsonDoc || !jsonDoc.elements || jsonDoc.elements.length < 1 ids: undefined undefined
+          return  ids: undefined undefined
+            h1 No data ids: undefined undefined
+        var { selectedElement } = this.state ids: undefined undefined
+        if !selectedElement ids: undefined undefined
+          set selectedElement = jsonDoc.elements[0] ids: undefined undefined
+        return  ids: undefined undefined
+          . container ids: undefined undefined
+            . row ids: undefined undefined
+              h1 Schema {jsonDoc.name} ids: undefined undefined
+              . col-md-2 ids: undefined undefined
+                . well list-well-title ids: undefined undefined
+                  + Elements ids: undefined undefined
+                . well list-well-content ids: undefined undefined
+                  < ElementList ids: undefined undefined
+                    @ elements {jsonDoc.elements} ids: undefined undefined
+                    @ selectedName {selectedElement.name} ids: undefined undefined
+                    @ onElementSelected {this.handleElementSelected} ids: undefined undefined
+              . col-md-10 ids: undefined undefined
+                div  ids: undefined undefined
+                  @style  ids: undefined undefined
+                    {  ids: undefined undefined
+                      @ overflow "hidden" ids: undefined undefined
+                  < Element ids: undefined undefined
+                    @ element {selectedElement} ids: undefined undefined
+    export default SchemaDoc ids: undefined undefined

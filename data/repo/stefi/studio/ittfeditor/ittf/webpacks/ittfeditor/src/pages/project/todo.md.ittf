@@ -1,0 +1,30 @@
+﻿mdx
+	
+	h1 TODO
+
+	h3 Document editor
+	p Manage context models
+	p mTree loader lab
+	p JSON view of wizzi models instances
+
+	h3 Schema editor
+	p How to edit and generate new schemas
+	p One project for one schema?
+
+	h3 Schema navigator
+	p Schema documentation and examples
+	p Views of wizzi model types and factories
+
+	h3 Artifact editor
+	p How to edit and generate new artifacts
+	p One project for one artifact
+
+	h3 Job executor
+	ul
+		li Job request schema
+		li Searchable list of available jobs
+		li Job results store
+
+	h3 The wizzifier
+	p Copy from dashboard
+

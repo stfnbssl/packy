@@ -1,0 +1,56 @@
+﻿$group
+
+	#
+	#
+	class WizziClient
+		ctor
+			param ctx
+			param options
+			
+			set this.ctx = ctx
+			set this.options = options
+			set this.genHttpMethod = ctx.wizziGenHttpMethod
+			set this.genUrl = ctx.wizziGenUrl
+
+		m gen
+			param ittfContent
+			param artifactName
+
+			_ fetch
+				@ this.genUrl
+				{
+					@ method this.genHttpMethod.toUpperCase()
+					{ headers
+						@ "Content-Type" "application/json"
+					@ body
+						_ JSON.stringify
+							{
+								@ content ittfContent
+								@ artifactName artifactName
+				._ then
+					=>
+						param response
+						return response.json()
+				._ then
+					=>
+						param json
+						if json.status.code == 0
+							_ alert
+								@ 'gen: ' + json.data
+							if this.ctx.viewManager && this.ctx.viewManager.onCodeGenerated
+								_ this.ctx.viewManager.onCodeGenerated
+									@ json.data
+						else
+							_ alert
+								@ 'gen: ' + JSON.stringify(json, null, 2)
+				._ catch
+					=>
+						param err
+						_ alert
+							_ JSON.stringify
+								@ err
+								@ null
+								@ 2
+
+		m mTreeBuildupScript
+			param ittfContent

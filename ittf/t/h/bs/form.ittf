@@ -1,0 +1,10 @@
+. row
+	$params id, width|8, orient|horizontal, method|@@null, action|@@null
+	. col-md-${width}
+		form
+			id ${id}
+			class form-${orient}
+			role form
+			method ${method}
+			action ${action}
+			$hook

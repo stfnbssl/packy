@@ -1,0 +1,15 @@
+﻿$group
+	$params result|notUsed
+
+	function
+		param err
+		param ${result}
+		log 'err', err
+		if err
+			throw
+				new Error
+					_ JSON.stringify
+						@ err
+						@ null
+						@ 2
+		$hook

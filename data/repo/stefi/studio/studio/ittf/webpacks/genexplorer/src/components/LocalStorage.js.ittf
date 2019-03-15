@@ -1,0 +1,35 @@
+﻿module
+	kind react
+
+	const storage = global.localStorage
+	const key = 'explorerSettingsV1'
+	const noop = () => {}
+
+	export
+		const writeState
+			iif storage
+				then
+					=>
+						param state
+						try
+							_ storage.setItem
+								@ key
+								@ JSON.stringify(state)
+						catch e
+							warn 'Unable to write to local storage.'
+				else
+					_ noop
+
+	export
+		const readState
+			iif storage
+				then
+					=>
+						try
+							const state = storage.getItem(key)
+							if state
+								return JSON.parse(state)
+						catch e
+							warn 'Unable to read from local storage.'
+				else
+					_ noop

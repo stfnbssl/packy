@@ -1,0 +1,276 @@
+﻿$group
+
+
+	#
+		# string uid (global unique)
+		# string elementType
+		# MTreeNodeProps props
+		# MTreeNode[] wzChildren
+		# hasChanged()
+		# add()
+
+	class MTreeNode
+		ctor
+			param dynApp
+			param parent
+			set this.dynApp = dynApp
+			set this.parent = parent
+			set this.uid = 'n' + global.counter++
+			set this.props = new MTreeNodeProps(this)
+			set this.wzChildren = []
+			+
+			set global.mTreeNodes[this.uid] = this
+		
+		m hasChanged
+			_ this.dynApp.hasChanged
+
+		m fromElement
+			param elementMeta
+			
+			# do note use the `set()` method
+			set this.elementType = elementMeta.wzTag
+			set this.name = elementMeta.wzName
+			
+			if this.elementType === '_text'
+				set this.isTextNode = true
+			
+			var asset
+			const cmpType = global.componentTypes[this.elementType]
+			set this.isComponentType = !!cmpType
+			set this.isVoid = false
+			if this.isComponentType 
+				set asset = global.assets['cmp_' + this.elementType]
+			else
+				set asset = global.assets['html_' + this.elementType]
+				if asset && asset.isVoid
+					set this.isVoid = true
+			
+			# log 'MTreeNode.fromElement.isComponentType', this.isComponentType, this.elementType
+			
+			foreach k in Object.keys(elementMeta)
+				if k !== 'wzChildren' && k !== 'wzTag' && k !== 'wzName'
+					if this.isComponentType
+						# check validity
+						if !asset || indexOfByName(asset.props, k) > -1
+							_ this.props.add
+								@ k
+								@ 'string'
+								@ elementMeta[k]
+						else
+							# TODO WARNING OR ERROR
+					else
+						# for html elements do not check validity
+						_ this.props.add
+							@ k
+							@ 'string'
+							@ elementMeta[k]
+
+			if this.isComponentType || !!this.isVoid == false
+				foreach item in elementMeta.wzChildren
+					const child = new MTreeNode(this.dynApp, this)
+					_ child.fromElement(item)
+					_ this.wzChildren.push(child)
+
+			_ this.props.syncGlobalMeta
+		
+		m changedElementType
+			param oldElementType
+			param newElementType
+
+			const cmpType = global.componentTypes[newElementType]
+			set this.isComponentType = !!cmpType
+
+			_ this.props.clearSave(newElementType)
+			_ this.props.syncGlobalMeta
+
+		m set
+			param name
+			param value
+			if this[name] !== value
+				if name === 'elementType'
+					_ this.changedElementType
+						@ this[name]
+						@ value
+				set this[name] = value
+				_ this.props.syncGlobalMeta
+				_ this.hasChanged
+
+		m canAddChild
+			const allowed = howManyChildrenComponentCanHave(this.elementType)
+			# log 'MTreeNode.canAddChild allowed', this.elementType, allowed, this.name, this.wzChildren.length 
+			return allowed == 2 || (allowed == 1 && this.wzChildren.length == 0)
+
+		m add
+			const child = new MTreeNode(this.dynApp, this)
+			set child.elementType = 'div'
+			set child.name = 'new element ' + child.uid
+			_ this.wzChildren.push(child)
+			_ this.hasChanged
+
+		m addAfter
+			const child = new MTreeNode(this.dynApp, null)
+			set child.elementType = 'div'
+			set child.name = 'new element ' + child.uid
+			log 'MTreeNode.addAfter ', 
+				\b this.elementType, this.name, child.name
+			# checked_call_throw(result, '')
+			const result 
+				_ nodeUtils.addAfter(this, child)
+			log 'MTreeNode.addAfter ', result
+			_ this.hasChanged
+
+		m addBefore
+			const child = new MTreeNode(this.dynApp, null)
+			set child.elementType = 'div'
+			set child.name = 'new element ' + child.uid
+			_ nodeUtils.addBefore(this, child)
+			_ this.hasChanged
+
+		m addAsWrapper
+			const child = new MTreeNode(this.dynApp, null)
+			set child.elementType = 'div'
+			set child.name = 'new element ' + child.uid
+			log 'MTreeNode.addAsWrapper ', 
+				\b this.elementType, this.name, child.name
+			# checked_call_throw(result, '')
+			const result 
+				_ nodeUtils.addAsWrapper(this, child)
+			log 'MTreeNode.addAsWrapper ', result
+			_ this.hasChanged
+		m copy
+			param sourceMTreeNode
+			param copyKind
+			# log 'MTreeNode.copy ', copyKind,
+				\b this.elementType, this.name, 
+				\b sourceMTreeNode.elementType, sourceMTreeNode.name
+			set copyKind = copyKind || 'v'
+			const cloned = sourceMTreeNode.clone(this)
+			if copyKind === 'v'
+				_ nodeUtils.addChild(this, cloned)
+			elif copyKind === 'v-'
+				_ nodeUtils.addBefore(this, cloned)
+			elif copyKind === 'v+'
+				_ nodeUtils.addAfter(this, cloned)
+			elif copyKind === 'v()'
+				_ nodeUtils.addAsWrapper(this, cloned)
+			_ this.hasChanged
+			
+		m move
+			param sourceMTreeNode
+			param pasteKind
+			# log 'MTreeNode.move ', pasteKind,
+				\b this.elementType, this.name, 
+				\b sourceMTreeNode.elementType, sourceMTreeNode.name
+			set pasteKind = pasteKind || 'v'
+			if pasteKind === 'v'
+				_ nodeUtils.move(sourceMTreeNode, this)
+			elif pasteKind === 'v-'
+				_ nodeUtils.moveBefore(sourceMTreeNode, this)
+			elif pasteKind === 'v+'
+				_ nodeUtils.moveAfter(sourceMTreeNode, this)
+			elif pasteKind === 'v()'
+				_ nodeUtils.moveAsWrapper(sourceMTreeNode, this)
+			_ this.hasChanged
+
+		m delete
+			_ nodeUtils.remove(this)
+			_ this.hasChanged
+
+		m duplicate
+			const cloned = this.clone(this)
+			_ nodeUtils.addBefore(this, cloned)
+			_ this.hasChanged
+
+		m toElement
+			param parent
+			const el 
+				{
+					@ wzTag this.elementType
+					@ wzName this.name || ''
+					[ wzChildren
+			_ this.props.setToElement(el)
+			foreach item in this.wzChildren
+				_ item.toElement
+					@ el
+			if parent
+				_ parent.wzChildren.push(el)
+			else
+				return el
+
+		m toStyles
+			param styles
+			set styles = styles || {}
+			if this.elementType === 'style' && verify.isNotEmpty(this.name)
+				const s = styles[this.name] = {}
+				foreach p in this.props.getAll()
+					set s[p.name] = p.value
+				log 'MTreeNode.toStyles', this.name, s
+			else
+				foreach item in this.wzChildren
+					_ item.toStyles(styles)
+			return styles
+
+		m clone
+			param parent
+			var ret = new MTreeNode(this.dynApp, parent)
+			set ret.elementType = this.elementType
+			set ret.name = this.name
+			set ret.props = this.props.clone(ret)
+			var clonedChild
+			foreach item in this.wzChildren
+				set clonedChild = item.clone(ret)
+				_ ret.wzChildren.push(clonedChild)
+			return ret
+
+		m checkCondition
+			param cond
+			if cond.prop && cond.eq
+				return this.props.getValue(cond.prop) === cond.eq
+			else
+				return false
+
+		m createPropertyEditor
+			param level
+
+			var propsMeta
+				{
+					@ props this.props.getAll()
+			
+			const that = this
+			
+			return
+				_ React.createElement
+					@ PropsList
+					{
+						@ key 'propList' + this.uid 
+						@ level level
+						@ propsMeta propsMeta
+						@ isComponentType this.isComponentType
+						@ onAdd
+							function
+								param name
+								param type
+								param value
+								return
+									_ that.props.add(name, type, value)
+						@ onRename
+							function
+								param oldName
+								param newName
+								return
+									_ that.props.rename(oldName, newName)
+						@ onDelete
+							function
+								param name
+								return
+									_ that.props.delete(name)
+						@ onChange
+							function
+								param name
+								param type
+								param value
+								return
+									_ that.props.put(name, type, value)
+
+
+

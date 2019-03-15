@@ -1,0 +1,7 @@
+﻿stack transition Transition
+	widgets_4
+		panel tr-basic
+			widgets_5
+				pixelvalue transition-duration "Duration (seconds)" 0 10
+				select transition-timing-function "Timing function" css_enums timing-function
+				pixelvalue transition-delay "Delay (seconds)" 0 10

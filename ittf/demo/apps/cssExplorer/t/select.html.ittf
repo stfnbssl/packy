@@ -1,0 +1,28 @@
+﻿$group
+	$params title, id, tip, options
+
+	$
+		var hasTip = tip !== 'none';
+		if (hasTip) {
+			var tipClass = 'tip';
+			var tipValue = tip;
+			var ss = tip.split('|');
+			if (ss.length === 2) {
+				tipValue = ss[0];
+				tipClass += ' ' + ss[1];
+			}
+		}
+		var optionItems = options.split(';')
+
+	div 
+		code ${title}:
+
+			$if hasTip
+				class ${tipClass}
+				data-tip ${tipValue}
+
+			select
+				id ${id}-control
+				$foreach option in optionItems
+					option ${option}
+						value ${option}

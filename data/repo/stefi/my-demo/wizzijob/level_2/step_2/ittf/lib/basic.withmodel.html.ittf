@@ -1,0 +1,24 @@
+﻿html
+	head
+		title
+	body
+		h1 The wizzi factory
+		p A Software factory
+		h3 github hosting
+			a https://github.com/wizzifactory
+				href https://github.com/wizzifactory
+		h4 packages
+		table
+			thead
+				tr
+					th description
+					th url
+			$foreach item in wf.nodesOfType('wf:Package')
+				tr
+					td ${item.description}
+					td 
+						a ${item.__id}
+							href ${item.__id}
+
+		$include copy
+

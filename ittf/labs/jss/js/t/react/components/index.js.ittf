@@ -1,0 +1,20 @@
+﻿$group
+
+	j/iife-wrapped( BxComponents, reactModule, propTypesModule, 
+		\b localJss, colors, theme, classNames )
+		const React = reactModule
+		const PropTypes = propTypesModule
+		const {injectSheet} = localJss
+		const cn = classNames
+
+		var bxComponents
+			{
+				@ styles
+					{
+
+		$include ./button
+		$include ./splitter
+		$include ./lorem
+
+		return bxComponents
+

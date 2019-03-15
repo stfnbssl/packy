@@ -1,0 +1,120 @@
+﻿$group
+
+	j/bx/rect-component-group( Tabs )
+
+		$append styles
+			$include styles/tabs
+
+		$append static
+
+			$include ./tab
+			const {Tab} = bxComponents
+		
+		ctor
+			param props
+			base props
+			set this.onClick = this.onClick.bind(this)
+			set this.state
+				{
+					@ currentSelectedIndex
+						iif typeof props.selectedIndex === 'number' 
+							then props.selectedIndex
+							else defaultSelectedIndex
+		
+		p propTypes
+			static
+			@ className PropTypes.string
+			@ defaultSelectedIndex PropTypes.number
+			@ justified PropTypes.bool
+			@ onChange PropTypes.function
+
+		p defaultProps 
+			static
+			@ className: ''
+			@ defaultSelectedIndex 0
+			@ justified false
+			@ onChange null
+			@ selectedIndex null
+		
+		
+						
+		m render
+			const {sheet} = this.props
+			const {classes} = sheet
+
+			
+
+
+
+import * as util from '../js/lib/util';
+
+
+const tabsBarClass = 'mui-tabs__bar',
+      tabsBarJustifiedClass = 'mui-tabs__bar--justified',
+      tabsPaneClass = 'mui-tabs__pane',
+      isActiveClass = 'mui--is-active';
+
+
+			m onClick
+				param i
+				param tab
+				param ev
+				if typeof this.props.selectedIndex === 'number' && i !== this.props.selectedIndex 
+					\b || i !== this.state.currentSelectedIndex
+					_ this.setState
+						{
+							@ currentSelectedIndex i
+
+					if tab.props.onActive)
+						_ tab.props.onActive(tab)
+					if this.props.onChange
+						_ this.props.onChange(i, tab.props.value, tab, ev)
+
+			m render
+				const { children, defaultSelectedIndex, initialSelectedIndex, 
+					\b justified, selectedIndex, ...reactProps } = this.props
+
+				let tabs = React.Children.toArray(children)
+				let tabEls = [],
+					\b paneEls = [],
+					\b m = tabs.length,
+					\b currentSelectedIndex = (typeof selectedIndex === 'number' 
+						\b ? selectedIndex 
+						\b : this.state.currentSelectedIndex) % m,
+					\b isActive,
+					\b item,
+					\b cls,
+					\b i;
+
+				for i=0; i < m; i++
+					set item = tabs[i];
+					if item.type !== Tab
+						util.raiseError('Expecting MUITab React Element')
+					set isActive = (i === currentSelectedIndex) ? true : false
+					_ tabEls.push
+						li
+							@ key {i}
+							@ className {(isActive) ? isActiveClass : ''}
+							a
+								onClick {this.onClick.bind(this, i, item)}
+								+ {item.props.label}
+					set cls = tabsPaneClass + ' '
+					if isActive
+						set cls += isActiveClass
+
+					_ paneEls.push
+						div
+							@ key {i}
+							@ className {cls}
+							+ {item.props.children}
+
+					set cls = tabsBarClass
+					if justified
+						set cls += ' ' + tabsBarJustifiedClass
+
+					return
+						div { ...reactProps }
+							ul
+								@ className {cls}
+								+ {tabEls}
+							+ {paneEls}

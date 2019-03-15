@@ -1,0 +1,20 @@
+{
+
+	$
+		var opt = {
+			name: 'scrollreveal',
+			label: 'ScrollReveal',
+			experimentsWith: 'the ScrollReveal library',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'scroll',
+					label: 'Scroll',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

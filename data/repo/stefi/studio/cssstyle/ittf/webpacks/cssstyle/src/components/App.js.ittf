@@ -1,0 +1,72 @@
+﻿r-component( App )
+	
+	$append  imports
+		import AppBar from 'material-ui/AppBar'
+		import Toolbar from 'material-ui/Toolbar'
+		import Typography from 'material-ui/Typography'
+		import Button from 'material-ui/Button'
+		import Collapse from 'material-ui/transitions/Collapse'
+		import Styled from '../components/Styled'
+		import Styles from '../components/Styles'
+		import { Row, Col } from '../components/mui/grid'
+		var readme = require('../readme.md')
+		import MarkdownElement from './muidocs/MarkdownElement'
+
+	style
+		@ container
+			{
+				@ paddingTop '80px'
+
+	state
+		@ showReadme false
+	
+	render
+		log 'render.state', this.state
+		
+		prop classes
+		prop selectedStyledId
+		prop styledIds
+		prop onStyledChange
+		prop metaForm
+		prop onStyleChange
+		prop styledMeta
+		prop styledStyles
+		
+		return
+			div
+				< AppBar
+					< Toolbar
+						< Typography
+							@ type "title" 
+							@ color 'inherit'
+							@ noWrap
+							+ Styles builder
+				. {classes.container}
+					< Row
+						< Col
+							@ span {7}
+							< Styles
+								@ selectedStyledId {selectedStyledId}
+								@ styledIds {styledIds}
+								@ onStyledChange {onStyledChange}
+								@ metaForm {metaForm}
+								@ onStyleChange {onStyleChange}
+						< Col
+							@ span {5}
+							< Styled
+								@ styledMeta {styledMeta}
+								@ styledStyles {styledStyles}
+					< Button
+						+ Readme
+						@ onClick
+							=>
+								_ this.setState
+									{
+										@ ...this.state
+										@ showReadme !this.state.showReadme
+					< Collapse
+						@ in {this.state.showReadme}
+						@ transitionDuration auto
+						@ unmountOnExit
+						< MarkdownElement
+							@ text {readme}

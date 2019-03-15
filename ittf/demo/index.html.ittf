@@ -1,0 +1,12 @@
+﻿html
+	
+	head
+
+		css css/fb.css.ittf
+	
+	body
+
+		fb( FlexBox basic, 6, fb-basic-d-row, fb-basic-item )
+
+		a cssExplorer
+			href ./cssExplorer/index.html.ittf

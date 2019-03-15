@@ -1,0 +1,12 @@
+﻿html
+	head
+		css /static/lib/codemirror/lib/codemirror.css
+		css /static/lib/codemirror/addon/display/fullscreen.css
+		css css/main.css.ittf
+	body
+		# root
+		js /static/lib/codemirror/lib/codemirror.js
+		js /static/lib/codemirror/mode/javascript/javascript.js
+		js /static/lib/codemirror/mode/yaml/yaml.js
+		js /static/lib/codemirror/addon/display/fullscreen.js
+		js /webpack/ittfeditor/bundle.js

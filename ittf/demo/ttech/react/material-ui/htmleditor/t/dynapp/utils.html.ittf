@@ -1,0 +1,39 @@
+﻿$group
+
+	function objToArray
+		param obj
+		var ret = []
+		foreach k in Object.keys(obj)
+			_ ret.push(obj[k])
+		return ret
+
+	function findByName
+		param arr
+		param name
+		foreach item in arr
+			if item.name === name
+				return item
+		return null
+
+	function indexOfByName
+		param arr
+		param name
+		foreach item in arr
+			if item.name === name
+				return i
+		return -1
+
+	function createSvgIcon
+		param path
+		param displayName
+		let Icon
+			=>
+				param props
+				return
+					< SvgIcon
+						@ {...props}
+						+ {path}
+		set Icon.displayName = displayName;
+		# set Icon = pure(Icon)
+		set Icon.muiName = 'SvgIcon'
+		return Icon

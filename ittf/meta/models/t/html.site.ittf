@@ -1,0 +1,47 @@
+$group
+
+	category Html
+
+		lia( How do you make one <div> layer show over another in HTML/CSS?, https://www.quora.com/How-do-you-make-one-div-layer-show-over-another-in-HTML-CSS )
+		lia( idem (stackoverflow), https://stackoverflow.com/questions/2941189/how-to-overlay-one-div-over-another-div?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa#answer-46318225 )
+
+		category Images
+			lia( MDN Images in Html, https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML
+			lia( MDN responsive images, https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images
+
+			demo step_1
+				label Step 1
+
+		category VideoAudio
+			lia( MDN Video and audio content, https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Video_and_audio_content
+			lia( W3C VTT Specification, https://www.w3.org/TR/webvtt1/
+			lia( VTT Explained, https://www.speechpad.com/captions/webvtt
+			lia( Mediaelement.js, https://github.com/mediaelement/mediaelement
+				p HTML5 <audio> or <video> player with support for MP4, WebM, and MP3 as well as HLS, 
+					\b Dash, YouTube, Facebook, SoundCloud and others with a common HTML5 MediaElement API, 
+					\b enabling a consistent UI in all browsers.
+
+			demo step_1
+				label Step 1
+			
+			demo playground
+				label Playground
+			
+			demo mediaelement
+				label Mediaelement.js
+
+		category Embedding
+			lia( MDN embedding object to iframe, https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Other_embedding_technologies
+			lia( Injecting html in an iframe src document, http://thinkofdev.com/javascript-how-to-load-dynamic-contents-html-string-json-to-iframe/
+
+			demo step_1
+				label Step 1
+
+			demo playground
+				label Playground
+
+		category Sitebuilders
+			demo mobirise
+				label Mobirise
+		
+

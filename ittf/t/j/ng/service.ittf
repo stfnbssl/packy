@@ -1,0 +1,38 @@
+﻿iife
+	$params module, service, dependencies|@@null
+
+	$ var deps = dependencies ? dependencies.trim().split(';') : []
+
+	function
+	
+		_ angular.module
+			@ '${module}'
+			._ service
+				@ '${service}'
+				[
+					$foreach dep in deps
+						@ '${dep}'
+					@ ${service}
+
+		function ${service}
+			$foreach dep in deps
+				param ${dep}
+			$hook
+
+		$foreach dep in deps
+			
+			$if dep === '$http'
+
+				function makeCheckSuccess
+					param cbSuccess
+					param cbError
+					return
+						function
+							param responseData
+							param responseStatus
+							log 'responseData', responseData
+							if responseData.status === 'success'
+								_ cbSuccess(responseData)
+							else
+								_ cbError(responseData)
+

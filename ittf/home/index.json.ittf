@@ -1,0 +1,106 @@
+{
+
+	$
+		var l_colors = "#B9D2DE;#919FA6;#3C7590;#D1E5EE;#D9E7EE;#C0C4E3;#9799AA;#3E4893;#D5D9F1;#DDDFF1;#BDE5CE;#95AC9F;#3D9563;#D2F2E0;#DBF2E5;#FFEAD2;#BFB4A6;#A67944;#FFF0DE;#FFF4E7".split(';')
+
+	{ debug
+		showPalette false
+
+	{ theme
+		fontAwesome true
+		[ colors
+			$foreach c in l_colors
+				"${c}"
+					
+	{ html
+		fontSize 14
+	
+	{ body
+		backgroundColor "${l_colors[4]}"
+		fontFamily 'roboto'
+		
+	$include d/std-nav-top
+	$include d/std-nav-sub-top
+	$include d/std-nav-left
+	$include d/std-nav-right
+
+	{ wrapMain
+		fixed false
+		padding 0
+
+	{ showCase
+		height 450
+		color "${l_colors[172]}"
+		title "Welcome to the Wizzi Factory"
+		subTitle "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque impedit, recusandae pariatur quibusdam maiores officiis quisquam perspiciatis a temporibus facere."
+		backgroundColor "${l_colors[9]}"
+		btnBackgroundColor "#555"
+		btnColor "#aaa"
+		{ image
+			url "https://images.pexels.com/photos/247791/pexels-photo-247791.png?cs=srgb&dl=ai-codes-coding-247791.jpg&fm=jpg"
+
+	{ contMain
+		fixed false
+		padding 2
+		[ panels
+			{
+				kind "cards"
+
+				[ cards
+					{
+						key "wizzi"
+						teaser "Wizzi 2"
+						title "Repo"
+						href "/ittf/repo/stefi/studio/wizzi/index.html.ittf"
+						subtitle "Wizzi project repo"
+						backgroundColor "${l_colors[1]}"
+					{
+						key "cheatsheets"
+						teaser "Cheat sheets"
+						title "Documentation"
+						href "/ittf/docs/cheatsheets/index.html.ittf"
+						subtitle "Wizzi models cheat sheets"
+						backgroundColor "${l_colors[1]}"
+					{
+						key "html"
+						teaser "Html"
+						title "Target technologies"
+						href "/ittf/demo/ttech/html/index.html.ittf"
+						subtitle "Experiments with the html language"
+						backgroundColor "${l_colors[0]}"
+					{
+						key "css"
+						teaser "Css"
+						title "Target technologies"
+						href "/ittf/demo/ttech/css/index.html.ittf"
+						subtitle "Experiments with the css language"
+						backgroundColor "${l_colors[2]}"
+					{
+						key "svg"
+						teaser "Svg"
+						title "Target technologies"
+						href "/ittf/demo/ttech/svg/index.html.ittf"
+						subtitle "Experiments with the svg language"
+						backgroundColor "${l_colors[4]}"
+					{
+						key "js"
+						teaser "Javascript"
+						title "Target technologies"
+						href "/ittf/demo/ttech/javascript/index.html.ittf"
+						subtitle "Experiments with the javascript language"
+						backgroundColor "${l_colors[6]}"
+					{
+						key "react"
+						teaser "React"
+						title "Target technologies"
+						href "/ittf/demo/ttech/react/index.html.ittf"
+						subtitle "Experiments with the react framework"
+						backgroundColor "${l_colors[8]}"
+					{
+						key "webapi"
+						teaser "WebApi"
+						title "Target technologies"
+						href "/ittf/demo/ttech/webapi/index.html.ittf"
+						subtitle "Experiments with the webapi technologies"
+						backgroundColor "${l_colors[10]}"
+

@@ -1,0 +1,19 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import { createStore, applyMiddleware } from 'redux' ids: undefined undefined
+    import thunk from 'redux-thunk' ids: undefined undefined
+    import api from '../middleware/api' ids: undefined undefined
+    import rootReducer from '../reducers' ids: undefined undefined
+    +  ids: undefined undefined
+    const configureStore ids: undefined undefined
+      =>  ids: undefined undefined
+        param preloadedState ids: undefined undefined
+        _ createStore ids: undefined undefined
+          @ rootReducer ids: undefined undefined
+          @ preloadedState ids: undefined undefined
+          _ applyMiddleware ids: undefined undefined
+            @ thunk ids: undefined undefined
+            @ api ids: undefined undefined
+    +  ids: undefined undefined
+    export default configureStore ids: undefined undefined

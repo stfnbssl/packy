@@ -1,0 +1,67 @@
+r-component( AppContent )
+
+	$append imports
+		import MarkdownElement from './MarkdownElement'
+
+	prop children
+		node
+	
+	prop classes
+		{
+		required
+	
+	prop className
+		string
+	
+	prop route
+		{
+		required
+
+	style
+
+		@ content
+			_ theme.mixins.gutters
+				{ 
+					@ paddingTop 80
+					@ flex '1 1 100%'
+					@ maxWidth '100%'
+					@ margin '0 auto'
+		
+		@ [theme.breakpoints.up(948)]
+			{ 
+				@ content
+					{ 
+						@ maxWidth 900
+
+	render
+		
+		prop className
+		prop classes
+		prop children: childrenProp
+		prop route
+
+		let children = childrenProp
+
+		if !children
+			const text
+				template
+					+ # Summary
+					+
+					macro
+						_ route.childRoutes.map
+							=>
+								param childRoute
+								return `- [${childRoute.title}](${childRoute.path})`
+							._ join('\n')
+			
+			log 'AppContent.text', text
+			
+			set children
+				< MarkdownElement
+					@ text {text}
+		
+		log 'AppContent.children', children
+		return
+			div
+				class {classNames(classes.content, className)}
+				+ {children}

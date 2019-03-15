@@ -1,0 +1,81 @@
+﻿$group
+	$params &app
+
+	import util from 'util'
+	import utils from '../lib/utils'
+	import http from './http'
+	import config from './config'
+	+
+	#
+		# The 'api' middleware 
+		# . intercepts dispatched actions that contain an HTTP_REQUEST property
+		# . uses the 'http' helper module to execute the http request
+		#   and dispatch the next action after completion or failure of the http request
+	+
+	const { notEmptyString } = utils
+	const error = utils.error('reduxstarter/middleware/api')
+	const throwError = utils.throwError('reduxstarter/middleware/api')
+	+
+	const timers = {}
+	+
+	function validateHttpRequest
+		param store
+		param actionHttpRequest
+		+
+		const { types } = actionHttpRequest
+		+
+		if !types || !types.length || types.length != 3
+			_ throwError
+				@ 'The requestType, successType and failureType action types are required. actionHttpRequest: ' + util.inspect(actionHttpRequest, { depth:null })
+				@ 'validateHttpRequest'
+
+	var api
+        function 
+            param store
+            #
+				# param next:Function // the dispatcher of the action
+            return 
+				function 
+                    param next
+					#
+						# param action:Object // the action being dispatched
+                    return 
+                        function 
+                            param action
+							+
+							log 'reduxstarter.middleware.api.action:', action
+							+
+							# The action requires an http request?
+							const actionHttpRequest = action[config.HTTP_REQUEST]
+							if typeof actionHttpRequest === 'undefined'
+								# NO
+								return next(action)
+							# YES
+							_ validateHttpRequest
+								@ store
+								@ actionHttpRequest
+							#
+							if actionHttpRequest.delayId
+								if timers[actionHttpRequest.delayId]
+									_ clearInterval(timers[actionHttpRequest.delayId])
+								log new Date().getSeconds(), 'setting delayed request', actionHttpRequest.delayId
+								set timers[actionHttpRequest.delayId]
+									_ setInterval
+										function
+											log new Date().getSeconds(), 'executing delayed', actionHttpRequest.delayId
+											_ http.sendRequest
+												@ actionHttpRequest
+												@ action
+												@ next
+											_ clearInterval(timers[actionHttpRequest.delayId])
+											delete timers[actionHttpRequest.delayId]
+										@ actionHttpRequest.delay
+								return timers[actionHttpRequest.delayId]
+							else
+								return
+									_ http.sendRequest
+										@ actionHttpRequest
+										@ action
+										@ next
+	export default api
+

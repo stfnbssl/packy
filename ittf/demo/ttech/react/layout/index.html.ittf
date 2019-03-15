@@ -1,0 +1,17 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'layout',
+			label: 'Layout',
+			experimentsWith: 'React editors',
+			path: [
+				{
+					name: 'react',
+					label: 'ReactJs',
+				},
+			]
+		};
+
+	ttech-frame(&opt)
+

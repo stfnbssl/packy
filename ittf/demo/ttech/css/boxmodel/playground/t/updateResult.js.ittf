@@ -1,0 +1,26 @@
+﻿$group
+    function updateResult
+        var main_container_code
+			[
+				@ '.main-container {' 
+				@ '\tdisplay: block;'
+				@ '}'
+				._ join('\n')
+        
+		var box_code
+			[
+				@ '.box {' 
+				@ '\tdisplay: block;'
+				@ '\tmargin: ' + box_margin + ';'
+				@ '\tborder: ' + box_border + ';'
+				@ '\tpadding: ' + box_padding + ';'
+				@ '}'
+				._ join('\n')
+
+        var style = main_container_code + '\n' +
+			\b box_code
+		
+		log 'updateResult', style
+        
+		_ $("#demo_styles")
+            ._ html(style)

@@ -1,0 +1,50 @@
+﻿bb_view Spa.CssRuleListView : Backbone.Marionette.CompositeView
+	__p id cssruleList
+	__p itemView:object Spa.CssRuleItemView
+
+	bb_action_click add
+		event.preventDefault();
+		var self = this;
+		var form = new Spa.CssRuleForm({ 
+			mode: 'insert', 
+			app: this.app, 
+			model: new Spa.CssRuleModel({ cssid: this.cssid, cssname: this.cssname }),
+			save: function(model) {
+				self.app.putCssRule(model);
+				self.collection.reload();
+				self.render();
+			}
+		}).render();
+		this.app.rootApp.modal.show(form);
+
+	bb_action_click done
+		event.preventDefault();
+		history.go(-1);
+	
+	method initialize options
+		this.app = options.itemViewOptions.app;
+		this.cssid = options.itemViewOptions.cssid;
+		this.cssname = options.itemViewOptions.cssname;
+		var self = this;
+		this.app.rootApp.vent.on("cssruleList:noResults", function() { self.showMessage("No css rule found") });
+    
+	method appendHtml collectionView itemView
+		collectionView.$("#cssrule-list-tbody").append(itemView.el);
+  
+	method showMessage message
+		this.$('.items').html('<h1 class="notFound">' + message + '</h1>');
+	
+	bb_template ctx
+		div
+			. n-l-h1
+				bb/b_action done Done n-l-btn
+					style float: right;
+				bb/b_action add Add n-l-btn
+					style float: right;
+			h2 Css rules
+			# cssrule-list-container
+				table
+					thead
+						th name
+					tbody
+						id cssrule-list-tbody

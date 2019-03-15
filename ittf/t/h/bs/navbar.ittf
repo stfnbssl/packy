@@ -1,0 +1,5 @@
+nav
+	class navbar navbar-inverse navbar-fixed-top $* navbar-default *$
+	role navigation
+	. container-fluid
+		$hook

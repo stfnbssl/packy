@@ -1,0 +1,13 @@
+layout()
+    . w3-card-4
+        h1 ${user.nickname}
+        h2 Cloned repository ${repo}
+        h4 commit history
+            pre
+                code
+                    + ${JSON.stringify(commitHistory, null, 2)}        
+        h4 files
+        ul
+            $foreach f in Object.keys(cloned)
+                li 
+                    a ${f}

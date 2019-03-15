@@ -1,0 +1,29 @@
+﻿h/root/empty_layout()
+
+	$append head-styles
+		css ./styles.css.ittf
+
+	. container
+		. item1 item1
+		. item1 item2
+		. item1 item3
+		. item1 item4
+		. item1 item5
+		. item1 item5
+
+	. container2
+		div header
+			class item2 header2
+		div sidebar
+			class item2 sidebar2
+		div Content-1
+			class item2 content2-1
+		div Content-2
+			class item2 content2-2
+		div Content-3
+			class item2 content2-3
+		div footer
+			class item2 footer2
+
+
+

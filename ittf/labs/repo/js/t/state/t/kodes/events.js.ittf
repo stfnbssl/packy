@@ -1,0 +1,12 @@
+﻿$group
+
+	@ EVENTS
+		{
+			@ APP
+				{
+					@ START 'APP.START'
+			@ REPO
+				{
+					@ FOLDERDATA
+						{
+							@ SELECTED 'REPO.FOLDERDATA.SELECTED'

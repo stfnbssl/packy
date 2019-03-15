@@ -1,0 +1,35 @@
+h/std/empty_layout()
+	
+	. header
+		$ var i = 0
+		$while i < 20
+		    . lorem
+    			h1 para ${i}
+    			p 
+    				lorem 100
+    			$ i++
+	
+	$append head-styles
+		@style 
+			css
+				. header
+					@ background-image linear-gradient(to right, #304f56 0%,#304f56 12.5%,#1c3e43 12.5%,#1c3e43 25%,#304e29 25%,#304e29 37.5%,#4f561c 37.5%,#4f561c 50%,#625618 50%,#625618 62.5%,#613814 62.5%,#613814 75%,#5d2a41 75%,#5d2a41 87.5%,#4c2742 87.5%)
+					background-attachment fixed
+					background-position center center
+					background-repeat no-repeat
+					background-size cover
+					text-align center
+					color #fff
+    
+	$append body-scripts
+		script 
+			module
+				_ document.addEventListener
+					@ 'DOMContentLoaded'
+					function 
+						_ ScrollReveal().reveal
+							@ '.lorem'
+							{
+								@ interval 400
+								@ opacity 0.5
+								@ duration 3000

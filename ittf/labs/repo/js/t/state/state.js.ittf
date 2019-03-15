@@ -1,0 +1,39 @@
+﻿$group
+
+	var bxState
+		iife
+			function
+				param K
+				param Pub
+				param Sub
+				return
+					{
+						@ userId 'stefi'
+						@ userData null
+						@ projectId null
+						@ RepoFolderData null
+						@ RepoFileData null
+						@ set
+							function
+								param dataType
+								param dataState
+								param data
+
+								log 'bxState.set', dataType, dataState, data
+					
+								set this[dataType] = {}
+								set this[dataType][dataState] = data
+
+								log 'bxState.newstate', this
+
+								_ Pub
+									@ K.AREA.STATE + dataType
+									{
+										@ state dataState
+										@ data data
+
+
+			@ bxKodes
+			@ PubSub.publish
+			@ PubSub.subscribe
+

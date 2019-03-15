@@ -1,0 +1,97 @@
+﻿$group
+
+    . file
+        position relative
+        margin-top 16px
+        margin-bottom 16px
+        border 1px solid #ddd
+        border-radius 3px
+    . file .data.empty
+        padding 5px 10px
+        color #586069
+    . file.open .file-header
+        border-bottom 0
+    . file .data.suppressed
+        + .file.open .image
+        display none
+    . file.open .data.suppressed
+        display block
+    . file .image
+        position relative
+        padding 30px
+        text-align center
+        background-color #ddd
+    . file .image table
+        margin 0 auto
+    . file .image td
+        padding 0 5px
+        color #888
+        text-align center
+        vertical-align top
+    . file .image td img
+        max-width 100%
+    . file .image .border-wrap
+        position relative
+        display inline-block
+        line-height 0
+        background-color #fff
+        border 1px solid #6a737d
+    . file .image a
+        display inline-block
+        line-height 0
+    . file .image img
+        + .file .image canvas
+        max-width 600px
+        background url("/images/modules/commit/trans_bg.gif") right bottom #eee
+        border 1px solid #fff
+    . file .image .view img
+        + .file .image .view canvas
+        position relative
+        top 0
+        right 0
+        max-width inherit
+        background url("/images/modules/commit/trans_bg.gif") right bottom #eee
+    . file .image .view>span
+        vertical-align middle
+    . file .empty
+        background none
+    . file-header
+        padding 5px 10px
+        background-color #fafbfc
+        border-bottom 1px solid #e1e4e8
+        border-top-left-radius 2px
+        border-top-right-radius 2px
+    . file-header::before
+        display table
+        content ""
+    . file-header::after
+        display table
+        clear both
+        content ""
+    . file-actions
+        float right
+        padding-top 2px
+        font-size 13px
+    . file-actions select
+        margin-left 5px
+    . file-action
+        display inline-block
+        padding-top 4px
+    . file-info
+        font-family "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace
+        font-size 12px
+        line-height 32px
+    . file-info .octicon
+        vertical-align text-bottom
+    . file-info-divider
+        display inline-block
+        width 1px
+        height 18px
+        margin-right 3px
+        margin-left 3px
+        vertical-align middle
+        background-color #ddd
+    . file-mode
+        text-transform capitalize
+    . show-file-notes
+        display none

@@ -1,0 +1,15 @@
+﻿element include js
+	tag script + module
+	ast
+	category
+	
+	item
+		title script tag with inclusion of a js wizzi model
+		ittf
+			html
+				body
+					script
+						module
+							function sayHello
+								log 'Hello'
+							_ sayHello

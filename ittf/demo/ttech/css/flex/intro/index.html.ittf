@@ -1,0 +1,46 @@
+﻿h/root/empty_layout()
+
+	$append head-styles
+		css css/reset.css.ittf
+		css css/styles.css.ittf
+
+	nav 
+		class navBar
+		nav 
+			class wrapper
+			. logo
+			input
+				type checkbox
+				id menu-toggle
+			label
+				for menu-toggle
+				class label-toggle
+			ul
+				li 
+					a Lorem
+						href #
+				li 
+					a Ipsum
+						href #
+				li 
+					a Serum
+						href #
+	header 
+		class wrapper
+		h1 Big ol' Lorem
+		p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, sint corporis dolores omnis consectetur quaerat nesciunt beatae maiores, itaque labore ex vero pariatur nulla non fugiat, facilis eaque sunt doloremque!
+
+
+		p Example taken from &nbsp;
+			a Pure CSS Responsive Flex Menu
+				href https://blog.christopherianmurphy.com/2016/01/responsive-pure-css-menu/
+		
+		$ var i = 0
+		$while i < 20
+			p Lorem ipsum
+				style margin-top: 50px
+				$ i++
+
+		hr
+			style margin-top: 200px
+

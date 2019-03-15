@@ -1,0 +1,24 @@
+﻿wfjob
+	
+	$
+		var folder = 'c:/my/wizzi/next/npm';
+	
+	title v3-wizzi plugins
+	
+	exec-file v3-wizzi-js
+		title wizzi-js module v.3
+		exe-path node
+		cwd ${folder}/v3-wizzi-js
+		arg generate
+	
+	exec-file v3-wizzi-html
+		title wizzi-html module v.3
+		exe-path node
+		cwd ${folder}/v3-wizzi-html
+		arg generate
+
+	exec-file v3-wizzi-docs
+		title wizzi-docs module v.3
+		exe-path node
+		cwd ${folder}/v3-wizzi-docs
+		arg generate

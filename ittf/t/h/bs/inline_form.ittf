@@ -1,0 +1,10 @@
+form
+	$params id, width|8, method|@@null, action|@@null
+	class form-inline
+	id ${id}
+	role form
+	$if method
+		method ${method}
+	$if action
+		action ${action}
+	$hook

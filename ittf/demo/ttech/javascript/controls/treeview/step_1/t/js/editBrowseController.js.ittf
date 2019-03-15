@@ -1,0 +1,287 @@
+﻿$group
+
+	#
+		# dependencies
+		# . g/js/wz/standalone.js.ittf
+		#   - wz.canGen
+		#   - wz.mtree
+		#   - wz.mtreeDebug
+		#   - wz.gen
+		#   - wz.wizziJob
+		#   - wz.getCodeAST
+		#   - wz.canWizzify
+		#   - wz.wizzify
+		#   - wz.genFromText
+
+	class EditBrowseController
+		ctor
+			param props
+			set this.key = props.key || 'default'
+			set this.ittfResultKind = props.ittfResultKind || 'gen'
+			set this.snippetResultKind = props.snippetResultKind || 'wizzify'
+			set this.selectedItem = null
+			set this.timers = {}
+			_ this.initialize
+
+		m initialize
+
+			_ glEventHub.on
+				@ 'command'
+				=>
+					param options
+					if options.key !== this.key
+						return
+					
+					var name = options.name
+					log 'command name', name
+					
+					if ['gen', 'mtree', 'debug', 'view', 'exec'].indexOf(name) > -1
+						set this.ittfResultKind = name
+						if this.selectedItem != null
+							_ this.onEditValueChange
+								@ this.selectedItem
+								{
+									@ immediate true
+					
+					elif ['wizzify', 'ast', 'diff'].indexOf(name) > -1
+						set this.snippetResultKind = name
+						if this.selectedItem != null
+							_ this.onEditValueChange
+								@ this.selectedItem
+								{
+									@ immediate true
+
+		m onEditValueChange
+			param item
+			param options
+
+			#
+				# { item
+				#   boolean isIttfDocument
+				#   boolean isFragment
+				#   string schema
+				#   string mime
+				#   string content
+			#
+				# { options
+				#   boolean immediate
+
+			set options = options || {}
+			set this.selectedItem = item
+			
+			log 'onEditValueChange', item, this.ittfResultKind
+			
+			if this.timers['gen']
+				_ clearTimeout
+					@ this.timers['gen']
+				# log 'EditBrowseController.onEditValueChange. Cleared previous gen schedule.', new Date()
+			
+			if item == null
+				return
+
+			if item.isIttfDocument
+				if !item.isFragment
+					if this.ittfResultKind === 'gen'
+						_ wz.canGen
+							@ item.schema
+							a_cb_throw( ok )
+								if ok
+									if options.immediate
+										_ this.generate
+											@ item
+									else
+										set this.timers['gen']
+											_ setTimeout
+												=>
+													_ this.generate
+														@ item
+												@ 2 * 1500
+								else
+									_ glEventHub.emit
+										@ 'splash-hide'
+										{
+											@ key 'result-splash'
+									_ wz.mtree
+										@ item.path
+										editBrowse/a_cb_no_err( result )
+											_ glEventHub.emit
+												@ 'text-result'
+												{ 
+													@ key this.key
+													@ result result.toIttf()
+													@ item item
+					elif this.ittfResultKind === 'mtree'
+						_ glEventHub.emit
+							@ 'splash-hide'
+							{
+								@ key 'result-splash'
+						_ wz.mtree
+							@ item.path
+							editBrowse/a_cb_no_err( result )
+								_ glEventHub.emit
+									@ 'text-result'
+									{ 
+										@ key this.key
+										@ result result.toIttf()
+										@ item item
+					elif this.ittfResultKind === 'debug'
+						_ glEventHub.emit
+							@ 'splash-hide'
+							{
+								@ key 'result-splash'
+						_ wz.mtreeDebug
+							@ item.path
+							editBrowse/a_cb_no_err( result )
+								_ glEventHub.emit
+									@ 'text-result'
+									{ 
+										@ key this.key
+										@ result result.mTreeBuildUpScript
+										@ item item
+					elif this.ittfResultKind === 'view'
+						_ glEventHub.emit
+							@ 'splash-hide'
+							{
+								@ key 'result-splash'
+						if options.immediate
+							_ wz.gen
+								@ item.path
+								editBrowse/a_cb_no_err( result )
+									_ glEventHub.emit
+										@ 'html-result'
+										{ 
+											@ key this.key
+											@ result result
+											@ item item
+						else
+							set this.timers['gen']
+								_ setTimeout
+									=>
+										_ wz.gen
+											@ item.path
+											editBrowse/a_cb_no_err( result )
+												_ glEventHub.emit
+													@ 'html-result'
+													{ 
+														@ key this.key
+														@ result result
+														@ item item
+									@ 2 * 1000
+					
+					elif this.ittfResultKind === 'exec'
+						_ glEventHub.emit
+							@ 'splash-hide'
+							{
+								@ key 'result-splash'
+						_ wz.wizziJob
+							@ item.path
+							editBrowse/a_cb_no_err( result )
+								_ glEventHub.emit
+									@ 'json-result'
+									{ 
+										@ key this.key
+										@ result result
+										@ item item
+					
+					else
+						_ glEventHub.emit
+							@ 'splash-show'
+							{
+								@ key 'result-splash'
+				
+				else
+					_ glEventHub.emit
+						@ 'splash-show'
+						{
+							@ key 'result-splash'
+
+			else
+				
+				if this.snippetResultKind === 'ast'
+					_ glEventHub.emit
+						@ 'splash-hide'
+						{
+							@ key 'result-splash'
+					_ wz.getCodeAST
+						@ item.mime
+						@ item.content
+						editBrowse/a_cb_no_err( result )
+							_ glEventHub.emit
+								@ 'json-result'
+								{ 
+									@ key this.key
+									@ result result
+									@ item item
+
+				elif this.snippetResultKind === 'diff'
+					_ glEventHub.emit
+						@ 'splash-hide'
+						{
+							@ key 'result-splash'
+					var result = {}
+					_ wz.getCodeAST
+						@ item.mime
+						@ item.content
+						editBrowse/a_cb_no_err( ast1 )
+							set result.snippetAst = ast1
+							_ wz.wizzify
+								@ item.mime
+								@ item.content
+								editBrowse/a_cb_no_err( wizzified1 )
+									_ wz.genFromText
+										@ wizzified1
+										{
+											@ schema item.mime
+											{ artifactContext
+												@ noUseStrict true
+												@ noGeneratorComments true
+										editBrowse/a_cb_no_err( artifactText )
+											_ wz.getCodeAST
+												@ item.mime
+												@ artifactText
+												editBrowse/a_cb_no_err( ast2 )
+													set result.wizzifiedAst = ast2
+													_ glEventHub.emit
+														@ 'diff-result'
+														{ 
+															@ key this.key
+															@ result result
+															@ item item
+				
+				elif this.snippetResultKind === 'wizzify' && wz.canWizzify(item.mime)
+					_ glEventHub.emit
+						@ 'splash-hide'
+						{
+							 @ key 'result-splash'
+					_ wz.wizzify
+						@ item.mime
+						@ item.content
+						editBrowse/a_cb_no_err( result )
+							_ glEventHub.emit
+								@ 'text-result'
+								{ 
+									@ key this.key
+									@ result result
+									@ item item
+				else
+					_ glEventHub.emit
+						@ 'splash-show'
+						{
+							@ key 'result-splash'
+
+		m generate
+			param item
+			_ glEventHub.emit
+				@ 'splash-hide'
+				{
+					@ key 'result-splash'
+			_ wz.gen
+				@ item.path
+				editBrowse/a_cb_no_err( result )
+					_ glEventHub.emit
+						@ 'text-result'
+						{ 
+							@ key this.key
+							@ result result
+							@ item item
+			# log 'EditBrowseController.generate. gen executed.', new Date()

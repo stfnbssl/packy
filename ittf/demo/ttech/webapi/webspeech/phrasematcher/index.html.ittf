@@ -1,0 +1,20 @@
+h/root/empty_layout( webspeech phrase matcher )
+
+	$append head-styles
+        css ./style.css.ittf
+    
+	h1 Phrase matcher
+    
+	p Press the button then say the phrase to test the recognition.
+    
+	button Start new test
+    
+	div 
+        p Phrase...
+            class phrase
+        p Right or wrong?
+            class result
+        p ...diagnostic messages
+            class output
+    
+	js script.js.ittf

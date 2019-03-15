@@ -1,0 +1,38 @@
+﻿r-form( AsyncValidationForm, validate, asyncValidate, username )
+
+	$append imports
+		import SubmitValidationFormSubmit from './SubmitValidationFormSubmit'
+
+		const validate
+			=>
+				param values
+				const errors = {}
+				if !values.username
+					set errors.username = 'Required'
+				if !values.password
+					set errors.password = 'Required'
+				return errors
+
+		const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+		const asyncValidate
+			=>
+				param values /*, dispatch */
+				return 
+					_ sleep
+						@ 1000
+						._ then
+							=>
+								if ['john', 'paul', 'george', 'ringo'].includes(values.username)
+									throw
+										{ 
+											@ username 'That username is taken'
+	return
+		form
+			@ onSubmit {handleSubmit(SubmitValidationFormSubmit)}
+
+			text( username, Username)
+			password( password, Password)
+			
+			div
+				button-submit()
+				button-clear()

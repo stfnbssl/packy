@@ -1,0 +1,14 @@
+﻿$group
+	bb_model Spa.CssModel
+		__o defaults
+			__p name
+			__p htmlid
+			__p html
+	bb_collection Spa.CssCollection
+		__p model:object Spa.CssModel
+		__p localStorage:object new Backbone.LocalStorage("ce-css")
+		method applyLookups htmlcollection
+			this.each(function(css) {
+				console.log('css', css);
+				css.set('html', htmlcollection.get(css.get('htmlid')).get('name'));
+			});

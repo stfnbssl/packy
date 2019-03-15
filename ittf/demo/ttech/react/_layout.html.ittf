@@ -1,0 +1,26 @@
+h/root/layout( )
+	$params title|Title, usebabel|false
+
+	$$ var usebabel = features.indexOf('-babel') >= 0;
+	
+	_breadcrumbs()
+	
+	$append left-sidebar
+		_items()
+	
+	. panel
+		. panel-header
+			h3 ${title}
+		. panel-body
+			$hook
+
+	$append head-styles
+
+	$append body-scripts
+		js /static/lib/react/react.js
+		js /static/lib/react/react-dom.js
+		$if usebabel
+			js https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js
+	
+
+

@@ -1,0 +1,26 @@
+﻿js
+	no-iife
+	block
+		Spa = {};
+	$wizzi data/css_enums
+	$wizzi data/css_editor
+	$wizzi models/html
+	$wizzi models/css
+	$wizzi models/cssrule
+	$wizzi models/cssrulestyles
+	$wizzi views/modalregion
+	$wizzi views/css/css_layout
+	$wizzi views/css/css_item
+	$wizzi views/css/css_list
+	$wizzi views/css/cssrule_item
+	$wizzi views/css/cssrule_list
+	$wizzi views/css/cssrule_styles
+	$wizzi views/css/html_item
+	$wizzi views/css/html_list
+	$wizzi views/css/forms/css_form
+	$wizzi views/css/forms/cssrule_form
+	$wizzi views/css/forms/html_form
+	$wizzi apps/css_router
+	$wizzi apps/css_dataprovider
+	$wizzi apps/css_app
+	$wizzi apps/root_app

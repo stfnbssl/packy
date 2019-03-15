@@ -1,0 +1,80 @@
+﻿css
+
+	< body
+		font-size 15px
+
+	< li
+		list-style none
+	< a
+		text-decoration none
+
+	. d-container
+		display flex
+
+	. d-left-aside
+		position fixed
+        top 0
+        bottom 0
+        height 100%
+        left 0
+		min-width 20rem
+		overflow auto
+		padding-right 1rem
+		< ul
+			< li
+				padding 2px
+				< a
+					color #000
+					& :hover
+						color #fff
+						background-color #555
+
+	. d-main-content
+		position fixed
+        top 0
+        bottom 0
+        height 100%
+        left 20rem
+		padding-left 1rem
+		overflow auto
+
+	. d-right-aside
+		position fixed
+        top 0
+        bottom 0
+        height 100%
+        right 0
+		max-width 40rem
+		overflow auto
+
+	. d-api-prop
+		display flex
+		padding 0.5rem 1rem
+		font-size 1.2rem
+
+	. d-api-prop-name
+		min-width 12rem
+		font-style italic
+
+	. d-api-prop-value
+		font-weight bold
+
+	. d-params-panel
+		margin-top 0.2rem
+		border 1px solid #ddd
+
+	. d-param
+		display flex
+		margin 0.2rem 0
+
+	. d-param-label
+		min-width 10rem
+		padding 0.2rem
+		background-color #ddd
+
+	. d-param-input
+		padding 0.2rem
+		< input
+			padding 0.2rem
+			width 32rem
+			font-weight 700

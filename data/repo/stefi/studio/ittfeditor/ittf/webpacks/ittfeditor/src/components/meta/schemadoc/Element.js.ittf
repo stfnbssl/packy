@@ -1,0 +1,52 @@
+﻿r-function( Element )
+	
+	$append imports
+		import Comments from './Comments'
+		import Flags from './Flags'
+		import Attribute from './Attribute'
+			
+	prop element
+		{
+	
+	const attributes
+		_ element.attributes.map
+			=>
+				param attr
+				< Attribute
+					@ attr {attr}
+
+	return
+		div
+			h4 Element {element.name}
+			< Comments
+				@ data {element.comments}
+			table
+				class table
+				thead
+					tr
+						th Tag
+						th Super
+						th Is root
+						th Flags
+				tbody
+					tr
+						td {element.tags.join(' | ' )}
+						td {element.super}
+						td {element.isRoot}
+						td 
+							< Flags
+								@ flags {element.flags}
+			section
+				h5 Attributes
+				table
+					class table
+					thead
+						tr
+							th Tag
+							th Name
+							th Type
+							th Default
+							th Flags
+							th Description
+					tbody
+						+ {attributes}

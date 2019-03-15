@@ -1,0 +1,33 @@
+﻿module
+	kind react
+	
+	import React from 'react'
+	import Control from '../Control'
+
+	export default
+		function buildFormControls
+			param meta
+			param handleOnChange
+
+			var originalValues = {}
+
+			var controls
+				map( meta.controls, c )
+					const { id, type, data, value } = c
+					log 'buildFormControls.createdControl', id, type, data, value
+					set originalValues[id] = value
+					return
+						< Control
+							@ id {id}
+							@ key {id}
+							@ type {type}
+							@ value {value}
+							@ data {data}
+							@ onChangeValue {handleOnChange}
+
+			return
+				{
+					@ originalValues originalValues
+					@ controls controls 
+
+		

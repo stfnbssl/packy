@@ -1,0 +1,10 @@
+﻿$group
+	$params name, label, value|@@null
+	
+	< Field
+		@ name ${name}
+		@ id ${name}
+		@ label ${label}
+		@ value ${value}
+		@ type textarea
+		@ component {renderField}

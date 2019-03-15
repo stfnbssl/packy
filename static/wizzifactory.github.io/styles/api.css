@@ -1,0 +1,143 @@
+@media screen and (max-width: 1028px) {
+    #mc-toggle-api-wizzi:checked ~ .mc-pane-api-wizzi {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_light:checked ~ .mc-pane-api-wizzi_light {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_wizziFactoryModule:checked ~ .mc-pane-api-wizzi_wizziFactoryModule {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_wizziFactory:checked ~ .mc-pane-api-wizzi_wizziFactory {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_pluginsManagerModule:checked ~ .mc-pane-api-wizzi_pluginsManagerModule {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_pluginsManager:checked ~ .mc-pane-api-wizzi_pluginsManager {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_runnerServerModule:checked ~ .mc-pane-api-wizzi_runnerServerModule {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_runnerServer:checked ~ .mc-pane-api-wizzi_runnerServer {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_model_modelInfoConfig:checked ~ .mc-pane-api-wizzi_model_modelInfoConfig {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_model_modelCollectionConfig:checked ~ .mc-pane-api-wizzi_model_modelCollectionConfig {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_model_modelInfo:checked ~ .mc-pane-api-wizzi_model_modelInfo {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_model_asyncModelLoader:checked ~ .mc-pane-api-wizzi_model_asyncModelLoader {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_artifact_artifactInfoConfig:checked ~ .mc-pane-api-wizzi_artifact_artifactInfoConfig {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_artifact_persisteable:checked ~ .mc-pane-api-wizzi_artifact_persisteable {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_artifact_artifactInfo:checked ~ .mc-pane-api-wizzi_artifact_artifactInfo {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_artifact_genConfig:checked ~ .mc-pane-api-wizzi_artifact_genConfig {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_artifact_genContext:checked ~ .mc-pane-api-wizzi_artifact_genContext {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_artifact_AsyncArtifactGenerator:checked ~ .mc-pane-api-wizzi_artifact_AsyncArtifactGenerator {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_production_productionContext:checked ~ .mc-pane-api-wizzi_production_productionContext {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_production_productionManager:checked ~ .mc-pane-api-wizzi_production_productionManager {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_production_Runner:checked ~ .mc-pane-api-wizzi_production_Runner {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_lightrepo:checked ~ .mc-pane-api-wizzi_lightrepo {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_repo_ittfDocumentStore:checked ~ .mc-pane-api-wizzi_repo_ittfDocumentStore {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_mtree:checked ~ .mc-pane-api-wizzi_mtree {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_mtree_loader:checked ~ .mc-pane-api-wizzi_mtree_loader {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_mtree_loader_line:checked ~ .mc-pane-api-wizzi_mtree_loader_line {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_mtree_loader_node:checked ~ .mc-pane-api-wizzi_mtree_loader_node {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_mtree_loader_mTreeBrick:checked ~ .mc-pane-api-wizzi_mtree_loader_mTreeBrick {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_mtree_jsWizziContext:checked ~ .mc-pane-api-wizzi_mtree_jsWizziContext {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_mtree_jsWizziRunner:checked ~ .mc-pane-api-wizzi_mtree_jsWizziRunner {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_mtree_mTree:checked ~ .mc-pane-api-wizzi_mtree_mTree {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_mtree_mTree_node:checked ~ .mc-pane-api-wizzi_mtree_mTree_node {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_modelType:checked ~ .mc-pane-api-wizzi_modelType {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_modelType_sourceLineInfo:checked ~ .mc-pane-api-wizzi_modelType_sourceLineInfo {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_modelType_baseElement:checked ~ .mc-pane-api-wizzi_modelType_baseElement {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_modelType_{element}:checked ~ .mc-pane-api-wizzi_modelType_{element} {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_modelType_rootElement:checked ~ .mc-pane-api-wizzi_modelType_rootElement {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_modelType_context:checked ~ .mc-pane-api-wizzi_modelType_context {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_modelType_exception:checked ~ .mc-pane-api-wizzi_modelType_exception {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_modelFactory:checked ~ .mc-pane-api-wizzi_modelFactory {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_plugin:checked ~ .mc-pane-api-wizzi_plugin {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_plugin_factoryPlugin:checked ~ .mc-pane-api-wizzi_plugin_factoryPlugin {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_plugin_modelFactory:checked ~ .mc-pane-api-wizzi_plugin_modelFactory {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_plugin_modelTransformer:checked ~ .mc-pane-api-wizzi_plugin_modelTransformer {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_plugin_artifactGenerator:checked ~ .mc-pane-api-wizzi_plugin_artifactGenerator {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_app:checked ~ .mc-pane-api-wizzi_app {
+        display: block;
+    }
+    #mc-toggle-api-wizzi_app_wizzifile:checked ~ .mc-pane-api-wizzi_app_wizzifile {
+        display: block;
+    }
+}

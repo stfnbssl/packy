@@ -1,0 +1,59 @@
+﻿module
+	kind jsfile
+
+	$include g/js/wz/core
+	$include g/js/wz/ace
+	$include js/editManager
+	$include js/viewManager
+	$include js/wizziClient
+
+	_ wz.loaded
+		function
+			log '*** content loaded'
+
+			var editorImpl
+				new AceEditor
+					{
+						@ key 'ittf-editor'
+						@ editorElementId 'editorContainer'
+						@ width '100%'
+						@ height '100%'
+						
+			var ctx
+				{
+					@ editorImpl editorImpl
+					@ wizziGenUrl '/api/wf/gen'
+					@ wizziGenHttpMethod 'post'
+					@ codeViewElementId 'jsCodeView'
+			
+			set ctx.wizziClient
+				new WizziClient
+					@ ctx
+
+			set ctx.onChange
+				function
+					param token
+					param value
+					log 'changed', token, value
+					if token === 'sample1'
+						_ ctx.wizziClient.gen
+							@ value
+							@ 'js/module'
+
+			set ctx.editManager
+				new EditManager
+					@ ctx
+
+			set ctx.viewManager
+				new ViewManager
+					@ ctx
+
+			_ ctx.editManager.edit
+				{
+					@ token 'sample1'
+					@ value
+						[
+							@ 'module'
+							@ '\tkind jsfile'
+							._ join('\n')
+

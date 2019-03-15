@@ -1,0 +1,9 @@
+/*
+    artifact generator: C:\My\wizzi\v5\apps\node_modules\wizzi-js\lib\artifacts\js\module\gen\main.js
+    primary source IttfDocument: c:/my/wizzi/v5/apps/wizzi-studio/wizzi-studio-express/dist/server/data/jobs/gists/stefi/quick.js.ittf
+    utc time: Sun, 09 Sep 2018 14:32:25 GMT
+*/
+'use strict';
+var x = "ab  \\b";
+console.log('x.length', x.length);
+console.log(x.substr(-2));

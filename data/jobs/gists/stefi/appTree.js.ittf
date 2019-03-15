@@ -1,0 +1,62 @@
+module
+    kind jsfile
+
+    var apps
+        [
+                {
+                    @ appId 'a1'
+                {
+                    @ appId 'b/b1'
+                {
+                    @ appId 'c/c0/c1' 
+
+    var tree
+        _ app_flat_to_tree
+            @ apps
+
+    log JSON.stringify(tree, null, 2)
+
+    # returns node
+	#   { item
+	#     int kind
+	#       oneOf 0,1
+	#     string name
+    #     string itemPath
+	#     [ children
+    function app_flat_to_tree
+        param flatItems
+        var tree
+            {
+                [ children
+
+        var ss, cur, itemPath, hash, schema, isFragment
+        foreach f in flatItems
+            set itemPath = f.appId
+            set ss = itemPath.split('/')
+            set cur = tree
+            foreach s in ss
+                set cur
+                    _ app_getCreateChild
+                        @ cur
+                        @ s
+                        @ j < ss.length -1
+            set cur.itemPath = itemPath
+            if cur.kind == 1
+        return tree    
+
+    function app_getCreateChild
+        param parent
+        param name
+        param isFolder
+        foreach item in parent.children
+            if item.name === name
+                return item
+        var ret
+            {
+                @ kind isFolder ? 0 : 1
+                @ name name
+                [ children
+        _ parent.children.push(ret)
+        return ret
+        
+    

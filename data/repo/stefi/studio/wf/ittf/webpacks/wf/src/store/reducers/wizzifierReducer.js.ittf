@@ -1,0 +1,115 @@
+﻿module
+    kind react
+	+
+	import { 
+		\b wizzifyTypes,
+		\b JS_WIZZIFY_REQUEST, 
+		\b JS_WIZZIFY_SUCCESS, 
+		\b JS_WIZZIFY_FAILURE,
+		\b HTML_WIZZIFY_REQUEST, 
+		\b HTML_WIZZIFY_SUCCESS, 
+		\b HTML_WIZZIFY_FAILURE,
+		\b CSS_WIZZIFY_REQUEST, 
+		\b CSS_WIZZIFY_SUCCESS, 
+		\b CSS_WIZZIFY_FAILURE,
+		\b XML_WIZZIFY_REQUEST, 
+		\b XML_WIZZIFY_SUCCESS, 
+		\b XML_WIZZIFY_FAILURE 
+		\b } from '../actions'
+	+
+	function makeArray
+		param dim
+		param init
+		var ret = []
+		for var i=0; i<dim; i++
+			set ret[i] = init
+		return ret
+	+
+	function updateArray
+		param arr
+		param index
+		param value
+		var newarr = arr
+		set newarr[index] = value
+		log 'updateArray', newarr
+		return newarr
+	+
+	const wizzifierInitialState
+		{
+			@ isRequesting -1
+			@ lastSource makeArray(4, null)
+			@ wizzified makeArray(4, null)
+	+
+	r( wizzifier, wizzifierInitialState )
+	
+		c( JS_WIZZIFY_REQUEST
+			{
+				@ ...state
+				@ isRequesting 0
+		
+		c( JS_WIZZIFY_SUCCESS
+			{
+				@ ...state
+				@ isRequesting -1
+				@ lastSource state.lastSource[0] = action.source
+				@ wizzified updateArray(state.wizzified, 0, action.payload.wizzified)
+		
+		c( JS_WIZZIFY_FAILURE
+			{
+				@ ...state
+				@ isRequesting -1
+				@ wizzified updateArray(state.wizzified, 0, action.payload.error)
+
+		c( HTML_WIZZIFY_REQUEST
+			{
+				@ ...state
+				@ isRequesting 1
+		
+		c( HTML_WIZZIFY_SUCCESS
+			{
+				@ ...state
+				@ isRequesting -1
+				@ lastSource state.lastSource[1] = action.source
+				@ wizzified updateArray(state.wizzified, 1, action.payload.wizzified)
+		
+		c( HTML_WIZZIFY_FAILURE
+			{
+				@ ...state
+				@ isRequesting -1
+				@ wizzified updateArray(state.wizzified, 1, action.payload.error)
+		
+		c( CSS_WIZZIFY_REQUEST
+			{
+				@ ...state
+				@ isRequesting 2
+		
+		c( CSS_WIZZIFY_SUCCESS
+			{
+				@ ...state
+				@ isRequesting -1
+				@ lastSource state.lastSource[2] = action.source
+				@ wizzified updateArray(state.wizzified, 2, action.payload.wizzified)
+		
+		c( CSS_WIZZIFY_FAILURE
+			{
+				@ ...state
+				@ isRequesting -1
+				@ wizzified updateArray(state.wizzified, 2, action.payload.error)
+		
+		c( XML_WIZZIFY_REQUEST
+			{
+				@ ...state
+				@ isRequesting 3
+		
+		c( XML_WIZZIFY_SUCCESS
+			{
+				@ ...state
+				@ isRequesting -1
+				@ lastSource state.lastSource[3] = action.source
+				@ wizzified updateArray(state.wizzified, 3, action.payload.wizzified)
+		
+		c( XML_WIZZIFY_FAILURE
+			{
+				@ ...state
+				@ isRequesting -1
+				@ wizzified updateArray(state.wizzified, 3, action.payload.error)

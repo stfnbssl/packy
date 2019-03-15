@@ -1,0 +1,61 @@
+﻿$group
+	$params &app
+
+	export const requireMarkdown =
+		_ require.context
+			@ '../pages'
+			@ true
+			@ /^((?![\\/]component-demos[\\/]).)*\.md$/
+
+	$if app.useMarkdownApi
+		export const componentAPIs = 
+			_ requireMarkdown.keys().reduce
+				=>
+					param res, n
+					log 'files.componentAPIs res, n', res, n
+					if /^\.\/component-api\//.test(n)
+						_ res.push
+							{
+								@ path n
+								@ name n.replace(/.*\//, '').replace('.md', '')
+					return res
+				[
+
+	$if app.useMarkdownDemo
+		export const requireDemo =
+			_ require.context
+				@ '../pages/component-demos'
+				@ true
+				@ /\.md$/
+
+		export const demos =
+			_ requireDemo.keys().map
+				=>
+					param n
+					log 'files.requireDemo n', n
+					return
+						{
+							@ path n
+							@ name n.replace(/.*\//, '').replace('.md', '')
+
+		const headerRegexp = /---\n(.*)\n---/
+		const componentsRegexp = /^components: (.*)$/
+	
+		export const demoComponentsTree =
+			_ demos.map
+				=>
+					param demo
+					const content = requireDemo(demo.path)
+					const header = content.match(headerRegexp)
+					log 'files.demoComponentsTree content, header', content, header
+					const node
+						{
+							@ demo
+							@ components []
+					if !header
+						return node;
+					const components = header[1].match(componentsRegexp)
+					if !components
+						return node
+					set node.components = components[1].split(', ')
+					return node

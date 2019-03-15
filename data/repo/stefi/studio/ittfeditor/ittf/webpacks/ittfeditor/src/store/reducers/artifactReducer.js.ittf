@@ -1,0 +1,49 @@
+﻿module 
+    kind react
+	+
+	import {
+		\b GENERATE_ARTIFACT_REQUEST,
+		\b GENERATE_ARTIFACT_SUCCESS,
+		\b GENERATE_ARTIFACT_FAILURE,
+		\b SELECT_DOCUMENT_SUCCESS,
+		\b SELECT_FRAGMENT_SUCCESS
+		\b } from '../actions'
+	+
+	const artifactInitialState
+		{
+			@ generatedArtifact null
+	+
+	r( artifact, artifactInitialState )
+	
+		c( GENERATE_ARTIFACT_REQUEST
+			{
+				@ ...state
+				@ isGenerating true
+		
+		c( GENERATE_ARTIFACT_SUCCESS
+			{
+				@ ...state
+				@ isGenerating false
+				@ generatedArtifact action.payload.data
+				@ error null
+
+		c( GENERATE_ARTIFACT_FAILURE
+			{
+				@ ...state
+				@ isGenerating false
+				@ generatedArtifact null
+				@ error action.payload.error
+
+		c( SELECT_DOCUMENT_SUCCESS
+			{
+				@ ...state
+				@ generatedArtifact null
+				@ error null
+
+		c( SELECT_FRAGMENT_SUCCESS
+			{
+				@ ...state
+				@ generatedArtifact null
+				@ error null
+
+	export default artifactReducer

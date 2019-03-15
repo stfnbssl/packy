@@ -1,0 +1,23 @@
+﻿$group
+	$params name
+
+	var ${name}
+		iife
+			function
+				param K
+				param State
+				param Pub
+				param Sub
+
+				class _${name}
+					super React.Component
+
+					$hook
+
+				
+				return _${name}
+			
+			@ bxKodes
+			@ bxState
+			@ PubSub.publish
+			@ PubSub.subscribe

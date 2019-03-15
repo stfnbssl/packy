@@ -1,0 +1,51 @@
+﻿css
+
+	< :root
+		@ --font-normal 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif
+		@ --font-monospace 'Fira Code', 'Fira Mono', Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace
+
+    < *
+        + *:before
+        + *:after
+        box-sizing inherit
+    
+	< *:focus
+        outline none
+    
+	< *:focus-visible
+        outline auto
+    
+	< html
+        + body
+        height 100%
+        width 100%
+
+	< html
+		box-sizing border-box
+	
+	< body
+		font-family var(--font-normal)
+		font-size 14px
+		line-height 1.428
+		margin 0
+
+	# root
+		height 100vh
+
+	. styler
+		@ --color-primary #4630eb
+		@ --color-secondary #5844ed
+		@ --color-error #f44336
+		@ --color-warning #ff9800
+		@ --color-success #4caf50
+		@ --color-border rgba(0, 0, 0, 0.08)
+		@ --color-accent #000
+		@ --color-accent-text #fff
+		@ --color-text #111
+		@ --color-background #fafafa
+		@ --color-content #fff
+		@ --color-editor-background #fafafa
+		@ --color-editor-text #111
+		@ --color-editor-border transparent
+		height 100% !important
+		width 100% !important

@@ -1,0 +1,25 @@
+﻿$group
+
+	package v5-kernel/wizzi
+		kind kernel
+		base-folder-uri c:/my/wizzi/v5/kernel/wizzi
+		std-folders()
+		kernel-std-ittf-folders()
+
+	package v5-kernel/wizzi-mtree
+		kind kernel
+		base-folder-uri c:/my/wizzi/v5/kernel/wizzi-mtree 
+		std-folders()
+		kernel-std-ittf-folders()
+
+	package v5-kernel/wizzi-repo
+		kind kernel
+		base-folder-uri c:/my/wizzi/v5/kernel/wizzi-repo
+		std-folders()
+		kernel-std-ittf-folders()
+	
+	package v5-kernel/wizzi-utils
+		kind kernel
+		base-folder-uri c:/my/wizzi/v5/kernel/wizzi-mtree
+		std-folders()
+		kernel-std-ittf-folders()

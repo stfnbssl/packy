@@ -1,0 +1,41 @@
+﻿module
+	kind react
+
+	export
+		function kebabCase
+			param string
+			return 
+				_ string.split
+					@ / |_|-/
+					._ join
+						@ '-'
+						._ split
+							@ ''
+							._ map
+								=>
+									param a, i
+									if a.toUpperCase() === a && a !== '-'
+										return (i !== 0 ? '-' : '') + a.toLowerCase()
+									return a
+								._ join
+									@ ''
+									._ toLowerCase
+
+	export
+		function titleize
+			param string
+			return
+				_ string.split
+					@ '-'
+					._  map
+						=>
+							param word
+							_ word.split
+								@ ''
+						._ map
+							=>
+								param letters
+								const first = letters.shift()
+								return [first.toUpperCase(), ...letters].join('')
+							._ join
+								@ ' '

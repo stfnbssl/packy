@@ -1,0 +1,19 @@
+﻿$group
+
+	{ navSubTop
+		fixed true
+		height 116
+		backgroundColor "${l_colors[15]}"
+		[ items
+			{
+				label "Core"
+				href "#"
+			{
+				label "Meta"
+				href "#"
+			{
+				label "Js"
+				href "#"
+			{
+				label "Web"
+				href "#"

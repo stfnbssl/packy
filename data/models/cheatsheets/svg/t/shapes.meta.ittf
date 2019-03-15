@@ -1,0 +1,16 @@
+﻿element shapes
+	tag rect | circle
+	ast
+	category
+	
+	item
+		title rect shape
+		ittf
+			svg
+				rect
+
+	item
+		title circle shape
+		ittf
+			svg
+				circle

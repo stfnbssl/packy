@@ -1,0 +1,17 @@
+﻿artifact ${name}
+	$params name
+	src ${name}
+	g js/module
+	schema js
+	extension js
+	model-ref webapp
+		model-coll controllers
+			item-name controller
+			path-template-value
+				attribute WmtName
+				token controller
+			path-template-value
+				attribute WmtName
+				token controllers
+
+			

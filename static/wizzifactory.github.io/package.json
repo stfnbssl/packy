@@ -1,0 +1,13 @@
+{
+    "name": "wizzifactory.github.io",
+    "version": "0.0.1",
+    "description": "The github page of the wizzi factory",
+    "author": "Stefano Bassoli",
+    "license": "MIT",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \\\"Error: no test specified\\\" && exit 1"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+}

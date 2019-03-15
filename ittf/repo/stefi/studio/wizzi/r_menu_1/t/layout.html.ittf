@@ -1,0 +1,62 @@
+﻿html
+	$params nav1sel, nav2sel|@@null
+
+	$include meta
+
+	$
+		var level = nav2sel == null ? 1 : 2;
+		var linkPrefix = nav2sel == null ? '' : '../';
+
+	head
+		css ${linkPrefix}css/reset.css.ittf
+		css ${linkPrefix}css/styles.css.ittf
+	body
+		nav 
+			class navBar
+			nav 
+				class navMain
+				a
+					href index.html.ittf
+					. logo
+						img
+							width 100
+							height 45px
+							src ${linkPrefix}images/logo.svg.ittf
+				input
+					type checkbox
+					id menu-toggle
+				label
+					for menu-toggle
+					class label-toggle
+				label &times;
+					for menu-toggle
+					class label-toggle-close
+				ul 
+					$foreach item in nav_menu
+						li 
+							$if item.title === nav1sel
+								class nav1selected
+							a ${item.title}
+								href ${linkPrefix}${item.href}
+							$if item.title === nav1sel && typeof(item.sub) !== 'undefined' && item.sub.length > 0
+								nav
+									class navSub1_mobile
+									ul
+										$foreach sub_item in item.sub
+											li 
+												a ${sub_item.title}
+													href ${linkPrefix}${sub_item.href}
+
+			$foreach item in nav_menu
+				$if item.title === nav1sel && typeof(item.sub) !== 'undefined' && item.sub.length > 0
+					nav
+						class navSub1
+						ul
+							$foreach sub_item in item.sub
+								li 
+									a ${sub_item.title}
+										href ${linkPrefix}${sub_item.href}
+		
+		main 
+			class mainContent
+			$hook

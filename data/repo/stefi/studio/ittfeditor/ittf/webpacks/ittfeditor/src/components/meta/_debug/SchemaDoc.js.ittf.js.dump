@@ -1,0 +1,97 @@
+// 13/5/2017:11:21:53  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "module", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //45
+$.a($0, $1, 5);
+var $2 = { n: "kind", v: "react", r: 2, c: 5, s: "f1", u: "f1",  }; //46
+$.a($1, $2, 7);
+var $3 = { n: "import", v: "React, { PropTypes, Component } from 'react'", r: 4, c: 5, s: "f1", u: "f1",  }; //47
+$.a($1, $3, 9);
+var $4 = { n: "import", v: "ElementList from './schemadoc/ElementList'", r: 5, c: 5, s: "f1", u: "f1",  }; //48
+$.a($1, $4, 11);
+var $5 = { n: "import", v: "Element from './schemadoc/Element'", r: 6, c: 5, s: "f1", u: "f1",  }; //49
+$.a($1, $5, 13);
+var $6 = { n: "class", v: "SchemaDoc", r: 8, c: 5, s: "f1", u: "f1",  }; //50
+$.a($1, $6, 15);
+var $7 = { n: "super", v: "Component", r: 9, c: 9, s: "f1", u: "f1",  }; //51
+$.a($6, $7, 17);
+var $8 = { n: "ctor", v: "", r: 11, c: 9, s: "f1", u: "f1",  }; //52
+$.a($6, $8, 19);
+var $9 = { n: "param", v: "props", r: 12, c: 13, s: "f1", u: "f1",  }; //53
+$.a($8, $9, 21);
+var $10 = { n: "base", v: "props", r: 13, c: 13, s: "f1", u: "f1",  }; //54
+$.a($8, $10, 23);
+var $11 = { n: "set", v: "this.state", r: 14, c: 13, s: "f1", u: "f1",  }; //55
+$.a($8, $11, 25);
+var $12 = { n: "{", v: "", r: 15, c: 17, s: "f1", u: "f1",  }; //56
+$.a($11, $12, 27);
+var $13 = { n: "@", v: "selectedElement null", r: 16, c: 21, s: "f1", u: "f1",  }; //57
+$.a($12, $13, 29);
+var $14 = { n: "set", v: "this.handleElementSelected = this.handleElementSelected.bind(this)", r: 17, c: 13, s: "f1", u: "f1",  }; //58
+$.a($8, $14, 31);
+var $15 = { n: "m", v: "handleElementSelected", r: 19, c: 9, s: "f1", u: "f1",  }; //59
+$.a($6, $15, 33);
+var $16 = { n: "param", v: "element", r: 20, c: 13, s: "f1", u: "f1",  }; //60
+$.a($15, $16, 35);
+var $17 = { n: "_", v: "this.setState", r: 21, c: 13, s: "f1", u: "f1",  }; //61
+$.a($15, $17, 37);
+var $18 = { n: "{", v: "", r: 22, c: 17, s: "f1", u: "f1",  }; //62
+$.a($17, $18, 39);
+var $19 = { n: "@", v: "selectedElement element", r: 23, c: 21, s: "f1", u: "f1",  }; //63
+$.a($18, $19, 41);
+var $20 = { n: "m", v: "render", r: 25, c: 9, s: "f1", u: "f1",  }; //64
+$.a($6, $20, 43);
+var $21 = { n: "const", v: "{ jsonDoc } = this.props", r: 26, c: 13, s: "f1", u: "f1",  }; //65
+$.a($20, $21, 45);
+var $22 = { n: "if", v: "!jsonDoc || !jsonDoc.elements || jsonDoc.elements.length < 1", r: 27, c: 13, s: "f1", u: "f1",  }; //66
+$.a($20, $22, 47);
+var $23 = { n: "return", v: "", r: 28, c: 17, s: "f1", u: "f1",  }; //67
+$.a($22, $23, 49);
+var $24 = { n: "h1", v: "No data", r: 29, c: 21, s: "f1", u: "f1",  }; //68
+$.a($23, $24, 51);
+var $25 = { n: "var", v: "{ selectedElement } = this.state", r: 30, c: 13, s: "f1", u: "f1",  }; //69
+$.a($20, $25, 53);
+var $26 = { n: "if", v: "!selectedElement", r: 31, c: 13, s: "f1", u: "f1",  }; //70
+$.a($20, $26, 55);
+var $27 = { n: "set", v: "selectedElement = jsonDoc.elements[0]", r: 32, c: 17, s: "f1", u: "f1",  }; //71
+$.a($26, $27, 57);
+var $28 = { n: "return", v: "", r: 33, c: 13, s: "f1", u: "f1",  }; //72
+$.a($20, $28, 59);
+var $29 = { n: ".", v: "container", r: 34, c: 17, s: "f1", u: "f1",  }; //73
+$.a($28, $29, 61);
+var $30 = { n: ".", v: "row", r: 35, c: 21, s: "f1", u: "f1",  }; //74
+$.a($29, $30, 63);
+var $31 = { n: "h1", v: "Schema {jsonDoc.name}", r: 36, c: 25, s: "f1", u: "f1",  }; //75
+$.a($30, $31, 65);
+var $32 = { n: ".", v: "col-md-2", r: 37, c: 25, s: "f1", u: "f1",  }; //76
+$.a($30, $32, 67);
+var $33 = { n: ".", v: "well list-well-title", r: 1, c: 1, s: "f2", u: "f2",  }; //91
+$.a($32, $33, 69);
+var $34 = { n: "+", v: "Elements", r: 39, c: 33, s: "f1", u: "f1",  }; //78
+$.a($33, $34, 71);
+var $35 = { n: ".", v: "well list-well-content", r: 1, c: 1, s: "f3", u: "f3",  }; //95
+$.a($32, $35, 73);
+var $36 = { n: "<", v: "ElementList", r: 41, c: 33, s: "f1", u: "f1",  }; //80
+$.a($35, $36, 75);
+var $37 = { n: "@", v: "elements {jsonDoc.elements}", r: 42, c: 37, s: "f1", u: "f1",  }; //81
+$.a($36, $37, 77);
+var $38 = { n: "@", v: "selectedName {selectedElement.name}", r: 43, c: 37, s: "f1", u: "f1",  }; //82
+$.a($36, $38, 79);
+var $39 = { n: "@", v: "onElementSelected {this.handleElementSelected}", r: 44, c: 37, s: "f1", u: "f1",  }; //83
+$.a($36, $39, 81);
+var $40 = { n: ".", v: "col-md-10", r: 45, c: 25, s: "f1", u: "f1",  }; //84
+$.a($30, $40, 83);
+var $41 = { n: "div", v: "", r: 1, c: 1, s: "f4", u: "f4",  }; //101
+$.a($40, $41, 85);
+var $42 = { n: "@style", v: "", r: 2, c: 5, s: "f4", u: "f4",  }; //102
+$.a($41, $42, 87);
+var $43 = { n: "{", v: "", r: 3, c: 9, s: "f4", u: "f4",  }; //103
+$.a($42, $43, 89);
+var $44 = { n: "@", v: "overflow \"hidden\"", r: 4, c: 13, s: "f4", u: "f4",  }; //104
+$.a($43, $44, 91);
+var $45 = { n: "<", v: "Element", r: 47, c: 33, s: "f1", u: "f1",  }; //86
+$.a($41, $45, 93);
+var $46 = { n: "@", v: "element {selectedElement}", r: 48, c: 37, s: "f1", u: "f1",  }; //87
+$.a($45, $46, 95);
+var $47 = { n: "export", v: "default SchemaDoc", r: 50, c: 5, s: "f1", u: "f1",  }; //88
+$.a($1, $47, 97);

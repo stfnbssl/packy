@@ -1,0 +1,51 @@
+$group
+
+	#
+		# params
+		# { props
+		#   { treeView
+		#   string ittfEditorTitle
+	class IttfEditManager
+		ctor
+			param props
+			set this.props = props
+			set this.treeView = props.treeView
+			set this.editorControl = null
+			set this.currentItem = null
+			set this.settingValue = false
+
+		m initialize
+
+			set this.editorControl
+				new EditorControl
+					{
+						@ key 'ittf-editor'
+						@ elementId 'editorContainer'
+
+			on( editvaluechanged
+				var key = data.key
+				var value = data.value
+				if key === 'ittf-editor'
+					if this.settingValue == false
+						_ this.treeView.updateFile
+							@ this.currentTreeNode
+							@ value
+
+			_ this.editorControl.initialize
+
+		m setCurrentFile
+			param treeNode
+			set this.currentTreeNode = treeNode
+			set this.currentItem = treeNode.item
+			_ this.setFilePath
+				@ this.currentItem.name
+			set this.settingValue = true
+			_ this.editorControl.value
+				@ this.currentItem.content
+			set this.settingValue = false
+
+		m setFilePath
+			param path
+			_ wz.text
+				@ this.props.ittfEditorTitle
+				@ path

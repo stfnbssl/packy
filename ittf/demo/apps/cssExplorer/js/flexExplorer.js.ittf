@@ -1,0 +1,127 @@
+﻿module 
+    kind jsfile
+	var
+		decl flex_properties
+		decl justify_content
+		decl flex
+    _ $
+        function 
+            var demo = $("#demo")
+            var demo_styles = $("#demo_styles")
+            var flex_items = $("#demo .flex-item")
+            var pallete = Math.floor(Math.random() * 360) + 100
+            _ $('.flex-item')
+                ._ each
+                    function 
+                        param i
+                        var hue = pallete + i * 5
+                        var background_color = 'background:hsl(' + hue + ',50%,75%)'
+                        _ $(this)
+                            ._ attr("style", background_color)
+            _ $(window)
+                ._ load
+                    function 
+                        set flex_properties = '\t-webkit-flex-flow: row wrap;\n' + '\tflex-flow: row wrap;\n'
+                        set justify_content = ''
+                        set flex = '\t-webkit-flex: 1 auto;\n' + '\tflex: 1 auto;\n'
+						$include updateResult
+                        _ $("body")
+                            ._ addClass("go")
+                        _ $("#toggle-controls")
+                            ._ click
+                                function 
+                                    _ $("#sidebar")
+                                        ._ toggleClass("minimized")
+                        _ $('#flex-grow-control, #flex-shrink-control, #flex-basis-control')
+                            ._ blur
+                                function 
+                                    var flex_grow_val
+                                        _ $('#flex-grow-control')
+                                            ._ val()
+                                    var flex_shrink_val
+                                        _ $('#flex-shrink-control')
+                                            ._ val()
+                                    var flex_basis_val
+                                        _ $('#flex-basis-control')
+                                            ._ val()
+                                    var flex_val = flex_grow_val + ' ' + flex_shrink_val + ' ' + flex_basis_val
+                                    if flex_val == "0 1 auto"
+                                        var flex_val = "initial"
+                                    if flex_val == "1 1 auto"
+                                        var flex_val = "auto"
+                                    if flex_val == "0 0 auto"
+                                        var flex_val = "none"
+                                    set flex = '\t-webkit-flex: ' + flex_val + ';\n' + '\tflex: ' + flex_val + ';\n'
+                                    _ updateResult()
+                        _ $('#flex-direction-control, #flex-wrap-control')
+                            ._ change
+                                function 
+                                    var flex_direction_val
+                                        _ $('#flex-direction-control :selected')
+                                            ._ val()
+                                    var flex_wrap_val
+                                        _ $('#flex-wrap-control :selected')
+                                            ._ val()
+                                    set flex_properties = '\t-webkit-flex-flow: ' + flex_direction_val + ' '
+										\b + flex_wrap_val + ';\n' + 
+										\b '\tflex-flow: ' + flex_direction_val + ' ' + flex_wrap_val + ';\n'
+                                    _ updateResult()
+                        _ $('#justify-content-control')
+                            ._ change
+                                function 
+                                    var justify_content_val
+                                        _ $('#justify-content-control :selected')
+                                            ._ val()
+                                    if justify_content_val == "flex-start"
+                                        var flex_pack_val = "start"
+                                        set justify_content = ''
+                                    if justify_content_val == "flex-end"
+                                        var flex_pack_val = "end"
+                                    if (justify_content_val == "space-between") || "space-around"
+                                        var flex_pack_val = "justify"
+                                    set justify_content = 
+										\b '\t-webkit-justify-content: ' + 
+										\b justify_content_val + ';\n' + 
+										\b '\tjustify-content:' + 
+										\b justify_content_val + ';\n'
+                                    if justify_content_val == "flex-start"
+                                        set justify_content = ''
+                                    _ updateResult()
+                        
+						var text_array
+                            [ 
+                                @ "banana"
+                                @ "lorem"
+                                @ "culpa"
+                                @ "anim"
+                                @ "mollit"
+                                @ "id"
+                                @ "est"
+                                @ "laborum"
+                        
+						var c = 0
+                        _ $("#count-increase")
+                            ._ click
+                                function 
+                                    set c++
+                                    if c > 7
+                                        set c = 0
+                                    var flex_item_text = text_array[c]
+                                    var last_attr_style
+                                        _ $("#demo .flex-item")
+                                            ._ last()
+                                                ._ attr("style")
+                                    var base = last_attr_style.substring(15, 18)
+                                    var hue = (parseInt(base) + 5)
+                                    var new_flex_item = '<div style="background:hsl(' + hue + ',50%,75%);" class="flex-item"><span contenteditable="true">'
+										\b + flex_item_text + 
+										\b '</span></div>'
+                                    _ demo.append(new_flex_item)
+                        
+						_ $("#count-decrease")
+                            ._ click
+                                function 
+                                    if $("#demo .flex-item").length > 1
+                                        _ $("#demo .flex-item")
+                                            ._ last()
+                                                ._ remove()

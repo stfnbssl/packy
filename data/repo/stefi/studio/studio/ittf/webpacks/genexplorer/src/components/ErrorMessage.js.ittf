@@ -1,0 +1,34 @@
+﻿module
+	kind react
+	
+	import React from 'react'
+	import PropTypes from 'prop-types'
+
+	react ErrorMessage
+		
+		prop error
+			{
+
+		prop onWantToClose
+			func
+
+		render
+			return 
+				iif this.props.error
+					then
+						. cover
+							. errorMessage
+								h3
+									i
+										@ className "fa fa-exclamation-triangle"
+									+ {' '} Error
+								div
+									+ {this.props.error.message}
+								div
+									@ style {{marginTop: 15}}
+									button
+										@ type button
+										@ onClick {this.props.onWantToClose}
+										+ OK
+					else
+						set null

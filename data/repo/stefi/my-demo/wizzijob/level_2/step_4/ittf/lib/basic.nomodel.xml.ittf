@@ -1,0 +1,8 @@
+﻿xml
+	item
+		@ kind Software factory
+		title The wizzi factory
+		github
+			@ url https://github.com/wizzifactory
+		$include copy
+

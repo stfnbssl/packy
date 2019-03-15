@@ -1,0 +1,77 @@
+html
+
+	$include options
+
+	$include common/options-init
+
+	$
+		opt.logo_w = 70;
+		opt.logo_h = 30;
+		opt.sidebar_1 = true;
+		opt.sb_1_min_w = 80;
+		opt.title = 'Schema cheat sheet';
+		opt.usePrism = true;
+		if (cs.schema === 'js') {
+			opt.language = 'language-javascript';
+		} else {
+			opt.language = 'language-' + cs.schema;
+		}
+	
+	$include common/options-analize
+
+	layout( &opt )
+
+		$append head-styles
+			$if isWizziStudio
+				css style.css.ittf
+			$else
+				css style.css
+				
+
+		# mc-wrapper
+			class mc-wrapper-layout
+			. mc-frame-bar
+				div ${opt.title}
+					class mc-frame-bar-item
+			. mc-frame
+				. mc-sidebar-left
+					ul
+						$foreach e in cs.elements
+							li
+								a ${e.name}
+									href #${e.name}
+								ul
+									$foreach item in e.items
+										li
+											a ${item.title}
+												href #${item.title}
+				. mc-content
+					$foreach e in cs.elements
+						div
+							style display: flex;
+							id ${e.name}
+							head-bar-item( element, ${e.name} )
+							head-bar-item( tag, ${e.tag} )
+							head-bar-item( ast, ${e.ast} )
+							head-bar-item( category, ${e.category} )
+
+						$foreach item in e.items
+							h3 ${item.title}
+								id ${item.title}
+							div
+								style display: flex;
+								pre
+									style width: 30%;
+									code
+										class ${opt.language}
+										+ ${item.expected}
+								pre
+									style width: 30%;
+									class prettyprint
+									+ ${item.ittfPretty}
+								pre
+									style width: 30%;
+									code
+										class ${opt.language}
+										+ ${item.generated}
+

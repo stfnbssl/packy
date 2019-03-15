@@ -1,0 +1,15 @@
+  module  ids: 1 16
+    kind react ids: 2 17
+    +  ids: 3 18
+    import React, { PropTypes } from 'react' ids: 4 19
+    +  ids: 5 20
+    const Comments ids: 6 21
+      =>  ids: 7 22
+        param { comments } ids: 8 23
+        if !comments || !comments.length ids: 9 24
+          return null ids: 10 25
+        else  ids: 11 26
+          return  ids: 12 27
+            pre {comments.join('\n')} ids: 13 28
+    +  ids: 14 29
+    export default Comments ids: 15 30

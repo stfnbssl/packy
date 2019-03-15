@@ -1,0 +1,8 @@
+@media screen and (max-width: 768px) {
+    #mc-toggle-concept-intro:checked ~ .mc-pane-concept-intro {
+        display: block;
+    }
+    #mc-toggle-concept-1:checked ~ .mc-pane-concept-1 {
+        display: block;
+    }
+}

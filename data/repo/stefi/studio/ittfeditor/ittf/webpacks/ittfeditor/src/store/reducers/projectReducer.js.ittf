@@ -1,0 +1,83 @@
+﻿module 
+    kind react
+	+
+	import {
+		\b GET_PROJECTS_REQUEST,
+		\b GET_PROJECTS_SUCCESS,
+		\b GET_PROJECTS_FAILURE,
+		\b CREATE_PROJECT_SUCCESS,
+		\b SELECT_PROJECT,
+		\b SELECT_PROJECT_SUCCESS,
+		\b SELECT_PROJECT_FAILURE,
+		\b PROJECT_CHANGED,
+		\b UPDATE_PROJECT_SUCCESS,
+		\b GENERATE_ARTIFACT_SUCCESS
+		\b } from '../actions'
+	+
+	const documentInitialState
+		{
+			@ items []
+	+
+	r( document, documentInitialState )
+	
+		c( GET_PROJECTS_REQUEST
+			{
+				@ ...state
+				@ isLoading true
+		
+		c( GET_PROJECTS_SUCCESS
+			{
+				@ items Object.values(action.payload.documents)
+				@ isLoading false
+				@ error null
+
+		c( GET_PROJECTS_FAILURE
+			{
+				@ items []
+				@ isLoading false
+				@ error action.payload.error
+
+		c( CREATE_PROJECT_SUCCESS
+			{
+				@ items
+					[
+						@ ...state.items
+						@ action.payload
+				@ isLoading false
+				@ error null
+
+		c( SELECT_PROJECT
+			{
+				@ ...state
+				@ selectedDocument
+					_ state.items.map
+						=>
+							param item
+							if item.uri = action.uri
+								return item
+
+		c( SELECT_PROJECT_SUCCESS
+			{
+				@ ...state
+				@ selectedDocumentIttfContent action.payload
+				@ selectedDocumentUri action.uri
+				@ selectedDocumentSchema action.schema
+		
+		c( UPDATE_PROJECT_SUCCESS
+			{
+				@ ...state
+				@ generatedArtifact null
+
+		c( PROJECT_CHANGED
+			{
+				@ ...state
+				@ selectedDocumentIttfContent action.newContent
+
+		c( GENERATE_ARTIFACT_SUCCESS
+			{
+				@ ...state
+				@ generatedArtifact action.payload.generatedArtifact
+				@ evaluatedIttfModel action.payload.evaluatedIttfModel
+				@ evaluationScript action.payload.evaluationScript
+
+	export default documentReducer

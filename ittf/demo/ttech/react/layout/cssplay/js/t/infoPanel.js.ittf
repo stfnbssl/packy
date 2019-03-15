@@ -1,0 +1,89 @@
+﻿$group
+
+	class InfoPanel
+		super React.Component
+
+		m render
+			const { data } = this.props
+			const { id, format, text, href, src, heading, flex, style: elementStyle, p_style } = data
+
+			const childPanels
+				_ data.panels.map
+					=>
+						param panel
+						set panel.p_style = panel.p_style || p_style
+						var PanelComponent = builder.create(panel)
+						return
+							< PanelComponent
+								@ data { panel }    
+
+			if format === 'a.img'
+				return
+					div
+						@ id { id }
+						@style { this.style(flex, elementStyle) }
+						a 
+							@style { this.a_style() }
+							href { href }
+							img
+								src { src }
+								@style { this.img_style() }
+						p { text }
+							@style { this.p_style() }
+						+ { childPanels }
+			
+			elif format === 'h2.p+'
+				return
+					div
+						@ id { id }
+						@style { this.style(flex, elementStyle) }
+						h2 { heading }
+							@style { this.h2_style() }
+						+ { childPanels }
+			
+			else
+				return
+					div { 'Unknown InfoPanel format ' + format }
+						
+		m a_style
+			return
+				{
+
+		m img_style
+			return
+				{
+					@ display 'block'
+					@ width '100%'
+
+		m p_style
+			return this.props.data.p_style || {}
+
+		m h2_style
+			return
+				{
+					@ font "700 25px/40px 'Open Sans', sans-serif"
+					@ color '#2ab'
+					@ padding '0 20px'
+					@ margin '0'
+
+		m style
+			param flex
+			param elementStyle
+			
+			const ret
+				_ Object.assign
+					{
+					{
+						@ width '32%'
+						@ backgroundColor '#fff'
+						@ marginBottom '20px'
+						@ paddingBottom '60px'
+						@ border '1px solid #ccc'
+						@ position 'relative'
+					@ elementStyle
+
+			if flex === 'row' || flex === 'column'
+				_ builder.setFlex(ret, flex)
+
+			return ret
+

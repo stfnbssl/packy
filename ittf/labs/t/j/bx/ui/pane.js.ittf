@@ -1,0 +1,45 @@
+﻿$group
+
+	class BxPane
+		super React.Component
+		
+		p propTypes
+			static
+			@ vertical React.PropTypes.bool
+			@ primary React.PropTypes.bool
+			@ size React.PropTypes.number
+			@ percentage React.PropTypes.bool
+			#
+				@ children
+					_ React.PropTypes.oneOfType
+						[
+							@ React.PropTypes.arrayOf(React.PropTypes.node)
+							@ React.PropTypes.node
+
+		p defaultProps 
+			static
+			@ vertical false
+			@ primary false
+			@ size 0
+			@ percentage false
+			@ children []
+	
+		m render
+			const size = this.props.size || 0
+			const { percentage, primary, vertical, children } = this.props
+			const unit = percentage ? '%' : 'px'
+			let classes = 'layout-pane'
+			const style = {}
+			if !primary
+				if vertical
+					set style.height = size + unit
+				else
+					set style.width = size + unit
+			else
+				set classes += ' layout-pane-primary'
+			
+			return
+				div
+					@ className {classes}
+					@ style {style}
+					+ {children}

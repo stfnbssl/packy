@@ -1,0 +1,123 @@
+﻿r-container( Console )
+	
+	$append  imports
+		import { 
+			\b listConsole,
+			\b getConsole,
+			\b saveConsole,
+			\b runConsole,
+			\b changeView
+			\b } from '../store/actions'
+		import Console from '../components/Console'
+
+	state
+		@ executing false
+
+	did-mount
+		prop handleListConsole
+		_ handleListConsole()
+	
+	render
+		log 'render.state', this.state
+
+		prop isRequestingList
+		prop isRequestingRun
+		prop jsmodels
+		prop listerror
+		prop content
+		prop selectedConsole
+		prop stdout
+		prop stderr
+		prop runerror
+		prop view
+		prop handleRefreshListConsole
+		prop handleGetConsole
+		prop handleCreateConsole
+		prop handleSaveConsole
+		prop handleRunRequest
+		prop handleChangeView
+		
+		return
+			< Console
+				@ isRequestingList {isRequestingList}
+				@ isRequestingRun {isRequestingRun}
+				@ jsmodels {jsmodels}
+				@ listerror {listerror}
+				@ selectedConsole {selectedConsole}
+				@ content {content}
+				@ stdout {stdout}
+				@ stderr {stderr}
+				@ runerror {runerror}
+				@ view {view}
+				@ onRefreshListConsole {handleRefreshListConsole}
+				@ onGetConsole {handleGetConsole}
+				@ onCreateConsole {handleCreateConsole}
+				@ onSaveConsole {handleSaveConsole}
+				@ onRunRequest {handleRunRequest}
+				@ onChangeView {handleChangeView}
+
+	$append state-to-props
+		@ isRequestingList state.console.isRequestingList
+		@ jsmodels state.console.jsmodels
+		@ isRequestingRun state.console.isRequestingRun
+		@ selectedConsole state.console.selectedConsole
+		@ content state.console.content
+		@ stdout state.console.stdout
+		@ stderr state.console.stderr
+		@ listerror state.console.listerror
+		@ runerror state.console.runerror
+		@ view state.console.view
+
+	$append dispatch-to-props
+		
+		@ handleRefreshListConsole
+			=>
+				_ dispatch
+					_ listConsole
+						@ true
+
+		@ handleListConsole
+			=>
+				_ dispatch
+					_ listConsole
+
+		@ handleGetConsole
+			=>
+				param name
+				_ dispatch
+					_ getConsole
+						@ name
+
+		@ handleCreateConsole
+			=>
+				param name
+				const ittfContent = 'module + \n\tkind react'
+				log 'handleSaveConsole', name, ittfContent
+				_ dispatch
+					_ saveConsole
+						@ name
+						@ ittfContent
+
+		@ handleSaveConsole
+			=>
+				param name
+				param ittfContent
+				log 'handleSaveConsole', name, ittfContent
+				_ dispatch
+					_ saveConsole
+						@ name
+						@ ittfContent
+
+		@ handleRunRequest
+			=>
+				param name
+				_ dispatch
+					_ runConsole
+						@ name
+
+		@ handleChangeView
+			=>
+				param viewName
+				_ dispatch
+					_ changeView
+						@ viewName

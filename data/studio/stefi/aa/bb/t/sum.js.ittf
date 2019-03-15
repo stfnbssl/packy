@@ -1,0 +1,7 @@
+$group
+
+	function Sum
+		param a
+		param b
+		param c
+		return a + b + c

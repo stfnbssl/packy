@@ -1,0 +1,3 @@
+﻿module
+	kind jsfile
+	log 'hello world'

@@ -1,0 +1,441 @@
+// 13/5/2017:11:21:53  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "module", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //14
+$.a($0, $1, 5);
+var $2 = { n: "kind", v: "react", r: 2, c: 5, s: "f1", u: "f1",  }; //15
+$.a($1, $2, 7);
+var $3 = { n: "+", v: "", r: 3, c: 5, s: "f1", u: "f1",  }; //16
+$.a($1, $3, 9);
+var $4 = { n: "import", v: "React, { Component, PropTypes } from 'react'", r: 4, c: 5, s: "f1", u: "f1",  }; //17
+$.a($1, $4, 11);
+var $5 = { n: "import", v: "ReactDOM from 'react-dom'", r: 5, c: 5, s: "f1", u: "f1",  }; //18
+$.a($1, $5, 13);
+var $6 = { n: "import", v: "PropTypes from 'prop-types'", r: 6, c: 5, s: "f1", u: "f1",  }; //19
+$.a($1, $6, 15);
+var $7 = { n: "import", v: "Prefixer from 'inline-style-prefixer'", r: 7, c: 5, s: "f1", u: "f1",  }; //20
+$.a($1, $7, 17);
+var $8 = { n: "import", v: "stylePropType from 'react-style-proptype'", r: 8, c: 5, s: "f1", u: "f1",  }; //21
+$.a($1, $8, 19);
+var $9 = { n: "var", v: "USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Safari/537.2'", r: 10, c: 5, s: "f1", u: "f1",  }; //22
+$.a($1, $9, 21);
+var $10 = { n: "var", v: "USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Safari/537.2'", r: 4, c: 5, s: "f1", u: "f2",  }; //90
+$.a($1, $10, 23);
+var $11 = { n: "wz-class", v: "Pane", r: 6, c: 5, s: "f1", u: "f2",  }; //91
+$.a($1, $11, 25);
+var $12 = { n: "super", v: "React.Component", r: 7, c: 9, s: "f1", u: "f2",  }; //92
+$.a($11, $12, 27);
+var $13 = { n: "ctor", v: "", r: 8, c: 9, s: "f1", u: "f2",  }; //93
+$.a($11, $13, 29);
+var $14 = { n: "param", v: "props", r: 9, c: 13, s: "f1", u: "f2",  }; //94
+$.a($13, $14, 31);
+var $15 = { n: "base", v: "props", r: 10, c: 13, s: "f1", u: "f2",  }; //95
+$.a($13, $15, 33);
+var $16 = { n: "set", v: "this.state =", r: 11, c: 13, s: "f1", u: "f2",  }; //96
+$.a($13, $16, 35);
+var $17 = { n: "{", v: "", r: 12, c: 17, s: "f1", u: "f2",  }; //97
+$.a($16, $17, 37);
+var $18 = { n: "@", v: "size this.props.size", r: 13, c: 21, s: "f1", u: "f2",  }; //98
+$.a($17, $18, 39);
+var $19 = { n: "m", v: "render", r: 14, c: 9, s: "f1", u: "f2",  }; //99
+$.a($11, $19, 41);
+var $20 = { n: "var", v: "{children, className, prefixer, split, style: styleProps} = this.props", r: 15, c: 13, s: "f1", u: "f2",  }; //100
+$.a($19, $20, 43);
+var $21 = { n: "var", v: "{size} = this.state", r: 16, c: 13, s: "f1", u: "f2",  }; //101
+$.a($19, $21, 45);
+var $22 = { n: "var", v: "classes", r: 17, c: 13, s: "f1", u: "f2",  }; //102
+$.a($19, $22, 47);
+var $23 = { n: "[", v: "", r: 18, c: 17, s: "f1", u: "f2",  }; //103
+$.a($22, $23, 49);
+var $24 = { n: "@", v: "'Pane'", r: 19, c: 21, s: "f1", u: "f2",  }; //104
+$.a($23, $24, 51);
+var $25 = { n: "@", v: "split", r: 20, c: 21, s: "f1", u: "f2",  }; //105
+$.a($23, $25, 53);
+var $26 = { n: "@", v: "className", r: 21, c: 21, s: "f1", u: "f2",  }; //106
+$.a($23, $26, 55);
+var $27 = { n: "var", v: "style", r: 22, c: 13, s: "f1", u: "f2",  }; //107
+$.a($19, $27, 57);
+var $28 = { n: "_", v: "Object.assign", r: 23, c: 17, s: "f1", u: "f2",  }; //108
+$.a($27, $28, 59);
+var $29 = { n: "{", v: "", r: 24, c: 21, s: "f1", u: "f2",  }; //109
+$.a($28, $29, 61);
+var $30 = { n: "@", v: "(styleProps || {})", r: 25, c: 21, s: "f1", u: "f2",  }; //110
+$.a($28, $30, 63);
+var $31 = { n: "{", v: "", r: 26, c: 21, s: "f1", u: "f2",  }; //111
+$.a($28, $31, 65);
+var $32 = { n: "@", v: "flex 1", r: 27, c: 25, s: "f1", u: "f2",  }; //112
+$.a($31, $32, 67);
+var $33 = { n: "@", v: "position 'relative'", r: 28, c: 25, s: "f1", u: "f2",  }; //113
+$.a($31, $33, 69);
+var $34 = { n: "@", v: "outline 'none'", r: 29, c: 25, s: "f1", u: "f2",  }; //114
+$.a($31, $34, 71);
+var $35 = { n: "if", v: "size !== undefined", r: 30, c: 13, s: "f1", u: "f2",  }; //115
+$.a($19, $35, 73);
+var $36 = { n: "if", v: "split === 'vertical'", r: 31, c: 17, s: "f1", u: "f2",  }; //116
+$.a($35, $36, 75);
+var $37 = { n: "set", v: "style.width = size", r: 32, c: 21, s: "f1", u: "f2",  }; //117
+$.a($36, $37, 77);
+var $38 = { n: "else", v: "", r: 33, c: 17, s: "f1", u: "f2",  }; //118
+$.a($35, $38, 79);
+var $39 = { n: "set", v: "style.height = size", r: 34, c: 21, s: "f1", u: "f2",  }; //119
+$.a($38, $39, 81);
+var $40 = { n: "set", v: "style.display = 'flex'", r: 35, c: 21, s: "f1", u: "f2",  }; //120
+$.a($38, $40, 83);
+var $41 = { n: "set", v: "style.flex = 'none'", r: 36, c: 17, s: "f1", u: "f2",  }; //121
+$.a($35, $41, 85);
+var $42 = { n: "return", v: "", r: 38, c: 13, s: "f1", u: "f2",  }; //122
+$.a($19, $42, 87);
+var $43 = { n: "div", v: "", r: 39, c: 17, s: "f1", u: "f2",  }; //123
+$.a($42, $43, 89);
+var $44 = { n: "class", v: "{classes.join(' ')}", r: 40, c: 21, s: "f1", u: "f2",  }; //124
+$.a($43, $44, 91);
+var $45 = { n: "@style", v: "{prefixer.prefix(style)}", r: 41, c: 21, s: "f1", u: "f2",  }; //125
+$.a($43, $45, 93);
+var $46 = { n: "+", v: "{children}", r: 42, c: 21, s: "f1", u: "f2",  }; //126
+$.a($43, $46, 95);
+var $47 = { n: "set", v: "Pane.propTypes =", r: 44, c: 5, s: "f1", u: "f2",  }; //127
+$.a($1, $47, 97);
+var $48 = { n: "{", v: "", r: 45, c: 9, s: "f1", u: "f2",  }; //128
+$.a($47, $48, 99);
+var $49 = { n: "@", v: "className PropTypes.string.isRequired", r: 46, c: 13, s: "f1", u: "f2",  }; //129
+$.a($48, $49, 101);
+var $50 = { n: "@", v: "children PropTypes.node.isRequired", r: 47, c: 13, s: "f1", u: "f2",  }; //130
+$.a($48, $50, 103);
+var $51 = { n: "@", v: "prefixer", r: 48, c: 13, s: "f1", u: "f2",  }; //131
+$.a($48, $51, 105);
+var $52 = { n: "_", v: "PropTypes.instanceOf(Prefixer)", r: 49, c: 17, s: "f1", u: "f2",  }; //132
+$.a($51, $52, 107);
+var $53 = { n: ".", v: "isRequired", r: 50, c: 21, s: "f1", u: "f2",  }; //133
+$.a($52, $53, 109);
+var $54 = { n: "@", v: "size", r: 51, c: 13, s: "f1", u: "f2",  }; //134
+$.a($48, $54, 111);
+var $55 = { n: "_", v: "PropTypes.oneOfType", r: 52, c: 17, s: "f1", u: "f2",  }; //135
+$.a($54, $55, 113);
+var $56 = { n: "[", v: "", r: 53, c: 21, s: "f1", u: "f2",  }; //136
+$.a($55, $56, 115);
+var $57 = { n: "@", v: "PropTypes.string", r: 54, c: 25, s: "f1", u: "f2",  }; //137
+$.a($56, $57, 117);
+var $58 = { n: "@", v: "PropTypes.number", r: 55, c: 25, s: "f1", u: "f2",  }; //138
+$.a($56, $58, 119);
+var $59 = { n: "@", v: "split", r: 56, c: 13, s: "f1", u: "f2",  }; //139
+$.a($48, $59, 121);
+var $60 = { n: "_", v: "PropTypes.oneOf", r: 57, c: 17, s: "f1", u: "f2",  }; //140
+$.a($59, $60, 123);
+var $61 = { n: "[", v: "", r: 58, c: 21, s: "f1", u: "f2",  }; //141
+$.a($60, $61, 125);
+var $62 = { n: "@", v: "'vertical'", r: 59, c: 25, s: "f1", u: "f2",  }; //142
+$.a($61, $62, 127);
+var $63 = { n: "@", v: "'horizontal'", r: 60, c: 25, s: "f1", u: "f2",  }; //143
+$.a($61, $63, 129);
+var $64 = { n: "@", v: "style stylePropType", r: 61, c: 13, s: "f1", u: "f2",  }; //144
+$.a($48, $64, 131);
+var $65 = { n: "set", v: "Pane.defaultProps", r: 63, c: 5, s: "f1", u: "f2",  }; //145
+$.a($1, $65, 133);
+var $66 = { n: "{", v: "", r: 64, c: 9, s: "f1", u: "f2",  }; //146
+$.a($65, $66, 135);
+var $67 = { n: "@", v: "prefixer", r: 65, c: 13, s: "f1", u: "f2",  }; //147
+$.a($66, $67, 137);
+var $68 = { n: "new", v: "Prefixer", r: 66, c: 17, s: "f1", u: "f2",  }; //148
+$.a($67, $68, 139);
+var $69 = { n: "{", v: "", r: 67, c: 21, s: "f1", u: "f2",  }; //149
+$.a($68, $69, 141);
+var $70 = { n: "@", v: "userAgent USER_AGENT", r: 68, c: 25, s: "f1", u: "f2",  }; //150
+$.a($69, $70, 143);
+var $71 = { n: "wz-class", v: "Tabs", r: 3, c: 5, s: "f1", u: "f3",  }; //259
+$.a($1, $71, 145);
+var $72 = { n: "super", v: "Component", r: 4, c: 9, s: "f1", u: "f3",  }; //260
+$.a($71, $72, 147);
+var $73 = { n: "ctor", v: "", r: 5, c: 9, s: "f1", u: "f3",  }; //261
+$.a($71, $73, 149);
+var $74 = { n: "param", v: "props", r: 6, c: 13, s: "f1", u: "f3",  }; //262
+$.a($73, $74, 151);
+var $75 = { n: "base", v: "props", r: 7, c: 13, s: "f1", u: "f3",  }; //263
+$.a($73, $75, 153);
+var $76 = { n: "set", v: "this.state", r: 8, c: 13, s: "f1", u: "f3",  }; //264
+$.a($73, $76, 155);
+var $77 = { n: "{", v: "", r: 9, c: 17, s: "f1", u: "f3",  }; //265
+$.a($76, $77, 157);
+var $78 = { n: "@", v: "tabActive props.tabActive", r: 10, c: 21, s: "f1", u: "f3",  }; //266
+$.a($77, $78, 159);
+var $79 = { n: "m", v: "componentDidMount", r: 12, c: 9, s: "f1", u: "f3",  }; //267
+$.a($71, $79, 161);
+var $80 = { n: "var", v: "index = this.state.tabActive", r: 13, c: 13, s: "f1", u: "f3",  }; //268
+$.a($79, $80, 163);
+var $81 = { n: "var", v: "$selectedPanel = this.refs['tab-panel']", r: 14, c: 13, s: "f1", u: "f3",  }; //269
+$.a($79, $81, 165);
+var $82 = { n: "var", v: "$selectedTabMenu = this.refs['tab-menu-' + index]", r: 15, c: 13, s: "f1", u: "f3",  }; //270
+$.a($79, $82, 167);
+var $83 = { n: "if", v: "this.props.onMount", r: 16, c: 13, s: "f1", u: "f3",  }; //271
+$.a($79, $83, 169);
+var $84 = { n: "_", v: "this.props.onMount(index, $selectedPanel, $selectedTabMenu)", r: 17, c: 17, s: "f1", u: "f3",  }; //272
+$.a($83, $84, 171);
+var $85 = { n: "m", v: "componentWillReceiveProps", r: 19, c: 9, s: "f1", u: "f3",  }; //273
+$.a($71, $85, 173);
+var $86 = { n: "param", v: "newProps", r: 20, c: 13, s: "f1", u: "f3",  }; //274
+$.a($85, $86, 175);
+var $87 = { n: "if", v: "newProps.tabActive && newProps.tabActive !== this.props.tabActive", r: 21, c: 13, s: "f1", u: "f3",  }; //275
+$.a($85, $87, 177);
+var $88 = { n: "_", v: "this.setState", r: 22, c: 17, s: "f1", u: "f3",  }; //276
+$.a($87, $88, 179);
+var $89 = { n: "{", v: "", r: 23, c: 21, s: "f1", u: "f3",  }; //277
+$.a($88, $89, 181);
+var $90 = { n: "@", v: "tabActive newProps.tabActive", r: 24, c: 25, s: "f1", u: "f3",  }; //278
+$.a($89, $90, 183);
+var $91 = { n: "m", v: "setActive", r: 26, c: 9, s: "f1", u: "f3",  }; //279
+$.a($71, $91, 185);
+var $92 = { n: "param", v: "index", r: 27, c: 13, s: "f1", u: "f3",  }; //280
+$.a($91, $92, 187);
+var $93 = { n: "param", v: "e", r: 28, c: 13, s: "f1", u: "f3",  }; //281
+$.a($91, $93, 189);
+var $94 = { n: "_", v: "e.preventDefault()", r: 29, c: 13, s: "f1", u: "f3",  }; //282
+$.a($91, $94, 191);
+var $95 = { n: "var", v: "onAfterChange = this.props.onAfterChange;", r: 31, c: 13, s: "f1", u: "f3",  }; //283
+$.a($91, $95, 193);
+var $96 = { n: "var", v: "onBeforeChange = this.props.onBeforeChange;", r: 32, c: 13, s: "f1", u: "f3",  }; //284
+$.a($91, $96, 195);
+var $97 = { n: "var", v: "$selectedPanel = this.refs['tab-panel'];", r: 33, c: 13, s: "f1", u: "f3",  }; //285
+$.a($91, $97, 197);
+var $98 = { n: "var", v: "$selectedTabMenu = this.refs['tab-menu-' + index']", r: 34, c: 13, s: "f1", u: "f3",  }; //286
+$.a($91, $98, 199);
+var $99 = { n: "if", v: "onBeforeChange", r: 36, c: 13, s: "f1", u: "f3",  }; //287
+$.a($91, $99, 201);
+var $100 = { n: "var", v: "cancel = onBeforeChange(index, $selectedPanel, $selectedTabMenu)", r: 37, c: 17, s: "f1", u: "f3",  }; //288
+$.a($99, $100, 203);
+var $101 = { n: "if", v: "cancel === false", r: 38, c: 17, s: "f1", u: "f3",  }; //289
+$.a($99, $101, 205);
+var $102 = { n: "return", v: "", r: 39, c: 21, s: "f1", u: "f3",  }; //290
+$.a($101, $102, 207);
+var $103 = { n: "_", v: "this.setState", r: 40, c: 17, s: "f1", u: "f3",  }; //291
+$.a($99, $103, 209);
+var $104 = { n: "{", v: "", r: 41, c: 21, s: "f1", u: "f3",  }; //292
+$.a($103, $104, 211);
+var $105 = { n: "@", v: "tabActive index", r: 42, c: 25, s: "f1", u: "f3",  }; //293
+$.a($104, $105, 213);
+var $106 = { n: "=>", v: "", r: 43, c: 21, s: "f1", u: "f3",  }; //294
+$.a($103, $106, 215);
+var $107 = { n: "if", v: "onAfterChange", r: 44, c: 25, s: "f1", u: "f3",  }; //295
+$.a($106, $107, 217);
+var $108 = { n: "_", v: "onAfterChange(index, $selectedPanel, $selectedTabMenu)", r: 45, c: 29, s: "f1", u: "f3",  }; //296
+$.a($107, $108, 219);
+var $109 = { n: "m", v: "_getMenuItems", r: 47, c: 9, s: "f1", u: "f3",  }; //297
+$.a($71, $109, 221);
+var $110 = { n: "if", v: "!this.props.children", r: 48, c: 13, s: "f1", u: "f3",  }; //298
+$.a($109, $110, 223);
+var $111 = { n: "throw", v: "new Error('Tabs must contain at least one TabPanel", r: 49, c: 17, s: "f1", u: "f3",  }; //299
+$.a($110, $111, 225);
+var $112 = { n: "if", v: "!Array.isArray(this.props.children)", r: 51, c: 13, s: "f1", u: "f3",  }; //300
+$.a($109, $112, 227);
+var $113 = { n: "set", v: "this.props.children = [this.props.children]", r: 52, c: 17, s: "f1", u: "f3",  }; //301
+$.a($112, $113, 229);
+var $114 = { n: "var", v: "$menuItems", r: 54, c: 13, s: "f1", u: "f3",  }; //302
+$.a($109, $114, 231);
+var $115 = { n: "_", v: "this.props.children.map", r: 55, c: 17, s: "f1", u: "f3",  }; //303
+$.a($114, $115, 233);
+var $116 = { n: "=>", v: "", r: 56, c: 21, s: "f1", u: "f3",  }; //304
+$.a($115, $116, 235);
+var $117 = { n: "param", v: "$panel", r: 57, c: 25, s: "f1", u: "f3",  }; //305
+$.a($116, $117, 237);
+var $118 = { n: "return", v: "typeof $panel === 'function' ? $panel() : $panel", r: 58, c: 25, s: "f1", u: "f3",  }; //306
+$.a($116, $118, 239);
+var $119 = { n: ".", v: "filter", r: 59, c: 21, s: "f1", u: "f3",  }; //307
+$.a($115, $119, 241);
+var $120 = { n: "=>", v: "", r: 60, c: 25, s: "f1", u: "f3",  }; //308
+$.a($119, $120, 243);
+var $121 = { n: "param", v: "$panel", r: 61, c: 29, s: "f1", u: "f3",  }; //309
+$.a($120, $121, 245);
+var $122 = { n: "return", v: "$panel", r: 62, c: 29, s: "f1", u: "f3",  }; //310
+$.a($120, $122, 247);
+var $123 = { n: ".", v: "map", r: 63, c: 21, s: "f1", u: "f3",  }; //311
+$.a($115, $123, 249);
+var $124 = { n: "=>", v: "", r: 64, c: 25, s: "f1", u: "f3",  }; //312
+$.a($123, $124, 251);
+var $125 = { n: "param", v: "$panel", r: 65, c: 29, s: "f1", u: "f3",  }; //313
+$.a($124, $125, 253);
+var $126 = { n: "param", v: "index", r: 66, c: 29, s: "f1", u: "f3",  }; //314
+$.a($124, $126, 255);
+var $127 = { n: "var", v: "title = $panel.props.title", r: 67, c: 29, s: "f1", u: "f3",  }; //315
+$.a($124, $127, 257);
+var $128 = { n: "return", v: "", r: 68, c: 29, s: "f1", u: "f3",  }; //316
+$.a($124, $128, 259);
+var $129 = { n: "<", v: "TabItem", r: 69, c: 33, s: "f1", u: "f3",  }; //317
+$.a($128, $129, 261);
+var $130 = { n: "@", v: "index {index}", r: 70, c: 37, s: "f1", u: "f3",  }; //318
+$.a($129, $130, 263);
+var $131 = { n: "@", v: "title {title}", r: 71, c: 37, s: "f1", u: "f3",  }; //319
+$.a($129, $131, 265);
+var $132 = { n: "@", v: "isActive {isActive}", r: 72, c: 37, s: "f1", u: "f3",  }; //320
+$.a($129, $132, 267);
+var $133 = { n: "onClick", v: "", r: 73, c: 37, s: "f1", u: "f3",  }; //321
+$.a($129, $133, 269);
+var $134 = { n: "=>", v: "", r: 74, c: 41, s: "f1", u: "f3",  }; //322
+$.a($133, $134, 271);
+var $135 = { n: "_", v: "this.setActive.bind(this, index + 1)", r: 75, c: 45, s: "f1", u: "f3",  }; //323
+$.a($134, $135, 273);
+var $136 = { n: "return", v: "", r: 76, c: 13, s: "f1", u: "f3",  }; //324
+$.a($109, $136, 275);
+var $137 = { n: "nav", v: "", r: 77, c: 17, s: "f1", u: "f3",  }; //325
+$.a($136, $137, 277);
+var $138 = { n: "class", v: "tabs-navigation", r: 78, c: 21, s: "f1", u: "f3",  }; //326
+$.a($137, $138, 279);
+var $139 = { n: "ul", v: "", r: 79, c: 21, s: "f1", u: "f3",  }; //327
+$.a($137, $139, 281);
+var $140 = { n: "class", v: "tabs-menu", r: 80, c: 25, s: "f1", u: "f3",  }; //328
+$.a($139, $140, 283);
+var $141 = { n: "+", v: "{$menuItems}", r: 81, c: 25, s: "f1", u: "f3",  }; //329
+$.a($139, $141, 285);
+var $142 = { n: "m", v: "_getSelectedPanel", r: 83, c: 9, s: "f1", u: "f3",  }; //330
+$.a($71, $142, 287);
+var $143 = { n: "var", v: "index = this.state.tabActive - 1", r: 84, c: 13, s: "f1", u: "f3",  }; //331
+$.a($142, $143, 289);
+var $144 = { n: "var", v: "$panel = this.props.children[index]", r: 85, c: 13, s: "f1", u: "f3",  }; //332
+$.a($142, $144, 291);
+var $145 = { n: "return", v: "", r: 86, c: 13, s: "f1", u: "f3",  }; //333
+$.a($142, $145, 293);
+var $146 = { n: "article", v: "", r: 87, c: 17, s: "f1", u: "f3",  }; //334
+$.a($145, $146, 295);
+var $147 = { n: "@", v: "ref tab-panel", r: 88, c: 21, s: "f1", u: "f3",  }; //335
+$.a($146, $147, 297);
+var $148 = { n: "class", v: "tab-panel", r: 89, c: 21, s: "f1", u: "f3",  }; //336
+$.a($146, $148, 299);
+var $149 = { n: "+", v: "{$panel}", r: 90, c: 21, s: "f1", u: "f3",  }; //337
+$.a($146, $149, 301);
+var $150 = { n: "m", v: "render", r: 92, c: 9, s: "f1", u: "f3",  }; //338
+$.a($71, $150, 303);
+var $151 = { n: "var", v: "className = classNames('tabs', this.props.className)", r: 93, c: 13, s: "f1", u: "f3",  }; //339
+$.a($150, $151, 305);
+var $152 = { n: "return", v: "", r: 94, c: 13, s: "f1", u: "f3",  }; //340
+$.a($150, $152, 307);
+var $153 = { n: "div", v: "", r: 95, c: 17, s: "f1", u: "f3",  }; //341
+$.a($152, $153, 309);
+var $154 = { n: "class", v: "{className}", r: 96, c: 21, s: "f1", u: "f3",  }; //342
+$.a($153, $154, 311);
+var $155 = { n: "+", v: "{this._getMenuItems()}", r: 97, c: 21, s: "f1", u: "f3",  }; //343
+$.a($153, $155, 313);
+var $156 = { n: "+", v: "{this._getSelectedPanel()}", r: 98, c: 21, s: "f1", u: "f3",  }; //344
+$.a($153, $156, 315);
+var $157 = { n: "m", v: "get_div_Style", r: 100, c: 9, s: "f1", u: "f3",  }; //345
+$.a($71, $157, 317);
+var $158 = { n: "return", v: "", r: 101, c: 13, s: "f1", u: "f3",  }; //346
+$.a($157, $158, 319);
+var $159 = { n: "{", v: "", r: 102, c: 17, s: "f1", u: "f3",  }; //347
+$.a($158, $159, 321);
+var $160 = { n: "@", v: "float 'left'", r: 103, c: 21, s: "f1", u: "f3",  }; //348
+$.a($159, $160, 323);
+var $161 = { n: "@", v: "marginRight 20", r: 104, c: 21, s: "f1", u: "f3",  }; //349
+$.a($159, $161, 325);
+var $162 = { n: "set", v: "Tabs.propTypes", r: 106, c: 5, s: "f1", u: "f3",  }; //350
+$.a($1, $162, 327);
+var $163 = { n: "{", v: "", r: 107, c: 9, s: "f1", u: "f3",  }; //351
+$.a($162, $163, 329);
+var $164 = { n: "@", v: "tabActive React.PropTypes.number", r: 108, c: 13, s: "f1", u: "f3",  }; //352
+$.a($163, $164, 331);
+var $165 = { n: "@", v: "onMount React.PropTypes.func", r: 109, c: 13, s: "f1", u: "f3",  }; //353
+$.a($163, $165, 333);
+var $166 = { n: "@", v: "onBeforeChange React.PropTypes.func", r: 110, c: 13, s: "f1", u: "f3",  }; //354
+$.a($163, $166, 335);
+var $167 = { n: "@", v: "onAfterChange React.PropTypes.func", r: 111, c: 13, s: "f1", u: "f3",  }; //355
+$.a($163, $167, 337);
+var $168 = { n: "@", v: "children", r: 112, c: 13, s: "f1", u: "f3",  }; //356
+$.a($163, $168, 339);
+var $169 = { n: "_", v: "React.PropTypes.oneOfType", r: 113, c: 17, s: "f1", u: "f3",  }; //357
+$.a($168, $169, 341);
+var $170 = { n: "[", v: "", r: 114, c: 21, s: "f1", u: "f3",  }; //358
+$.a($169, $170, 343);
+var $171 = { n: "@", v: "React.PropTypes.array", r: 115, c: 25, s: "f1", u: "f3",  }; //359
+$.a($170, $171, 345);
+var $172 = { n: "@", v: "React.PropTypes.element", r: 116, c: 25, s: "f1", u: "f3",  }; //360
+$.a($170, $172, 347);
+var $173 = { n: ".", v: "isRequired", r: 117, c: 21, s: "f1", u: "f3",  }; //361
+$.a($169, $173, 349);
+var $174 = { n: "set", v: "Tabs.defaultProps", r: 119, c: 5, s: "f1", u: "f3",  }; //362
+$.a($1, $174, 351);
+var $175 = { n: "{", v: "", r: 120, c: 9, s: "f1", u: "f3",  }; //363
+$.a($174, $175, 353);
+var $176 = { n: "@", v: "tabActive 1", r: 121, c: 13, s: "f1", u: "f3",  }; //364
+$.a($175, $176, 355);
+var $177 = { n: "wz-class", v: "TabItem", r: 3, c: 5, s: "f1", u: "f4",  }; //402
+$.a($1, $177, 357);
+var $178 = { n: "super", v: "Component", r: 4, c: 9, s: "f1", u: "f4",  }; //403
+$.a($177, $178, 359);
+var $179 = { n: "m", v: "render", r: 6, c: 9, s: "f1", u: "f4",  }; //404
+$.a($177, $179, 361);
+var $180 = { n: "const", v: "{ index, title, isActive, onClick } = this.props", r: 7, c: 13, s: "f1", u: "f4",  }; //405
+$.a($179, $180, 363);
+var $181 = { n: "return", v: "", r: 8, c: 13, s: "f1", u: "f4",  }; //406
+$.a($179, $181, 365);
+var $182 = { n: "return", v: "", r: 9, c: 17, s: "f1", u: "f4",  }; //407
+$.a($181, $182, 367);
+var $183 = { n: "li", v: "", r: 10, c: 21, s: "f1", u: "f4",  }; //408
+$.a($182, $183, 369);
+var $184 = { n: "@", v: "ref { 'tab-menu-' + index }", r: 11, c: 25, s: "f1", u: "f4",  }; //409
+$.a($183, $184, 371);
+var $185 = { n: "@", v: "key {index}", r: 12, c: 25, s: "f1", u: "f4",  }; //410
+$.a($183, $185, 373);
+var $186 = { n: "@style", v: "{this.get_li_Style(isActive)}", r: 13, c: 25, s: "f1", u: "f4",  }; //411
+$.a($183, $186, 375);
+var $187 = { n: "a", v: "", r: 14, c: 25, s: "f1", u: "f4",  }; //412
+$.a($183, $187, 377);
+var $188 = { n: "@style", v: "{this.get_a_Style(isActive)}", r: 15, c: 29, s: "f1", u: "f4",  }; //413
+$.a($187, $188, 379);
+var $189 = { n: "onClick", v: "", r: 16, c: 29, s: "f1", u: "f4",  }; //414
+$.a($187, $189, 381);
+var $190 = { n: "=>", v: "", r: 17, c: 33, s: "f1", u: "f4",  }; //415
+$.a($189, $190, 383);
+var $191 = { n: "_", v: "onClick(index)", r: 18, c: 37, s: "f1", u: "f4",  }; //416
+$.a($190, $191, 385);
+var $192 = { n: "+", v: "{title}", r: 19, c: 29, s: "f1", u: "f4",  }; //417
+$.a($187, $192, 387);
+var $193 = { n: "m", v: "get_li_Style", r: 21, c: 9, s: "f1", u: "f4",  }; //418
+$.a($177, $193, 389);
+var $194 = { n: "param", v: "selected", r: 22, c: 13, s: "f1", u: "f4",  }; //419
+$.a($193, $194, 391);
+var $195 = { n: "return", v: "", r: 23, c: 13, s: "f1", u: "f4",  }; //420
+$.a($193, $195, 393);
+var $196 = { n: "{", v: "", r: 24, c: 17, s: "f1", u: "f4",  }; //421
+$.a($195, $196, 395);
+var $197 = { n: "@", v: "float 'left'", r: 25, c: 21, s: "f1", u: "f4",  }; //422
+$.a($196, $197, 397);
+var $198 = { n: "@", v: "marginRight 20", r: 26, c: 21, s: "f1", u: "f4",  }; //423
+$.a($196, $198, 399);
+var $199 = { n: "m", v: "get_a_Style", r: 28, c: 9, s: "f1", u: "f4",  }; //424
+$.a($177, $199, 401);
+var $200 = { n: "param", v: "isActive", r: 29, c: 13, s: "f1", u: "f4",  }; //425
+$.a($199, $200, 403);
+var $201 = { n: "#", v: "TODO !isActive :hover == isActive", r: 30, c: 13, s: "f1", u: "f4",  }; //426
+$.a($199, $201, 405);
+var $202 = { n: "return", v: "", r: 31, c: 13, s: "f1", u: "f4",  }; //427
+$.a($199, $202, 407);
+var $203 = { n: "{", v: "", r: 32, c: 17, s: "f1", u: "f4",  }; //428
+$.a($202, $203, 409);
+var $204 = { n: "@", v: "cursor 'pointer'", r: 33, c: 21, s: "f1", u: "f4",  }; //429
+$.a($203, $204, 411);
+var $205 = { n: "@", v: "display 'block'", r: 34, c: 21, s: "f1", u: "f4",  }; //430
+$.a($203, $205, 413);
+var $206 = { n: "@", v: "color ( isActive ? '#3498DB' : '#A9A9A9' )", r: 35, c: 21, s: "f1", u: "f4",  }; //431
+$.a($203, $206, 415);
+var $207 = { n: "set", v: "TabItem.propTypes", r: 37, c: 5, s: "f1", u: "f4",  }; //432
+$.a($1, $207, 417);
+var $208 = { n: "{", v: "", r: 38, c: 9, s: "f1", u: "f4",  }; //433
+$.a($207, $208, 419);
+var $209 = { n: "@", v: "index React.PropTypes.number.isRequired", r: 39, c: 13, s: "f1", u: "f4",  }; //434
+$.a($208, $209, 421);
+var $210 = { n: "@", v: "title React.PropTypes.string.isRequired", r: 40, c: 13, s: "f1", u: "f4",  }; //435
+$.a($208, $210, 423);
+var $211 = { n: "@", v: "onClick React.PropTypes.func.isRequired", r: 41, c: 13, s: "f1", u: "f4",  }; //436
+$.a($208, $211, 425);
+var $212 = { n: "wz-class", v: "TabPanel", r: 3, c: 5, s: "f1", u: "f5",  }; //447
+$.a($1, $212, 427);
+var $213 = { n: "super", v: "Component", r: 4, c: 9, s: "f1", u: "f5",  }; //448
+$.a($212, $213, 429);
+var $214 = { n: "m", v: "render", r: 6, c: 9, s: "f1", u: "f5",  }; //449
+$.a($212, $214, 431);
+var $215 = { n: "return", v: "", r: 7, c: 13, s: "f1", u: "f5",  }; //450
+$.a($214, $215, 433);
+var $216 = { n: "div", v: "", r: 8, c: 17, s: "f1", u: "f5",  }; //451
+$.a($215, $216, 435);
+var $217 = { n: "+", v: "{this.props.children}", r: 9, c: 21, s: "f1", u: "f5",  }; //452
+$.a($216, $217, 437);
+var $218 = { n: "set", v: "TabPanel.propTypes", r: 11, c: 5, s: "f1", u: "f5",  }; //453
+$.a($1, $218, 439);
+var $219 = { n: "{", v: "", r: 12, c: 9, s: "f1", u: "f5",  }; //454
+$.a($218, $219, 441);

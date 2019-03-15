@@ -1,0 +1,30 @@
+﻿$group
+
+	=> handleCloseCreateScriptDialog
+		_ this.setState
+			{
+				@ ...this.state
+				@ openCreateScriptDialog false
+
+	=> handleOpenCreateScriptDialog
+		_ this.setState
+			{
+				@ ...this.state
+				@ openCreateScriptDialog true
+
+	=> handleCreateConsole
+		param name
+		
+		prop onCreateConsole 
+		prop onRefreshListConsole 
+		
+		_ this.handleCloseCreateScriptDialog
+		
+		_ onCreateConsole
+			@ name
+
+		_ setTimeout
+			function
+				_ onRefreshListConsole
+			@ 1500
+

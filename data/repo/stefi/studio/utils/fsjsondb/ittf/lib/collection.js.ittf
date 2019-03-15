@@ -1,0 +1,384 @@
+module
+    kind jsfile
+
+	var _ = require('./utils')
+	var crud = require('./arraycrud')
+
+	class Collection
+		ctor
+			param dbContext
+			param collectionName
+			param keyNames
+			set this.crud = dbContext.crud
+			set this.db = dbContext.db
+			set this.q = dbContext.q
+			set this.collectionName = collectionName
+			set this.keyNames = keyNames
+
+		m insert
+			param obj
+			param callback
+
+			var self = this
+
+			var objkey
+				_ _.extractKey
+					@ this.keyNames
+					@ obj
+
+			_ this.q.add
+				@ this.insertUnique_job
+				@ this
+				function
+					param err
+					param obj
+					if err
+						log 'testInsert' + self.collectionName + '.failed', JSON.stringify(err)
+					else
+						log 'testInsert' + self.collectionName + '.inserted ', obj.name, obj._id
+					_ callback(err, obj)
+				@ objkey
+				@ obj
+
+		m update
+			param obj
+			param callback
+
+			var self = this
+
+			var objkey
+				_ _.extractKey
+					@ this.keyNames
+					@ obj
+
+			_ this.q.add
+				@ this.update_job
+				@ this
+				function
+					param err
+					param obj
+					if err
+						log 'testUpdate' + self.collectionName + '.failed', JSON.stringify(err)
+					else
+						log 'testUpdate' + self.collectionName + '.updated ', obj.name, obj._id
+					_ callback(err, obj)
+				@ objkey
+				@ obj
+
+		m delete
+			param obj
+			param callback
+
+			var self = this
+
+			var objkey
+				_ _.extractKey
+					@ this.keyNames
+					@ obj
+
+			_ this.q.add
+				@ this.delete_job
+				@ this
+				function
+					param err
+					param obj
+					if err
+						log 'testDelete' + self.collectionName + '.failed', JSON.stringify(err)
+					else
+						log 'testDelete' + self.collectionName + '.deleted ', obj.name, obj._id
+					_ callback(err, obj)
+				@ objkey
+
+		m findOne
+			param objkey
+			param callback
+
+			var self = this
+
+			_ this.q.add
+				@ this.findOne_job
+				@ this
+				function
+					param err
+					param obj
+					if err
+						log 'testFindOne' + self.collectionName + '.failed', JSON.stringify(err)
+					else
+						log 'testFindOne' + self.collectionName + '.found ', JSON.stringify(obj, null, 0)
+					_ callback(err, obj)
+				@ objkey
+
+		m find
+			param objkey
+			param paging
+			param callback
+
+			if !callback
+				if !paging
+					set callback = objkey
+					set objkey = null
+				else
+					set callback = paging
+					set paging = null
+
+			if !paging
+				set paging
+					{
+						@ on false
+
+			_ this.q.add
+				@ this.find_job
+				@ this
+				function
+					param err
+					param result
+					if err
+						log 'testFind.failed', JSON.stringify(err)
+					else
+						log 'testFind.found ', JSON.stringify(result, null, 0)
+					_ callback(err, result)
+				@ objkey
+				@ paging
+
+		m search
+			param objkey
+			param query
+			param paging
+			param callback
+
+			if !callback
+				if !paging
+					set callback = query
+					set query = objkey
+					set objkey = null
+				else
+					set callback = paging
+					set paging = null
+
+			if !paging
+				set paging
+					{
+						@ on false
+
+			_ this.q.add
+				@ this.search_job
+				@ this
+				function
+					param err
+					param result
+					if err
+						log 'testFind.failed', JSON.stringify(err)
+					else
+						log 'testFind.found ', JSON.stringify(result, null, 0)
+					_ callback(err, result)
+				@ objkey
+				@ query
+				@ paging
+
+		m insertUnique_job
+			param objkey
+			param obj
+			param callback
+
+			var self = this
+
+			_ self.db.load
+				@ self.collectionName
+				function
+					param err
+					param list
+					log 'insertUnique. db.load. err : ', err
+					if err
+						return
+							_ callback(err)
+					_ self.crud.insertUnique
+						@ list
+						@ objkey
+						@ obj
+						function
+							param err
+							param insertedObj
+							log 'insertUnique. crud.insertUnique. err : ', err
+							if err
+								return
+									_ callback(err)
+							_ self.db.save
+								@ self.collectionName
+								@ list
+								function
+									param err
+									log 'insertUnique. db.save. err : ', err
+									if err
+										return
+											_ callback(err)
+									_ callback
+										@ null
+										@ insertedObj
+		m update_job
+			param objkey
+			param obj
+			param callback
+
+			log 'update_job.objkey : ', JSON.stringify(objkey, null, 0)
+
+			var self = this
+
+			_ self.db.load
+				@ self.collectionName
+				function
+					param err
+					param list
+					log 'update. ssss db.load. err : ', err
+					if err
+						return
+							_ callback(err)
+					_ self.crud.update
+						@ list
+						@ objkey
+						@ obj
+						function
+							param err
+							param updatedObj
+							log 'update. crud.update. err : ', err
+							if err
+								return
+									_ callback(err)
+							_ self.db.save
+								@ self.collectionName
+								@ list
+								function
+									param err
+									log 'update. db.save. err : ', err
+									if err
+										return
+											_ callback(err)
+									_ callback
+										@ null
+										@ updatedObj
+
+		m delete_job
+			param objkey
+			param callback
+
+			var self = this
+
+			_ self.db.load
+				@ self.collectionName
+				function
+					param err
+					param list
+					log 'delete. db.load. err : ', err
+					if err
+						return
+							_ callback(err)
+					_ self.crud.delete
+						@ list
+						@ objkey
+						function
+							param err
+							param deletedObj
+							log 'delete. crud.delete. err : ', err
+							if err
+								return
+									_ callback(err)
+							_ self.db.save
+								@ self.collectionName
+								@ list
+								function
+									param err
+									log 'delete. db.save. err : ', err
+									if err
+										return
+											_ callback(err)
+									_ callback
+										@ null
+										@ deletedObj
+
+		m findOne_job
+			param objkey
+			param callback
+
+			var self = this
+
+			_ self.db.load
+				@ self.collectionName
+				function
+					param err
+					param list
+					if err
+						return
+							_ callback(err)
+					_ self.crud.findOne
+						@ list
+						@ objkey
+						function
+							param err
+							param foundObj
+							if err
+								return
+									_ callback(err)
+							_ callback
+								@ null
+								@ foundObj
+
+		m find_job
+			param objkey
+			param paging
+			param callback
+
+			var self = this
+
+			_ self.db.load
+				@ self.collectionName
+				function
+					param err
+					param list
+					if err
+						return
+							_ callback(err)
+					_ self.crud.find
+						@ list
+						@ objkey
+						@ paging
+						function
+							param err
+							param result
+							if err
+								return
+									_ callback(err)
+							_ callback
+								@ null
+								@ result
+
+		m search_job
+			param objkey
+			param query
+			param paging
+			param callback
+
+			var self = this
+
+			_ self.db.load
+				@ self.collectionName
+				function
+					param err
+					param list
+					if err
+						return
+							_ callback(err)
+					_ self.crud.search
+						@ list
+						@ objkey
+						@ query
+						@ paging
+						function
+							param err
+							param result
+							if err
+								return
+									_ callback(err)
+							_ callback
+								@ null
+								@ result
+
+	set module.exports = Collection

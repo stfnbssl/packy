@@ -1,0 +1,9 @@
+﻿module
+	kind react
+	+
+	import React, { Component, PropTypes } from 'react'
+
+	$include grid/Row
+	$include grid/Col
+
+

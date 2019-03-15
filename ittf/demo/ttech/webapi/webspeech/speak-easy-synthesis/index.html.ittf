@@ -1,0 +1,44 @@
+h/root/empty_layout( webspeech phrase matcher )
+
+	$append head-styles
+        css ./style.css.ittf
+    
+        h1 Speech synthesiser
+        p Enter some text in the input below and press return  or the "play" button to hear it. change voices using the dropdown menu.
+        form 
+            input 
+                type text
+                class txt
+            div 
+                label Rate
+                    for rate
+                input 
+                    type range
+                    min 0.5
+                    max 2
+                    value 1
+                    step 0.1
+                    id rate
+                div 1
+                    class rate-value
+                . clearfix
+            div 
+                label Pitch
+                    for pitch
+                input 
+                    type range
+                    min 0
+                    max 2
+                    value 1
+                    step 0.1
+                    id pitch
+                div 1
+                    class pitch-value
+                . clearfix
+            select 
+            . controls
+                button Play
+                    id play
+                    type submit
+    
+	js script.js.ittf

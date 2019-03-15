@@ -1,0 +1,127 @@
+﻿$group
+
+	element jsWizzi
+		tag
+		ast 
+		category
+
+		item
+			title jsWizzi variable declaration and interpolation
+			ittf
+				root
+					${d}
+						var name = 'stefi';
+						var options = {
+							title: 'Chapter 1'
+						};
+					node title is ${d}{options.title}
+					node name is ${d}{name}
+
+		item 
+			title More variable declarations
+			ittf
+				html
+					${d}
+						var name = 'Ribot';
+						var runDowns = 16, runWon = 16;
+						var placements = [1, 1, 1, 1, 1];
+						var pedigree = {
+							mother: 'Romanella',
+							father: 'Tenerani',
+							paternalGrandfather: 'Bellini',
+							maternalGrandfather: 'El greco'
+						};
+
+					p ${d}{name} was undefeated. Won ${d}{runWon} out of ${d}{runDowns} races.
+					p His father was ${d}{pedigree.father} and his mother ${d}{pedigree.mother}.
+					p His placements are boring: ${d}{placements}, ...
+
+		item 
+			title Inpute parameters with default values
+			ittf
+				root
+					${d}params name|stefi, age:integer|61, inlove:boolean|true
+					node ${d}{name}, age ${d}{age}, ${d}{inlove ? 'is' : 'is not'} in love.
+
+		item
+			title Unary expressions
+			ittf
+				any
+					any +2 =  ${d}{ +2 }
+					any -2 = ${d}{ -2 }
+					any !(2 == 2) = ${d}{ !(2 == 2) }
+					${d}
+						var a = 0;
+					any a = = ${d}{ a }
+					any ++a = ${d}{ ++a }
+					any ++a = ${d}{ ++a }
+					any --a = ${d}{ --a }
+					any typeof 3 = ${d}{ typeof 3 }
+					any typeof '3' = ${d}{ typeof '3' }
+					any typeof xyz = ${d}{ typeof xyz }
+
+		item
+			title Expressions
+			ittf
+				any
+					any 2 + 2 = ${d}{ 2 + 2 }
+					any 5 - 2 = ${d}{ 5 - 2 }
+					any 3 * 3 = ${d}{ 3 * 3 }
+					any 6 / 2 = ${d}{ 6 / 2 }
+					any 5 % 2 = ${d}{ 5 % 2 }
+					any 5 == 2 = ${d}{ 5 == 2 }
+					any 5 != 2 = ${d}{ 5 != 2 }
+					any 5 > 2 = ${d}{ 5 > 2 }
+					any 5 >= 5 = ${d}{ 5 >= 5 }
+					any 5 < 2 = ${d}{ 5 < 2 }
+					any 5 <= 5 = ${d}{ 5 <= 5 }
+					any "a" in { a: 1} = ${d}{ "a" in { a: 1} }
+					any typeof 5 === 'string' = ${d}{ typeof 5 === 'string' }
+					any String(5) = ${d}{ String(5) }
+					any Number('5.5') = ${d}{ Number('5.5') }
+					any Date(2013,6,12) = ${d}{ Date(2013,6,12) }
+					any 5 << 5 = ${d}{ 5 << 5 }
+					any 5 >> 5 = ${d}{ 5 >> 5 }
+					any 5 >>> 5 = ${d}{ 5 >>> 5 }
+					any 5 | 5 = ${d}{ 5 | 5 }
+					any 5 & 5 = ${d}{ 5 & 5 }
+					any 5 ^ 5 = ${d}{ 5 ^ 5 }
+
+
+		item 
+			title Conditional operator
+			ittf
+				root
+					node (3 == 3 ? 1 : 0) = ${d}{ 3 == 3 ? 1 : 0 }
+					node (true ? 5 : 2) = ${d}{ true ? 5 : 2 }
+
+
+		item 
+			title Assignments
+			ittf
+				root
+					${d} var a = 0;
+					node var a = 0; a += 2; -> ${d}{ a += 2 }
+					${d} var a = 0;
+					node var a = 0; a -= 2; -> ${d}{ a -= 2 }
+					${d} var a = 3;
+					node var a = 3; a *= 2; -> ${d}{ a *= 2 }
+					${d} var a = 3;
+					node var a = 3; a /= 2; -> ${d}{ a /= 2 }
+					${d} var a = 3;
+					node var a = 3; a %= 2; -> ${d}{ a %= 2 }
+					${d} var a = 3;
+					node var a = 3; a <<= 2; -> ${d}{ a <<= 2 }
+					${d} var a = 3;
+					node var a = 3; a >>= 2; -> ${d}{ a >>= 2 }
+					${d} var a = 3;
+					node var a = 3; a >>>= 2; -> ${d}{ a >>>= 2 }
+					${d} var a = 3;
+					node var a = 3; a &= 2; -> ${d}{ a &= 2 }
+					${d} var a = 3;
+					node var a = 3; a |= 2; -> ${d}{ a |= 2 }
+					${d} var a = 3;
+					node var a = 3; a ^= 2; -> ${d}{ a ^= 2 }
+
+
+

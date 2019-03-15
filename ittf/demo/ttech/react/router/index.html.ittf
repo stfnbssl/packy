@@ -1,0 +1,16 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'router',
+			label: 'Router',
+			experimentsWith: 'the react Router library',
+			path: [
+				{
+					name: 'react',
+					label: 'ReactJs',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

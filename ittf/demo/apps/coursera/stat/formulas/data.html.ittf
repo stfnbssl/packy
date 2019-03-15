@@ -1,0 +1,23 @@
+$group
+
+	$
+		var c = "$";
+		var cc = "$$";
+
+	table
+		
+		f(Mean)
+			p ${cc} \bar{x} = { \sum_{i=1}^n x_i \over n } ${cc}
+		
+		f(Variance)
+			p ${cc} s^2 = { { \sum_{i=1}^n (x_i - \bar{x})^2 } \over n-1 } ${cc}
+
+		f(Standard deviation)
+			p ${cc} s = \sqrt{ { { \sum_{i=1}^n (x_i - \bar{x})^2 } \over n-1 } } ${cc}
+
+		f(z-score)
+			p ${cc} z_i = { { x_i - \bar{x} } \over s } ${cc}
+
+		f(Sum of all z-score = 0)
+			p ${cc} Z = \sum_{i=1}^n { { x_i - \bar{x} } \over s } = 0 ${cc}
+

@@ -1,0 +1,33 @@
+$group
+	$params &opt
+
+	$if opt.useCodemirror
+		s( /static/lib/codemirror/lib/codemirror.css
+		s( /static/lib/codemirror/theme/monokai.css
+		s( /static/lib/codemirror/theme/twilight.css
+		
+	$if opt.useHighlight
+	    $if isWizziStudio
+	        s( /static/lib/highlight/styles/github.css
+        $else
+            s( https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/default.min.css        
+
+	$if opt.useJsonFormatter
+	    $if isWizziStudio
+			s( https://cdnjs.cloudflare.com/ajax/libs/json-formatter/0.7.0/json-formatter.min.css
+	    $else
+	        s( https://cdnjs.cloudflare.com/ajax/libs/json-formatter/0.7.0/json-formatter.min.css
+	
+	$if opt.useMonaco
+		$$ j( /static/lib/monaco-editor/package/min/vs/editor/editor.main.css
+		
+	$if opt.useMaterialUi
+		s( https://fonts.googleapis.com/icon?family=Material+Icons
+	
+	$if opt.useRoboto
+		s( https://fonts.googleapis.com/css?family=Roboto:300,400,500
+
+	$if opt.useSweetalert
+		s( https://cdn.jsdelivr.net/npm/sweetalert2@7.31.1/dist/sweetalert2.min.css
+
+		

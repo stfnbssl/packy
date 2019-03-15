@@ -1,0 +1,81 @@
+﻿$group
+
+    function showCommands
+        
+		_ document.querySelector('#btnLinks').addEventListener
+            @ 'click'
+            function 
+				var style = document.querySelector('#test-links').style
+				set style.display = style.display === 'none' ? 'block' : 'none'
+
+		_ document.querySelector('#btnRead').addEventListener
+            @ 'click'
+            function 
+				
+                _ sendMessage
+                    { 
+                        @ command 'read'
+                        @ filePath '/ixdb/wizzi/default/html/index.html.ittf'
+                    ._ then
+                        function
+							param result
+                            log 'Client. command read result', result
+                    ._ catch
+                        function
+							param err
+							log 'Client. command read err', err
+        
+		_ document.querySelector('#btnFolderBrowse').addEventListener
+            @ 'click'
+            function 
+				_ window.appContext.toggleFolderBrowser
+				$*
+				var style = document.querySelector('#test-browse-folder').style
+				set style.display = style.display === 'none' ? 'block' : 'none'
+                _ sendMessage
+                    { 
+                        @ command 'folderBrowse'
+                        @ folderPath '/ixdb/wizzi/default/html'
+                    ._ then
+                        function
+							param result
+                            log 'Client. command folderBrowse result', result
+							_ setFolderBrowse
+								@ result.data
+                    ._ catch
+                        function
+							param err
+							log 'Client. command folderBrowse err', err
+				*$
+		
+		_ document.querySelector('#btnIttfDocument').addEventListener
+            @ 'click'
+            function 
+				_ window.appContext.toggleIttfDocument
+				$*
+				var style = document.querySelector('#test-ittfdocument').style
+				set style.display = style.display === 'none' ? 'block' : 'none'
+                _ sendMessage
+                    { 
+                        @ command 'ittfDocument'
+                        @ filePath '/ixdb/wizzi/default/html/index.html.ittf'
+                    ._ then
+                        function
+							param result
+                            log 'Client. command ittfDocument result', result
+							_ setIttfDocument
+								@ result.data
+                    ._ catch
+                        function
+							param err
+							log 'Client. command ittfDocument err', err
+				*$
+
+		_ document.querySelector('#btnShowJson').addEventListener
+            @ 'click'
+            function 
+				_ wz.toggleClass
+					@ 'body'
+					@ 'show-json'
+
+		set document.querySelector('#commands').style.display = 'flex'

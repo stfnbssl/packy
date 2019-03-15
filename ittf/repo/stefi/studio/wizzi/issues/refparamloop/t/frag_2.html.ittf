@@ -1,0 +1,11 @@
+$group
+	$params &options
+
+	div
+		class frag_2
+		h2 Frag 2 Here
+		ul I received
+			li options.alpha : ${options.alpha}
+			li options.beta: ${options.beta}
+
+

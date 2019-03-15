@@ -1,0 +1,299 @@
+{
+  "name": "vue",
+  "preserveTags": true,
+  "requires": [],
+  "exportTos": [],
+  "elements": [
+    {
+      "name": "comment",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "#"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "element",
+          "tags": [
+            "<"
+          ]
+        },
+        {
+          "name": "vue",
+          "tags": [
+            "vue"
+          ]
+        },
+        {
+          "name": "htmlInclude",
+          "tags": [
+            "::template"
+          ]
+        },
+        {
+          "name": "jsInclude",
+          "tags": [
+            "::script"
+          ]
+        },
+        {
+          "name": "cssInclude",
+          "tags": [
+            "::style"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "element",
+      "super": "comment",
+      "isRoot": false,
+      "tags": [
+        "<"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "element",
+          "role": "elements",
+          "tags": [
+            "<"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "vue",
+          "tags": [
+            "vue"
+          ]
+        },
+        {
+          "name": "htmlInclude",
+          "tags": [
+            "::template"
+          ]
+        },
+        {
+          "name": "jsInclude",
+          "tags": [
+            "::script"
+          ]
+        },
+        {
+          "name": "cssInclude",
+          "tags": [
+            "::style"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "a generic vue element (tag)"
+      ]
+    },
+    {
+      "name": "vue",
+      "super": "element",
+      "isRoot": true,
+      "tags": [
+        "vue"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "element",
+          "role": "elements",
+          "tags": [
+            "<"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "element",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "The root element"
+      ]
+    },
+    {
+      "name": "htmlInclude",
+      "super": "element",
+      "isRoot": false,
+      "tags": [
+        "::template"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "element",
+          "role": "elements",
+          "tags": [
+            "<"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "element",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "jsInclude",
+      "super": "element",
+      "isRoot": false,
+      "tags": [
+        "::script"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "element",
+          "role": "elements",
+          "tags": [
+            "<"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "element",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "cssInclude",
+      "super": "element",
+      "isRoot": false,
+      "tags": [
+        "::style"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "scoped",
+          "type": "boolean",
+          "tags": [
+            "scoped"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "element",
+          "role": "elements",
+          "tags": [
+            "<"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "element",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "comment",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    }
+  ]
+}

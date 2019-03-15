@@ -1,0 +1,19 @@
+﻿element include svg
+	tag img + svg
+	ast
+	category
+	
+	item
+		title script tag with inclusion of a json model
+		ittf
+			html
+				head
+				body
+					div
+						img
+							svg
+								rect
+									x 10
+									y 10
+									width 200
+									height 100

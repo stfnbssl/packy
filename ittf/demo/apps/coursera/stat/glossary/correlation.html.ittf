@@ -1,0 +1,33 @@
+$group
+	
+	glo(Conditional proportion)
+	
+	glo(Contingency table)
+
+	glo(Dependent variable)
+
+	glo(Independent variable)
+	
+	glo(Ordinary least squares (OLS) regression)
+		dd The best regression line (fitting line) is the line for which
+			\b the sum of the squared residuals (vertical distances of the cases in your scatterplot 
+			\b to the line) is the smallest.
+
+	glo(Regression analysis)
+
+	glo(Regression equation)
+		dd Ingredients
+		ul
+			li Regression coefficient
+			li Regression slope. 
+
+	glo(Regression line)
+		dd The line that best represents the linear correlation between two quantitative variables in a scatterplot.
+
+	glo(r-squared)
+		dd Tells you how much better a regression line predicts your dependent variable 
+			\b than the mean of that variable,
+		dd Shows you how much of the variance in your dependent variable is explained 
+			\b by your independent variable.
+
+	glo(Scatterplot)

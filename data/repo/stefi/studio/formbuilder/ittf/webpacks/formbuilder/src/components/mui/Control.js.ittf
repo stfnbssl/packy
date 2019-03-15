@@ -1,0 +1,52 @@
+﻿r-component( Control )
+	
+	$append imports
+		import { Row, Col } from './grid'
+		import createControlComponent from './utils/createControlComponent'
+
+	prop id
+		string
+		required
+	
+	prop type
+		string
+		required
+	
+	prop onChangeValue
+		func
+		required
+
+	style 
+	
+	=> handleChange
+		param value
+		const { id, onChangeValue } = this.props
+		if onChangeValue
+			log 'Control.handleChange', id, value
+			_ onChangeValue(id, value, this.origValue)
+
+	render
+		
+		prop id
+		prop label
+		prop type
+		prop value
+		prop layout
+		prop data
+		prop onChange = this.props
+		
+		log 'createControlComponent', createControlComponent
+		const ControlComponent = createControlComponent(type)
+		
+		return
+			< Row
+				< Col
+					@ span {4}
+					+ {label || id}
+				< Col
+					@ span {8}
+					< ControlComponent
+						@ id {id}
+						@ value {value}
+						@ data {data}
+						@ onChange {this.handleChange}

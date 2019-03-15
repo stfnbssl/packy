@@ -1,0 +1,74 @@
+﻿module
+	kind react
+
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import { withStyles, createStyleSheet } from 'material-ui/styles'
+	import Button from 'material-ui/Button'
+	import Menu, { MenuItem } from 'material-ui/Menu'
+
+	react Select
+
+		state
+			@ anchorEl undefined
+			@ open false
+
+		will-receive-props
+			if nextProps.selected !== this.state.selected
+				_ this.setState
+					{
+						@ ...this.state
+						@ selected nextProps.selected
+				set this.value = nextProps.selected
+
+		did-mount
+			if typeof(this.value) === 'undefined'
+				_ this.setState
+					{
+						@ ...this.state
+						@ selected this.props.items[0]
+				set this.value = this.props.items[0]
+
+		=> handleClick
+			param event
+			_ this.setState
+				{
+					@ open true
+					@ anchorEl event.currentTarget
+
+		=> handleRequestClose
+			param {target}
+			log target.id, target
+			_ this.setState
+				{
+					@ ...this.state
+					@ open false
+					@ selected target.id
+			set this.value = target.id
+
+		render
+			const { items } = this.props
+			return
+				div
+					< Button
+						@ aria-owns simple-menu
+						@ aria-haspopup true
+						@ onClick {this.handleClick}
+						+ { this.state.selected || items[0] }
+					< Menu
+						@ id "simple-menu"
+						@ anchorEl {this.state.anchorEl}
+						@ open {this.state.open}
+						@ onRequestClose {this.handleRequestClose}
+						{
+							_ items.map
+								=>
+									param item
+									return
+										< MenuItem
+											@  onClick {this.handleRequestClose}
+											@ key {item}
+											@ id {item}
+											+ {item}
+	
+	export default Select

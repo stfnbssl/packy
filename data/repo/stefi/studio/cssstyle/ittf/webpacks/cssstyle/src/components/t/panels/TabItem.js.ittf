@@ -1,0 +1,42 @@
+﻿$group
+	
+	wz-class TabItem
+		super Component
+
+		m render
+			const { index, title, isActive, onClick } = this.props
+			return
+				return
+					li
+						@ ref { 'tab-menu-' + index }
+						@ key {index}
+						@style {this.get_li_Style(isActive)}
+						a
+							@style {this.get_a_Style(isActive)}
+							@ onClick
+								=>
+									_ onClick(index)
+							+ {title}
+
+		m get_li_Style
+			param selected
+			return
+				{
+					@ float 'left'
+					@ marginRight 20
+		
+		m get_a_Style
+			param isActive
+			# TODO !isActive :hover == isActive
+			return
+				{
+					@ cursor 'pointer'
+					@ display 'block'
+					@ color ( isActive ? '#3498DB' : '#A9A9A9' )
+							
+	set TabItem.propTypes
+		{
+			@ index React.PropTypes.number.isRequired
+			@ title React.PropTypes.string.isRequired
+			@ onClick React.PropTypes.func.isRequired
+

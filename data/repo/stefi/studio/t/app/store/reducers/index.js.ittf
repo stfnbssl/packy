@@ -1,0 +1,15 @@
+﻿$group
+	$params &app
+	+
+	import { combineReducers } from 'redux'
+	$if app.useReduxForm
+		import { reducer as formReducer } from 'redux-form'
+	$hook imports
+	+
+	export default
+		_ combineReducers
+			{
+				$hook
+				$if app.useReduxForm
+					@ form formReducer 
+  

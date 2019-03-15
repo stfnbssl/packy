@@ -1,0 +1,11 @@
+﻿$group
+	$params name, label, placeholder|@@null
+	
+	< Field
+		@ name ${name}
+		@ label ${label}
+		@ component {renderField}
+		@ type number
+		$if placeholder != null
+			@ placeholder ${placeholder}
+		$hook

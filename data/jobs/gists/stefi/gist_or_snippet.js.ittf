@@ -1,0 +1,8 @@
+module
+    kind jsfile
+    var filePath = "C:\\My\\wizzi\\v5\\apps\\wizzi-studio\\wizzi-studio-express\\dist\\server\\data\\jobs\\batches\\ittf\\kernel.json.ittf"
+    var jobsBasePath = "C:\\My\\wizzi\\v5\\apps\\wizzi-studio\\wizzi-studio-express\\dist\\server\\data\\jobs"
+
+    var relFolder = filePath.substr(jobsBasePath.length + 1)
+    var ss = relFolder.split('\\')
+    log relFolder, ss, ss[0]

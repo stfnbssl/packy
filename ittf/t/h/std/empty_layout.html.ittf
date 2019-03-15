@@ -1,0 +1,29 @@
+html
+	$params title|@@null
+
+    head 
+		$if title != null
+			@title ${title}
+        meta 
+            charset utf-8
+        meta 
+            name viewport
+			content width=device-width, initial-scale=1
+		
+		$hook head-styles-0
+		$include ./aspectStyles
+		$hook head-styles
+		$hook head-styles-2
+
+    body 
+		
+		$hook
+
+		$include h/script_meta
+
+		$hook body-scripts-0
+		$include ./aspectScripts
+		$hook body-scripts
+		$hook body-scripts-2
+
+

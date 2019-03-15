@@ -1,0 +1,10 @@
+﻿{
+	$params format, id|@@null
+	@ kind 'menu'
+	@ format '${format}'
+	$if id != null
+		@ id '${id}'
+	$hook props
+	@ items
+		[
+			$hook

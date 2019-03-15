@@ -1,0 +1,548 @@
+﻿$group
+
+	$include colors/color-string
+	$include colors/color-convert
+
+	j/iife-wrapped( BxColors, colorString, colorConvert )
+
+		var _slice
+			[ 
+				. slice
+		var skippedModels
+			[ 
+				@ 'keyword'
+				@ 'gray'
+				@ 'hex'
+		var hashedModelKeys
+			{ 
+		_ Object.keys(colorConvert)
+			._ forEach
+				function 
+					param model
+					set hashedModelKeys[_slice.call(colorConvert[model].labels).sort().join('')] = model
+		var limiters
+			{ 
+		function Colors
+			param obj
+			param model
+			if !(this instanceof Colors)
+				return 
+					new Colors(obj, model)
+			if (model && (model in skippedModels))
+				set model = null
+			if model && !(model in colorConvert)
+				throw 
+					new Error(('Unknown model: ' + model))
+			var i
+			var channels
+			if !obj
+				set this.model = 'rgb'
+				set this.color = [0, 0, 0]
+				set this.valpha = 1
+			elif obj instanceof Colors
+				set this.model = obj.model
+				set this.color = obj.color.slice()
+				set this.valpha = obj.valpha
+			elif typeof (obj) === 'string'
+				var result = colorString.get(obj)
+				if result === null
+					throw 
+						new Error(('Unable to parse color from string: ' + obj))
+				set this.model = result.model
+				set channels = colorConvert[this.model].channels
+				set this.color = result.value.slice(0, channels)
+				set this.valpha = typeof (result.value[channels]) === 'number' ? result.value[channels] : 1
+			elif obj.length
+				set this.model = (model || 'rgb')
+				set channels = colorConvert[this.model].channels
+				var newArr = _slice.call(obj, 0, channels)
+				set this.color = zeroArray(newArr, channels)
+				set this.valpha = typeof (obj[channels]) === 'number' ? obj[channels] : 1
+			elif typeof (obj) === 'number'
+				set obj &= 0xFFFFFF
+				set this.model = 'rgb'
+				set this.color = [(((obj >> 16)) & 0xFF), (((obj >> 8)) & 0xFF), obj & 0xFF]
+				set this.valpha = 1
+			else 
+				set this.valpha = 1
+				var keys = Object.keys(obj)
+				if 'alpha' in obj
+					_ keys.splice
+						_ keys.indexOf('alpha')
+						@ 1
+					set this.valpha = typeof (obj.alpha) === 'number' ? obj.alpha : 0
+				var hashedKeys
+					_ keys.sort()
+						._ join('')
+				if !(hashedKeys in hashedModelKeys)
+					throw 
+						new Error(('Unable to parse color from object: ' + JSON.stringify(obj)))
+				set this.model = hashedModelKeys[hashedKeys]
+				var labels = colorConvert[this.model].labels
+				var color
+					[ 
+				for i = 0; i < labels.length; i++
+					_ color.push
+						@ obj[labels[i]]
+				set this.color = zeroArray(color)
+			if limiters[this.model]
+				set channels = colorConvert[this.model].channels
+				for i = 0; i < channels; i++
+					var limit = limiters[this.model][i]
+					if limit
+						set this.color[i] = limit(this.color[i])
+			set this.valpha = Math.max(0, Math.min(1, this.valpha))
+			if Object.freeze
+				_ Object.freeze(this)
+		set Colors.prototype =
+			{ 
+				@ toString
+					function 
+						return this.string()
+				@ toJSON
+					function 
+						return this[this.model]()
+				@ string
+					function 
+						param places
+						var self
+							iif this.model in colorString.to
+								then this
+								else 
+									_ this.rgb()
+						set self = self.round(typeof (places) === 'number' ? places : 1)
+						var args
+							iif self.valpha === 1
+								then 
+									set self.color
+								else 
+									_ self.color.concat
+										@ this.valpha
+						return colorString.to[self.model](args)
+				@ percentString
+					function 
+						param places
+						var self
+							_ this.rgb()
+								._ round(typeof (places) === 'number' ? places : 1)
+						var args
+							iif self.valpha === 1
+								then 
+									set self.color
+								else 
+									_ self.color.concat
+										@ this.valpha
+						return colorString.to.rgb.percent(args)
+				@ array
+					function 
+						return 
+							iif this.valpha === 1
+								then 
+									_ this.color.slice()
+								else 
+									_ this.color.concat
+										@ this.valpha
+				@ object
+					function 
+						var result
+							{ 
+						var channels = colorConvert[this.model].channels
+						var labels = colorConvert[this.model].labels
+						for var i = 0; i < channels; i++
+							set result[labels[i]] = this.color[i]
+						if this.valpha !== 1
+							set result.alpha = this.valpha
+						return result
+				@ unitArray
+					function 
+						var rgb
+							_ this.rgb()
+								. color
+						set rgb[0] /= 255
+						set rgb[1] /= 255
+						set rgb[2] /= 255
+						if this.valpha !== 1
+							_ rgb.push
+								@ this.valpha
+						return rgb
+				@ unitObject
+					function 
+						var rgb
+							_ this.rgb()
+								._ object()
+						set rgb.r /= 255
+						set rgb.g /= 255
+						set rgb.b /= 255
+						if this.valpha !== 1
+							set rgb.alpha = this.valpha
+						return rgb
+				@ round
+					function 
+						param places
+						set places = Math.max((places || 0), 0)
+						return 
+							new Colors
+								_ this.color.map
+									_ roundToPlace(places)
+									._ concat
+										@ this.valpha
+								@ this.model
+				@ alpha
+					function 
+						param val
+						if arguments.length
+							return 
+								new Colors
+									_ this.color.concat
+										_ Math.max
+											@ 0
+											_ Math.min(1, val)
+									@ this.model
+						return this.valpha
+				@ red
+					_ getset
+						@ 'rgb'
+						@ 0
+						_ maxfn(255)
+				@ green
+					_ getset
+						@ 'rgb'
+						@ 1
+						_ maxfn(255)
+				@ blue
+					_ getset
+						@ 'rgb'
+						@ 2
+						_ maxfn(255)
+				@ hue
+					_ getset
+						[ 
+							@ 'hsl'
+							@ 'hsv'
+							@ 'hsl'
+							@ 'hwb'
+							@ 'hcg'
+						@ 0
+						function 
+							param val
+							return ((((val % 360) + 360)) % 360)
+				@ saturationl
+					_ getset
+						@ 'hsl'
+						@ 1
+						_ maxfn(100)
+				@ lightness
+					_ getset
+						@ 'hsl'
+						@ 2
+						_ maxfn(100)
+				@ saturationv
+					_ getset
+						@ 'hsv'
+						@ 1
+						_ maxfn(100)
+				@ value
+					_ getset
+						@ 'hsv'
+						@ 2
+						_ maxfn(100)
+				@ chroma
+					_ getset
+						@ 'hcg'
+						@ 1
+						_ maxfn(100)
+				@ gray
+					_ getset
+						@ 'hcg'
+						@ 2
+						_ maxfn(100)
+				@ white
+					_ getset
+						@ 'hwb'
+						@ 1
+						_ maxfn(100)
+				@ wblack
+					_ getset
+						@ 'hwb'
+						@ 2
+						_ maxfn(100)
+				@ cyan
+					_ getset
+						@ 'cmyk'
+						@ 0
+						_ maxfn(100)
+				@ magenta
+					_ getset
+						@ 'cmyk'
+						@ 1
+						_ maxfn(100)
+				@ yellow
+					_ getset
+						@ 'cmyk'
+						@ 2
+						_ maxfn(100)
+				@ black
+					_ getset
+						@ 'cmyk'
+						@ 3
+						_ maxfn(100)
+				@ x
+					_ getset
+						@ 'xyz'
+						@ 0
+						_ maxfn(100)
+				@ y
+					_ getset
+						@ 'xyz'
+						@ 1
+						_ maxfn(100)
+				@ z
+					_ getset
+						@ 'xyz'
+						@ 2
+						_ maxfn(100)
+				@ l
+					_ getset
+						@ 'lab'
+						@ 0
+						_ maxfn(100)
+				@ a getset('lab', 1)
+				@ b getset('lab', 2)
+				@ keyword
+					function 
+						param val
+						if arguments.length
+							return 
+								new Colors(val)
+						return 
+							_ colorConvert[this.model].keyword
+								@ this.color
+				@ hex
+					function 
+						param val
+						if arguments.length
+							return 
+								new Colors(val)
+						return 
+							_ colorString.to.hex
+								_ this.rgb()
+									._ round()
+										. color
+				@ rgbNumber
+					function 
+						var rgb
+							_ this.rgb()
+								. color
+						return ((((((rgb[0] & 0xFF) << 16)) | (((rgb[1] & 0xFF) << 8)))) | (rgb[2] & 0xFF))
+				@ luminosity
+					function 
+						var rgb
+							_ this.rgb()
+								. color
+						var lum
+							[ 
+						for var i = 0; i < rgb.length; i++
+							var chan = rgb[i] / 255
+							set lum[i] = chan <= 0.03928 ? chan / 12.92 : Math.pow((((chan + 0.055)) / 1.055), 2.4)
+						return ((((0.2126 * lum[0]) + (0.7152 * lum[1]))) + (0.0722 * lum[2]))
+				@ contrast
+					function 
+						param color2
+						var lum1 = this.luminosity()
+						var lum2 = color2.luminosity()
+						if lum1 > lum2
+							return (((lum1 + 0.05)) / ((lum2 + 0.05)))
+						return (((lum2 + 0.05)) / ((lum1 + 0.05)))
+				@ level
+					function 
+						param color2
+						var contrastRatio = this.contrast(color2)
+						if contrastRatio >= 7.1
+							return 'AAA'
+						return contrastRatio >= 4.5 ? 'AA' : ''
+				@ dark
+					function 
+						var rgb
+							_ this.rgb()
+								. color
+						var yiq = ((((((rgb[0] * 299) + (rgb[1] * 587))) + (rgb[2] * 114))) / 1000)
+						return yiq < 128
+				@ light
+					function 
+						return 
+							not 
+								_ this.dark()
+				@ negate
+					function 
+						var rgb = this.rgb()
+						for var i = 0; i < 3; i++
+							set rgb.color[i] = (255 - rgb.color[i])
+						return rgb
+				@ lighten
+					function 
+						param ratio
+						var hsl = this.hsl()
+						set hsl.color[2] += hsl.color[2] * ratio
+						return hsl
+				@ darken
+					function 
+						param ratio
+						var hsl = this.hsl()
+						set hsl.color[2] -= hsl.color[2] * ratio
+						return hsl
+				@ saturate
+					function 
+						param ratio
+						var hsl = this.hsl()
+						set hsl.color[1] += hsl.color[1] * ratio
+						return hsl
+				@ desaturate
+					function 
+						param ratio
+						var hsl = this.hsl()
+						set hsl.color[1] -= hsl.color[1] * ratio
+						return hsl
+				@ whiten
+					function 
+						param ratio
+						var hwb = this.hwb()
+						set hwb.color[1] += hwb.color[1] * ratio
+						return hwb
+				@ blacken
+					function 
+						param ratio
+						var hwb = this.hwb()
+						set hwb.color[2] += hwb.color[2] * ratio
+						return hwb
+				@ grayscale
+					function 
+						var rgb
+							_ this.rgb()
+								. color
+						var val = ((((rgb[0] * 0.3) + (rgb[1] * 0.59))) + (rgb[2] * 0.11))
+						return Colors.rgb(val, val, val)
+				@ fade
+					function 
+						param ratio
+						return this.alpha((this.valpha - (this.valpha * ratio)))
+				@ opaquer
+					function 
+						param ratio
+						return this.alpha((this.valpha + (this.valpha * ratio)))
+				@ rotate
+					function 
+						param degrees
+						var hsl = this.hsl()
+						var hue = hsl.color[0]
+						set hue = (((hue + degrees)) % 360)
+						set hue = hue < 0 ? (360 + hue) : hue
+						set hsl.color[0] = hue
+						return hsl
+				@ mix
+					function 
+						param mixinColor
+						param weight
+						var color1 = this.rgb()
+						var color2 = mixinColor.rgb()
+						var p = weight === undefined ? 0.5 : weight
+						var w = ((2 * p) - 1)
+						var a = (color1.alpha() - color2.alpha())
+						var w1 = ((((((w * a) === - (1)) ? w : (((w + a)) / ((1 + (w * a))))) + 1)) / 2.0)
+						var w2 = (1 - w1)
+						return Colors.rgb(((w1 * color1.red()) + (w2 * color2.red())), ((w1 * color1.green()) + (w2 * color2.green())), ((w1 * color1.blue()) + (w2 * color2.blue())), ((color1.alpha() * p) + ((color2.alpha() * ((1 - p))))))
+		_ Object.keys(colorConvert)
+			._ forEach
+				function 
+					param model
+					if skippedModels.indexOf(model) !== - (1)
+						return 
+					var channels = colorConvert[model].channels
+					set Colors.prototype[model] =
+						function 
+							if this.model === model
+								return 
+									new Colors(this)
+							if arguments.length
+								return 
+									new Colors(arguments, model)
+							var newAlpha
+								iif typeof (arguments[channels]) === 'number'
+									then channels
+									else 
+										set this.valpha
+							return 
+								new Colors
+									_ assertArray
+										_ colorConvert[this.model][model].raw
+											@ this.color
+										._ concat(newAlpha)
+									@ model
+					set Colors[model] =
+						function 
+							param color
+							if typeof (color) === 'number'
+								set color = zeroArray(_slice.call(arguments), channels)
+							return 
+								new Colors(color, model)
+		function roundTo
+			param num
+			param places
+			return 
+				_ Number
+					_ num.toFixed(places)
+		function roundToPlace
+			param places
+			return 
+				function 
+					param num
+					return roundTo(num, places)
+		function getset
+			param model
+			param channel
+			param modifier
+			set model = Array.isArray(model) ? model : [model]
+			_ model.forEach
+				function 
+					param m
+					set (limiters[m] || (limiters[m] = []))[channel] = modifier
+			set model = model[0]
+			return 
+				function 
+					param val
+					var result
+					if arguments.length
+						if modifier
+							set val = modifier(val)
+						set result = this[model]()
+						set result.color[channel] = val
+						return result
+					set result = this[model]().color[channel]
+					if modifier
+						set result = modifier(result)
+					return result
+		function maxfn
+			param max
+			return 
+				function 
+					param v
+					return 
+						_ Math.max
+							@ 0
+							_ Math.min(max, v)
+		function assertArray
+			param val
+			return 
+				iif Array.isArray(val)
+					then val
+					else 
+						[ 
+							@ val
+		function zeroArray
+			param arr
+			param length
+			for var i = 0; i < length; i++
+				if typeof (arr[i]) !== 'number'
+					set arr[i] = 0
+			return arr
+		
+		return Colors

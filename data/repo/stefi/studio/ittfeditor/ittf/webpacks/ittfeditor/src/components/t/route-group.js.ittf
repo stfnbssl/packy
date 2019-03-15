@@ -1,0 +1,6 @@
+﻿< Route
+	$params name, title
+	@ title "${title}"
+	@ path {"/${name}"}
+	@ nav
+	@ component {AppContent}

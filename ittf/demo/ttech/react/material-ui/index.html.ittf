@@ -1,0 +1,16 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'material-ui',
+			label: 'Material-UI',
+			experimentsWith: 'the Material-UI library',
+			path: [
+				{
+					name: 'react',
+					label: 'ReactJs',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

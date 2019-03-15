@@ -1,0 +1,116 @@
+﻿class LocalStorage
+
+	ctor
+		param keyprefix
+		set this.keyprefix = keyprefix
+
+	m k
+		param key
+		return this.keyprefix + '.' + key
+
+	m get
+		param key
+		param defaultValue
+		arg setDefault
+		set key = this.k(key)
+		var ret = localStorage.getItem(key)
+		if ret === null
+			if typeof defaultValue !== 'undefined'
+				set ret = defaultValue
+				if setDefault
+					set localStorage[key] = defaultValue
+		try
+			set ret = JSON.parse(ret)
+			_ this._cleanNG(ret);
+			return ret;
+		catch ex
+		_ this._cleanNG(ret)
+		return ret
+
+	m set
+		arg key
+		arg value
+		set key = this.k(key)
+		set value = typeof value === 'undefined' ? null : value
+		if value === null
+			set localStorage[key] = value
+		else
+			_ this._cleanNG(value)
+			set localStorage[key] = JSON.stringify(value)
+		return value
+
+	m append
+		arg key
+		arg value
+		set key = this.k(key)
+		var s = this.get(key, '', true);
+		_ this.set(key, s + value)
+
+	m replace
+		arg key
+		arg search
+		arg replace
+		set key = this.k(key)
+		var value = this.get(key)
+		if typeof value === 'string'
+			_ this.set(key, value.replace(search, replace))
+
+	m remove
+		arg key
+		set key = this.k(key)
+		_ localStorage.removeItem(key)
+
+	m isTrue
+		arg key
+		arg value
+		set key = this.k(key)
+		if typeof value === 'undefined'
+			return this.get(key) === 'true'
+		else
+			_ this.set(key, value ? 'true' : 'false')
+
+	m float
+		arg key
+		arg value
+		set key = this.k(key)
+		if typeof value === 'undefined'
+			return parseFloat(this.get(key))
+		else
+			_ this.set(key, value)
+
+	m increment
+		arg key
+		set key = this.k(key)
+		set value = this.get(key, "0", true);
+		set value = parseFloat(value) + 1
+		_ this.set(key, value)
+
+	m unique
+		arg collectionName
+		arg propertyName
+		arg baseValue
+		var items = this.get(collectionName)
+		var item = this._find(items, propertyName, baseValue)
+		if item === null
+			return baseValue
+		else
+			var n = 1
+			while item !== null
+				set n++
+				set item = this._find(items, propertyName, baseValue + n)
+			return baseValue + n
+
+	m _find
+		arg collection
+		arg propertyName
+		arg value
+		foreach item in collection
+			if item[propertyName] === value
+				return item
+		return null;
+
+	m _cleanNG
+		arg collection
+		if Object.prototype.toString.call( collection ) === '[object Array]'
+			foreach item in collection
+				set delete item.$$hashKey

@@ -1,0 +1,145 @@
+h/root/empty_layout( )
+
+	$
+		for (var i = 0; i < mpage.apis.length; i++) {
+			var api = mpage.apis[i];
+			api._id = api.method + _.replace(_.replace(api.url, ':', '_'), '/', '_');
+		}
+
+	$append head-styles
+		css ./styles.css.ittf
+
+	. d-container
+		. d-left-aside
+			ul
+				$foreach api in mpage.apis
+					li
+						a ${api.title}
+							href #api_id_${api.url}
+		. d-main-content
+			$foreach api in mpage.apis
+				. d-api
+					id api_id_${api.url}
+					h3 ${api.title}
+					d-prop( method, ${api.method}
+					d-prop( url, ${api.url}
+
+					$if api.parameters.length > 0
+						h4 Parameters
+						. d-params-panel
+							$foreach p in api.parameters
+								d-control( ${p.type},
+									\b param_${ api._id + '_' + p.name },
+									\b ${p.label},
+									\b ${p.demoValue}
+
+					. d-buttons
+						button Exec
+							id btn_${ api._id }
+				hr
+		. d-right-aside
+			. container
+				pre
+					id output
+
+	$append body-scripts
+		js ./main.js.ittf
+		script
+			module
+				var btn
+				$foreach api in mpage.apis
+					set btn = document.querySelector("#" + 'btn_${ api._id }')
+					_ btn.addEventListener
+						@ 'click'
+						function
+							$if api.method == 'get'
+								var url = '${api.url}'
+								$foreach p in api.parameters
+									var param_${p.name} = get_value('param_${ api._id + '_' + p.name }')
+									$if p.paramType == 'url'
+										set url = url.replaceAll(':${p.name}', param_${p.name})
+									$else
+										$if p_index == 0
+											set url += '?${p.name}=' + param_${p.name}
+										$else
+											set url += '&${p.name}=' + param_${p.name}
+								_ exec_get
+									@ url
+							$elif api.method == 'post' || api.method == 'put'
+								var url = '${api.url}'
+								var payload = {}
+								$foreach p in api.parameters
+									var param_${p.name} = get_value('param_${ api._id + '_' + p.name }')
+									$if p.paramType == 'url'
+										set url = url.replaceAll(':${p.name}', param_${p.name})
+									$else
+										set payload['${p.name}'] = param_${p.name}
+								_ exec_with_payload
+									@ '${api.method}'
+									@ url
+									@ payload 
+							$else
+								_ alert('${api.method} ${api.url}')
+
+				function get_value
+					param id
+					var el = document.querySelector("#" + id)
+					return el.value
+
+				function exec_get
+					param url
+					param payload
+					log 'url', url
+					var output = document.querySelector("#output")
+					_ fetch
+						@ url
+						._ then
+							=>
+								param response
+								return response.json()
+						._ then
+							=>
+								param json
+								set output.className = 'container'
+								set output.innerHTML = JSON.stringify(json.data, null, 2)
+								log 'exec_.response.json', json
+								$*
+								if getApiId === "/api/studio/document" || getApiId === "/api/studio/fragment"
+									set document.getElementById('content').value = json.data.data
+								*$
+                        ._ catch
+                            function 
+                                param err
+                                set output.className = 'container text-danger'
+								set output.innerHTML = err.message || JSON.stringify(err.error, null, 2)
+
+				function exec_with_payload
+					param method
+					param url
+					param payload 
+					log 'url', url
+					log 'payload ', payload 
+					var output = document.querySelector("#output")
+					_ fetch
+						@ url
+						{
+							@ method method
+							{ headers
+								@ 'Accept' 'application/json'
+								@ 'Content-Type' 'application/json'
+							@ body JSON.stringify(payload )
+						._ then
+							=>
+								param response
+								return response.json()
+						._ then
+							=>
+								param json
+								log 'exec_with_payload.response.json', json
+								set output.className = 'container'
+								set output.innerHTML = JSON.stringify(json.data, null, 2)
+                        ._ catch
+                            function 
+                                param err
+                                set output.className = 'container text-danger'
+                                set output.innerHTML = err.message || JSON.stringify({ err: err.error }, null, 2)

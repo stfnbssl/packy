@@ -1,0 +1,14 @@
+﻿$group
+
+	. fl
+		margin 12px 0
+
+	. fl-nodes
+		padding 0 8px
+
+    . fl-icon
+        height 16px !important
+        width 16px !important
+        @ fill currentcolor !important
+        vertical-align middle !important
+        opacity 0.7 !important

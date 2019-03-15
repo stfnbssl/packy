@@ -1,0 +1,31 @@
+﻿$group
+
+	react-component( App )
+		ctor
+			set this.state = {}
+
+		m componentWillMount
+			var that = this
+			_ Pub
+				@ K.EVENTS.APP.START
+				{
+					@ userId State.userId
+
+			_ Sub
+				@ K.AREA.STATE + K.REPO.FOLDERDATA
+				function
+					param message, data
+					log 'App', K.AREA.STATE + K.REPO.FOLDERDATA, message, data
+					_ that.setState
+						{
+							@ ...that.state
+							@ folderData data
+
+		m render
+			const { folderData } = this.state
+			log 'App.render.folderData', folderData
+			return
+				div
+					h1 Hello world
+					< RepoContainer
+						@ folderData {folderData}				

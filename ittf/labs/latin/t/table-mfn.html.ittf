@@ -1,0 +1,17 @@
+﻿table
+	class latin-table
+	tr
+		td caso
+		td singolare
+			colspan 3
+		td plurale
+			colspan 3
+
+	tr
+		td
+		td M
+		td F
+		td N
+		td M
+		td F
+		td N

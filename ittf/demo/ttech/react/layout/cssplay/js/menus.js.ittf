@@ -1,0 +1,245 @@
+﻿module 
+    kind react
+
+	$include _builder
+	$include hoverMixin
+	$include paragraph
+	$include heading
+	$include link
+	$include toggler
+	$include menubar
+	$include sidePanel
+	$include infoPanel
+	$include infoLinks
+	$include flexPanel
+	$include slidePanel
+	$include sectionPanel
+	$include wrapperPanel
+	$include layoutPanel
+
+    const p_style
+		{
+			@ padding 0
+			@ margin '20px 5%'
+			@ font "300 16px/22px 'Open Sans', sans-serif"
+			@ color '#333'
+
+	var layoutData
+		x_panel( wrapper, wrapper )
+			$append props
+				@ fixEvent 'toggle-mainmenu'
+				@ flex 'row'
+			x_panel( section, header )
+				$append props
+					@ style
+						{
+							@ order 1
+							@ width '100%'
+							@ backgroundColor '#fff'
+							@ marginBottom '20px'
+							@ borderBottom '1px solid #ccc'
+							@ position 'relative'
+				{
+					@ kind 'link'
+					@ format 'a.img'
+					@ href 'https://search.google.com/search-console/mobile-friendly?id=-qDOe1JWk0myCaSmUtHC9A'
+					@ src "/static/images/react/mobile-friendly.jpg"
+					@ title "Google Mobile-Friendly Tested"
+					@ img_style
+						{
+							@ display 'block'
+							@ height '110px'
+							@ position 'absolute'
+							@ left '10px'
+							@ top '4px'
+				{
+					@ kind 'heading'
+					@ format 'h1.span'
+					@ text 'Legoland '
+					@ span "Photographs"
+					@ style
+						{
+							@ h1
+								{
+									@ textAlign 'center'
+									@ font "700 45px/60px 'Open Sans', sans-serif"
+									@ color '#2ab'
+							@ span
+								{
+									@ color '#333'
+									@ font "300 45px/60px 'Open Sans', sans-serif"
+									@ textAlign 'center'
+				
+				x_panel( toggler, menuPanel )
+					$append props
+						@ event 'toggle-mainmenu'
+				x_panel( slide, menuBox )
+					$append props
+						@ flex 'row'
+						@ percWidth 100
+						@ toggleEvent 'toggle-mainmenu'
+						@ visibleOnStart false
+						@ style
+							{
+								@ width '100%'
+								@ height '100%'
+								@ backgroundCololr '#fff'
+								@ position 'fixed'
+								$$ @ left '-100%'
+								@ top '0'
+								# zIndex '10'
+								@ transition '0.3s'
+					
+					x_panel( side, menuLeft )
+						x_menu( div.a.i )
+							x_a_i( fa fa-facebook social, #url1 )
+							x_a_i( fa fa-twitter social, #url2 )
+							x_a_i( fa fa-linkedin social, #url3 )
+							x_a_i( fa fa-google-plus social, #url4 )
+					
+					x_panel( side, menuRight )
+						x_menu( ul.li.a )
+							x_li_a( link 1, #url1 )
+							x_li_a( link 2, #url2 )
+							x_li_a( link 3, #url3 )
+
+			x_info( h2.p+, infoPanel )
+				$append props
+					@ flex 'column'
+					@ heading 'Flexbox Layout'
+					@ style
+						{
+							@ order 2
+							@ width 'calc(66% * 0.98)'
+							@ margin '0 auto 20px auto'
+							@ border '1px solid #ccc'
+							@ backgroundColor '#fff'
+							@ paddingBottom '20px'
+					@ p_style
+						{
+							@ padding '5px 20px'
+							@ margin '0'
+							@ font "400 16px/20px 'Open Sans', sans-serif"
+							@ color '#333'
+
+				x_p( 19th January 2017 - for all the latest browsers and OS )
+				x_p( A simple CSS only layout using flexbox to organise and position the various panels. )
+				x_p( No javascript or jQuery has been used in this layout, even the menu uses just CSS and works in all the latest browsers and operating systems. )
+				x_p( If you are viewing on a PC then you can see the panels resize and reflow as the browser window size changes. )
+				x_p( The layout can be viewed on tablets and mobiles and the navigation resizes to suit. )
+				x_p( The photograph panels with will always be the same height in each row, and the order can be changed when resizing to keep similar size photographs on the same line. )
+				x_p( If you are using Firefox then the "Top of Page" arrow in the footer will give a smooth scroll back to the top of the page, using just CSS. )
+			
+			x_flex_row( content )
+				$append props
+					@ style
+						{
+							@ order 2
+							@ width '98%'
+							@ maxWidth '1900px'
+							@ margin '0 auto'
+				x_flex_row( centerPanel )
+					$append props
+						@ style
+							{
+								@ order 3
+								@ width '66%'
+					x_info( a.img )
+						$append props
+							@ src '/static/images/react/layout/z1.jpg'
+							@ href '#url'
+							@ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background."
+							@ p_style p_style
+						$include ./photoInfolinks.js
+					x_info( a.img )
+						$append props
+							@ src '/static/images/react/layout/z2.jpg'
+							@ href '#url'
+							@ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background."
+							@ p_style p_style
+						$include ./photoInfolinks.js
+					x_info( a.img )
+						$append props
+							@ src '/static/images/react/layout/z3.jpg'
+							@ href '#url'
+							@ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background."
+							@ p_style p_style
+						$include ./photoInfolinks.js
+					x_info( a.img )
+						$append props
+							@ src '/static/images/react/layout/z4.jpg'
+							@ href '#url'
+							@ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background."
+							@ p_style p_style
+						$include ./photoInfolinks.js
+					x_info( a.img )
+						$append props
+							@ src '/static/images/react/layout/z5.jpg'
+							@ href '#url'
+							@ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background."
+							@ p_style p_style
+						$include ./photoInfolinks.js
+					x_info( a.img )
+						$append props
+							@ src '/static/images/react/layout/z6.jpg'
+							@ href '#url'
+							@ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background."
+							@ p_style p_style
+						$include ./photoInfolinks.js
+					x_info( a.img )
+						$append props
+							@ src '/static/images/react/layout/z7.jpg'
+							@ href '#url'
+							@ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background."
+							@ p_style p_style
+						$include ./photoInfolinks.js
+					x_info( a.img )
+						$append props
+							@ src '/static/images/react/layout/z8.jpg'
+							@ href '#url'
+							@ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background."
+							@ p_style p_style
+						$include ./photoInfolinks.js
+					x_info( a.img )
+						$append props
+							@ src '/static/images/react/layout/z9.jpg'
+							@ href '#url'
+							@ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background."
+							@ p_style p_style
+						$include ./photoInfolinks.js
+
+				x_info( h2.p+, leftPanel )
+					$append props
+						@ heading 'Legoland'
+						@ style
+							{
+								@ order 1
+								@ width '16%'
+								@ background '#fff'
+								@ marginBottom '20px'
+								@ border '1px solid #ccc'
+					x_p( Legoland (trademark in uppercase as LEGOLAND&reg;) is a chain of Lego-themed children"s/family theme parks. )
+					x_p( They are not fully owned by Lego Group itself; rather they are owned and operated by the British theme park company Merlin Entertainments. )
+					x_p( It has over 55 interactive rides, attractions, live shows, building workshops and driving schools, not to mention a staggering 80 million LEGO&reg; bricks, all set in 150 acres of beautiful parkland. )
+
+				x_info( h2.p+, rightPanel )
+					$append props
+						@ heading 'Attractions'
+						@ style
+							{
+								@ order 3
+								@ width '16%'
+								@ background '#fff'
+								@ marginBottom '20px'
+								@ border '1px solid #ccc'
+					x_p( The parks are marketed to families with younger children (11 and under), and although the attractions include a number of roller coasters, the roller coasters are not as numerous or as extreme as those in other parks, and there is a greater emphasis on rides suitable for younger children. )
+					x_p( Legoland parks are split into various areas, which are consistent among the chain"s parks. For example, all six of the parks include a Lego miniland, a model village which includes models of landmarks and scenes from around the world, made from millions of genuine Lego bricks. )
+
+	ready
+		var MainComponent = builder.create(layoutData)
+		_ ReactDOM.render
+			< MainComponent
+				@ data { layoutData }
+			@ document.getElementById('container')
+
+    

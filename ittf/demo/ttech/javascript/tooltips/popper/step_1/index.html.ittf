@@ -1,0 +1,106 @@
+﻿h/std/empty_layout()
+    section 
+        class spotlight
+        . example
+			. rel
+				id example10reference1
+				p Hey!
+					class bold
+				p Choose where to put your popper!
+					class thin
+				select 
+					id example10positionSelector
+					option Top
+						value top
+					option Right
+						value right
+					option Bottom
+						value bottom
+					option Left
+						value left
+			. popper
+				@ width 200
+				id example10popper1
+				p Popper on
+					class bold
+					b 
+						id example10currentPosition
+						class currentPosition
+				. popper__arrow
+					@ x-arrow 
+    
+		. content
+			h2 Popper on your side!
+				id example10
+				tabindex 0
+			p What are you waiting for? Select a popper from that dropdown.
+				id example10Title
+				br 
+				+ Placing poppers around elements is just that easy!
+			div 
+				id example10code
+				++ var popper = new Popper(referenceElement, onPopper, {
+				++ placement: 'position'
+				++ });
+
+	$append head-styles
+		@style 
+			css
+				< #example10positionSelector
+					margin-top 1em
+				media (max-width: 460px)
+					< #example10popper1
+						max-width 100px
+    
+	$append body-scripts
+		script 
+			module
+				_ document.addEventListener
+					@ 'DOMContentLoaded'
+					function 
+						var index = 0
+						var popper
+						var code = $('#example10code').html()
+						_ $('#example10positionSelector').on('change', attachPopper).trigger('change')
+						# Stop autoflip popper when the user click on the dropdown
+						_ $('#example10positionSelector').on
+							@ 'click'
+							function 
+								_ clearInterval(autoPopperFunctionTimer)
+						var autoPopperFunctionTimer
+							_ setInterval
+								function 
+									if index === 0
+										_ $('#example10positionSelector').val('top')
+										_ $('#example10positionSelector').trigger('change')
+										set index++
+									else
+										if index === 1
+											_ $('#example10positionSelector').val('right')
+											_ $('#example10positionSelector').trigger('change')
+											set index++
+										else
+											if index === 2
+												_ $('#example10positionSelector').val('bottom')
+												_ $('#example10positionSelector').trigger('change')
+												set index++
+											else
+												_ $('#example10positionSelector').val('left')
+												_ $('#example10positionSelector').trigger('change')
+												set index = 0
+								@ 4000
+						function attachPopper
+							param evt
+							set position = evt.target.value
+							# Position of the popper
+							_ $('#example10code').html(code.replace('position', position))
+							_ $('.currentPosition').text(position)
+							set popper && popper.destroy()
+							set popper =
+								new Popper
+									@ example10reference1
+									@ example10popper1
+									{ 
+										@ placement position
+										@ boundariesElement example10reference1.parentNode
+

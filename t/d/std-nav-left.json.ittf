@@ -1,0 +1,22 @@
+$group
+
+	{ navLeft
+		$$ fixed true
+		drawer true
+		fullHeight true
+		width 250
+		drawerClosedWidth 50
+		backgroundColor "${l_colors[2]}"
+		[ items
+			d/link-item( /ittf/home/index.html.ittf, home, Dashboard
+			d/link-item( /ittf/demo/ttech/index.html.ittf, laptop, Target technologies
+			d/link-item( /ittf/demo/apps/index.html.ittf, laptop, Demo apps
+			d/link-item( /ittf/labs/index.html.ittf, laptop, Labs
+			d/link-item( /ittf/quick/index.html.ittf, laptop, Quick html test
+			d/link-item( /static/wizzi-play/index.html, app, Wizzi playground
+			d/link-item( /ittf/utils/performance/index.html.ittf, laptop, Js performance
+			d/link-item( /ittf/docs/cheatsheets/index.html.ittf, laptop, Wizzi cheat sheets
+			d/link-item( /ittf/repo/stefi/studio/wizzi/index.html.ittf, laptop, Wizzi
+			d/link-item( /ittf/repo/stefi/studio/wizzi/issues.html.ittf, laptop, Wizzi issues
+			d/link-item( /ittf/repo/stefi/studio/wizzi/todo.html.ittf, laptop, Wizzi TODO
+			d/link-item( /ittf/repo/stefi/studio/wizzi/activitylog.html.ittf, laptop, Wizzi activity log

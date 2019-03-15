@@ -1,0 +1,111 @@
+﻿$group
+
+	- main content markup
+
+	main
+		id mc-wrapper
+		$if l_hasSubPages
+			class mc-wrapper-layout-sub
+		$else
+			class mc-wrapper-layout
+
+		input
+			type checkbox
+			id mc-toggle-toc
+
+		input
+			type checkbox
+			id mc-toggle-toc-close
+			onchange mc_toggle_toc_Close()
+
+		. mc-frame
+
+			. mc-frame-bar
+				h1 Concepts
+					class mc-sidebar-left-title
+				h1
+					label &times;
+						for mc-toggle-toc-close
+						class mc-label-toggle-close
+			nav
+				class mc-sidebar-left
+			
+				div
+					id mc-toc
+					ul
+						li
+							a Introduction
+								href #c-intro
+								class mc-item-link
+							label Introduction
+								for mc-toggle-c-intro
+								class mc-label-toggle
+						$foreach concept in docs.concepts
+							li
+								a ${concept.name}
+									href #${concept.id}
+									class mc-item-link
+								label &nbsp; ${concept.name}
+									for mc-toggle-${concept.id}
+									class mc-label-toggle
+
+			. mc-content
+
+				div
+				
+					input
+						type checkbox
+						id mc-toggle-c-intro
+						onchange m_toggleChanged()
+					$foreach concept in docs.concepts
+						input
+							type checkbox
+							id mc-toggle-${concept.id}
+							onchange m_toggleChanged()
+
+					h1 Concepts
+						class mc-content-title
+						id c-intro
+					
+					. mc-pane mc-pane-c-intro
+						. summary
+							$foreach line in docs.summaryLines
+								lorem ${line.count}
+									units ${line.units}
+					
+					$foreach concept in docs.concepts
+						. mc-pane mc-pane-${concept.id}
+							h2 ${concept.name}
+								id ${concept.id}
+							. summary
+								$foreach line in concept.summaryLines
+									lorem ${line.count}
+										units ${line.units}
+
+	script
+		module
+			kind jsfile
+			set window.onload
+				function
+					var els = document.querySelectorAll("input[id^='mc-toggle-c-']")
+					foreach el in els
+						log el.checked
+
+			function m_toggleChanged
+				var el_toc = document.querySelector("input[id='mc-toggle-toc']")
+				var el_contents = document.querySelectorAll("input[id^='mc-toggle-c-']")
+				var seenTrue = false
+				foreach el in el_contents
+					log el.checked
+					if el.checked
+						set seenTrue = true
+				log 'el_toc.checked', el_toc.checked
+				set el_toc.checked = seenTrue
+				log 'el_toc.checked', el_toc.checked
+
+			function mc_toggle_toc_Close
+				var el_toc = document.querySelector("input[id='mc-toggle-toc']")
+				var el_contents = document.querySelectorAll("input[id^='mc-toggle-c-']")
+				foreach el in el_contents
+					set el.checked = false
+				set el_toc.checked = false

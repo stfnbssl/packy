@@ -1,0 +1,118 @@
+﻿$group
+
+	$include ./compose
+	$include ./getDisplayName
+
+	j/iife-wrapped( BxCreateHoc, reactJssCompose, jssModule, reactModule, propTypesModule, getDisplayName )
+		const {Component} = reactModule
+		const {instanceOf} = propTypesModule
+		const {SheetsRegistry, getDynamicStyles} = jssModule
+
+		const refNs = 'ref-' + String(Math.random()).substr(2)
+		const refs = sheet => sheet[refNs] || 0
+		const dec = sheet => --sheet[refNs]
+		const inc = sheet => ++sheet[refNs]
+
+		return
+			function
+				param jss
+				param InnerComponent
+				param stylesOrSheet
+				param options = {}
+				
+				let styles = stylesOrSheet
+				let staticSheet = null
+				let dynamicStyles
+
+				# Accept StyleSheet instance.
+				if stylesOrSheet && typeof stylesOrSheet.attach === 'function'
+					set staticSheet = stylesOrSheet
+					set styles = null
+
+				const displayName = getDisplayName(InnerComponent)
+
+				if !options.meta
+					set options.meta = displayName
+
+				const dynamicSheetOptions
+					{
+						@ ...options
+						@ meta options.meta + 'Dynamic'
+						@ link true
+
+				function ref
+					if !staticSheet
+						set staticSheet = jss.createStyleSheet(styles, options)
+						set dynamicStyles = reactJssCompose(staticSheet, getDynamicStyles(styles))
+					if staticSheet[refNs] === undefined
+						set staticSheet[refNs] = 0
+					if refs(staticSheet) === 0
+						_ staticSheet.attach()
+					_ inc(staticSheet)
+					return staticSheet
+						
+				function deref
+					if dec(staticSheet) === 0
+						_ staticSheet.detach()
+
+				class HocComponent
+					super Component
+
+					p InnerComponent = InnerComponent
+						static
+					p displayName = 'Jss(' + displayName + ')'
+						static
+					p contextTypes
+						static
+							@ jssSheetsRegistry instanceOf(SheetsRegistry)
+					p defaultProps = InnerComponent.defaultProps
+						static
+
+					m componentWillMount
+						set this.staticSheet = ref()
+						if this.dynamicSheet
+							_ this.dynamicSheet.attach()
+						elif dynamicStyles
+							set this.dynamicSheet
+								_ jss.createStyleSheet
+									@ dynamicStyles
+									@ dynamicSheetOptions
+									._ update
+										@ this.props
+										._ attach
+						const {jssSheetsRegistry} = this.context
+						if jssSheetsRegistry
+							_ jssSheetsRegistry.add(this.staticSheet)
+
+					m componentWillReceiveProps
+						param nextProps
+						if this.dynamicSheet
+							_ this.dynamicSheet.update(nextProps)
+
+					m componentWillUpdate
+						# TODO if process.env.NODE_ENV !== 'production'
+						# Support React Hot Loader.
+						if this.staticSheet !== staticSheet
+							_ this.staticSheet.detach()
+							set this.staticSheet = ref()
+
+					m componentWillUnmount
+						if this.staticSheet && !staticSheet
+							_ this.staticSheet.detach()
+							const {jssSheetsRegistry} = this.context
+							if jssSheetsRegistry
+								_ jssSheetsRegistry.remove(this.staticSheet)
+						else
+							_ deref()
+						if this.dynamicSheet
+							_ this.dynamicSheet.detach()
+
+					m render
+						const sheet = this.dynamicSheet || this.staticSheet
+						return
+							< InnerComponent
+								@ sheet {sheet}
+								@ classes {sheet.classes}
+								@ {...this.props}
+    		
+				return HocComponent

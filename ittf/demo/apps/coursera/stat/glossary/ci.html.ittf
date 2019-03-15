@@ -1,0 +1,77 @@
+$group
+	
+	glo(confidence interval, CI)
+		dd A type of interval estimate of a population parameter.
+		dd Consist of a range of values (interval) that act as good estimates of the unknown population parameter.
+		dd The frequence (probability) that the observed interval contains the true parameter 
+			\b if the experiment is repeated is called the confidence level.
+		dd Can be computed using the sampling distribution of the mean. 
+	
+	glo(confidence interval for a proportion, CI proportion)
+
+	glo(confidence level)
+		dd The probability that an interval estimate contains a certain value of a population parameter.
+		dd Is set by the researcher (not determined by data).
+	
+	glo(interval estimate)
+		dd A range of values within which the population parameter is expected to fall.
+	
+	glo(margin of error)
+		dd Is the distance of $ tot $ sample standard deviations $ \sigma_{\bar{x}} $ from the sample mean $ \mu_{\bar{x}} $.
+		dd Tells us how accurately our sample mean $ \mu_{\bar{x}} $ is likely to estimate a population mean $ \mu $. 
+	
+	glo(point estimate)
+		dd A single value that is a best guess for a population parameter.
+		dd A sample mean is a point estimate.
+	
+	glo(population parameter, statistical parameter)
+		dd Taken to be unobservable, and the statistician must infer what they can about the parameter based on observations based on a random sample taken from the population of interest.
+		b Examples
+		ul 
+			li location parameters
+				ul
+					li mean
+					li median
+					li mode
+			li dispersion parameters
+				ul
+					li standard deviation
+					li interquartile range (IQR)
+					li range
+					li mean absolute difference (Gini mean absolute difference)
+					li median absolute deviation (MAD)
+					li average absolute deviation (or simply called average deviation)
+					li distance standard deviation
+					li shape parameters
+	
+	glo(statistical inference)
+		b Methods
+		ul
+			li estimate population parameters
+			li test hypotheses about these parameters
+
+	glo(t-distribution)
+
+	
+		dd Is any member of a family of continuous probability distributions 
+			\b that arises when estimating the mean of a normally distributed population 
+			\b in situations where the sample size is small and population standard deviation is unknown.
+		dd The t-distribution for each sample size is different, and the larger the sample, 
+			\b the more the distribution resembles a normal distribution.
+
+	glo(degree of freedom (t-distribution)) 
+		dd Refers to the number of independent observations in a set of data.
+		dd When estimating a mean score or a proportion from a single sample, 
+			\b the number of independent observations is equal to the sample size minus one.
+
+	glo(T-table)
+		dd Works like a z-table, but each degree of freedom has different values.
+
+	glo(Z-table)
+		dd A standard normal table or Z-table.
+		dd Contains the values of the cumulative distribution function of the normal distribution. 
+		dd It is used to find the probability that a statistic is observed below, above, or between values on the standard normal distribution.
+		dd Since probability tables cannot be printed for every normal distribution, 
+			\b as there are an infinite variety of normal distributions,
+			\b it is common practice to convert a normal to a standard normal 
+			\b and then use the standard normal table to find probabilities.

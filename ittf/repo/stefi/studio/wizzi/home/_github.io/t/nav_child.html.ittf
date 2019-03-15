@@ -1,0 +1,16 @@
+﻿$group
+	$params name, href, title|@@null
+
+	$
+		var xtitle = title == null ? name : title;
+
+	$if gcurrentSubPage == name
+		a ${xtitle}
+			class navigation__child navigation__child--active
+			title ${href} ittf source code
+			href ${href}.html
+	$else
+		a ${xtitle}
+			class navigation__child
+			title ${href} ittf source code
+			href ${href}.html

@@ -1,0 +1,74 @@
+module
+	kind es6
+
+	$include g/js/wz/core
+	$include g/js/wz/node
+	$include g/js/wz/ace
+	$include g/js/wz/localstorage
+	$include g/js/wz/htmlBuilder
+	$include g/js/wz/contextMenu
+	$include g/js/wz/standalone
+	$include g/js/widgets/editorControl
+	$include g/js/widgets/treeNode
+	$include g/js/widgets/treeView
+	$include g/js/widgets/treeFilesystem
+
+	$include js/appManager
+	$include js/dataManager
+	$include js/treeManager
+
+	let glEventHub = new EventEmitter3()
+	set window.glEventHub = glEventHub
+	set window.path = wz.utils.path
+	
+
+    async-function prompt
+        param text
+        if typeof text === 'string'
+            return 
+                _ Swal
+                    { 
+                        @ text
+                        @ input 'text'
+                        @ useRejections true
+        else
+            if typeof text === 'object'
+                if text.input === undefined
+                    set text.input = 'text'
+                set text.useRejections = true
+                return Swal(text)
+
+	function initHandlers
+		set currentSchema = store.get('lastSchema')
+		_ wz.value('selectedSchema', currentSchema)
+		set currentEditContent
+			_ store.get
+				@ currentSchema + '_content'
+				@ currentSchema
+				@ true
+		_ editor.value
+			@ currentEditContent
+		_ wizzify
+		_ wz.change
+			@ 'selectedSchema'
+			=>
+				log 'onChangeSchema', event.target.value
+				set currentSchema = event.target.value
+				_ store.set('lastSchema', currentSchema)
+				set currentEditContent
+					_ store.get
+						@ currentSchema + '_content'
+						@ currentSchema
+						@ true
+				_ editor.value
+					@ currentEditContent
+				_ wizzify
+
+
+	
+	var app
+		new AppManager
+			{
+	_ app.start
+
+	

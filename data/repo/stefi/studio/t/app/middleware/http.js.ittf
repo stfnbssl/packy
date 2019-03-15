@@ -1,0 +1,149 @@
+﻿$group
+	$params &app
+	+
+	import util from 'util'
+	import querystring from 'querystring'
+	import axios from 'axios'
+	import isObject from 'lodash/isObject'
+	# import { pushState } from 'redux-react-router'
+	import utils from '../lib/utils'
+	import config from './config'
+	import { normalize } from 'normalizr'
+	+
+	const { notEmptyString } = utils
+	const error = utils.error('dashredux/middleware/http')
+	const throwError = utils.throwError('dashredux/middleware/http')
+	+
+	$include http/validateHttp.js
+	+
+	function payloadFromSuccess
+		param response
+		param schema
+		if response && response.data && response.data.status && response.data.status.code == 0
+			return schema ? normalize(response.data.data, schema) : response.data.data
+		elif response && response.data && response.data.status
+			return
+				{
+					@ error JSON.stringify(response.data.status, null, 2)
+		else
+			return
+				{
+					@ error JSON.stringify(response.data, null, 2)
+	+
+	function payloadFromFailure
+		param error
+		if error && error.response
+			return
+				{
+					@ error
+						_ JSON.stringify
+							{
+								@ status error.response.status
+								@ statusText error.response.statusText
+								@ data error.response.data
+							@ null
+							@ 2
+		else
+			return
+				{
+					@ error
+						_ JSON.stringify
+							@ error
+							@ null
+							@ 2
+
+	function createReceiveAction
+		param actionType
+		param initialAction
+        param payload
+		param response
+		+
+		log 'createReceiveAction.actionType.payload', actionType, payload
+		+
+		var finalAction
+			_ Object.assign
+				{
+				@ initialAction
+				{ 
+					@ type actionType
+					@ payload payload
+					@ status (response ? response.status : 'unknown')
+					@ statusText (response ? response.statusText : 'unknown')
+					@ headers (response ? response.headers : [])
+		delete finalAction[config.HTTP_REQUEST]
+		return finalAction
+    +
+	#
+		# param actionHttpRequest:Object { // the http request from which the request for axios and the next action are built
+		#   url:String,
+		#   method:String,
+		#   queryParams:Object,
+		#   payload:Object,
+		#   responseType:String,
+		#   timeout:Number,
+		#   schema:Object, // normalizr schema of response
+		#   types:Object, // action types: requestType, successType, failureType
+		# }
+		# param initialAction: String // the action that activated the request
+		# param dispatch: Function // the dispatcher of the next action after completion or failure
+    wz-function sendRequest
+		param actionHttpRequest
+		param initialAction
+		param dispatch
+		const { schema, types } = actionHttpRequest
+		const [ requestType, successType, failureType ] = types
+		+
+		var axiosConfig
+			_ validateCreateAxiosConfig(actionHttpRequest)
+		+
+		log 'middleware/http/sendRequest.axiosConfig', axiosConfig
+		+
+		if notEmptyString(requestType)
+			# signal that request is executing
+			_ dispatch
+				{
+					@ type requestType
+        return 
+            _ axios
+                @ axiosConfig 
+                ._ then
+                    function 
+                        param response
+						log 'http.response', response
+						if response.data.status && response.data.status.code == 0
+							_ dispatch
+								_ createReceiveAction
+									@ successType
+									@ initialAction
+									_ payloadFromSuccess
+										@ response
+										@ schema
+									@ response
+							log 'sendRequest.then actionHttpRequest.next', actionHttpRequest.next
+							if actionHttpRequest.next != null
+								_ dispatch(actionHttpRequest.next)
+						else
+                            _ dispatch
+                                _ createReceiveAction
+									@ failureType
+									@ initialAction
+									_ payloadFromSuccess
+										@ response
+										@ schema
+									@ response
+                    ._ catch
+                        function 
+                            param error
+							log 'http.error', error
+                            _ dispatch
+                                _ createReceiveAction
+									@ failureType
+									@ initialAction
+									_ payloadFromFailure
+										@ error
+									@ error.response
+							$* Error cannot resolve react-router/lib/isactive
+							_ dispatch
+                                _ pushState(null, '/error')
+							*$
+

@@ -1,0 +1,9 @@
+_layout( Integrals )
+
+	h2 Formulas
+		
+	formulas/integrals()
+
+	h2 Glossary
+		
+	glossary/integrals()

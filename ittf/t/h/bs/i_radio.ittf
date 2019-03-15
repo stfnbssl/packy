@@ -1,0 +1,9 @@
+. radio
+	$params id, name, value, label|@@null
+	label
+		input
+			id ${id}
+			type radio
+			name ${name}
+			value ${value}
+		+ ${label}

@@ -1,0 +1,88 @@
+html
+	$params title|@@null
+
+    head 
+		$if title != null
+			@title ${title}
+        meta 
+            charset utf-8
+        meta 
+            name viewport
+			content width=device-width, initial-scale=1
+		
+		script
+			module
+				var WizziBrowser
+					{ 
+						@ log
+							function 
+								var line
+									_ Array.prototype.slice.call(arguments).map
+										function 
+											param argument
+											return 
+												iif typeof argument === 'string'
+													then argument
+													else JSON.stringify(argument)
+										._ join
+											@ '\n '
+								if arguments.length > 1 && arguments[arguments.length-1] === '-'
+								    set line += new Array(50).join('-')
+								set document.querySelector('#wizzi-browser-log').textContent += line + '\n'
+						@ clearLog
+							function 
+								set document.querySelector('#wizzi-browser-log').textContent = ''
+						@ setStatus
+							function 
+								param status
+								set document.querySelector('#wizzi-browser-status').textContent = status
+						@ setContent
+							function 
+								param newContent
+								var content = document.querySelector('#wizzi-browser-content')
+								while content.hasChildNodes()
+									_ content.removeChild(content.lastChild)
+								_ content.appendChild(newContent)
+			
+				# Add a global error event listener early on in the page load, to help ensure that browsers
+				# which don't support specific functionality still end up displaying a meaningful message.
+				_ window.addEventListener
+					@ 'error'
+					function 
+						param error
+						log 'Global window error', error
+						if WizziBrowser && WizziBrowser.setStatus
+							_ WizziBrowser.setStatus(error.message + ' (Your browser may not support this feature.)')
+							# _ error.preventDefault
+		
+		$hook head-styles-0
+		@style
+			css
+				# wizzi-browser-status
+					margin .5em 0
+					font-style italic
+				# wizzi-browser-log
+					margin .5em 0
+					white-space pre-wrap
+				# wizzi-browser-content
+					margin .5em 0
+				# status:empty, #log:empty, #content:empty
+					display none
+		$hook head-styles
+		$hook head-styles-2
+
+    body 
+
+		$hook
+
+		$include h/script_meta
+
+		$hook body-scripts-0
+		div
+			# wizzi-browser-status
+			# wizzi-browser-log
+			# wizzi-browser-content
+		$hook body-scripts
+		$hook body-scripts-2
+
+

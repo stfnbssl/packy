@@ -1,0 +1,14 @@
+﻿$group
+	$params current, name, href, title, titleShort|@@null
+
+	$ var xtitle = titleShort ? titleShort : title;
+
+	li
+		$if current === '${name}'
+			a ${title}
+				class selected-header-item-bottom
+				href ${href}.html
+		$else
+			a ${xtitle}
+				class header-item.bottom
+				href ${href}.html

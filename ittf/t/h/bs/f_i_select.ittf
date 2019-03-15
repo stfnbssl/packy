@@ -1,0 +1,6 @@
+f_group( ${id}, ${label}, ${haserror}, ${error} )
+	$params id, label, value|@@null, haserror|false, error|@@null
+	select
+		class form-control
+		id ${id}
+		name ${id}

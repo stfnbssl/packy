@@ -1,0 +1,74 @@
+﻿$group
+
+	# SHOULD BECAME : eventListener
+
+	#
+		# params
+		# [ optionsArray
+		#   { options
+		#     string eventName
+		#       optional
+		#     string container
+		#     string class
+		#     string dataField
+		#       optional
+		#   { clickHandler
+	function setupClickListener
+		param optionsArray
+		foreach options in optionsArray
+			var el = wz.element('#' + options.containerId)
+			if !el
+				throw new Error('wz.setupClickHandler requires an existing `options.containerId` html element. Received: ' + options.containerId)
+			if options.eventName && options.eventName === 'contextmenu'
+				_ wz.contextmenu
+					@ el
+					@ create_clickListener(options)
+			else
+				_ wz.click
+					@ el
+					@ create_clickListener(options)
+			log 'setupClickListener.binded', options.containerId
+
+	function create_clickListener
+		param options
+		return
+			function clickListener
+				param event
+				log 'clickListener.target', event.target
+				log 'has class ' + options.targetClass, wz.hasClass(event.target, options.targetClass)
+				
+				if wz.hasClass(event.target, options.targetClass)
+
+					var dataValue = null
+					if options.dataField
+						if Array.isArray(options.dataField)
+							set dataValue = {}
+							foreach item in options.dataField
+								set dataValue[item] = event.target.dataset[item]
+						else
+							set dataValue = event.target.dataset[options.dataField]
+						log 'clickListener.target.dataValue', dataValue
+
+					if options.eventName && options.eventName === 'contextmenu'
+						_ options.clickHandler.handleContextMenu
+							@ event.target
+							@ dataValue
+					else
+						_ options.clickHandler.handleClick
+							@ event.target
+							@ dataValue
+					
+					_ event.preventDefault()
+					_ event.stopPropagation()
+				
+				else
+					
+					if options.clickHandler.checkContextMenu
+						if options.clickHandler.checkContextMenu(event.target)
+							_ event.preventDefault()
+							_ event.stopPropagation()					
+					
+					if options.clickHandler.checkClick
+						if options.clickHandler.checkClick(event.target)
+							_ event.preventDefault()
+							_ event.stopPropagation()

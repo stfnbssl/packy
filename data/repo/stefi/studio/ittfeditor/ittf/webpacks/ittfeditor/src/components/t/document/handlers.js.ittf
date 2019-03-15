@@ -1,0 +1,12 @@
+﻿$group
+
+	=> handleSelectProject
+		param project
+		_ this.handleCloseCreateProjectDialog()
+		_ this.props.onSelectProject(project)
+
+	=> handleCreateProjectSubmit
+		param project
+		_ this.handleCloseCreateProjectDialog()
+		_ this.props.onCreateProjectSubmit(project)
+

@@ -1,0 +1,99 @@
+﻿$group
+
+	# boolean mounted
+	# MTreeNode rootMTreeNode
+	
+	withStyles( DynApp )
+
+		style
+			@ editorRoot
+				{
+					@ backgroundColor '#312934'
+
+		state
+			@ sourceNode
+				{
+
+		ctor
+			set global.dynApp = this
+			set this.mounted = false
+			set this.view_id = 'dynapp_view' + global.counter++
+			set this.meta_id = 'dynapp_meta' + global.counter++
+
+		did-mount
+			const sourceNode = retrieveSourceNodeFromStorage()
+
+			# log 'DynApp.sourceNode.fromStorage', sourceNode
+
+			set this.rootMTreeNode = new MTreeNode(this, null)
+			_ this.rootMTreeNode.fromElement(sourceNode)
+
+			set_state()
+				@ sourceNode retrieveSourceNodeFromStorage()
+				@ styles this.rootMTreeNode.toStyles()
+
+			set this.mounted = true
+
+		m hasChanged
+			if !this.mounted
+				return
+
+			# log 'DynApp.hasChanged. Enter'
+
+			const sourceNode 
+				_ this.rootMTreeNode.toElement
+
+			log 'DynApp.hasChanged. The rebuilded sourceNode', sourceNode
+			
+			_ saveSourceNodeToStorage(sourceNode)
+			
+			# triggers render		
+			set_state()
+				@ sourceNode sourceNode
+				@ styles this.rootMTreeNode.toStyles()
+		
+		render
+			prop classes
+			const {sourceNode, styles} = this.state
+
+			# log 'DynApp.render. this.rootMTreeNode', this.rootMTreeNode
+
+			const DynHtmlViewStyled = withStyles(styles)(DynHtmlView)
+			
+			if !this.rootMTreeNode
+				return
+					_ React.createElement
+						@ 'div'
+						@ null
+						@ 'waiting state'
+			else
+				return
+					_ React.createElement
+						@ SplitPane
+						{
+							@ minSize 800
+							@ maxSize 1000
+							@ resizerStyle
+								{
+									@ width '18px'
+									@ cursor 'col-resize'
+									@ backgroundColor '#343436'
+							@ pane1Style
+								{
+									@ backgroundColor '#312934'
+						[
+							_ React.createElement
+								@ 'div'
+								{
+									@ key this.meta_id
+								_ React.createElement
+									@ DynMTreeView
+									{
+										
+							_ React.createElement
+								@ DynHtmlViewStyled
+								{
+									@ key this.view_id
+									@ mTreeNode this.rootMTreeNode
+
+

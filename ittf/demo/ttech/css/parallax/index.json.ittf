@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'parallax',
+			label: 'Parallax',
+			experimentsWith: 'Parallax scrolling effects',
+			path: [
+				{
+					name: 'css',
+					label: 'Css',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

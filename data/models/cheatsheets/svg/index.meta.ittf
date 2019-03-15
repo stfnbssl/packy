@@ -1,0 +1,5 @@
+﻿meta
+	schema svg
+	$include base
+	$include shapes
+	$include paths

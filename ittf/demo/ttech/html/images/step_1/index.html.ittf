@@ -1,0 +1,39 @@
+﻿h/root/empty_layout( Html images playground )
+
+	$append head-styles
+        css ./main.css.ittf
+	
+	$append body-scripts
+		js https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js
+        js ./main.js.ittf
+
+	$
+		var play = {
+			title: 'Html images'
+		}
+
+    section
+        class flex
+        aside 
+            id sidebar
+            class sidebar flex
+            hgroup 
+                class hgroup flex
+                a ${play.title}
+                    href #
+                span &lsaquo;
+                    class toggle-controls
+                    id toggle-controls
+            menu
+                class controls flex
+				$include ./propsBox
+            
+		figure 
+            id demo
+            class main-container demo		
+			
+	section 
+        class results flex
+		pre
+			id demo-html
+			class demo-html prettyprint

@@ -1,0 +1,13 @@
+﻿module
+	kind react
+
+	$include app-options
+	
+	app/store/reducers/index( &app )
+
+		$append imports
+			import commonsReducer from './commonsReducer'
+
+		@ commons commonsReducer
+
+  

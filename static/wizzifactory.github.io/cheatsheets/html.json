@@ -1,0 +1,71 @@
+{
+    "title": "Schema cheat sheet",
+    "language": "html",
+    "elements": [
+        {
+            "name": "htmlElement",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "Html document structure",
+                    "ittfWrapped": "html \\n    head \\n        @title \\n    body \\n        header \\n        section \\n        footer ",
+                    "generated": "\\n&lt;!doctype html&gt;\\n&lt;html&gt;\\n&lt;head&gt;\\n    &lt;title&gt;&lt;/title&gt;\\n&lt;/head&gt;\\n&lt;body&gt;\\n    &lt;header&gt;&lt;/header&gt;\\n    &lt;section&gt;&lt;/section&gt;\\n    &lt;footer&gt;&lt;/footer&gt;\\n&lt;/body&gt;\\n\\n&lt;/html&gt;\\n"
+                }
+            ]
+        },
+        {
+            "name": "include css",
+            "tag": "@style + css",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "style tag with inclusion of a css wizzi model",
+                    "ittfWrapped": "html \\n    head \\n        @style \\n            css \\n                < body\\n                    font-family arial, verdana, sans-serif\\n                    font-size 13px\\n                < h1, h2, h3\\n                    margin 0\\n                . wrapper\\n                    margin 1rem 0.5rem",
+                    "generated": "\\n&lt;!doctype html&gt;\\n&lt;html&gt;\\n&lt;head&gt;\\n    &lt;style&gt;\\n        body {\\n            font-family: arial, verdana, sans-serif;\\n            font-size: 13px;\\n        }\\n        h1,  h2,  h3 {\\n            margin: 0;\\n        }\\n        .wrapper {\\n            margin: 1rem 0.5rem;\\n        }\\n    &lt;/style&gt;\\n&lt;/head&gt;\\n\\n&lt;/html&gt;\\n"
+                }
+            ]
+        },
+        {
+            "name": "include js",
+            "tag": "script + module",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "script tag with inclusion of a js wizzi model",
+                    "ittfWrapped": "html \\n    body \\n        script \\n            module \\n                function sayHello\\n                    log 'Hello'\\n                _ sayHello",
+                    "generated": "\\n&lt;!doctype html&gt;\\n&lt;html&gt;\\n&lt;body&gt;\\n    &lt;script&gt;\\n        function sayHello() {\\n            console.log('Hello');\\n        }\\n        sayHello();\\n    &lt;/script&gt;\\n&lt;/body&gt;\\n\\n&lt;/html&gt;\\n"
+                }
+            ]
+        },
+        {
+            "name": "include json",
+            "tag": "json + {",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "json tag (not standard) with inclusion of a json model",
+                    "ittfWrapped": "html \\n    body \\n        json profile\\n            { \\n                name 'stefi'\\n                job 'wizzi'\\n        script \\n            module \\n                var p\\n                    _ JSON.parse\\n                        @ document.querySelector('#profile').text\\n                log 'profile.name', p.name\\n                log 'profile.job', p.job",
+                    "generated": "\\n&lt;!doctype html&gt;\\n&lt;html&gt;\\n&lt;body&gt;\\n    &lt;script type=\\\"application/json\\\" id=\\\"profile\\\" &gt;\\n        {\\n            \\\"name\\\": \\\"stefi\\\",\\n            \\\"job\\\": \\\"wizzi\\\"\\n        }\\n    &lt;/script&gt;\\n    &lt;script&gt;\\n        var p = JSON.parse(document.querySelector('#profile').text);\\n        console.log('profile.name', p.name);\\n        console.log('profile.job', p.job);\\n    &lt;/script&gt;\\n&lt;/body&gt;\\n\\n&lt;/html&gt;\\n"
+                }
+            ]
+        },
+        {
+            "name": "include svg",
+            "tag": "img + svg",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "script tag with inclusion of a json model",
+                    "ittfWrapped": "html \\n    head \\n    body \\n        div \\n            img \\n                svg \\n                    rect \\n                        x 10\\n                        y 10\\n                        width 200\\n                        height 100",
+                    "generated": "\\n&lt;!doctype html&gt;\\n&lt;html&gt;\\n&lt;head&gt;&lt;/head&gt;\\n&lt;body&gt;\\n    &lt;div&gt;\\n        &lt;img /&gt;\\n    &lt;/div&gt;\\n&lt;/body&gt;\\n\\n&lt;/html&gt;\\n"
+                }
+            ]
+        }
+    ]
+}

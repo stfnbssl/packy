@@ -1,0 +1,59 @@
+﻿. file-header
+    . file-actions
+        select 
+            className form-select select-sm js-code-indent-mode
+            optgroup 
+                label Indent mode
+                option Spaces
+                    value space
+                    selected selected
+                option Tabs
+                    value tab
+        select 
+            className form-select select-sm js-code-indent-width
+            optgroup 
+                label Indent size
+                option 2
+                    value 2
+                    selected selected
+                option 4
+                    value 4
+                option 8
+                    value 8
+        select 
+            className form-select select-sm js-code-wrap-mode
+            optgroup 
+                label Line wrap mode
+                option No wrap
+                    value off
+                option Soft wrap
+                    value on
+                    selected selected
+    nav 
+        className tabnav-tabs
+        button 
+            type button
+            className btn-link code tabnav-tab js-blob-edit-code selected
+            svg 
+                aria-hidden true
+                className octicon octicon-code
+                height 16
+                viewBox 0 0 14 16
+                width 14
+                path 
+                    fillRule evenodd
+                    d M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z
+        + Edit file
+		button 
+			type button
+			className btn-link preview tabnav-tab js-blob-edit-preview
+			svg 
+				aria-hidden true
+				className octicon octicon-eye
+				height 16
+				viewBox 0 0 16 16
+				width 16
+				path 
+					fillRule evenodd
+					d M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z
+		+ Preview changes

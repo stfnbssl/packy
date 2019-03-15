@@ -1,0 +1,12 @@
+﻿module
+	kind react
+	
+	import ReactDOM from 'react-dom'
+	import foo from './foo'
+	import HelloWorld from './helloWorld'
+
+	export-default
+		function
+			log foo
+			_ ReactDOM.render
+				< HelloWorld

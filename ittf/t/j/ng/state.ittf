@@ -1,0 +1,10 @@
+﻿_ $stateProvider.state
+	$params name, url, templateUrl|@@null, controller|@@null
+	@ '${name}'
+	{
+		@ url '${url}'
+		$if templateUrl != null
+			@ templateUrl '${templateUrl}'
+		$if controller != null
+			@ controller '${controller}'
+		$hook

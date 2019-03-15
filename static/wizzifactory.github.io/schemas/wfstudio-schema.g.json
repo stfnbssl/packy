@@ -1,0 +1,2333 @@
+{
+  "name": "wfstudio",
+  "preserveTags": true,
+  "requires": [],
+  "exportTos": [
+    "json"
+  ],
+  "elements": [
+    {
+      "name": "wfstudioitem",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "wfstudioitem"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "comment",
+          "tags": [
+            "#"
+          ]
+        },
+        {
+          "name": "property",
+          "tags": [
+            "property"
+          ]
+        },
+        {
+          "name": "wfstudio",
+          "tags": [
+            "wfstudio"
+          ]
+        },
+        {
+          "name": "folder",
+          "tags": [
+            "folder"
+          ]
+        },
+        {
+          "name": "aspect",
+          "tags": [
+            "aspect"
+          ]
+        },
+        {
+          "name": "project",
+          "tags": [
+            "project"
+          ]
+        },
+        {
+          "name": "xpackage",
+          "tags": [
+            "package"
+          ]
+        },
+        {
+          "name": "schema",
+          "tags": [
+            "schema"
+          ]
+        },
+        {
+          "name": "artifact",
+          "tags": [
+            "artifact"
+          ]
+        },
+        {
+          "name": "transform",
+          "tags": [
+            "transform"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "propertyOfCategory",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [
+            "categoryName"
+          ],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "ret = []",
+              "statements": []
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "item in this.properties",
+              "statements": [
+                {
+                  "tag": "if",
+                  "name": "xif",
+                  "value": "item.category === categoryName",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "ret.push(item)",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "ret",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "comment",
+      "super": "wfstudioitem",
+      "isRoot": false,
+      "tags": [
+        "#"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "property",
+      "super": "wfstudioitem",
+      "isRoot": false,
+      "tags": [
+        "property"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "category",
+          "type": "string",
+          "tags": [
+            "category"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "tags": [
+            "name"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "tags": [
+            "value"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.name = this.wzName",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "wfstudio",
+      "super": "wfstudioitem",
+      "isRoot": true,
+      "tags": [
+        "wfstudio"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "project",
+          "role": "projects",
+          "tags": [
+            "project"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "package",
+          "role": "packages",
+          "tags": [
+            "package"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.packagesEx",
+              "statements": [
+                {
+                  "tag": "[",
+                  "name": "jsArray",
+                  "value": "",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.projectsEx",
+              "statements": [
+                {
+                  "tag": "[",
+                  "name": "jsArray",
+                  "value": "",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.schemas",
+              "statements": [
+                {
+                  "tag": "[",
+                  "name": "jsArray",
+                  "value": "",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.artifacts",
+              "statements": [
+                {
+                  "tag": "[",
+                  "name": "jsArray",
+                  "value": "",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "packageEx, folder",
+              "statements": []
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "p in this.packages",
+              "statements": [
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "packageEx",
+                  "statements": [
+                    {
+                      "tag": "{",
+                      "name": "jsObject",
+                      "value": "",
+                      "statements": [
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "name p.wzName",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "description p.description",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "baseFolderUri p.baseFolderUri",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "srcFolder p.srcFolder",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "destFolder p.destFolder",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "folders []",
+                          "statements": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "foreach",
+                  "name": "foreach",
+                  "value": "f in p.folders",
+                  "statements": [
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "folder",
+                      "statements": [
+                        {
+                          "tag": "{",
+                          "name": "jsObject",
+                          "value": "",
+                          "statements": [
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "name f.wzName",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "fullPath path.join(p.baseFolderUri, f.wzName)",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "aspects []",
+                              "statements": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "foreach",
+                      "name": "foreach",
+                      "value": "a in f.aspects",
+                      "statements": [
+                        {
+                          "tag": "_",
+                          "name": "call",
+                          "value": "folder.aspects.push(a.wzName)",
+                          "statements": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "packageEx.folders.push",
+                      "statements": [
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "folder",
+                          "statements": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "this.packagesEx.push",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "packageEx",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "var",
+                  "name": "xvar",
+                  "value": "schema, artifact",
+                  "statements": []
+                },
+                {
+                  "tag": "foreach",
+                  "name": "foreach",
+                  "value": "s in p.schemas",
+                  "statements": [
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "schema",
+                      "statements": [
+                        {
+                          "tag": "{",
+                          "name": "jsObject",
+                          "value": "",
+                          "statements": [
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "package p.wzName",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "name s.wzName",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "uri p.wzName + '/' + s.wzName",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "srcPath s.srcPath",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "modelPath s.modelPath",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "factoryPath s.factoryPath",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "jsonDocPath s.jsonDocPath",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "defaultArtifact s.defaultArtifact",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "isPseudo s.isPseudo",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "artifacts",
+                              "statements": [
+                                {
+                                  "tag": "[",
+                                  "name": "jsArray",
+                                  "value": "",
+                                  "statements": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "this.schemas.push",
+                      "statements": [
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "schema",
+                          "statements": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "foreach",
+                      "name": "foreach",
+                      "value": "a in s.artifacts",
+                      "statements": [
+                        {
+                          "tag": "set",
+                          "name": "set",
+                          "value": "artifact",
+                          "statements": [
+                            {
+                              "tag": "{",
+                              "name": "jsObject",
+                              "value": "",
+                              "statements": [
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "name s.wzName + '/' + a.wzName",
+                                  "statements": []
+                                },
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "package p.wzName",
+                                  "statements": []
+                                },
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "schema s.wzName",
+                                  "statements": []
+                                },
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "srcPath a.srcPath",
+                                  "statements": []
+                                },
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "modulePath a.modulePath",
+                                  "statements": []
+                                },
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "isDefault a.isDefault",
+                                  "statements": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "_",
+                          "name": "call",
+                          "value": "this.artifacts.push",
+                          "statements": [
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "artifact",
+                              "statements": []
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "_",
+                          "name": "call",
+                          "value": "schema.artifacts.push",
+                          "statements": [
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "artifact",
+                              "statements": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "p in this.projects",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "this.projectsEx.push",
+                  "statements": [
+                    {
+                      "tag": "{",
+                      "name": "jsObject",
+                      "value": "",
+                      "statements": [
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "name p.wzName",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "description p.description",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "srcFolder p.srcFolder",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "destFolder p.destFolder",
+                          "statements": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.__jsonProps",
+              "statements": [
+                {
+                  "tag": "{",
+                  "name": "jsObject",
+                  "value": "",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "packagesEx this.packagesEx",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "projectEx this.projectEx",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "schemas this.schemas",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "artifacts this.artifacts",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": [
+        "The root element"
+      ]
+    },
+    {
+      "name": "folder",
+      "super": "wfstudioitem",
+      "isRoot": false,
+      "tags": [
+        "folder"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "aspect",
+          "role": "aspects",
+          "tags": [
+            "aspect"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "aspect",
+      "super": "wfstudioitem",
+      "isRoot": false,
+      "tags": [
+        "aspect"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "project",
+      "super": "wfstudioitem",
+      "isRoot": false,
+      "tags": [
+        "project"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "srcFolder",
+          "type": "string",
+          "tags": [
+            "src-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "destFolder",
+          "type": "string",
+          "tags": [
+            "dest-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "tags": [
+            "description"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "folder",
+          "role": "folders",
+          "tags": [
+            "folder"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "aspect",
+          "role": "aspects",
+          "tags": [
+            "aspect"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xpackage",
+      "super": "wfstudioitem",
+      "isRoot": false,
+      "tags": [
+        "package"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "kind",
+          "type": "string",
+          "tags": [
+            "kind"
+          ],
+          "default": "kernel",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "kernel",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "plugin",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "app",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "demo",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "pluginName",
+          "type": "string",
+          "tags": [
+            "plugin-name"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "baseFolderUri",
+          "type": "string",
+          "tags": [
+            "base-folder-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "srcFolder",
+          "type": "string",
+          "tags": [
+            "src-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "destFolder",
+          "type": "string",
+          "tags": [
+            "dest-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "ittfFolder",
+          "type": "string",
+          "tags": [
+            "ittf-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "tags": [
+            "description"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "folder",
+          "role": "folders",
+          "tags": [
+            "folder"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "aspect",
+          "role": "aspects",
+          "tags": [
+            "aspect"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "schema",
+          "role": "schemas",
+          "tags": [
+            "schema"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "f in this.folders",
+              "statements": [
+                {
+                  "tag": "foreach",
+                  "name": "foreach",
+                  "value": "a in f.aspects",
+                  "statements": [
+                    {
+                      "tag": "if",
+                      "name": "xif",
+                      "value": "a.wzName === 'package-src'",
+                      "statements": [
+                        {
+                          "tag": "set",
+                          "name": "set",
+                          "value": "this.srcFolder = path.join(this.baseFolderUri, f.wzName)",
+                          "statements": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "elif",
+                      "name": "elif",
+                      "value": "a.wzName === 'package-build'",
+                      "statements": [
+                        {
+                          "tag": "set",
+                          "name": "set",
+                          "value": "this.destFolder = path.join(this.baseFolderUri, f.wzName)",
+                          "statements": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "elif",
+                      "name": "elif",
+                      "value": "a.wzName === 'package-ittf'",
+                      "statements": [
+                        {
+                          "tag": "set",
+                          "name": "set",
+                          "value": "this.ittfFolder = path.join(this.baseFolderUri, f.wzName)",
+                          "statements": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "wzverify",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "this.kind === 'plugin' && verify.isEmpty(this.pluginName)",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "ctx.addError",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'When the package kind is \"plugin\", the plugin-name attribute is required.'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "verify.isEmpty(this.baseFolderUri)",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "ctx.addError",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'The attribute \"base-folder-uri\" is required.'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "_",
+              "name": "call",
+              "value": "this.getSrcFolder()",
+              "statements": []
+            },
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "verify.isEmpty(this.srcFolder)",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "ctx.addError",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'A folder with aspect \"package-src\" is required.'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "_",
+              "name": "call",
+              "value": "this.getDestFolder()",
+              "statements": []
+            },
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "verify.isEmpty(this.destFolder)",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "ctx.addError",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'A folder with aspect \"package-build\" is required.'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "getSrcFolder",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "verify.isEmpty(this.srcFolder)",
+              "statements": [
+                {
+                  "tag": "foreach",
+                  "name": "foreach",
+                  "value": "f in this.folders",
+                  "statements": [
+                    {
+                      "tag": "foreach",
+                      "name": "foreach",
+                      "value": "a in f.aspects",
+                      "statements": [
+                        {
+                          "tag": "if",
+                          "name": "xif",
+                          "value": "a.wzName === 'package-src'",
+                          "statements": [
+                            {
+                              "tag": "set",
+                              "name": "set",
+                              "value": "this.srcFolder = path.join(this.baseFolderUri, f.wzName)",
+                              "statements": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "this.srcFolder",
+              "statements": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "getDestFolder",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "verify.isEmpty(this.destFolder)",
+              "statements": [
+                {
+                  "tag": "foreach",
+                  "name": "foreach",
+                  "value": "f in this.folders",
+                  "statements": [
+                    {
+                      "tag": "foreach",
+                      "name": "foreach",
+                      "value": "a in f.aspects",
+                      "statements": [
+                        {
+                          "tag": "if",
+                          "name": "xif",
+                          "value": "a.wzName === 'package-build'",
+                          "statements": [
+                            {
+                              "tag": "set",
+                              "name": "set",
+                              "value": "this.destFolder = path.join(this.baseFolderUri, f.wzName)",
+                              "statements": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "this.destFolder",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "schema",
+      "super": "wfstudioitem",
+      "isRoot": false,
+      "tags": [
+        "schema"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "srcPath",
+          "type": "string",
+          "tags": [
+            "srcPath"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "modelPath",
+          "type": "string",
+          "tags": [
+            "modelPath"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "factoryPath",
+          "type": "string",
+          "tags": [
+            "factoryPath"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "jsonDocPath",
+          "type": "string",
+          "tags": [
+            "jsonDocPath"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "htmlDocPath",
+          "type": "string",
+          "tags": [
+            "htmlDocPath"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultArtifact",
+          "type": "string",
+          "tags": [
+            "defaultArtifact"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultTransform",
+          "type": "string",
+          "tags": [
+            "defaultTransform"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isPseudo",
+          "type": "boolean",
+          "tags": [
+            "is-pseudo"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "artifact",
+          "role": "artifacts",
+          "tags": [
+            "artifact"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "transform",
+          "role": "transforms",
+          "tags": [
+            "transform"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "a in this.artifacts",
+              "statements": [
+                {
+                  "tag": "if",
+                  "name": "xif",
+                  "value": "a.isDefault",
+                  "statements": [
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "this.defaultArtifact = this.wzName + '/' + a.wzName",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "t in this.transforms",
+              "statements": [
+                {
+                  "tag": "if",
+                  "name": "xif",
+                  "value": "t.isDefault",
+                  "statements": [
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "this.defaultTransform = this.wzName + '/' + t.wzName",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "srcFolder",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "path.join",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "this.wzParent.getSrcFolder()",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'ittf'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'lib'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'wizzi'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'schemas'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "destFolder",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "path.join",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "this.wzParent.getDestFolder()",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'lib'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'wizzi'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'models'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.srcPath",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "path.join",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "srcFolder",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "this.wzName + '.wfschema.ittf'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.modelPath",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "path.join",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "destFolder",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "this.wzName + '-model.g.js'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.factoryPath",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "path.join",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "destFolder",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "this.wzName + '-factory.g.js'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.jsonDocPath",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "path.join",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "destFolder",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "this.wzName + '-schema.g.json'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.htmlDocPath",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "path.join",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "destFolder",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "this.wzName + '-schema.g.html'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "artifact",
+      "super": "wfstudioitem",
+      "isRoot": false,
+      "tags": [
+        "artifact"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "targetLanguage",
+          "type": "string",
+          "tags": [
+            "language"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDefault",
+          "type": "boolean",
+          "tags": [
+            "is-default"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "tags": [
+            "name"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "srcPath",
+          "type": "string",
+          "tags": [
+            "srcPath"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "modulePath",
+          "type": "string",
+          "tags": [
+            "modulePath"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "s = this.wzParent",
+              "statements": []
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "p = s.wzParent",
+              "statements": []
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.name = s.wzName + '/' + this.wzName",
+              "statements": []
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.srcPath",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "path.join",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "p.getSrcFolder()",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'ittf'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'lib'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'artifacts'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "s.wzName",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "this.wzName",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'gen'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'main.js.ittf'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.modulePath",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "path.join",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "p.getDestFolder()",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'lib'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'artifacts'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "s.wzName",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "this.wzName",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'gen'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'main.js'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "transform",
+      "super": "wfstudioitem",
+      "isRoot": false,
+      "tags": [
+        "transform"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "targetLanguage",
+          "type": "string",
+          "tags": [
+            "language"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDefault",
+          "type": "boolean",
+          "tags": [
+            "is-default"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "tags": [
+            "name"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "srcPath",
+          "type": "string",
+          "tags": [
+            "srcPath"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "modulePath",
+          "type": "string",
+          "tags": [
+            "modulePath"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "wfstudioitem",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "s = this.wzParent",
+              "statements": []
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "p = s.wzParent",
+              "statements": []
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.name = s.wzName + '/' + this.wzName",
+              "statements": []
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.srcPath",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "path.join",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "p.getSrcFolder()",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'ittf'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'lib'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'artifacts'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "s.wzName",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "this.wzName",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'trans'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'main.js.ittf'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.modulePath",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "path.join",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "p.getDestFolder()",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'lib'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'artifacts'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "s.wzName",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "this.wzName",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'trans'",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "'main.js'",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    }
+  ]
+}

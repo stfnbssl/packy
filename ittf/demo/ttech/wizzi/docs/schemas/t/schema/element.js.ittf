@@ -1,0 +1,109 @@
+﻿var Element
+	=>
+		param { element: e }
+		return
+			div
+				@ id { 'e-' + e.name}
+				@ name { 'e-' + e.name}
+				div
+					span { 'element '}
+						@ className schema-label-2
+					span { e.name }
+						@ className schema-title-2
+					{
+						&&
+							+ e.super
+							span { ' : ' + e.super }
+								@ className schema-title-2
+				
+				{
+					&&
+						+ showTags(e.name, e.tags).length > 0
+						div
+							span { 'tag '}
+								@ className schema-label-2
+							span { e.tags.join(' | ') }
+								@ className schema-title-2b
+				{
+					&&
+						+ e.isRoot
+						div
+							span { ' is-root '}
+								@ className schema-title-2b
+
+				div
+					@ className "schema-element-box"
+					< Comments
+						@ comments {e.comments}
+					{
+						&& 
+							+ e.attributes.length > 0
+							div
+								span attributes
+									@ className schema-e-subtitle
+								div
+									@ className schema-attributes-box
+									table
+										class schema-table
+										thead
+											tr
+												th name
+												th tag
+												th type
+												th default
+												th flags
+												th description
+										tbody
+											{
+												_ e.attributes.map
+													=>
+														param attribute
+														param index
+														return
+															< Attribute
+																@ attribute {attribute}
+																@ key {index}
+
+					{
+						&& 
+							+ e.relations.length > 0
+							div
+								span relations
+									@ className schema-e-subtitle
+								div
+									@ className schema-relations-box
+									table
+										class schema-table
+										thead
+											tr
+												th name
+												th role
+												th flags
+												th cardinality
+												th inherited
+										tbody
+											{
+												_ e.relations.map
+													=>
+														param relation
+														param index
+														return
+															< Relation
+																@ relation {relation}
+																@ key {index}
+					{
+						&& 
+							+ e.methods.length > 0
+							div
+								{
+									_ e.methods.map
+										=>
+											param method
+											param index
+											return
+												< Method
+													@ method {method}
+													@ key {index}
+
+
+

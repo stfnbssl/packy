@@ -1,0 +1,9 @@
+﻿meta
+	schema ts
+	$include modules
+	$include var
+	$include functions
+	$include classes
+	$include interfaces
+	$include generics
+	$include advanced

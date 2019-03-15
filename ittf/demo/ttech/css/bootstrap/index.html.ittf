@@ -1,0 +1,16 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'bootstrap',
+			label: 'Bootstrap',
+			experimentsWith: 'the Bootstrap ui framework',
+			path: [
+				{
+					name: 'css',
+					label: 'Css',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

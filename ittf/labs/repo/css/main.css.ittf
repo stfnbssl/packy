@@ -1,0 +1,23 @@
+﻿css
+
+	$include elements
+	$include tabnav
+	$include btn
+	$include container
+	$include file
+
+	. middle-container
+		width 980px
+		margin-right auto
+		margin-left auto
+
+	. file
+		position relative
+		margin-top 16px
+		margin-bottom 16px
+		border 1px solid #ddd
+		border-radius 3px
+
+
+
+

@@ -1,0 +1,35 @@
+﻿module
+	kind react
+
+	import React from "react"
+	import ReactDOM from 'react-dom'
+
+	function showTags
+		param name
+		param tags
+		return
+			_ tags.filter
+				=>
+					param tag
+					return tag != name 
+
+	$include schema/comments
+	$include schema/flags
+	$include schema/attribute
+	$include schema/relation
+	$include schema/method
+	$include schema/element
+	$include schema/schema
+	$include schema/modal-map
+	
+	function Template
+		param { data }
+
+		log 'Template.data', data
+		_ ReactDOM.render
+			< Schema
+				@ schema {data}
+			_ document.getElementById('schema-browser')
+
+	set window.Template = Template
+

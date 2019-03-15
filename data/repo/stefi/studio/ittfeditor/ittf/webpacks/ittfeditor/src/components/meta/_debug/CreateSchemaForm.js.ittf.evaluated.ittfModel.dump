@@ -1,0 +1,79 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React from 'react' ids: undefined undefined
+    import { Modal, Button, Form, FormGroup, FormControl, ControlLabel, Col } from 'react-bootstrap' ids: undefined undefined
+    let CreateSchemaForm ids: undefined undefined
+      =>  ids: undefined undefined
+        param { packages, showModal, onCancel, onCreateSubmit } ids: undefined undefined
+        let name ids: undefined undefined
+        let xpackage ids: undefined undefined
+        let options ids: undefined undefined
+          _ packages.map ids: undefined undefined
+            =>  ids: undefined undefined
+              param item ids: undefined undefined
+              return  ids: undefined undefined
+                < option ids: undefined undefined
+                  @ value {item.name} ids: undefined undefined
+                  @ key {item.name} ids: undefined undefined
+                  + {item.name} ids: undefined undefined
+        return  ids: undefined undefined
+          div  ids: undefined undefined
+            < Modal ids: undefined undefined
+              @ show {showModal} ids: undefined undefined
+              @ onHide {onCancel} ids: undefined undefined
+              < Modal.Header ids: undefined undefined
+                @ closeButton ids: undefined undefined
+                < Modal.Title Create a new schema ids: undefined undefined
+                < Modal.Body ids: undefined undefined
+                  < Form ids: undefined undefined
+                    @ horizontal ids: undefined undefined
+                    < FormGroup ids: undefined undefined
+                      @ controlId name ids: undefined undefined
+                      < Col ids: undefined undefined
+                        @ componentClass {ControlLabel} ids: undefined undefined
+                        @ sm {2} ids: undefined undefined
+                        + schema name ids: undefined undefined
+                      < Col ids: undefined undefined
+                        @ sm {10} ids: undefined undefined
+                        < FormControl ids: undefined undefined
+                          type text ids: undefined undefined
+                          placeholder schema name ids: undefined undefined
+                          @ key name ids: undefined undefined
+                          @ name name ids: undefined undefined
+                          @ ref ids: undefined undefined
+                            =>  ids: undefined undefined
+                              param node ids: undefined undefined
+                              set name = node ids: undefined undefined
+                    < FormGroup ids: undefined undefined
+                      @ controlId xpackage ids: undefined undefined
+                      < Col ids: undefined undefined
+                        @ componentClass {ControlLabel} ids: undefined undefined
+                        @ sm {2} ids: undefined undefined
+                        + package ids: undefined undefined
+                      < Col ids: undefined undefined
+                        @ sm {10} ids: undefined undefined
+                        < FormControl ids: undefined undefined
+                          @ componentClass select ids: undefined undefined
+                          placeholder package ids: undefined undefined
+                          @ key xpackage ids: undefined undefined
+                          @ name xpackage ids: undefined undefined
+                          @ ref ids: undefined undefined
+                            =>  ids: undefined undefined
+                              param node ids: undefined undefined
+                              set xpackage = node ids: undefined undefined
+                          + {options} ids: undefined undefined
+                < Modal.Footer ids: undefined undefined
+                  < Button Cancel ids: undefined undefined
+                    onClick {onCancel} ids: undefined undefined
+                  < Button Create Schema ids: undefined undefined
+                    onClick  ids: undefined undefined
+                      =>  ids: undefined undefined
+                        param e ids: undefined undefined
+                        _ e.preventDefault() ids: undefined undefined
+                        _ onCreateSubmit ids: undefined undefined
+                          @ name.value ids: undefined undefined
+                          @ xpackage.value ids: undefined undefined
+                        set name.value = '' ids: undefined undefined
+                        set xpackage.value = '' ids: undefined undefined
+    export default CreateSchemaForm ids: undefined undefined

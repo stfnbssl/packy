@@ -1,0 +1,40 @@
+﻿module
+	kind react
+
+	$include j/3dparty/colors
+	$include ./styles
+
+	const { Component } = React
+	const { render } = ReactDOM
+	const { StyleSheet } = jss
+	const jss = jss.default
+
+	_ jss.setup
+		_ jssPreset.default()
+
+	const { classes }
+		_ jss.createStyleSheet
+			@ styles
+			{
+				@ link true
+			._ attach
+
+	class App
+		super Component
+		m render
+			return
+				ul
+					li This is red.
+						@ className {classes.red}
+					li This turns red on hover.
+						@ className {classes.hover}
+					li This turns red when the browser is less than 600px width.
+						@ className {classes.small}
+					li This is blue.
+						@ className {classNames(classes.red, classes.blue)}
+					li This is blue and turns red when the browser is less than 600px width.
+						@ className {classNames(classes.blue, classes.small)}
+
+	_ render
+		< App 
+		@ document.getElementById('container')

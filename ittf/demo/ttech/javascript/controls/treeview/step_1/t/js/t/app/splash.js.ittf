@@ -1,0 +1,69 @@
+﻿$group
+
+	class SplashControl
+		ctor
+			param props
+			set this.props = props || {}
+			set this.key = props.key || 'default'
+			set this.splashEl = null
+			set this.state = []
+			set this.visible == false
+
+		m initialize
+			var containerEl
+				_ wz.element
+					@ this.props.container
+			set this.splashEl = document.createElement('div')
+			_ this.splashEl.setAttribute('class', this.props.className)
+			_ containerEl.appendChild(this.splashEl)
+
+			_ this.show
+
+			_ glEventHub.on
+				@ 'splash-hide'
+				=>
+					param data
+					log 'splash-hide', 1, data.key, this.key
+					if data.key !== this.key
+						return
+					log 'splash-hide', 2
+					_ this.hide
+			
+			_ glEventHub.on
+				@ 'splash-show'
+				=>
+					param data
+					if data.key !== this.key
+						return
+					_ this.show
+		
+		m hide
+			if this.visible == false
+				return
+			set this.visible = false
+			var containerEl
+				_ wz.element
+					@ this.props.container
+			foreach item in containerEl.children
+				if item != this.splashEl
+					_ wz.show
+						@ item
+				if this.state[item]
+					set item.style.display = this.state[item]
+			_ wz.hide
+				@ this.splashEl
+		
+		m show
+			if this.visible 
+				return
+			set this.visible = true
+			var containerEl
+				_ wz.element
+					@ this.props.container
+			_ wz.show
+				@ this.splashEl
+			foreach item in containerEl.children
+				if item != this.splashEl
+					set this.state[item] = item.style.display
+					_ wz.hide
+						@ item

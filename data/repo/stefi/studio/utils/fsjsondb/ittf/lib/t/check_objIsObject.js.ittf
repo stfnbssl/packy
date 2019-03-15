@@ -1,0 +1,6 @@
+$group
+
+	if _.isObject(obj) == false
+		return
+			_ callback
+				_ CRUD.missingObjectKeyError()

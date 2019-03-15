@@ -1,0 +1,25 @@
+﻿$group
+	
+	wz-class Row
+		super Component
+
+		m render
+			const { children } = this.props
+			return
+				div
+					@style {this.getStyle()}
+					row_before()
+					+ {children}
+					row_after()
+
+		m getStyle
+			param span
+			return
+				{
+					@ marginLeft 5
+					@ marginRight 5
+							
+	set Row.propTypes
+		{
+
+	export default Row

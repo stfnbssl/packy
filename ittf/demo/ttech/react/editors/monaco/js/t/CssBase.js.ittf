@@ -1,0 +1,66 @@
+﻿r-component( CssBase )
+	$params &opt
+
+	prop children
+		node
+		default null
+	
+	prop classes
+		{
+		required
+
+	$append style
+
+		@ '@global'
+			{
+				@ 'html'
+					{
+						@ WebkitFontSmoothing 'antialiased'
+						@ MozOsxFontSmoothing 'grayscale'
+						@ boxSizing 'border-box'
+				
+				@ '*, *::before, *::after'
+					{
+						@ boxSizing 'inherit'
+						@ margin 0
+						@ padding 0
+				
+				@ 'body'
+					{
+						@ margin 0
+						@ backgroundColor theme.palette.background.default
+						@ overflow 'hidden'
+						@ display 'flex'
+						@ flexDirection 'column'
+						@ paddingBottom '40px'
+						@ '@media print'
+							{
+								@ backgroundColor theme.palette.common.white
+				
+				@ '.main-header'
+					{
+						@ background '#0a0c12'
+						@ borderBottom '1px solid #222'
+						@ display 'flex'
+						@ alignItems 'middle'
+						@ position 'relative'
+						@ zIndex '11'
+						@ height '${opt.headerHeight}px'
+				@ '.footer'
+					{
+						@ height '${opt.footerHeight}px'
+						@ lineHeight '1'
+						@ position 'fixed'
+						@ bottom '0'
+						@ width '100%'
+						@ padding '0 5px'
+						@ display 'flex'
+						@ alignItems 'center'
+						@ whiteSpace 'nowrap'
+						@ color '#9396A4'
+						@ backgroundColor '#1d1f20'
+						@ borderTop '1px solid #3F414B'
+						@ zIndex '10'
+
+	render
+		return this.props.children

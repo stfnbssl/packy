@@ -1,0 +1,74 @@
+﻿module
+	kind react
+	
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import classNames from 'classnames'
+	import { withStyles, createStyleSheet } from 'material-ui/styles'
+	import CodeMirror from 'codemirror'
+	import 'codemirror/mode/javascript/javascript'
+	import 'codemirror/addon/fold/foldgutter'
+	import 'codemirror/addon/fold/foldcode'
+	import 'codemirror/addon/fold/brace-fold'
+	import PubSub from 'pubsub-js'
+
+	react JSONEditor
+
+		prop value
+			string
+		
+		prop className
+			string
+	
+		will-receive-props
+			if nextProps.value !== this.codeMirror.getValue()
+				# preserve scroll position
+				let info = this.codeMirror.getScrollInfo()
+				_ this.codeMirror.setValue(nextProps.value)
+				_ this.codeMirror.scrollTo(info.left, info.top)
+
+		$* OBSOLETE?
+		should-component-update
+			return false
+		*$
+
+		did-mount
+			set this._subscriptions = []
+			set this.codeMirror
+				_ CodeMirror
+					@ this.refs.container
+					{
+						@ value this.props.value
+						@ mode
+							{
+								@ name 'javascript'
+								@ json true
+						@ readOnly true
+						@ lineNumbers true
+						@ foldGutter true
+						@ gutters
+							[
+								@ 'CodeMirror-linenumbers'
+								@ 'CodeMirror-foldgutter'
+			
+			_ this._subscriptions.push
+				_ PubSub.subscribe
+					@ 'PANEL_RESIZE'
+					=>
+						if this.codeMirror
+							_ this.codeMirror.refresh()
+		will-unmount
+			_ this._unbindHandlers()
+			let container = this.refs.container
+			_ container.removeChild(container.children[0])
+			set this.codeMirror = null
+
+		m _unbindHandlers
+			_ this._subscriptions.forEach(PubSub.unsubscribe)
+  
+		render
+			return
+				div
+					@ id JSONEditor
+					@ className {this.props.className}
+					@ ref container

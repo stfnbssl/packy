@@ -1,0 +1,23 @@
+$group
+
+	$
+		var c = "$";
+		var cc = "$$";
+
+	table
+
+		f(Sample size means)
+			p ${cc} n  = { \sigma^2 z^2 \over m^2 } ${cc}
+			fnote()
+				dd $ \sigma^2 $ : standard deviation squared (needs an educated guess)
+				dd $ z^2 $ : z-score of chosen confidence level squared
+				dd $ m^2 $ : allowed margin of error squared
+
+		f(Sample size proportions)
+			p ${cc} n  = { { p (1 - p) z^2 } \over m^2 }${cc}
+			fnote()
+				dd $ p $ : proportion (needs an educated guess)
+				dd $ z^2 $ : z-score of chosen confidence level squared
+				dd $ m^2 $ : allowed margin of error squared
+
+		

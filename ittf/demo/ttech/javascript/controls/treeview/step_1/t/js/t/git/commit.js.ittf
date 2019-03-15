@@ -1,0 +1,93 @@
+﻿$group
+
+	async-function gitCommit
+		{ 
+			@ filepath
+			@ glEventHub
+            
+		const dir = filepath
+            
+		let author
+			await 
+				_ git.config
+					{ 
+						@ fs
+						@ dir
+						@ path 'user.name'
+            
+		let email
+			await 
+				_ git.config
+					{ 
+						@ fs
+						@ dir
+						@ path 'user.email'
+            
+		if !author
+			set author =
+				await 
+					_ prompt
+						{ 
+							@ text 'Author Name'
+							@ input 'text'
+                
+			await 
+				_ git.config
+					{ 
+						@ fs
+						@ dir
+						@ path 'user.name'
+						@ value author
+            
+		if !email
+			set email =
+				await 
+					_ prompt
+						{ 
+							@ text 'Author Email'
+							@ input 'text'
+                
+			await
+				_ git.config
+					{ 
+						@ fs
+						@ dir
+						@ path 'user.email'
+						@ value email
+            
+		# signingkey = 9609B8A5928BA6B9
+            
+		let msg
+			await 
+				_ prompt
+					{ 
+						@ text 'Commit Message'
+						@ input 'text'
+            
+		try 
+                
+			_ glEventHub.emit
+				@ 'setFolderStateData'
+				{ 
+					@ fullpath filepath
+					@ key 'busy'
+					@ value true
+                
+			await 
+				_ git.commit
+					{ 
+						@ fs
+						@ dir
+						{ author
+							@ name author
+							@ email
+						@ message msg
+            
+		finally
+			_ glEventHub.emit('refreshGitStatusDir', filepath)
+			_ glEventHub.emit
+				@ 'setFolderStateData'
+				{ 
+					@ fullpath filepath
+					@ key 'busy'
+					@ value false

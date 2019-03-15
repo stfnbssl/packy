@@ -1,0 +1,45 @@
+  module  ids: 1 7
+    kind react ids: 2 8
+    +  ids: 3 9
+    import React, { Component, PropTypes } from 'react' ids: 4 10
+    $group  ids: 13 51
+      wz-const StyledElement ids: 14 52
+        =>  ids: 15 53
+          param { meta, styles } ids: 16 54
+          # log "meta", meta ids: 17 55
+          var children = [] ids: 18 56
+          if meta.text && meta.text.length > 0 ids: 19 57
+            _ children.push(meta.text) ids: 20 58
+          if meta.children && meta.children.length > 0 ids: 21 59
+            foreach metaChild in meta.children ids: 22 60
+              _ children.push ids: 23 61
+                _ React.createElement ids: 24 62
+                  @ StyledElement ids: 25 63
+                  {  ids: 26 64
+                    @ meta metaChild ids: 27 65
+                    @ styles styles ids: 28 66
+                    @ key "k" + i ids: 29 67
+          var modStyles = {} ids: 30 68
+          if styles ids: 31 69
+            for var k in styles ids: 32 70
+              if k === meta.id ids: 33 71
+                for var z in styles[k] ids: 34 72
+                  set modStyles[z] = styles[k][z] ids: 35 73
+          const htmlProps = meta.htmlProps || {} ids: 36 74
+          return  ids: 37 75
+            _ React.createElement ids: 38 76
+              @ meta.tag ids: 39 77
+              {  ids: 40 78
+                @ ...htmlProps ids: 41 79
+                @ style ids: 42 80
+                  {  ids: 43 81
+                    @ ...modStyles ids: 44 82
+              @ children ids: 45 83
+      +  ids: 46 84
+      set StyledElement.propTypes ids: 47 85
+        {  ids: 48 86
+          @ meta PropTypes.object.isRequired ids: 49 87
+          @ styles PropTypes.object.isRequired ids: 50 88
+    $group  ids: 89 92
+      wz-const StyledHtml ids: 90 93
+        =>  ids: 91 94

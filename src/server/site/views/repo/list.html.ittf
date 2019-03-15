@@ -1,0 +1,15 @@
+layout()
+    . w3-card-4
+        h1 ${user.nickname}
+        h2 Repositories
+        ul
+            $foreach repo in repos
+                li 
+                    a ${repo.name}
+                        href /repo/view/${repo.owner.login}/${repo.name}
+                    a clone
+                        href /repo/clone/${repo.owner.login}/${repo.name}
+        $foreach repo in repos
+            pre
+                code
+                    + ${JSON.stringify(repo, null, 2)}

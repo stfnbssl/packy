@@ -1,0 +1,18 @@
+﻿$group
+
+	class LayoutPanel
+		super React.Component
+
+		m render
+			const { data } = this.props
+			return
+				div
+					@ id { data.id }
+					{
+						_ data.panels.map
+							=>
+								param panel
+								if panel.kind === 'flex'
+									return
+										< FlexPanel
+											@ data { panel }    

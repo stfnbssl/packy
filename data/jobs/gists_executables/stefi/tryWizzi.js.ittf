@@ -1,0 +1,35 @@
+/*
+    artifact generator: C:\My\wizzi\v5\apps\node_modules\wizzi-js\lib\artifacts\js\module\gen\main.js
+    primary source IttfDocument: c:/my/wizzi/v5/apps/wizzi-studio/wizzi-studio-express/dist/server/data/jobs/gists/stefi/trywizzi.js.ittf
+    utc time: Sun, 09 Sep 2018 08:41:20 GMT
+*/
+'use strict';
+var util = require('util');
+var traverse = require("babel-traverse").default;
+var wizziScripts = require('wizzi-scripts');
+var manager = new wizziScripts.Manager();
+console.log(manager);
+manager.babelParseExec({
+    code: 'var x = require("y");\nvar x = require("t")\nvar x = require("z")', 
+    removeLocation: true
+}, function(err, ast) {
+    // log err, ast
+    const requires = [];
+    try {
+        if (ast) {
+            traverse(ast, {
+                enter: function(path) {
+                    if (path.node.type === "CallExpression" && path.node.callee.name === "require" && path.node.arguments[0]) {
+                        if (path.node.arguments[0].type === "StringLiteral") {
+                            requires.push(path.node.arguments[0].value);
+                        }
+                    }
+                }
+            });
+        }
+        console.log("requires" + " " + util.inspect(requires, { depth: null } ))
+    } 
+    catch (e) {
+        console.error(e);
+    } 
+});

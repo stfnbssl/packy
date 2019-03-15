@@ -1,0 +1,47 @@
+﻿r-component( MenuBar )
+
+	$append imports
+		import Link from './Link'
+
+	style
+		@ ul
+			{
+				@ width '200px'
+				@ padding '0'
+				@ listStyle 'none'
+				@ margin '0 auto'
+		@ li
+			{
+				@ font "700 25px/55px 'Open Sans', sans-serif"
+
+	render
+		prop classes
+		prop data
+		const { items, format } = data
+
+		var menuItems
+			_ items.map
+				=>
+					param item
+					param index
+					return
+						< Link
+							@ key { index }
+							@ format { format }
+							@ item { item }
+
+		if format === 'ul.li.a'
+			return
+				div
+					ul
+						@ className {classes.ul}
+						+ { menuItems }
+			
+		elif format === 'div.a.i'
+			return
+				div
+					@ className {classes.ul}
+					+ { menuItems }
+		else
+			return
+				< div unknown menu format: { format }	

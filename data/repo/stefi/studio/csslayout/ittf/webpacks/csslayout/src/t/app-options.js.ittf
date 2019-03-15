@@ -1,0 +1,25 @@
+﻿$group
+
+	$
+		var app = {};
+		app.name = 'CssLayout';
+		app.version = '0.0.1';
+		app.title = 'Css layout builder';
+		app.description = 'Building react layouts the wizzi way';
+		app.keywords = 'wizzi ui react layout';
+		app.rootContainer = 'MuiThemeContainer';
+		app.initialLoad = false;
+		app.primaryColor = 'orange';
+		app.accentColor = 'red';
+		app.sheetOrder = [];
+		app.useRedux = false;
+		app.useApiMiddleware = false;
+		app.useDevTools = false;
+		app.useNormalizr = false;
+		app.githubLink = false;
+		app.useSearch  = false;
+		app.useDrawer = false;
+		app.useMarkdownApi = false;
+		app.useMarkdownDemo = false;
+		app.useRouter = false;
+		app.routeBasepath = '/app/csslayout';

@@ -1,0 +1,52 @@
+﻿$group
+	$params &app
+
+	import React from 'react'
+	import { AppContainer } from 'react-hot-loader'
+	$if app.useRedux
+		import { Provider } from 'react-redux'
+		import configureStore from './store/configureStore'
+		$if app.initialLoad
+			import { initialLoad } from './store/actions'
+	import ReactPerf from 'react-addons-perf'
+	import { render } from 'react-dom'
+	import ${app.rootContainer} from './containers/${app.rootContainer}'
+
+	set window.Perf = ReactPerf
+
+	$if app.useRedux
+		export const store = configureStore()
+
+		$if app.initialLoad
+			_ store.dispatch
+				_ initialLoad()
+
+	const rootEl = document.querySelector('#root')
+
+	_ render
+		$if app.useRedux
+			< Provider
+				@ store {store}
+				< ${app.rootContainer}
+		$else
+			< ${app.rootContainer}
+		@ rootEl
+
+	if process.env.NODE_ENV !== 'production' && module.hot
+		_ module.hot.accept
+			@ './containers/${app.rootContainer}'
+			=>
+				const NextApp = require('./containers/${app.rootContainer}').default
+				_ render
+					< AppContainer
+						@ errorReporter
+							=>
+								param { error }
+								throw error
+						$if app.useRedux
+							< Provider
+								@ store {store}
+								< NextApp
+						$else
+							< NextApp
+					@ rootEl

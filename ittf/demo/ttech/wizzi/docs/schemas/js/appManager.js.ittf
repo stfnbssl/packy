@@ -1,0 +1,48 @@
+﻿$group
+
+	class AppManager
+		ctor
+			param props
+			set this.props = props
+			set this.store = null
+			set this.timers = {}
+
+		m start
+
+			set this.dataManager
+				new DataManager
+					{
+
+			_ this.initStore
+			_ this.setEvents
+			_ this.createOptions
+
+		m initStore
+			set this.store = new LocalStorage('wizzify')
+			if !this.store.get('lastSchema')
+				_ this.store.set('lastSchema', 'js')
+
+		m createOptions
+			set this.selectedSchema = this.store.get('lastSchema')
+			_ wz.value('selectedSchema', this.selectedSchema)
+
+			_ wz.change
+				@ 'selectedSchema'
+				=>
+					log 'onChangeSchema', event.target.value
+					set this.selectedSchema = event.target.value
+					emit( schema-selected
+						@ name this.selectedSchema
+					_ this.store.set('lastSchema', this.selectedSchema)
+
+			emit( schema-selected
+				@ name this.selectedSchema
+
+			_ wz.show('selectedSchema')
+
+		m setEvents
+			on( schema-selected-ready
+				log 'schema-selected-ready data', data
+				_ Template
+					{
+						@ data data.json

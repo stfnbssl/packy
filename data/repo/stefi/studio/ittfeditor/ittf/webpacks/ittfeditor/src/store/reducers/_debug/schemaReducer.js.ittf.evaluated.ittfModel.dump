@@ -1,0 +1,98 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import { GET_SCHEMAS_REQUEST, GET_SCHEMAS_SUCCESS, GET_SCHEMAS_FAILURE, CREATE_SCHEMA_SUCCESS, SELECT_SCHEMA, SELECT_SCHEMA_SUCCESS, SELECT_SCHEMA_FAILURE, SCHEMA_CHANGED, UPDATE_SCHEMA_SUCCESS } from '../actions' ids: undefined undefined
+    +  ids: undefined undefined
+    const schemaInitialState ids: undefined undefined
+      {  ids: undefined undefined
+        @ items [] ids: undefined undefined
+    +  ids: undefined undefined
+    function schemaReducer ids: undefined undefined
+      param state ids: undefined undefined
+      param action ids: undefined undefined
+      # log schemaReducer, state, action ids: undefined undefined
+      if typeof state === 'undefined' ids: undefined undefined
+        return schemaInitialState ids: undefined undefined
+      switch action.type ids: undefined undefined
+        case GET_SCHEMAS_REQUEST ids: undefined undefined
+          # log 'GET_SCHEMAS_REQUEST', 'initial state:', state ids: undefined undefined
+          var temp ids: undefined undefined
+            {  ids: undefined undefined
+              @ ...state ids: undefined undefined
+              @ isLoading true ids: undefined undefined
+          log 'GET_SCHEMAS_REQUEST', 'final state:', temp ids: undefined undefined
+          return temp ids: undefined undefined
+        case GET_SCHEMAS_SUCCESS ids: undefined undefined
+          # log 'GET_SCHEMAS_SUCCESS', 'initial state:', state ids: undefined undefined
+          var temp ids: undefined undefined
+            {  ids: undefined undefined
+              @ items action.payload.schemas ids: undefined undefined
+              @ isLoading false ids: undefined undefined
+              @ error null ids: undefined undefined
+          log 'GET_SCHEMAS_SUCCESS', 'final state:', temp ids: undefined undefined
+          return temp ids: undefined undefined
+        case GET_SCHEMAS_FAILURE ids: undefined undefined
+          # log 'GET_SCHEMAS_FAILURE', 'initial state:', state ids: undefined undefined
+          var temp ids: undefined undefined
+            {  ids: undefined undefined
+              @ items [] ids: undefined undefined
+              @ isLoading false ids: undefined undefined
+              @ error action.failure ids: undefined undefined
+          log 'GET_SCHEMAS_FAILURE', 'final state:', temp ids: undefined undefined
+          return temp ids: undefined undefined
+        case CREATE_SCHEMA_SUCCESS ids: undefined undefined
+          # log 'CREATE_SCHEMA_SUCCESS', 'initial state:', state ids: undefined undefined
+          var temp ids: undefined undefined
+            {  ids: undefined undefined
+              @ items ids: undefined undefined
+                [  ids: undefined undefined
+                  @ ...state.items ids: undefined undefined
+                  @ action.payload ids: undefined undefined
+              @ isLoading false ids: undefined undefined
+              @ error null ids: undefined undefined
+          log 'CREATE_SCHEMA_SUCCESS', 'final state:', temp ids: undefined undefined
+          return temp ids: undefined undefined
+        case SELECT_SCHEMA ids: undefined undefined
+          # log 'SELECT_SCHEMA', 'initial state:', state ids: undefined undefined
+          var temp ids: undefined undefined
+            {  ids: undefined undefined
+              @ ...state ids: undefined undefined
+              @ selectedSchema ids: undefined undefined
+                _ state.items.map ids: undefined undefined
+                  =>  ids: undefined undefined
+                    param item ids: undefined undefined
+                    if item.uri = action.uri ids: undefined undefined
+                      return item ids: undefined undefined
+          log 'SELECT_SCHEMA', 'final state:', temp ids: undefined undefined
+          return temp ids: undefined undefined
+        case SELECT_SCHEMA_SUCCESS ids: undefined undefined
+          # log 'SELECT_SCHEMA_SUCCESS', 'initial state:', state ids: undefined undefined
+          var temp ids: undefined undefined
+            {  ids: undefined undefined
+              @ ...state ids: undefined undefined
+              @ selectedSchemaUri action.payload.uri ids: undefined undefined
+              @ ittfDocument action.payload.ittfDocument ids: undefined undefined
+              @ jsonDoc action.payload.jsonDoc ids: undefined undefined
+              @ factory action.payload.factory ids: undefined undefined
+              @ model action.payload.model ids: undefined undefined
+          log 'SELECT_SCHEMA_SUCCESS', 'final state:', temp ids: undefined undefined
+          return temp ids: undefined undefined
+        case UPDATE_SCHEMA_SUCCESS ids: undefined undefined
+          # log 'UPDATE_SCHEMA_SUCCESS', 'initial state:', state ids: undefined undefined
+          var temp ids: undefined undefined
+            {  ids: undefined undefined
+              @ ...state ids: undefined undefined
+              @ model null ids: undefined undefined
+          log 'UPDATE_SCHEMA_SUCCESS', 'final state:', temp ids: undefined undefined
+          return temp ids: undefined undefined
+        case SCHEMA_CHANGED ids: undefined undefined
+          # log 'SCHEMA_CHANGED', 'initial state:', state ids: undefined undefined
+          var temp ids: undefined undefined
+            {  ids: undefined undefined
+              @ ...state ids: undefined undefined
+              @ ittfDocument action.newContent ids: undefined undefined
+          log 'SCHEMA_CHANGED', 'final state:', temp ids: undefined undefined
+          return temp ids: undefined undefined
+        default  ids: undefined undefined
+          return state ids: undefined undefined
+    export default schemaReducer ids: undefined undefined

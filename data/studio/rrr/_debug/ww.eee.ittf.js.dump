@@ -1,0 +1,5 @@
+// 11/4/2017:10:19:59  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "eee", v: "ww", r: 1, c: 1, s: "f1", u: "f1",  }; //2
+$.a($0, $1, 5);

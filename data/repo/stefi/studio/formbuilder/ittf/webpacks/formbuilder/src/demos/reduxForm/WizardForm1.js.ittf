@@ -1,0 +1,18 @@
+﻿r-wizard-page( WizardForm1, wizard, WizardFormValidate )
+
+	$append imports
+		import WizardFormValidate from './WizardFormValidate'
+
+	return
+		form
+			@ onSubmit {handleSubmit}
+
+			text( firstName, First Name )
+			text( lastName, Last Name )
+
+			div
+				button
+					type submit
+					class next
+					+ Next
+

@@ -1,0 +1,9 @@
+_layout( Summation )
+
+	h2 Formulas
+		
+	formulas/sums()
+
+	h2 Glossary
+		
+	glossary/sums()

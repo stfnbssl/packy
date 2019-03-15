@@ -1,0 +1,15 @@
+﻿$group
+	$params name
+
+	set bxComponents.${name}
+		iife
+			function
+
+				$hook static
+
+				class ${name}
+					super React.Component
+		
+					$hook
+
+				return ${name}

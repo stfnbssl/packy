@@ -1,0 +1,26 @@
+﻿$group
+
+	@ REPO
+		{
+			@ FOLDERDATA 'RepoFolderData'
+			@ FILEDATA 'RepoFileData'
+			@ Url
+				{
+					@ Get
+						{
+							@ FolderData
+								function
+									param request
+									const { userId, projectId, folderId } = request
+									var ret = ['repo', userId]
+									if projectId
+										_ ret.push(projectId)
+									if folderId
+										_ ret.push(folderId)
+									return '/' + ret.join('/')
+							@ FileData
+								function
+									param request
+									const { userId, projectId, folderId, fileId } = request
+									var ret = ['repo', userId, projectId, folderId, fileId]
+									return '/' + ret.join('/')

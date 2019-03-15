@@ -1,0 +1,15 @@
+﻿$group
+
+	# Copyright 
+	# https://github.com/Qix-/node-is-arrayish
+
+	j/iife-wrapped( BxIsArrayish )
+		return
+			function
+				param obj
+				if !obj || typeof(obj) === 'string'
+					return false
+				return obj instanceof Array || 
+					\b Array.isArray(obj) || 
+					\b (obj.length >= 0 && obj.splice instanceof Function) || 
+					\b (Object.getOwnPropertyDescriptor(obj, obj.length - 1) && obj.constructor.name !== 'String')

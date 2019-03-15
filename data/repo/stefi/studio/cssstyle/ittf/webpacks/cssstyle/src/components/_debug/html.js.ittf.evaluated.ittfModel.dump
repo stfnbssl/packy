@@ -1,0 +1,43 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { Component, PropTypes } from 'react' ids: undefined undefined
+    wz-const StyledElement ids: undefined undefined
+      =>  ids: undefined undefined
+        param { meta, styles } ids: undefined undefined
+        # log "meta", meta ids: undefined undefined
+        var children = [] ids: undefined undefined
+        if meta.text && meta.text.length > 0 ids: undefined undefined
+          _ children.push(meta.text) ids: undefined undefined
+        if meta.children && meta.children.length > 0 ids: undefined undefined
+          foreach metaChild in meta.children ids: undefined undefined
+            _ children.push ids: undefined undefined
+              _ React.createElement ids: undefined undefined
+                @ StyledElement ids: undefined undefined
+                {  ids: undefined undefined
+                  @ meta metaChild ids: undefined undefined
+                  @ styles styles ids: undefined undefined
+                  @ key "k" + i ids: undefined undefined
+        var modStyles = {} ids: undefined undefined
+        if styles ids: undefined undefined
+          for var k in styles ids: undefined undefined
+            if k === meta.id ids: undefined undefined
+              for var z in styles[k] ids: undefined undefined
+                set modStyles[z] = styles[k][z] ids: undefined undefined
+        const htmlProps = meta.htmlProps || {} ids: undefined undefined
+        return  ids: undefined undefined
+          _ React.createElement ids: undefined undefined
+            @ meta.tag ids: undefined undefined
+            {  ids: undefined undefined
+              @ ...htmlProps ids: undefined undefined
+              @ style ids: undefined undefined
+                {  ids: undefined undefined
+                  @ ...modStyles ids: undefined undefined
+            @ children ids: undefined undefined
+    +  ids: undefined undefined
+    set StyledElement.propTypes ids: undefined undefined
+      {  ids: undefined undefined
+        @ meta PropTypes.object.isRequired ids: undefined undefined
+        @ styles PropTypes.object.isRequired ids: undefined undefined
+    wz-const StyledHtml ids: undefined undefined
+      =>  ids: undefined undefined

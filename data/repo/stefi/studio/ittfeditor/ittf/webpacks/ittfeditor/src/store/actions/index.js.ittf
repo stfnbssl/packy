@@ -1,0 +1,15 @@
+﻿module
+	kind react
+
+	$include app-options
+	
+	app/store/actions/index( &app )
+
+		$include actions/initial
+		$include actions/user
+		$include actions/schema
+		$include actions/project
+		$include actions/document
+		$include actions/fragment
+		$include actions/artifact
+		$include actions/theme

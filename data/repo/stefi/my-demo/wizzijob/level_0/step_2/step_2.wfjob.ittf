@@ -1,0 +1,24 @@
+﻿wfjob mongodb_level_0_step_2
+
+	# The step_2 wizzi job generates a set of javascript modules
+	# from a set of ittf documents of type `js` in the same folder
+	# The `src` attribute of the `artifact` elements contains a `glob` pattern.
+
+	$
+		var ittf_lib_folder  = path.join(__dirname, 'ittf', 'lib');
+		var dest_folder      = path.join(__dirname, 'outputs');
+
+	line one
+		cwd-folder ${ittf_lib_folder}
+
+		# Generates a set of javascript modules
+		# The `js` wizzi schema is described here: TODO
+		artifact step_2 set of javascript modules
+			src ./**/*.js.ittf
+			schema js
+			generator js/module
+			extension js
+
+	production
+		dest-folder ${dest_folder}
+		line-ref one

@@ -1,0 +1,124 @@
+  module  ids: 1 69
+    kind react ids: 2 70
+    +  ids: 3 71
+    import { GET_SCHEMAS_REQUEST, GET_SCHEMAS_SUCCESS, GET_SCHEMAS_FAILURE, CREATE_SCHEMA_SUCCESS, SELECT_SCHEMA, SELECT_SCHEMA_SUCCESS, SELECT_SCHEMA_FAILURE, SCHEMA_CHANGED, UPDATE_SCHEMA_SUCCESS } from '../actions' ids: 4 72
+    +  ids: 15 73
+    const schemaInitialState ids: 16 74
+      {  ids: 17 75
+        @ items [] ids: 18 76
+    +  ids: 19 77
+    $group  ids: 127 139
+      $args: schema, schemaInitialState  $params: name, initialState|[]
+      function ${name}Reducer ids: 129 140
+        param state ids: 130 141
+        param action ids: 131 142
+        # log ${name}Reducer, state, action ids: 132 143
+        if typeof state === 'undefined' ids: 133 144
+          return ${initialState} ids: 134 145
+        switch action.type ids: 135 146
+          $group  ids: 150 159
+            $args: GET_SCHEMAS_REQUEST $params: name
+            case ${name} ids: 152 160
+              # log '${name}', 'initial state:', state ids: 153 161
+              $hook preprocess ids: 154 162
+              var temp ids: 155 163
+                {  ids: 22 80
+                  @ ...state ids: 23 81
+                  @ isLoading true ids: 24 82
+              log '${name}', 'final state:', temp ids: 157 165
+              return temp ids: 158 166
+          $group  ids: 150 167
+            $args: GET_SCHEMAS_SUCCESS $params: name
+            case ${name} ids: 152 168
+              # log '${name}', 'initial state:', state ids: 153 169
+              $hook preprocess ids: 154 170
+              var temp ids: 155 171
+                {  ids: 26 84
+                  @ items action.payload.schemas ids: 27 85
+                  @ isLoading false ids: 28 86
+                  @ error null ids: 29 87
+              log '${name}', 'final state:', temp ids: 157 173
+              return temp ids: 158 174
+          $group  ids: 150 175
+            $args: GET_SCHEMAS_FAILURE $params: name
+            case ${name} ids: 152 176
+              # log '${name}', 'initial state:', state ids: 153 177
+              $hook preprocess ids: 154 178
+              var temp ids: 155 179
+                {  ids: 31 89
+                  @ items [] ids: 32 90
+                  @ isLoading false ids: 33 91
+                  @ error action.failure ids: 34 92
+              log '${name}', 'final state:', temp ids: 157 181
+              return temp ids: 158 182
+          $group  ids: 150 183
+            $args: CREATE_SCHEMA_SUCCESS $params: name
+            case ${name} ids: 152 184
+              # log '${name}', 'initial state:', state ids: 153 185
+              $hook preprocess ids: 154 186
+              var temp ids: 155 187
+                {  ids: 36 94
+                  @ items ids: 37 95
+                    [  ids: 38 96
+                      @ ...state.items ids: 39 97
+                      @ action.payload ids: 40 98
+                  @ isLoading false ids: 41 99
+                  @ error null ids: 42 100
+              log '${name}', 'final state:', temp ids: 157 189
+              return temp ids: 158 190
+          $group  ids: 150 191
+            $args: SELECT_SCHEMA $params: name
+            case ${name} ids: 152 192
+              # log '${name}', 'initial state:', state ids: 153 193
+              $hook preprocess ids: 154 194
+              var temp ids: 155 195
+                {  ids: 44 102
+                  @ ...state ids: 45 103
+                  @ selectedSchema ids: 46 104
+                    _ state.items.map ids: 47 105
+                      =>  ids: 48 106
+                        param item ids: 49 107
+                        if item.uri = action.uri ids: 50 108
+                          return item ids: 51 109
+              log '${name}', 'final state:', temp ids: 157 197
+              return temp ids: 158 198
+          $group  ids: 150 199
+            $args: SELECT_SCHEMA_SUCCESS $params: name
+            case ${name} ids: 152 200
+              # log '${name}', 'initial state:', state ids: 153 201
+              $hook preprocess ids: 154 202
+              var temp ids: 155 203
+                {  ids: 53 111
+                  @ ...state ids: 54 112
+                  @ selectedSchemaUri action.payload.uri ids: 55 113
+                  @ ittfDocument action.payload.ittfDocument ids: 56 114
+                  @ jsonDoc action.payload.jsonDoc ids: 57 115
+                  @ factory action.payload.factory ids: 58 116
+                  @ model action.payload.model ids: 59 117
+              log '${name}', 'final state:', temp ids: 157 205
+              return temp ids: 158 206
+          $group  ids: 150 207
+            $args: UPDATE_SCHEMA_SUCCESS $params: name
+            case ${name} ids: 152 208
+              # log '${name}', 'initial state:', state ids: 153 209
+              $hook preprocess ids: 154 210
+              var temp ids: 155 211
+                {  ids: 61 119
+                  @ ...state ids: 62 120
+                  @ model null ids: 63 121
+              log '${name}', 'final state:', temp ids: 157 213
+              return temp ids: 158 214
+          $group  ids: 150 215
+            $args: SCHEMA_CHANGED $params: name
+            case ${name} ids: 152 216
+              # log '${name}', 'initial state:', state ids: 153 217
+              $hook preprocess ids: 154 218
+              var temp ids: 155 219
+                {  ids: 65 123
+                  @ ...state ids: 66 124
+                  @ ittfDocument action.newContent ids: 67 125
+              log '${name}', 'final state:', temp ids: 157 221
+              return temp ids: 158 222
+          default  ids: 137 148
+            return state ids: 138 149
+    export default schemaReducer ids: 68 126

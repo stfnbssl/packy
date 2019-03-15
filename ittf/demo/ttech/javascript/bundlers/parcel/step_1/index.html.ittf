@@ -1,0 +1,9 @@
+﻿h/root/empty_layout()
+
+	$append body-scripts
+		js js/main.parcel.js.ittf
+
+	h1 Hello parcel bundle step_1
+
+	# app
+

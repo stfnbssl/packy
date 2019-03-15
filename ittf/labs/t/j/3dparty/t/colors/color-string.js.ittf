@@ -1,0 +1,247 @@
+﻿$group
+
+	$include ./color-names
+	$include ./simple-sizzle
+
+	j/iife-wrapped( BxColorString, colorNames, simpleSwizzle )
+
+		var swizzle = simpleSwizzle
+
+		var reverseNames
+			{ 
+		for var name in colorNames
+			if colorNames.hasOwnProperty(name)
+				set reverseNames[colorNames[name]] = name
+		var cs
+			{ 
+				@ to
+					{ 
+		
+		set cs.get =
+			function 
+				param string
+				var prefix
+					_ string.substring(0, 3)
+						._ toLowerCase()
+				var val
+				var model
+				switch prefix
+					case 'hsl'
+						set val = cs.get.hsl(string)
+						set model = 'hsl'
+						break 
+					case 'hwb'
+						set val = cs.get.hwb(string)
+						set model = 'hwb'
+						break 
+					default 
+						set val = cs.get.rgb(string)
+						set model = 'rgb'
+						break 
+				if ! (val)
+					return null
+				return 
+					{ 
+						@ model model
+						@ value val
+		
+		set cs.get.rgb =
+			function 
+				param string
+				if ! (string)
+					return null
+				var abbr = /^#([a-f0-9]{3,4})$/i
+				var hex = /^#([a-f0-9]{6})([a-f0-9]{2})?$/i
+				var rgba = /^rgba?\(\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*,\s*([+-]?\d+)\s*(?:,\s*([+-]?[\d\.]+)\s*)?\)$/
+				var per = /^rgba?\(\s*([+-]?[\d\.]+)\%\s*,\s*([+-]?[\d\.]+)\%\s*,\s*([+-]?[\d\.]+)\%\s*(?:,\s*([+-]?[\d\.]+)\s*)?\)$/
+				var keyword = /(\D+)/
+				var rgb
+					[ 
+						@ 0
+						@ 0
+						@ 0
+						@ 1
+				var match
+				var i
+				var hexAlpha
+				if match = string.match(hex)
+					set hexAlpha = match[2]
+					set match = match[1]
+					for i = 0; i < 3; i++
+						var i2 = i * 2
+						set rgb[i] = parseInt(match.slice(i2, (i2 + 2)), 16)
+					if hexAlpha
+						set rgb[3] = Math.round(((parseInt(hexAlpha, 16) / 255) * 100)) / 100
+				elif match = string.match(abbr)
+					set match = match[1]
+					set hexAlpha = match[3]
+					for i = 0; i < 3; i++
+						set rgb[i] = parseInt((match[i] + match[i]), 16)
+					if hexAlpha
+						set rgb[3] = Math.round(((parseInt((hexAlpha + hexAlpha), 16) / 255) * 100)) / 100
+				elif match = string.match(rgba)
+					for i = 0; i < 3; i++
+						set rgb[i] = parseInt(match[(i + 1)], 0)
+					if match[4]
+						set rgb[3] = parseFloat(match[4])
+				elif match = string.match(per)
+					for i = 0; i < 3; i++
+						set rgb[i] = Math.round(parseFloat(match[(i + 1)]) * 2.55)
+					if match[4]
+						set rgb[3] = parseFloat(match[4])
+				elif match = string.match(keyword)
+					if match[1] === 'transparent'
+						return 
+							[ 
+								@ 0
+								@ 0
+								@ 0
+								@ 0
+					set rgb = colorNames[match[1]]
+					if ! (rgb)
+						return null
+					set rgb[3] = 1
+					return rgb
+				else 
+					return null
+				for i = 0; i < 3; i++
+					set rgb[i] = clamp(rgb[i], 0, 255)
+				set rgb[3] = clamp(rgb[3], 0, 1)
+				return rgb
+		
+		set cs.get.hsl =
+			function 
+				param string
+				if ! (string)
+					return null
+				var hsl = /^hsla?\(\s*([+-]?\d*[\.]?\d+)(?:deg)?\s*,\s*([+-]?[\d\.]+)%\s*,\s*([+-]?[\d\.]+)%\s*(?:,\s*([+-]?[\d\.]+)\s*)?\)$/
+				var match = string.match(hsl)
+				if match
+					var alpha
+						_ parseFloat
+							@ match[4]
+					var h = ((((parseFloat(match[1]) % 360) + 360)) % 360)
+					var s
+						_ clamp
+							_ parseFloat
+								@ match[2]
+							@ 0
+							@ 100
+					var l
+						_ clamp
+							_ parseFloat
+								@ match[3]
+							@ 0
+							@ 100
+					var a = clamp(isNaN(alpha) ? 1 : alpha, 0, 1)
+					return 
+						[ 
+							@ h
+							@ s
+							@ l
+							@ a
+				return null
+		
+		set cs.get.hwb =
+			function 
+				param string
+				if ! (string)
+					return null
+				var hwb = /^hwb\(\s*([+-]?\d*[\.]?\d+)(?:deg)?\s*,\s*([+-]?[\d\.]+)%\s*,\s*([+-]?[\d\.]+)%\s*(?:,\s*([+-]?[\d\.]+)\s*)?\)$/
+				var match = string.match(hwb)
+				if match
+					var alpha
+						_ parseFloat
+							@ match[4]
+					var h = ((parseFloat(match[1]) % 360) + 360) % 360
+					var w
+						_ clamp
+							_ parseFloat
+								@ match[2]
+							@ 0
+							@ 100
+					var b
+						_ clamp
+							_ parseFloat
+								@ match[3]
+							@ 0
+							@ 100
+					var a = clamp(isNaN(alpha) ? 1 : alpha, 0, 1)
+					return 
+						[ 
+							@ h
+							@ w
+							@ b
+							@ a
+				return null
+		
+		set cs.to.hex =
+			function 
+				var rgba = swizzle(arguments)
+				return (
+					\b '#' +
+					\b hexDouble(rgba[0]) +
+					\b hexDouble(rgba[1]) +
+					\b hexDouble(rgba[2]) +
+					\b (rgba[3] < 1
+					\b  ? (hexDouble(Math.round(rgba[3] * 255)))
+					\b  : '')
+					\b )
+		
+		set cs.to.rgb =
+			function 
+				var rgba = swizzle(arguments)
+				return
+					iif rgba.length < 4 || rgba[3] === 1
+						then 'rgb(' + Math.round(rgba[0]) + ', ' + Math.round(rgba[1]) + ', ' + Math.round(rgba[2]) + ')'
+						else 'rgba(' + Math.round(rgba[0]) + ', ' + Math.round(rgba[1]) + ', ' + Math.round(rgba[2]) + ', ' + rgba[3] + ')'
+		
+		set cs.to.rgb.percent =
+			function 
+				var rgba = swizzle(arguments)
+				var r = Math.round(((rgba[0] / 255) * 100))
+				var g = Math.round(((rgba[1] / 255) * 100))
+				var b = Math.round(((rgba[2] / 255) * 100))
+				return
+					iif rgba.length < 4 || rgba[3] === 1
+						then 'rgb(' + r + '%, ' + g + '%, ' + b + '%)'
+						else 'rgba(' + r + '%, ' + g + '%, ' + b + '%, ' + rgba[3] + ')'
+		
+		set cs.to.hsl =
+			function 
+				var hsla = swizzle(arguments)
+				return
+					iif hsla.length < 4 || hsla[3] === 1
+						then 'hsl(' + hsla[0] + ', ' + hsla[1] + '%, ' + hsla[2] + '%)'
+						else 'hsla(' + hsla[0] + ', ' + hsla[1] + '%, ' + hsla[2] + '%, ' + hsla[3] + ')'
+		
+		set cs.to.hwb =
+			function 
+				var hwba = swizzle(arguments)
+				var a = ''
+				if (hwba.length >= 4) && (hwba[3] !== 1)
+					set a = ', ' + hwba[3]
+				return 'hwb(' + hwba[0] + ', ' + hwba[1] + '%, ' + hwba[2] + '%' + a + ')'
+		
+		set cs.to.keyword =
+			function 
+				param rgb
+				return reverseNames[rgb.slice(0, 3)]
+		
+		function clamp
+			param num
+			param min
+			param max
+			return 
+				_ Math.min
+					_ Math.max(min, num)
+					@ max
+		
+		function hexDouble
+			param num
+			var str
+				_ num.toString(16)
+					._ toUpperCase()
+			return str.length < 2 ? ('0' + str) : str
+
+		return cs

@@ -1,0 +1,8 @@
+module
+	kind react
+
+	$include app-options
+	
+	app/components/muidocs/MarkdownDocs( &app )
+
+

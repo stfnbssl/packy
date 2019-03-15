@@ -1,0 +1,20 @@
+{
+
+	$
+		var opt = {
+			name: 'interactjs',
+			label: 'Interact JS',
+			experimentsWith: 'the interact.js framework',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'dragdrop',
+					label: 'Drag & drop',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

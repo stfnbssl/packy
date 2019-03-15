@@ -1,0 +1,9 @@
+input
+	$params id, label, model|@@null
+	type text
+	class form-control input-sm
+	id ${id}
+	name ${id}
+	placeholder ${label}
+	$if model
+		data-ng-model ${model}

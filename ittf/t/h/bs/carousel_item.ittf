@@ -1,0 +1,10 @@
+div
+	$params w|900, h|500, text|@@null
+	class item
+	img 
+		data-src holder.js/${w}x${h}/auto/#555:#5a5a5a/text:${text || ''}
+		alt ${text}
+	. container
+		. carousel-caption
+			$hook
+	

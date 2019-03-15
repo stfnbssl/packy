@@ -1,0 +1,367 @@
+﻿$group
+
+	class BrowseManager
+		ctor
+			param props
+			set this.props = props
+			set this.key = props.key || 'default'
+			set this.app = props.app
+			set this.treeView = props.treeView
+			set this.textBrowserControl = null
+			set this.textBrowserControl = null
+			set this.browsers = {}
+			set this.activeBrowserKind = null
+
+		m initialize
+		
+			set this.browsers['text']
+				new TextBrowserControl
+					{
+						@ browserContainerId 'result-text-container'
+						@ browserControlId 'result-text-control'
+			_ this.browsers['text'].initBrowser
+
+			set this.browsers['json']
+				new JsonBrowserControl
+					{
+						@ browserContainerId 'result-json-container'
+						@ browserControlId 'result-json-control'
+			_ this.browsers['json'].initBrowser
+
+			set this.browsers['diff']
+				new DiffBrowserControl
+					{
+						@ browserContainerId 'result-diff-container'
+						@ browserControlId 'result-diff-control'
+			_ this.browsers['diff'].initBrowser
+
+			set this.browsers['html']
+				new HtmlBrowserControl
+					{
+						@ browserContainerId 'result-html-container'
+						@ browserControlId 'result-html-control'
+			_ this.browsers['html'].initBrowser
+
+			_ this.initializeHandlers
+
+		m initializeHandlers
+			$* VIA
+			_ this.app.on
+				@ 'text-result'
+				=>
+					param result
+					param treeNode
+					log 'BrowseManager.text-result', result, treeNode
+					if treeNode && treeNode.item && treeNode.item
+						_ this.setOptionsBrowser
+							{
+								@ mime treeNode.item.mime
+					_ this.activateBrowser
+						@ 'text'
+						@ result
+			_ this.app.on
+				@ 'json-result'
+				=>
+					param result
+					param treeNode
+					log 'BrowseManager.json-result', result, treeNode
+					_ this.activateBrowser
+						@ 'json'
+						@ result
+			_ this.app.on
+				@ 'diff-result'
+				=>
+					param result
+					param treeNode
+					log 'BrowseManager.diff-result', result, treeNode
+					_ this.activateBrowser
+						@ 'diff'
+						@ result
+			_ this.app.on
+				@ 'html-result'
+				=>
+					param result
+					param treeNode
+					log 'BrowseManager.html-result', result, treeNode
+					_ this.activateBrowser
+						@ 'html'
+						@ result
+						@ treeNode
+			*$
+
+			_ glEventHub.on
+				@ 'text-result'
+				=>
+					param data
+					if data.key !== this.key
+						return
+					log 'BrowseManager.text-result', data.result, data.item
+					if data.item && data.item.item && data.item.item
+						_ this.setOptionsBrowser
+							{
+								@ mime data.item.item.mime
+					_ this.activateBrowser
+						@ 'text'
+						@ data.result
+			
+			_ glEventHub.on
+				@ 'json-result'
+				=>
+					param data
+					if data.key !== this.key
+						return
+					log 'BrowseManager.json-result', data.result, data.item
+					_ this.activateBrowser
+						@ 'json'
+						@ data.result
+			
+			_ glEventHub.on
+				@ 'diff-result'
+				=>
+					param data
+					if data.key !== this.key
+						return
+					log 'BrowseManager.diff-result', data.result, data.item
+					_ this.activateBrowser
+						@ 'diff'
+						@ data.result
+			
+			_ glEventHub.on
+				@ 'html-result'
+				=>
+					param data
+					if data.key !== this.key
+						return
+					log 'BrowseManager.html-result', data.result, data.item
+					_ this.activateBrowser
+						@ 'html'
+						@ data.result
+						@ data.item
+
+		m setOptionsBrowser
+			param options
+			foreach k in Object.keys(this.browsers)
+				_ this.browsers[k].setOptions
+					@ options
+	
+		m activateBrowser
+			param kind
+			param value
+			param item
+			set this.currentResult = value
+			if this.activeBrowserKind !== kind
+				foreach k in Object.keys(this.browsers)
+					_ this.browsers[k].deactivate
+				_ this.browsers[kind].activate
+				set this.activeBrowserKind = kind
+			_ this.browsers[kind].value
+				@ value
+				@ item
+
+		m setFilePath
+			param path
+			_ wz.text
+				@ this.props.ittfBrowserTitle
+				@ path
+		
+	class TextBrowserControl
+		ctor
+			param options
+			set this.options = options || {}
+			set this.mime = options.mime
+
+		m initBrowser
+			if this.editor
+				return
+
+			set this.containerEl = document.querySelector('#' + this.options.browserContainerId)
+			set this.controlEl = document.querySelector('#' + this.options.browserControlId)
+
+			set this.editor
+				new AceEditor
+					{
+						@ theme this.options.theme || 'github'
+						@ key this.options.key || 'result-browser'
+						@ editorElementId this.options.browserControlId
+			_ this.editor.initialize
+			_ this.editor.readOnly(true)
+
+		m activate
+			_ wz.show
+				@ this.containerEl
+
+		m deactivate
+			_ wz.hide
+				@ this.containerEl
+
+		m setOptions
+			param options
+			if this.editor
+				if options.mime && options.mime !== this.mime
+					_ this.editor.setMime
+						@ options.mime
+					set this.mime = options.mime
+				if options.theme && options.theme !== this.theme
+					_ this.editor.setTheme
+						@ options.theme
+					set this.theme = options.theme
+		
+		m value
+			param value
+			if this.editor
+				if typeof value === 'undefined'
+					return
+						_ this.editor.getValue
+				else
+					_ this.editor.setValue
+						@ value
+
+	class JsonBrowserControl
+		ctor
+			param options
+			set this.options = options
+
+		m initBrowser
+			set this.containerEl = document.querySelector('#' + this.options.browserContainerId)
+			set this.controlEl = document.querySelector('#' + this.options.browserControlId)
+			set this.el = document.createElement('div')
+			_ this.el.setAttribute('style', 'padding: 1rem;')
+			_ this.controlEl.appendChild(this.el)
+
+		m activate
+			_ wz.show
+				@ this.containerEl
+
+		m deactivate
+			_ wz.hide
+				@ this.containerEl
+
+		m setOptions
+			param options
+
+		m value
+			param value
+			var jsonFormatter
+				new JSONFormatter.default
+					@ value
+					@ 2
+					{
+						@ hoverPreviewEnabled true
+			_ wz.replaceChildren
+				@ this.el
+				_ jsonFormatter.render
+
+	class DiffBrowserControl
+		ctor
+			param options
+			set this.options = options
+
+		m initBrowser
+			set this.containerEl = document.querySelector('#' + this.options.browserContainerId)
+			set this.controlEl = document.querySelector('#' + this.options.browserControlId)
+			set this.el = document.createElement('div')
+			_ this.el.setAttribute('style', 'padding: 1rem;')
+			_ this.controlEl.appendChild(this.el)
+
+		m activate
+			_ wz.show
+				@ this.containerEl
+
+		m deactivate
+			_ wz.hide
+				@ this.containerEl
+
+		m setOptions
+			param options
+
+		m value
+			param value
+
+			function valFromPath
+				param obj
+				param path
+				param index
+				if typeof index === 'undefined'
+					set index = 0
+				if typeof obj === 'undefined'
+					return null
+				log 'value', obj, path, index, path[index], v
+				var v = obj[path[index]]
+				if index == path.length - 1
+					return v
+				else
+					return valFromPath( v, path, index+1 )
+
+			var diff
+				_ DeepDiff
+					@ value.snippetAst
+					@ value.wizzifiedAst
+					=>
+						param path, key
+						log 'DiffBrowserControl', path, key
+						var l = valFromPath(value.snippedAst, path)
+						var r = valFromPath(value.wizzifiedAst, path)
+						return l && l[key] === 'CommentBlock' ||
+							\b r && r[key] === 'CommentBlock' || 
+							\b ['comments', 'leadingComments'].indexOf(key) > -1
+
+			log 'DiffBrowserControl.diff', diff
+			var jsonFormatter
+				new JSONFormatter.default
+					@ diff || 'no difference'
+					@ 2
+					{
+						@ hoverPreviewEnabled true
+			_ wz.replaceChildren
+				@ this.el
+				_ jsonFormatter.render
+
+	class HtmlBrowserControl
+		ctor
+			param options
+			set this.options = options
+
+		m initBrowser
+			set this.containerEl = document.querySelector('#' + this.options.browserContainerId)
+			set this.controlEl = document.querySelector('#' + this.options.browserControlId)
+			set this.el = document.createElement('iframe')
+			_ this.el.setAttribute('class', 'result-iframe')
+			_ this.controlEl.appendChild(this.el)
+
+		m activate
+			_ wz.show
+				@ this.containerEl
+
+		m deactivate
+			_ wz.hide
+				@ this.containerEl
+
+		m setOptions
+			param options
+
+		m value
+			param value
+			param item
+			if item.mime === 'md'
+				_ marked.setOptions
+					{
+						@ highlight
+							function
+								param code
+								log 'highlight', code
+								return hljs.highlightAuto(code).value
+				var html
+					[
+						@ '<html><head>'
+						@ '<link href="/static/lib/marked/github.css" rel="stylesheet" />'
+						@ '<link href="/static/lib/highlight/styles/github.css" rel="stylesheet" />'
+						@ '</head><body>'
+						_ marked
+							@ value
+						@ '</body></html>'
+						._ join('\n')
+				_ this.el.setAttribute
+					@ 'srcdoc'
+					@ html
+			else
+				_ this.el.setAttribute('srcdoc', value)

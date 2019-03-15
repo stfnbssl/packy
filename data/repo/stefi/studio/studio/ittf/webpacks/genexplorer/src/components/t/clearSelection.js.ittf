@@ -1,0 +1,12 @@
+﻿$group
+    
+	function clearSelection
+        if window.getSelection
+            if window.getSelection().empty
+                _ window.getSelection()
+                    ._ empty()
+            elif window.getSelection().removeAllRanges
+                _ window.getSelection()
+                    ._ removeAllRanges()
+        elif document.selection
+            _ document.selection.empty()

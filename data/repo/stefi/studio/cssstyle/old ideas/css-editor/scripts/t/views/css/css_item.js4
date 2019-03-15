@@ -1,0 +1,39 @@
+﻿bb_view Spa.CssItemView : Backbone.Marionette.ItemView
+	__p tagName tr
+
+	bb_action_click edit
+		event.preventDefault();
+		var self = this;
+		var form = new Spa.CssForm({ 
+			mode: 'update', 
+			app: this.app, 
+			model: this.model,
+			save: function(model) {
+				self.app.putCss(model);
+				self.render();
+			},
+			delete: function(model) {
+				self.app.deleteCss(model);
+			}
+		}).render();
+		this.app.rootApp.modal.show(form);
+
+	bb_action_click rules
+		event.preventDefault();
+		var self = this
+			, id = this.model.id
+			, cssname = this.model.get('name');
+		this.app.showCssRuleList(id, cssname);
+		Backbone.history.navigate("#rule/" + id + '/' + cssname);
+
+	method initialize options
+		this.app = options.app;
+
+	bb_template ctx
+		td {{ ctx.name }}
+		td {{ ctx.html }}
+		td 
+			bb/b_action edit edit
+				data-id {{ ctx.name }}
+			bb/b_action rules rules
+

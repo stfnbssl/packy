@@ -1,0 +1,12 @@
+_layout( Hypotheses )
+
+	a wikipedia entry
+		href https://en.wikipedia.org/wiki/Statistical_hypothesis_testing
+	
+	h2 Formulas
+		
+	formulas/hypoth()
+
+	h2 Glossary
+		
+	glossary/hypoth()

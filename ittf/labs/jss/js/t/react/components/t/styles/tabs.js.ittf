@@ -1,0 +1,60 @@
+﻿$group
+
+	@ tabs
+		{
+			@ listStyle 'none'
+			@ paddingLeft '0'
+			@ marginBottom '0'
+			@ backgroundColor 'transparent'
+			@ whiteSpace 'nowrap'
+			@ overflowX 'auto'
+			@ '& > li'
+				{
+					@ display 'inlineBlock'
+					@ '& > a'
+						@ display block'
+						@ whiteSpace nowrap'
+						@ textTransform uppercase'
+						@ fontWeight 500'
+						@ fontSize 14px'
+						@ color $muiTab-fontColor'
+						@ cursor default'
+						@ height 48px'
+						@ lineHeight 48px'
+						@ paddingLeft 24px'
+						@ paddingRight 24px'
+						@ userSelect none'
+						@ '&:hover'
+							{
+								@ textDecoration 'none'
+					@ '&.--is-active'
+						{
+							@ borderBottom '2px solid $muiTabBorderColor-active'
+							@ '& > a'
+								{
+									@if $muiTab-fontColor-active == null {
+										color $muiTab-fontColor'
+									} @else {
+										color $muiTab-fontColor-active'
+									}
+								}
+
+		@ '&.--justified'
+			{
+				@ display 'table'
+				@ width '100%'
+				@ tableLayout 'fixed'
+				@ '& > li'
+					{
+						@ display 'tableCell'
+						@ '& > a'
+							@ textAlign 'center'
+							@ paddingLeft '0px'
+							@ paddingRight '0px'
+
+	@ tabpane
+		{
+			@ display 'none'
+			@ '&.--is-active'
+				{
+					@ display 'block'

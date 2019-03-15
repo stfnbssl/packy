@@ -1,0 +1,63 @@
+$group
+
+	$
+		var c = "$";
+		var cc = "$$";
+
+	table
+		
+		f(Sample mean)
+			p ${cc} \bar{x} = { \sum_{i=1}^n x_i \over n } ${cc}
+			dl
+				style font-size: 0.8em;
+				dd $ x_i $ : value (score) of the random variable actually measured on the sample $ i^{th} $ element
+				dd $ n $ : sample size
+
+		f(Sample standard deviation)
+			p ${cc} s = \sqrt{ { { \sum_{i=1}^n (x_i - \bar{x})^2 } \over n-1 } } ${cc}
+			dl
+				style font-size: 0.8em;
+				dd $ x_i $ : score actually measured on the sample $ i^{th} $ element
+				dd $ \bar{x} $ : sample mean
+				dd $ n $ : sample size
+
+		f(Mean of the sampling distribution of the sample mean)
+			p ${cc} \mu_{\bar{x}} = population \space \mu ${cc}
+			dl
+				style font-size: 0.8em;
+				dd given a sample size large enough, at least $ n \ge 30 $
+		
+		f(Standard deviation of the sampling distribution of the sample mean)
+			p ${cc} \sigma_{\bar{x}} = {\sigma \over \sqrt{n}} ${cc}
+			dl
+				style font-size: 0.8em;
+				dd $ \sigma $ : standard deviation in the population
+				dd $ n $ : sample size
+
+		
+		f(Mean of the sampling distribution of the sample proportion)
+			p ${cc} \mu_{\bar{x}} = population \space proportion ${cc}
+
+		f(Standard deviation of the sampling distribution of the sample proportion)
+			p ${cc} \sigma_p = \sqrt{p ( 1 - p ) \over n} ${cc}
+
+		f(z-score for calculating a probability in a population distribution)
+			p ${cc} Z = { { x_i - \mu } \over \sigma } ${cc}
+
+		f(z-score for calculating a probability in a sampling distribution)
+			p ${cc} Z = { { \bar{x}_i - \bar{\mu_{\bar{x}} } } \over \sigma_{\bar{x}} } ${cc}
+
+		f(Population proportion)
+			p ${cc} \pi = { positive \space cases \over n } ${cc}
+		
+		f(Sampling distribution of the sample proportion mean)
+			p ${cc} \mu_p = \pi ${cc}
+			dl
+				style font-size: 0.8em;
+				dd given a sample size large enough, at least $ n\pi \ge 15 \space and \space (1-n)\pi \ge 15$
+
+		f(Sampling distribution of the sample proportion standardc deviation)
+			p ${cc} \sigma_p = \sqrt{{\pi(1-\pi)} \over n} ${cc}
+			dl
+				style font-size: 0.8em;
+				dd given a sample size large enough, at least $ n\pi \ge 15 \space and \space (1-n)\pi \ge 15$

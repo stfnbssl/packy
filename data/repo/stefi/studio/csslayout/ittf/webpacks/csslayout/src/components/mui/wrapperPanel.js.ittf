@@ -1,0 +1,72 @@
+﻿r-component( WrapperPanel )
+	
+	$append imports
+		import builder from './MuiBuilder'
+
+	style
+		@ wrapper
+			{
+				@ width '100%'
+				@ minWidth '320px'
+		@ flex
+			{
+				@ display 'flex'
+				@ flexDirection 'row'
+				@ flexWrap 'wrap'
+				@ justifyContent 'space-between'
+		@ flexColumn
+			{
+				@ flexDirection 'column'
+		@ fixed
+			{
+				@ height '100%'
+				@ overflow 'hidden'
+
+	state
+		@ fixed false
+
+	did-mount
+		prop data
+		const { fixEvent } = data
+		if fixEvent
+			var that = this
+			set this.fixEventHandler
+				_ builder.events.subscribe
+					@ fixEvent
+					function
+						log 'WrapperPanel received event ' + fixEvent
+						_ that.setState
+							{
+								@ fixed !that.state.fixed
+            
+	will-unmount
+		if this.fixEventHandler
+			_ this.fixEventHandler.remove()
+
+	render
+		prop classes
+		prop data
+		
+		const { id, flex, style: styleProp } = data
+		
+		return
+			div
+				@ id { id }
+				@ className
+					_ classNames
+						@ classes.wrapper
+						{
+							@ [classes.flex] flex
+							@ [classes.flexColumn] flex === 'column'
+							@ [classes.fixed] this.state.fixed
+				@style { styleProp }
+				{
+					_ data.panels.map
+						=>
+							param panel
+							param index
+							var PanelComponent = builder.create(panel)
+							return
+								< PanelComponent
+									@ key { index }
+									@ data { panel }

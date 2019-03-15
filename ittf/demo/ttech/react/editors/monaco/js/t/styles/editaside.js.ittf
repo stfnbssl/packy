@@ -1,0 +1,8 @@
+﻿$group
+
+	@ editaside
+		{
+			@ width '30px'
+			@ backgroundColor '${opt.gray_2_aside}'
+			@ flex '0 1 auto'
+			@ height 'calc(100vh - ${opt.splitterResizerDiff}px)'

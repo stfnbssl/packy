@@ -1,0 +1,27 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { Component, PropTypes } from 'react' ids: undefined undefined
+    class Col ids: undefined undefined
+      super Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { span, children } = this.props ids: undefined undefined
+        return  ids: undefined undefined
+          div  ids: undefined undefined
+            @style {getStyle(span)} ids: undefined undefined
+            + {children} ids: undefined undefined
+    function getStyle ids: undefined undefined
+      param span ids: undefined undefined
+      return  ids: undefined undefined
+        {  ids: undefined undefined
+          @ boxSizing "border-box" ids: undefined undefined
+          @ position "relative" ids: undefined undefined
+          @ width (span / 12 * 100) + '%' ids: undefined undefined
+          @ float "left" ids: undefined undefined
+          @ paddingLeft 10 ids: undefined undefined
+          @ paddingRight 10 ids: undefined undefined
+          @ minHeight 1 ids: undefined undefined
+    set Col.propTypes ids: undefined undefined
+      {  ids: undefined undefined
+        @ span PropTypes.number.isRequired ids: undefined undefined
+    export default Col ids: undefined undefined

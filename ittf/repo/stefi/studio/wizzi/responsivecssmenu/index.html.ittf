@@ -1,0 +1,82 @@
+﻿html
+	head
+		meta
+			charset UTF-8
+		meta
+			name viewport
+			content width=device-width, initial-scale=1.0
+		meta
+			http-equiv X-UA-Compatible
+			content ie=edge
+		title Responsive side menu
+		link
+			rel stylesheet
+			href style.css.ittf
+	body
+		nav
+			class navbar
+			span
+				class open-slide
+				a
+					href #
+					onclick openSlideMenu()
+					img
+						svg
+							width 30
+							height 30
+							path
+								stroke #fff
+								stroke-width 5
+								d M0,5 30,5
+							path
+								stroke #fff
+								stroke-width 5
+								d M0,14 30,14
+							path
+								stroke #fff
+								stroke-width 5
+								d M0,23 30,23
+
+			ul
+				class navbar-nav
+				li
+					a Home
+						href #
+				li
+					a About
+						href #
+				li
+					a Services
+						href #
+				li
+					a Contact
+						href #
+
+		# side-menu
+			class side-nav
+			a &times;
+				href #
+				class btn-close
+				onclick closeSlideMenu()
+			a Home
+				href #
+			a About
+				href #
+			a Services
+				href #
+			a Contact
+				href #
+
+		# main
+			h1 Responsive Side Menu
+
+		script
+			module
+				function openSlideMenu
+					set document.getElementById('side-menu').style.width = '250px'
+					set document.getElementById('main').style.marginLeft = '250px'
+				function closeSlideMenu
+					set document.getElementById('side-menu').style.width = '0px'
+					set document.getElementById('main').style.marginLeft = '0px'
+
+

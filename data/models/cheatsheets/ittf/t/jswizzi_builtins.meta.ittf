@@ -1,0 +1,64 @@
+﻿$group
+
+	element jsWizzi builtin objects
+		tag
+		ast 
+		category
+
+		item
+			title 'inflect' builtin functions
+			ittf
+				root
+					node 'item'.pluralize = ${d}{ 'item'.pluralize }
+					node 'friend'.pluralize = ${d}{ 'friend'.pluralize }
+					node 'lady'.pluralize = ${d}{ 'lady'.pluralize }
+					node 'way'.pluralize.toUpperCase() = ${d}{ 'way'.pluralize.toUpperCase() }
+					node 'people'.singularize = ${d}{ 'people'.singularize }
+					node 'octopi'.singularize = ${d}{ 'octopi'.singularize }
+					node 'Hats'.singularize.toUpperCase() = ${d}{ 'Hats'.singularize.toUpperCase() }
+					node 'message_properties'.camelize = ${d}{ 'message_properties'.camelize }
+					node 'message_properties'.camelize = ${d}{ 'message_properties'.camelize }
+					node 'message_properties'.dasherize = ${d}{ 'message_properties'.dasherize }
+					node 'Message Properties'.dasherize = ${d}{ 'Message Properties'.dasherize }
+					node 'message_properties'.titleize = ${d}{ 'message_properties'.titleize }
+					node 'message properties to keep'.titleize = ${d}{ 'message properties to keep'.titleize }
+					node 'Message.Bus.Properties'.demodulize = ${d}{ 'Message.Bus.Properties'.demodulize }
+					node 'MessageBusProperty'.tableize = ${d}{ 'MessageBusProperty'.tableize }
+					node 'message_bus_properties'.classify = ${d}{ 'message_bus_properties'.classify }
+					node 'MessageBusProperty'.foreign_key = ${d}{ 'MessageBusProperty'.foreign_key }
+					node '1'.ordinalize = ${d}{ '1'.ordinalize }
+					node '2'.ordinalize = ${d}{ '2'.ordinalize }
+					node '3'.ordinalize = ${d}{ '3'.ordinalize }
+					node '4'.ordinalize = ${d}{ '4'.ordinalize }
+
+		item
+			title 'jsWizzi _' builtin functions
+			ittf
+				root
+					node inflect : 'message-properties'.camelize = ${d}{ 'message-properties'.camelize }
+					node jsWizzi _ : _.dashToCamelCase('message-properties') = ${d}{ _.dashToCamelCase('message-properties') }
+					node inflect : 'message_properties'.camelize = ${d}{ 'message_properties'.camelize }
+					node jsWizzi _ : _.camelize('message_properties') = ${d}{ _.camelize('message_properties') }
+					${d} var text = 'alfa\\t " " \\n'
+					node "_.escape( text )" = "${d}{ _.escape( text ) }"
+					node _.isString( '3' ) = ${d}{ _.isString( '3' ) }
+					node _.isString( 3 ) = ${d}{ _.isString( 3 ) }
+					node _.isEmpty( '' ) = ${d}{ _.isEmpty( '' ) }
+					node _.isEmpty( 'a ' ) = ${d}{ _.isEmpty( 'a ' ) }
+					node _.isNotEmpty( 'a ' ) = ${d}{ _.isNotEmpty( 'a ' ) }
+					node _.isNotEmpty( '' ) = ${d}{ _.isNotEmpty( '' ) }
+					node _.isObject( {} ) = ${d}{ _.isObject( {} ) }
+					node _.isObject( 3 ) = ${d}{ _.isObject( 3 ) }
+					node _.isArray( [] ) = ${d}{ _.isArray( [] ) }
+					node _.isArray( {} ) = ${d}{ _.isArray( {} ) }
+					node _.isNumber( 3 ) = ${d}{ _.isNumber( 3 ) }
+					node _.isNumber( '' ) = ${d}{ _.isNumber( '' ) }
+					node _.isDate( new Date() ) = ${d}{ _.isDate( new Date() ) }
+					node _.isDate( [] ) = ${d}{ _.isDate( [] ) }
+					${d}
+						var options = {
+							title: 'Chapter 1'
+						};
+					node _.replace( '1353739', '3', '0' ) = ${d}{ _.replace( '1353739', '3', '0' ) }
+					node _.inspect( options ) = ${d}{ _.inspect( options ) }
+

@@ -1,0 +1,53 @@
+﻿css
+	< td
+		padding 8px 10px
+				
+	< td:first-child
+		font-family monospace
+				
+	< h5
+		margin-bottom 0
+				
+	< hr
+		margin-top 2px
+				
+	. ittf-gen
+		height 250px
+		padding 2rem
+		border 2px solid #ddd
+		border-radius 4px
+				
+	. example-4
+		+ .example-5
+		height 400px
+				
+	. split p
+		padding 20px
+				
+	. split
+		-webkit-box-sizing border-box
+		-moz-box-sizing border-box
+		box-sizing border-box
+		overflow-y auto
+		overflow-x hidden
+				
+	. gutter
+		background-color #eee
+		background-repeat no-repeat
+		background-position 50%
+				
+	. gutter.gutter-horizontal
+		@ background-image url('/static/images/grips/vertical.png')
+		cursor ew-resize
+				
+	. gutter.gutter-vertical
+		@ background-image url('/static/images/grips/horizontal.png')
+		cursor ns-resize
+				
+	. split.split-horizontal
+		+ .gutter.gutter-horizontal
+		height 100%
+		float left
+
+	< pre[class*="language-"]
+		margin 0

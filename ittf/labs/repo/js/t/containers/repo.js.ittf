@@ -1,0 +1,39 @@
+﻿$group
+
+	react-component( RepoContainer )
+		
+		ctor
+			set this.state
+				{
+
+		m render
+			# log 'state', this.state
+			const { folderData } = this.props
+
+			if !folderData || folderData.state === K.STATE.LOADING
+				return
+					h3 ... loading ...
+
+			if folderData.state === K.STATE.FAILURE
+				return
+					div
+						h3 ... Error ...
+						p { folderData.data }
+
+			const { folderOrFile } = folderData.data
+
+			if folderOrFile.kind == 0
+				return
+					. middle-container
+						< RepoBreadcrumbs
+							@ folderData {folderData}
+						< FolderView
+							@ folderData {folderData}
+			else
+				return
+					. middle-container
+						< RepoBreadcrumbs
+							@ folderData {folderData}
+						< FileViewEdit
+							@ folderData {folderData}
+

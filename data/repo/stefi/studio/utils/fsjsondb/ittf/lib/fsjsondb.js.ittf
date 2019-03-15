@@ -1,0 +1,175 @@
+module
+    kind jsfile
+
+	var fs = require('fs')
+	var path = require('path')
+	var _ = require('./utils')
+
+	var ERR = {}
+	
+	set ERR.generateError
+		function
+			param code
+			param message
+			return
+				{
+					@ code code
+					@ message message
+
+	set ERR.jsonParseError
+		function
+			return ERR.generateError("404", "The JSON.parse failed.")
+
+	set ERR.jsonStringifyError
+		function
+			return ERR.generateError("400", "The JSON.stringify failed.")
+
+
+	class fsJsonDb
+		ctor
+			param path
+			set this.path = path
+
+    
+		m writeToFile
+            param savePath
+            param listArray
+			param callback
+
+			if _.isUndefined(callback)
+				set callback = listArray
+				set listArray = null
+
+            if !(listArray)
+                set listArray = []
+
+			var json
+			try
+				set json = JSON.stringify(listArray, undefined, 2)
+			catch err
+				return
+					_ callback
+						_ ERR.jsonStringifyError
+				
+			_ fs.writeFile
+                @ savePath
+                @ json
+                function 
+                    param err
+					log 'fsJsonDb. writeFile. err : ', err
+                    if err
+						return
+							_ callback(err)
+					_ callback(null)
+
+		m readFromFile
+            param srcPath
+			param callback
+
+			_ fs.readFile
+				@ srcPath
+				@ 'utf8'
+				function 
+					param err
+					param data
+					log 'fsJsonDb. readFromFile. err : ', err
+					if err
+						return
+							_ callback(err)
+					_ callback(null, data)
+
+		m removeFile
+            param filePath
+            
+			_ fs.unlink
+				@ filePath
+                function 
+                    param err
+                    if err
+						return
+							_ callback(err)
+					_ callback(null)
+
+		m readParse
+			param srcPath
+			param callback
+
+			_ this.readFromFile
+				@ srcPath
+				function
+					param err
+					param data
+					if err
+						return
+							_ callback(err)
+					var obj
+					try
+						set obj
+							_ JSON.parse(data)
+					catch err
+						return
+							_ callback
+								_ ERR.jsonParseError
+					log 'fsJsonDb. readParse. err : ', err
+					_ callback
+						@ null
+						@ obj
+
+		m load
+			param collectionName
+			param callback
+
+			var self = this
+
+			var filePath
+				_ path.join
+					@ this.path
+					@ collectionName + '.json'
+			
+			_ _.isValidPath
+				@ filePath
+				function
+					param err
+					log 'fsJsonDb. isValidPath. err : ', err
+					if err
+						_ self.writeToFile
+							@ filePath
+							function
+								param err2
+								log 'fsJsonDb. isValidPath. err2 : ', err2
+								if err2
+									return 
+										_ callback(err2)
+								return
+									_ self.readParse
+										@ filePath
+										@ callback
+						return
+					_ self.readParse
+						@ filePath
+						@ callback
+
+		m save
+			param collectionName
+			param obj
+			param callback
+
+			var self = this
+
+			var filePath
+				_ path.join
+					@ this.path
+					@ collectionName + '.json'
+			
+			_ self.writeToFile
+				@ filePath
+				@ obj
+				function
+					param err
+					log 'fsJsonDb. save. err : ', err
+					if err
+						return 
+							_ callback(err)
+					_ callback(null)
+
+	set module.exports = fsJsonDb

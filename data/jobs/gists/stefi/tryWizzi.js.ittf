@@ -1,0 +1,29 @@
+module
+	kind jsfile
+	import util
+	var traverse = require("babel-traverse").default
+	var wizziScripts = require('wizzi-scripts')
+	var manager = new wizziScripts.Manager()
+	log manager
+	_ manager.babelParseExec
+		{
+			@ code 'var x = require("y");\nvar x = require("t")\nvar x = require("z")'
+			@ removeLocation true
+		f_cb_no_err(ast)
+			# log err, ast
+			const requires = []
+			try 
+				if ast
+					_ traverse
+						@ ast
+						{ 
+							@ enter
+								function
+									param path
+									if path.node.type === "CallExpression" && path.node.callee.name === "require" && path.node.arguments[0]
+										if path.node.arguments[0].type === "StringLiteral"
+											_ requires.push(path.node.arguments[0].value)
+				log? requires
+			catch e
+				_ console.error(e)
+			

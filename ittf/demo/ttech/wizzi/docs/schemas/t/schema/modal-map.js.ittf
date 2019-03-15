@@ -1,0 +1,34 @@
+﻿var ModalMap
+	=>
+		param { elements: es }
+
+		$include ./elementList
+
+		return
+			div
+				class modal-container
+				input
+					@ id modal-toggle
+					@ type checkbox
+				label
+					class modal-btn sticky
+					@ htmlFor modal-toggle
+					+ Schema map
+				label
+					class modal-backdrop
+					@ htmlFor modal-toggle
+				div
+					class modal-content
+					label Close
+						class modal-close
+						@ htmlFor modal-toggle
+						$$ + &#x2715;
+					h3 Schema map
+					hr
+					< ElementList
+						@ elements {es}
+					$*
+					label OK
+						class modal-content-btn
+						@ htmlFor modal-toggle
+					*$

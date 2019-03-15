@@ -1,0 +1,247 @@
+﻿$group
+
+	$include clearSelection
+	$include ./pane
+
+	const DEFAULT_SPLITTER_SIZE = 4
+	
+	class BxSplitter
+		super React.Component
+		ctor
+			param props
+			base props
+			set this.handleResize = this.handleResize.bind(this)
+			set this.handleMouseMove = this.handleMouseMove.bind(this)
+			set this.handleMouseUp = this.handleMouseUp.bind(this)
+			set this.handleSplitterMouseDown = this.handleSplitterMouseDown.bind(this)
+			set this.state
+				{
+					@ secondaryPaneSize 0
+					@ resizing false
+		
+		p propTypes
+			static
+			@ customClassName React.PropTypes.string
+			@ vertical React.PropTypes.bool
+			@ percentage React.PropTypes.bool
+			@ primaryIndex React.PropTypes.number
+			@ primaryMinSize React.PropTypes.number
+			@ secondaryInitialSize React.PropTypes.number
+			@ secondaryMinSize React.PropTypes.number
+			#
+				@ children 
+					_ React.PropTypes.arrayOf
+						@ React.PropTypes.node
+
+		p defaultProps 
+			static
+			@ customClassName ''
+			@ vertical false
+			@ percentage false
+			@ primaryIndex 0
+			@ primaryMinSize 0
+			@ secondaryInitialSize undefined
+			@ secondaryMinSize 0
+			@ children []
+		
+		m componentDidMount
+			_ window.addEventListener
+				@ 'resize'
+				@ this.handleResize
+			_ document.addEventListener
+				@ 'mouseup'
+				@ this.handleMouseUp
+			_ document.addEventListener
+				@ 'mousemove'
+				@ this.handleMouseMove
+			var secondaryPaneSize
+			if typeof (this.props.secondaryInitialSize) !== 'undefined'
+				set secondaryPaneSize = this.props.secondaryInitialSize
+			else 
+				var containerRect = this.container.getBoundingClientRect()
+				var splitterRect
+				if this.splitter
+					set splitterRect = this.splitter.getBoundingClientRect()
+				else 
+					set splitterRect =
+						{ 
+							@ width DEFAULT_SPLITTER_SIZE
+							@ height DEFAULT_SPLITTER_SIZE
+				set secondaryPaneSize
+					_ this.getSecondaryPaneSize
+						@ containerRect
+						@ splitterRect
+						{
+							@ left containerRect.left + ((containerRect.width - splitterRect.width) / 2)
+							@ top  containerRect.top + ((containerRect.height - splitterRect.height) / 2)
+						@ false
+			_ this.setState
+				{ 
+					@ secondaryPaneSize secondaryPaneSize
+		
+		m componentWillUnmount
+			_ window.removeEventListener
+				@ 'resize'
+				@ this.handleResize
+			_ document.removeEventListener
+				@ 'mouseup'
+				@ this.handleMouseUp
+			_ document.removeEventListener
+				@ 'mousemove'
+				@ this.handleMouseMove
+
+		m getSecondaryPaneSize
+			param containerRect
+			param splitterRect
+			param clientPosition
+			param offsetMouse
+
+			var totalSize
+			var splitterSize
+			var offset
+			
+			if this.props.vertical
+				set totalSize = containerRect.height
+				set splitterSize = splitterRect.height
+				set offset = clientPosition.top - containerRect.top
+			else 
+				set totalSize = containerRect.width
+				set splitterSize = splitterRect.width
+				set offset = clientPosition.left - containerRect.left
+			
+			if offsetMouse
+				set offset -= splitterSize / 2
+			
+			if offset < 0
+				set offset = 0
+			elif offset > totalSize - splitterSize
+				set offset = totalSize - splitterSize
+			
+			var secondaryPaneSize
+			
+			if this.props.primaryIndex === 1
+				set secondaryPaneSize = offset
+			else 
+				set secondaryPaneSize = totalSize - splitterSize - offset
+			
+			var primaryPaneSize = totalSize - splitterSize - secondaryPaneSize
+			
+			if this.props.percentage
+				set secondaryPaneSize = secondaryPaneSize * 100 / totalSize
+				set primaryPaneSize = primaryPaneSize * 100 / totalSize
+				set splitterSize = splitterSize * 100 / totalSize
+				set totalSize = 100
+			
+			if primaryPaneSize < this.props.primaryMinSize
+				set secondaryPaneSize
+					_ Math.max
+						@ secondaryPaneSize - this.props.primaryMinSize - primaryPaneSize
+						@ 0
+			elif secondaryPaneSize < this.props.secondaryMinSize
+				set secondaryPaneSize
+					_ Math.min
+						@ totalSize - splitterSize - this.props.primaryMinSize
+						@ this.props.secondaryMinSize
+			return secondaryPaneSize
+		
+		m handleResize
+			if this.splitter && !this.props.percentage
+				const containerRect = this.container.getBoundingClientRect()
+				const splitterRect = this.splitter.getBoundingClientRect()
+				const secondaryPaneSize
+					_ this.getSecondaryPaneSize
+						@ containerRect
+						@ splitterRect
+						{
+							@ left splitterRect.left
+							@ top splitterRect.top
+						@ false
+				_ this.setState
+					{
+						@ secondaryPaneSize
+
+		m handleMouseMove
+			param e
+			if this.state.resizing
+				const containerRect = this.container.getBoundingClientRect();
+				const splitterRect = this.splitter.getBoundingClientRect();
+				const secondaryPaneSize
+					_ this.getSecondaryPaneSize
+						@ containerRect
+						@ splitterRect
+						{
+							@ left e.clientX
+							@ top e.clientY
+						@ true
+				_ clearSelection()
+				_ this.setState
+					{
+						@ secondaryPaneSize
+
+		m handleSplitterMouseDown
+			log 'handleSplitterMouseDown'
+			_ clearSelection()
+			_ this.setState
+				{
+					@ resizing true
+
+		m handleMouseUp
+			_ this.setState
+				{
+					@ resizing false
+						
+		m render
+			let containerClasses = ['splitter-layout']
+			if this.props.customClassName
+				_ containerClasses.push(this.props.customClassName)
+			if this.props.vertical
+				_ containerClasses.push('splitter-layout-vertical')
+			if this.state.resizing
+				_ containerClasses.push('layout-changing')
+			
+			const children = React.Children.toArray(this.props.children).slice(0, 2)
+			if children.length === 0
+				_ children.push
+					div
+			
+			const wrappedChildren = []
+			const primaryIndex = 
+				\b (this.props.primaryIndex !== 0 && this.props.primaryIndex !== 1) ? 0 : this.props.primaryIndex
+			
+			for let i = 0; i < children.length; ++i
+				let primary = true
+				let size = null
+				if children.length > 1 && i !== primaryIndex
+					set primary = false;
+					set size = this.state.secondaryPaneSize
+
+				_ wrappedChildren.push
+					< BxPane
+						@ vertical {this.props.vertical}
+						@ percentage {this.props.percentage}
+						@ primary {primary}
+						@ size {size}
+						+ {children[i]}
+
+			return
+				div
+					@ className {containerClasses.join(' ')}
+					@ ref
+						=>
+							param c
+							set this.container = c
+					+ {wrappedChildren[0]}
+					{
+						&& 
+							+ wrappedChildren.length > 1
+							div
+								@ className layout-splitter
+								@ ref
+									=>
+										param c
+										set this.splitter = c
+								@ onMouseDown {this.handleSplitterMouseDown}
+					{
+						&&
+							+ wrappedChildren.length > 1
+							+ wrappedChildren[1]

@@ -1,0 +1,95 @@
+﻿bb_model Spa.CssRuleStyles
+	__p localStorage:object new Backbone.LocalStorage("ce-cssrulestyles")
+	method toRuleText
+		var name = this.get('__rulename')
+			, r = [];
+		r.push( name + ' {' );
+		__each style/this.toStylesTextArray()
+			r.push('  ' + style);
+		r.push( '}' );
+		return r.join( '\n' );
+	
+	method toStylesTextArray
+		var rawstyles = this._extractStyles()
+			, styles = []
+			, style
+			, k;
+		__for k in rawstyles
+			var rawstyle = rawstyles[k];
+			__if _.isArray(rawstyle)
+				var items = rawstyle;
+				__each item/s
+					style = k + ': ' + item + ';';
+					styles.push(style);
+				__else
+					style = k + ': ' + rawstyle + ';';
+					__if k.indexOf('-radius') > -1
+						styles.push('-webkit-' + style);
+						styles.push('-moz-' + style);
+					__if k.indexOf('-shadow') > -1
+						styles.push('-webkit-' + style);
+						styles.push('-moz-' + style);
+					__if k.indexOf('transition') > -1
+						styles.push('-webkit-' + style);
+						styles.push('-moz-' + style);
+						styles.push('-o-' + style);
+						styles.push('-ms-' + style);
+					styles.push(style);
+		return styles
+	
+	method toStylesObject
+		var rawstyle = this._extractStyles()
+			, styles = { }
+			, k;
+		__for k in rawstyle
+			var style = rawstyle[k];
+			styles[k] = style;
+			__if k.indexOf('-radius') > -1
+				styles['-webkit-' + k] = style;
+				styles['-moz-' + k] = style;
+				__elif k.indexOf('-shadow') > -1
+					styles['-webkit-' + k] = style;
+					styles['-moz-' + k] = style;
+				__elif k.indexOf('transition') > -1
+					styles['-webkit-' + k] = style;
+					styles['-moz-' + k] = style;
+					styles['-o-' + k] = style;
+					styles['-ms-' + k] = style;
+		return styles;
+	
+	method toRuleWmt
+		var name = this.get('__rulename')
+			, ittf;
+		__if name[0] == '#'
+			ittf = new IttfNode("#", name.substr(1));
+			__elif name[0] == '.'
+				ittf = new IttfNode(".", name.substr(1));
+			__else
+				ittf = new IttfNode("e", name);
+		var rawstyles = this.toStylesObject();
+		__for var prop in rawstyles
+			var rawstyle = rawstyles[prop];
+			__if _.isArray(rawstyle)
+				var items = rawstyle;
+				__each item/s
+					ittf.add(prop, item);
+				__else
+					ittf.add(prop, rawstyle);
+		var sw = new StringWriter();
+		ittf.towmt(sw);
+		return sw.tostring();
+
+	method _extractStyles
+		var styles = { }, k, l;
+		__for k in this.attributes
+			var style = this.attributes[k];
+			__if this._validStyle( k, style )
+				styles[k] = style;
+		__log '_extractStyles ', this.attributes, styles
+		return styles;
+
+	method _validStyle name style
+		return style != null 
+			&& typeof( style ) != 'undefined'
+			&& name != 'id'
+			&& WMT.startsWith(name, '__') == false;

@@ -1,0 +1,89 @@
+// 13/5/2017:11:21:53  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "module", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //7
+$.a($0, $1, 5);
+var $2 = { n: "kind", v: "react", r: 2, c: 5, s: "f1", u: "f1",  }; //8
+$.a($1, $2, 7);
+var $3 = { n: "+", v: "", r: 3, c: 5, s: "f1", u: "f1",  }; //9
+$.a($1, $3, 9);
+var $4 = { n: "import", v: "React, { Component, PropTypes } from 'react'", r: 4, c: 5, s: "f1", u: "f1",  }; //10
+$.a($1, $4, 11);
+var $5 = { n: "wz-const", v: "StyledElement", r: 3, c: 5, s: "f1", u: "f2",  }; //52
+$.a($1, $5, 13);
+var $6 = { n: "=>", v: "", r: 4, c: 9, s: "f1", u: "f2",  }; //53
+$.a($5, $6, 15);
+var $7 = { n: "param", v: "{ meta, styles }", r: 5, c: 13, s: "f1", u: "f2",  }; //54
+$.a($6, $7, 17);
+var $8 = { n: "#", v: "log \"meta\", meta", r: 7, c: 13, s: "f1", u: "f2",  }; //55
+$.a($6, $8, 19);
+var $9 = { n: "var", v: "children = []", r: 9, c: 13, s: "f1", u: "f2",  }; //56
+$.a($6, $9, 21);
+var $10 = { n: "if", v: "meta.text && meta.text.length > 0", r: 10, c: 13, s: "f1", u: "f2",  }; //57
+$.a($6, $10, 23);
+var $11 = { n: "_", v: "children.push(meta.text)", r: 11, c: 17, s: "f1", u: "f2",  }; //58
+$.a($10, $11, 25);
+var $12 = { n: "if", v: "meta.children && meta.children.length > 0", r: 13, c: 13, s: "f1", u: "f2",  }; //59
+$.a($6, $12, 27);
+var $13 = { n: "foreach", v: "metaChild in meta.children", r: 14, c: 17, s: "f1", u: "f2",  }; //60
+$.a($12, $13, 29);
+var $14 = { n: "_", v: "children.push", r: 15, c: 21, s: "f1", u: "f2",  }; //61
+$.a($13, $14, 31);
+var $15 = { n: "_", v: "React.createElement", r: 16, c: 25, s: "f1", u: "f2",  }; //62
+$.a($14, $15, 33);
+var $16 = { n: "@", v: "StyledElement", r: 17, c: 29, s: "f1", u: "f2",  }; //63
+$.a($15, $16, 35);
+var $17 = { n: "{", v: "", r: 18, c: 29, s: "f1", u: "f2",  }; //64
+$.a($15, $17, 37);
+var $18 = { n: "@", v: "meta metaChild", r: 19, c: 33, s: "f1", u: "f2",  }; //65
+$.a($17, $18, 39);
+var $19 = { n: "@", v: "styles styles", r: 20, c: 33, s: "f1", u: "f2",  }; //66
+$.a($17, $19, 41);
+var $20 = { n: "@", v: "key \"k\" + i", r: 21, c: 33, s: "f1", u: "f2",  }; //67
+$.a($17, $20, 43);
+var $21 = { n: "var", v: "modStyles = {}", r: 23, c: 13, s: "f1", u: "f2",  }; //68
+$.a($6, $21, 45);
+var $22 = { n: "if", v: "styles", r: 24, c: 13, s: "f1", u: "f2",  }; //69
+$.a($6, $22, 47);
+var $23 = { n: "for", v: "var k in styles", r: 25, c: 17, s: "f1", u: "f2",  }; //70
+$.a($22, $23, 49);
+var $24 = { n: "if", v: "k === meta.id", r: 26, c: 21, s: "f1", u: "f2",  }; //71
+$.a($23, $24, 51);
+var $25 = { n: "for", v: "var z in styles[k]", r: 27, c: 25, s: "f1", u: "f2",  }; //72
+$.a($24, $25, 53);
+var $26 = { n: "set", v: "modStyles[z] = styles[k][z]", r: 28, c: 29, s: "f1", u: "f2",  }; //73
+$.a($25, $26, 55);
+var $27 = { n: "const", v: "htmlProps = meta.htmlProps || {}", r: 30, c: 13, s: "f1", u: "f2",  }; //74
+$.a($6, $27, 57);
+var $28 = { n: "return", v: "", r: 32, c: 13, s: "f1", u: "f2",  }; //75
+$.a($6, $28, 59);
+var $29 = { n: "_", v: "React.createElement", r: 33, c: 17, s: "f1", u: "f2",  }; //76
+$.a($28, $29, 61);
+var $30 = { n: "@", v: "meta.tag", r: 34, c: 21, s: "f1", u: "f2",  }; //77
+$.a($29, $30, 63);
+var $31 = { n: "{", v: "", r: 35, c: 21, s: "f1", u: "f2",  }; //78
+$.a($29, $31, 65);
+var $32 = { n: "@", v: "...htmlProps", r: 36, c: 25, s: "f1", u: "f2",  }; //79
+$.a($31, $32, 67);
+var $33 = { n: "@", v: "style", r: 37, c: 25, s: "f1", u: "f2",  }; //80
+$.a($31, $33, 69);
+var $34 = { n: "{", v: "", r: 38, c: 29, s: "f1", u: "f2",  }; //81
+$.a($33, $34, 71);
+var $35 = { n: "@", v: "...modStyles", r: 39, c: 33, s: "f1", u: "f2",  }; //82
+$.a($34, $35, 73);
+var $36 = { n: "@", v: "children", r: 40, c: 21, s: "f1", u: "f2",  }; //83
+$.a($29, $36, 75);
+var $37 = { n: "+", v: "", r: 41, c: 5, s: "f1", u: "f2",  }; //84
+$.a($1, $37, 77);
+var $38 = { n: "set", v: "StyledElement.propTypes", r: 42, c: 5, s: "f1", u: "f2",  }; //85
+$.a($1, $38, 79);
+var $39 = { n: "{", v: "", r: 43, c: 9, s: "f1", u: "f2",  }; //86
+$.a($38, $39, 81);
+var $40 = { n: "@", v: "meta PropTypes.object.isRequired", r: 44, c: 13, s: "f1", u: "f2",  }; //87
+$.a($39, $40, 83);
+var $41 = { n: "@", v: "styles PropTypes.object.isRequired", r: 45, c: 13, s: "f1", u: "f2",  }; //88
+$.a($39, $41, 85);
+var $42 = { n: "wz-const", v: "StyledHtml", r: 3, c: 5, s: "f1", u: "f3",  }; //93
+$.a($1, $42, 87);
+var $43 = { n: "=>", v: "", r: 4, c: 9, s: "f1", u: "f3",  }; //94
+$.a($42, $43, 89);

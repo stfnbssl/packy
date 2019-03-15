@@ -1,0 +1,35 @@
+﻿$group
+
+	$global
+		var l_colors = "#B9D2DE;#919FA6;#3C7590;#D1E5EE;#D9E7EE;#C0C4E3;#9799AA;#3E4893;#D5D9F1;#DDDFF1;#BDE5CE;#95AC9F;#3D9563;#D2F2E0;#DBF2E5;#FFEAD2;#BFB4A6;#A67944;#FFF0DE;#FFF4E7".split(';')
+
+	{ debug
+		showPalette true
+
+	{ theme
+		fontAwesome true
+		[ colors
+			$foreach c in l_colors
+				"${c}"
+					
+	{ html
+		fontSize 14
+	
+	{ body
+		backgroundColor "${l_colors[4]}"
+		fontFamily 'roboto'
+		
+	$include d/std-nav-top
+	$include d/std-nav-sub-top
+	$include d/std-nav-left
+	$include d/std-nav-right
+
+	{ wrapMain
+		fixed false
+		padding 0
+
+	{ contMain
+		fixed false
+		padding 2
+		[ panels
+			$hook cont-main-panels

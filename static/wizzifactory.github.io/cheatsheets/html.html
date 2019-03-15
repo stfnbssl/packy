@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+<head>
+    <title>Schema cheat sheet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wz-content-1">
+        <nav class="tn-bar" style="display: flex; margin: 0.5rem;">
+            <div class="logo">
+                <img src="/images/logo.svg" width="70px" height="30px" />
+            </div>
+        </nav>
+        <div class="mc-wrapper-layout" id="mc-wrapper">
+            <div class="mc-frame-bar">
+                <div class="mc-frame-bar-item">Schema cheat sheet</div>
+            </div>
+            <div class="mc-frame">
+                <div class="mc-sidebar-left">
+                    <ul>
+                        <li><a href="#htmlElement">htmlElement</a>
+                        <ul>
+                            <li><a href="#Html document structure">Html document structure</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#include css">include css</a>
+                        <ul>
+                            <li><a href="#style tag with inclusion of a css wizzi model">style tag with inclusion of a css wizzi model</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#include js">include js</a>
+                        <ul>
+                            <li><a href="#script tag with inclusion of a js wizzi model">script tag with inclusion of a js wizzi model</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#include json">include json</a>
+                        <ul>
+                            <li><a href="#json tag (not standard) with inclusion of a json model">json tag (not standard) with inclusion of a json model</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#include svg">include svg</a>
+                        <ul>
+                            <li><a href="#script tag with inclusion of a json model">script tag with inclusion of a json model</a>
+                            </li>
+                        </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mc-content">
+                    <div style="display: flex;" id="htmlElement">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">htmlElement</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Html document structure">Html document structure</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">html</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">head</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">@title</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">body</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">header</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">section</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">footer</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-html">
+    
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;&lt;/header&gt;
+    &lt;section&gt;&lt;/section&gt;
+    &lt;footer&gt;&lt;/footer&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="include css">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">include css</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">@style + css</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="style tag with inclusion of a css wizzi model">style tag with inclusion of a css wizzi model</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">html</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">head</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">@style</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">css</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">                </span><span class="pp-tag"><</span><span class="pp-pln"> body</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">                    </span><span class="pp-tag">font-family</span><span class="pp-pln"> arial, verdana, sans-serif</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">                    </span><span class="pp-tag">font-size</span><span class="pp-pln"> 13px</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">                </span><span class="pp-tag"><</span><span class="pp-pln"> h1, h2, h3</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">                    </span><span class="pp-tag">margin</span><span class="pp-pln"> 0</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">                </span><span class="pp-tag">.</span><span class="pp-pln"> wrapper</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">                    </span><span class="pp-tag">margin</span><span class="pp-pln"> 1rem 0.5rem</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-html">
+    
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;style&gt;
+        body {
+            font-family: arial, verdana, sans-serif;
+            font-size: 13px;
+        }
+        h1,  h2,  h3 {
+            margin: 0;
+        }
+        .wrapper {
+            margin: 1rem 0.5rem;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;/html&gt;
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="include js">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">include js</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">script + module</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="script tag with inclusion of a js wizzi model">script tag with inclusion of a js wizzi model</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">html</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">body</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">script</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">module</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">                </span><span class="pp-tag">function</span><span class="pp-pln"> sayHello</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">                    </span><span class="pp-tag">log</span><span class="pp-pln"> 'Hello'</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">                </span><span class="pp-tag">_</span><span class="pp-pln"> sayHello</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-html">
+    
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;script&gt;
+        function sayHello() {
+            console.log('Hello');
+        }
+        sayHello();
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="include json">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">include json</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">json + {</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="json tag (not standard) with inclusion of a json model">json tag (not standard) with inclusion of a json model</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">html</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">body</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">json</span><span class="pp-pln"> profile</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">{</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">                </span><span class="pp-tag">name</span><span class="pp-pln"> 'stefi'</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">                </span><span class="pp-tag">job</span><span class="pp-pln"> 'wizzi'</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">script</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-tag">module</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">                </span><span class="pp-tag">var</span><span class="pp-pln"> p</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">                    </span><span class="pp-tag">_</span><span class="pp-pln"> JSON.parse</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">                        </span><span class="pp-tag">@</span><span class="pp-pln"> document.querySelector('#profile').text</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">                </span><span class="pp-tag">log</span><span class="pp-pln"> 'profile.name', p.name</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">                </span><span class="pp-tag">log</span><span class="pp-pln"> 'profile.job', p.job</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-html">
+    
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;script type="application/json" id="profile" &gt;
+        {
+            "name": "stefi",
+            "job": "wizzi"
+        }
+    &lt;/script&gt;
+    &lt;script&gt;
+        var p = JSON.parse(document.querySelector('#profile').text);
+        console.log('profile.name', p.name);
+        console.log('profile.job', p.job);
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="include svg">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">include svg</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">img + svg</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="script tag with inclusion of a json model">script tag with inclusion of a json model</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">html</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">head</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">body</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">div</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">img</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">                </span><span class="pp-tag">svg</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">                    </span><span class="pp-tag">rect</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">                        </span><span class="pp-tag">x</span><span class="pp-pln"> 10</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">                        </span><span class="pp-tag">y</span><span class="pp-pln"> 10</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">                        </span><span class="pp-tag">width</span><span class="pp-pln"> 200</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">                        </span><span class="pp-tag">height</span><span class="pp-pln"> 100</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-html">
+    
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;img /&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+</body>
+
+</html>

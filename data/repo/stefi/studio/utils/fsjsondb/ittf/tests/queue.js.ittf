@@ -1,0 +1,70 @@
+﻿module
+	kind jsfile
+
+	var path = require('path')
+	var expect = require('expect')
+	var Promise = require('bluebird')
+	var queue = require('../lib/queue')
+	var fs = require('fs')
+	var fsStat = Promise.promisify(require('fs').stat)
+
+	var f1
+		function
+			param ended
+			param callback
+			# Loose time in same way
+			_ fs.stat
+				_ path.join
+					@ __dirname
+					@ 'dummy.txt'
+				function
+					set ended.f1 = true
+					_ callback()
+	var f2
+		function
+			param ended
+			param callback
+			var f1ended = ended.f1
+			set ended.f2 = true
+			_ callback(f1ended)
+
+	describe enqueuing two async functions, f1 and f2 using queue
+		var q = new queue()
+		_ it
+			@ "should execute f2 after f1 even if f1 waits for a file system access"
+			function
+				param done
+				var ended
+					{
+						@ f1 false
+				_ q.add
+					@ f1
+					@ undefined
+					function
+						_ done()
+					@ ended
+				_ q.add
+					@ f2
+					@ undefined
+					function
+						param f1ended
+						_ expect(f1ended).toBe(true)
+					@ ended
+				
+	describe enqueuing two async functions, f1 and f2 without using queue
+		_ it
+			@ "without using queue f1 starts before f2 finishes"
+			function
+				param done
+				var ended
+					{
+						@ f1 false
+				_ f1
+					@ ended
+					function
+						_ done()
+				_ f2
+					@ ended
+					function
+						param f1ended
+						_ expect(f1ended).toBe(false)

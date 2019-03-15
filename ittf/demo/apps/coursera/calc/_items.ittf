@@ -1,0 +1,4 @@
+h/bs/list_group()
+	h/bs/li_a( "Summation", /ittf/demo/apps/coursera/calc/sums.html.ittf )
+	h/bs/li_a( "MathJAX reference", http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference )
+	h/bs/li_a( "MathJAX TeXSyntax", http://www.onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm )

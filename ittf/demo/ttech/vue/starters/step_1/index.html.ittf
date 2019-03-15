@@ -1,0 +1,52 @@
+html
+
+	$
+		var opt = {}
+		opt.title = 'Vue starter 1';
+		opt.useVue = true;
+	
+	h/root/empty_layout_opt(&opt)
+
+		$append head-styles
+			css ./index.css.ittf
+	
+		$append body-scripts
+			js ./index.js.ittf
+
+		# app
+		    p {{ message }}
+            div 
+                @ v-bind:title message
+                ++ Hover your mouse over me for a few seconds
+                ++ to see my dynamically bound title!
+                
+            br
+            input
+                @ v-model message
+            br
+            div
+                button Reverse Message
+                    @ v-on:click reverseMessage                
+            
+            div
+                @ v-if seen
+                + Now you see me
+            
+
+            div
+                @ v-if !seen
+                + Now you see me
+                
+            ul
+                li
+                    @ v-for todo in todos
+                    + {{ todo.text }}
+                    
+            ol
+                < todo-item
+                
+            ol 
+                < todo-item2
+                    @ v-for item in groceryList
+                    @ v-bind:todo item
+                    @ v-bind:key item.id                

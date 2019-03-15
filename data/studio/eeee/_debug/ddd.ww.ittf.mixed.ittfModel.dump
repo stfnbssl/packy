@@ -1,0 +1,13 @@
+  module  ids: 1 14
+    kind react ids: 2 15
+    wz-var i = 0 ids: 3 16
+    wz-var x = 0 ids: 4 17
+    function alfa ids: 5 18
+      param a ids: 6 19
+      param b ids: 7 20
+      param c ids: 8 21
+      foreach a in items ids: 9 22
+        _ alpha ids: 10 23
+          @ elios ids: 11 24
+          @ parasta ids: 12 25
+          ._ algo ids: 13 26

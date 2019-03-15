@@ -1,0 +1,58 @@
+﻿module
+	kind react
+
+	action set Parser
+		@ parser
+
+	action set Parser Settings
+		@ settings
+
+	action save
+
+	action start Save
+
+	action end Save
+
+	action set Snippet
+		@ revision
+
+	action set Parse Error
+		@ error
+
+	action select Category
+		@ category
+
+	action clear Snippet
+
+	action start Loading Snippet
+
+	action done Loading Snippet
+
+	action load Snippet
+
+	action open Settings Dialog
+
+	action close Settings Dialog
+
+	action open Share Dialog
+
+	action close Share Dialog
+
+	action set Error
+		@ error
+
+	action clear Error
+
+	action set Code
+		@ state ...state
+
+	action set Cursor
+		@ cursor
+
+	action drop Text
+		@ text
+		@ categoryId
+
+	action reset
+
+	action toggle Formatting

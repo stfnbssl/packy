@@ -1,0 +1,118 @@
+﻿$group
+	
+	class BxCodeMirror
+		super React.Component
+		ctor
+			set this.state
+				{
+					@ isFocused false
+			set this.codemirrorValueChanged = this.codemirrorValueChanged.bind(this)
+		
+		p propTypes
+			static
+			@ autoFocus PropTypes.bool
+			@ className PropTypes.any
+			@ codeMirrorInstance PropTypes.func
+			@ defaultValue PropTypes.string
+			@ name PropTypes.string
+			@ onChange PropTypes.func
+			@ onFocusChange PropTypes.func
+			@ options PropTypes.object
+			@ value PropTypes.string
+			@ preserveScrollPosition PropTypes.bool
+
+		p defaultProps 
+			static
+			@ preserveScrollPosition false
+
+		m getCodeMirrorInstance
+			return this.props.codeMirrorInstance || CodeMirror
+		
+		m componentWillMount
+			set this.componentWillReceiveProps
+				_ debounce
+					@ this.componentWillReceiveProps
+					@ 0
+		
+		m componentDidMount
+			const codeMirrorInstance = this.getCodeMirrorInstance()
+			set this.codeMirror
+				_ codeMirrorInstance.fromTextArea
+					@ this.textareaNode
+					@ this.props.options
+			_ this.codeMirror.on
+				@ 'change'
+				@ this.codemirrorValueChanged
+			_ this.codeMirror.on
+				@ 'focus'
+				_  this.focusChanged.bind(this, true)
+			_ this.codeMirror.on
+				@ 'blur'
+				_ this.focusChanged.bind(this, false)
+			_ this.codeMirror.setValue
+				@ this.props.defaultValue || this.props.value || ''
+
+		m componentWillUnmount
+			if this.codeMirror
+				_ this.codeMirror.toTextArea();
+
+		m componentWillReceiveProps
+			param nextProps
+			if this.codeMirror && nextProps.value !== undefined 
+				\b && nextProps.value !== this.props.value 
+				\b && normalizeLineEndings(this.codeMirror.getValue()) !== normalizeLineEndings(nextProps.value)
+				if this.props.preserveScrollPosition
+					const prevScrollPosition = this.codeMirror.getScrollInfo()
+					_ this.codeMirror.setValue(nextProps.value)
+					_ this.codeMirror.scrollTo(prevScrollPosition.left, prevScrollPosition.top)
+				else
+					_ this.codeMirror.setValue(nextProps.value)
+			if typeof nextProps.options === 'object'
+				for let optionName in nextProps.options
+				if nextProps.options.hasOwnProperty(optionName)
+					_ this.setOptionIfChanged(optionName, nextProps.options[optionName])
+		
+		m setOptionIfChanged
+			param optionName
+			param newValue
+			const oldValue = this.codeMirror.getOption(optionName)
+			if !isEqual(oldValue, newValue)
+				_ this.codeMirror.setOption(optionName, newValue)
+
+		m getCodeMirror
+			return this.codeMirror
+
+		m focus
+			if this.codeMirror
+				_ this.codeMirror.focus()
+
+		m focusChanged
+			param focused
+			_ this.setState
+				{
+					@ isFocused focused
+			_ this.props.onFocusChange && this.props.onFocusChange(focused)
+	
+		m codemirrorValueChanged
+			param doc
+			param change
+			if this.props.onChange && change.origin !== 'setValue'
+				_ this.props.onChange(doc.getValue(), change)
+		
+		m render
+			const editorClassName
+				_ BxClassNames
+					@ 'ReactCodeMirror'
+					@ this.state.isFocused ? 'ReactCodeMirror--focused' : null
+					@ this.props.className
+			return
+				. {editorClassName}
+					textarea
+						@ ref
+							=>
+								param ref
+								set this.textareaNode = ref
+						@ name {this.props.name}
+						@ defaultValue {this.props.value}
+						@ autoComplete off
+						@ autoFocus {this.props.autoFocus}

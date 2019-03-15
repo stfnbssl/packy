@@ -1,0 +1,47 @@
+﻿$group
+
+	package wizzi-lab-spa
+
+		src-folder C:\My\wizzi\next\npm\npm-wizzi-lab-spa
+		dest-folder C:\My\wizzi\next\node_modules\wizzi-lab-spa
+
+		schema site
+		
+		schema spa
+
+			artifact html_docs
+				language html
+				is-default
+
+			artifact jsoncrud
+				language js.ittf
+
+			artifact jsonmodel
+				language js.ittf
+
+		schema form
+
+			artifact html_docs
+				language html
+				is-default
+
+		schema webpack
+
+			transform docu_db_structure
+
+			artifact html_docs
+				language html
+				is-default
+
+			artifact jsonmodel
+				language js.ittf
+
+			artifact jsonmodel_persister
+				language js.ittf
+
+			artifact jsonmodel_tests
+				language js.ittf
+
+
+		schema bundle
+

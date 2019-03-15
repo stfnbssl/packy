@@ -1,0 +1,24 @@
+{
+    "title": "Schema cheat sheet",
+    "language": "json",
+    "elements": [
+        {
+            "name": "",
+            "tag": "vtt",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "Json object",
+                    "ittfWrapped": "{ \\n    name 'stefi'\\n    job 'wizzi'\\n    [ friends\\n        'arthur' \\n        'marius' \\n        'george' ",
+                    "generated": "\\n{\\n    \\\"name\\\": \\\"stefi\\\",\\n    \\\"job\\\": \\\"wizzi\\\",\\n    \\\"friends\\\": [\\n        \\\"arthur\\\",\\n        \\\"marius\\\",\\n        \\\"george\\\"\\n    ]\\n}\\n"
+                },
+                {
+                    "title": "Json Array",
+                    "ittfWrapped": "[ \\n    { \\n        id 1\\n    { \\n        id 2",
+                    "generated": "\\n[\\n    {\\n        \\\"id\\\": 1\\n    },\\n    {\\n        \\\"id\\\": 2\\n    }\\n]\\n"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,257 @@
+﻿r-container( Document, true )
+
+	$append imports
+		import { 
+			\b selectProject,
+			\b createProject, 
+			\b getDocuments,
+			\b selectDocument,
+			\b createDocument, 
+			\b updateDocument, 
+			\b changeDocument,
+			\b getFragments,
+			\b selectFragment,
+			\b createFragment, 
+			\b generateArtifact,
+			\b } from '../store/actions'
+		import Document from '../components/Document'
+
+	state
+		@ currentProject null
+		@ selectedUri null
+		@ selectedContent null
+
+	will-receive-props
+		log 'DocumentContainer.WillReceiveProps', nextProps
+		if nextProps && nextProps.currentProject && nextProps.currentProject !== this.state.currentProject
+			_ this.props.loadDocuments
+				@ nextProps.currentProject
+			_ this.props.loadFragments
+				@ nextProps.currentProject
+			_ this.setState
+				{
+					@ ...this.state
+					@ currentProject nextProps.currentProject
+					@ selectedUri null
+					@ selectedContent null
+		elif nextProps && nextProps.selectedUri !== this.state.selectedUri
+			_ this.setState
+				{
+					@ ...this.state
+					@ selectedUri nextProps.selectedUri
+					@ selectedContent nextProps.selectedContent
+
+	did-mount
+		prop currentProject
+		log 'DocumentContainer.DidMount.currentProject', currentProject
+		if currentProject && currentProject.length > 0
+			_ this.setState
+				{
+					@ ...this.state
+					@ currentProject currentProject
+					@ selectedUri null
+					@ selectedContent null
+			_ this.props.loadDocuments
+				@ currentProject
+			_ this.props.loadFragments
+				@ currentProject
+
+	render
+		prop schemas
+		prop projects
+		
+		prop documents
+		prop userFragments
+		prop projectFragments
+		
+		prop selectedType
+		prop selectedUri
+		prop selectedSchema
+		prop selectedContent
+		
+		prop generatedArtifactContent
+		prop generatedArtifactError
+		
+		prop handleSelectProject
+		prop handleCreateProjectSubmit
+
+		prop handleChange
+		prop handleSelectDocument
+		prop handleCreateDocumentSubmit
+		
+		prop handleSelectFragment
+		prop handleCreateFragmentSubmit
+		
+		prop handleGenerateArtifact
+		
+		var _selectedSchemaData = null
+		var schemaNames = []
+		var artifactNames = []
+		foreach s in schemas
+			_ schemaNames.push(s.name)
+			if s.name === selectedSchema
+				set _selectedSchemaData = s
+		if selectedType === 'document' && _selectedSchemaData && _selectedSchemaData.artifacts
+			foreach a in _selectedSchemaData.artifacts
+				_ artifactNames.push(a.name)
+		log 'DocumentContainer.render.schemas, schemaNames, artifactNames', schemas, schemaNames, artifactNames
+		
+		return
+			< Document
+				@ projects {projects}
+				@ schemas {schemaNames}
+				@ documents {documents}
+				@ userFragments {userFragments}
+				@ projectFragments {projectFragments}
+
+				@ currentProject {this.state.currentProject}
+				@ selectedUri {selectedUri}
+				@ selectedContent {selectedContent}
+
+				@ artifacts {artifactNames}
+				@ generatedArtifactContent {generatedArtifactContent}
+				@ generatedArtifactError {generatedArtifactError}
+
+				@ onSelectProject {handleSelectProject}
+				@ onCreateProjectSubmit {handleCreateProjectSubmit}
+				
+				@ onEditorRef
+					=>
+						param node
+						set this.editor = node
+						log 'DocumentEditor.onTextRef.this.editor', this.editor
+				@ onSelectArtifactRef
+					=>
+						param node
+						set this.selectArtifact = node
+						log 'DocumentEditor.onSelectArtifactRef.node', node
+				@ onSelectDocument {handleSelectDocument}
+				@ onSelectFragment {handleSelectFragment}
+				@ onSaveDocument
+					=>
+						log 'this.editor', this.editor
+						log 'this.editor.value', this.editor.value
+						_ handleChange
+							@ selectedUri
+							@ this.editor.value
+				@ onGenerateArtifact
+					=>
+						_ handleGenerateArtifact
+							@ selectedUri
+							@ this.selectArtifact.value
+				@ onCreateDocumentSubmit {handleCreateDocumentSubmit}
+				@ onCreateFragmentSubmit {handleCreateFragmentSubmit}
+
+	$append state-to-props
+		@ currentProject state.commons.currentProject
+		@ schemas state.commons.schemas
+		@ projects state.commons.projects
+		
+		@ documents state.document.items
+		@ userFragments state.fragment.userItems
+		@ projectFragments state.fragment.projectItems
+
+		@ selectedType state.editor.selectedType
+		@ selectedUri state.editor.selectedUri
+		@ selectedSchema state.editor.selectedSchema
+		@ selectedContent state.editor.selectedContent
+		
+		@ generatedArtifactContent state.artifact.generatedArtifact
+		@ generatedArtifactError state.artifact.error
+
+	$append dispatch-to-props
+
+		@ loadDocuments
+			=>
+				param project
+				_ dispatch
+					_ getDocuments
+						@ project
+
+		@ handleSelectDocument
+			=>
+				param uri
+				param schema
+				_ dispatch
+					_ selectDocument
+						@ uri
+						@ schema
+
+		@ handleChange
+			=>
+				param uri
+				param newValue
+				# log 'DocumentEditor.handleChange', uri, newValue
+				_ dispatch
+					_ changeDocument
+						@ newValue
+				_ dispatch
+					_ updateDocument
+						@ uri
+						@ newValue
+
+		@ loadFragments
+			=>
+				param project
+				_ dispatch
+					_ getFragments
+						@ project
+
+		@ handleSelectFragment
+			=>
+				param uri
+				param schema
+				_ dispatch
+					_ selectFragment
+						@ uri
+						@ schema
+
+		@ handleGenerateArtifact
+			=>
+				param uri
+				param artifactName
+				log 'DocumentEditor.generateArtifact', uri, artifactName
+				_ dispatch
+					_ generateArtifact
+						@ uri
+						@ artifactName
+
+		@ handleCreateDocumentSubmit
+			=>
+				param name
+				param schema
+				param folder
+				param project
+				_ dispatch
+					_ createDocument
+						@ name
+						@ schema
+						@ folder
+						@ project
+
+		@ handleCreateFragmentSubmit
+			=>
+				param name
+				param schema
+				param folder
+				param project
+				_ dispatch
+					_ createFragment
+						@ name
+						@ schema
+						@ folder
+						@ project
+
+		@ handleSelectProject
+			=>
+				param project
+				_ dispatch
+					_ selectProject
+						@ project
+
+		@ handleCreateProjectSubmit
+			=>
+				param project
+				_ dispatch
+					_ createProject
+						@ project

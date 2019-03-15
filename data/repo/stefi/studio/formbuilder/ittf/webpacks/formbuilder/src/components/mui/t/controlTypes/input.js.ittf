@@ -1,0 +1,17 @@
+﻿$group
+
+	wz-function Input
+		param type
+		return
+			=>
+				param { id, value, onChange }
+				return
+					input
+						id {id}
+						type {type}
+						value {value}
+						@ onChange
+							=>
+								param e
+								_ onChange(e.target.value)
+

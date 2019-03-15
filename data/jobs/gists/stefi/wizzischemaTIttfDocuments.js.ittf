@@ -1,0 +1,54 @@
+module
+    kind jsfile
+
+    var schemaRootFiles
+        [
+            {
+                @ baseName 'xx.wfschema.ittf'
+                @ relFolder '' 
+            {
+                @ baseName 'yy.wfschema.ittf'
+                @ relFolder '' 
+            {
+                @ baseName 'a1.wfschema.ittf'
+                @ relFolder 't/xx' 
+            {
+                @ baseName 'a2.wfschema.ittf'
+                @ relFolder 't/xx' 
+            {
+                @ baseName 'b1.wfschema.ittf'
+                @ relFolder 't/yy' 
+            {
+                @ baseName 'b2.wfschema.ittf'
+                @ relFolder 't/yy/' 
+
+
+    var schemas = {}
+    
+    foreach item in schemaRootFiles
+        if item.relFolder.length == 0
+            var ss = item.baseName.split('.')
+            if ss.length == 3 && ss[1] === 'wfschema'
+                set schemas[ss[0]]
+                    {
+                        # @ schemaId paths.schemaId(packageName, ss[0])
+                        @ mainDocument item
+    
+
+    foreach item in schemaRootFiles
+        log 'item.relFolder.substr(0,2)', item.relFolder.substr(0,2)
+        if item.relFolder.substr(0,2) == 't/'
+            var ss = item.relFolder.split('/')
+            log 'ss', ss.length, ss
+            if ss.length > 1 && schemas[ss[1]]
+                var tDocuments = schemas[ss[1]].tDocuments
+                if !tDocuments
+                    set tDocuments = []
+                _ tDocuments.push
+                    @ item
+                set schemas[ss[1]].tDocuments = tDocuments
+            else
+                _ schemasTDocuments.push
+                    @ item
+
+    log JSON.stringify(schemas, null, 2)                        

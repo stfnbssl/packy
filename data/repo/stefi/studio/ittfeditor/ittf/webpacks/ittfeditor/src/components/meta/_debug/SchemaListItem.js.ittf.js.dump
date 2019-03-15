@@ -1,0 +1,45 @@
+// 13/5/2017:11:21:52  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "module", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //22
+$.a($0, $1, 5);
+var $2 = { n: "kind", v: "react", r: 2, c: 5, s: "f1", u: "f1",  }; //23
+$.a($1, $2, 7);
+var $3 = { n: "+", v: "", r: 3, c: 5, s: "f1", u: "f1",  }; //24
+$.a($1, $3, 9);
+var $4 = { n: "import", v: "React, { PropTypes } from 'react'", r: 4, c: 5, s: "f1", u: "f1",  }; //25
+$.a($1, $4, 11);
+var $5 = { n: "import", v: "{ ListGroupItem } from 'react-bootstrap'", r: 5, c: 5, s: "f1", u: "f1",  }; //26
+$.a($1, $5, 13);
+var $6 = { n: "+", v: "", r: 6, c: 5, s: "f1", u: "f1",  }; //27
+$.a($1, $6, 15);
+var $7 = { n: "const", v: "SchemaListItem", r: 7, c: 5, s: "f1", u: "f1",  }; //28
+$.a($1, $7, 17);
+var $8 = { n: "=>", v: "", r: 8, c: 9, s: "f1", u: "f1",  }; //29
+$.a($7, $8, 19);
+var $9 = { n: "param", v: "{ onClick, selectedSchemaUri, name }", r: 9, c: 13, s: "f1", u: "f1",  }; //30
+$.a($8, $9, 21);
+var $10 = { n: "return", v: "", r: 10, c: 13, s: "f1", u: "f1",  }; //31
+$.a($8, $10, 23);
+var $11 = { n: "<", v: "ListGroupItem", r: 11, c: 17, s: "f1", u: "f1",  }; //32
+$.a($10, $11, 25);
+var $12 = { n: "onClick", v: "{onClick}", r: 12, c: 21, s: "f1", u: "f1",  }; //33
+$.a($11, $12, 27);
+var $13 = { n: "@", v: "bsStyle { selectedSchemaUri === name ? 'danger' : 'info' }", r: 13, c: 21, s: "f1", u: "f1",  }; //34
+$.a($11, $13, 29);
+var $14 = { n: "+", v: "{name}", r: 14, c: 21, s: "f1", u: "f1",  }; //35
+$.a($11, $14, 31);
+var $15 = { n: "+", v: "", r: 15, c: 5, s: "f1", u: "f1",  }; //36
+$.a($1, $15, 33);
+var $16 = { n: "set", v: "SchemaListItem.propTypes", r: 16, c: 5, s: "f1", u: "f1",  }; //37
+$.a($1, $16, 35);
+var $17 = { n: "{", v: "", r: 17, c: 9, s: "f1", u: "f1",  }; //38
+$.a($16, $17, 37);
+var $18 = { n: "@", v: "onClick PropTypes.func.isRequired", r: 18, c: 13, s: "f1", u: "f1",  }; //39
+$.a($17, $18, 39);
+var $19 = { n: "@", v: "selectedSchemaUri PropTypes.string", r: 19, c: 13, s: "f1", u: "f1",  }; //40
+$.a($17, $19, 41);
+var $20 = { n: "@", v: "name PropTypes.string.isRequired", r: 20, c: 13, s: "f1", u: "f1",  }; //41
+$.a($17, $20, 43);
+var $21 = { n: "export", v: "default SchemaListItem", r: 22, c: 5, s: "f1", u: "f1",  }; //42
+$.a($1, $21, 45);

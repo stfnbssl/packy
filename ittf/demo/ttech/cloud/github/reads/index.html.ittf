@@ -1,0 +1,102 @@
+h/root/empty_layout()
+
+	$
+		var opt = {}
+
+	page( &opt
+
+		js ../js/githubClient.js.ittf
+
+		script
+			module
+				kind es6
+
+				var client
+					new GitHubClient
+						{
+							@ baseUri "https://api.github.com"
+							@ token "69038bfd2e1ce014a7bde34c8d9863f266e3564a"
+
+				_ examples
+
+				function examples
+					_ client.fetchUserRepositories
+						{
+							@ handle 'wizzifactory'
+						._ then
+							=> 
+								param result
+								log 'fetchUserRepositories', 'result', result
+						._ catch
+							=> 
+								param err
+								log 'fetchUserRepositories', 'err', err
+
+					_ client.fetchContent
+						{
+							@ owner 'wizzifactory'
+							@ repository 'wizzi-web'
+							@ path 'index.js'
+							@ decode true
+						._ then
+							=> 
+								param result
+								log 'fetchContent', 'result', result
+						._ catch
+							=> 
+								param err
+								log 'fetchContent', 'err', err
+
+					_ client.fetchCommitBySHA
+						{ 
+							@ sha "71c15f5a336baba041f5abe4b03328570cf5766e"
+							@ owner 'wizzifactory'
+							@ repository 'wizzi-web'
+						._ then
+							=> 
+								param result
+								log 'fetchCommitBySHA', 'result', result
+						._ catch
+							=> 
+								param err
+								log 'fetchCommitBySHA', 'err', err
+
+					_ client.fetchTreeBySHA
+						{ 
+							@ sha "36bd261dbaa3b50a00f1224d27f00783f053055a"
+							@ owner 'wizzifactory'
+							@ repository 'wizzi-web'
+						._ then
+							=> 
+								param result
+								log 'fetchTreeBySHA', 'result', result
+						._ catch
+							=> 
+								param err
+								log 'fetchTreeBySHA', 'err', err
+
+					_ client.getReferences
+						{ 
+							@ owner 'wizzifactory'
+							@ repository 'wizzi-web'
+						._ then
+							=> 
+								param result
+								log 'getReferences', 'result', result
+						._ catch
+							=> 
+								param err
+								log 'getReferences', 'err', err
+
+					_ client.getReferencesHeads
+						{ 
+							@ owner 'wizzifactory'
+							@ repository 'wizzi-web'
+						._ then
+							=> 
+								param result
+								log 'getReferencesHeads', 'result', result
+						._ catch
+							=> 
+								param err
+								log 'getReferencesHeads', 'err', err

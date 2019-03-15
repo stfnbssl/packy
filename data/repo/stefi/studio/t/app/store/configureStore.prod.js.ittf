@@ -1,0 +1,24 @@
+﻿$group
+	$params &app
+	+
+	$if app.useApiMiddleware
+		import { createStore, applyMiddleware } from 'redux'
+		import thunk from 'redux-thunk'
+		import api from '../middleware/api'
+	$else
+		import { createStore } from 'redux'
+	import rootReducer from './reducers'
+	+
+	const configureStore
+		=>
+			param preloadedState
+			_ createStore
+				@ rootReducer
+				@ preloadedState
+				$if app.useApiMiddleware
+					_ applyMiddleware
+						@ thunk
+						@ api
+	+
+	export default configureStore
+

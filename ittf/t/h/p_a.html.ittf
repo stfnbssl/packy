@@ -1,0 +1,6 @@
+p
+	$params title, href
+	a ${title}
+		href ${href}
+	br
+	$hook

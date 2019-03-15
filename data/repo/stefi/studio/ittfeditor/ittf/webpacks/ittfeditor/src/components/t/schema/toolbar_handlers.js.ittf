@@ -1,0 +1,14 @@
+﻿$group
+
+	=> handleOpenSelectSchemaDialog
+		_ this.setState
+			{
+				@ ...this.state
+				@ openSelectSchemaDialog true
+
+	=> handleCloseSelectSchemaDialog
+		_ this.setState
+			{
+				@ ...this.state
+				@ openSelectSchemaDialog false
+

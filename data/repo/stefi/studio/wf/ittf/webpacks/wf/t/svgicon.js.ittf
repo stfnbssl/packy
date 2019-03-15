@@ -1,0 +1,15 @@
+﻿module
+	$params name
+	kind react
+
+	import React from 'react'
+	import SvgIcon from 'material-ui/SvgIcon'
+
+	function ${name}
+		param props
+		return
+			< SvgIcon
+				@ {...props}
+				$hook
+
+	export default ${name}

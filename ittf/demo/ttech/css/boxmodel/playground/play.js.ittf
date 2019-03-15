@@ -1,0 +1,50 @@
+﻿module 
+    kind jsfile
+	var
+		decl box_margin = "100px 100px"
+		decl box_padding = "100px 100px"
+		decl box_border = "100px 100px"
+    
+	_ $
+        function 
+            var demo = $("#demo")
+            var demo_styles = $("#demo_styles")
+            
+			_ $(window)
+                ._ load
+                    function 
+						
+						$include updateResult
+                        
+						_ $("body")
+                            ._ addClass("go")
+                        
+						_ $("#toggle-controls")
+                            ._ click
+                                function 
+                                    _ $("#sidebar")
+                                        ._ toggleClass("minimized")
+                        
+						_ $('#box-margin-control')
+                            ._ blur
+                                function 
+                                    set box_margin
+                                        _ $('#box-margin-control')
+                                            ._ val()
+                                    _ updateResult()
+                        
+						_ $('#box-padding-control')
+                            ._ blur
+                                function 
+                                    set box_padding
+                                        _ $('#box-padding-control')
+                                            ._ val()
+                                    _ updateResult()
+
+						_ $('#box-border-control')
+                            ._ blur
+                                function 
+                                    set box_border
+                                        _ $('#box-border-control')
+                                            ._ val()
+                                    _ updateResult()

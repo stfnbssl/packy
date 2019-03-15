@@ -1,0 +1,14 @@
+﻿$group
+
+	element headings
+		tag 
+		ast 
+		category 
+	
+		item
+			title Headings
+			ittf
+				h1 Heading 1
+				h2 Heading 2
+				h3 Heading 2
+

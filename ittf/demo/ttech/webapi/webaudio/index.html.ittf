@@ -1,0 +1,16 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'webaudio',
+			label: 'Web audio',
+			experimentsWith: 'the web audio api',
+			path: [
+				{
+					name: 'webapi',
+					label: 'WebApi',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

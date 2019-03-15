@@ -1,0 +1,22 @@
+{
+
+	$
+
+		var opt = {
+			name: 'alerts',
+			label: 'Alerts',
+			experimentsWith: 'javascript tree view controls',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'controls',
+					label: 'Controls',
+				},
+			]
+		};
+
+
+	ttech-frame(&opt)

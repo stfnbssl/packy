@@ -1,0 +1,35 @@
+  module  ids: 1 36
+    kind react ids: 2 37
+    +  ids: 3 38
+    import { createStore, applyMiddleware } from 'redux' ids: 4 39
+    import thunk from 'redux-thunk' ids: 5 40
+    import { createLogger } from 'redux-logger' ids: 6 41
+    import api from '../middleware/api' ids: 7 42
+    import rootReducer from '../reducers' ids: 8 43
+    # import DevTools from '../containers/DevTools' ids: 9 44
+    +  ids: 10 45
+    log 'rootReducer', rootReducer ids: 11 46
+    var configureStore ids: 12 47
+      =>  ids: 13 48
+        param preloadedState ids: 14 49
+        +  ids: 15 50
+        var store ids: 16 51
+          _ createStore ids: 17 52
+            @ rootReducer ids: 18 53
+            @ preloadedState ids: 19 54
+            _ applyMiddleware ids: 20 55
+              @ thunk ids: 21 56
+              @ api ids: 22 57
+              _ createLogger() ids: 23 58
+        +  ids: 24 59
+        if module.hot ids: 25 60
+          _ module.hot.accept ids: 26 61
+            @ '../reducers' ids: 27 62
+            =>  ids: 28 63
+              var nextRootReducer ids: 29 64
+                _ require('../reducers') ids: 30 65
+                  . default ids: 31 66
+              _ store.replaceReducer(nextRootReducer) ids: 32 67
+        return store ids: 33 68
+    +  ids: 34 69
+    export default configureStore ids: 35 70

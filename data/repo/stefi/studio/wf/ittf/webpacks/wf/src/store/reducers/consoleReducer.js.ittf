@@ -1,0 +1,115 @@
+﻿module
+    kind react
+	+
+	import { 
+		\b LIST_CONSOLE_REQUEST,
+		\b LIST_CONSOLE_SUCCESS,
+		\b LIST_CONSOLE_FAILURE,
+		\b GET_CONSOLE_REQUEST,
+		\b GET_CONSOLE_SUCCESS, 
+		\b GET_CONSOLE_FAILURE, 
+		\b SAVE_CONSOLE_REQUEST,
+		\b SAVE_CONSOLE_SUCCESS, 
+		\b SAVE_CONSOLE_FAILURE, 
+		\b RUN_CONSOLE_REQUEST,
+		\b RUN_CONSOLE_SUCCESS, 
+		\b RUN_CONSOLE_FAILURE,
+		\b CHANGE_VIEW
+		\b } from '../actions'
+	+
+	const consoleInitialState
+		{
+			@ isRequestingList false
+			@ jsmodels []
+			@ listerror null
+			@ isRequestingSave false
+			@ generated null
+			@ selectedConsole null
+			@ isRequestingRun false
+			@ stdOut null
+			@ stdErr null
+			@ runerror null
+			@ view 'list'
+	+
+	r( console, consoleInitialState )
+	
+		c( LIST_CONSOLE_REQUEST
+			{
+				@ ...state
+				@ isRequestingList true
+		
+		c( LIST_CONSOLE_SUCCESS
+			{
+				@ ...state
+				@ isRequestingList false
+				@ jsmodels action.payload.jsmodels
+				@ listerror null
+		
+		c( LIST_CONSOLE_FAILURE
+			{
+				@ ...state
+				@ isRequestingList false
+				@ listerror action.payload.error
+
+		c( GET_CONSOLE_REQUEST
+			{
+				@ ...state
+				@ isRequestingGet true
+		
+		c( GET_CONSOLE_SUCCESS
+			{
+				@ ...state
+				@ isRequestingGet false
+				@ content action.payload
+				@ selectedConsole action.name
+				@ runerror null
+		
+		c( GET_CONSOLE_FAILURE
+			{
+				@ ...state
+				@ isRequestingGet false
+				@ content action.payload.error
+		
+		c( SAVE_CONSOLE_REQUEST
+			{
+				@ ...state
+				@ isRequestingSave true
+		
+		c( SAVE_CONSOLE_SUCCESS
+			{
+				@ ...state
+				@ isRequestingSave false
+				@ generated action.payload.generated
+				@ selectedConsole action.name
+				@ runerror null
+		
+		c( SAVE_CONSOLE_FAILURE
+			{
+				@ ...state
+				@ isRequestingSave false
+				@ runerror action.payload.error
+
+		c( RUN_CONSOLE_REQUEST
+			{
+				@ ...state
+				@ isRequestingRun true
+		
+		c( RUN_CONSOLE_SUCCESS
+			{
+				@ ...state
+				@ isRequestingRun false
+				@ stdout action.payload.stdout
+				@ stderr action.payload.stderr
+				@ selectedConsole action.name
+				@ runerror null
+		
+		c( RUN_CONSOLE_FAILURE
+			{
+				@ ...state
+				@ isRequestingRun false
+				@ runerror action.payload.error
+
+		c( CHANGE_VIEW
+			{
+				@ ...state
+				@ view action.view

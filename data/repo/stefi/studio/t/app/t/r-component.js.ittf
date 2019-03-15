@@ -1,0 +1,42 @@
+﻿$group
+	$params name, withWidth:boolean|false, connect:boolean|false, pure:boolean|false
+
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import classNames from 'classnames'
+	import { withStyles, createStyleSheet } from 'material-ui/styles'
+	$if withWidth || connect || pure
+		import compose from 'recompose/compose'
+	$if withWidth
+		import withWidth, { isWidthUp } from 'material-ui/utils/withWidth'
+	$if connect
+		import { connect } from 'react-redux'
+	$if pure
+		import pure from 'recompose/pure'
+
+	$hook imports
+
+	react ${name}
+		$hook
+
+	+
+	const ${name}Styled
+		$if withWidth || connect || pure
+			_ compose
+				$if pure
+					@ pure
+				_ withStyles
+					@ styleSheet
+				$if withWidth
+					_ withWidth()
+				$if connect
+					_ connect()
+				( 
+					@ ${name}
+		$else
+			_ withStyles
+				@ styleSheet
+				( 
+					@ ${name}
+	
+	export default ${name}Styled

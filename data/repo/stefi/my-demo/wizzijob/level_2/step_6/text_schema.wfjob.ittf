@@ -1,0 +1,69 @@
+﻿wfjob basic
+
+	$
+		var models_folder    = path.join(__dirname, 'ittf', 'models');
+		var ittf_lib_folder  = path.join(__dirname, 'ittf', 'lib');
+		var dest_folder      = path.join(__dirname, 'outputs');
+
+	models-base-folder ${models_folder}
+
+	model wf
+		src wf.demo.ittf
+		schema demo
+
+	line one
+		cwd-folder ${ittf_lib_folder}
+
+		# Generates a text document (pseudo schema text)
+		# The synthax rules for text ittf documents are here: TODO
+		artifact basic no model text document
+			src basic.nomodel.text.ittf
+			schema text
+			generator text/document
+			extension text
+
+	line two
+		cwd-folder ${models_folder}
+
+		# Generates the json reprentation of a wizzi model
+		# from a `demo` wizzi model (schema `demo`)
+		# We can do this because the `demo` wizzi schema 
+		# declares the element: 
+		#     export-to json
+		artifact json dump of model wf.demo.ittf
+			src wf.demo.ittf
+			schema demo
+			generator json/export
+			dest-path wf.demo.export.json
+			extension json
+
+		# Regenerates the ittf of the loaded mTree (schema ittf).
+		# This make sense when we have to preprocess, compose from various
+		# documents or compose programmatically, an ittf document,
+		# before loading it in a wizzi model.
+		artifact ittf document of model wf.demo.ittf
+			src wf.demo.ittf
+			schema ittf
+			generator ittf/document
+			dest-path wf.demo.export.ittf
+			extension ittf
+
+	line three
+		cwd-folder ${ittf_lib_folder}
+
+		# Generates a text document (pseudo schema text)
+		# Using the model wf.demo.ittf as model context
+		# The synthax rules for text ittf documents are here: TODO
+		artifact basic with model text document
+			src basic.withmodel.text.ittf
+			schema text
+			generator text/document
+			extension text
+			model-ref wf
+				export-name wf
+
+	production
+		dest-folder ${dest_folder}
+		line-ref one
+		line-ref two
+		line-ref three

@@ -1,0 +1,17 @@
+﻿layout( Long responsive page, Documentation )
+	$params currentPage|Documentation, currentSubPage|@@null
+
+	$global
+		var gLinkPrefix = currentSubPage == null ? '' : '../';
+		var gcurrentPage = currentPage;
+		var gcurrentSubPage = currentSubPage;
+
+	$include meta
+
+	$
+		if (currentPage === 'Documentation' || currentPage === 'Code') {
+			l_hasSubPages = true;
+		}
+
+	$include tn  $$ top navigation
+	$include mc  $$ main content

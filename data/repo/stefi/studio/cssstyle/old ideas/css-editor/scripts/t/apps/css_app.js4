@@ -1,0 +1,109 @@
+﻿class Spa.CssApp
+	ctor rootApp
+		this.rootApp = rootApp;
+		this.dataprovider = new Spa.CssDataProvider(this);
+		this.htmlCollection = new Spa.HtmlCollection(null, { app: this });
+		this.htmlCollection.fetch();
+		this.cssCollection = new Spa.CssCollection(null, { app: this });
+		this.cssCollection.fetch();
+		this.cssRuleCollection = new Spa.CssRuleCollection(null, { app: this });
+		this.cssRuleCollection.fetch();
+		this.initializedLayout = false;
+
+	method initializeLayout
+		__if !this.initializedLayout
+			var self = this;
+			this.initializedLayout = true;
+			this.layout = new Spa.CssLayout();
+			this.layout.on("show", function() {
+				self.rootApp.vent.trigger("layout:rendered");
+			});
+			this.rootApp.content.show(this.layout);
+		this.layout.htmlList.close();
+		this.layout.cssList.close();
+		this.layout.cssruleList.close();
+		this.layout.cssruleStyles.close();
+
+	method showHtmlList 
+		this.initializeLayout();
+		var listView = new Spa.HtmlListView({ 
+			collection: this.htmlCollection,
+			itemViewOptions: {
+				app: this 
+			}
+		});
+		this.layout.htmlList.show(listView);
+
+	method showCssList 
+		this.initializeLayout();
+		this.cssCollection.applyLookups(this.htmlCollection);
+		var listView = new Spa.CssListView({ 
+			collection: this.cssCollection,
+			itemViewOptions: {
+				app: this 
+			}
+		});
+		this.layout.cssList.show(listView);
+
+	method showCssRuleList cssid cssname
+		this.initializeLayout();
+		var coll = this.cssRuleCollection.byCssId(cssid);
+		__log 'showCssRuleList.coll', coll
+		var listView = new Spa.CssRuleListView({ 
+			collection: coll,
+			itemViewOptions: {
+				app: this, 
+				cssid: cssid, 
+				cssname: cssname 
+			}
+		});
+		this.layout.cssruleList.show(listView);
+
+	method showCssRuleStyles cssrulemodel
+		this.initializeLayout();
+		var ruleStylesView = new Spa.CssRuleStylesView({
+			model: cssrulemodel,
+			app: this
+		});
+		this.layout.cssruleStyles.show(ruleStylesView);
+
+	method putHtml model
+		console.log('CssApp.putHtml', model);
+		this.htmlCollection.create(model);
+
+	method deleteHtml model
+		console.log('CssApp.deleteHtml', model);
+		this.htmlCollection.remove(model);
+
+	method getHtmlByCssId cssid
+		var cssModel = this.cssCollection.find(function(model) {
+			return model.get('id') == cssid; 
+		});
+		var htmlid = cssModel.get('htmlid');
+		var htmlModel = this.htmlCollection.find(function(model) { 
+			return model.get('id') == htmlid; 
+		});
+		return htmlModel.get('content');
+
+	method putCss model
+		console.log('CssApp.putCss', model);
+		this.cssCollection.create(model);
+
+	method deleteCss model
+		console.log('CssApp.deleteCss', model);
+		this.cssCollection.remove(model);
+
+	method toCssRulesText cssid
+		return this.cssRuleCollection.toCssRulesText(cssid);
+
+	method toCssRulesWmt cssid
+		return this.cssRuleCollection.toCssRulesWmt(cssid);
+
+	method putCssRule model
+		console.log('CssApp.putCssRule', model);
+		this.cssRuleCollection.create(model);
+
+	method deleteCssRule model
+		console.log('CssApp.deleteCssRule', model);
+		this.cssRuleCollection.remove(model);
+

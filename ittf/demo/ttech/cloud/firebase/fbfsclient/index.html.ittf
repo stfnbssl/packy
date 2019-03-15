@@ -1,0 +1,252 @@
+html
+
+	$
+		var opt = {}
+		opt.title = 'Firebase fbFsClient';
+		opt.useFirebase = true;
+		opt.project = "wizzifactory";
+	
+	h/root/empty_layout_opt(&opt)
+
+		$append body-scripts
+    		script
+    			module
+    				kind es6
+    				var db = firestore
+
+					var schemas
+						[
+							@ 'css'
+							@ 'graphql'
+							@ 'html'
+							@ 'js'
+							@ 'json'
+							@ 'md'
+							@ 'scss'
+							@ 'svg'
+							@ 'text'
+							@ 'ts'
+							@ 'vue'
+							@ 'xml'
+    				
+    				# _ setSnippets
+					_ getCollection
+    					@ 'schemas/js/examples'
+
+					#
+						_ getCollection
+    						@ 'schemas'
+						_ getCollection
+    						@ 'ittf/default/default'
+    					_ getCollection
+    						@ 'sample'
+    					_ getCollection
+    						@ 'snippets'
+                                
+                    function addSchemas
+						_ schemas.map
+							=>
+								param s
+								var dRef = db.doc('schemas/' + s)
+								_ dRef.set
+									{
+										@ name s
+										@ description s
+									._ then
+										=>
+											log 'add.schema.id', s
+									._ catch
+										=>
+											param err
+											log 'add.schema.err', err
+
+					function setSnippets
+                        _ db.collection('snippets').get().then
+                            => 
+                                param querySnapshot
+                                log 'got collection', 'snippets'
+
+								var batch = db.batch()
+                                _ querySnapshot.forEach
+                                    => 
+                                        param doc
+										var ss = doc.id.split('-')
+										var x = ss[ss.length-1]
+										if schemas.indexOf(x) > -1
+											var schema = x
+											var name = ss.slice(0, ss.length-1).join('-')
+											var data = doc.data()
+											log 'snippet', schema, name 
+											if data.content
+												var dRef = db.doc('schemas/' + schema + '/snippets/' + name)
+												_ batch.set
+													@ dRef
+													{
+														@ schema schema
+														@ name (name + '.' + schema)
+														@ content data.content
+											else
+												log 'snippet', schema, name, 'no content', data
+											#
+												_ setExample
+													@ x
+													@ name
+													@ data.content
+								_ batch.commit
+									._ then
+										=>
+											param result
+											log 'batch result', result
+									._ catch
+										=>
+											param err
+											log 'batch.err', err
+
+					function setExamples
+                        _ db.collection('sample').get().then
+                            => 
+                                param querySnapshot
+                                log 'got collection', 'sample'
+
+								var batch = db.batch()
+                                _ querySnapshot.forEach
+                                    => 
+                                        param doc
+										var ss = doc.id.split('-')
+										var x = ss[ss.length-1]
+										if schemas.indexOf(x) > -1
+											var schema = x
+											var name = ss.slice(0, ss.length-1).join('-')
+											var data = doc.data()
+											log 'example', schema, name 
+											if data.content
+												var dRef = db.doc('schemas/' + schema + '/examples/' + name)
+												_ batch.set
+													@ dRef
+													{
+														@ schema schema
+														@ name (name + '.' + schema + '.ittf')
+														@ content data.content
+											else
+												log 'example', schema, name, 'no content', data
+											#
+												_ setExample
+													@ x
+													@ name
+													@ data.content
+										else
+											set ss = doc.id.split('.')
+											set x = ss[ss.length-1]
+											if x === 'fragments'
+												var schema = ss[0]
+												var name = ss.slice(0, ss.length-1).join('.')
+												var data = doc.data()
+												for k in data
+													var name = k.substr(0, k.length - ss[0].length - 6)
+													log 'fragment', schema, name 
+													var dRef = db.doc('schemas/' + schema + '/fragments/' + name)
+													if data[k]
+														_ batch.set
+															@ dRef
+															{
+																@ schema schema
+																@ name (name + '.' + schema + '.ittf')
+																@ content data[k]
+													else
+														log 'fragment', schema, name, 'no content', data
+													#
+														_ setFragment
+															@ schema
+															@ name
+															@ data[k]
+								_ batch.commit
+									._ then
+										=>
+											param result
+											log 'batch result', result
+									._ catch
+										=>
+											param err
+											log 'batch.err', err
+
+                    function setExample
+						param schema
+						param id
+						param data
+						var dRef = db.doc('schemas/' + schema + '/examples/' + id)
+						_ dRef.set
+							{
+								@ schema schema
+								@ name (id + '.' + schema + '.ittf')
+								@ content data
+							._ then
+								=>
+									log 'add.example.id', schema, data
+							._ catch
+								=>
+									param err
+									log 'add.example.err', err
+
+                    function setFragment
+						param schema
+						param id
+						param data
+						var dRef = db.doc('schemas/' + schema + '/fragments/' + id)
+						_ dRef.set
+							{
+								@ schema schema
+								@ name (id + '.' + schema + '.ittf')
+								@ content data
+							._ then
+								=>
+									log 'add.fragment.id', schema
+							._ catch
+								=>
+									param err
+									log 'add.fragment.err', err
+
+					function addTodo
+                        param todo
+                        var collection = db.collection('todos')
+                        _ collection.add
+                            {
+                                @ todo todo
+                                @ done false
+                            ._ then
+                                =>
+                                    param result
+                                    log 'add.todo.id', result.id, 'result', result
+                            ._ catch
+                                =>
+                                    param err
+                                    log 'add.todo.err', err
+
+                    function addTodo
+                        param todo
+                        var collection = db.collection('todos')
+                        _ collection.add
+                            {
+                                @ todo todo
+                                @ done false
+                            ._ then
+                                =>
+                                    param result
+                                    log 'add.todo.id', result.id, 'result', result
+                            ._ catch
+                                =>
+                                    param err
+                                    log 'add.todo.err', err
+                    
+                    function getCollection
+                        param collPath
+                        _ db.collection(collPath).get().then
+                            => 
+                                param querySnapshot
+                                log 'got collection', collPath, querySnapshot
+                                _ querySnapshot.forEach
+                                    => 
+                                        param doc
+                                        log 'id', doc.id
+                                        log 'path', doc.ref.path
+                                        log 'data', doc.data()
+                                        log 'doc', doc

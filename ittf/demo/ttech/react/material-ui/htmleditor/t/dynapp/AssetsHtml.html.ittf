@@ -1,0 +1,45 @@
+﻿$group
+
+	el_html( __generic
+
+	el_html( a
+		p_def( href, string, The href attribute
+
+	el_html( area, isVoid
+
+	el_html( base, isVoid
+
+	el_html( br, isVoid
+
+	el_html( col, isVoid
+
+	el_html( embed, isVoid
+
+	el_html( hr, isVoid
+
+	el_html( img, isVoid
+		p_def( src, string, The src attribute
+	
+	el_html( input, isVoid
+	
+	el_html( keygen, isVoid
+	
+	el_html( link, isVoid
+		p_def( crossorigin, enum
+			[ enumItems
+				@ 'anonymous'
+				@ 'use-credentials'
+		p_def( href, string
+		p_def( media, string
+		p_def( rel, string
+		p_def( type, string
+	
+	el_html( meta, isVoid
+	
+	el_html( param, isVoid
+	
+	el_html( source, isVoid
+	
+	el_html( track, isVoid
+	
+	el_html( wbr, isVoid

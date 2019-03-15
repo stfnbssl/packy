@@ -1,0 +1,11 @@
+﻿$group
+	$params action|@@null
+
+	onClick
+		function
+			param event
+			_ event.preventDefault()
+			_ event.stopPropagation()
+			$if action != null
+				_ ${action}
+			$hook

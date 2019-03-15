@@ -1,0 +1,7 @@
+﻿$group
+	$params label
+	
+	div
+		label ${label}
+        div
+			$hook

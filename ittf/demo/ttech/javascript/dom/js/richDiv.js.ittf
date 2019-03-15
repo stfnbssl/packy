@@ -1,0 +1,51 @@
+﻿$group
+    
+	class RichDiv
+		ctor
+			param element
+			param style
+			set this.$element = $(element)
+			set this.styleBuilder = new StyleBuilder(style)
+			set this.elementPosition = new ElementPosition(element)
+
+		m beaPopup
+			param options
+			var onClickElement = $(options.onClickElement)
+			var onClickElementPosition = new ElementPosition(options.onClickElement)
+			var that = this
+			_ onClickElement.bind
+				@ 'click'
+				function
+					param event
+					_ that.$element.css
+						_ objUtils.extends
+							_ that.styleBuilder.toStyleObject()
+							_ that.elementPosition.popupStyle
+								{
+									@ event event
+									@ width options.width
+									@ padMarginWidth that.styleBuilder.getPadMarginBorderWidth()
+									@ height options.height
+					_ that.$element.html
+						_ JSON.stringify
+							{
+								@ eventInfo
+									_ posUtils.getEventInfo
+										@ event
+								@ mystyle
+									_ that.elementPosition.popupStyle
+										{
+											@ event event
+											@ width options.width
+											@ padMarginWidth that.styleBuilder.getPadMarginBorderWidth()
+											@ height options.height
+								@ elementInfo
+									_ onClickElementPosition.getPositionData()
+							@ null
+							@ 2
+					_ that.$element.show()
+			
+			_ this.$element.bind
+				@ 'click'
+				function
+					_ that.$element.hide()

@@ -1,0 +1,46 @@
+﻿$group
+
+	class MenuBar
+		super React.Component
+
+		m render
+			const { data } = this.props
+			const { items, format } = data
+
+			var menuItems
+				_ items.map
+					=>
+						param item
+						return
+							< Link
+								@ format { format }
+								@ item { item }
+
+			if format === 'ul.li.a'
+				return
+					div
+						ul
+							@style {this.get_ul_Style()}
+							+ { menuItems }
+			
+			elif format === 'div.a.i'
+				return
+					div
+						@style {this.get_ul_Style()}
+						+ { menuItems }
+			else
+				return
+					< div unknown menu format: { format }
+		
+		m get_ul_Style
+			return
+				{
+					@ width '200px'
+					@ padding '0'
+					@ listStyle 'none'
+					@ margin '0 auto'
+		
+		m get_li_Style
+			return
+				{
+					@ font "700 25px/55px 'Open Sans', sans-serif"

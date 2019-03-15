@@ -1,0 +1,165 @@
+﻿$group
+	$params kind
+
+	$*
+		https://github.com/algolia/autocomplete.js/
+		classes
+		navigation
+		navigation__logo
+		logo
+		navigation__links
+		navigation__link [--active]
+		algolia-autocomplete
+		navigation__search-input 
+		ds-input
+		ds-dropdown-menu
+		icon-magnifying-glass
+		icon-cross
+		navigation__icon
+		sidecar__icon
+		icon-github
+		icon-stack-overflow
+		dropdown__language
+		dropdown__arrow
+	*$
+
+
+	header 
+		class navigation
+		. container navigation__inner
+			$include ./logo
+			nav 
+				class navigation__links
+				$if gcurrentSubPage == null
+					$if kind === 'isCompile'
+						nav_link_compile( concepts, concepts, Concepts )
+						nav_link_compile( docs, docs/intro, Docs, Docs ) 
+						nav_link_compile( api, api, Api )
+						nav_link_compile( code, code/intro, Code )
+						nav_link_compile( starters, starters, Starters )
+						nav_link_compile( project, project, Project )
+					$else
+						nav_link( concepts, concepts, Concepts )
+						nav_link( docs, docs/intro, Docs, Docs ) 
+						nav_link( api, api, Api )
+						nav_link( code, code/intro, Code )
+						nav_link( starters, starters, Starters )
+						nav_link( project, project, Project )
+				$else
+					$if kind === 'isCompile'
+						nav_link_compile( concepts, ../concepts, Concepts )
+						nav_link_compile( docs, ../docs/intro, Docs, Docs ) 
+						nav_link_compile( api, ../api, Api )
+						nav_link_compile( code, ../code/intro, Code )
+						nav_link_compile( starters, ../starters, Starters )
+						nav_link_compile( project, ../project, Project )
+					$else
+						nav_link( concepts, ../concepts, Concepts )
+						nav_link( docs, ../docs/intro, Docs, Docs ) 
+						nav_link( api, ../api, Api )
+						nav_link( code, ../code/intro, Code )
+						nav_link( starters, ../starters, Starters )
+						nav_link( project, ../project, Project )
+				
+			. navigation__search
+				span 
+					class algolia-autocomplete
+					style position: relative; display: inline-block; direction: ltr;
+					input 
+						type text
+						class navigation__search-input ds-input
+						placeholder Search documentation…
+						autocomplete off
+						spellcheck false
+						role combobox
+						aria-autocomplete list
+						aria-expanded false
+						aria-owns algolia-autocomplete-listbox-0
+						dir auto
+						style position: relative; vertical-align: top;
+					pre 
+						aria-hidden true
+						style position: absolute; visibility: hidden; white-space: pre; font-family: Arial; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; word-spacing: 0px; letter-spacing: normal; text-indent: 7px; text-rendering: auto; text-transform: none;
+					span 
+						class ds-dropdown-menu
+						role listbox
+						id algolia-autocomplete-listbox-0
+						style position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;
+						. ds-dataset-1
+				button 
+					$$ class navigation__search-icon icon-magnifying-glass
+					class navigation__search-icon icon-search
+				button 
+					class navigation__search-icon icon-cross
+			a 
+				href https://github.com/wizzifactory
+				target _blank
+				class navigation__icon
+				title GitHub Repository
+				i 
+					class sidecar__icon icon-github
+			a 
+				href https://stackoverflow.com/questions/tagged/wizzifactory
+				target _blank
+				class navigation__icon
+				title See Questions on Stack Overflow
+				i 
+					class sidecar__icon icon-stackoverflow
+			a 
+				href #
+				target _blank
+				class navigation__icon
+				title Follow on twitter
+				i 
+					class sidecar__icon icon-twitter
+			a 
+				href #
+				target _blank
+				class navigation__icon
+				title Follow on facebook
+				i 
+					class sidecar__icon icon-facebook
+			$*
+			. dropdown navigation__languages
+				tabindex 0
+				img 
+					class dropdown__language
+					alt select language
+					src /ffb234d54a64f189d1e4f4d643cb8bb6.svg
+				i 
+					class dropdown__arrow
+				. dropdown__list
+					ul 
+						li 
+							a 
+								href #
+								span English
+						li 
+							a 
+								href #
+								span Italian
+			*$
+
+		$if gcurrentPage == 'code'
+			. navigation__bottom
+				. container navigation__inner
+					nav_child_compile( intro, intro, intro )
+					nav_child_compile( wizzi, wizzi, wizzi )
+					nav_child_compile( wizzi-mtree, wizzi-mtree, mtree )
+					nav_child_compile( wizzi-repo, wizzi-repo, repo )
+					nav_child_compile( wizzi-utils, wizzi-utils, utils )
+					nav_child_compile( wizzi-core, wizzi-core, core )
+					nav_child_compile( wizzi-js, wizzi-js, js )
+					nav_child_compile( wizzi-web, wizzi-web, web )
+					nav_child_compile( wizzi-demo, wizzi-demo, demo )
+
+		$if gcurrentPage == 'docs'
+			. navigation__bottom
+				. container navigation__inner
+					nav_child( intro, intro )
+					nav_child( ittf, ittf )
+					nav_child( jswizzi, jswizzi )
+					nav_child( models, models )
+					nav_child( artifacts, artifacts )
+					nav_child( jobs, jobs )
+					nav_child( plugins, plugins )

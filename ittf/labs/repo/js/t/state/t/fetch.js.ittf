@@ -1,0 +1,64 @@
+﻿$group
+	$params actionArea, actionName, p1|@@null, p2|@@null, p3|@@null, p4|@@null, p5|@@null, p6|@@null
+
+	$
+		var action = 'K.' + actionArea.toUpperCase() + '.' + actionName.toUpperCase();
+		var fname = actionArea + actionName;
+
+	function fetch${fname}
+		param request
+
+		$if p1 != null
+			param ${p1}
+		$if p2 != null
+			param ${p2}
+		$if p3 != null
+			param ${p3}
+		$if p4 != null
+			param ${p4}
+		$if p5 != null
+			param ${p5}
+		$if p6 != null
+			param ${p6}
+		set request = request || {}
+		$if p1 != null
+			set request['${p1}'] = ${p1}
+		$if p2 != null
+			set request['${p2}'] = ${p2}
+		$if p3 != null
+			set request['${p3}'] = ${p3}
+		$if p4 != null
+			set request['${p4}'] = ${p4}
+		$if p5 != null
+			set request['${p5}'] = ${p5}
+		$if p6 != null
+			set request['${p6}'] = ${p6}
+		
+		$hook
+
+		_ State.set
+			@ ${action}
+			@ K.STATE.LOADING
+			@ true
+		
+		log 'fetch${fname}.request', request
+		log 'fetch${fname}.url', K.REPO.Url.Get.FolderData(request)
+
+		_ axios.get
+			_ K.REPO.Url.Get.FolderData(request)
+			._ then
+				function
+					param response
+					log 'fetch${fname}.then', response
+					_ State.set
+						@ ${action}
+						@ K.STATE.SUCCESS
+						@ response.data
+			._ catch
+				function
+					param err
+					log 'fetch${fname}.catch', err
+					_ State.set
+						@ ${action}
+						@ K.STATE.FAILURE
+						@ err

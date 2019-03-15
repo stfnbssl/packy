@@ -1,0 +1,5 @@
+﻿{
+	$params kind, id|@@null
+	@ kind '${kind}'
+	$if id != null
+		@ id '${id}'

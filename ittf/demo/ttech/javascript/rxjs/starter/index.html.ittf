@@ -1,0 +1,18 @@
+html
+
+	$
+		var opt = {}
+		opt.title = 'RxJs starter';
+		opt.useRxJs = true;
+	
+	h/root/empty_layout_opt(&opt)
+
+		$append body-scripts
+			js ./main.js.ittf
+
+		# app
+			+ Hello
+
+		button
+			+ ok
+

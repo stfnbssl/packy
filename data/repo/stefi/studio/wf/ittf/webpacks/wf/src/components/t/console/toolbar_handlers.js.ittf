@@ -1,0 +1,49 @@
+﻿$group
+
+	=> handleSetViewList
+
+		prop onChangeView
+		_ onChangeView
+			@ 'list'
+	
+	=> handleSetViewEdit
+		
+		prop onChangeView
+		_ onChangeView
+			@ 'edit'
+
+	=> handleRunScript
+		
+		prop onSaveConsole
+		prop onRunRequest
+		prop selectedConsole
+		prop onChangeView
+		prop content
+
+		if content != this.editor.value
+			
+			_ onSaveConsole
+				@ selectedConsole
+				@ this.editor.value
+				
+				_ setTimeout
+					function
+						_ onRunRequest
+							@ selectedConsole
+					@ 1000
+		else
+			_ onRunRequest
+				@ selectedConsole
+
+		_ onChangeView
+			@ 'run'
+
+	=> handleSaveScript
+		
+		prop onSaveConsole
+		prop selectedConsole
+		
+		_ onSaveConsole
+			@ selectedConsole
+			@ this.editor.value
+		

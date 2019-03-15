@@ -1,0 +1,19 @@
+﻿iife
+	$params module, filter, arguments|@@null
+
+	$ var args = arguments ? arguments.trim().split(';') : []
+
+	function
+	
+		_ angular.module
+			@ '${module}'
+			._ filter
+				@ '${filter}'
+				function
+					return
+						function
+							param input
+							$foreach param in args
+								param ${arg}
+							$hook
+

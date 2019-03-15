@@ -1,0 +1,10 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    wz-const HTTP_REQUEST = 'HTTP_REQUEST' ids: undefined undefined
+    wz-const defaultTimeout = 20000 ids: undefined undefined
+    wz-const defaultResponseType = 'json' ids: undefined undefined
+    import { documents } from './schemas' ids: undefined undefined
+    log 'documents', documents ids: undefined undefined
+    wz-const Schemas ids: undefined undefined
+      {  ids: undefined undefined
+        @ documents documents ids: undefined undefined

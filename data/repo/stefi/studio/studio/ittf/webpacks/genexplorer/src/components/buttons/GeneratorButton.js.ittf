@@ -1,0 +1,59 @@
+﻿module
+	kind react
+	
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import classNames from 'classnames'
+	import { withStyles, createStyleSheet } from 'material-ui/styles'
+	import {getGeneratorByID} from '../../schemas'
+
+	react GeneratorButton
+
+		prop onGeneratorChange
+			func
+		
+		prop onGeneratorSettingsButtonClick
+			func
+
+		prop generator
+			{
+
+		prop schema
+			{
+
+		=> _onClick
+			param {currentTarget}
+			let generatorID = currentTarget.getAttribute('data-id')
+			_ this.props.onGeneratorChange
+				_ getGeneratorByID
+					@ generatorID
+
+		render
+			const generators = this.props.schema.generators.filter(g => g.showInMenu)
+			return
+				. button menuButton
+					span
+						i
+							@ className 'fa fa-lg fa-code fa-fw'
+						+ &nbsp;{this.props.generator.displayName}
+					ul
+						{
+							_ generators.map
+								=>
+									param generator
+									return
+										li
+											@ key {generator.id}
+											@ onClick {this._onClick}
+											@ data-id {generator.id}
+											button
+												@ type 'button'
+												+ &nbsp;{generator.displayName}
+					button
+						@ type 'button'
+						@ title 'Parser Settings'
+						@ style {{minWidth: 0}}
+						@ disabled {!this.props.generator.renderSettings}
+						@ onClick {this.props.onGeneratorSettingsButtonClick}
+						i
+							@ className 'fa fa-cog fa-fw'

@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'es6',
+			label: 'ES6',
+			experimentsWith: 'javascript modules',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

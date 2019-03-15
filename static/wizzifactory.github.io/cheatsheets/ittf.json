@@ -1,0 +1,227 @@
+{
+    "title": "Schema cheat sheet",
+    "language": "ittf",
+    "elements": [
+        {
+            "name": "The indented tree",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "Ittf nodes",
+                    "ittfWrapped": "node-name node-value\\n    name the value is separated from the name by a space or tab\\n    name-is-a-word value is a string until end of line\\n    name the value can span many lines\\n        \\ , and continue without separation\\n    name ... or continue\\n        \\b with a blank separator\\n    name ... or continue\\n        \\n with a line feed separator",
+                    "generated": "\\nnode-name node-value\\n    name the value is separated from the name by a space or tab\\n    name-is-a-word value is a string until end of line\\n    name the value can span many lines, and continue without separation\\n    name ... or continue with a blank separator\\n    name ... or continue\\nwith a line feed separator\\n"
+                },
+                {
+                    "title": "Ittf indented tree",
+                    "ittfWrapped": "root a document must have one and only one root node\\n    $$ the indentation shapes the tree\\n    node child 1\\n    node child 2\\n        node child 2.a\\n            node child 2.a.1\\n        node child 2.b",
+                    "generated": "\\nroot a document must have one and only one root node\\n    node child 1\\n    node child 2\\n        node child 2.a\\n            node child 2.a.1\\n        node child 2.b\\n"
+                },
+                {
+                    "title": "Ittf node values",
+                    "ittfWrapped": "root \\n    name     values always are trimmed\\n    name \\b  you must use the blank escape   \\b\\n    name to insert start or end spaces",
+                    "generated": "\\nroot\\n    name values always are trimmed\\n    name   you must use the blank escape   \\n    name to insert start or end spaces\\n"
+                },
+                {
+                    "title": "Escapes",
+                    "ittfWrapped": "root \\n    name except the blank escape, as first or last character,\\n        \\b the escape char is ignored\\n    name \\n, \\t, \\b, and so on, are inserted unescaped in the value string\\n    name how do you insert a \\b sequence at start or end line?\\n    $asis name \\b*|^^ the $asis command at rescue \\b",
+                    "generated": "\\nroot\\n    name except the blank escape, as first or last character, the escape char is ignored\\n    name \\n, \\t, \\b, and so on, are inserted unescaped in the value string\\n    name how do you insert a \\b sequence at start or end line?\\n    $asis name \\b*|^^ the $asis command at rescue \\n"
+                },
+                {
+                    "title": "Comments",
+                    "ittfWrapped": "root \\n    $$ this node is commented out entirely until end of line\\n    and $$this part too\\n    node value\\n    $* \\n    this is a multiline\\n    comment \\n    *$ \\n    node value\\n    this too $*is\\n    a multiline comment\\n    *$ ",
+                    "generated": "\\nroot\\n    and\\n    node value\\n    node value\\n    this too\\n"
+                },
+                {
+                    "title": "Comment tricks",
+                    "ittfWrapped": "root \\n    node how do you insert a \\\"$$\\\" or \\\"$*\\\" in a value?\\n    node you must use jsWizzi (see later) variables\\n    $ \\n        var dd = '$' + '$';\\n        var da = '$' + '*';\\n        var ad = '*' + '$';\\n    node And you can insert ${dd} and ${da} and ${ad}",
+                    "generated": "\\nroot\\n    node how do you insert a \\\"$$\\\" or \\\"$*\\\" in a value?\\n    node you must use jsWizzi (see later) variables\\n    node And you can insert $$ and $* and *$\\n"
+                }
+            ]
+        },
+        {
+            "name": "jsWizzi",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "jsWizzi variable declaration and interpolation",
+                    "ittfWrapped": "root \\n    $ \\n        var name = 'stefi';\\n        var options = {\\n            title: 'Chapter 1'\\n        }; \\n    node title is ${options.title}\\n    node name is ${name}",
+                    "generated": "\\nroot\\n    node title is Chapter 1\\n    node name is stefi\\n"
+                },
+                {
+                    "title": "More variable declarations",
+                    "ittfWrapped": "html \\n    $ \\n        var name = 'Ribot';\\n        var runDowns = 16, runWon = 16;\\n        var placements = [1, 1, 1, 1, 1];\\n        var pedigree = {\\n            mother: 'Romanella',\\n            father: 'Tenerani',\\n            paternalGrandfather: 'Bellini',\\n            maternalGrandfather: 'El greco'\\n        }; \\n    p ${name} was undefeated. Won ${runWon} out of ${runDowns} races.\\n    p His father was ${pedigree.father} and his mother ${pedigree.mother}.\\n    p His placements are boring: ${placements}, ...",
+                    "generated": "\\nhtml\\n    p Ribot was undefeated. Won 16 out of 16 races.\\n    p His father was Tenerani and his mother Romanella.\\n    p His placements are boring: 1,1,1,1,1, ...\\n"
+                },
+                {
+                    "title": "Inpute parameters with default values",
+                    "ittfWrapped": "root \\n    $params name|stefi, age:integer|61, inlove:boolean|true\\n    node ${name}, age ${age}, ${inlove ? 'is' : 'is not'} in love.",
+                    "generated": "\\nroot\\n    node stefi, age 61, is in love.\\n"
+                },
+                {
+                    "title": "Unary expressions",
+                    "ittfWrapped": "any \\n    any +2 =  ${ +2 }\\n    any -2 = ${ -2 }\\n    any !(2 == 2) = ${ !(2 == 2) }\\n    $ \\n        var a = 0;\\n    any a = = ${ a }\\n    any ++a = ${ ++a }\\n    any ++a = ${ ++a }\\n    any --a = ${ --a }\\n    any typeof 3 = ${ typeof 3 }\\n    any typeof '3' = ${ typeof '3' }\\n    any typeof xyz = ${ typeof xyz }",
+                    "generated": "\\nany\\n    any +2 =  2\\n    any -2 = -2\\n    any !(2 == 2) = false\\n    any a = = 0\\n    any ++a = 1\\n    any ++a = 2\\n    any --a = 1\\n    any typeof 3 = number\\n    any typeof '3' = string\\n    any typeof xyz = undefined\\n"
+                },
+                {
+                    "title": "Expressions",
+                    "ittfWrapped": "any \\n    any 2 + 2 = ${ 2 + 2 }\\n    any 5 - 2 = ${ 5 - 2 }\\n    any 3 * 3 = ${ 3 * 3 }\\n    any 6 / 2 = ${ 6 / 2 }\\n    any 5 % 2 = ${ 5 % 2 }\\n    any 5 == 2 = ${ 5 == 2 }\\n    any 5 != 2 = ${ 5 != 2 }\\n    any 5 > 2 = ${ 5 > 2 }\\n    any 5 >= 5 = ${ 5 >= 5 }\\n    any 5 < 2 = ${ 5 < 2 }\\n    any 5 <= 5 = ${ 5 <= 5 }\\n    any \\\"a\\\" in { a: 1} = ${ \\\"a\\\" in { a: 1} }\\n    any typeof 5 === 'string' = ${ typeof 5 === 'string' }\\n    any String(5) = ${ String(5) }\\n    any Number('5.5') = ${ Number('5.5') }\\n    any Date(2013,6,12) = ${ Date(2013,6,12) }\\n    any 5 << 5 = ${ 5 << 5 }\\n    any 5 >> 5 = ${ 5 >> 5 }\\n    any 5 >>> 5 = ${ 5 >>> 5 }\\n    any 5 | 5 = ${ 5 | 5 }\\n    any 5 & 5 = ${ 5 & 5 }\\n    any 5 ^ 5 = ${ 5 ^ 5 }",
+                    "generated": "\\nany\\n    any 2 + 2 = 4\\n    any 5 - 2 = 3\\n    any 3 * 3 = 9\\n    any 6 / 2 = 3\\n    any 5 % 2 = 1\\n    any 5 == 2 = false\\n    any 5 != 2 = true\\n    any 5 &gt; 2 = true\\n    any 5 &gt;= 5 = true\\n    any 5 &lt; 2 = false\\n    any 5 &lt;= 5 = true\\n    any \\\"a\\\" in { a: 1} = true\\n    any typeof 5 === 'string' = false\\n    any String(5) = 5\\n    any Number('5.5') = 5.5\\n    any Date(2013,6,12) = Thu Jan 17 2019 14:21:06 GMT+0100 (ora solare Europa occidentale)\\n    any 5 &lt;&lt; 5 = 160\\n    any 5 &gt;&gt; 5 = 0\\n    any 5 &gt;&gt;&gt; 5 = 0\\n    any 5 | 5 = 5\\n    any 5 & 5 = 5\\n    any 5 ^ 5 = 0\\n"
+                },
+                {
+                    "title": "Conditional operator",
+                    "ittfWrapped": "root \\n    node (3 == 3 ? 1 : 0) = ${ 3 == 3 ? 1 : 0 }\\n    node (true ? 5 : 2) = ${ true ? 5 : 2 }",
+                    "generated": "\\nroot\\n    node (3 == 3 ? 1 : 0) = 1\\n    node (true ? 5 : 2) = 5\\n"
+                },
+                {
+                    "title": "Assignments",
+                    "ittfWrapped": "root \\n    $ var a = 0;\\n    node var a = 0; a += 2; -> ${ a += 2 }\\n    $ var a = 0;\\n    node var a = 0; a -= 2; -> ${ a -= 2 }\\n    $ var a = 3;\\n    node var a = 3; a *= 2; -> ${ a *= 2 }\\n    $ var a = 3;\\n    node var a = 3; a /= 2; -> ${ a /= 2 }\\n    $ var a = 3;\\n    node var a = 3; a %= 2; -> ${ a %= 2 }\\n    $ var a = 3;\\n    node var a = 3; a <<= 2; -> ${ a <<= 2 }\\n    $ var a = 3;\\n    node var a = 3; a >>= 2; -> ${ a >>= 2 }\\n    $ var a = 3;\\n    node var a = 3; a >>>= 2; -> ${ a >>>= 2 }\\n    $ var a = 3;\\n    node var a = 3; a &= 2; -> ${ a &= 2 }\\n    $ var a = 3;\\n    node var a = 3; a |= 2; -> ${ a |= 2 }\\n    $ var a = 3;\\n    node var a = 3; a ^= 2; -> ${ a ^= 2 }",
+                    "generated": "\\nroot\\n    node var a = 0; a += 2; -&gt; 2\\n    node var a = 0; a -= 2; -&gt; -2\\n    node var a = 3; a *= 2; -&gt; 6\\n    node var a = 3; a /= 2; -&gt; 1.5\\n    node var a = 3; a %= 2; -&gt; 1\\n    node var a = 3; a &lt;&lt;= 2; -&gt; 12\\n    node var a = 3; a &gt;&gt;= 2; -&gt; 0\\n    node var a = 3; a &gt;&gt;&gt;= 2; -&gt; 0\\n    node var a = 3; a &= 2; -&gt; 2\\n    node var a = 3; a |= 2; -&gt; 3\\n    node var a = 3; a ^= 2; -&gt; 1\\n"
+                }
+            ]
+        },
+        {
+            "name": "jsWizzi statements",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "Conditions in scripts",
+                    "ittfWrapped": "root \\n    $ \\n        var name = 'Derby', winner = null;\\n        if (name == 'Ascot') {\\n            winner = 'Ribot';\\n        } else if (name == 'Arc de triomphe') {\\n            winner = 'Varenne';\\n        } else if (name == 'Derby') {\\n            winner = 'Ribot';\\n        } else {\\n            winner = 'Varenne';\\n        } \\n    node If the race was ${name} the winner was ${winner}.",
+                    "generated": "\\nroot\\n    node If the race was Derby the winner was Ribot.\\n"
+                },
+                {
+                    "title": "Conditions in markup",
+                    "ittfWrapped": "root \\n    $ \\n        var name = 'Derby';\\n    $if name == 'Ascot'\\n        node If the race was ${name} the winner was Ribot\\n    $elif name == 'Arc de triomphe'\\n        node If the race was ${name} the winner was Varenne\\n    $elif name == 'Derby'\\n        node If the race was ${name} the winner was Ribot\\n    $else \\n        node If the race was ${name} the winner was Varenne",
+                    "generated": "\\nroot\\n    node If the race was Derby the winner was Ribot\\n"
+                },
+                {
+                    "title": "For loop in scripts",
+                    "ittfWrapped": "root \\n    $ \\n        var sletters = 'a,b,c,d,e,f,g,h';\\n        var aletters = sletters.split(',');\\n        var letter, label='';\\n        for (var i=0; i<aletters.length; i++) {\\n            letter = aletters[i];\\n            label += i % 2 == 0 ? letter : letter.toUpperCase();\\n        } \\n    node The resulting label has the even letters upper cased: ${label}.",
+                    "generated": "\\nroot\\n    node The resulting label has the even letters upper cased: aBcDeFgH.\\n"
+                },
+                {
+                    "title": "For loop in markup",
+                    "ittfWrapped": "root \\n    $ \\n        var sletters = 'a,b,c,d,e,f,g,h';\\n        var aletters = sletters.split(',');\\n    node The resulting tree has the even node values upper cased:\\n        $foreach letter in aletters\\n            node ${ _index} ${ _index % 2 == 0 ? letter : letter.toUpperCase() }",
+                    "generated": "\\nroot\\n    node The resulting tree has the even node values upper cased:\\n        node  A\\n        node  B\\n        node  C\\n        node  D\\n        node  E\\n        node  F\\n        node  G\\n        node  H\\n"
+                },
+                {
+                    "title": "While loop in scripts",
+                    "ittfWrapped": "root \\n    $ \\n        var x = 1, odds = '1';\\n        while ( x < 10 ) {\\n            x += 2;\\n            odds += ', ' + x\\n        } \\n    node First odd numbers: ${odds}.",
+                    "generated": "\\nroot\\n    node First odd numbers: 1, 3, 5, 7, 9, 11.\\n"
+                },
+                {
+                    "title": "While loop in markup",
+                    "ittfWrapped": "root \\n    $ var x = 1, odds = '1'\\n    $while x < 10\\n        $ x += 2\\n        node ${ odds += ', ' + x }",
+                    "generated": "\\nroot\\n    node 1, 3\\n    node 1, 3, 5\\n    node 1, 3, 5, 7\\n    node 1, 3, 5, 7, 9\\n    node 1, 3, 5, 7, 9, 11\\n"
+                }
+            ]
+        },
+        {
+            "name": "jsWizzi functions",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "Functions in scripts",
+                    "ittfWrapped": "root \\n    $ \\n        function sayHello(name) {\\n            return 'Hii I am ' + name;\\n        } \\n        $$TODO var sh = sayHello;\\n    p If Varenne could have talked he would have said: ${ sayHello('Varenne') }.\\n    $$TODO p If Ribot could have talked he would have said: ${ sh('Ribot') }.",
+                    "generated": "\\nroot\\n    p If Varenne could have talked he would have said: Hii I am Varenne.\\n"
+                },
+                {
+                    "title": "Functions in markup",
+                    "ittfWrapped": "root \\n    $function sayHello\\n        $param name\\n        node Hii I am ${ name }\\n    $ var name = 'Ribot'\\n    $_ sayHello\\n        $@ name",
+                    "generated": "\\nroot\\n    node Hii I am Ribot\\n"
+                },
+                {
+                    "title": "Functions in scripts + markup !!! powerful",
+                    "ittfWrapped": "root \\n    $ \\n        function buildNode(parent, childCount, deep) {\\n            parent.childs = [];\\n            if (deep > 3) { return; }\\n            parent.childs = [];\\n            for (var i = 0; i < childCount; i++) {\\n                var child = { id: parent.id + '-' + i};\\n                buildNode (child, childCount, deep + 1);\\n                parent.childs.push (child);\\n            } \\n        } \\n        var tree = { id: 0 };\\n        buildNode (tree, 2, 0);\\n    node \\n    node Let us inspect the 'tree' variable we built.\\n    node \\n    node ${ _.inspect(tree) }\\n    node \\n    node beautiful tree buildup without depth limits\\n    node \\n    $function nodeView\\n        $param parent\\n        div node${parent.id}\\n            $foreach nodeChild in parent.childs\\n                $_ nodeView\\n                    $@ nodeChild\\n    $_ nodeView\\n        $@ tree",
+                    "generated": "\\nroot\\n    node\\n    node Let us inspect the 'tree' variable we built.\\n    node\\n    node { id: 0,\\n  childs: \\n   [ { id: '0-0',\\n       childs: \\n        [ { id: '0-0-0',\\n            childs: \\n             [ { id: '0-0-0-0',\\n                 childs: \\n                  [ { id: '0-0-0-0-0', childs: [] },\\n                    { id: '0-0-0-0-1', childs: [] } ] },\\n               { id: '0-0-0-1',\\n                 childs: \\n                  [ { id: '0-0-0-1-0', childs: [] },\\n                    { id: '0-0-0-1-1', childs: [] } ] } ] },\\n          { id: '0-0-1',\\n            childs: \\n             [ { id: '0-0-1-0',\\n                 childs: \\n                  [ { id: '0-0-1-0-0', childs: [] },\\n                    { id: '0-0-1-0-1', childs: [] } ] },\\n               { id: '0-0-1-1',\\n                 childs: \\n                  [ { id: '0-0-1-1-0', childs: [] },\\n                    { id: '0-0-1-1-1', childs: [] } ] } ] } ] },\\n     { id: '0-1',\\n       childs: \\n        [ { id: '0-1-0',\\n            childs: \\n             [ { id: '0-1-0-0',\\n                 childs: \\n                  [ { id: '0-1-0-0-0', childs: [] },\\n                    { id: '0-1-0-0-1', childs: [] } ] },\\n               { id: '0-1-0-1',\\n                 childs: \\n                  [ { id: '0-1-0-1-0', childs: [] },\\n                    { id: '0-1-0-1-1', childs: [] } ] } ] },\\n          { id: '0-1-1',\\n            childs: \\n             [ { id: '0-1-1-0',\\n                 childs: \\n                  [ { id: '0-1-1-0-0', childs: [] },\\n                    { id: '0-1-1-0-1', childs: [] } ] },\\n               { id: '0-1-1-1',\\n                 childs: \\n                  [ { id: '0-1-1-1-0', childs: [] },\\n                    { id: '0-1-1-1-1', childs: [] } ] } ] } ] } ] }\\n    node\\n    node beautiful tree buildup without depth limits\\n    node\\n    div node0\\n        div node0-0\\n            div node0-0-0\\n                div node0-0-0-0\\n                    div node0-0-0-0-0\\n                    div node0-0-0-0-1\\n                div node0-0-0-1\\n                    div node0-0-0-1-0\\n                    div node0-0-0-1-1\\n            div node0-0-1\\n                div node0-0-1-0\\n                    div node0-0-1-0-0\\n                    div node0-0-1-0-1\\n                div node0-0-1-1\\n                    div node0-0-1-1-0\\n                    div node0-0-1-1-1\\n        div node0-1\\n            div node0-1-0\\n                div node0-1-0-0\\n                    div node0-1-0-0-0\\n                    div node0-1-0-0-1\\n                div node0-1-0-1\\n                    div node0-1-0-1-0\\n                    div node0-1-0-1-1\\n            div node0-1-1\\n                div node0-1-1-0\\n                    div node0-1-1-0-0\\n                    div node0-1-1-0-1\\n                div node0-1-1-1\\n                    div node0-1-1-1-0\\n                    div node0-1-1-1-1\\n"
+                }
+            ]
+        },
+        {
+            "name": "Ecma builtin objects",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "Ecma builtin functions",
+                    "ittfWrapped": "root \\n    node parseInt('43.5') = ${ parseInt(43.5) }\\n    node parseFloat('43.5') = ${ parseFloat(43.5) }\\n    node isFinite(Infinity) = ${ isFinite(Infinity) }\\n    node isFinite(NaN) = ${ isFinite(NaN) }\\n    node isFinite(null) = ${ isFinite(null) }\\n    node isFinite(0) = ${ isFinite(0) }\\n    node Number.isFinite(null) = ${ Number.isFinite(null) }\\n    node Number.isFinite(0) = ${ Number.isFinite(0) }\\n    node isNaN(NaN) = ${ isNaN(NaN) }\\n    node isNaN(undefined) = ${ isNaN(undefined) }\\n    node isNaN({}) = ${ isNaN({})}\\n    node isNaN(true) = ${ isNaN(true) }\\n    node isNaN(null) = ${ isNaN(null) }\\n    node isNaN(37) = ${ isNaN(37) }\\n    node isNaN('37') = ${ isNaN('37') }\\n    node isNaN('37.37') = ${ isNaN('37.37') }\\n    node isNaN('123ABC') = ${ isNaN('123ABC') }\\n    node parseInt('123ABC') = ${ parseInt('123ABC') }\\n    node Number('123ABC') = ${ Number('123ABC') }\\n    node isNaN('') = ${ isNaN('') }\\n    node Number('') = ${ Number('') }\\n    node isNaN(' ') = ${ isNaN(' ') }\\n    node Number(' ') = ${ Number(' ') }\\n    node isNaN(new Date()) = ${ isNaN(new Date()) }\\n    node isNaN(new Date().toString()) = ${ isNaN(new Date().toString()) }\\n    node isNaN('blabla') = ${ isNaN('blabla') }\\n    node Number('blabla') = ${ Number('blabla') }\\n    node parseFloat(3.14) = ${ parseFloat(3.14) }\\n    node parseFloat('3.14') = ${ parseFloat('3.14') }\\n    node parseFloat('314e-2') = ${ parseFloat('314e-2') }\\n    node parseFloat('0.0314E+2') = ${ parseFloat('0.0314E+2') }\\n    node parseFloat('3.14more non-digit characters') = ${parseFloat('3.14more non-digit characters') }\\n    node parseInt(' 0xF', 16) = ${ parseInt(' 0xF', 16) }\\n    node parseInt(' F', 16) = ${ parseInt(' F', 16) }\\n    node parseInt('17', 8) = ${ parseInt('17', 8) }\\n    node parseInt('015', 10) = ${ parseInt('015', 10) }\\n    node parseInt(15.99, 10) = ${ parseInt(15.99, 10) }\\n    node parseInt('15,123', 10) = ${ parseInt('15,123', 10) }\\n    node parseInt('FXX123', 16) = ${ parseInt('FXX123', 16) }\\n    node parseInt('1111', 2) = ${ parseInt('1111', 2) }\\n    node parseInt('15 * 3', 10) = ${ parseInt('15 * 3', 10) }\\n    node parseInt('15e2', 10) = ${ parseInt('15e2', 10) }\\n    node parseInt('15px', 10) = ${ parseInt('15px', 10) }\\n    node parseInt('12', 13) = ${ parseInt('12', 13) }\\n    node set1 // Reserved Characters', set1 }\\n    node set2 // Unescaped Characters', set2 }\\n    node set3 // Number Sign', set3 }\\n    node set4 // Alphanumeric Characters + Space', set4 }\\n    node reserved chars : encodeURI(\\\";,/?:@&=+$\\\") = ${ encodeURI(\\\";,/?:@&=+$\\\") }\\n    node unescaped chars : encodeURI(\\\"-_.!~*'()\\\") = ${ encodeURI(\\\"-_.!~*'()\\\") }\\n    node number sign: encodeURI(\\\"#\\\") = ${ encodeURI(\\\"#\\\") }\\n    node alphanumeric chars + space : encodeURI(\\\"ABC abc 123\\\") = ${ encodeURI(\\\"ABC abc 123\\\") }\\n    node encodeURIComponent(\\\";,/?:@&=+$\\\") = ${ encodeURIComponent(\\\";,/?:@&=+$\\\") }\\n    node encodeURIComponent(\\\"-_.!~*'()\\\") = ${ encodeURIComponent(\\\"-_.!~*'()\\\") }\\n    node encodeURIComponent(\\\"#\\\") = ${ encodeURIComponent(\\\"#\\\") }\\n    node encodeURIComponent(\\\"ABC abc 123\\\") = ${ encodeURIComponent(\\\"ABC abc 123\\\") }",
+                    "generated": "\\nroot\\n    node parseInt('43.5') = 43\\n    node parseFloat('43.5') = 43.5\\n    node isFinite(Infinity) = false\\n    node isFinite(NaN) = false\\n    node isFinite(null) = true\\n    node isFinite(0) = true\\n    node Number.isFinite(null) = false\\n    node Number.isFinite(0) = true\\n    node isNaN(NaN) = true\\n    node isNaN(undefined) = true\\n    node isNaN({}) = true\\n    node isNaN(true) = false\\n    node isNaN(null) = false\\n    node isNaN(37) = false\\n    node isNaN('37') = false\\n    node isNaN('37.37') = false\\n    node isNaN('123ABC') = true\\n    node parseInt('123ABC') = 123\\n    node Number('123ABC') = NaN\\n    node isNaN('') = false\\n    node Number('') = 0\\n    node isNaN(' ') = false\\n    node Number(' ') = 0\\n    node isNaN(new Date()) = false\\n    node isNaN(new Date().toString()) = true\\n    node isNaN('blabla') = true\\n    node Number('blabla') = NaN\\n    node parseFloat(3.14) = 3.14\\n    node parseFloat('3.14') = 3.14\\n    node parseFloat('314e-2') = 3.14\\n    node parseFloat('0.0314E+2') = 3.14\\n    node parseFloat('3.14more non-digit characters') = 3.14\\n    node parseInt(' 0xF', 16) = 15\\n    node parseInt(' F', 16) = 15\\n    node parseInt('17', 8) = 15\\n    node parseInt('015', 10) = 15\\n    node parseInt(15.99, 10) = 15\\n    node parseInt('15,123', 10) = 15\\n    node parseInt('FXX123', 16) = 15\\n    node parseInt('1111', 2) = 15\\n    node parseInt('15 * 3', 10) = 15\\n    node parseInt('15e2', 10) = 15\\n    node parseInt('15px', 10) = 15\\n    node parseInt('12', 13) = 15\\n    node set1 // Reserved Characters', set1 }\\n    node set2 // Unescaped Characters', set2 }\\n    node set3 // Number Sign', set3 }\\n    node set4 // Alphanumeric Characters + Space', set4 }\\n    node reserved chars : encodeURI(\\\";,/?:@&=+$\\\") = ;,/?:@&=+$\\n    node unescaped chars : encodeURI(\\\"-_.!~*'()\\\") = -_.!~*'()\\n    node number sign: encodeURI(\\\"#\\\") = #\\n    node alphanumeric chars + space : encodeURI(\\\"ABC abc 123\\\") = ABC%20abc%20123\\n    node encodeURIComponent(\\\";,/?:@&=+$\\\") = %3B%2C%2F%3F%3A%40%26%3D%2B%24\\n    node encodeURIComponent(\\\"-_.!~*'()\\\") = -_.!~*'()\\n    node encodeURIComponent(\\\"#\\\") = %23\\n    node encodeURIComponent(\\\"ABC abc 123\\\") = ABC%20abc%20123\\n"
+                },
+                {
+                    "title": "Ecma builtin String functions",
+                    "ittfWrapped": "root \\n    node ${'a'.toUpperCase()}\\n    node ${'A'.toLowerCase()}\\n    node ${'a' + '  b  ' + 'c'}\\n    node ${'a' + '  b  '.trim() + 'c'}\\n    node ${'a,b,c,d'.split(',').join('-')}",
+                    "generated": "\\nroot\\n    node A\\n    node a\\n    node a  b  c\\n    node abc\\n    node a-b-c-d\\n"
+                },
+                {
+                    "title": "Operations on String objects passed as parameters",
+                    "ittfWrapped": "root \\n    $params commandParam|alpha;beta;gamma\\n    $ \\n        var commands = [];\\n        var actions = commandParam.split(';')\\n        for (var i=0; i<actions.length; i++) {\\n            var tokens = actions[i].trim().split(' ');\\n            var command = { name: tokens[0] };\\n            commands.push (command);\\n        } \\n    node Commands: ${ _.inspect(commands) }",
+                    "generated": "\\nroot\\n    node Commands: [ { name: 'alpha' }, { name: 'beta' }, { name: 'gamma' } ]\\n"
+                },
+                {
+                    "title": "Ecma builtin Date object",
+                    "ittfWrapped": "root \\n    node <a href=\\\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date\\\"></a>\\n    node today: new Date() = ${ new Date() }\\n    node new Date('December 17, 1995 03:24:00') = ${ new Date('December 17, 1995 03:24:00') }\\n    node new Date('1995-12-17T03:24:00') = ${ new Date('1995-12-17T03:24:00') }\\n    node new Date(1995, 11, 17) = ${ new Date(1995, 11, 17) }\\n    node new Date(1995, 11, 17, 3, 24, 0) = ${ new Date(1995, 11, 17, 3, 24, 0) }",
+                    "generated": "\\nroot\\n    node &lt;a href=\\\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date\\\"&gt;&lt;/a&gt;\\n    node today: new Date() = Thu Jan 17 2019 14:21:06 GMT+0100 (ora solare Europa occidentale)\\n    node new Date('December 17, 1995 03:24:00') = Sun Dec 17 1995 03:24:00 GMT+0100 (ora solare Europa occidentale)\\n    node new Date('1995-12-17T03:24:00') = Sun Dec 17 1995 03:24:00 GMT+0100 (ora solare Europa occidentale)\\n    node new Date(1995, 11, 17) = Sun Dec 17 1995 00:00:00 GMT+0100 (ora solare Europa occidentale)\\n    node new Date(1995, 11, 17, 3, 24, 0) = Sun Dec 17 1995 03:24:00 GMT+0100 (ora solare Europa occidentale)\\n"
+                },
+                {
+                    "title": "Ecma builtin Number object",
+                    "ittfWrapped": "root \\n    node Number.MAX_VALUE  = ${ Number.MAX_VALUE }\\n    node Number.MIN_VALUE = ${ Number.MIN_VALUE }\\n    node Number.POSITIVE_INFINITY = ${ Number.POSITIVE_INFINITY }\\n    node Number.NEGATIVE_INFINITY = ${ Number.NEGATIVE_INFINITY }\\n    node Number.NaN = ${ Number.NaN }\\n    node Number('123') = ${ Number('123') }\\n    node Number('12.3') = ${ Number('12.3') }\\n    node Number('') = ${ Number('') }\\n    node Number('0x11') = ${ Number('0x11') }\\n    node Number('0b11') = ${ Number('0b11') }\\n    node Number('0o11') = ${ Number('0o11') }\\n    node Number('foo') = ${ Number('foo') }\\n    node Number('100a') = ${ Number('100a') }",
+                    "generated": "\\nroot\\n    node Number.MAX_VALUE  = 1.7976931348623157e+308\\n    node Number.MIN_VALUE = 5e-324\\n    node Number.POSITIVE_INFINITY = Infinity\\n    node Number.NEGATIVE_INFINITY = -Infinity\\n    node Number.NaN = NaN\\n    node Number('123') = 123\\n    node Number('12.3') = 12.3\\n    node Number('') = 0\\n    node Number('0x11') = 17\\n    node Number('0b11') = 3\\n    node Number('0o11') = 9\\n    node Number('foo') = NaN\\n    node Number('100a') = NaN\\n"
+                },
+                {
+                    "title": "Ecma builtin RegExp object",
+                    "ittfWrapped": "root \\n    node <a href=\\\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp\\\"></a>\\n    node new RegExp('\\\\w+') = ${ new RegExp('\\\\w+') }\\n    node 'John Smith'.replace(new RegExp('(\\\\w+)\\\\s(\\\\w+)'), '$2, $1') =\\n        \\b ${ 'John Smith'.replace(new RegExp('(\\\\w+)\\\\s(\\\\w+)'), '$2, $1') }\\n    $ \\n        var str = 'John Smith';\\n        var reValue = '(\\\\w+)\\\\s(\\\\w+)';\\n        var re = new RegExp(reValue);\\n    node str.replace(re, '$2, $1') = ${ str.replace(re, '$2, $1') }",
+                    "generated": "\\nroot\\n    node &lt;a href=\\\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp\\\"&gt;&lt;/a&gt;\\n    node new RegExp('\\\\w+') = /\\w+/\\n    node 'John Smith'.replace(new RegExp('(\\\\w+)\\\\s(\\\\w+)'), '$2, $1') = Smith, John\\n    node str.replace(re, '$2, $1') = Smith, John\\n"
+                },
+                {
+                    "title": "Ecma builtin Array object",
+                    "ittfWrapped": "root \\n    node <a href=\\\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array\\\"></a>\\n    node new Array(4) = ${ new Array(4) }\\n    node new Array(4).join('0') = ${ new Array(4).join('0') }",
+                    "generated": "\\nroot\\n    node &lt;a href=\\\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array\\\"&gt;&lt;/a&gt;\\n    node new Array(4) = ,,,\\n    node new Array(4).join('0') = 000\\n"
+                },
+                {
+                    "title": "Ecma builtin Object object",
+                    "ittfWrapped": "root \\n    node <a href=\\\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object\\\"></a>\\n    node new Object(true) = ${ new Object(true).toString() }",
+                    "generated": "\\nroot\\n    node &lt;a href=\\\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object\\\"&gt;&lt;/a&gt;\\n    node new Object(true) = true\\n"
+                }
+            ]
+        },
+        {
+            "name": "jsWizzi builtin objects",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "'inflect' builtin functions",
+                    "ittfWrapped": "root \\n    node 'item'.pluralize = ${ 'item'.pluralize }\\n    node 'friend'.pluralize = ${ 'friend'.pluralize }\\n    node 'lady'.pluralize = ${ 'lady'.pluralize }\\n    node 'way'.pluralize.toUpperCase() = ${ 'way'.pluralize.toUpperCase() }\\n    node 'people'.singularize = ${ 'people'.singularize }\\n    node 'octopi'.singularize = ${ 'octopi'.singularize }\\n    node 'Hats'.singularize.toUpperCase() = ${ 'Hats'.singularize.toUpperCase() }\\n    node 'message_properties'.camelize = ${ 'message_properties'.camelize }\\n    node 'message_properties'.camelize = ${ 'message_properties'.camelize }\\n    node 'message_properties'.dasherize = ${ 'message_properties'.dasherize }\\n    node 'Message Properties'.dasherize = ${ 'Message Properties'.dasherize }\\n    node 'message_properties'.titleize = ${ 'message_properties'.titleize }\\n    node 'message properties to keep'.titleize = ${ 'message properties to keep'.titleize }\\n    node 'Message.Bus.Properties'.demodulize = ${ 'Message.Bus.Properties'.demodulize }\\n    node 'MessageBusProperty'.tableize = ${ 'MessageBusProperty'.tableize }\\n    node 'message_bus_properties'.classify = ${ 'message_bus_properties'.classify }\\n    node 'MessageBusProperty'.foreign_key = ${ 'MessageBusProperty'.foreign_key }\\n    node '1'.ordinalize = ${ '1'.ordinalize }\\n    node '2'.ordinalize = ${ '2'.ordinalize }\\n    node '3'.ordinalize = ${ '3'.ordinalize }\\n    node '4'.ordinalize = ${ '4'.ordinalize }",
+                    "generated": "\\nroot\\n    node 'item'.pluralize = items\\n    node 'friend'.pluralize = friends\\n    node 'lady'.pluralize = ladies\\n    node 'way'.pluralize.toUpperCase() = WAYS\\n    node 'people'.singularize = person\\n    node 'octopi'.singularize = octopus\\n    node 'Hats'.singularize.toUpperCase() = HAT\\n    node 'message_properties'.camelize = MessageProperties\\n    node 'message_properties'.camelize = MessageProperties\\n    node 'message_properties'.dasherize = message-properties\\n    node 'Message Properties'.dasherize = Message Properties\\n    node 'message_properties'.titleize = Message Properties\\n    node 'message properties to keep'.titleize = Message Properties To Keep\\n    node 'Message.Bus.Properties'.demodulize = Properties\\n    node 'MessageBusProperty'.tableize = message_bus_properties\\n    node 'message_bus_properties'.classify = MessageBusProperty\\n    node 'MessageBusProperty'.foreign_key = message_bus_property_id\\n    node '1'.ordinalize = 1st\\n    node '2'.ordinalize = 2nd\\n    node '3'.ordinalize = 3rd\\n    node '4'.ordinalize = 4th\\n"
+                },
+                {
+                    "title": "'jsWizzi _' builtin functions",
+                    "ittfWrapped": "root \\n    node inflect : 'message-properties'.camelize = ${ 'message-properties'.camelize }\\n    node jsWizzi _ : _.dashToCamelCase('message-properties') = ${ _.dashToCamelCase('message-properties') }\\n    node inflect : 'message_properties'.camelize = ${ 'message_properties'.camelize }\\n    node jsWizzi _ : _.camelize('message_properties') = ${ _.camelize('message_properties') }\\n    $ var text = 'alfa\\\\t \\\" \\\" \\\\n'\\n    node \\\"_.escape( text )\\\" = \\\"${ _.escape( text ) }\\\"\\n    node _.isString( '3' ) = ${ _.isString( '3' ) }\\n    node _.isString( 3 ) = ${ _.isString( 3 ) }\\n    node _.isEmpty( '' ) = ${ _.isEmpty( '' ) }\\n    node _.isEmpty( 'a ' ) = ${ _.isEmpty( 'a ' ) }\\n    node _.isNotEmpty( 'a ' ) = ${ _.isNotEmpty( 'a ' ) }\\n    node _.isNotEmpty( '' ) = ${ _.isNotEmpty( '' ) }\\n    node _.isObject( {} ) = ${ _.isObject( {} ) }\\n    node _.isObject( 3 ) = ${ _.isObject( 3 ) }\\n    node _.isArray( [] ) = ${ _.isArray( [] ) }\\n    node _.isArray( {} ) = ${ _.isArray( {} ) }\\n    node _.isNumber( 3 ) = ${ _.isNumber( 3 ) }\\n    node _.isNumber( '' ) = ${ _.isNumber( '' ) }\\n    node _.isDate( new Date() ) = ${ _.isDate( new Date() ) }\\n    node _.isDate( [] ) = ${ _.isDate( [] ) }\\n    $ \\n        var options = {\\n            title: 'Chapter 1'\\n        }; \\n    node _.replace( '1353739', '3', '0' ) = ${ _.replace( '1353739', '3', '0' ) }\\n    node _.inspect( options ) = ${ _.inspect( options ) }",
+                    "generated": "\\nroot\\n    node inflect : 'message-properties'.camelize = Message-properties\\n    node jsWizzi _ : _.dashToCamelCase('message-properties') = messageProperties\\n    node inflect : 'message_properties'.camelize = MessageProperties\\n    node jsWizzi _ : _.camelize('message_properties') = messageProperties\\n    node \\\"_.escape( text )\\\" = \\\"alfa\\\\t \\\\\" \\\\\" \\\\n\\\"\\n    node _.isString( '3' ) = true\\n    node _.isString( 3 ) = false\\n    node _.isEmpty( '' ) = true\\n    node _.isEmpty( 'a ' ) = false\\n    node _.isNotEmpty( 'a ' ) = true\\n    node _.isNotEmpty( '' ) = false\\n    node _.isObject( {} ) = true\\n    node _.isObject( 3 ) = false\\n    node _.isArray( [] ) = true\\n    node _.isArray( {} ) = false\\n    node _.isNumber( 3 ) = true\\n    node _.isNumber( '' ) = false\\n    node _.isDate( new Date() ) = true\\n    node _.isDate( [] ) = false\\n    node _.replace( '1353739', '3', '0' ) = 1050709\\n    node _.inspect( options ) = { title: 'Chapter 1' }\\n"
+                }
+            ]
+        },
+        {
+            "name": "Ittf magic tricks",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "Embedding statements in interpolated expressions",
+                    "ittfWrapped": "root \\n    $ \\n        var commands = [ { name: 'alpha' }, { name: 'beta' }, { name: 'gamma' } ];\\n    node We perform an interpolation of a multistatement jsWizzi expression.\\n    node We intersperse command names with dashes.\\n    $foreach command in commands\\n        node ${ command.name.toUpperCase()[0] + ' - ' + command.name }\\n        node This is quite crazy. But it works! -> ${\\n            \\b var len = command.name.length, output = '';\\n            \\b for (var i=0; i<len; i++) {\\n            \\b output += command.name[i];\\n            \\b if (i < len -1) { output += ' - '};\\n            \\b }\\n            \\b return output;\\n            \\b }\\n    node That is why mTree stays for \\\"magical tree\\\".\\n    node See in wizzi-mtree/loader/ittfinterpolate.js how this works.",
+                    "generated": "\\nroot\\n    node We perform an interpolation of a multistatement jsWizzi expression.\\n    node We intersperse command names with dashes.\\n    node A - alpha\\n    node This is quite crazy. But it works! -&gt; a - l - p - h - a\\n    node B - beta\\n    node This is quite crazy. But it works! -&gt; b - e - t - a\\n    node G - gamma\\n    node This is quite crazy. But it works! -&gt; g - a - m - m - a\\n    node That is why mTree stays for \\\"magical tree\\\".\\n    node See in wizzi-mtree/loader/ittfinterpolate.js how this works.\\n"
+                }
+            ]
+        }
+    ]
+}

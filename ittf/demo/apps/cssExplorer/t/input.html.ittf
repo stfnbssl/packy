@@ -1,0 +1,26 @@
+﻿$group
+	$params id, xclass, tip, value|@@null
+
+	$
+		var hasTip = tip !== 'none';
+		var hasClass = xclass !== 'none';
+		if (hasTip) {
+			var tipClass = 'tip';
+			var tipValue = tip;
+			var ss = tip.split('|');
+			if (ss.length === 2) {
+				tipValue = ss[0];
+				tipClass += ' ' + ss[1];
+			}
+		}
+
+	span 
+		$if hasTip
+			class ${tipClass}
+			data-tip ${tipValue}
+		input 
+			id ${id}-control
+			$if hasClass
+				class ${xclass}
+			$if value !== null
+				value ${value}

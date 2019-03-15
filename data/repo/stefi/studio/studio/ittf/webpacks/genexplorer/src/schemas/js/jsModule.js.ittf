@@ -1,0 +1,6 @@
+﻿module
+	kind react
+
+	export const artifactGenerator = 'js/module'
+	export const displayName = 'javascript module'
+	export const showInMenu = true

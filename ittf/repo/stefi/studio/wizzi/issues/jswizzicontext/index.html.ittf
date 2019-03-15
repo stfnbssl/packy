@@ -1,0 +1,82 @@
+h/root/empty_layout()
+
+	$append head-styles
+		$
+			if (typeof(mpage) === 'undefined') {
+				_.abend('This page require a _context=mpage query param.')
+			}
+		@style
+			css
+				< body
+					margin 3rem
+				< p
+					font-size 1.2rem
+				< code
+					background #ddd
+					font-size 1.2rem
+					padding 0 1rem
+				. primary
+					color #000
+					background ${mpage.theme.colors[0]}
+					padding 1rem
+				. frag_1
+					color #000
+					background ${mpage.theme.colors[1]}
+					padding 1rem
+				. frag_2
+					color #000
+					background ${mpage.theme.colors[2]}
+					padding 1rem
+				. frag_3
+					color #000
+					background ${mpage.theme.colors[3]}
+					padding 1rem
+				. frag_4
+					color #000
+					background ${mpage.theme.colors[4]}
+					padding 1rem
+
+	$
+		var primary_var_alpha = 'primary_var_alpha '
+
+	div
+		class primary
+		
+		h3 I am in primary and declare a var: typeof(primary_var_alpha) = ${ typeof(primary_var_alpha) }, value = ${primary_var_alpha}
+			class primary
+
+		
+		code $include frag_1
+		
+		hr
+
+		$include frag_1
+
+		hr
+
+		h3 I am on primary again and i can see the context of the included frag_1 : typeof(frag_1_beta) = ${ typeof(frag_1_beta) }
+			\ , value = ${frag_1_beta}
+			class primary
+
+		code $include frag_2
+		hr
+		
+		$include frag_2
+
+		hr
+
+		h3 Hi, primary again here, i can see the modification made by frag_2 : primary_var_alpha = ${ primary_var_alpha }
+			class primary
+
+		code frag_3()
+		hr
+		
+		frag_3()
+
+		hr
+
+		h3 Hi, primary again here, i cannot see the var declared in frag_3 (because it is mixed): typeof(frag_3_tau) = ${ typeof(frag_3_tau) }
+			\ , neither that declared in frag_4 (included by frag_3) : typeof(frag_4_sigma) = ${ typeof(frag_4_sigma) }
+			class primary
+
+

@@ -1,0 +1,20 @@
+﻿r-form-controller( SubmitValidationForm, Submit validation form )
+
+	$append pre
+		ul
+			li Usernames that will pass validation:
+			+ {' '}
+			< code john
+			+ ,
+			+ {' '}
+			< code paul
+			+ ,
+			+ {' '}
+			< code george
+			+ , or
+			+ {' '}
+			< code ringo
+			+ .
+			li Valid password for all users:
+				< code redux-form
+

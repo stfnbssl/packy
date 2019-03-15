@@ -1,0 +1,47 @@
+  module  ids: 1 45
+    kind react ids: 2 46
+    import React, { PropTypes, Component } from 'react' ids: 3 47
+    import ElementList from './schemadoc/ElementList' ids: 4 48
+    import Element from './schemadoc/Element' ids: 5 49
+    class SchemaDoc ids: 6 50
+      super Component ids: 7 51
+      ctor  ids: 8 52
+        param props ids: 9 53
+        base props ids: 10 54
+        set this.state ids: 11 55
+          {  ids: 12 56
+            @ selectedElement null ids: 13 57
+        set this.handleElementSelected = this.handleElementSelected.bind(this) ids: 14 58
+      m handleElementSelected ids: 15 59
+        param element ids: 16 60
+        _ this.setState ids: 17 61
+          {  ids: 18 62
+            @ selectedElement element ids: 19 63
+      m render ids: 20 64
+        const { jsonDoc } = this.props ids: 21 65
+        if !jsonDoc || !jsonDoc.elements || jsonDoc.elements.length < 1 ids: 22 66
+          return  ids: 23 67
+            h1 No data ids: 24 68
+        var { selectedElement } = this.state ids: 25 69
+        if !selectedElement ids: 26 70
+          set selectedElement = jsonDoc.elements[0] ids: 27 71
+        return  ids: 28 72
+          . container ids: 29 73
+            . row ids: 30 74
+              h1 Schema {jsonDoc.name} ids: 31 75
+              . col-md-2 ids: 32 76
+                . well list-well-title ids: 89 91
+                  + Elements ids: 34 78
+                . well list-well-content ids: 93 95
+                  < ElementList ids: 36 80
+                    @ elements {jsonDoc.elements} ids: 37 81
+                    @ selectedName {selectedElement.name} ids: 38 82
+                    @ onElementSelected {this.handleElementSelected} ids: 39 83
+              . col-md-10 ids: 40 84
+                div  ids: 97 101
+                  @style  ids: 98 102
+                    {  ids: 99 103
+                      @ overflow "hidden" ids: 100 104
+                  < Element ids: 42 86
+                    @ element {selectedElement} ids: 43 87
+    export default SchemaDoc ids: 44 88

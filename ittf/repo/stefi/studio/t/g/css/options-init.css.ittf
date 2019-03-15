@@ -1,0 +1,11 @@
+﻿$group
+	
+	$
+		var opt = {
+			resetMarginsPaddingsBorders: true,
+			resetDisplayBlock: false,
+			resetOlUl: true,
+			resetBlockquote: false,
+			resetTable: false,
+			resetLinks: true,
+		};

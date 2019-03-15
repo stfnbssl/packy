@@ -1,0 +1,10 @@
+﻿$group
+	$params &app
+	
+	$if app.useApiMiddleware
+		$if app.useNormalizr
+			import { HTTP_REQUEST, Schemas } from '../../middleware/config'
+		$else
+			import { HTTP_REQUEST } from '../../middleware/config'
+	+
+	$hook

@@ -1,0 +1,12 @@
+﻿wfschema demo
+
+	e comment
+		tag #
+		r comment/s
+
+	e commentable
+		is-abstract
+		r comment
+
+	e demo : commentable
+		is-root

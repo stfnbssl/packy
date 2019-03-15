@@ -1,0 +1,27 @@
+﻿element vue base
+	tag
+	ast
+	category
+	
+	item
+		title simple vue component
+		ittf
+			template
+				- schema html syntax
+				. item
+					# greetings
+					+ Hello
+				
+			script
+				# schema js syntax
+				function hey
+					param name
+					_ document.querySelector('#greatings').innerHTML = 'Hello ' + name
+
+				_ hey('Steave')
+				
+			style
+				- schema css syntax
+				. item
+					color red
+

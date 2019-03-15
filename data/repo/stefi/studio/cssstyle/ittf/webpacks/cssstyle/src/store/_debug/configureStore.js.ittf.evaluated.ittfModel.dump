@@ -1,0 +1,7 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    if process.env.NODE_ENV === 'production' ids: undefined undefined
+      set module.exports = require('./configureStore.prod') ids: undefined undefined
+    else  ids: undefined undefined
+      set module.exports = require('./configureStore.dev') ids: undefined undefined

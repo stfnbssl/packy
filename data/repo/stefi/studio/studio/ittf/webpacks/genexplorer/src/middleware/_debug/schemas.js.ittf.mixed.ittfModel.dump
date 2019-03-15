@@ -1,0 +1,21 @@
+  module  ids: 1 22
+    kind react ids: 2 23
+    +  ids: 3 24
+    import { normalize, schema } from 'normalizr' ids: 4 25
+    const documentEntity ids: 5 26
+      new schema.Entity ids: 6 27
+        @ 'documents' ids: 7 28
+        {  ids: 8 29
+        {  ids: 9 30
+          @ idAttribute 'name' ids: 10 31
+    const projectEntity ids: 11 32
+      new schema.Entity ids: 12 33
+        @ 'projects' ids: 13 34
+        {  ids: 14 35
+          @ documents [documentEntity] ids: 15 36
+        {  ids: 16 37
+          @ idAttribute 'name' ids: 17 38
+    wz-const documents ids: 18 39
+      {  ids: 19 40
+        @ projects [projectEntity] ids: 20 41
+    log 'documents', documents ids: 21 42

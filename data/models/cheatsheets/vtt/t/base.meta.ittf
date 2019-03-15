@@ -1,0 +1,12 @@
+﻿element vtt
+	tag vtt
+	ast 
+	category
+	
+	item
+		title Simple cue
+		ittf
+			vtt
+				cue 1 10
+					+ And now
+

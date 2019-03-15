@@ -1,0 +1,18 @@
+﻿$group
+
+	-
+		- top level styles
+		- for 'docs' section
+
+	$include common/options-init
+
+	$
+		opt.sidebar_1 = true;
+		opt.sb_1_min_w = 60;
+		opt.logo_w = 70;
+		opt.logo_h = 30;
+	
+	$include common/options-analize
+
+	s/root/main(&opt)
+

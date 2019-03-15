@@ -1,0 +1,137 @@
+$group
+	$params &opt
+	
+	$$ FIREBASE MUST BE FIRST
+	$if opt.useFirebase
+	    js https://www.gstatic.com/firebasejs/5.8.1/firebase.js
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-auth.js
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-firestore.js
+		$*
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-database.js
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-messaging.js
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-functions.js
+		*$
+
+		script
+			module
+				kind es6
+				# Initialize Firebase
+				$if opt.project === 'wizzifactory'
+    				var config
+    					{
+    						@ apiKey "AIzaSyACBhxkQICMYxWeftA2DmsOzCAqVf3aTOQ"
+    						@ authDomain "wizzifactory.firebaseapp.com"
+    						@ databaseURL "https://wizzifactory.firebaseio.com"
+    						@ projectId "wizzifactory"
+    						# NOT YET storageBucket "wizzifactory.appspot.com"
+    						@ storageBucket "" 
+    						@ messagingSenderId "676985835415"
+    				_ firebase.initializeApp(config)
+    				log 'firebase', firebase
+    				var firestore = firebase.firestore();
+
+	$if opt.useAce
+	    $if isWizziStudio
+    		$if opt.production
+    			j( /static/lib/ace/src-min-noconflict/ace.js
+    		$else
+    			j( /static/lib/ace/src-noconflict/ace.js
+		$else
+			j( https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js
+
+	$if opt.useEventEmitter
+	    j( https://unpkg.com/eventemitter3@latest/umd/eventemitter3.min.js
+
+	$if opt.useCodemirror
+		j( /static/lib/codemirror/lib/codemirror.js
+		j( /static/lib/codemirror/mode/javascript/javascript.js
+		j( /static/lib/codemirror/mode/xml/xml.js
+
+	$if opt.useDeepDiff
+	    $if isWizziStudio
+            j( /static/lib/flitbit/deep-diff.min.js
+	    $else
+	        j( https://cdnjs.cloudflare.com/ajax/libs/deep-diff/0.3.3/deep-diff.min.js
+
+	$if opt.useKeycode
+		$if isWizziStudio
+			j( /static/lib/material-ui/keycode.min.2.2.0.js
+		$else
+			$$ j( https://cdn.jsdelivr.net/npm/keycode@2.2.0/index.min.js
+			j( https://cdn.jsdelivr.net/npm/keycode.js
+
+	$if opt.useHighlight
+	    $if isWizziStudio
+	        j( /static/lib/highlight/highlight.pack.js
+        $else	   
+	        j( https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js
+
+	$if opt.useJsonFormatter
+	    $if isWizziStudio
+	        j( /static/lib/json-formatter/json-formatter.js
+        $else	     
+            j( https://cdn.jsdelivr.net/npm/json-formatter-js@2.2.1/dist/json-formatter.min.js
+
+	$if opt.useMarkdown
+	    j( https://cdn.jsdelivr.net/npm/marked/marked.min.js
+	
+		
+	$if opt.useReact || opt.useMaterialUi
+		j( https://cdn.jsdelivr.net/npm/@babel/standalone@7.0.0-beta.51/babel.min.js
+
+
+	$if opt.useReact || opt.useMaterialUi
+		$if opt.production
+			j( https://unpkg.com/prop-types@15.6/prop-types.min.js
+		$else
+			j( https://unpkg.com/prop-types@15.6/prop-types.js
+		
+		j( https://cdn.jsdelivr.net/npm/react@16.4.1/umd/react.development.js
+		j( https://cdn.jsdelivr.net/npm/react-dom@16.4.1/umd/react-dom.development.js
+
+		$if opt.useClassNames
+			j( /static/lib/react/classnames.js
+
+		$if opt.useMaterialUi
+			j( https://cdn.jsdelivr.net/npm/material-ui@1.0.0-beta.47/umd/material-ui.development.js
+
+		$if opt.useDownshift
+			$if isWizziStudio
+				j( /static/lib/react/downshift.umd.min.2.0.10.js
+			$else
+				j( https://cdn.jsdelivr.net/npm/downshift@2.0.10/dist/downshift.umd.min.js
+
+		$if opt.useRouter
+			$if isWizziStudio
+				j( /static/lib/react/react-router.min.4.3.1.js
+			$else
+				$$ j( https://unpkg.com/react-router/umd/ReactRouter.min.js
+				j( https://unpkg.com/react-router-dom@4.3.1/umd/react-router-dom.js
+
+		$if opt.useReactGrid
+			j( /static/lib/react/react-grid-layout.min.js
+
+ 		$if opt.useMonaco
+			j( /static/lib/monaco-editor/package/min/vs/loader.js
+			$*
+				j( /static/lib/monaco-editor/package/min/vs/editor/editor.main.nls.js
+				j( /static/lib/monaco-editor/package/min/vs/editor/editor.main.js
+				script
+					+ var require = { paths: { 'vs': '/static/lib/monaco-editor/package/min/vs' } }
+			*$
+
+	$if opt.useRxJs
+	    j( /static/lib/rxjs/rxjs.umd.min.js
+	    
+	$if opt.useSweetalert
+	    j( https://cdn.jsdelivr.net/npm/sweetalert2@7.31.1/dist/sweetalert2.all.min.js
+	
+	$if opt.useVue
+		j( https://unpkg.com/vue
+
+	$if opt.useWizzi
+	    $if isWizziStudio
+		    j( /static/wizzi-play/scripts/wizzi.standalone.js
+        $else		  
+            j( /scripts/wizzi.standalone.js	

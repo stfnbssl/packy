@@ -1,0 +1,58 @@
+﻿$group
+
+	var BxReactModule = React
+	if !BxReactModule
+		throw 'Missing React module'
+	
+	var BxReactDOMModule = ReactDOM
+	if !BxReactDOMModule
+		throw 'Missing ReactDOM module'
+
+	var BxPropTypesModule = PropTypes
+	if !BxPropTypesModule
+		throw 'Missing PropTypes module'
+	
+	var BxJssModule = jss
+	if !BxJssModule
+		throw 'Missing jss module'
+	
+	var BxJssPresetModule = jssPreset
+	if !BxJssPresetModule
+		throw 'Missing jssPreset module'
+
+	var BxJssIsolatePlugin = jssIsolate
+	if !BxJssIsolatePlugin
+		throw 'Missing jssIsolate module'
+
+	var BxJssThemeReactor = jssThemeReactor
+	if !BxJssThemeReactor
+		throw 'Missing jssThemeReactor module'
+
+	# log 'BxJssModule.SheetsRegistry', BxJssModule.SheetsRegistry
+	log 'BxJssModule', BxJssModule
+	# log 'BxJssModule.default', BxJssModule.default
+	# log 'BxPropTypesModule.instanceOf', BxPropTypesModule.instanceOf
+	# log 'BxPropTypesModule.node', BxPropTypesModule.node
+	log 'BxJssPresetModule', BxJssPresetModule
+	log 'BxJssIsolatePlugin', BxJssIsolatePlugin
+	
+	$include reactjss/jss
+	$include reactjss/createInjectSheet
+	$include reactjss/SheetsRegistryProvider
+
+	j/iife-wrapped( BxReactJss, jss, jssModule, createInjectSheet, sheetsRegistryProvider )
+
+		var reactJss
+			{
+				@ jss jss
+				@ SheetsRegistry jssModule.SheetsRegistry
+				@ SheetsRegistryProvider sheetsRegistryProvider
+				@ create createInjectSheet
+		#
+			# Exports injectSheet function as default.
+			# Returns a function which needs to be invoked with a Component.
+			# 'injectSheet(styles, [options])(Component)'
+		set reactJss.default = reactJss.create 
+
+		return reactJss
+

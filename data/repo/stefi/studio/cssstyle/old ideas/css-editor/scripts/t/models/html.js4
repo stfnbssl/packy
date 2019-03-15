@@ -1,0 +1,9 @@
+﻿$group
+	bb_model Spa.HtmlModel
+		__o defaults
+			__p name
+			__p content
+	bb_collection Spa.HtmlCollection
+		__p model:object Spa.HtmlModel
+		__p localStorage:object new Backbone.LocalStorage("ce-html")
+

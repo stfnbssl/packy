@@ -1,0 +1,6 @@
+$append breadcrumb
+	h/bs/breadcrumb()
+		h/bs/li_a_divider( Wizzi, /ittf/home/index.html.ittf )
+		h/bs/li_a_divider( Target technologies, /ittf/demo/ttech/index.html.ittf )
+		h/bs/li_a_divider( React, /ittf/demo/ttech/react/index.html.ittf )
+		h/bs/li_active( Editors )

@@ -1,0 +1,99 @@
+﻿r-component( Toggler )
+
+	$append imports
+		import builder from './MuiBuilder'
+
+	style
+		@ panel
+			{
+				@ display 'block'
+				@ width '41px'
+				@ height '41px'
+				@ background '#333'
+				@ position 'absolute'
+				@ right '20px'
+				@ top '20px'
+				@ cursor 'pointer'
+				@ zIndex 20
+		@ spanBase
+			{
+				@ display 'block'
+				@ width '17px'
+				@ height '3px'
+				@ background '#fff'
+				@ position 'absolute'
+				@ transition '0.3s'
+		@ span
+			{
+				@ left '12px'
+				@ top '19px'
+				@ background '#fff'
+				@ transition 'background 0.3s'
+		@ spanBefore
+			{
+				@ left '12px'
+				@ top '13px'
+				@ transformOrigin 'left top'
+		@ spanBeforeToggled
+			{
+				@ transform 'rotate(45deg)'
+				@ width '18px'
+				@ left '14px'
+		@ spanToggled
+			{
+				@ background 'transparent'
+		@ spanAfter
+			{
+				@ left '12px'
+				@ top '25px'
+				@ transformOrigin 'left bottom'
+		@ spanAfterToggled
+			{
+				@ transform 'rotate(-45deg)'
+				@ width '18px'
+				@ left '14px'
+
+	state
+		@ toggled false
+
+	did-mount
+		const { data } = this.props
+		const { event } = data
+		set this.event = event
+
+	=> onClick
+		_ this.setState
+			{ 
+				@ toggled !this.state.toggled
+		_ builder.events.publish
+			@ this.event
+			@ this.state.toggled
+		
+	render
+		prop classes
+		return
+			span
+				class {classes.panel}
+				@ onClick { this.onClick }
+				span { ' ' }
+					@ className
+						_ classNames
+							@ classes.spanBase
+							@ classes.spanBefore
+							{
+								@ [classes.spanBeforeToggled] this.state.toggled
+				span { ' ' }
+					@ className
+						_ classNames
+							@ classes.spanBase
+							@ classes.span
+							{
+								@ [classes.spanToggled] this.state.toggled
+				span { ' ' }
+					@ className
+						_ classNames
+							@ classes.spanBase
+							@ classes.spanAfter
+							{
+								@ [classes.spanAfterToggled] this.state.toggled
+

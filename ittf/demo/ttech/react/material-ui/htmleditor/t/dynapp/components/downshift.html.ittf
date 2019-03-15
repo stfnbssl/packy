@@ -1,0 +1,182 @@
+﻿$group
+
+
+	# see index.html
+	# const Downshift = Downshift.default
+
+	function getSuggestionsFromItems
+		param items
+		const ret = []
+		const realItems = typeof items.length === 'undefined' ? Object.keys(items) : items
+		foreach item in realItems
+			_ ret.push({ label: item })
+		return ret
+
+	function renderInput
+		param inputProps
+		const { InputProps, classes, ref, ...other } = inputProps
+		log 'renderInput'
+		return
+			< TextField
+				@ InputProps
+					{
+						@ inputRef ref
+						@ classes
+							{
+								@ root classes.inputRoot
+						@ ...InputProps
+				@ {...other}
+
+	function renderSuggestion
+		param { suggestion, index, itemProps, highlightedIndex, selectedItem }
+		const isHighlighted = highlightedIndex === index
+		const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1
+		return
+			< MenuItem
+				@ {...itemProps}
+				@ key {suggestion.label}
+				@ selected {isHighlighted}
+				@ component div
+				@ style
+					{
+						@ fontWeight isSelected ? 500 : 400
+				+ {suggestion.label}
+		#
+			# prop highlightedIndex
+				# number
+			# index
+				# number
+			# itemProps
+				# {
+			# selectedItem
+				# string
+			# suggestion
+				# shape
+					# {
+						# prop label
+							# string
+							# required
+
+	function filterSuggestions
+		param suggestions
+		param inputValue
+		let count = 0
+		return
+			_ suggestions.filter
+				=>
+					param suggestion
+					const keep = (!inputValue || suggestion.label.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1) 
+						\b && count < 5
+					if keep
+						set count += 1
+					return keep
+
+	withStyles( MyDownshift )
+
+		style
+			
+			@ root
+				{
+					@ flexGrow 1
+					$$ @ height 100
+			
+			@ container
+				{
+					@ flexGrow 1
+					@ position 'relative'
+			@ paper
+				{
+					@ position 'absolute'
+					@ zIndex 1
+					@ marginTop theme.spacing.unit
+					@ left 0
+					@ right 0
+			@ chip
+				{
+					@ margin `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`
+			@ inputRoot
+				{
+					@ flexWrap 'wrap'
+	
+		state
+			@ selectedItem ''
+			@ inputValue ''
+
+		prop classes
+			{
+			required
+
+		did-mount
+			prop selectedItem
+			_ this.setState
+				{
+					@ selectedItem selectedItem
+
+		=> handleChange
+			param selectedItem
+			prop onChange
+			_ this.setState
+				{
+					@ selectedItem selectedItem
+			_ onChange(selectedItem)
+
+		=> handleInputChange
+			param e
+			log 'MyDownshift.handleInputChange', e.target.value
+			_ this.setState
+				{
+					@ inputValue e.target.value
+
+		render
+			
+			prop items
+			prop selectedItem
+			prop placeholder
+			prop classes
+			log 'MyDownshift.render. state', this.state.selectedItem, 'prop', selectedItem, placeholder
+			
+			return
+				. {classes.root}
+					< Downshift
+						@ selectedItem { this.state.selectedItem }
+						@ onChange { this.handleChange }
+						{
+							=>
+								param { getInputProps, getItemProps, isOpen, inputValue, selectedItem, highlightedIndex }
+								return
+									. {classes.container}
+										{
+											_ renderInput
+												{
+													@ fullWidth true
+													@ classes
+													@ InputProps
+														_ getInputProps
+															{
+																@ placeholder placeholder
+																@ id 'integration-downshift-simple'
+																@ onChange this.handleInputChange
+										{
+											&&
+												+ isOpen
+												< Paper
+													@ className {classes.paper}
+													@ square
+													{
+														_ filterSuggestions
+															@ getSuggestionsFromItems(items)
+															@ inputValue
+															._ map
+																=>
+																	param suggestion, index
+																	return
+																		_ renderSuggestion
+																			{
+																				@ suggestion
+																				@ index
+																				@ itemProps
+																					_ getItemProps
+																						{
+																							@ item suggestion.label 
+																				@ highlightedIndex
+																				@ selectedItem

@@ -1,0 +1,290 @@
+﻿module
+    kind es6
+
+	var window = self
+
+	_ importScripts
+		@ '/static/wizzi-play/scripts/wizzi.standalone.js'
+
+	var wf = wizziStandalone.default
+
+	log "SW startup", wf
+
+	function genResponse
+		param filePath
+		return
+			new Promise
+				=>
+					param resolve
+					param reject
+					_ wf.gen
+        				@ filePath
+        				f_cb_no_err( artifactText )
+							if err
+								log err
+								return
+									_ reject
+										@ err
+							log 'artifactText', artifactText
+							return
+								_ resolve
+									new Response
+										new Blob
+											[
+												@ artifactText
+											{
+												@ type 'text/html'
+										{ 
+											@ headers
+												{
+													@ "Content-Type" "text/html"
+        					
+
+
+	_ self.addEventListener
+		@ 'install'
+		function
+			param event
+			log "Install event", event
+			log ".replace", event.replace
+			log "self.skipWaiting", self.skipWaiting
+			
+			if event.waitUntil
+				log "Testing waitUntil:"
+				_ event.waitUntil
+					new Promise
+						function
+							param resolve
+							_ setTimeout
+								function
+									log "This should appear before activate"
+									_ resolve()
+								@ 3000
+	
+	_ self.addEventListener
+		@ "activate"
+		function
+			param event
+			log "Activate event", event
+			log ".waitUntil", event.waitUntil
+
+	_ self.addEventListener
+		@ "fetch"
+		function
+			param event
+			const url = new URL(event.request.url)
+
+			#
+				if url.origin == location.origin && url.pathname.endsWith('/template-stream/')
+					_ event.respondWith(streamingTemplateResponse())
+
+
+			if url.pathname === "/ittf/demo/ttech/wizzi/serviceworker/localserver/index"
+				if event.respondWith
+					_ event.respondWith
+						_ genResponse
+							@ '/ixdb/wizzi/default/html/index.html.ittf'
+
+
+module
+    kind react
+    _ self.importScripts('https://cdn.jsdelivr.net/npm/browserfs')
+    _ self.addEventListener('install', self.skipWaiting)
+    _ self.addEventListener('activate', self.skipWaiting)
+    _ self.addEventListener
+        @ 'fetch'
+        function 
+            param event
+            let path = BrowserFS.BFSRequire('path')
+            let fs
+                new Promise
+                    function 
+                        param resolve
+                        param reject
+                        _ BrowserFS.configure
+                            { 
+                                @ fs 'IndexedDB'
+                                @ options {}
+                            function 
+                                param err
+                                if err
+                                    _ reject(err)
+                                else
+                                    _ resolve(BrowserFS.BFSRequire('fs'))
+            _ event.respondWith
+                _ fs.then
+                    function 
+                        param fs
+                        return 
+                            new Promise
+                                function 
+                                    param resolve
+                                    param reject
+                                    
+									function sendFile
+                                        param path
+                                        _ fs.readFile
+                                            @ path
+                                            function 
+                                                param err
+                                                param buffer
+                                                if err
+                                                    set err.fn = 'readFile(' + path + ')'
+                                                    return reject(err)
+                                                var ext = path.replace(/.*\./, '')
+                                                var mime
+                                                    { 
+                                                        @ 'html' 'text/html'
+                                                        @ 'json' 'application/json'
+                                                        @ 'js' 'application/javascript'
+                                                        @ 'css' 'text/css'
+                                                var headers
+                                                    new Headers
+                                                        { 
+                                                            @ 'Content-Type' mime[ext]
+                                                _ resolve
+                                                    new Response
+                                                        @ buffer
+                                                        { 
+                                                            @ headers headers
+                                    var url = event.request.url
+                                    
+									var m = url.match(/__browserfs__(.*)/)
+                                    
+									function redirect_dir
+                                        return resolve(Response.redirect(url + '/', 301))
+                                    
+									function serve
+                                        _ fs.stat
+                                            @ path
+                                            function 
+                                                param err
+                                                param stat
+                                                if err
+                                                    return resolve(textResponse(error404Page(path)))
+                                                if stat.isFile()
+                                                    _ sendFile(path)
+                                                else
+                                                    if stat.isDirectory()
+                                                        if path.substr(-1, 1) !== '/'
+                                                            return redirect_dir()
+                                                        _ fs.readdir
+                                                            @ path
+                                                            function 
+                                                                param err
+                                                                param list
+                                                                if err
+                                                                    set err.fn = 'readdir(' + path + ')'
+                                                                    return reject(err)
+                                                                var len = list.length
+                                                                if list.includes('index.html')
+                                                                    _ sendFile(path + '/index.html')
+                                                                else
+                                                                    _ listDirectory
+                                                                        { 
+                                                                            @ fs fs
+                                                                            @ path path
+                                                                            @ list list
+                                                                        ._ then
+                                                                            function 
+                                                                                param list
+                                                                                _ resolve(textResponse(fileListingPage(path, list)))
+                                                                        ._ catch
+                                                                            @ reject
+                                    if m
+                                        var path = m[1]
+                                        if path === ''
+                                            return redirect_dir()
+                                        _ console.log('serving ' + path + ' from browserfs')
+                                        _ serve
+                                    else
+                                        if event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin'
+                                            return 
+                                        # request = credentials: 'include'
+                                        _ fetch(event.request).then(resolve).catch(reject)
+
+    
+	function listDirectory
+        { 
+            @ fs fs
+            @ path path
+            @ list list
+        return 
+            new Promise
+                function 
+                    param resolve
+                    param reject
+                    var items = []
+                    _ loop
+                        var item = list.shift()
+                        if !item
+                            return resolve(items)
+                        _ fs.stat
+                            set path + '/' + item
+                            function 
+                                param err
+                                param stat
+                                if err
+                                    set err.fn = 'stat(' + path + '/' + item + ')'
+                                    return reject(err)
+                                _ items.push
+                                    iif stat.isDirectory()
+                                        then item + '/'
+                                        else item
+                                _ loop
+    
+
+    function textResponse
+        param string
+        param filename
+        var blob
+            new Blob
+                [ 
+                    ident string
+                { 
+                    @ type 'text/html'
+        return new Response(blob)
+
+
+    function fileListingPage
+        param path
+        param list
+        var output
+            [ 
+                @ '<!DOCTYPE html>'
+                @ '<html>'
+                @ '<body>'
+                `lit 
+                    + <h1>BrowserFS\b
+                    @ path
+                    + </h1>
+                @ '<ul>'
+        if path.match(/^\/(.*\/)/)
+            _ output.push('<li><a href="..">..</a></li>')
+        _ list.forEach
+            function 
+                param name
+                _ output.push('<li><a href="' + name + '">' + name + '</a></li>')
+        set output =
+            _ output.concat
+                [ 
+                    @ '</ul>'
+                    @ '</body>'
+                    @ '</html>'
+        return output.join('\n')
+    
+	function error404Page
+        param path
+        var output
+            [ 
+                @ '<!DOCTYPE html>'
+                @ '<html>'
+                @ '<body>'
+                @ '<h1>404 File Not Found</h1>'
+                `lit 
+                    + <p>File\b
+                    @ path
+                    + \bnot\bfound\bin\bbrowserfs
+                @ '</body>'
+                @ '</html>'
+        return output.join('\n')

@@ -1,0 +1,48 @@
+﻿$group
+
+	+
+	const methods = ['get', 'post', 'put', 'delete', 'create']
+	const trueMethods = ['get', 'post']
+	+
+	function validateCreateAxiosConfig
+		param actionHttpRequest
+		+
+		var { url } = actionHttpRequest
+		const { method, queryParams, payload, responseType, timeout } = actionHttpRequest
+		+
+		if typeof url !== 'string'
+			_ throwError
+				@ 'Specify a string endpoint URL. actionHttpRequest: ' + util.inspect(actionHttpRequest, { depth:null })
+				@ 'validateCreateAxiosConfig'
+		+
+		var urlHasParams = url.indexOf('?') > -1
+		+
+		if queryParams
+			if !_.isObject(queryParams)
+				_ throwError
+					@ 'The property queryParams must be an object. actionHttpRequest: ' + util.inspect(actionHttpRequest, { depth:null })
+					@ 'validateCreateAxiosConfig'
+			set url = url + (urlHasParams ? '&' : '?') + querystring.stringify(queryParams, '&', '=')
+			set urlHasParams = true
+		+
+		if methods.indexOf(actionHttpRequest.method) === -1
+			_ throwError
+				@ 'Invalid http method: "' + actionHttpRequest.method + '" actionHttpRequest:' + util.inspect(actionHttpRequest, { depth:null })
+				@ 'validateAxiosConfig'
+		if trueMethods.indexOf(actionHttpRequest.method) === -1
+			set url = url + (urlHasParams ? '&' : '?') + '_method=' + actionHttpRequest.method
+			set actionHttpRequest.method = 'post'
+			set urlHasParams = true
+		+
+		var ret
+			{
+				@ url url
+				@ method method
+		if method === 'post' && payload
+			set ret.data = payload
+		set ret.responseType = responseType || config.defaultResponseType
+		set ret.timeout = timeout || config.defaultTimeout
+		+
+		log 'validateCreateAxiosConfig.ret', ret
+		+
+		return ret

@@ -1,0 +1,11 @@
+{
+
+	$
+		var opt = {
+			name: 'anna',
+			label: 'Anna',
+			experimentsWith: 'the Anna projects',
+			path: []
+		};
+
+	ttech-frame(&opt)

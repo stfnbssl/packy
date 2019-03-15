@@ -1,0 +1,14 @@
+﻿$group
+
+	package v3-wizzi-nools
+
+		plugin-name wizzi-nools
+
+		src-folder C:\My\wizzi\next\npm\v3-wizzi-nools
+		dest-folder C:\My\wizzi\v3\node_modules\wizzi-nools
+
+		schema nools
+
+			artifact flowDsl
+				language nools
+				is-default

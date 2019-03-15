@@ -1,0 +1,45 @@
+module
+	kind es6
+	
+    _ Vue.component
+        @ 'todo-item'
+        { 
+            @ template '<li>This is a todo</li>'
+            
+    _ Vue.component
+        @ 'todo-item2'
+        { 
+            [ props
+                @ 'todo'
+            @ template '<li>{{ todo.text }}</li>'
+    
+    var app
+        new Vue
+            { 
+                @ el '#app'
+                { data
+                    [ groceryList
+                        { 
+                            @ id 0
+                            @ text 'Vegetables'
+                        { 
+                            @ id 1
+                            @ text 'Cheese'
+                        { 
+                            @ id 2
+                            @ text 'Whatever else humans are supposed to eat'
+            
+                    @ message 'Hello Vue.js!'
+                    @ seen true
+                    [ todos
+                        {
+                            @ text 'Learn JavaScript'
+                        {
+                            @ text 'Learn Vue'
+                        {
+                            @ text 'Build something awesome'
+                { methods
+                    @ reverseMessage
+                        function 
+                            set this.message = this.message.split('').reverse().join('')
+                        

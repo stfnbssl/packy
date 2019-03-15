@@ -1,0 +1,16 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'webgl',
+			label: 'WebGl',
+			experimentsWith: 'the web gl api',
+			path: [
+				{
+					name: 'webapi',
+					label: 'WebApi',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

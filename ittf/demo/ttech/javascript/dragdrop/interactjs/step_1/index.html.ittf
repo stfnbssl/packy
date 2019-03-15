@@ -1,0 +1,401 @@
+h/std/empty_layout()
+
+	
+	# demo-canvas
+	    h1 Drawable canvas
+	    style display: none; width 100%
+    	canvas
+    		class rainbow-pixel-canvas
+    	p Double tap to clear the canvas
+    	
+	# demo-events
+	    h1 Events
+	    style display: none; width 100%
+        div Tap, drag and swipe accros the screen
+            id swipe
+        input 
+            class tolerance-slider
+            type range
+            value 1
+            step 1
+            min 1
+            max 100
+        pre 1
+            id tolerance-display    
+            
+    # demo-drop-zones
+	    h1 Drop zones (not working)
+	    style display: none; width 100%
+        div Drag me…
+            id drag1
+            class draggable js-drag
+        div Drag me…
+            id drag2
+            class draggable js-drag
+        div Drag me…
+            id drag3
+            class draggable js-drag
+        div Drag me…
+            id drag4
+            class draggable js-drag
+        . dropzone-wrapper
+            div Dropzone
+                id drop1
+                class dropzone js-drop
+            div Dropzone
+                id drop2
+                class dropzone js-drop
+            div Dropzone
+                id drop3
+                class dropzone js-drop            
+
+    $append head-styles
+		@style
+			css
+				. rainbow-pixel-canvas
+					border solid 2px gray
+					-ms-touch-action none
+					touch-action none
+                < #swipe
+                    position absolute
+                    left 0
+                    right 0
+                    top 0
+                    bottom 0
+                    margin 0
+                    padding 10%
+                    background-color #29e
+                    color #fff
+                    font-size 8em
+                    font-size 10vmin
+                    font-family sans-serif
+                    cursor default
+                    -webkit-user-select none
+                    -moz-user-select none
+                    -ms-user-select none
+                    -o-user-select none
+                    user-select none
+                    -webkit-touch-action none
+                    -moz-touch-action none
+                    -ms-touch-action none
+                    touch-action none
+                . tolerance-slider
+                    position absolute
+                    left 0
+                    bottom 0
+                    width 80%
+                    height 5%
+                    margin 5% 10%
+                < #tolerance-display
+                    position absolute
+                    left 0
+                    bottom 0
+                    width 100%
+                    margin 2% 0%
+                    font-size 2em
+                    font-size 4vmin
+                    text-align center
+                    color #fff
+                < #tolerance-display::before
+                    content "interact.pointerMoveTolerance( "
+                < #tolerance-display::after
+                    content " )"
+                    
+                . dropzone-wrapper
+                    position absolute
+                    bottom 0
+                    left 0
+                    right 0
+                . dropzone
+                    overflow hidden
+                    margin .5em
+                    padding 1em
+                    color #666
+                    text-align center
+                    background #ccc
+                    line-height 4em
+                    border 4px dashed transparent
+                    transition background .15s linear, border-color .15s linear
+                . dropzone.-drop-possible
+                    border-color #666
+                . dropzone.-drop-over
+                    background #666
+                    color #fff
+                . draggable
+                    position relative
+                    z-index 10
+                    width 200px
+                    margin .25em
+                    padding 1em 2em
+                    background-color #29e
+                    color #fff
+                    text-align center
+                    -ms-touch-action none
+                    touch-action none
+                . draggable.-drop-possible
+                    background-color #42bd41
+                    
+    $append body-scripts
+        script
+            module
+                # _ demoCanvas
+                # _ demoEvents
+                _ demoDropzones
+                function demoCanvas
+                    set document.getElementById("demo-canvas").style.display = 'block'
+    				var pixelSize = 16
+    				_ interact(".rainbow-pixel-canvas").origin("self").draggable
+    					{ 
+    						@ max Infinity
+    						@ maxPerElement Infinity
+    						[ modifiers
+    							{ 
+    								@ type 'snap'
+    								# snap to the corners of a grid
+    								[ targets
+    									_ interact.snappers.grid
+    										{ 
+    											@ x pixelSize
+    											@ y pixelSize
+    					._ on
+    						@ "dragmove"
+    						function 
+    							param event
+    							# draw colored squares on move
+    							var 
+    								decl context = event.target.getContext("2d")
+    								# calculate the angle of the drag direction
+    								decl dragAngle = 180 * Math.atan2(event.dx, event.dy) / Math.PI
+    							# set color based on drag angle and speed
+    							set context.fillStyle = "hsl(" + dragAngle + ", 86%, " + (30 + Math.min(event.speed / 1000, 1) * 50) + "%)"
+    							# draw squares
+    							_ context.fillRect(event.pageX - pixelSize / 2, event.pageY - pixelSize / 2, pixelSize, pixelSize)
+    					._ on
+    						@ "doubletap"
+    						function 
+    							param event
+    							# clear the canvas on doubletap
+    							var context = event.target.getContext("2d")
+    							_ context.clearRect(0, 0, context.canvas.width, context.canvas.height)
+    				function resizeCanvases
+    					_ [].forEach.call
+    						_ document.querySelectorAll(".rainbow-pixel-canvas")
+    						function 
+    							param canvas
+    							set canvas.width = document.body.clientWidth
+    							set canvas.height = window.innerHeight * 0.7
+    				# interact.js can also add DOM event listeners
+    				_ interact(document).on("DOMContentLoaded", resizeCanvases)
+    				_ interact(window).on("resize", resizeCanvases)
+				
+                function demoEvents
+                    set document.getElementById("demo-events").style.display = 'block'
+                    const dirs
+                        [ 
+                            @ 'up'
+                            @ 'down'
+                            @ 'left'
+                            @ 'right'
+                    _ interact('#swipe').draggable(true).on
+                        @ 'dragend'
+                        function 
+                            param event
+                            if !event.swipe
+                                return 
+                            let str = 'swipe'
+                            _ _.forEach
+                                @ dirs
+                                function 
+                                    param dir
+                                    if event.swipe[dir]
+                                        set str += ' ' + dir
+                            set str += '<br>' + event.swipe.angle.toFixed(2) + '°' + '<br>' + event.swipe.speed.toFixed(2) + 'px/sec'
+                            set event.target.innerHTML = str
+                            _ window.console.log(str.replace(/<br>/g, ' '))
+                    const pointerEvents
+                        [ 
+                            @ 'tap'
+                            @ 'doubletap'
+                            @ 'hold'
+                            @ 'down'
+                            @ 'move'
+                            @ 'up'
+                    function logEvent
+                        param event
+                        set event.currentTarget.innerHTML = event.pointerType
+                        if /tap|up|click|down/.test(event.type) && event.interaction.prevTap
+                            _ window.console.log(event.type + ' -- ' + event.dt + ', ' + (Date().getTime() - event.interaction.prevTap.timeStamp))
+                        if interact.supportsTouch() || interact.supportsPointerEvent()
+                            set event.target.innerHTML += ' #' + event.pointerId
+                        const interactionIndex = _.indexOf(interact.debug().interactions, event.interaction)
+                        set event.currentTarget.innerHTML += ' ' + event.type + '<br>(' + event.pageX + ', ' + event.pageY + ')<br>' + 'interaction #' + interactionIndex
+                        # window.console.log(event.pointerType, event.pointerId, event.type, event.pageX, event.pageY, interactionIndex);
+                        _ event.preventDefault
+                    for let i = 0; i < pointerEvents.length; i++
+                        const eventType = pointerEvents[i]
+                        _ interact('#swipe').on(eventType, logEvent)
+                    function changeTolerance
+                        param event
+                        const value = event.target.value | 0
+                        _ interact.pointerMoveTolerance(value)
+                        set document.getElementById('tolerance-display').textContent = value
+                    _ interact('.tolerance-slider').on('input', changeTolerance)
+                    _ interact('.tolerance-slider').on('change', changeTolerance)
+                    
+                    
+                function demoDropzones
+                    let transformProp
+                    set document.getElementById("demo-drop-zones").style.display = 'block'
+                    _ interact.maxInteractions(Infinity)
+                    # setup draggable elements.
+                    _ interact('.js-drag').draggable
+                        { 
+                            @ max Infinity
+                            { snap
+                                [ targets
+                                    _ interact.createSnapGrid
+                                        { 
+                                            @ x 100
+                                            @ y 100
+                                [ relativePoints
+                                    { 
+                                        @ x 0.5
+                                        @ y 0.5
+                        ._ on
+                            @ 'dragstart'
+                            function 
+                                param event
+                                set event.interaction.x = parseInt(event.target.getAttribute('data-x'), 10) || 0
+                                set event.interaction.y = parseInt(event.target.getAttribute('data-y'), 10) || 0
+                        ._ on
+                            @ 'dragmove'
+                            function 
+                                param event
+                                set event.interaction.x += event.dx
+                                set event.interaction.y += event.dy
+                                if transformProp
+                                    set event.target.style[transformProp] = 'translate(' + event.interaction.x + 'px, ' + event.interaction.y + 'px)'
+                                else
+                                    set event.target.style.left = event.interaction.x + 'px'
+                                    set event.target.style.top = event.interaction.y + 'px'
+                        ._ on
+                            @ 'dragend'
+                            function 
+                                param event
+                                _ event.target.setAttribute('data-x', event.interaction.x)
+                                _ event.target.setAttribute('data-y', event.interaction.y)
+                    # setup drop areas.
+                    # dropzone #1 accepts draggable #1
+                    _ setupDropzone('#drop1', '#drag1')
+                    # dropzone #2 accepts draggable #1 and #2
+                    _ setupDropzone('#drop2', '#drag1, #drag2')
+                    # every dropzone accepts draggable #3
+                    _ setupDropzone('.js-drop', '#drag3')
+                    #
+                        # *
+                        # * Setup a given element as a dropzone.
+                        # *
+                        # * @param {HTMLElement|String} el
+                        # * @param {String} accept
+                        # 
+                    function setupDropzone
+                        param el
+                        param accept
+                        _ interact(el).on
+                            @ 'dropactivate'
+                            => 
+                                param e
+								log 'dropactivate e.type', e.type
+                                _ console.log(e.type)
+                                _ e.reject
+                            ._ dropzone
+                                { 
+                                    @ accept accept
+                                    @ ondropactivate
+                                        function 
+                                            param event
+                                            _ addClass(event.relatedTarget, '-drop-possible')
+                                    @ ondropdeactivate
+                                        function 
+                                            param event
+                                            _ removeClass(event.relatedTarget, '-drop-possible')
+                            ._ on
+                                @ 'dropactivate'
+                                function 
+                                    param event
+									log 'dropactivate', event.target
+                                    const active = event.target.getAttribute('active') | 0
+                                    # change style if it was previously not active
+                                    if active === 0
+                                        _ addClass(event.target, '-drop-possible')
+                                        set event.target.textContent = 'Drop me here!'
+                                    _ event.target.setAttribute('active', active + 1)
+                            ._ on
+                                @ 'dropdeactivate'
+                                function 
+                                    param event
+									log 'dropdeactivate', event.target
+                                    const active = event.target.getAttribute('active') | 0
+                                    # change style if it was previously active
+                                    # but will no longer be active
+                                    if active === 1
+                                        _ removeClass(event.target, '-drop-possible')
+                                        set event.target.textContent = 'Dropzone'
+                                    _ event.target.setAttribute('active', active - 1)
+                            ._ on
+                                @ 'dragenter'
+                                function 
+                                    param event
+                                    log 'dragenter in', event.target
+                                    _ addClass(event.target, '-drop-over')
+                                    set event.relatedTarget.textContent = 'I\'m in'
+                            ._ on
+                                @ 'dragleave'
+                                function 
+                                    param event
+                                    log 'dragleave from', event.target
+                                    _ removeClass(event.target, '-drop-over')
+                                    set event.relatedTarget.textContent = 'Drag me…'
+                            ._ on
+                                @ 'drop'
+                                function 
+                                    param event
+									log 'drop', event.target
+                                    _ removeClass(event.target, '-drop-over')
+                                    set event.relatedTarget.textContent = 'Dropped'
+                    function addClass
+                        param element
+                        param className
+                        if element.classList
+                            return element.classList.add(className)
+                        else
+                            set element.className += ' ' + className
+                    function removeClass
+                        param element
+                        param className
+                        if element.classList
+                            return element.classList.remove(className)
+                        else
+                            set element.className = element.className.replace(new RegExp(className + ' *', 'g'), '')
+                    _ interact(document).on
+                        @ 'ready'
+                        function 
+                            set transformProp =
+                                iif 'transform' in document.body.style
+                                    then 'transform'
+                                    else
+                                        iif 'webkitTransform' in document.body.style
+                                            then 'webkitTransform'
+                                            else
+                                                iif 'mozTransform' in document.body.style
+                                                    then 'mozTransform'
+                                                    else
+                                                        iif 'oTransform' in document.body.style
+                                                            then 'oTransform'
+                                                            else
+                                                                iif 'msTransform' in document.body.style
+                                                                    then 'msTransform'
+                                                                    else null
+                                    
+                                				
+                                                        

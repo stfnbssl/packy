@@ -1,0 +1,15 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React from 'react' ids: undefined undefined
+    import { render } from 'react-dom' ids: undefined undefined
+    import { Provider } from 'react-redux' ids: undefined undefined
+    import configureStore from './store/configureStore' ids: undefined undefined
+    import App from './containers/App' ids: undefined undefined
+    let store = configureStore() ids: undefined undefined
+    _ render ids: undefined undefined
+      div  ids: undefined undefined
+        < Provider ids: undefined undefined
+          @ store {store} ids: undefined undefined
+          < App ids: undefined undefined
+      _ document.getElementById('root') ids: undefined undefined

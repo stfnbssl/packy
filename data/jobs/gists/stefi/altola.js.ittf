@@ -1,0 +1,4 @@
+module
+    kind jsfile
+    var x = 10
+    log 2 * x

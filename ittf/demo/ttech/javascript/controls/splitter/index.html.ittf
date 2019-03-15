@@ -1,0 +1,20 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'splitter',
+			label: 'Splitter',
+			experimentsWith: 'the javascript splitter control',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'controls',
+					label: 'Controls',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

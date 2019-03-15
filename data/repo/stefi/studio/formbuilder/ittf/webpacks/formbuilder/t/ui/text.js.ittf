@@ -1,0 +1,19 @@
+﻿$group
+	$params name, label
+	< FormGroup
+		@ controlId ${name}
+		< Col
+			@ componentClass {ControlLabel}
+			@ sm {2}
+			+ ${label}
+		< Col
+			@ sm {10}
+			< FormControl
+				type text
+				placeholder ${label}
+				@ key ${name}
+				@ name ${name}
+				@ ref
+					=>
+						param node
+						set ${name} = node

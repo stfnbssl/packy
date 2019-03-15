@@ -1,0 +1,25 @@
+﻿$group
+	. be-valuepanel
+		margin 10px
+		padding 5px
+		border 1px solid #aaa
+	. be-wdg-value
+		// background-color #dedede
+		padding 5px
+		margin-bottm 2px
+	. be-wdg-value label
+		display inline-block
+		width 120px
+	. be-value-container
+		display inline-block
+	. be-value-container.undefined
+		display inline-block
+		color #AAA
+		font-size 0.95em
+	. be-editor-buttons
+		padding 2px
+	. be-editor-btn
+		padding 4px
+		color #222
+	. editor
+		background-color #ade3f5

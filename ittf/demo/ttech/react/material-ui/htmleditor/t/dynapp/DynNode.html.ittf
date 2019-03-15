@@ -1,0 +1,196 @@
+﻿$group
+
+	withStyles( DynNode )
+
+		style
+			@ input
+				{
+					@ border 0
+					@ color '#00dd55'
+					@ fontWeight 'bold'
+					@ backgroundColor '#312934'
+			@ inputName
+				{
+					@ border 0
+					@ color '#00bb00'
+					@ backgroundColor '#343337'
+			@ spanButton
+				{
+					@ color '#f2e33e'
+					@ cursor 'pointer'
+					@ paddingRight '15px'
+					$$ @ textDecoration 'underline'
+  
+		state
+			@ elementType ''
+			@ name ''
+			@ isCopying 0
+
+		m getDerivedStateFromProps
+			static
+			param props
+			param state
+			return
+				{
+					@ ...state
+					@ elementType props.elementType
+					@ name props.name
+		
+		did-mount
+			prop elementType
+			prop name
+			prop uid
+
+			set this.uid = uid
+			set this.uid_key = uid + 'DynNode'
+			set this.nameId = this.uid_key + '_name'
+			set this.elementTypeId = this.uid_key + '_elementType'
+
+			_ this.setState
+				{
+					@ elementType elementType
+					@ name name
+
+		=> handleOpenDialog
+			prop onOpenDialog
+			_ onOpenDialog
+				@ this.uid
+				@ this.state.elementType
+				@ this.state.name
+
+		=> handleInputChange
+			param e
+			const target = e.target
+			const value = target.type === 'checkbox' ? target.checked : target.value
+			const name = target.name.split('_')[1]
+			
+			# log 'DynMTreeView.handleInputChange', name, value
+
+			var newState
+				{
+					@ ...this.state
+					@ [name] value
+			_ this.setState(newState)
+
+			prop uid
+			const mTreeNode = global.mTreeNodes[uid]
+			set mTreeNode.set(name, value)
+
+		=> handleClick
+			param e
+			const target = e.target
+			const oper = target.id.split('_')[0]
+			# log 'handleAdd', oper 
+			prop uid
+			const mTreeNode = global.mTreeNodes[uid]
+			if oper === 'addChild'
+				_ mTreeNode.add()
+			elif oper === 'addAfter'
+				_ mTreeNode.addAfter()
+			elif oper === 'addBefore'
+				_ mTreeNode.addBefore()
+			elif oper === 'addAsWrapper'
+				_ mTreeNode.addAsWrapper()
+			elif oper === 'delete'
+				_ mTreeNode.delete()
+			elif oper === 'duplicate'
+				_ mTreeNode.duplicate()
+			elif oper === 'copy'
+				const onCopyCut = this.props.onCopyCut
+				_ onCopyCut
+					@ 1
+					@ mTreeNode
+			elif oper === 'cut'
+				const onCopyCut = this.props.onCopyCut
+				_ onCopyCut
+					@ 2
+					@ mTreeNode
+			elif oper === 'paste'
+				const onPaste = this.props.onPaste
+				log 'DynNode.paste'
+				_ onPaste
+					@ mTreeNode
+					@ 'v'
+			elif oper === 'pasteBefore'
+				const onPaste = this.props.onPaste
+				log 'DynNode.pasteBefore'
+				_ onPaste
+					@ mTreeNode
+					@ 'v-'
+			elif oper === 'pasteAfter'
+				const onPaste = this.props.onPaste
+				log 'DynNode.pasteAfter'
+				_ onPaste
+					@ mTreeNode
+					@ 'v+'
+			elif oper === 'pasteAsWrapper'
+				const onPaste = this.props.onPaste
+				log 'DynNode.pasteAsWrapper'
+				_ onPaste
+					@ mTreeNode
+					@ 'v()'
+
+		render
+			prop classes
+			prop level
+			prop uid
+			prop elementType
+			prop copycutState
+			
+			# log 'DynNode.render', uid, level, this.state.elementType, 'prop', elementType
+
+			const mTreeNode = global.mTreeNodes[uid]
+			const allowedAddChild = mTreeNode.canAddChild()
+			const isRoot = !mTreeNode.parent
+			
+			return
+				div
+					@ key { this.uid_key }
+					style { {marginLeft: level*20 + 'px'} }
+					input
+						name { this.elementTypeId}
+						@ className { classes.input }
+						value { this.state.elementType }
+						@ onChange { this.handleInputChange }
+					input
+						name { this.nameId }
+						@ className { classes.inputName }
+						value { this.state.name }
+						@ onChange { this.handleInputChange }
+					{
+						&&
+							+ copycutState == 0
+							< React.Fragment
+								< Tooltip
+									@ title Edit properties
+									span ...
+										class { classes.spanButton }
+										@ onClick { this.handleOpenDialog }
+								{
+									&&
+										+ allowedAddChild
+										btn_1( addChild, Add a new child, +
+								{
+									&&
+										+ isRoot == false
+										< React.Fragment
+											btn_1( addBefore, Add a new sibling before, +.
+											btn_1( addAfter, Add a new sibling after, .+
+											btn_1( addAsWrapper, Add a new node as wrapper, (+))
+											btn_1( delete, Delete, del, 200
+											btn_1( duplicate, Duplicate, ++
+											btn_1( copy, Copy, c
+											btn_1( cut, Cut, x
+
+					{
+						&&
+							+ copycutState > 0
+							< React.Fragment
+								{
+									&&
+										+ allowedAddChild
+										btn_1( paste, Paste, v
+								btn_1( pasteBefore, Paste before, v., 400
+								btn_1( pasteAfter, Paste after, .v, 400
+								btn_1( pasteAsWrapper, Paste as wrapper, (v), 400
+

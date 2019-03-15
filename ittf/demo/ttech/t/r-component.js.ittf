@@ -1,0 +1,24 @@
+﻿$group
+	$params name, styleName|@@null
+
+	var ${name}
+		iife
+			$hook imports
+
+			react ${name}Internal
+		
+				style
+					$hook style
+
+				$hook
+
+			return
+				_ withStyles
+					@ styles
+					$if styleName != null
+						{
+							@ name '${styleName}'
+					(
+						@ ${name}Internal
+			(
+

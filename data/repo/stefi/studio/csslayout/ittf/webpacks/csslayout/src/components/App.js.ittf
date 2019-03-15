@@ -1,0 +1,25 @@
+﻿r-component( App )
+
+	$append imports
+		import builder from './mui/MuiBuilder'
+		import layoutData from './layouts/Stu'
+		var MainComponent = builder.create(layoutData)
+
+	style
+		@ '@global'
+			{ 
+				@ ['< html, body']
+					{
+						@ padding 0
+						@ margin 0
+						@ width '100%'
+						@ height '100%'
+						@ background '#f1f2f3'
+						@ scrollBehavior 'smooth'
+
+	render
+		return
+			< MainComponent
+				@ data { layoutData }
+
+    

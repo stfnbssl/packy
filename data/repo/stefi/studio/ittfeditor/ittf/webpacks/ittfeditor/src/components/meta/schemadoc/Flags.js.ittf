@@ -1,0 +1,9 @@
+﻿r-function( Flags )
+
+	prop flags
+	
+	if !flags || !flags.length
+		return null
+	else
+		return
+			span {flags}

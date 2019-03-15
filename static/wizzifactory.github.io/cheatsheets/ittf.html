@@ -1,0 +1,938 @@
+<!doctype html>
+<html>
+<head>
+    <title>Schema cheat sheet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wz-content-1">
+        <nav class="tn-bar" style="display: flex; margin: 0.5rem;">
+            <div class="logo">
+                <img src="/images/logo.svg" width="70px" height="30px" />
+            </div>
+        </nav>
+        <div class="mc-wrapper-layout" id="mc-wrapper">
+            <div class="mc-frame-bar">
+                <div class="mc-frame-bar-item">Schema cheat sheet</div>
+            </div>
+            <div class="mc-frame">
+                <div class="mc-sidebar-left">
+                    <ul>
+                        <li><a href="#The indented tree">The indented tree</a>
+                        <ul>
+                            <li><a href="#Ittf nodes">Ittf nodes</a>
+                            </li>
+                            <li><a href="#Ittf indented tree">Ittf indented tree</a>
+                            </li>
+                            <li><a href="#Ittf node values">Ittf node values</a>
+                            </li>
+                            <li><a href="#Escapes">Escapes</a>
+                            </li>
+                            <li><a href="#Comments">Comments</a>
+                            </li>
+                            <li><a href="#Comment tricks">Comment tricks</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#jsWizzi">jsWizzi</a>
+                        <ul>
+                            <li><a href="#jsWizzi variable declaration and interpolation">jsWizzi variable declaration and interpolation</a>
+                            </li>
+                            <li><a href="#More variable declarations">More variable declarations</a>
+                            </li>
+                            <li><a href="#Inpute parameters with default values">Inpute parameters with default values</a>
+                            </li>
+                            <li><a href="#Unary expressions">Unary expressions</a>
+                            </li>
+                            <li><a href="#Expressions">Expressions</a>
+                            </li>
+                            <li><a href="#Conditional operator">Conditional operator</a>
+                            </li>
+                            <li><a href="#Assignments">Assignments</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#jsWizzi statements">jsWizzi statements</a>
+                        <ul>
+                            <li><a href="#Conditions in scripts">Conditions in scripts</a>
+                            </li>
+                            <li><a href="#Conditions in markup">Conditions in markup</a>
+                            </li>
+                            <li><a href="#For loop in scripts">For loop in scripts</a>
+                            </li>
+                            <li><a href="#For loop in markup">For loop in markup</a>
+                            </li>
+                            <li><a href="#While loop in scripts">While loop in scripts</a>
+                            </li>
+                            <li><a href="#While loop in markup">While loop in markup</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#jsWizzi functions">jsWizzi functions</a>
+                        <ul>
+                            <li><a href="#Functions in scripts">Functions in scripts</a>
+                            </li>
+                            <li><a href="#Functions in markup">Functions in markup</a>
+                            </li>
+                            <li><a href="#Functions in scripts + markup !!! powerful">Functions in scripts + markup !!! powerful</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#Ecma builtin objects">Ecma builtin objects</a>
+                        <ul>
+                            <li><a href="#Ecma builtin functions">Ecma builtin functions</a>
+                            </li>
+                            <li><a href="#Ecma builtin String functions">Ecma builtin String functions</a>
+                            </li>
+                            <li><a href="#Operations on String objects passed as parameters">Operations on String objects passed as parameters</a>
+                            </li>
+                            <li><a href="#Ecma builtin Date object">Ecma builtin Date object</a>
+                            </li>
+                            <li><a href="#Ecma builtin Number object">Ecma builtin Number object</a>
+                            </li>
+                            <li><a href="#Ecma builtin RegExp object">Ecma builtin RegExp object</a>
+                            </li>
+                            <li><a href="#Ecma builtin Array object">Ecma builtin Array object</a>
+                            </li>
+                            <li><a href="#Ecma builtin Object object">Ecma builtin Object object</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#jsWizzi builtin objects">jsWizzi builtin objects</a>
+                        <ul>
+                            <li><a href="#'inflect' builtin functions">'inflect' builtin functions</a>
+                            </li>
+                            <li><a href="#'jsWizzi _' builtin functions">'jsWizzi _' builtin functions</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#Ittf magic tricks">Ittf magic tricks</a>
+                        <ul>
+                            <li><a href="#Embedding statements in interpolated expressions">Embedding statements in interpolated expressions</a>
+                            </li>
+                        </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mc-content">
+                    <div style="display: flex;" id="The indented tree">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">The indented tree</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Ittf nodes">Ittf nodes</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">node-name</span><span class="pp-pln"> node-value</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">name</span><span class="pp-pln"> the value is separated from the name by a space or tab</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">name-is-a-word</span><span class="pp-pln"> value is a string until end of line</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">name</span><span class="pp-pln"> the value can span many lines</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">\</span><span class="pp-pln"> , and continue without separation</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">name</span><span class="pp-pln"> ... or continue</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">\b</span><span class="pp-pln"> with a blank separator</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">name</span><span class="pp-pln"> ... or continue</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">\n</span><span class="pp-pln"> with a line feed separator</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+node-name node-value
+    name the value is separated from the name by a space or tab
+    name-is-a-word value is a string until end of line
+    name the value can span many lines, and continue without separation
+    name ... or continue with a blank separator
+    name ... or continue
+with a line feed separator
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Ittf indented tree">Ittf indented tree</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span><span class="pp-pln"> a document must have one and only one root node</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$$</span><span class="pp-pln"> the indentation shapes the tree</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> child 1</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> child 2</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> child 2.a</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">node</span><span class="pp-pln"> child 2.a.1</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> child 2.b</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root a document must have one and only one root node
+    node child 1
+    node child 2
+        node child 2.a
+            node child 2.a.1
+        node child 2.b
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Ittf node values">Ittf node values</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">name</span><span class="pp-pln"> values always are trimmed</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">name</span><span class="pp-pln"> \b  you must use the blank escape   \b</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">name</span><span class="pp-pln"> to insert start or end spaces</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    name values always are trimmed
+    name   you must use the blank escape   
+    name to insert start or end spaces
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Escapes">Escapes</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">name</span><span class="pp-pln"> except the blank escape, as first or last character,</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">\b</span><span class="pp-pln"> the escape char is ignored</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">name</span><span class="pp-pln"> \n, \t, \b, and so on, are inserted unescaped in the value string</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">name</span><span class="pp-pln"> how do you insert a \b sequence at start or end line?</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-kwd">$asis</span><span class="pp-pln"> name \b*|^^ the $asis command at rescue \b</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    name except the blank escape, as first or last character, the escape char is ignored
+    name \n, \t, \b, and so on, are inserted unescaped in the value string
+    name how do you insert a \b sequence at start or end line?
+    $asis name \b*|^^ the $asis command at rescue 
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Comments">Comments</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$$</span><span class="pp-pln"> this node is commented out entirely until end of line</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">and</span><span class="pp-pln"> $$this part too</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> value</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-kwd">$*</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">this</span><span class="pp-pln"> is a multiline</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">comment</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">*$</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> value</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">this</span><span class="pp-pln"> too $*is</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">    </span><span class="pp-tag">a</span><span class="pp-pln"> multiline comment</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">    </span><span class="pp-tag">*$</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    and
+    node value
+    node value
+    this too
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Comment tricks">Comment tricks</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> how do you insert a "$$" or "$*" in a value?</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> you must use jsWizzi (see later) variables</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> dd = '$' + '$';</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> da = '$' + '*';</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> ad = '*' + '$';</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> And you can insert </span><span class="pp-kwd">${</span><span class="pp-expr">dd</span><span class="pp-kwd">}</span><span class="pp-pln"> and </span><span class="pp-kwd">${</span><span class="pp-expr">da</span><span class="pp-kwd">}</span><span class="pp-pln"> and </span><span class="pp-kwd">${</span><span class="pp-expr">ad</span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node how do you insert a "$$" or "$*" in a value?
+    node you must use jsWizzi (see later) variables
+    node And you can insert $$ and $* and *$
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="jsWizzi">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">jsWizzi</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="jsWizzi variable declaration and interpolation">jsWizzi variable declaration and interpolation</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> name = 'stefi';</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> options = {</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-expr">title:</span><span class="pp-expr"> 'Chapter 1'</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-expr">};</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> title is </span><span class="pp-kwd">${</span><span class="pp-expr">options.title</span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> name is </span><span class="pp-kwd">${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node title is Chapter 1
+    node name is stefi
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="More variable declarations">More variable declarations</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">html</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> name = 'Ribot';</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> runDowns = 16, runWon = 16;</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> placements = [1, 1, 1, 1, 1];</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> pedigree = {</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-expr">mother:</span><span class="pp-expr"> 'Romanella',</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-expr">father:</span><span class="pp-expr"> 'Tenerani',</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">            </span><span class="pp-expr">paternalGrandfather:</span><span class="pp-expr"> 'Bellini',</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">            </span><span class="pp-expr">maternalGrandfather:</span><span class="pp-expr"> 'El greco'</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">        </span><span class="pp-expr">};</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-kwd"> ${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln"> was undefeated. Won </span><span class="pp-kwd">${</span><span class="pp-expr">runWon</span><span class="pp-kwd">}</span><span class="pp-pln"> out of </span><span class="pp-kwd">${</span><span class="pp-expr">runDowns</span><span class="pp-kwd">}</span><span class="pp-pln"> races.</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> His father was </span><span class="pp-kwd">${</span><span class="pp-expr">pedigree.father</span><span class="pp-kwd">}</span><span class="pp-pln"> and his mother </span><span class="pp-kwd">${</span><span class="pp-expr">pedigree.mother</span><span class="pp-kwd">}</span><span class="pp-pln">.</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> His placements are boring: </span><span class="pp-kwd">${</span><span class="pp-expr">placements</span><span class="pp-kwd">}</span><span class="pp-pln">, ...</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+html
+    p Ribot was undefeated. Won 16 out of 16 races.
+    p His father was Tenerani and his mother Romanella.
+    p His placements are boring: 1,1,1,1,1, ...
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Inpute parameters with default values">Inpute parameters with default values</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$params</span><span class="pp-pln"> name|stefi, age:integer|61, inlove:boolean|true</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln">, age </span><span class="pp-kwd">${</span><span class="pp-expr">age</span><span class="pp-kwd">}</span><span class="pp-pln">, </span><span class="pp-kwd">${</span><span class="pp-expr">inlove ? 'is' : 'is not'</span><span class="pp-kwd">}</span><span class="pp-pln"> in love.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node stefi, age 61, is in love.
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Unary expressions">Unary expressions</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">any</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> +2 =  </span><span class="pp-kwd">${</span><span class="pp-expr"> +2 </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> -2 = </span><span class="pp-kwd">${</span><span class="pp-expr"> -2 </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> !(2 == 2) = </span><span class="pp-kwd">${</span><span class="pp-expr"> !(2 == 2) </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> a = 0;</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> a = = </span><span class="pp-kwd">${</span><span class="pp-expr"> a </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> ++a = </span><span class="pp-kwd">${</span><span class="pp-expr"> ++a </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> ++a = </span><span class="pp-kwd">${</span><span class="pp-expr"> ++a </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> --a = </span><span class="pp-kwd">${</span><span class="pp-expr"> --a </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> typeof 3 = </span><span class="pp-kwd">${</span><span class="pp-expr"> typeof 3 </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> typeof '3' = </span><span class="pp-kwd">${</span><span class="pp-expr"> typeof '3' </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> typeof xyz = </span><span class="pp-kwd">${</span><span class="pp-expr"> typeof xyz </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+any
+    any +2 =  2
+    any -2 = -2
+    any !(2 == 2) = false
+    any a = = 0
+    any ++a = 1
+    any ++a = 2
+    any --a = 1
+    any typeof 3 = number
+    any typeof '3' = string
+    any typeof xyz = undefined
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Expressions">Expressions</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">any</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 2 + 2 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 2 + 2 </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 - 2 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 - 2 </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 3 * 3 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 3 * 3 </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 6 / 2 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 6 / 2 </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 % 2 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 % 2 </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 == 2 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 == 2 </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 != 2 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 != 2 </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 &gt; 2 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 &gt; 2 </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 &gt;= 5 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 &gt;= 5 </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 &lt; 2 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 &lt; 2 </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 &lt;= 5 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 &lt;= 5 </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> "a" in { a: 1} = </span><span class="pp-kwd">${</span><span class="pp-expr"> "a" in { a: 1</span><span class="pp-kwd">}</span><span class="pp-pln"> }</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> typeof 5 === 'string' = </span><span class="pp-kwd">${</span><span class="pp-expr"> typeof 5 === 'string' </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> String(5) = </span><span class="pp-kwd">${</span><span class="pp-expr"> String(5) </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> Number('5.5') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('5.5') </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> Date(2013,6,12) = </span><span class="pp-kwd">${</span><span class="pp-expr"> Date(2013,6,12) </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 &lt;&lt; 5 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 &lt;&lt; 5 </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">  19 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 &gt;&gt; 5 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 &gt;&gt; 5 </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  20 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 &gt;&gt;&gt; 5 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 &gt;&gt;&gt; 5 </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  21 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 | 5 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 | 5 </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  22 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 & 5 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 & 5 </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">  23 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> 5 ^ 5 = </span><span class="pp-kwd">${</span><span class="pp-expr"> 5 ^ 5 </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+any
+    any 2 + 2 = 4
+    any 5 - 2 = 3
+    any 3 * 3 = 9
+    any 6 / 2 = 3
+    any 5 % 2 = 1
+    any 5 == 2 = false
+    any 5 != 2 = true
+    any 5 &gt; 2 = true
+    any 5 &gt;= 5 = true
+    any 5 &lt; 2 = false
+    any 5 &lt;= 5 = true
+    any "a" in { a: 1} = true
+    any typeof 5 === 'string' = false
+    any String(5) = 5
+    any Number('5.5') = 5.5
+    any Date(2013,6,12) = Thu Jan 17 2019 14:21:06 GMT+0100 (ora solare Europa occidentale)
+    any 5 &lt;&lt; 5 = 160
+    any 5 &gt;&gt; 5 = 0
+    any 5 &gt;&gt;&gt; 5 = 0
+    any 5 | 5 = 5
+    any 5 & 5 = 5
+    any 5 ^ 5 = 0
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Conditional operator">Conditional operator</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> (3 == 3 ? 1 : 0) = </span><span class="pp-kwd">${</span><span class="pp-expr"> 3 == 3 ? 1 : 0 </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> (true ? 5 : 2) = </span><span class="pp-kwd">${</span><span class="pp-expr"> true ? 5 : 2 </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node (3 == 3 ? 1 : 0) = 1
+    node (true ? 5 : 2) = 5
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Assignments">Assignments</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var a = 0;</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> var a = 0; a += 2; -&gt; </span><span class="pp-kwd">${</span><span class="pp-expr"> a += 2 </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var a = 0;</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> var a = 0; a -= 2; -&gt; </span><span class="pp-kwd">${</span><span class="pp-expr"> a -= 2 </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var a = 3;</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> var a = 3; a *= 2; -&gt; </span><span class="pp-kwd">${</span><span class="pp-expr"> a *= 2 </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var a = 3;</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> var a = 3; a /= 2; -&gt; </span><span class="pp-kwd">${</span><span class="pp-expr"> a /= 2 </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var a = 3;</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> var a = 3; a %= 2; -&gt; </span><span class="pp-kwd">${</span><span class="pp-expr"> a %= 2 </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var a = 3;</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> var a = 3; a &lt;&lt;= 2; -&gt; </span><span class="pp-kwd">${</span><span class="pp-expr"> a &lt;&lt;= 2 </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var a = 3;</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> var a = 3; a &gt;&gt;= 2; -&gt; </span><span class="pp-kwd">${</span><span class="pp-expr"> a &gt;&gt;= 2 </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var a = 3;</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> var a = 3; a &gt;&gt;&gt;= 2; -&gt; </span><span class="pp-kwd">${</span><span class="pp-expr"> a &gt;&gt;&gt;= 2 </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var a = 3;</span></div><div class="L9"><span class="pp-ln">  19 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> var a = 3; a &= 2; -&gt; </span><span class="pp-kwd">${</span><span class="pp-expr"> a &= 2 </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  20 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var a = 3;</span></div><div class="L1"><span class="pp-ln">  21 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> var a = 3; a |= 2; -&gt; </span><span class="pp-kwd">${</span><span class="pp-expr"> a |= 2 </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  22 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var a = 3;</span></div><div class="L3"><span class="pp-ln">  23 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> var a = 3; a ^= 2; -&gt; </span><span class="pp-kwd">${</span><span class="pp-expr"> a ^= 2 </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node var a = 0; a += 2; -&gt; 2
+    node var a = 0; a -= 2; -&gt; -2
+    node var a = 3; a *= 2; -&gt; 6
+    node var a = 3; a /= 2; -&gt; 1.5
+    node var a = 3; a %= 2; -&gt; 1
+    node var a = 3; a &lt;&lt;= 2; -&gt; 12
+    node var a = 3; a &gt;&gt;= 2; -&gt; 0
+    node var a = 3; a &gt;&gt;&gt;= 2; -&gt; 0
+    node var a = 3; a &= 2; -&gt; 2
+    node var a = 3; a |= 2; -&gt; 3
+    node var a = 3; a ^= 2; -&gt; 1
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="jsWizzi statements">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">jsWizzi statements</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Conditions in scripts">Conditions in scripts</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> name = 'Derby', winner = null;</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-expr">if</span><span class="pp-expr"> (name == 'Ascot') {</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-expr">winner</span><span class="pp-expr"> = 'Ribot';</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-expr">}</span><span class="pp-expr"> else if (name == 'Arc de triomphe') {</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-expr">winner</span><span class="pp-expr"> = 'Varenne';</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-expr">}</span><span class="pp-expr"> else if (name == 'Derby') {</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">            </span><span class="pp-expr">winner</span><span class="pp-expr"> = 'Ribot';</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">        </span><span class="pp-expr">}</span><span class="pp-expr"> else {</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-expr">winner</span><span class="pp-expr"> = 'Varenne';</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">        </span><span class="pp-expr">}</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> If the race was </span><span class="pp-kwd">${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln"> the winner was </span><span class="pp-kwd">${</span><span class="pp-expr">winner</span><span class="pp-kwd">}</span><span class="pp-pln">.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node If the race was Derby the winner was Ribot.
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Conditions in markup">Conditions in markup</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> name = 'Derby';</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-kwd">$if</span><span class="pp-expr"> name == 'Ascot'</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> If the race was </span><span class="pp-kwd">${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln"> the winner was Ribot</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-kwd">$elif</span><span class="pp-pln"> name == 'Arc de triomphe'</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> If the race was </span><span class="pp-kwd">${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln"> the winner was Varenne</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-kwd">$elif</span><span class="pp-pln"> name == 'Derby'</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> If the race was </span><span class="pp-kwd">${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln"> the winner was Ribot</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-kwd">$else</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> If the race was </span><span class="pp-kwd">${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln"> the winner was Varenne</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node If the race was Derby the winner was Ribot
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="For loop in scripts">For loop in scripts</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> sletters = 'a,b,c,d,e,f,g,h';</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> aletters = sletters.split(',');</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> letter, label='';</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-expr">for</span><span class="pp-expr"> (var i=0; i&lt;aletters.length; i++) {</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-expr">letter</span><span class="pp-expr"> = aletters[i];</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-expr">label</span><span class="pp-expr"> += i % 2 == 0 ? letter : letter.toUpperCase();</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-expr">}</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> The resulting label has the even letters upper cased: </span><span class="pp-kwd">${</span><span class="pp-expr">label</span><span class="pp-kwd">}</span><span class="pp-pln">.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node The resulting label has the even letters upper cased: aBcDeFgH.
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="For loop in markup">For loop in markup</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> sletters = 'a,b,c,d,e,f,g,h';</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> aletters = sletters.split(',');</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> The resulting tree has the even node values upper cased:</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-kwd">$foreach</span><span class="pp-pln"> letter in aletters</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr"> _index</span><span class="pp-kwd">}</span><span class="pp-pln"> </span><span class="pp-kwd">${</span><span class="pp-expr"> _index % 2 == 0 ? letter : letter.toUpperCase() </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node The resulting tree has the even node values upper cased:
+        node  A
+        node  B
+        node  C
+        node  D
+        node  E
+        node  F
+        node  G
+        node  H
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="While loop in scripts">While loop in scripts</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> x = 1, odds = '1';</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-expr">while</span><span class="pp-expr"> ( x &lt; 10 ) {</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-expr">x</span><span class="pp-expr"> += 2;</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-expr">odds</span><span class="pp-expr"> += ', ' + x</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-expr">}</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> First odd numbers: </span><span class="pp-kwd">${</span><span class="pp-expr">odds</span><span class="pp-kwd">}</span><span class="pp-pln">.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node First odd numbers: 1, 3, 5, 7, 9, 11.
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="While loop in markup">While loop in markup</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var x = 1, odds = '1'</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-kwd">$while</span><span class="pp-pln"> x &lt; 10</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-kwd">$</span><span class="pp-pln"> x += 2</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr"> odds += ', ' + x </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node 1, 3
+    node 1, 3, 5
+    node 1, 3, 5, 7
+    node 1, 3, 5, 7, 9
+    node 1, 3, 5, 7, 9, 11
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="jsWizzi functions">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">jsWizzi functions</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Functions in scripts">Functions in scripts</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">function</span><span class="pp-expr"> sayHello(name) {</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-expr">return</span><span class="pp-expr"> 'Hii I am ' + name;</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-expr">}</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-kwd">$$TODO</span><span class="pp-expr"> var sh = sayHello;</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> If Varenne could have talked he would have said: </span><span class="pp-kwd">${</span><span class="pp-expr"> sayHello('Varenne') </span><span class="pp-kwd">}</span><span class="pp-pln">.</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-kwd">$$TODO</span><span class="pp-pln"> p If Ribot could have talked he would have said: </span><span class="pp-kwd">${</span><span class="pp-expr"> sh('Ribot') </span><span class="pp-kwd">}</span><span class="pp-pln">.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    p If Varenne could have talked he would have said: Hii I am Varenne.
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Functions in markup">Functions in markup</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$function</span><span class="pp-pln"> sayHello</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-kwd">$param</span><span class="pp-pln"> name</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> Hii I am </span><span class="pp-kwd">${</span><span class="pp-expr"> name </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var name = 'Ribot'</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-kwd">$_</span><span class="pp-pln"> sayHello</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-kwd">$@</span><span class="pp-pln"> name</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node Hii I am Ribot
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Functions in scripts + markup !!! powerful">Functions in scripts + markup !!! powerful</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">function</span><span class="pp-expr"> buildNode(parent, childCount, deep) {</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-expr">parent.childs</span><span class="pp-expr"> = [];</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-expr">if</span><span class="pp-expr"> (deep &gt; 3) { return; }</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-expr">parent.childs</span><span class="pp-expr"> = [];</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-expr">for</span><span class="pp-expr"> (var i = 0; i &lt; childCount; i++) {</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">                </span><span class="pp-expr">var</span><span class="pp-expr"> child = { id: parent.id + '-' + i};</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">                </span><span class="pp-expr">buildNode</span><span class="pp-expr"> (child, childCount, deep + 1);</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">                </span><span class="pp-expr">parent.childs.push</span><span class="pp-expr"> (child);</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-expr">}</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">        </span><span class="pp-expr">}</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> tree = { id: 0 };</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">        </span><span class="pp-expr">buildNode</span><span class="pp-expr"> (tree, 2, 0);</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">    </span><span class="pp-tag">node</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Let us inspect the 'tree' variable we built.</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">    </span><span class="pp-tag">node</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr"> _.inspect(tree) </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">  19 </span><span class="pp-pln">    </span><span class="pp-tag">node</span></div><div class="L0"><span class="pp-ln">  20 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> beautiful tree buildup without depth limits</span></div><div class="L1"><span class="pp-ln">  21 </span><span class="pp-pln">    </span><span class="pp-tag">node</span></div><div class="L2"><span class="pp-ln">  22 </span><span class="pp-pln">    </span><span class="pp-kwd">$function</span><span class="pp-pln"> nodeView</span></div><div class="L3"><span class="pp-ln">  23 </span><span class="pp-pln">        </span><span class="pp-kwd">$param</span><span class="pp-pln"> parent</span></div><div class="L4"><span class="pp-ln">  24 </span><span class="pp-pln">        </span><span class="pp-tag">div</span><span class="pp-pln"> node</span><span class="pp-kwd">${</span><span class="pp-expr">parent.id</span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">  25 </span><span class="pp-pln">            </span><span class="pp-kwd">$foreach</span><span class="pp-pln"> nodeChild in parent.childs</span></div><div class="L6"><span class="pp-ln">  26 </span><span class="pp-pln">                </span><span class="pp-kwd">$_</span><span class="pp-pln"> nodeView</span></div><div class="L7"><span class="pp-ln">  27 </span><span class="pp-pln">                    </span><span class="pp-kwd">$@</span><span class="pp-pln"> nodeChild</span></div><div class="L8"><span class="pp-ln">  28 </span><span class="pp-pln">    </span><span class="pp-kwd">$_</span><span class="pp-pln"> nodeView</span></div><div class="L9"><span class="pp-ln">  29 </span><span class="pp-pln">        </span><span class="pp-kwd">$@</span><span class="pp-pln"> tree</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node
+    node Let us inspect the 'tree' variable we built.
+    node
+    node { id: 0,
+  childs: 
+   [ { id: '0-0',
+       childs: 
+        [ { id: '0-0-0',
+            childs: 
+             [ { id: '0-0-0-0',
+                 childs: 
+                  [ { id: '0-0-0-0-0', childs: [] },
+                    { id: '0-0-0-0-1', childs: [] } ] },
+               { id: '0-0-0-1',
+                 childs: 
+                  [ { id: '0-0-0-1-0', childs: [] },
+                    { id: '0-0-0-1-1', childs: [] } ] } ] },
+          { id: '0-0-1',
+            childs: 
+             [ { id: '0-0-1-0',
+                 childs: 
+                  [ { id: '0-0-1-0-0', childs: [] },
+                    { id: '0-0-1-0-1', childs: [] } ] },
+               { id: '0-0-1-1',
+                 childs: 
+                  [ { id: '0-0-1-1-0', childs: [] },
+                    { id: '0-0-1-1-1', childs: [] } ] } ] } ] },
+     { id: '0-1',
+       childs: 
+        [ { id: '0-1-0',
+            childs: 
+             [ { id: '0-1-0-0',
+                 childs: 
+                  [ { id: '0-1-0-0-0', childs: [] },
+                    { id: '0-1-0-0-1', childs: [] } ] },
+               { id: '0-1-0-1',
+                 childs: 
+                  [ { id: '0-1-0-1-0', childs: [] },
+                    { id: '0-1-0-1-1', childs: [] } ] } ] },
+          { id: '0-1-1',
+            childs: 
+             [ { id: '0-1-1-0',
+                 childs: 
+                  [ { id: '0-1-1-0-0', childs: [] },
+                    { id: '0-1-1-0-1', childs: [] } ] },
+               { id: '0-1-1-1',
+                 childs: 
+                  [ { id: '0-1-1-1-0', childs: [] },
+                    { id: '0-1-1-1-1', childs: [] } ] } ] } ] } ] }
+    node
+    node beautiful tree buildup without depth limits
+    node
+    div node0
+        div node0-0
+            div node0-0-0
+                div node0-0-0-0
+                    div node0-0-0-0-0
+                    div node0-0-0-0-1
+                div node0-0-0-1
+                    div node0-0-0-1-0
+                    div node0-0-0-1-1
+            div node0-0-1
+                div node0-0-1-0
+                    div node0-0-1-0-0
+                    div node0-0-1-0-1
+                div node0-0-1-1
+                    div node0-0-1-1-0
+                    div node0-0-1-1-1
+        div node0-1
+            div node0-1-0
+                div node0-1-0-0
+                    div node0-1-0-0-0
+                    div node0-1-0-0-1
+                div node0-1-0-1
+                    div node0-1-0-1-0
+                    div node0-1-0-1-1
+            div node0-1-1
+                div node0-1-1-0
+                    div node0-1-1-0-0
+                    div node0-1-1-0-1
+                div node0-1-1-1
+                    div node0-1-1-1-0
+                    div node0-1-1-1-1
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="Ecma builtin objects">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">Ecma builtin objects</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Ecma builtin functions">Ecma builtin functions</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt('43.5') = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt(43.5) </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseFloat('43.5') = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseFloat(43.5) </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isFinite(Infinity) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isFinite(Infinity) </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isFinite(NaN) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isFinite(NaN) </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isFinite(null) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isFinite(null) </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isFinite(0) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isFinite(0) </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number.isFinite(null) = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number.isFinite(null) </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number.isFinite(0) = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number.isFinite(0) </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN(NaN) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN(NaN) </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN(undefined) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN(undefined) </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN({}) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN({</span><span class="pp-kwd">}</span><span class="pp-pln">)}</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN(true) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN(true) </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN(null) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN(null) </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN(37) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN(37) </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN('37') = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN('37') </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN('37.37') = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN('37.37') </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN('123ABC') = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN('123ABC') </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">  19 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt('123ABC') = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt('123ABC') </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  20 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number('123ABC') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('123ABC') </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  21 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN('') = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN('') </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  22 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number('') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('') </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">  23 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN(' ') = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN(' ') </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">  24 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number(' ') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number(' ') </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">  25 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN(new Date()) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN(new Date()) </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">  26 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN(new Date().toString()) = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN(new Date().toString()) </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">  27 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> isNaN('blabla') = </span><span class="pp-kwd">${</span><span class="pp-expr"> isNaN('blabla') </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">  28 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number('blabla') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('blabla') </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">  29 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseFloat(3.14) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseFloat(3.14) </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  30 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseFloat('3.14') = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseFloat('3.14') </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  31 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseFloat('314e-2') = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseFloat('314e-2') </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  32 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseFloat('0.0314E+2') = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseFloat('0.0314E+2') </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">  33 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseFloat('3.14more non-digit characters') = </span><span class="pp-kwd">${</span><span class="pp-expr">parseFloat('3.14more non-digit characters') </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">  34 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt(' 0xF', 16) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt(' 0xF', 16) </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">  35 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt(' F', 16) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt(' F', 16) </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">  36 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt('17', 8) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt('17', 8) </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">  37 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt('015', 10) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt('015', 10) </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">  38 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt(15.99, 10) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt(15.99, 10) </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">  39 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt('15,123', 10) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt('15,123', 10) </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  40 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt('FXX123', 16) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt('FXX123', 16) </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  41 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt('1111', 2) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt('1111', 2) </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  42 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt('15 * 3', 10) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt('15 * 3', 10) </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">  43 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt('15e2', 10) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt('15e2', 10) </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">  44 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt('15px', 10) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt('15px', 10) </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">  45 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> parseInt('12', 13) = </span><span class="pp-kwd">${</span><span class="pp-expr"> parseInt('12', 13) </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">  46 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> set1 // Reserved Characters', set1 }</span></div><div class="L7"><span class="pp-ln">  47 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> set2 // Unescaped Characters', set2 }</span></div><div class="L8"><span class="pp-ln">  48 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> set3 // Number Sign', set3 }</span></div><div class="L9"><span class="pp-ln">  49 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> set4 // Alphanumeric Characters + Space', set4 }</span></div><div class="L0"><span class="pp-ln">  50 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> reserved chars : encodeURI(";,/?:@&=+$") = </span><span class="pp-kwd">${</span><span class="pp-expr"> encodeURI(";,/?:@&=+$") </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  51 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> unescaped chars : encodeURI("-_.!~*'()") = </span><span class="pp-kwd">${</span><span class="pp-expr"> encodeURI("-_.!~*'()") </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  52 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> number sign: encodeURI("#") = </span><span class="pp-kwd">${</span><span class="pp-expr"> encodeURI("#") </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">  53 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> alphanumeric chars + space : encodeURI("ABC abc 123") = </span><span class="pp-kwd">${</span><span class="pp-expr"> encodeURI("ABC abc 123") </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">  54 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> encodeURIComponent(";,/?:@&=+$") = </span><span class="pp-kwd">${</span><span class="pp-expr"> encodeURIComponent(";,/?:@&=+$") </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">  55 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> encodeURIComponent("-_.!~*'()") = </span><span class="pp-kwd">${</span><span class="pp-expr"> encodeURIComponent("-_.!~*'()") </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">  56 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> encodeURIComponent("#") = </span><span class="pp-kwd">${</span><span class="pp-expr"> encodeURIComponent("#") </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">  57 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> encodeURIComponent("ABC abc 123") = </span><span class="pp-kwd">${</span><span class="pp-expr"> encodeURIComponent("ABC abc 123") </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node parseInt('43.5') = 43
+    node parseFloat('43.5') = 43.5
+    node isFinite(Infinity) = false
+    node isFinite(NaN) = false
+    node isFinite(null) = true
+    node isFinite(0) = true
+    node Number.isFinite(null) = false
+    node Number.isFinite(0) = true
+    node isNaN(NaN) = true
+    node isNaN(undefined) = true
+    node isNaN({}) = true
+    node isNaN(true) = false
+    node isNaN(null) = false
+    node isNaN(37) = false
+    node isNaN('37') = false
+    node isNaN('37.37') = false
+    node isNaN('123ABC') = true
+    node parseInt('123ABC') = 123
+    node Number('123ABC') = NaN
+    node isNaN('') = false
+    node Number('') = 0
+    node isNaN(' ') = false
+    node Number(' ') = 0
+    node isNaN(new Date()) = false
+    node isNaN(new Date().toString()) = true
+    node isNaN('blabla') = true
+    node Number('blabla') = NaN
+    node parseFloat(3.14) = 3.14
+    node parseFloat('3.14') = 3.14
+    node parseFloat('314e-2') = 3.14
+    node parseFloat('0.0314E+2') = 3.14
+    node parseFloat('3.14more non-digit characters') = 3.14
+    node parseInt(' 0xF', 16) = 15
+    node parseInt(' F', 16) = 15
+    node parseInt('17', 8) = 15
+    node parseInt('015', 10) = 15
+    node parseInt(15.99, 10) = 15
+    node parseInt('15,123', 10) = 15
+    node parseInt('FXX123', 16) = 15
+    node parseInt('1111', 2) = 15
+    node parseInt('15 * 3', 10) = 15
+    node parseInt('15e2', 10) = 15
+    node parseInt('15px', 10) = 15
+    node parseInt('12', 13) = 15
+    node set1 // Reserved Characters', set1 }
+    node set2 // Unescaped Characters', set2 }
+    node set3 // Number Sign', set3 }
+    node set4 // Alphanumeric Characters + Space', set4 }
+    node reserved chars : encodeURI(";,/?:@&=+$") = ;,/?:@&=+$
+    node unescaped chars : encodeURI("-_.!~*'()") = -_.!~*'()
+    node number sign: encodeURI("#") = #
+    node alphanumeric chars + space : encodeURI("ABC abc 123") = ABC%20abc%20123
+    node encodeURIComponent(";,/?:@&=+$") = %3B%2C%2F%3F%3A%40%26%3D%2B%24
+    node encodeURIComponent("-_.!~*'()") = -_.!~*'()
+    node encodeURIComponent("#") = %23
+    node encodeURIComponent("ABC abc 123") = ABC%20abc%20123
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Ecma builtin String functions">Ecma builtin String functions</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr">'a'.toUpperCase()</span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr">'A'.toLowerCase()</span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr">'a' + '  b  ' + 'c'</span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr">'a' + '  b  '.trim() + 'c'</span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr">'a,b,c,d'.split(',').join('-')</span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node A
+    node a
+    node a  b  c
+    node abc
+    node a-b-c-d
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Operations on String objects passed as parameters">Operations on String objects passed as parameters</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$params</span><span class="pp-pln"> commandParam|alpha;beta;gamma</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> commands = [];</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> actions = commandParam.split(';')</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-expr">for</span><span class="pp-expr"> (var i=0; i&lt;actions.length; i++) {</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-expr">var</span><span class="pp-expr"> tokens = actions[i].trim().split(' ');</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-expr">var</span><span class="pp-expr"> command = { name: tokens[0] };</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">            </span><span class="pp-expr">commands.push</span><span class="pp-expr"> (command);</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">        </span><span class="pp-expr">}</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Commands: </span><span class="pp-kwd">${</span><span class="pp-expr"> _.inspect(commands) </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node Commands: [ { name: 'alpha' }, { name: 'beta' }, { name: 'gamma' } ]
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Ecma builtin Date object">Ecma builtin Date object</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"&gt;&lt;/a&gt;</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> today: new Date() = </span><span class="pp-kwd">${</span><span class="pp-expr"> new Date() </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> new Date('December 17, 1995 03:24:00') = </span><span class="pp-kwd">${</span><span class="pp-expr"> new Date('December 17, 1995 03:24:00') </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> new Date('1995-12-17T03:24:00') = </span><span class="pp-kwd">${</span><span class="pp-expr"> new Date('1995-12-17T03:24:00') </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> new Date(1995, 11, 17) = </span><span class="pp-kwd">${</span><span class="pp-expr"> new Date(1995, 11, 17) </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> new Date(1995, 11, 17, 3, 24, 0) = </span><span class="pp-kwd">${</span><span class="pp-expr"> new Date(1995, 11, 17, 3, 24, 0) </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"&gt;&lt;/a&gt;
+    node today: new Date() = Thu Jan 17 2019 14:21:06 GMT+0100 (ora solare Europa occidentale)
+    node new Date('December 17, 1995 03:24:00') = Sun Dec 17 1995 03:24:00 GMT+0100 (ora solare Europa occidentale)
+    node new Date('1995-12-17T03:24:00') = Sun Dec 17 1995 03:24:00 GMT+0100 (ora solare Europa occidentale)
+    node new Date(1995, 11, 17) = Sun Dec 17 1995 00:00:00 GMT+0100 (ora solare Europa occidentale)
+    node new Date(1995, 11, 17, 3, 24, 0) = Sun Dec 17 1995 03:24:00 GMT+0100 (ora solare Europa occidentale)
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Ecma builtin Number object">Ecma builtin Number object</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number.MAX_VALUE  = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number.MAX_VALUE </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number.MIN_VALUE = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number.MIN_VALUE </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number.POSITIVE_INFINITY = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number.POSITIVE_INFINITY </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number.NEGATIVE_INFINITY = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number.NEGATIVE_INFINITY </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number.NaN = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number.NaN </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number('123') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('123') </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number('12.3') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('12.3') </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number('') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('') </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number('0x11') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('0x11') </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number('0b11') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('0b11') </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number('0o11') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('0o11') </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number('foo') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('foo') </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> Number('100a') = </span><span class="pp-kwd">${</span><span class="pp-expr"> Number('100a') </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node Number.MAX_VALUE  = 1.7976931348623157e+308
+    node Number.MIN_VALUE = 5e-324
+    node Number.POSITIVE_INFINITY = Infinity
+    node Number.NEGATIVE_INFINITY = -Infinity
+    node Number.NaN = NaN
+    node Number('123') = 123
+    node Number('12.3') = 12.3
+    node Number('') = 0
+    node Number('0x11') = 17
+    node Number('0b11') = 3
+    node Number('0o11') = 9
+    node Number('foo') = NaN
+    node Number('100a') = NaN
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Ecma builtin RegExp object">Ecma builtin RegExp object</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp"&gt;&lt;/a&gt;</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> new RegExp('\\w+') = </span><span class="pp-kwd">${</span><span class="pp-expr"> new RegExp('\\w+') </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'John Smith'.replace(new RegExp('(\\w+)\\s(\\w+)'), '$2, $1') =</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">\b</span><span class="pp-kwd"> ${</span><span class="pp-expr"> 'John Smith'.replace(new RegExp('(\\w+)\\s(\\w+)'), '$2, $1') </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> str = 'John Smith';</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> reValue = '(\\w+)\\s(\\w+)';</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> re = new RegExp(reValue);</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> str.replace(re, '$2, $1') = </span><span class="pp-kwd">${</span><span class="pp-expr"> str.replace(re, '$2, $1') </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp"&gt;&lt;/a&gt;
+    node new RegExp('\\w+') = /\w+/
+    node 'John Smith'.replace(new RegExp('(\\w+)\\s(\\w+)'), '$2, $1') = Smith, John
+    node str.replace(re, '$2, $1') = Smith, John
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Ecma builtin Array object">Ecma builtin Array object</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"&gt;&lt;/a&gt;</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> new Array(4) = </span><span class="pp-kwd">${</span><span class="pp-expr"> new Array(4) </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> new Array(4).join('0') = </span><span class="pp-kwd">${</span><span class="pp-expr"> new Array(4).join('0') </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"&gt;&lt;/a&gt;
+    node new Array(4) = ,,,
+    node new Array(4).join('0') = 000
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Ecma builtin Object object">Ecma builtin Object object</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"&gt;&lt;/a&gt;</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> new Object(true) = </span><span class="pp-kwd">${</span><span class="pp-expr"> new Object(true).toString() </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"&gt;&lt;/a&gt;
+    node new Object(true) = true
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="jsWizzi builtin objects">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">jsWizzi builtin objects</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="'inflect' builtin functions">'inflect' builtin functions</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'item'.pluralize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'item'.pluralize </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'friend'.pluralize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'friend'.pluralize </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'lady'.pluralize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'lady'.pluralize </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'way'.pluralize.toUpperCase() = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'way'.pluralize.toUpperCase() </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'people'.singularize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'people'.singularize </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'octopi'.singularize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'octopi'.singularize </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'Hats'.singularize.toUpperCase() = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'Hats'.singularize.toUpperCase() </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'message_properties'.camelize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'message_properties'.camelize </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'message_properties'.camelize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'message_properties'.camelize </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'message_properties'.dasherize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'message_properties'.dasherize </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'Message Properties'.dasherize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'Message Properties'.dasherize </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'message_properties'.titleize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'message_properties'.titleize </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'message properties to keep'.titleize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'message properties to keep'.titleize </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'Message.Bus.Properties'.demodulize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'Message.Bus.Properties'.demodulize </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'MessageBusProperty'.tableize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'MessageBusProperty'.tableize </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'message_bus_properties'.classify = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'message_bus_properties'.classify </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> 'MessageBusProperty'.foreign_key = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'MessageBusProperty'.foreign_key </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">  19 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> '1'.ordinalize = </span><span class="pp-kwd">${</span><span class="pp-expr"> '1'.ordinalize </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  20 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> '2'.ordinalize = </span><span class="pp-kwd">${</span><span class="pp-expr"> '2'.ordinalize </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  21 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> '3'.ordinalize = </span><span class="pp-kwd">${</span><span class="pp-expr"> '3'.ordinalize </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  22 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> '4'.ordinalize = </span><span class="pp-kwd">${</span><span class="pp-expr"> '4'.ordinalize </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node 'item'.pluralize = items
+    node 'friend'.pluralize = friends
+    node 'lady'.pluralize = ladies
+    node 'way'.pluralize.toUpperCase() = WAYS
+    node 'people'.singularize = person
+    node 'octopi'.singularize = octopus
+    node 'Hats'.singularize.toUpperCase() = HAT
+    node 'message_properties'.camelize = MessageProperties
+    node 'message_properties'.camelize = MessageProperties
+    node 'message_properties'.dasherize = message-properties
+    node 'Message Properties'.dasherize = Message Properties
+    node 'message_properties'.titleize = Message Properties
+    node 'message properties to keep'.titleize = Message Properties To Keep
+    node 'Message.Bus.Properties'.demodulize = Properties
+    node 'MessageBusProperty'.tableize = message_bus_properties
+    node 'message_bus_properties'.classify = MessageBusProperty
+    node 'MessageBusProperty'.foreign_key = message_bus_property_id
+    node '1'.ordinalize = 1st
+    node '2'.ordinalize = 2nd
+    node '3'.ordinalize = 3rd
+    node '4'.ordinalize = 4th
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="'jsWizzi _' builtin functions">'jsWizzi _' builtin functions</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> inflect : 'message-properties'.camelize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'message-properties'.camelize </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> jsWizzi _ : _.dashToCamelCase('message-properties') = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.dashToCamelCase('message-properties') </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> inflect : 'message_properties'.camelize = </span><span class="pp-kwd">${</span><span class="pp-expr"> 'message_properties'.camelize </span><span class="pp-kwd">}</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> jsWizzi _ : _.camelize('message_properties') = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.camelize('message_properties') </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var text = 'alfa\\t " " \\n'</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> "_.escape( text )" = "</span><span class="pp-kwd">${</span><span class="pp-expr"> _.escape( text ) </span><span class="pp-kwd">}</span><span class="pp-pln">"</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isString( '3' ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isString( '3' ) </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isString( 3 ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isString( 3 ) </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isEmpty( '' ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isEmpty( '' ) </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isEmpty( 'a ' ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isEmpty( 'a ' ) </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isNotEmpty( 'a ' ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isNotEmpty( 'a ' ) </span><span class="pp-kwd">}</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isNotEmpty( '' ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isNotEmpty( '' ) </span><span class="pp-kwd">}</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isObject( {} ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isObject( {</span><span class="pp-kwd">}</span><span class="pp-pln"> ) }</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isObject( 3 ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isObject( 3 ) </span><span class="pp-kwd">}</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isArray( [] ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isArray( [] ) </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isArray( {} ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isArray( {</span><span class="pp-kwd">}</span><span class="pp-pln"> ) }</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isNumber( 3 ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isNumber( 3 ) </span><span class="pp-kwd">}</span></div><div class="L9"><span class="pp-ln">  19 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isNumber( '' ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isNumber( '' ) </span><span class="pp-kwd">}</span></div><div class="L0"><span class="pp-ln">  20 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isDate( new Date() ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isDate( new Date() ) </span><span class="pp-kwd">}</span></div><div class="L1"><span class="pp-ln">  21 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.isDate( [] ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.isDate( [] ) </span><span class="pp-kwd">}</span></div><div class="L2"><span class="pp-ln">  22 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">  23 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> options = {</span></div><div class="L4"><span class="pp-ln">  24 </span><span class="pp-pln">            </span><span class="pp-expr">title:</span><span class="pp-expr"> 'Chapter 1'</span></div><div class="L5"><span class="pp-ln">  25 </span><span class="pp-pln">        </span><span class="pp-expr">};</span></div><div class="L6"><span class="pp-ln">  26 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.replace( '1353739', '3', '0' ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.replace( '1353739', '3', '0' ) </span><span class="pp-kwd">}</span></div><div class="L7"><span class="pp-ln">  27 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> _.inspect( options ) = </span><span class="pp-kwd">${</span><span class="pp-expr"> _.inspect( options ) </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node inflect : 'message-properties'.camelize = Message-properties
+    node jsWizzi _ : _.dashToCamelCase('message-properties') = messageProperties
+    node inflect : 'message_properties'.camelize = MessageProperties
+    node jsWizzi _ : _.camelize('message_properties') = messageProperties
+    node "_.escape( text )" = "alfa\\t \" \" \\n"
+    node _.isString( '3' ) = true
+    node _.isString( 3 ) = false
+    node _.isEmpty( '' ) = true
+    node _.isEmpty( 'a ' ) = false
+    node _.isNotEmpty( 'a ' ) = true
+    node _.isNotEmpty( '' ) = false
+    node _.isObject( {} ) = true
+    node _.isObject( 3 ) = false
+    node _.isArray( [] ) = true
+    node _.isArray( {} ) = false
+    node _.isNumber( 3 ) = true
+    node _.isNumber( '' ) = false
+    node _.isDate( new Date() ) = true
+    node _.isDate( [] ) = false
+    node _.replace( '1353739', '3', '0' ) = 1050709
+    node _.inspect( options ) = { title: 'Chapter 1' }
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="Ittf magic tricks">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">Ittf magic tricks</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Embedding statements in interpolated expressions">Embedding statements in interpolated expressions</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> commands = [ { name: 'alpha' }, { name: 'beta' }, { name: 'gamma' } ];</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> We perform an interpolation of a multistatement jsWizzi expression.</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> We intersperse command names with dashes.</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-kwd">$foreach</span><span class="pp-pln"> command in commands</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr"> command.name.toUpperCase()[0] + ' - ' + command.name </span><span class="pp-kwd">}</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> This is quite crazy. But it works! -&gt; </span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">            </span><span class="pp-tag">\b</span><span class="pp-pln"> var len = command.name.length, output = '';</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">            </span><span class="pp-tag">\b</span><span class="pp-pln"> for (var i=0; i&lt;len; i++) {</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-tag">\b</span><span class="pp-pln"> output += command.name[i];</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">            </span><span class="pp-tag">\b</span><span class="pp-pln"> if (i &lt; len -1) { output += ' - '};</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">            </span><span class="pp-tag">\b</span><span class="pp-pln"> }</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">            </span><span class="pp-tag">\b</span><span class="pp-pln"> return output;</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">            </span><span class="pp-tag">\b</span><span class="pp-pln"> }</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> That is why mTree stays for "magical tree".</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> See in wizzi-mtree/loader/ittfinterpolate.js how this works.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+root
+    node We perform an interpolation of a multistatement jsWizzi expression.
+    node We intersperse command names with dashes.
+    node A - alpha
+    node This is quite crazy. But it works! -&gt; a - l - p - h - a
+    node B - beta
+    node This is quite crazy. But it works! -&gt; b - e - t - a
+    node G - gamma
+    node This is quite crazy. But it works! -&gt; g - a - m - m - a
+    node That is why mTree stays for "magical tree".
+    node See in wizzi-mtree/loader/ittfinterpolate.js how this works.
+</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+  module  ids: 1 73
+    kind react ids: 2 74
+    +  ids: 3 75
+    import { GET_DOCUMENTS_REQUEST, GET_DOCUMENTS_SUCCESS, GET_DOCUMENTS_FAILURE, CREATE_DOCUMENT_SUCCESS, SELECT_DOCUMENT, SELECT_DOCUMENT_SUCCESS, SELECT_DOCUMENT_FAILURE, DOCUMENT_CHANGED, UPDATE_DOCUMENT_SUCCESS, GENERATE_ARTIFACT_SUCCESS } from '../actions' ids: 4 76
+    +  ids: 16 77
+    const documentInitialState ids: 17 78
+      {  ids: 18 79
+        @ items [] ids: 19 80
+    +  ids: 20 81
+    $group  ids: 134 146
+      $args: document, documentInitialState  $params: name, initialState|[]
+      function ${name}Reducer ids: 136 147
+        param state ids: 137 148
+        param action ids: 138 149
+        # log ${name}Reducer, state, action ids: 139 150
+        if typeof state === 'undefined' ids: 140 151
+          return ${initialState} ids: 141 152
+        switch action.type ids: 142 153
+          $group  ids: 157 166
+            $args: GET_DOCUMENTS_REQUEST $params: name
+            case ${name} ids: 159 167
+              # log '${name}', 'initial state:', state ids: 160 168
+              $hook preprocess ids: 161 169
+              var temp ids: 162 170
+                {  ids: 23 84
+                  @ ...state ids: 24 85
+                  @ isLoading true ids: 25 86
+              log '${name}', 'final state:', temp ids: 164 172
+              return temp ids: 165 173
+          $group  ids: 157 174
+            $args: GET_DOCUMENTS_SUCCESS $params: name
+            case ${name} ids: 159 175
+              # log '${name}', 'initial state:', state ids: 160 176
+              $hook preprocess ids: 161 177
+              var temp ids: 162 178
+                {  ids: 27 88
+                  @ items Object.values(action.payload.entities.documents) ids: 28 89
+                  @ isLoading false ids: 29 90
+                  @ error null ids: 30 91
+              log '${name}', 'final state:', temp ids: 164 180
+              return temp ids: 165 181
+          $group  ids: 157 182
+            $args: GET_DOCUMENTS_FAILURE $params: name
+            case ${name} ids: 159 183
+              # log '${name}', 'initial state:', state ids: 160 184
+              $hook preprocess ids: 161 185
+              var temp ids: 162 186
+                {  ids: 32 93
+                  @ items [] ids: 33 94
+                  @ isLoading false ids: 34 95
+                  @ error action.failure ids: 35 96
+              log '${name}', 'final state:', temp ids: 164 188
+              return temp ids: 165 189
+          $group  ids: 157 190
+            $args: CREATE_DOCUMENT_SUCCESS $params: name
+            case ${name} ids: 159 191
+              # log '${name}', 'initial state:', state ids: 160 192
+              $hook preprocess ids: 161 193
+              var temp ids: 162 194
+                {  ids: 37 98
+                  @ items ids: 38 99
+                    [  ids: 39 100
+                      @ ...state.items ids: 40 101
+                      @ action.payload ids: 41 102
+                  @ isLoading false ids: 42 103
+                  @ error null ids: 43 104
+              log '${name}', 'final state:', temp ids: 164 196
+              return temp ids: 165 197
+          $group  ids: 157 198
+            $args: SELECT_DOCUMENT $params: name
+            case ${name} ids: 159 199
+              # log '${name}', 'initial state:', state ids: 160 200
+              $hook preprocess ids: 161 201
+              var temp ids: 162 202
+                {  ids: 45 106
+                  @ ...state ids: 46 107
+                  @ selectedDocument ids: 47 108
+                    _ state.items.map ids: 48 109
+                      =>  ids: 49 110
+                        param item ids: 50 111
+                        if item.uri = action.uri ids: 51 112
+                          return item ids: 52 113
+              log '${name}', 'final state:', temp ids: 164 204
+              return temp ids: 165 205
+          $group  ids: 157 206
+            $args: SELECT_DOCUMENT_SUCCESS $params: name
+            case ${name} ids: 159 207
+              # log '${name}', 'initial state:', state ids: 160 208
+              $hook preprocess ids: 161 209
+              var temp ids: 162 210
+                {  ids: 54 115
+                  @ ...state ids: 55 116
+                  @ selectedDocumentIttfContent action.payload ids: 56 117
+                  @ selectedDocumentUri action.uri ids: 57 118
+              log '${name}', 'final state:', temp ids: 164 212
+              return temp ids: 165 213
+          $group  ids: 157 214
+            $args: UPDATE_DOCUMENT_SUCCESS $params: name
+            case ${name} ids: 159 215
+              # log '${name}', 'initial state:', state ids: 160 216
+              $hook preprocess ids: 161 217
+              var temp ids: 162 218
+                {  ids: 59 120
+                  @ ...state ids: 60 121
+                  @ generatedArtifact null ids: 61 122
+              log '${name}', 'final state:', temp ids: 164 220
+              return temp ids: 165 221
+          $group  ids: 157 222
+            $args: DOCUMENT_CHANGED $params: name
+            case ${name} ids: 159 223
+              # log '${name}', 'initial state:', state ids: 160 224
+              $hook preprocess ids: 161 225
+              var temp ids: 162 226
+                {  ids: 63 124
+                  @ ...state ids: 64 125
+                  @ selectedDocumentIttfContent action.newContent ids: 65 126
+              log '${name}', 'final state:', temp ids: 164 228
+              return temp ids: 165 229
+          $group  ids: 157 230
+            $args: GENERATE_ARTIFACT_SUCCESS $params: name
+            case ${name} ids: 159 231
+              # log '${name}', 'initial state:', state ids: 160 232
+              $hook preprocess ids: 161 233
+              var temp ids: 162 234
+                {  ids: 67 128
+                  @ ...state ids: 68 129
+                  @ generatedArtifact action.payload.generatedArtifact ids: 69 130
+                  @ evaluatedIttfModel action.payload.evaluatedIttfModel ids: 70 131
+                  @ evaluationScript action.payload.evaluationScript ids: 71 132
+              log '${name}', 'final state:', temp ids: 164 236
+              return temp ids: 165 237
+          default  ids: 144 155
+            return state ids: 145 156
+    export default documentReducer ids: 72 133

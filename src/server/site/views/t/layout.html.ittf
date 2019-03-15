@@ -1,0 +1,34 @@
+html
+    head
+        @title ${title}
+        $$ css /stylesheets/style.css
+        $$ css https://www.w3schools.com/w3css/4/w3.css
+        link
+            rel shortcut icon
+            href //cdn2.auth0.com/styleguide/latest/lib/logos/img/favicon.png
+    body
+        nav
+            class .w3-bar.w3-border.w3-light-grey
+            role navigation
+            . w3-bar-item.w3-text-grey
+                + Auth0 - NodeJS
+        a Home
+            href /
+            class .w3-bar-item.w3-button
+        $if locals.user
+            a Repositories
+                href /repo/list
+                class .w3-bar-item.w3-button
+            a Profile
+                href /account/user
+                class .w3-bar-item.w3-button
+            a Log Out
+                id qsLogoutBtn
+                href /account/logout
+                class .w3-bar-item.w3-button
+        $else
+            a Log In
+                id qsLoginBtn
+                href /account/login
+                class .w3-bar-item.w3-button
+        $hook

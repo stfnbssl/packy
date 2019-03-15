@@ -1,0 +1,13 @@
+frag_5(&options)
+	$params &options
+
+	div
+		class frag_4
+		h2 Frag 4 Here. I mix my wrapper that is frag_5, on the root node.
+		ul I received and passed to frag_5
+			li options.alpha : ${options.alpha}
+			li options.beta: ${options.beta}
+
+		$hook
+
+

@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+    <title>Wizzi cheat sheets</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="style.css" rel="stylesheet" />
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 20px;
+            align-items: stretch;
+            padding: 2rem;
+        }
+        .grid > li {
+            border: 1px solid #ccc;
+            -webkit-box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+            -moz-box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+            -o-box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+            box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+        }
+        .grid > article img {
+            max-width: 100%;
+        }
+        .card1 {
+            -webkit-box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+            -moz-box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+            -o-box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+            -webkit-border-radius: 8px;
+            -khtml-border-radius: 8px;
+            -moz-border-radius: 8px;
+            -o-border-radius: 8px;
+            border-radius: 8px;
+        }
+        .card1 a {
+            color: #111;
+        }
+        .card1-teaser {
+            font-size: 34px;
+            padding: 2rem;
+        }
+        .card1-title {
+            font-size: 24px;
+            font-weight: 900;
+            padding: 1rem 2rem 2rem 2rem;
+        }
+        .card1-sub-title {
+            font-size: 16px;
+            padding: 0 2rem 1rem 2rem;
+        }
+        .card1-ittf {
+            background: #B9D2DE;
+        }
+        .card1-mtree {
+            background: #B9D2DE;
+        }
+        .card1-html {
+            background: #D9E7EE;
+        }
+        .card1-css {
+            background: #3C7590;
+        }
+        .card1-scss {
+            background: #3C7590;
+        }
+        .card1-svg {
+            background: #D1E5EE;
+        }
+        .card1-js {
+            background: #C0C4E3;
+        }
+        .card1-svg {
+            background: #9799AA;
+        }
+        .card1-md {
+            background: #3E4893;
+        }
+        .card1-vtt {
+            background: #D5D9F1;
+        }
+        .text {
+            padding: 0 20px 20px;
+        }
+        .text > button {
+            background: gray;
+            border: 0;
+            color: white;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wz-content-1">
+        <nav class="tn-bar" style="display: flex; margin: 0.5rem;">
+            <div class="logo">
+                <img src="/images/logo.svg" width="70px" height="30px" />
+            </div>
+        </nav>
+        <div class="mc-wrapper-layout" id="mc-wrapper">
+            <div class="mc-frame-bar">
+                <div class="mc-frame-bar-item">Wizzi cheat sheets</div>
+            </div>
+            <div class="mc-frame">
+                <div class="grid">
+                    <div class="card1 card1-ittf">
+                        <a href="./ittf.html"><div class="card1-teaser">
+                            Start here</div>
+                        <div class="card1-title">
+                            ittf & jsWizzi</div>
+                        <div class="card1-sub-title">
+                            Familiarize with the indented tree text format and its script engine</div>
+                        </a>
+                    </div>
+                    <div class="card1 card1-mtree">
+                        <a href="./mtree.html"><div class="card1-teaser">
+                            Powerful</div>
+                        <div class="card1-title">
+                            mTree composition</div>
+                        <div class="card1-sub-title">
+                            Building complex models composing ittf documents</div>
+                        </a>
+                    </div>
+                    <div class="card1 card1-ittf">
+                        <a href="./jswizzi.html"><div class="card1-teaser">
+                            Geeky</div>
+                        <div class="card1-title">
+                            jsWizzi inside</div>
+                        <div class="card1-sub-title">
+                            How a jsWizzi script builds up an mTree.</div>
+                        </a>
+                    </div>
+                    <div class="card1 card1-html">
+                        <a href="./html.html"><div class="card1-teaser">
+                            Intuitive</div>
+                        <div class="card1-title">
+                            html schema</div>
+                        <div class="card1-sub-title">
+                            Simple to start with</div>
+                        </a>
+                    </div>
+                    <div class="card1 card1-css">
+                        <a href="./css.html"><div class="card1-teaser">
+                            Html companion</div>
+                        <div class="card1-title">
+                            css schema</div>
+                        <div class="card1-sub-title">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card1 card1-scss">
+                        <a href="./scss.html"><div class="card1-teaser">
+                            More than CSS</div>
+                        <div class="card1-title">
+                            scss schema</div>
+                        <div class="card1-sub-title">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card1 card1-js">
+                        <a href="./js.html"><div class="card1-teaser">
+                            Geeky</div>
+                        <div class="card1-title">
+                            js schema</div>
+                        <div class="card1-sub-title">
+                            Templating javascript modules</div>
+                        </a>
+                    </div>
+                    <div class="card1 card1-ts">
+                        <a href="./ts.html"><div class="card1-teaser">
+                            Advanced</div>
+                        <div class="card1-title">
+                            ts schema</div>
+                        <div class="card1-sub-title">
+                            Templating typescript modules</div>
+                        </a>
+                    </div>
+                    <div class="card1 card1-svg">
+                        <a href="./svg.html"><div class="card1-teaser">
+                            Funny</div>
+                        <div class="card1-title">
+                            svg schema</div>
+                        <div class="card1-sub-title">
+                            Model driven 2D graphics</div>
+                        </a>
+                    </div>
+                    <div class="card1 card1-md">
+                        <a href="./md.html"><div class="card1-teaser">
+                            Start here</div>
+                        <div class="card1-title">
+                            md (markdown) schema</div>
+                        <div class="card1-sub-title">
+                            An html like markdown</div>
+                        </a>
+                    </div>
+                    <div class="card1 card1-vtt">
+                        <a href="./vtt.html"><div class="card1-teaser">
+                            Start here</div>
+                        <div class="card1-title">
+                            vtt schema</div>
+                        <div class="card1-sub-title">
+                            Simple video text formatter</div>
+                        </a>
+                    </div>
+                    <div class="card1 card1-json">
+                        <a href="./json.html"><div class="card1-teaser">
+                            Easy</div>
+                        <div class="card1-title">
+                            json (pseudo) schema</div>
+                        <div class="card1-sub-title">
+                            The ubiquitous data model</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

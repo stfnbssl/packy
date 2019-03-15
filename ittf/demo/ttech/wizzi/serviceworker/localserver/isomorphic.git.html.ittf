@@ -1,0 +1,195 @@
+﻿h/root/empty_layout()
+
+	$append body-scripts
+		js https://unpkg.com/browserfs
+		js https://isomorphic-git.org/js/pify.js
+		$$ js https://unpkg.com/isomorphic-git
+		js /static/isomorphic-git/bundle.umd.js
+		script 
+			module
+				kind es6
+				let fsOptions
+					{ 
+						@ fs 'IndexedDB'
+						@ options {}
+				_ BrowserFS.configure
+					@ fsOptions
+					f_cb_no_err()
+						if err
+							return WizziBrowser.log(err)
+						set window.fs = BrowserFS.BFSRequire('fs')
+						_ WizziBrowser.log('BrowserFS configured')
+						
+						# Initialize isomorphic-git with our new file system
+						_ git.plugins.set('fs', fs)
+						_ WizziBrowser.log('git configured')
+						
+						# make a Promisified version for convenience
+						set window.pfs = pify(fs)
+						_ WizziBrowser.log('pfs ( pify(fs) ) configured')
+
+						_ play
+
+				function play
+					async
+					set window.dir = 'tutorial2'
+					_ WizziBrowser.log
+						@ 'dir: ' + dir
+					# _ play_clone
+					# _ play_status_readme
+					# _ play_create_readme
+					# _ play_create_newfiles
+					# _ play_add_newfiles
+					# _ play_commit
+					_ play_push
+
+				function play_mkdir
+					async
+					_ WizziBrowser.log
+						_ await pfs.mkdir(dir)
+					# Behold - it is empty!
+					_ WizziBrowser.log
+						_ await pfs.readdir(dir)
+					# _ play_clone
+					_ play_status_readme
+
+				function play_clone
+					async
+					_ WizziBrowser.log
+						@ 'git.clone'
+						_ await git.clone
+							{
+								@ dir
+								@ corsProxy 'https://cors.isomorphic-git.org'
+								@ url 'https://github.com/stfnbssl/hello-world'
+								@ ref 'master'
+								@ singleBranch true
+								@ depth 1
+						@ '-'
+
+					# Now it should not be empty...
+					_ WizziBrowser.log
+						@ 'await pfs.readdir(dir)'
+						_ await pfs.readdir(dir)
+						@ '-'
+
+				function play_log_dir
+					async
+					_ WizziBrowser.log
+						@ 'await git.log({dir})'
+					_ WizziBrowser.log
+						_ await git.log({dir})
+					_ WizziBrowser.log
+						@ '----------------------------------------'
+					
+				function play_status_readme
+					async
+					# Git is used to track files. Let's see what kind of file things we can do!
+					# git.status is a major one. That let's us compare the working directory file to the current branch.
+					_ WizziBrowser.log
+						@ 'await git.status({dir, filepath: "README.md"}) :'
+					_ WizziBrowser.log
+						_ await git.status({dir, filepath: 'README.md'})
+					_ WizziBrowser.log
+						@ '----------------------------------------'
+
+				function play_create_readme
+					async
+					_ await pfs.writeFile(`${dir}/README.md`, 'Very short README', 'utf8')
+					_ play_status_readme
+
+				function play_add_readme
+					async
+					_ WizziBrowser.log
+						_ await git.add({dir, filepath: 'README.md'})
+					_ WizziBrowser.log
+						_ await git.status({dir, filepath: 'README.md'})
+
+				function play_create_newfiles
+					async
+					_ WizziBrowser.log
+						@ "await pfs.writeFile(`${dir}/newfile.txt`, 'Hello World', 'utf8')"
+						_ await pfs.writeFile(`${dir}/newfile.txt`, 'Hello World', 'utf8')
+						@ '-'
+					_ WizziBrowser.log
+						@ "_ await git.status({dir, filepath: 'newfile.txt'})"
+						_ await git.status({dir, filepath: 'newfile.txt'})
+						@ '-'
+					_ WizziBrowser.log
+						@ "await pfs.writeFile(`${dir}/package.json`, '{ \"name\": \"isogit-labwz\" }', 'utf8')"
+						_ await pfs.writeFile(`${dir}/package.json`, '{ "name": "isogit-labwz" }', 'utf8')
+						@ '-'
+					_ WizziBrowser.log
+						@ "await git.status({dir, filepath: 'package.json'})"
+						_ await git.status({dir, filepath: 'package.json'})
+						@ '-'
+
+				function play_add_newfiles
+					async
+					_ WizziBrowser.log
+						_ await git.add({dir, filepath: 'newfile.txt'})
+					_ WizziBrowser.log
+						_ await git.status({dir, filepath: 'newfile.txt'})
+					_ WizziBrowser.log
+						_ await git.add({dir, filepath: 'package.json'})
+					_ WizziBrowser.log
+						_ await git.status({dir, filepath: 'package.json'})
+
+				function play_delete_packagejson
+					async
+					_ WizziBrowser.log
+						_ await pfs.unlink(`${dir}/package.json`)
+					_ WizziBrowser.log
+						_ await git.status({dir, filepath: 'package.json'})
+					_ WizziBrowser.log
+						@ 'This last bit has always been unintuitive to me... but you need to tell git you deleted the file.'
+					_ WizziBrowser.log
+						_ await git.remove({dir, filepath: 'package.json'})
+					_ WizziBrowser.log
+						_ await git.status({dir, filepath: 'package.json'})
+					_ WizziBrowser.log
+						@ "What happens if you tell git you deleted a file but you really didn't?"
+					_ WizziBrowser.log
+						_ await git.remove({dir, filepath: 'package-lock.json'})
+					_ WizziBrowser.log
+						_ await git.status({dir, filepath: 'package-lock.json'})
+					_ WizziBrowser.log
+						@ 'Does that make sense? No? Sorry, naming things is hard. (Git doesn\'t do a great job of it either. It reports the file as "untracked" and "deleted" at the same time.) OK, enough messing around.'
+					_ WizziBrowser.log
+						_ await git.add({dir, filepath: 'package-lock.json'})
+					_ WizziBrowser.log
+						_ await git.status({dir, filepath: 'package-lock.json'})
+
+				function play_commit
+					async
+					let sha
+						_ await git.commit
+							{
+								@ dir
+								@ message 'Delete package.json and overwrite README.'
+								{ author
+									@ name 'wizzifactory'
+									@ email 'wizzifactory@gmail.com'
+					_ WizziBrowser.log
+						@ 'commit sha:' + sha
+					_ play_commit_log
+
+				function play_commit_log
+					async
+					_ WizziBrowser.log
+						set 
+							_ await git.log({dir, depth: 1})
+
+				function play_push
+					async
+					_ WizziBrowser.log
+						@ 'await git.push'
+						_ await git.push
+							{
+								@ dir dir
+								@ remote 'origin'
+								@ corsProxy 'https://cors.isomorphic-git.org'
+								@ ref 'master'
+								$$ @ token 'c61fbbff56b1996d55a0c2d59ca17c846df350d4'		
+								@ username 'stfnbssl'
+								@ password 'gi++++01'

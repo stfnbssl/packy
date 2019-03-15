@@ -1,0 +1,89 @@
+﻿r-component( Form )
+	
+	$append imports
+		import buildFormControls from './utils/buildFormControls'
+
+	prop id
+	
+	prop type
+	
+	prop caption
+	
+	prop values
+		{
+	
+	prop layout
+		{
+	
+	prop meta
+		{
+
+	prop onChangeValues
+		func
+
+	style
+	
+	state
+		@ values {}
+
+	m updateValue
+		param controlId
+		param value
+		
+		const values = this.state.values
+		if values[controlId] === value
+			return null
+		
+		set values[controlId] = value
+		_ this.setState
+			{
+				@ ...this.state
+				@ values values
+		return values
+
+	will-mount
+		
+		prop meta
+		
+		var result
+			_ buildFormControls
+				@ meta
+				@ this.handleOnChange
+		
+		_ this.setState
+			{
+				@ ...this.state
+				@ values result.originalValues
+				@ controls result.controls
+
+	=> handleOnChange
+		param controlId
+		param value
+		param origValue
+
+		var newValues
+			_ this.updateValue
+				@ controlId
+				@ value
+
+		if newValues
+			const { id, onChangeValues } = this.props
+			if onChangeValues
+				_ onChangeValues(id, newValues)
+
+	render
+		
+		prop id
+		prop type
+		prop caption
+		prop values
+		prop layout
+		prop meta
+		
+		const {controls} = this.state
+		
+		return
+			. form-vertical
+				h3 {caption}
+				+ {controls}
+

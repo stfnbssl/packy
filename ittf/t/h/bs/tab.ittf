@@ -1,0 +1,6 @@
+﻿li
+	$params label, href, active|@@null
+	class ${active}
+	a ${label}
+		href #${href}
+		data-toggle tab

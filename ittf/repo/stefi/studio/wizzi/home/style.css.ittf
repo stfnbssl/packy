@@ -1,0 +1,252 @@
+﻿css
+
+	$include ./meta
+
+	< body
+		margin 0
+		background-color ${c_bg_0}
+		color ${c_0}
+		font-family Arial, Helvetica, sans-serif
+		font-size 1.1em
+		line-height 1.5
+		text-align center
+
+	< img
+		display block
+		width 100%
+		height auto
+
+	< h1, h2, h3
+		margin 0
+		padding 1em 0
+
+	< p
+		margin 0
+		padding 1em 0
+
+	. btn
+		display inline-block
+		background-color ${c_bg_0}
+		color ${c_0}
+		margin .5em 0
+		padding 1em 2em
+		text-decoration none
+		border 1px solid #666
+
+	. btn:hover
+
+		background-color #eaeaea
+		color ${c_bg_0}
+
+	# showcase
+		min-height 450px
+		color ${c_0}
+		text-align center
+
+	# showcase .bg-logo
+		position absolute
+		background ${c_bg_0} url('images/logo.svg.ittf')
+		background-position center
+		background-repeat no-repeat
+		background-size cover
+		width 100%
+		height 450px
+		z-index -1
+		opacity 0.4
+
+	# showcase .bg-image
+		position absolute
+		background ${c_bg_0} url('https://images.pexels.com/photos/247791/pexels-photo-247791.png?cs=srgb&dl=ai-codes-coding-247791.jpg&fm=jpg')
+		background-position center
+		background-repeat no-repeat
+		background-size cover
+		width 100%
+		height 450px
+		z-index -1
+		opacity 0.4
+
+	# showcase h1
+		padding-top 100px
+		padding-bottom 0
+
+	# showcase .content-wrap,
+		\b #section-a .content-wrap,
+		\b #section-a2 .content-wrap,
+		\b #section-a3 .content-wrap,
+		\b #section-a4 .content-wrap
+		padding 0 1.5em 1.5em 0
+
+	# section-a
+		background-color #eaeaea
+		color ${c_bg_0}
+
+	# section-a2
+		background-color #eaeaea
+		color ${c_bg_0}
+
+	# section-a3
+		background-color #eaeaea
+		color ${c_bg_0}
+
+	# section-a4
+		background-color #eaeaea
+		color ${c_bg_0}
+
+	# section-b
+		padding 2em 1em 1em
+
+		< ul
+			list-style none
+			margin 0
+			padding 0
+
+			< li
+				background-color ${c_0}
+				margin-bottom 1em
+				color ${c_bg_0}
+
+	# section-b2
+		padding 2em 1em 1em
+
+		< ul
+			list-style none
+			margin 0
+			padding 0
+
+			< li
+				background-color ${c_0}
+				margin-bottom 1em
+				color ${c_bg_0}
+
+	# section-b3
+		padding 2em 1em 1em
+		font-size 0.8em
+
+		< ul
+			list-style none
+			margin 0
+			padding 0
+
+			< li
+				background-color ${c_0}
+				margin-bottom 1em
+				color ${c_bg_0}
+
+	# section-b4
+		padding 2em 1em 1em
+
+		< ul
+			list-style none
+			margin 0
+			padding 0
+
+			< li
+				background-color ${c_0}
+				margin-bottom 1em
+				color ${c_bg_0}
+
+	. card-content
+		padding 1em
+
+	# section-c
+		background-color ${c_0}
+		color ${c_bg_0}
+		padding 2em
+
+	# section-d .box
+		color ${c_0}
+		padding 2em
+
+	# section-d .box:first-child
+		background-color #2690d4
+
+	# main-footer
+		padding 2em
+		background-color ${c_bg_f_0}
+		color ${c_0}
+		text-align center
+
+	# main-footer a
+		color #2690d4
+		text-decoration none
+
+	media min-width: 700px 
+		. grid 
+			display grid
+			grid-template-columns 1fr repeat(2, minmax(auto, 25em)) 1fr
+
+		. grid2 
+			display grid
+			grid-template-columns 1fr repeat(2, minmax(auto, 40em)) 1fr
+
+		# section-a .content-text
+			columns 2
+			column-gap 2em
+			< p
+				padding-top 0
+
+		# section-a2 .content-text
+			columns 2
+			column-gap 2em
+			< p
+				padding-top 0
+
+		# section-a3 .content-text
+			columns 2
+			column-gap 2em
+			< p
+				padding-top 0
+
+		# section-a4 .content-text
+			columns 2
+			column-gap 2em
+			< p
+				padding-top 0
+
+		. content-wrap, #section-b ul
+			grid-column 2/4
+
+		. content-wrap, #section-b2 ul
+			grid-column 2/4
+
+		. content-wrap, #section-b3 ul
+			grid-column 2/4
+
+		. content-wrap, #section-b4 ul
+			grid-column 2/4
+
+		. box, #main-footer div
+			grid-column span 2
+
+		# section-b
+			< ul
+				display flex
+				justify-content space-around
+				< li
+					width 19%
+			
+		# section-b2
+			< ul
+				display flex
+				justify-content space-around
+				< li
+					width 31%
+
+		# section-b3
+			< ul
+				display flex
+				justify-content space-around
+				< li
+					width 12%
+
+		# section-b4
+			< ul
+				display flex
+				justify-content space-around
+				< li
+					width 23%
+
+
+
+		
+

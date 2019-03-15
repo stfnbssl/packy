@@ -1,0 +1,10 @@
+﻿< Input
+	$params name, caption
+	@ placeholder ${caption}
+	@ className {classes.input}
+	@ key ${name}
+	@ name ${name}
+	@ inputRef
+		=>
+			param node
+			set this.formNodes.${name} = node

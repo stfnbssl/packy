@@ -1,0 +1,17 @@
+﻿module 
+    kind react
+	+
+	import { TOGGLE_THEME_SHADE } from '../actions'
+	+
+	const themeInitialState
+		{
+			@ dark false
+	+
+	r( theme, themeInitialState )
+	
+		c( TOGGLE_THEME_SHADE
+			{
+				@ ...state
+				@ dark !state.dark
+	
+	export default themeReducer

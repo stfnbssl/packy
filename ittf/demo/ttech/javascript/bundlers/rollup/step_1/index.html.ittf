@@ -1,0 +1,9 @@
+﻿h/root/empty_layout()
+
+	$append body-scripts
+		js js/main.rollup.js.ittf
+
+	h1 Hello rollup bundle step_1
+
+	# app
+

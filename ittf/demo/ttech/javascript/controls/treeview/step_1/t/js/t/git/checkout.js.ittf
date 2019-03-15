@@ -1,0 +1,57 @@
+﻿$group
+
+	async-function gitCheckout
+		{ 
+			@ filepath
+			@ glEventHub
+            
+		const dir = filepath
+            
+		let branches
+			await 
+				_ git.listBranches
+					{ 
+						@ fs
+						@ dir
+            
+		let branchesObject = {}
+            
+		for let b of branches
+			set branchesObject[b] = b
+            
+		let ref
+			await 
+				_ prompt
+					{ 
+						@ title 'Checkout branch'
+						@ text 'Select branch'
+						@ input 'select'
+						@ inputOptions branchesObject
+						@ confirmButtonText 'Checkout'
+						@ showCancelButton true
+            
+		log 'checkout.ref', ref
+
+		_ glEventHub.emit
+			@ 'setFolderStateData'
+			{ 
+				@ fullpath filepath
+				@ key 'busy'
+				@ value true
+            
+		try 
+			await 
+				_ git.checkout
+					{ 
+						@ fs
+						@ dir
+						@ ref
+		
+		finally
+			_ glEventHub.emit('refreshGitStatusDir', filepath)
+			_ glEventHub.emit
+				@ 'setFolderStateData'
+				{ 
+					@ fullpath filepath
+					@ key 'busy'
+					@ value false

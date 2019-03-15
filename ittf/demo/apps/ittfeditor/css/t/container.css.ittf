@@ -1,0 +1,49 @@
+﻿$group
+
+	. container-preview .tabnav-tabs
+        margin -6px 0 -6px -11px
+    . container-preview .tabnav-tabs .tabnav-tab
+        padding 12px 15px
+        border-radius 0
+    . container-preview .tabnav-tabs>.selected:first-child
+        border-top-left-radius 3px
+    . container-preview .tabnav-tabs .selected
+        font-weight 600
+    . container-preview.show-code .commit-create
+        + .container-preview.show-code .actions
+        display block
+    . container-preview.show-code .commit-preview
+        + .container-preview.show-code .loading-preview-msg
+        + .container-preview.show-code .no-changes-preview-msg
+        + .container-preview.show-code .error-preview-msg
+        display none
+    . container-preview:not(.show-code) .commit-create
+        + .container-preview:not(.show-code) .actions
+        display none
+    . container-preview.loading-preview .loading-preview-msg
+        display block
+    . container-preview.loading-preview .no-changes-preview-msg
+        + .container-preview.loading-preview .error-preview-msg
+        + .container-preview.loading-preview .commit-preview
+        display none
+    . container-preview.show-preview .commit-preview
+        display block
+    . container-preview.show-preview .loading-preview-msg
+        + .container-preview.show-preview .no-changes-preview-msg
+        + .container-preview.show-preview .error-preview-msg
+        display none
+    . container-preview.no-changes-preview .no-changes-preview-msg
+        display block
+    . container-preview.no-changes-preview .loading-preview-msg
+        + .container-preview.no-changes-preview .error-preview-msg
+        + .container-preview.no-changes-preview .commit-preview
+        display none
+    . container-preview.error-preview .error-preview-msg
+        display block
+    . container-preview.error-preview .loading-preview-msg
+        + .container-preview.error-preview .no-changes-preview-msg
+        + .container-preview.error-preview .commit-preview
+        display none
+    . container-preview p.preview-msg
+        padding 30px
+        font-size 16px

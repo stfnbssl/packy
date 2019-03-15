@@ -1,0 +1,14 @@
+﻿__o
+	$args name label|@@null min|0 max|100
+	__p name ${name}
+	__p label ${label}
+	__p type:object Wmteditor.ValueWidget
+	__p editor Slider
+	__p schema
+		__o 
+			__p name ${name}
+			__p type integer
+			__p infiniteStep:int32 50
+			__p min:int32 ${min}
+			__p max:int32 ${max}
+			__p formatter Pixel

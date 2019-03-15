@@ -1,0 +1,145 @@
+﻿$group
+
+	react DynProp
+
+		state
+			@ value ''
+
+		did-mount
+			prop name
+			prop type
+			prop value
+			prop enumItems
+			prop defaultValue
+
+			prop id
+
+			set this.id = id
+			set this.nameId = id + '_name'
+			set this.typeId = id + '_type'
+			set this.valueId = id + '_value'
+
+			_ this.setState
+				{
+					@ name name
+					@ type type
+					@ value value
+					@ enumItems enumItems
+					@ defaultValue defaultValue
+
+		=> handleDelete
+			prop onDelete
+			_ onDelete(this.state.name)
+
+		=> handleInputChange
+			param e
+			
+			const target = e.target
+			const value = target.type === 'checkbox' ? target.checked : target.value
+			const name = target.name.split('_')[1]
+
+			# log 'DynProp.handleInputChange 1 name, value', name, value
+
+			prop onRename
+			prop onChange
+			
+			var oldName = this.state.name
+
+			var newState
+				{
+					@ ...this.state
+					@ [name] this.state.type === 'number' ? parseFloat(value) : value
+			
+			_ this.setState(newState)
+
+			# log 'DynProp.handleInputChange 2 newState', newState
+
+			if name === 'name'
+				_ onRename(oldName, value)
+			else
+				# log 'DynProp.handleInputChange', newState.name, newState.type, newState.value, name, value
+				_ onChange(newState.name, newState.type, newState.value)
+
+		render
+			prop onAdd
+			prop id
+			prop isComponentType
+
+			# log 'DynProp', this.state.name, this.state.type, this.state.enumItems
+
+			const {name, type, value, defaultValue, enumItems } = this.state
+
+			return
+				< React.Fragment
+					@ key {id}
+					{
+						&&
+							+ isComponentType ==  true
+							< React.Fragment
+								< TableCell
+									+ { name }
+								< TableCell
+									+ { type }
+					{
+						&&
+							+ isComponentType ==  false
+							< React.Fragment
+								< TableCell
+									input
+										type text
+										name { this.nameId }
+										value { name }
+										@ onChange { this.handleInputChange }
+								< TableCell
+									input
+										type text
+										name { this.typeId }
+										value { type }
+										@ onChange { this.handleInputChange }
+					< TableCell
+						{
+							&&
+								+ type === 'enum'
+								< Select
+									name { this.valueId }
+									value { value || defaultValue }
+									@ onChange { this.handleInputChange }
+									@ inputProps
+										{
+											@ name this.valueId
+											@ id this.valueId
+									{
+										_ enumItems.map
+											=>
+												param item
+												return
+													< MenuItem
+														@ key {item}
+														@ value {item}
+														+ {item} 
+						{
+							&&
+								+ ['string', 'number', 'node', 'element'].indexOf(type) > -1
+								input
+									type text
+									name { this.valueId }
+									value { value }
+									@ onChange { this.handleInputChange }
+						{
+							&&
+								+ type === 'boolean'
+								< Checkbox
+									checked { value }
+									name { this.valueId }
+									@ onChange { this.handleInputChange }
+					{
+						&&
+							+ isComponentType ==  false
+							< React.Fragment
+								< TableCell
+									button +
+										@ onClick  { onAdd }
+					
+								< TableCell
+									button x
+										@ onClick  { this.handleDelete }

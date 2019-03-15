@@ -1,0 +1,127 @@
+  css  ids: undefined undefined
+    < * ids: undefined undefined
+      + *:before ids: undefined undefined
+      + *:after ids: undefined undefined
+      -moz-box-sizing border-box ids: undefined undefined
+      -webkit-box-sizing border-box ids: undefined undefined
+      box-sizing border-box ids: undefined undefined
+      position relative ids: undefined undefined
+    . root ids: undefined undefined
+      height 100vh ids: undefined undefined
+      width 100vw ids: undefined undefined
+    . Resizer ids: undefined undefined
+      -moz-box-sizing border-box ids: undefined undefined
+      -webkit-box-sizing border-box ids: undefined undefined
+      box-sizing border-box ids: undefined undefined
+      background #000 ids: undefined undefined
+      opacity .2 ids: undefined undefined
+      z-index 1 ids: undefined undefined
+      -moz-background-clip padding ids: undefined undefined
+      -webkit-background-clip padding ids: undefined undefined
+      background-clip padding-box ids: undefined undefined
+    . Resizer:hover ids: undefined undefined
+      -webkit-transition all 2s ease ids: undefined undefined
+      transition all 2s ease ids: undefined undefined
+    . Resizer.horizontal ids: undefined undefined
+      height 11px ids: undefined undefined
+      margin -5px 0 ids: undefined undefined
+      border-top 5px solid rgba(255, 255, 255, 0) ids: undefined undefined
+      border-bottom 5px solid rgba(255, 255, 255, 0) ids: undefined undefined
+      cursor row-resize ids: undefined undefined
+      width 100% ids: undefined undefined
+    . Resizer.horizontal:hover ids: undefined undefined
+      border-top 5px solid rgba(0, 0, 0, 0.5) ids: undefined undefined
+      border-bottom 5px solid rgba(0, 0, 0, 0.5) ids: undefined undefined
+    . Resizer.vertical ids: undefined undefined
+      width 15px ids: undefined undefined
+      color blue ids: undefined undefined
+      margin 0 -5px ids: undefined undefined
+      border-left 5px solid rgba(255, 255, 0, 0) ids: undefined undefined
+      border-right 5px solid rgba(255, 255, 0, 0) ids: undefined undefined
+      cursor col-resize ids: undefined undefined
+    . Resizer.vertical:hover ids: undefined undefined
+      border-left 5px solid rgba(0, 0, 0, 0.5) ids: undefined undefined
+      border-right 5px solid rgba(0, 0, 0, 0.5) ids: undefined undefined
+    . vertical section ids: undefined undefined
+      width 100vh ids: undefined undefined
+      height 100vh ids: undefined undefined
+      display -webkit-box ids: undefined undefined
+      display -webkit-flex ids: undefined undefined
+      display -ms-flexbox ids: undefined undefined
+      display flex ids: undefined undefined
+      -webkit-box-orient vertical ids: undefined undefined
+      -webkit-box-direction normal ids: undefined undefined
+      -webkit-flex-direction column ids: undefined undefined
+      -ms-flex-direction column ids: undefined undefined
+      flex-direction column ids: undefined undefined
+    . vertical header ids: undefined undefined
+      padding 1rem ids: undefined undefined
+      background #eee ids: undefined undefined
+    . vertical footer ids: undefined undefined
+      padding 1rem ids: undefined undefined
+      background #eee ids: undefined undefined
+    < #vertically-nested-in-container-example ids: undefined undefined
+      -webkit-box-flex 1 ids: undefined undefined
+      -webkit-flex 1 ids: undefined undefined
+      -ms-flex 1 ids: undefined undefined
+      flex 1 ids: undefined undefined
+      display -webkit-box ids: undefined undefined
+      display -webkit-flex ids: undefined undefined
+      display -ms-flexbox ids: undefined undefined
+      display flex ids: undefined undefined
+    . horizontal section ids: undefined undefined
+      width 100vh ids: undefined undefined
+      height 100vh ids: undefined undefined
+      display flex ids: undefined undefined
+      flex-direction column ids: undefined undefined
+    . horizontal header ids: undefined undefined
+      padding 1rem ids: undefined undefined
+      background #eee ids: undefined undefined
+    . horizontal footer ids: undefined undefined
+      padding 1rem ids: undefined undefined
+      background #eee ids: undefined undefined
+    < #horizontally-nested-in-container-example ids: undefined undefined
+      flex 1 ids: undefined undefined
+      display flex ids: undefined undefined
+    . parent ids: undefined undefined
+      width 100% ids: undefined undefined
+      height 100% ids: undefined undefined
+      -webkit-box-flex 1 ids: undefined undefined
+      -webkit-flex 1 ids: undefined undefined
+      -ms-flex 1 ids: undefined undefined
+      flex 1 ids: undefined undefined
+      display -webkit-box ids: undefined undefined
+      display -webkit-flex ids: undefined undefined
+      display -ms-flexbox ids: undefined undefined
+      display flex ids: undefined undefined
+      -webkit-box-orient vertical ids: undefined undefined
+      -webkit-box-direction normal ids: undefined undefined
+      -webkit-flex-direction column ids: undefined undefined
+      -ms-flex-direction column ids: undefined undefined
+      flex-direction column ids: undefined undefined
+    . header ids: undefined undefined
+      background #aaa ids: undefined undefined
+      height 3rem ids: undefined undefined
+      line-height 3rem ids: undefined undefined
+    . wrapper ids: undefined undefined
+      background #ffa ids: undefined undefined
+      margin 5rem ids: undefined undefined
+      -webkit-box-flex 1 ids: undefined undefined
+      -webkit-flex 1 ids: undefined undefined
+      -ms-flex 1 ids: undefined undefined
+      flex 1 ids: undefined undefined
+    . no-margin ids: undefined undefined
+      margin 0 ids: undefined undefined
+      padding 0 ids: undefined undefined
+    . full-height ids: undefined undefined
+      height 100% ids: undefined undefined
+    . list-well-title ids: undefined undefined
+      height 15% ids: undefined undefined
+      height calc(15% - 20px) ids: undefined undefined
+      overflow hidden ids: undefined undefined
+      position relative ids: undefined undefined
+    . list-well-content ids: undefined undefined
+      height 85% ids: undefined undefined
+      margin-bottom 0 ids: undefined undefined
+      overflow auto ids: undefined undefined
+      position relative ids: undefined undefined

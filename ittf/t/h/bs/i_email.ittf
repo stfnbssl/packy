@@ -1,0 +1,6 @@
+input
+	$params id, label
+	type email
+	class form-control
+	id ${id}
+	placeholder ${label}

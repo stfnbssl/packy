@@ -1,0 +1,12 @@
+﻿r-component( NpmJobs )
+	
+	$append imports
+
+	style
+
+	render
+		
+		prop classes
+		
+		return
+			h2 Hello from npm jobs

@@ -1,0 +1,48 @@
+﻿wfjob
+	
+	$
+		var folder = 'c:/my/wizzi/next/npm';
+	
+	title v3-wizzi kernel jobs
+	
+	exec-file v3-wizzi
+		title wizzi module v.3
+		exe-path node
+		cwd ${folder}/v3-wizzi
+		arg generate
+	
+	exec-file v3-wizzi-mtree
+		title wizzi-mtree module v.3
+		exe-path node
+		cwd ${folder}/v3-wizzi-mtree
+		arg generate
+	
+	exec-file v3-wizzi-codegen
+		title wizzi-codegen module v.3
+		exe-path node
+		cwd ${folder}/v3-wizzi-codegen
+		arg generate
+
+	exec-file v3-wizzi-repo
+		title wizzi-repo module v.3
+		exe-path node
+		cwd ${folder}/v3-wizzi-repo
+		arg generate
+
+	exec-file v3-wizzi-core
+		title wizzi-core module v.3
+		exe-path node
+		cwd ${folder}/v3-wizzi-core
+		arg generate
+
+	exec-file v3-wizzi-meta
+		title wizzi-meta module v.3
+		exe-path node
+		cwd ${folder}/v3-wizzi-meta
+		arg generate
+
+	exec-file v3-wizzi-tools
+		title wizzi-tools module v.3
+		exe-path node
+		cwd ${folder}/v3-wizzi-tools
+		arg generate

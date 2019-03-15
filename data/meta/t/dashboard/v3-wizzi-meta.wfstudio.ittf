@@ -1,0 +1,12 @@
+﻿$group
+
+	package v5-plugins/wizzi-meta
+
+		kind plugin
+		plugin-name wizzi-meta
+		base-folder-uri C:\My\wizzi\v5\plugins\wizzi-meta
+		std-folders()
+		plugin-std-ittf-folders()
+	
+		schema wfpackage
+		schema wfstudio

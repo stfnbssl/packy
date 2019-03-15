@@ -1,0 +1,38 @@
+  module  ids: 1 39
+    kind react ids: 2 40
+    +  ids: 3 41
+    import React, { PropTypes } from 'react' ids: 4 42
+    import Comments from './Comments' ids: 5 43
+    import Flags from './Flags' ids: 6 44
+    +  ids: 7 45
+    const Attribute ids: 8 46
+      =>  ids: 9 47
+        param { attr } ids: 10 48
+        var xenums = null ids: 11 49
+        if attr.enums.length > 0 ids: 12 50
+          set xenums ids: 13 51
+            div Restrict - Enum ids: 14 52
+              table  ids: 15 53
+                _ attr.enums.map ids: 16 54
+                  =>  ids: 17 55
+                    param xenum ids: 18 56
+                    tr  ids: 19 57
+                      td {xenum.name} ids: 20 58
+                      td  ids: 21 59
+                        < Comments ids: 22 60
+                          @ comments {xenum.comments} ids: 23 61
+        return  ids: 24 62
+          tr  ids: 25 63
+            td {attr.tag} ids: 26 64
+            td {attr.name} ids: 27 65
+            td {attr.type} ids: 28 66
+            td {attr.default} ids: 29 67
+            td  ids: 30 68
+              < Flags ids: 31 69
+                @ flags {attr.flags} ids: 32 70
+            td  ids: 33 71
+              < Comments ids: 34 72
+                @ comments {attr.comments} ids: 35 73
+              + {xenums} ids: 36 74
+    +  ids: 37 75
+    export default Attribute ids: 38 76

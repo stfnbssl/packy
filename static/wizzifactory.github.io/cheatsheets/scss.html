@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+    <title>Schema cheat sheet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wz-content-1">
+        <nav class="tn-bar" style="display: flex; margin: 0.5rem;">
+            <div class="logo">
+                <img src="/images/logo.svg" width="70px" height="30px" />
+            </div>
+        </nav>
+        <div class="mc-wrapper-layout" id="mc-wrapper">
+            <div class="mc-frame-bar">
+                <div class="mc-frame-bar-item">Schema cheat sheet</div>
+            </div>
+            <div class="mc-frame">
+                <div class="mc-sidebar-left">
+                    <ul>
+                        <li><a href="#xml base">xml base</a>
+                        <ul>
+                            <li><a href="#"></a>
+                            </li>
+                        </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mc-content">
+                    <div style="display: flex;" id="xml base">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">xml base</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id></h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">scss</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">@import</span><span class="pp-pln"> 'base'</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">.</span><span class="pp-pln"> container</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">@extend</span><span class="pp-pln"> .flex-column-center</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> align-items center</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> justify-content flex-start</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> height 100%</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> width 100%</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> font-weight 400</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> padding-top 1.5rem</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">    </span><span class="pp-tag">.</span><span class="pp-pln"> panel</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">        </span><span class="pp-tag">@extend</span><span class="pp-pln"> .flex-column-center</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> justify-content center</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> padding 1.25rem</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> width 35%</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">        </span><span class="pp-tag">@include</span><span class="pp-pln"> mobile</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">            </span><span class="pp-tag">{</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">                </span><span class="pp-tag">@</span><span class="pp-pln"> width 75%</span></div><div class="L9"><span class="pp-ln">  19 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> min-width 250px</span></div><div class="L0"><span class="pp-ln">  20 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> min-height 270px</span></div><div class="L1"><span class="pp-ln">  21 </span><span class="pp-pln">    </span><span class="pp-tag">.</span><span class="pp-pln"> or</span></div><div class="L2"><span class="pp-ln">  22 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> margin-top 1rem</span></div><div class="L3"><span class="pp-ln">  23 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> margin-bottom .5rem</span></div><div class="L4"><span class="pp-ln">  24 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> font-size 1.3rem</span></div><div class="L5"><span class="pp-ln">  25 </span><span class="pp-pln">    </span><span class="pp-tag">.</span><span class="pp-pln"> signup</span></div><div class="L6"><span class="pp-ln">  26 </span><span class="pp-pln">        </span><span class="pp-tag">@extend</span><span class="pp-pln"> .flex-column-center</span></div><div class="L7"><span class="pp-ln">  27 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> justify-content center</span></div><div class="L8"><span class="pp-ln">  28 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> margin-top 2rem</span></div><div class="L9"><span class="pp-ln">  29 </span><span class="pp-pln">        </span><span class="pp-tag">&</span><span class="pp-pln"> Link</span></div><div class="L0"><span class="pp-ln">  30 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> color $linkBlue;</span></div><div class="L1"><span class="pp-ln">  31 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> font-size 1.2rem</span></div><div class="L2"><span class="pp-ln">  32 </span><span class="pp-pln">            </span><span class="pp-tag">&</span></div><div class="L3"><span class="pp-ln">  33 </span><span class="pp-pln">                </span><span class="pp-tag">:</span><span class="pp-pln"> hover</span></div><div class="L4"><span class="pp-ln">  34 </span><span class="pp-pln">                </span><span class="pp-tag">@</span><span class="pp-pln"> color $materialBlue;</span></div><div class="L5"><span class="pp-ln">  35 </span><span class="pp-pln">        </span><span class="pp-tag">&</span><span class="pp-pln"> Label</span></div><div class="L6"><span class="pp-ln">  36 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> font-size 1.3rem</span></div><div class="L7"><span class="pp-ln">  37 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> font-size 1rem</span></div><div class="L8"><span class="pp-ln">  38 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> font-weight bold</span></div><div class="L9"><span class="pp-ln">  39 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> color $mediumGray</span></div><div class="L0"><span class="pp-ln">  40 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> font-weight 400</span></div><div class="L1"><span class="pp-ln">  41 </span><span class="pp-pln">    </span><span class="pp-tag">.</span><span class="pp-pln"> providers</span></div><div class="L2"><span class="pp-ln">  42 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> margin-top 1rem</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-scss">
+    
+@import 'base';
+.container {
+    @extend .flex-column-center;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    font-weight: 400;
+    padding-top: 1.5rem;
+}
+.panel {
+    @extend .flex-column-center;
+    justify-content: center;
+    padding: 1.25rem;
+    width: 35%;
+    @include mobile {
+        width: 75%;
+    }
+    min-width: 250px;
+    min-height: 270px;
+}
+.or {
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+    font-size: 1.3rem;
+}
+.signup {
+    @extend .flex-column-center;
+    justify-content: center;
+    margin-top: 2rem;
+    &Link {
+        color: $linkBlue;;
+        font-size: 1.2rem;
+        &:hover {
+            color: $materialBlue;;
+        }
+    }
+    &Label {
+        font-size: 1.3rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: $mediumGray;
+        font-weight: 400;
+    }
+}
+.providers {
+    margin-top: 1rem;
+}
+</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+</body>
+
+</html>

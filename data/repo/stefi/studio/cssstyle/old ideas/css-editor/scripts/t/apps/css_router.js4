@@ -1,0 +1,23 @@
+﻿bb_router Spa.CssRouter
+	method initialize options
+		this.app = options.cssApp;
+
+	__# App starting point
+	bb_route
+		__action cssList
+		this.app.showCssList();
+
+	bb_route rule/:cssid/:cssname
+		__action ruleList cssid cssname
+		__log 'routing rule', cssid, cssname
+		this.app.showCssRuleList(cssid, cssname);
+
+	bb_route rulestyles/:id/:cssrulename
+		__action ruleStyles id cssrulename
+		__log 'routing rulestyles', id, cssrulename
+		this.app.showCssRuleStyles(id, cssrulename);
+
+	bb_route html
+		__action htmlList
+		this.app.showHtmlList();
+

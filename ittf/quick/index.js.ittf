@@ -1,0 +1,156 @@
+module
+	kind es6
+	
+	var jstore = {}
+	
+	function logRet
+	    param num
+	    param obj
+	    var cloned
+	        _ clone
+                @ obj
+        log num, 'return', cloned
+        
+	function doReturn
+	    param num
+	    param obj
+	    param key
+	    param value
+        if typeof value === 'undefined'
+            log 'return value', obj[key]
+            return obj[key]
+        else
+            set obj[key] = value
+            _ logRet( num, obj )
+            return obj
+
+    function Value
+	    param key
+	    param value
+	    param obj
+	    if !key
+	        return
+        set obj = obj || jstore
+        var
+            decl xDot = key.indexOf('.')
+            decl xBra1 = key.indexOf('[')
+            decl xBra2 = key.indexOf(']')
+            decl keyNow
+            decl keyNext
+            decl objNext
+        log 'xDot, xBra1, xBra2', xDot, xBra1, xBra2
+            
+        if xDot < 0 && xBra1 < 0
+            return
+                _ doReturn
+                    @ 1
+                    @ obj
+                    @ key
+                    @ value
+        elif xBra1 > -1 && xBra1 < xDot
+            if xBra1 == 0
+                set keyNow = key.substr(0, xBra2)
+                set keyNext = key.substr(xBra1+1)
+                if keyNext.length == 0
+                    return
+                        _ doReturn
+                            @ 21
+                            @ obj
+                            @ keyNow
+                            @ value
+                else
+                    set objNext = obj[ndx]
+                    return
+                        _ Value
+                            @ keyNext
+                            @ value
+                            @ objNext
+        else
+            set keyNow = key.substr(0, xDot)
+            set keyNext = key.substr(xDot+1)
+            log 3, 'keyNow, keyNext', keyNow, keyNext
+            if keyNext.length == 0
+                return
+                    _ doReturn
+                        @ 31
+                        @ obj
+                        @ keyNow
+                        @ value
+            else
+                set objNext = obj[keyNow]
+                log 32, 'obj', obj, 'objNext', objNext
+                return
+                    _ Value
+                        @ keyNext
+                        @ value
+                        @ objNext
+                        
+	function isObject
+        param test
+        if test === null || typeof(test) === 'undefined'
+            return false
+        return {}.toString.call(test) === '[object Object]'
+    
+	function isArray
+        param test
+        if test === null || typeof(test) === 'undefined'
+            return false
+		if Array.isArray
+			return Array.isArray(test);
+		return {}.toString.call(test) === '[object Array]'
+	
+	function clone
+		param obj
+        if isArray(obj)
+            var ret
+                [ 
+            foreach item in obj
+                var value
+                    _ clone
+                        @ item
+                if value !== null
+                    _ ret.push(value)
+            return ret
+        elif isObject(obj)
+            var ret
+                { 
+            for var prop in obj
+                if obj.hasOwnProperty(prop)
+                    set ret[prop] = clone(obj[prop])
+            return ret
+        else 
+            return obj
+                        
+
+    _ Value
+        @ 'alfa'
+        {
+    _ Value
+        @ 'alfa.o_beta'
+        {
+    _ Value
+        @ 'alfa.o_beta.a'
+        @ 52
+    _ Value
+        @ 'alfa.o_beta.b'
+        @ 55
+    _ Value
+        @ 'alfa.o_beta'
+    _ Value
+        @ 'beta'
+        [
+    _ Value
+        @ 'beta.0'
+        {
+    _ Value
+        @ 'beta.0.a'
+        @ 15
+    _ Value
+        @ 'beta'
+        
+        
+        
+
+        
+	
+                        

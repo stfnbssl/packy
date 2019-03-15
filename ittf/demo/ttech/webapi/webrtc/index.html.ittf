@@ -1,0 +1,16 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'webrtc',
+			label: 'Web rtc',
+			experimentsWith: 'the web rtc api',
+			path: [
+				{
+					name: 'webapi',
+					label: 'WebApi',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

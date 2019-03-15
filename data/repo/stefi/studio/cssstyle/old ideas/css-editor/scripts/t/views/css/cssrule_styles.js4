@@ -1,0 +1,160 @@
+﻿bb_view Spa.CssRuleStylesView
+	method initialize options
+		this.app = options.app;
+		this.previewmode = 'html';
+		this.preview_ss_rule = null;
+
+	bb_action_click done
+		event.preventDefault();
+		history.go(-1);
+
+	bb_action_click ruleCss
+		event.preventDefault();
+		this._preview_rule_css();
+
+	bb_action_click stylesheetCss
+		event.preventDefault();
+		this._preview_ss_css();
+
+	bb_action_click switchWmtText
+		event.preventDefault();
+		__if this.previewmode == 'css'
+			__if this.preview_ss_rule == 'rule'
+				this._preview_rule_wmt();
+				__else
+					this._preview_ss_wmt();
+			__else
+				__if this.preview_ss_rule == 'rule'
+					this._preview_rule_css();
+					__else
+						this._preview_ss_css();
+	
+	bb_action_click closeCode
+		event.preventDefault();
+		this.$codepreview.hide();
+		this.$htmltarget.show();
+		this.previewmode = 'html';
+
+	method render
+		var app = this.app
+			, cssid = this.model.get('cssid')
+			, cssname = this.model.get('cssname')
+			, cssruleid = this.model.id
+			, cssrulename = this.model.get('name');
+
+		var $ = Backbone.$;
+		var $el = $( $.trim( this.template( this.model.toJSON() ) ) );
+		var $editor = $el.find( '.cssrule-styles-editor' );
+		this.$htmltarget = $el.find( '.cssrule-styles-htmltarget' );
+		this.$codepreview = $el.find( '.cssrule-styles-codepreview' );
+		this.$codepreview_content = $el.find( '.cssrule-styles-codepreview-content' );
+		this.$btnSwitchWmtText = $el.find( '#btnSwitchWmtText' );
+
+		// editor
+		var ruleInstance = this.ruleInstance = new Spa.CssRuleStyles({
+			id: cssruleid
+		});
+		ruleInstance.fetch();
+		ruleInstance.set('__rulename', cssrulename);
+		__log 'ruleInstance ', ruleInstance
+		var $dynamicstyle = $('#dynamicstyle')
+			, stylesEditor = new Wmteditor.RootWidget({
+				model: ruleInstance,
+				meta: css_editor
+			});
+		ruleInstance.on("change", function() {
+			var styles = app.toCssRulesText(cssid); 
+			$dynamicstyle.html(styles);
+			ruleInstance.save();
+		});
+		$editor.append(stylesEditor.render().el);
+
+		// html
+		var htmltargetcontent = app.getHtmlByCssId(cssid);
+		this.$htmltarget.html(htmltargetcontent);
+		
+		// css styles
+		var styles = app.toCssRulesText(cssid); 
+		$dynamicstyle.html(styles);
+
+		this.setElement($el);
+		return this;
+
+	method _preview_ss_css
+		var app = this.app
+			, cssid = this.model.get('cssid');
+		var styles = app.toCssRulesText(cssid); 
+		this._preview( styles, 'css', 'ss' );
+
+	method _preview_ss_wmt
+		var app = this.app
+			, cssid = this.model.get('cssid');
+		var styles = app.toCssRulesWmt(cssid); 
+		this._preview( styles, 'wmt', 'ss' );
+
+	method _preview_rule_css
+		var styles = this.ruleInstance.toRuleText();
+		this._preview( styles, 'css', 'rule' );
+
+	method _preview_rule_wmt
+		var styles = this.ruleInstance.toRuleWmt();
+		this._preview( styles, 'wmt', 'rule' );
+
+	method _preview styles mode ss_rule
+		this.$codepreview_content.html(styles);
+		this.$htmltarget.hide();
+		this.$codepreview.show();
+		this.previewmode = mode;
+		this.preview_ss_rule = ss_rule;
+		__if mode == 'css'
+			this.$btnSwitchWmtText.text('Wmt');
+			__else
+				this.$btnSwitchWmtText.text('Css');
+
+	bb_template ctx
+		div
+			. n-l-h1
+				bb/b_action done Done n-l-btn
+					style float: right;
+			div
+				style clear: both;
+			. panel-key-header
+				span Stylesheet
+					class label
+				span {{ ctx.cssname }}
+					class value
+				bb/b_action stylesheetCss "Stylesheet Css" n-l-btn
+					style float: right;
+			. panel-key-header
+				span Rule
+					class label
+				span {{ ctx.name }}
+					class value
+				bb/b_action ruleCss "Rule Css" n-l-btn
+					style float: right;
+			table
+				style width:100%
+				tr
+					td
+						style width:50%
+						valign top
+						. workspace-title
+							text Editor
+						. cssrule-styles-editor
+					td
+						style width:50%
+						valign top
+						. workspace-title
+							text Preview
+						. cssrule-styles-htmltarget
+						. cssrule-styles-codepreview
+							style display:none;
+							bb/b_action closeCode "Close" n-l-btn
+								style float: right;
+							bb/b_action switchWmtText "Wmt" n-l-btn
+								id btnSwitchWmtText
+								style float: right;
+							div
+								style clear: both;
+							pre
+								class cssrule-styles-codepreview-content

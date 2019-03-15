@@ -1,0 +1,294 @@
+<!doctype html>
+<html>
+<head>
+    <title>Schema cheat sheet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/static/lib/prism/prism.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="wz-sb-1">
+        <ul>
+            <li><a href="http://localhost:3014/ittf/home/index.html.ittf"><i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">Dashboard</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/ittf/demo/ttech/index.html.ittf"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Target technologies</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/ittf/demo/apps/index.html.ittf"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Demo apps</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/ittf/labs/index.html.ittf"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Labs</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/ittf/quick/index.html.ittf"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Quick html test</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/static/wizzi-play/index.html"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Wizzi playground</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/ittf/utils/performance/index.html.ittf"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Js performance</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/ittf/docs/cheatsheets/index.html.ittf"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Wizzi cheat sheets</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/ittf/repo/stefi/studio/wizzi/index.html.ittf"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Wizzi</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/ittf/repo/stefi/studio/wizzi/issues.html.ittf"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Wizzi issues</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/ittf/repo/stefi/studio/wizzi/todo.html.ittf"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Wizzi TODO</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/ittf/repo/stefi/studio/wizzi/activitylog.html.ittf"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Wizzi activity log</span>
+            </a>
+            </li>
+            <li><a href="http://localhost:3014/ittf/utils/jobs/index.html.ittf"><i class="fa fa-laptop fa-2x"></i>
+            <span class="nav-text">Wizzi jobs</span>
+            </a>
+            </li>
+        </ul>
+        <ul class="logout">
+            <li><a href="#"><i class="fa fa-power-off fa-2x"></i>
+            <span class="nav-text">Logout</span>
+            </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="wz-content-1">
+        <nav class="tn-bar" style="display: flex; margin: 0.5rem;">
+            <div class="logo">
+                <img src="/images/logo.svg" width="70px" height="30px" />
+            </div>
+        </nav>
+        <div class="mc-wrapper-layout" id="mc-wrapper">
+            <div class="mc-frame-bar">
+                <div class="mc-frame-bar-item">Schema cheat sheet</div>
+            </div>
+            <div class="mc-frame">
+                <div class="mc-sidebar-left">
+                    <ul>
+                        <li><a href="#jsWizzi statements">jsWizzi statements</a>
+                        <ul>
+                            <li><a href="#Conditions in scripts">Conditions in scripts</a>
+                            </li>
+                            <li><a href="#Conditions in markup">Conditions in markup</a>
+                            </li>
+                            <li><a href="#For loop in scripts">For loop in scripts</a>
+                            </li>
+                            <li><a href="#For loop in markup">For loop in markup</a>
+                            </li>
+                            <li><a href="#While loop in scripts">While loop in scripts</a>
+                            </li>
+                            <li><a href="#While loop in markup">While loop in markup</a>
+                            </li>
+                        </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mc-content">
+                    <div style="display: flex;" id="jsWizzi statements">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">jsWizzi statements</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Conditions in scripts">Conditions in scripts</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> name = 'Derby', winner = null;</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-expr">if</span><span class="pp-expr"> (name == 'Ascot') {</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-expr">winner</span><span class="pp-expr"> = 'Ribot';</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-expr">}</span><span class="pp-expr"> else if (name == 'Arc de triomphe') {</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-expr">winner</span><span class="pp-expr"> = 'Varenne';</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-expr">}</span><span class="pp-expr"> else if (name == 'Derby') {</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">            </span><span class="pp-expr">winner</span><span class="pp-expr"> = 'Ribot';</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">        </span><span class="pp-expr">}</span><span class="pp-expr"> else {</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-expr">winner</span><span class="pp-expr"> = 'Varenne';</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">        </span><span class="pp-expr">}</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> If the race was </span><span class="pp-kwd">${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln"> the winner was </span><span class="pp-kwd">${</span><span class="pp-expr">winner</span><span class="pp-kwd">}</span><span class="pp-pln">.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+// 20/12/2018:22:37:40  by C:\my\wizzi\v5\apps\node_modules\wizzi\node_modules\wizzi-mtree\lib\loader\debugInfoBuilder.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the MTree buildup
+var $1 = { n: "root", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //14
+$.a($0, $1, 5);
+$.s("f1");
+var name = 'Derby', winner = null; //16
+if (name == 'Ascot') { //17
+winner = 'Ribot'; //18
+} else if (name == 'Arc de triomphe') { //19
+winner = 'Varenne'; //20
+} else if (name == 'Derby') { //21
+winner = 'Ribot'; //22
+} else { //23
+winner = 'Varenne'; //24
+}  //25
+$.n();
+var $3 = { n: "node", v: $.ip("f1", "If the race was ${name} the winner was ${winner}.", "string", 18, false), r: 13, c: 5, s: "f1", u: "f1",  }; //26
+$.a($1, $3, 19);</code>
+                        </pre>
+                    </div>
+                    <h3 id="Conditions in markup">Conditions in markup</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> name = 'Derby';</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-kwd">$if</span><span class="pp-expr"> name == 'Ascot'</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> If the race was </span><span class="pp-kwd">${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln"> the winner was Ribot</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-kwd">$elif</span><span class="pp-pln"> name == 'Arc de triomphe'</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> If the race was </span><span class="pp-kwd">${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln"> the winner was Varenne</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-kwd">$elif</span><span class="pp-pln"> name == 'Derby'</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> If the race was </span><span class="pp-kwd">${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln"> the winner was Ribot</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-kwd">$else</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-pln"> If the race was </span><span class="pp-kwd">${</span><span class="pp-expr">name</span><span class="pp-kwd">}</span><span class="pp-pln"> the winner was Varenne</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+// 20/12/2018:22:37:40  by C:\my\wizzi\v5\apps\node_modules\wizzi\node_modules\wizzi-mtree\lib\loader\debugInfoBuilder.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the MTree buildup
+var $1 = { n: "root", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //12
+$.a($0, $1, 5);
+$.s("f1");
+var name = 'Derby'; //14
+if (name == 'Ascot') { //15
+    $.n();
+    var $4 = { n: "node", v: $.ip("f1", "If the race was ${name} the winner was Ribot", "string", 10, false), r: 5, c: 9, s: "f1", u: "f1",  }; //16
+    $.a($1, $4, 11);
+}
+else if (name == 'Arc de triomphe') { //17
+    $.n();
+    var $6 = { n: "node", v: $.ip("f1", "If the race was ${name} the winner was Varenne", "string", 15, false), r: 7, c: 9, s: "f1", u: "f1",  }; //18
+    $.a($1, $6, 16);
+}
+else if (name == 'Derby') { //19
+    $.n();
+    var $8 = { n: "node", v: $.ip("f1", "If the race was ${name} the winner was Ribot", "string", 20, false), r: 9, c: 9, s: "f1", u: "f1",  }; //20
+    $.a($1, $8, 21);
+}
+else {
+    $.n();
+    var $10 = { n: "node", v: $.ip("f1", "If the race was ${name} the winner was Varenne", "string", 25, false), r: 11, c: 9, s: "f1", u: "f1",  }; //22
+    $.a($1, $10, 26);
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="For loop in scripts">For loop in scripts</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> sletters = 'a,b,c,d,e,f,g,h';</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> aletters = sletters.split(',');</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> letter, label='';</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-expr">for</span><span class="pp-expr"> (var i=0; i&lt;aletters.length; i++) {</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-expr">letter</span><span class="pp-expr"> = aletters[i];</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-expr">label</span><span class="pp-expr"> += i % 2 == 0 ? letter : letter.toUpperCase();</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-expr">}</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> The resulting label has the even letters upper cased: </span><span class="pp-kwd">${</span><span class="pp-expr">label</span><span class="pp-kwd">}</span><span class="pp-pln">.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+// 20/12/2018:22:37:40  by C:\my\wizzi\v5\apps\node_modules\wizzi\node_modules\wizzi-mtree\lib\loader\debugInfoBuilder.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the MTree buildup
+var $1 = { n: "root", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //11
+$.a($0, $1, 5);
+$.s("f1");
+var sletters = 'a,b,c,d,e,f,g,h'; //13
+var aletters = sletters.split(','); //14
+var letter, label=''; //15
+for (var i=0; i&lt;aletters.length; i++) { //16
+letter = aletters[i]; //17
+label += i % 2 == 0 ? letter : letter.toUpperCase(); //18
+}  //19
+$.n();
+var $3 = { n: "node", v: $.ip("f1", "The resulting label has the even letters upper cased: ${label}.", "string", 15, false), r: 10, c: 5, s: "f1", u: "f1",  }; //20
+$.a($1, $3, 16);</code>
+                        </pre>
+                    </div>
+                    <h3 id="For loop in markup">For loop in markup</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> sletters = 'a,b,c,d,e,f,g,h';</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> aletters = sletters.split(',');</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> The resulting tree has the even node values upper cased:</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-kwd">$foreach</span><span class="pp-pln"> letter in aletters</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr"> _index</span><span class="pp-kwd">}</span><span class="pp-pln"> </span><span class="pp-kwd">${</span><span class="pp-expr"> _index % 2 == 0 ? letter : letter.toUpperCase() </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+// 20/12/2018:22:37:40  by C:\my\wizzi\v5\apps\node_modules\wizzi\node_modules\wizzi-mtree\lib\loader\debugInfoBuilder.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the MTree buildup
+var $1 = { n: "root", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //8
+$.a($0, $1, 5);
+$.s("f1");
+var sletters = 'a,b,c,d,e,f,g,h'; //10
+var aletters = sletters.split(','); //11
+$.n();
+var $3 = { n: "node", v: "The resulting tree has the even node values upper cased:", r: 5, c: 5, s: "f1", u: "f1",  }; //12
+$.a($1, $3, 11);
+$.s("f1");
+var letter_count = aletters.length; //13
+for (var i4=0; i4&lt;letter_count; i4++) { //13
+    var letter = aletters[i4]; //13
+    var letter_index = i4; //13
+    $.n();
+    var $5 = { n: "node", v: $.ip("f1", "${ _index} ${ _index % 2 == 0 ? letter : letter.toUpperCase() }", "string", 18, false), r: 7, c: 13, s: "f1", u: "f1",  }; //14
+    $.a($3, $5, 19);
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="While loop in scripts">While loop in scripts</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-expr">var</span><span class="pp-expr"> x = 1, odds = '1';</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-expr">while</span><span class="pp-expr"> ( x &lt; 10 ) {</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-expr">x</span><span class="pp-expr"> += 2;</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-expr">odds</span><span class="pp-expr"> += ', ' + x</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-expr">}</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">node</span><span class="pp-pln"> First odd numbers: </span><span class="pp-kwd">${</span><span class="pp-expr">odds</span><span class="pp-kwd">}</span><span class="pp-pln">.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+// 20/12/2018:22:37:40  by C:\my\wizzi\v5\apps\node_modules\wizzi\node_modules\wizzi-mtree\lib\loader\debugInfoBuilder.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the MTree buildup
+var $1 = { n: "root", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //9
+$.a($0, $1, 5);
+$.s("f1");
+var x = 1, odds = '1'; //11
+while ( x &lt; 10 ) { //12
+x += 2; //13
+odds += ', ' + x //14
+}  //15
+$.n();
+var $3 = { n: "node", v: $.ip("f1", "First odd numbers: ${odds}.", "string", 13, false), r: 8, c: 5, s: "f1", u: "f1",  }; //16
+$.a($1, $3, 14);</code>
+                        </pre>
+                    </div>
+                    <h3 id="While loop in markup">While loop in markup</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">root</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-kwd">$</span><span class="pp-pln"> var x = 1, odds = '1'</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-kwd">$while</span><span class="pp-pln"> x &lt; 10</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-kwd">$</span><span class="pp-pln"> x += 2</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">node</span><span class="pp-kwd"> ${</span><span class="pp-expr"> odds += ', ' + x </span><span class="pp-kwd">}</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ittf">
+    
+// 20/12/2018:22:37:40  by C:\my\wizzi\v5\apps\node_modules\wizzi\node_modules\wizzi-mtree\lib\loader\debugInfoBuilder.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the MTree buildup
+var $1 = { n: "root", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //6
+$.a($0, $1, 5);
+$.s("f1");
+var x = 1, odds = '1'
+while (x &lt; 10) { //8
+    $.s("f1");
+    x += 2
+    $.n();
+    var $5 = { n: "node", v: $.ip("f1", "${ odds += ', ' + x }", "string", 12, false), r: 5, c: 9, s: "f1", u: "f1",  }; //10
+    $.a($1, $5, 13);
+}</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/lib/prism/prism.js"></script>
+</body>
+
+</html>

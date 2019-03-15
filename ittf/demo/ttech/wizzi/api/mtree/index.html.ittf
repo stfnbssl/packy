@@ -1,0 +1,38 @@
+h/root/empty_layout()
+
+	$
+		var opt = {}
+		opt.useWizzi = true;
+
+	page( &opt
+
+		$append styles
+			@style
+				css
+					# root
+						width 800px
+						height 600px
+						border 1px solid grey
+
+		script
+			module
+				kind es6
+				var wf = wizziStandalone.default
+				var u = wf.wizziUtils
+				_ u.IttfMTreeEx.createFrom
+					[
+						@ 'module'
+						@ '    kind react'
+						@ '    react Hello'
+						@ '        state'
+						@ '            @ name "stefi"'
+						._ join
+							@ '\n'
+					{
+						@ fromString true
+						@ clean true
+					f_cb_test( result )
+						log 'result.findByRow(3). should be react node.', result.findByRow(3)
+
+
+

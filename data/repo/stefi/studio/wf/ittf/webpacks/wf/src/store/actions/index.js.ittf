@@ -1,0 +1,19 @@
+﻿module
+	kind react
+
+	$include app-options
+	
+	app/store/actions/index( &app )
+
+		wz-const wizzifyTypes
+			[
+				@ 'Js'
+				@ 'Html'
+				@ 'Css'
+				@ 'Xml'
+					
+		$include initial
+		$include theme
+		$include execfile
+		$include console
+		$include wizzifier

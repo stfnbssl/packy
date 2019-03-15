@@ -1,0 +1,20 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'events',
+			label: 'Events',
+			experimentsWith: 'javascript events',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'pure',
+					label: 'Pure',
+				}
+			]
+		};
+
+	ttech-frame(&opt)

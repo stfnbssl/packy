@@ -1,0 +1,140 @@
+@media screen and (max-width: 1028px) {
+    #mc-toggle-api-wizzi:checked ~ .mc-pane-api-wizzi {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.wizziFactoryModule:checked ~ .mc-pane-api-wizzi.wizziFactoryModule {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.wizziFactory:checked ~ .mc-pane-api-wizzi.wizziFactory {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.pluginsManagerModule:checked ~ .mc-pane-api-wizzi.pluginsManagerModule {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.pluginsManager:checked ~ .mc-pane-api-wizzi.pluginsManager {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.runnerServerModule:checked ~ .mc-pane-api-wizzi.runnerServerModule {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.runnerServer:checked ~ .mc-pane-api-wizzi.runnerServer {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.model.modelInfoConfig:checked ~ .mc-pane-api-wizzi.model.modelInfoConfig {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.model.modelCollectionConfig:checked ~ .mc-pane-api-wizzi.model.modelCollectionConfig {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.model.modelInfo:checked ~ .mc-pane-api-wizzi.model.modelInfo {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.model.asyncModelLoader:checked ~ .mc-pane-api-wizzi.model.asyncModelLoader {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.artifact.artifactInfoConfig:checked ~ .mc-pane-api-wizzi.artifact.artifactInfoConfig {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.artifact.persisteable:checked ~ .mc-pane-api-wizzi.artifact.persisteable {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.artifact.artifactInfo:checked ~ .mc-pane-api-wizzi.artifact.artifactInfo {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.artifact.genConfig:checked ~ .mc-pane-api-wizzi.artifact.genConfig {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.artifact.genContext:checked ~ .mc-pane-api-wizzi.artifact.genContext {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.artifact.AsyncArtifactGenerator:checked ~ .mc-pane-api-wizzi.artifact.AsyncArtifactGenerator {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.production.productionContext:checked ~ .mc-pane-api-wizzi.production.productionContext {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.production.productionManager:checked ~ .mc-pane-api-wizzi.production.productionManager {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.production.Runner:checked ~ .mc-pane-api-wizzi.production.Runner {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-repo:checked ~ .mc-pane-api-wizzi-repo {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-repo.ittfDocumentStore:checked ~ .mc-pane-api-wizzi-repo.ittfDocumentStore {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-mtree:checked ~ .mc-pane-api-wizzi-mtree {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-mtree.loader:checked ~ .mc-pane-api-wizzi-mtree.loader {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-mtree.loader.line:checked ~ .mc-pane-api-wizzi-mtree.loader.line {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-mtree.loader.node:checked ~ .mc-pane-api-wizzi-mtree.loader.node {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-mtree.loader.mTreeBrick:checked ~ .mc-pane-api-wizzi-mtree.loader.mTreeBrick {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-mtree.jsWizziContext:checked ~ .mc-pane-api-wizzi-mtree.jsWizziContext {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-mtree.jsWizziRunner:checked ~ .mc-pane-api-wizzi-mtree.jsWizziRunner {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-mtree.mTree:checked ~ .mc-pane-api-wizzi-mtree.mTree {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-mtree.mTree.node:checked ~ .mc-pane-api-wizzi-mtree.mTree.node {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.modelType:checked ~ .mc-pane-api-wizzi.modelType {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.modelType.sourceLineInfo:checked ~ .mc-pane-api-wizzi.modelType.sourceLineInfo {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.modelType.baseElement:checked ~ .mc-pane-api-wizzi.modelType.baseElement {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.modelType.{element}:checked ~ .mc-pane-api-wizzi.modelType.{element} {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.modelType.rootElement:checked ~ .mc-pane-api-wizzi.modelType.rootElement {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.modelType.context:checked ~ .mc-pane-api-wizzi.modelType.context {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.modelType.exception:checked ~ .mc-pane-api-wizzi.modelType.exception {
+        display: block;
+    }
+    #mc-toggle-api-wizzi.modelFactory:checked ~ .mc-pane-api-wizzi.modelFactory {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-plugin:checked ~ .mc-pane-api-wizzi-plugin {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-plugin.factoryPlugin:checked ~ .mc-pane-api-wizzi-plugin.factoryPlugin {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-plugin.modelFactory:checked ~ .mc-pane-api-wizzi-plugin.modelFactory {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-plugin.modelTransformer:checked ~ .mc-pane-api-wizzi-plugin.modelTransformer {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-plugin.artifactGenerator:checked ~ .mc-pane-api-wizzi-plugin.artifactGenerator {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-app:checked ~ .mc-pane-api-wizzi-app {
+        display: block;
+    }
+    #mc-toggle-api-wizzi-app.wizzifile:checked ~ .mc-pane-api-wizzi-app.wizzifile {
+        display: block;
+    }
+}

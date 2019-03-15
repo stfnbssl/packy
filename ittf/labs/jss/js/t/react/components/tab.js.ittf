@@ -1,0 +1,19 @@
+﻿$group
+
+	j/bx/rect-component-item( Tab )
+
+		p propTypes
+			static
+			@ value PropTypes.object
+			@ label PropTypes.string
+			@ onActive PropTypes.function
+
+		p defaultProps 
+			static
+			@ value null
+			@ label ''
+			@ onActive null
+	
+		m render
+			return null
+  

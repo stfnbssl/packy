@@ -1,0 +1,6 @@
+﻿. head-bar-item
+	$params title, value
+	h3 ${title}
+		class head-bar-title
+	p ${value}
+		class head-bar-value

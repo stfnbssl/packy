@@ -1,0 +1,7 @@
+﻿{
+	$params id, type, defaultValue|@@null
+	@ id "${id}"
+	@ type "${type}"
+	$if defaultValue != null
+		@ defaultValue "${defaultValue}"
+	$hook

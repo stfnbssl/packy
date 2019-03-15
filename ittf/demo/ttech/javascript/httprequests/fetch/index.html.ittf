@@ -1,0 +1,37 @@
+﻿html
+
+	$
+		var opt = {}
+
+	page( &opt
+		
+		. wrapper
+			img
+				width 100
+				height 50
+		
+		$append styles
+			@style
+				css
+					. wrapper
+						margin 10rem
+						padding 10rem
+		
+		$append scripts-2
+		
+			script
+				module
+					_ getData
+					function getData
+						var myImage = document.querySelector('img')
+						_ fetch
+							@ '/ittf/images/logo.svg.ittf'
+							._ then
+								function
+									param response
+									return response.blob()
+							._ then
+								function
+									param myBlob
+									var objectURL = URL.createObjectURL(myBlob)
+									set myImage.src = objectURL

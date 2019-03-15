@@ -1,0 +1,43 @@
+﻿module
+	kind react
+
+	import React from 'react'
+	import { AppContainer } from 'react-hot-loader'
+	import { Provider } from 'react-redux'
+	import configureStore from './store/configureStore'
+	import { initialLoad } from './store/actions'
+	import ReactPerf from 'react-addons-perf'
+	import { render } from 'react-dom'
+	import MuiApp from './containers/MuiApp'
+
+	set window.Perf = ReactPerf
+
+	export const store = configureStore()
+
+	#
+		_ store.dispatch
+			_ initialLoad()
+
+	const rootEl = document.querySelector('#root')
+
+	_ render
+		< Provider
+			@ store {store}
+			< MuiApp
+		@ rootEl
+
+	if process.env.NODE_ENV !== 'production' && module.hot
+		_ module.hot.accept
+			@ './containers/MuiApp'
+			=>
+				const NextApp = require('./containers/MuiApp').default
+				_ render
+					< AppContainer
+						@ errorReporter
+							=>
+								param { error }
+								throw error
+						< Provider
+							@ store {store}
+							< NextApp
+					@ rootEl

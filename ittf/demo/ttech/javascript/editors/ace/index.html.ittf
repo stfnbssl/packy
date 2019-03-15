@@ -1,0 +1,40 @@
+﻿html
+
+	$
+		var opt = {}
+		opt.useAce = true;
+
+	page( &opt
+		
+		pre
+			id codeArea
+			+ function foo(items) {
+				\n var i;
+				\n for (i = 0; i &lt; items.length; i++) {
+				\n  alert("Ace Rocks " + items[i]);
+				\n }
+				\n }
+		
+		$append styles
+			@style
+				css
+					< body
+						overflow hidden
+					# codeArea
+						margin 0
+						position absolute
+						top 0
+						bottom 0
+						left 0
+						right 0
+		
+		$append scripts-2
+		
+			script
+				module
+					var editor
+						_ ace.edit("codeArea")
+					_ editor.setTheme
+						@ "ace/theme/twilight"
+					_ editor.session.setMode
+						@ "ace/mode/javascript"

@@ -1,0 +1,73 @@
+﻿$group
+	$params &app
+
+	var routesBasepath = '${app.routeBasepath}'
+
+	r-component( Home )
+	
+		$append imports
+			import Link from 'react-router/lib/Link'
+			import Typography from 'material-ui/Typography'
+			import Button from 'material-ui/Button'
+
+		prop classes
+			{
+			required
+
+		style
+
+			@ root
+				{ 
+					@ flex '1 0 100%'
+			@ hero
+				{ 
+					@ minHeight '100vh'
+					@ flex '0 0 auto'
+					@ display 'flex'
+					@ justifyContent 'center'
+					@ alignItems 'center'
+					@ backgroundColor theme.palette.primary[500]
+					@ color
+						_ theme.palette.getContrastText
+							@ theme.palette.primary[500]
+			@ content
+				{ 
+					@ padding '60px 30px'
+					@ textAlign 'center'
+					@ [theme.breakpoints.up('sm')]
+						{ 
+							@ padding '120px 30px'
+			@ button
+				{ 
+					@ marginTop 20
+			@ logo
+				{ 
+					@ margin '20px -40%'
+					@ width '100%'
+					@ height '40vw'
+					@ maxHeight 230
+
+		render
+
+			prop classes
+
+			return
+				. {classes.root}
+					.  {classes.hero}
+						.  {classes.content}
+							< Typography
+								@ type "display2"
+								@ component "h1"
+								@ color 'inherit'
+								+ {'${app.title}'}
+							< Typography
+								@ type "subheading"
+								@ component "h2"
+								@ color 'inherit'
+								+ {"${app.description}"}
+							< Button
+								@ component {Link}
+								@ className {classes.button}
+								@ raised
+								@ to {routesBasepath + "/getting-started/installation"}
+								+ {'Get Started'}

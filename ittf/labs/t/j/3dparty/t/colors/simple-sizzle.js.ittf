@@ -1,0 +1,32 @@
+﻿$group
+
+	$include ./is-arrayish
+
+	# Copyright 
+	# https://github.com/Qix-/node-simple-swizzle
+
+	j/iife-wrapped( BxSimpleSwizzle, isArrayish )
+
+		var concat = Array.prototype.concat
+		var slice = Array.prototype.slice
+		var simpleSwizzle
+			function simpleSwizzle
+				param args
+				var results
+					[ 
+				for var i = 0, len = args.length; i < len; i++
+					var arg = args[i]
+					if isArrayish(arg)
+						set results = concat.call(results, slice.call(arg))
+					else 
+						_ results.push(arg)
+				return results
+		set simpleSwizzle.wrap
+			function 
+				param fn
+				return 
+					function 
+						return 
+							_ fn
+								_ simpleSwizzle(arguments)
+		return simpleSwizzle

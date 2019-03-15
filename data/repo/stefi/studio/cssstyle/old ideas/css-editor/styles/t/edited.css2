@@ -1,0 +1,112 @@
+﻿$group
+	. wrapper .container
+		background-color #be9797
+		padding 20
+
+	. cssrule-styles-editor
+		background-color #453030
+		padding 13px
+
+	. cssrule-styles-htmltarget
+		background-color #fafafa
+		height 450px
+		border-radius 10
+		-webkit-border-radius 10
+		-moz-border-radius 10
+
+	e body
+		background-color #201d1d
+
+	. header
+		color #f9f4b9
+		font-family Tahoma, Geneva, sans-serif
+		font-size 9
+
+	. panel-key-header
+		font-size 18px
+		font-family Tahoma, Geneva, sans-serif
+		background-color #d8baba
+		border-top-width 1px
+		border-top-color #a39595
+		border-top-style solid
+		padding 5
+
+	. panel-key-header .label
+		display inline-block
+		width 101px
+		color #454436
+
+	. panel-key-header .value
+		font-weight lighter
+		font-size 20px
+		color #2d1f1f
+
+	. workspace-title
+		background-color #893e3e
+		color #c8c936
+		font-weight bold
+		padding 5px
+
+	. be-wdg-value
+		border-bottom-width 1px
+		border-bottom-color #b69090
+		border-bottom-style solid
+
+	. be-wdg-value label
+		background-color #eacdcd
+		font-size 12
+		padding 5px
+		margin 0px
+		font-weight bold
+
+	. be-wdg-value .be-value-container
+		padding-left 5px
+
+	. cssrule-styles-codepreview
+		background-color #c6b79a
+		overflow auto
+		height 452px
+		padding 16px
+
+	. cssrule-styles-codepreview-content
+		background-color #261c1c
+		color #93fb70
+
+	. btn
+		text-decoration none
+		color #451717
+		font-family 
+		font-size 16px
+		background-color #bfbfbf
+		padding 3px
+		border-radius 8px
+		-webkit-border-radius 8px
+		-moz-border-radius 8px
+		border-width 1px
+		border-color #52814b
+		border-style solid
+
+	. btn:hover
+		color #d5e170
+		background-color #3c562e
+
+	. be-editor-btn
+		text-decoration none
+		text-align right
+		color #92e061
+		font-size 12px
+		font-weight bold
+		background-color #ec2a22
+		border-radius 10px
+		-webkit-border-radius 10px
+		-moz-border-radius 10px
+		margin-left 0px
+		margin-right 5px
+		font-family Tahoma, Geneva, sans-serif
+
+	. modal
+		padding 20px
+
+	. modal h4
+		font-size 20px
+		font-family Tahoma, Geneva, sans-serif

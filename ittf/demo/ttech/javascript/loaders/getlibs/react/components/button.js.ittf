@@ -1,0 +1,10 @@
+﻿module
+	kind react
+
+	react Button
+		render
+			return
+				button
+					+ Hello
+
+	export Button

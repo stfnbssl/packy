@@ -1,0 +1,91 @@
+class DirtyChecker
+
+	ctor
+		param scope
+		param modelName
+		param modelUiName
+		param controls
+
+		set this.scope = scope
+		set this.modelName = modelName
+		set this.modelUiName = modelUiName
+		set this.controls = controls || []
+
+	m clear
+		param scope
+		param modelName
+		param modelUiName
+		param controls
+		foreach ctrl in this.controls
+			if ctrl.$watchListener
+				_ ctrl.$watchListener()
+				set delete ctrl.$watchListener
+		set this.scope = scope
+		set this.modelName = modelName
+		set this.modelUiName = modelUiName
+		set this.controls = controls || []
+
+	m addControl
+		param ctrl
+		_ this.controls.push(ctrl)
+
+	m startDirtyCheck
+		_ this.validChecker = new ValidChecker
+			@ this.scope
+			@ this.modelName
+			@ this.modelUiName
+			@ this.controls
+		foreach ctrl in this.controls
+			_ this.setWatch(ctrl, this.validChecker)
+		_ this.resetDirty()
+		_ this.validChecker.start()
+		_ this.validChecker.validate()
+
+	m resetDirty
+		var scope = this.scope
+		set scope.original = angular.copy(scope[this.modelName]);
+		_ this.setIsDirty(false);
+
+	m setIsDirty
+		param value
+		set this.isDirty = value
+		_ this.setState()
+
+	m setState
+		_ this.setCanSave()
+	
+	m setCanSave
+		if this.validChecker.isValid === false
+			set this.scope.$canSave = false
+			set this.scope.$canSaveMessage = 'There are invalid fields.'
+			return
+		if this.isDirty === false
+			set this.scope.$canSave = false
+			set this.scope.$canSaveMessage = 'No changes.'
+			return
+		set this.scope.$canSave = true
+		set this.scope.$canSaveMessage = 'Click to save changes.'
+
+	m setWatch
+		param ctrl
+		param validChecker
+		var scope = this.scope
+		var modelName = this.modelName
+		var self = this
+		var ngModel = modelName + '.' + ctrl.id
+		_ ctrl.$watchListener = scope.$watch
+			@ ngModel
+			function
+				param newValue
+				param oldValue
+				$* log 'DirtyChecker.newValue.oldValue', newValue, oldValue *$
+				if newValue != oldValue
+					_ self.setIsDirty(angular.equals(scope[modelName], scope.original) === false)
+					_ validChecker.validate()
+					_ self.setState()
+			@ true
+
+	m setValidationInfo
+		param text
+		param control
+		_ this.validChecker.setValidationInfo(text, control)

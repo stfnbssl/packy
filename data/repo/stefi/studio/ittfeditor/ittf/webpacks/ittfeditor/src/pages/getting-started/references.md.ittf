@@ -1,0 +1,44 @@
+﻿mdx
+	
+	h1 Tech reference
+
+	h3 Open source
+	ul
+		lia( How to Make Your Open Source Project Really Awesome, http://blog.clojurewerkz.org/blog/2013/04/20/how-to-make-your-open-source-project-really-awesome/ )
+		lia( todo , # )
+
+	h3 PostCSS
+	ul
+		lia( PostCSS Plugin Guidelines (Darvin pligin packs - plugins schemas transformers generators ?) , https://github.com/postcss/postcss/blob/master/docs/guidelines/plugin.md )
+
+	h3 Databases
+	ul
+		lia( Appropriate Uses For SQLite, https://www.sqlite.org/whentouse.html )
+		lia( NodeJs MongoDB, https://mongodb.github.io/node-mongodb-native/api-generated/collection.html#drop )
+		lia( mLab quick starter, http://docs.mlab.com/ )
+		lia( Heroku - MongoLab : Using Mongoose.js for elegant MongoDB object modeling in Node.js, https://elements.heroku.com/buttons/mongolab/hello-mongoose )
+		lia( Graph Data With MongoDB, https://www.compose.com/articles/graph-data-with-mongodb/ )
+			
+	h3 Cloud services
+	ul
+		lia( Heroku - Getting Started on Heroku with Node.js, https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up )
+		lia( Heroku - How Heroku Works, https://devcenter.heroku.com/articles/how-heroku-works )
+		lia( Git for Windows v2.8.1 Release Notes, file:///C:/Program%20Files/Git/ReleaseNotes.html )
+			
+	h3 Authentication
+	ul
+		lia( Express-compatible authentication middleware, https://github.com/jaredhanson/passport )
+		lia( Express-js session, https://expressjs.com/en/resources/middleware/session.html )
+			
+	h3 UI
+	ul
+		lia( React Components that Implement Google's Material Design, https://github.com/callemall/material-ui/tree/next )
+		lia( Temporary documentation for the 'next' pre-releases , https://material-ui-1dab0.firebaseapp.com/ )
+
+	h3 Utilities
+	ul
+		lia( A script for starting a new plugin (or project), https://github.com/postcss/postcss-plugin-boilerplate/blob/master/start )
+		lia( A tool/library to assist you with large-scale codebase refactors , https://github.com/facebook/codemod )
+		lia( A JavaScript codemod toolkit., https://github.com/facebook/jscodeshift )
+		lia( A React utility belt for function components and higher-order components , https://github.com/acdlite/recompose )
+		lia( Markdown synthax, https://daringfireball.net/projects/markdown/syntax )

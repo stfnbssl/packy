@@ -1,0 +1,13 @@
+﻿tr
+	$params nome, ms, fs, ns, mp, fp, np, x1|@@null, x2|@@null
+	td ${nome}
+	td ${ms}
+	td ${fs}
+	td ${ns}
+	td ${mp}
+	td ${fp}
+	td ${np}
+	$if x1
+		td ${x1}
+	$if x2
+		td ${x2}

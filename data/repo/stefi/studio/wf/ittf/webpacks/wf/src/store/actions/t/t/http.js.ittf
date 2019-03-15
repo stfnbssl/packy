@@ -1,0 +1,27 @@
+﻿$group
+	$params name, m1, m2|@@null, m3|@@null, m4|@@null
+
+	+
+	# ${name}
+	wz-const ${m1.toUpperCase()}_${name.toUpperCase()} = '${m1.toUpperCase()}_${name.toUpperCase()}'
+	wz-const ${m1.toUpperCase()}_${name.toUpperCase()}_REQUEST = '${m1.toUpperCase()}_${name.toUpperCase()}_REQUEST'
+	wz-const ${m1.toUpperCase()}_${name.toUpperCase()}_SUCCESS = '${m1.toUpperCase()}_${name.toUpperCase()}_SUCCESS'
+	wz-const ${m1.toUpperCase()}_${name.toUpperCase()}_FAILURE = '${m1.toUpperCase()}_${name.toUpperCase()}_FAILURE'
+
+	$if m2 != null
+		wz-const ${m2.toUpperCase()}_${name.toUpperCase()} = '${m2.toUpperCase()}_${name.toUpperCase()}'
+		wz-const ${m2.toUpperCase()}_${name.toUpperCase()}_REQUEST = '${m2.toUpperCase()}_${name.toUpperCase()}_REQUEST'
+		wz-const ${m2.toUpperCase()}_${name.toUpperCase()}_SUCCESS = '${m2.toUpperCase()}_${name.toUpperCase()}_SUCCESS'
+		wz-const ${m2.toUpperCase()}_${name.toUpperCase()}_FAILURE = '${m2.toUpperCase()}_${name.toUpperCase()}_FAILURE'
+
+	$if m3 != null
+		wz-const ${m3.toUpperCase()}_${name.toUpperCase()} = '${m3.toUpperCase()}_${name.toUpperCase()}'
+		wz-const ${m3.toUpperCase()}_${name.toUpperCase()}_REQUEST = '${m3.toUpperCase()}_${name.toUpperCase()}_REQUEST'
+		wz-const ${m3.toUpperCase()}_${name.toUpperCase()}_SUCCESS = '${m3.toUpperCase()}_${name.toUpperCase()}_SUCCESS'
+		wz-const ${m3.toUpperCase()}_${name.toUpperCase()}_FAILURE = '${m3.toUpperCase()}_${name.toUpperCase()}_FAILURE'
+
+	$if m4 != null
+		wz-const ${m4.toUpperCase()}_${name.toUpperCase()} = '${m4.toUpperCase()}_${name.toUpperCase()}'
+		wz-const ${m4.toUpperCase()}_${name.toUpperCase()}_REQUEST = '${m4.toUpperCase()}_${name.toUpperCase()}_REQUEST'
+		wz-const ${m4.toUpperCase()}_${name.toUpperCase()}_SUCCESS = '${m4.toUpperCase()}_${name.toUpperCase()}_SUCCESS'
+		wz-const ${m4.toUpperCase()}_${name.toUpperCase()}_FAILURE = '${m4.toUpperCase()}_${name.toUpperCase()}_FAILURE'

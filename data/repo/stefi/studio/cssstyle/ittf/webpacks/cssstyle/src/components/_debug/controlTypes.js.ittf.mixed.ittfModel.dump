@@ -1,0 +1,106 @@
+  module  ids: 1 7
+    kind react ids: 2 8
+    import React, { Component, PropTypes } from 'react' ids: 3 9
+    $group  ids: 13 28
+      wz-function Input ids: 14 29
+        param type ids: 15 30
+        return  ids: 16 31
+          =>  ids: 17 32
+            param { id, value, onChange } ids: 18 33
+            return  ids: 19 34
+              input  ids: 20 35
+                id {id} ids: 21 36
+                type {type} ids: 22 37
+                value {value} ids: 23 38
+                onChange  ids: 24 39
+                  =>  ids: 25 40
+                    param e ids: 26 41
+                    _ onChange(e.target.value) ids: 27 42
+    $group  ids: 43 104
+      wz-function Select ids: 44 105
+        return  ids: 45 106
+          =>  ids: 46 107
+            param { id, value, data, onChange } ids: 47 108
+            const { options } = data ids: 48 109
+            const nroptions = normalizeOptions(options, value) ids: 49 110
+            var optionTags ids: 50 111
+              $group  ids: 199 205
+                $args: nroptions, o  $params: coll, item
+                _ ${coll}.map ids: 201 206
+                  =>  ids: 202 207
+                    param ${item} ids: 203 208
+                    return  ids: 52 113
+                      option {o.text} ids: 53 114
+                        @ key {o.key} ids: 54 115
+                        @ value {o.value} ids: 55 116
+            # log 'select', id, value, data, options, nroptions, optionTags ids: 56 117
+            return  ids: 57 118
+              select  ids: 58 119
+                id {id} ids: 59 120
+                value {value} ids: 60 121
+                onChange  ids: 61 122
+                  =>  ids: 62 123
+                    param e ids: 63 124
+                    _ onChange(e.target.value) ids: 64 125
+                + {optionTags} ids: 65 126
+      function normalizeOptions ids: 66 127
+        param options ids: 67 128
+        param value ids: 68 129
+        var j = 0 ids: 69 130
+        return  ids: 70 131
+          $group  ids: 199 210
+            $args: options, o  $params: coll, item
+            _ ${coll}.map ids: 201 211
+              =>  ids: 202 212
+                param ${item} ids: 203 213
+                $group  ids: 215 219
+                  $args: o  $params: val
+                  if ${val} != null && typeof ${val} === 'object' && Array.isArray(${val}) === false ids: 217 220
+                    return  ids: 73 134
+                      {  ids: 74 135
+                        @ key 'k' + (++j) ids: 75 136
+                        @ value getValue(o) ids: 76 137
+                        @ text getText(o) ids: 77 138
+                        @ selected getValue(o) === value ids: 78 139
+                else  ids: 79 140
+                  return  ids: 80 141
+                    {  ids: 81 142
+                      @ key 'k' + (++j) ids: 82 143
+                      @ value o ids: 83 144
+                      @ text o ids: 84 145
+                      @ selected o === value ids: 85 146
+      function getValue ids: 86 147
+        param o ids: 87 148
+        if o.val ids: 88 149
+          return o.val ids: 89 150
+        elif o.id ids: 90 151
+          return o.id ids: 91 152
+        elif o.key ids: 92 153
+          return o.key ids: 93 154
+        return o.value ids: 94 155
+      function getText ids: 95 156
+        param o ids: 96 157
+        if o.label ids: 97 158
+          return o.label ids: 98 159
+        elif o.name ids: 99 160
+          return o.name ids: 100 161
+        elif o.key ids: 101 162
+          return o.key ids: 102 163
+        return o.text ids: 103 164
+    $group  ids: 165 182
+      wz-function Range ids: 166 183
+        return  ids: 167 184
+          =>  ids: 168 185
+            param { id, value, min, max, step, onChange } ids: 169 186
+            return  ids: 170 187
+              input  ids: 171 188
+                id {id} ids: 172 189
+                type range ids: 173 190
+                value {value} ids: 174 191
+                min {min} ids: 175 192
+                max {max} ids: 176 193
+                step {step} ids: 177 194
+                onChange  ids: 178 195
+                  =>  ids: 179 196
+                    param e ids: 180 197
+                    _ onChange(e.target.value) ids: 181 198

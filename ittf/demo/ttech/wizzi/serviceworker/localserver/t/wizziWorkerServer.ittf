@@ -1,0 +1,487 @@
+﻿$group
+
+	var contentTypes
+		{ 
+			@ 'html' 'text/html'
+			@ 'json' 'application/json'
+			@ 'js' 'application/javascript'
+			@ 'css' 'text/css'
+	
+	function ittfPathInfo
+		param ittfPath
+		set ittfPath = ittfPath.toLowerCase()
+		var basename = ittfPath.split('/').pop()
+		var ss = basename.split('.')
+		var isIttf = ss.pop() === 'ittf'
+		var mime = isIttf ? ss[ss.length-1] : ss.pop()
+		return
+			{
+				@ basename basename
+				@ isIttf isIttf
+				@ mime mime
+				@ contentType contentTypes[mime]
+
+	function textResponse
+		param content
+		param filePath
+		var pinfo = filePath ? ittfPathInfo(filePath) : null
+		var contentType = pinfo ? pinfo.contentType : 'text/html'
+		return 
+			new Response
+				new Blob
+					[ 
+						@ content
+					{ 
+						@ type [pinfo.mime]
+				{ 
+					@ headers
+						{
+							@ 'Content-Type' contentType
+
+	function jsonStringifyResponse
+		param json
+		return
+			_ textResponse
+				_ htmlPage
+					_ JSON.stringify
+						@ json
+						@ null
+						@ 2
+					@ 'pre'
+				@ 'dummy.html.ittf'
+
+	function jsonFullResponse
+		param json
+		return
+			new Promise
+				=>
+					param resolve
+					return
+						_ resolve
+							_ jsonStringifyResponse
+								@ json
+
+	function htmlPage
+        param content
+		param tag
+		set tag = tag || 'pre'
+        var output
+            [ 
+                @ '<!DOCTYPE html>'
+                @ '<html>'
+                @ '<body>'
+                @ '<' + tag + '>'
+				@ content
+				@ '</' + tag + '>'
+                @ '</body>'
+                @ '</html>'
+        return output.join('\n')
+
+	function error404Page
+        param path
+        var output
+            [ 
+                @ '<!DOCTYPE html>'
+                @ '<html>'
+                @ '<body>'
+                @ '<h1>404 File Not Found</h1>'
+                `lit 
+                    + <p>File\b
+                    @ path
+                    + \bnot\bfound\bin\bbrowserfs
+                @ '</body>'
+                @ '</html>'
+        return output.join('\n')
+
+	class WizziWorkerServer
+		ctor
+			param options
+			set this.wf = options.wf
+			set this.metaRootPath = options.metaRootPath
+			set this.resourcesRootPath = options.resourcesRootPath || '/ixdb'
+			set this.baseUrl = options.baseUrl
+
+		m virtFS
+			param callback
+			if this._virtFS
+				r_cb( this._virtFS )
+			else
+				var that = this
+				_ this.wf.wizziUtils.vfile
+					f_cb( virtFS )
+						set that._virtFS = virtFS
+						r_cb( virtFS )
+
+		m writeFile
+			param filePath
+			param content
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.write
+						@ filePath
+						@ content
+						f_cb( result )
+							log 'WizziWorkerServer.writeFile.result', result
+							r_cb( result )
+
+		m readFile
+			param filePath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.read
+						@ filePath
+						f_cb( result )
+							var result_utf8 = result.toString('utf8')
+							log 'WizziWorkerServer.readFile.result', result_utf8
+							r_cb( result_utf8 )
+
+		m createFolder
+			param folderPath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.mkdir
+						@ folderPath
+						f_cb( result )
+							log 'WizziWorkerServer.createFolder.result', result
+							r_cb( result )
+
+		m deleteFolder
+			param folderPath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.mkdir
+						@ folderPath
+						f_cb( result )
+							log 'WizziWorkerServer.deleteFolder.result', result
+							r_cb( result )
+
+		m renameFolder
+			param oldFolderPath
+			param newFolderPath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.rename
+						@ oldFolderPath
+						@ newFolderPath
+						f_cb( result )
+							log 'WizziWorkerServer.renameFolder.result', result
+							r_cb( result )
+
+		m copyFolder
+			param srcFolderPath
+			param destFolderPath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.copyFolder
+						@ srcFolderPath
+						@ destFolderPath
+						f_cb( result )
+							log 'WizziWorkerServer.copyFolder.result', result
+							r_cb( result )
+
+		m moveFolder
+			param srcFolderPath
+			param destFolderPath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.moveFolder
+						@ srcFolderPath
+						@ destFolderPath
+						f_cb( result )
+							log 'WizziWorkerServer.moveFolder.result', result
+							r_cb( result )
+
+		m createFile
+			param filePath
+			param content
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.write
+						@ filePath
+						@ content
+						f_cb( result )
+							log 'WizziWorkerServer.createFile.result', result
+							r_cb( result )
+
+		m deleteFile
+			param filePath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.unlink
+						@ filePath
+						f_cb( result )
+							log 'WizziWorkerServer.deleteFile.result', result
+							r_cb( result )
+
+		m renameFile
+			param oldFilePath
+			param newFilePath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.rename
+						@ oldFilePath
+						@ newFilePath
+						f_cb( result )
+							log 'WizziWorkerServer.renameFile.result', result
+							r_cb( result )
+
+		m duplicateFile
+			param srcFilePath
+			param destFilePath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.copyFile
+						@ srcFilePath
+						@ destFilePath
+						f_cb( result )
+							log 'WizziWorkerServer.duplicateFile.result', result
+							r_cb( result )
+
+		m copyFile
+			param srcFilePath
+			param destFilePath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.copyFile
+						@ srcFilePath
+						@ destFilePath
+						f_cb( result )
+							log 'WizziWorkerServer.copyFile.result', result
+							r_cb( result )
+
+		m moveFile
+			param srcFilePath
+			param destFilePath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.moveFile
+						@ srcFilePath
+						@ destFilePath
+						f_cb( result )
+							log 'WizziWorkerServer.moveFile.result', result
+							r_cb( result )
+
+		m getFolders
+			param folderPath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.getFolders
+						@ folderPath
+                        {
+                            @ deep true
+						f_cb( result )
+							log 'WizziWorkerServer.getFolders.result', result
+							r_cb( result )
+
+		m getFiles
+			param folderPath
+			param callback
+			_ this.virtFS
+				f_cb( virtFS )
+					_ virtFS.getFiles
+						@ folderPath
+                        {
+                            @ deep true
+						f_cb( result )
+							log 'WizziWorkerServer.getFiles.result', result
+							r_cb( result )
+
+		m folderBrowseScan
+			param folderPath
+			param callback
+			_ this.wf.wizziUtils.folderBrowse.scan
+				@ folderPath
+				{
+					@ rootFolder this.resourcesRootPath
+				f_cb( result )
+					log 'WizziWorkerServer.folderBrowseScan.result', result
+					r_cb( result )
+
+		m ittfDocumentScan
+			param filePath
+			param callback
+			_ this.wf.wizziUtils.ittfDocumentScanner.scan
+				@ filePath
+				{
+					@ rootFolder this.resourcesRootPath
+				f_cb( result )
+					log 'WizziWorkerServer.ittfDocumentScan.result', result
+					r_cb( result )
+
+		m prettify
+			param filePath
+			param callback
+			var that = this
+			_ this.readFile
+				@ filePath
+				f_cb( content )
+					_ that.prettifyContent
+						@ content
+						@ callback
+
+		m prettifyContent
+			param content
+			param callback
+			_ this.wf.wizziUtils.prettifyFromString
+				@ content
+				f_cb( result )
+					log 'WizziWorkerServer.prettifyContent.result', result
+					r_cb( result )
+
+		m genResponse
+			param filePath
+			
+			return
+				new Promise
+					=>
+						param resolve
+						param reject
+						_ this.wf.gen
+        					@ filePath
+        					f_cb_no_err( artifactText )
+								if err
+									log 'WizziWorkerServer.genResponse.err', err
+									return
+										_ reject
+											@ err
+								log 'WizziWorkerServer.genResponse.artifactText', artifactText
+								return
+									_ resolve
+										_ textResponse
+											@ artifactText
+											@ filePath
+
+		m folderBrowseScanResponse
+			param folderPath
+
+			return
+				new Promise
+					=>
+						param resolve
+						param reject
+						$$ _ this.getFolders
+						_ this.folderBrowseScan
+							@ folderPath
+        					f_cb_no_err( json )
+								if err
+									log 'WizziWorkerServer.folderBrowseScanResponse.err', err
+									return
+										_ reject
+											@ err
+								log 'WizziWorkerServer.folderBrowseScanResponse.json', json
+								return
+									_ resolve
+										_ jsonStringifyResponse
+											@ json
+
+		m filesResponse
+			param folderPath
+
+			return
+				new Promise
+					=>
+						param resolve
+						param reject
+						_ this.getFiles
+							@ folderPath
+        					f_cb_no_err( json )
+								if err
+									log 'WizziWorkerServer.filesResponse.err', err
+									return
+										_ reject
+											@ err
+								log 'WizziWorkerServer.filesResponse.json', json
+								return
+									_ resolve
+										_ jsonStringifyResponse
+											@ json
+
+		m ittfDocumentScanResponse
+			param filePath
+
+			return
+				new Promise
+					=>
+						param resolve
+						param reject
+						_ this.ittfDocumentScan
+							@ filePath
+        					f_cb_no_err( json )
+								if err
+									log 'WizziWorkerServer.ittfDocumentScanResponse.err', err
+									return
+										_ reject
+											@ err
+								log 'WizziWorkerServer.ittfDocumentScanResponse.json', json
+								return
+									_ resolve
+										_ jsonStringifyResponse
+											@ json
+
+		m handleMessage
+			param event
+			log 'WizziWorkerServer.handleMessage.event.data', event.data
+			var P
+				_ this.execMessage
+					@ event.data.command
+					@ event.data
+			log 'WizziWorkerServer.handleMessage.P', P
+			if P
+				_ P.then
+					=>
+						param result
+						log 'WizziWorkerServer.handleMessage.result', result
+						_ event.ports[0].postMessage
+							{
+								@ err false
+								@ data result 
+					._ catch
+						=>
+							param err
+							log 'WizziWorkerServer.handleMessage.err', err
+							_ event.ports[0].postMessage
+								{
+									@ err true
+									@ data err
+				return true
+			else
+				return false
+
+		m execMessage
+			param command
+			param data
+			
+			log 'WizziWorkerServer.execMessage.command, data', command, data
+
+			pify( read, readFile, filePath
+			pify( write, writeFile, filePath, content
+			pify( createFolder, createFolder, folderPath
+			pify( deleteFolder, deleteFolder, folderPath
+			pify( renameFolder, renameFolder, oldFolderPath, newFolderPath
+			pify( copyFolder, copyFolder, srcFolderPath, destFolderPath
+			pify( moveFolder, moveFolder, srcFolderPath, destFolderPath
+			pify( createFile, createFile, filePath, content
+			pify( deleteFile, deleteFile, filePath
+			pify( renameFile, renameFile, oldFilePath, newFilePath
+			pify( duplicateFile, duplicateFile, oldFilePath, newFilePath
+			pify( copyFile, copyFile, srcFilePath, destFilePath
+			pify( moveFile, moveFile, srcFilePath, destFilePath
+			pify( folderBrowse, folderBrowseScan, folderPath
+			pify( ittfDocument, ittfDocumentScan, filePath
+			pify( prettify, prettify, filePath
+			pify( prettifyContent, prettifyContent, content
+			return null

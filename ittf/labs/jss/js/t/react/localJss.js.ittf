@@ -1,0 +1,40 @@
+﻿$group
+
+	$include ./constants
+	$include ./theme
+
+	j/iife-wrapped( BxLocalJss, jssModule, reactJss, jssPresetModule, jssIsolatePlugin, theme )
+		
+		const { create: createJss } = jssModule
+		const { create: createInjectSheet, SheetsRegistryProvider, SheetsRegistry } = reactJss
+
+		log 'createJss', createJss
+		log 'createInjectSheet', createInjectSheet
+		log 'SheetsRegistryProvider', SheetsRegistryProvider
+		log 'SheetsRegistry', SheetsRegistry
+
+		const jss
+			_ createJss
+				_ jssPresetModule.default
+				._ use
+					_ jssIsolatePlugin.default
+						{
+							@ reset
+								{
+									@ 'box-sizing' 'border-box'
+									@ 'font-family' theme.fontFamily
+									@ 'font-size' theme.fontSize
+									@ 'font-weight' 400
+									@ 'line-height' theme.lineHeight
+									@ color theme.textColor
+				
+		var localJss
+			{
+				@ jss jss
+				@ SheetsRegistryProvider
+				@ SheetsRegistry
+				@ injectSheet
+					_ createInjectSheet
+						$$ @ jss
+
+		return localJss

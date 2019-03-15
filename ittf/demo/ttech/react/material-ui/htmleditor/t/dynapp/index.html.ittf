@@ -1,0 +1,20 @@
+﻿$group
+	
+	$include ./Global
+	$include ./AssetsHtml
+	$include ./AssetsStyle
+	$include ./AssetsIcons
+	$include ./Assets
+	$include ./components/downshift
+	$include ./DynApp
+	$include ./DynHtmlView
+	$include ./DynMTreeView
+	$include ./DynNode
+	$include ./DynNodeDialog
+	$include ./DynProp
+	$include ./DynPropList
+	$include ./MTreeNode
+	$include ./MTreeNodeProps
+	$include ./storage
+	$include ./utils
+

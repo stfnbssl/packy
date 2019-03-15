@@ -1,0 +1,68 @@
+﻿module
+	kind react
+
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import { connect } from 'react-redux'
+	import MuiThemeProvider, { MUI_SHEET_ORDER } from 'material-ui/styles/MuiThemeProvider'
+	import { createMuiTheme } from 'material-ui/styles'
+	import createPalette from 'material-ui/styles/palette'
+	import { orange, red } from 'material-ui/colors'
+	import { lightTheme, darkTheme, setPrismTheme } from '../utils/prism'
+	import AppRouter from '../components/AppRouter'
+
+	let styleManager
+
+	react App
+
+		render
+			
+			const { dark } = this.props
+			
+			const palette
+				_ createPalette
+					{
+						@ primary orange
+						@ accent red
+						@ type (dark ? 'dark' : 'light')
+			
+			const theme
+				_ createMuiTheme
+					{
+						@ palette
+
+			if !styleManager
+				const themeContext
+					_ MuiThemeProvider.createDefaultContext
+						{
+							@ theme
+				set styleManager = themeContext.styleManager
+			else
+				set styleManager.updateTheme(theme)
+
+			_ styleManager.setSheetOrder
+				_ MUI_SHEET_ORDER.concat
+					[
+
+			if dark
+				_ setPrismTheme(darkTheme)
+			else
+				_ setPrismTheme(lightTheme)
+
+			return
+				< MuiThemeProvider
+					@ theme {theme}
+					@ styleManager {styleManager}
+					div
+						h1 Wizzi factory
+						< AppRouter
+
+	export default
+		_ connect
+			=>
+				param state
+				return
+					{
+						@ dark state.dark
+			(
+				@ App

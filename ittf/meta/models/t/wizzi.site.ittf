@@ -1,0 +1,49 @@
+$group
+
+	category Wizzi
+
+		category Api
+		    
+		    demo rest
+				label Rest api docs
+
+		    demo utilities
+				label Utilities
+
+		    demo filesystem
+				label Filesystem
+		    
+			demo mtrees
+				label mTrees
+			
+			demo models
+				label Wizzi models
+
+			demo generations
+				label Generations
+				
+			demo jobs
+				label Wizzi jobs
+
+			demo wizzifiers
+				label Wizzifiers
+
+		category Play
+		    
+		    demo repl_1
+				label Repl 1
+
+		category Docs
+		    
+		    demo schemas
+				label Schemas
+
+		category ServiceWorker
+		    
+		    demo localserver
+				label In browser server
+
+		    demo dbadmin
+				label Wizzi repo IndexedDB admin
+
+				

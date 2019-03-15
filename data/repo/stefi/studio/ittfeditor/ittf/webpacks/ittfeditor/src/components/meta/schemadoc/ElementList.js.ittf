@@ -1,0 +1,42 @@
+﻿r-component( ElementList )
+
+	$append imports
+		import List, { ListItem, ListItemText } from 'material-ui/List'
+	
+	style
+		@ selected
+			{
+				@ color 'red'
+
+	prop elements
+		[
+	
+	prop selectedElementName
+	
+	prop onElementSelected
+		func
+	
+	render 
+		
+		prop classes
+		prop elements
+		prop selectedElementName
+		prop onElementSelected
+
+		return
+			< List
+				@ dense {true}
+				{
+					_ elements.map
+						=>
+							param element
+							return
+								< ListItem
+									@ key {element.name}
+									@ onClick
+										=>
+											_ onElementSelected
+												@ element
+									< ListItemText
+										class {selectedElementName === element.name ? classes.selected : ''}
+										@ primary {element.name}

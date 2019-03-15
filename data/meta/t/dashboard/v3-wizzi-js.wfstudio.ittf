@@ -1,0 +1,15 @@
+﻿$group
+
+	package v5-plugins/wizzi-js
+
+		kind plugin
+		plugin-name wizzi-js
+		base-folder-uri C:\My\wizzi\v5\plugins\wizzi-js
+		std-folders()
+		plugin-std-ittf-folders()
+
+		schema js
+
+			artifact module
+				language javascript
+				is-default

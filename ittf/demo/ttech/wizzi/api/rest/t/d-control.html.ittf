@@ -1,0 +1,23 @@
+$group
+	$params type, id, label, value
+
+	. d-param
+		$if type === 'text'
+			. d-param-label
+				label ${label}
+					for ${id}
+			. d-param-input
+				input
+					id ${id}
+					value ${value}
+					class form-control
+		$elif type === 'static'
+			. d-param-label
+				label ${label}
+					for ${id}
+			. d-param-input
+				input
+					id ${id}
+					value ${value}
+					disabled
+					class form-control

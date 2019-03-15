@@ -1,0 +1,34 @@
+h/root/empty_layout()
+
+	$append head-styles
+		css /static/lib/prism/prism.css
+		css ./style.css.ittf
+
+    . container
+        h2 Wizzi generation
+        
+		. ittf-gen
+            . split split-horizontal
+                id split-l
+				# editorContainer
+            . split split-horizontal
+				id split-r
+                # result
+				pre
+					code
+						id jsCodeView
+						class language-javascript
+		
+	$append body-scripts
+		js /static/lib/prism/prism.js
+		js /static/lib/controls/split.js
+		js /static/lib/ace/src-noconflict/ace.js
+		js ./script.js.ittf
+		script
+			module
+				var split
+					_ Split
+						@ ['#split-l', '#split-r']
+						{
+							@ sizes [50, 50]
+							@ minSize 150

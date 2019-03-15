@@ -1,0 +1,13 @@
+﻿$group
+	$params title, numitems:integer, ulclass, liclass
+
+	h1 ${title}
+
+	ul
+		class ${ulclass}
+
+		$for var i=1; i<numitems+1; i++
+
+			li item ${i}
+				class ${liclass}
+

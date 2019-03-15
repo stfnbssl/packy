@@ -1,0 +1,90 @@
+﻿r-component( InfoPanel )
+
+	$append imports
+		import builder from './MuiBuilder'
+
+	style
+		@ panel
+			{
+				@ width '32%'
+				@ backgroundColor '#fff'
+				@ marginBottom '20px'
+				@ paddingBottom '60px'
+				@ border '1px solid #ccc'
+				@ position 'relative'
+		@ flex
+			{
+				@ display 'flex'
+				@ flexDirection 'row'
+				@ flexWrap 'wrap'
+				@ justifyContent 'space-between'
+		@ flexColumn
+			{
+				@ flexDirection 'column'
+		@ img
+			{
+				@ display 'block'
+				@ width '100%'
+		@ h2
+			{
+				@ font "700 25px/40px 'Open Sans', sans-serif"
+				@ color '#2ab'
+				@ padding '0 20px'
+				@ margin '0'
+	
+	render
+		prop classes
+		prop data
+		const { id, format, text, href, src, heading, flex, style: styleProp, p_style } = data
+
+		const childPanels
+			_ data.panels.map
+				=>
+					param panel
+					param index
+					set panel.p_style = panel.p_style || p_style
+					var PanelComponent = builder.create(panel)
+					return
+						< PanelComponent
+							@ key { index }
+							@ data { panel }    
+
+		if format === 'a.img'
+			return
+				div
+					@ id { id }
+					@ className
+						_ classNames
+							@ classes.panel
+							{
+								@ [classes.flex] flex
+								@ [classes.flexColumn] flex === 'column'
+					@style { styleProp }
+					a 
+						href { href }
+						img
+							src { src }
+							class { classes.img }
+					p { text }
+						@style { data.p_style }
+					+ { childPanels }
+			
+		elif format === 'h2.p+'
+			return
+				div
+					@ id { id }
+					@ className
+						_ classNames
+							@ classes.panel
+							{
+								@ [classes.flex] flex
+								@ [classes.flexColumn] flex === 'column'
+					@style { styleProp }
+					h2 { heading }
+						class { classes.h2 }
+					+ { childPanels }
+		else
+			return
+				div { 'Unknown InfoPanel format ' + format }
+						
+

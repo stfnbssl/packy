@@ -1,0 +1,43 @@
+﻿element function
+	tag function, =>, m
+	ast FunctionDeclaration, FunctionExpression
+	category function-statements
+	
+	item
+		title Function with no params
+		ittf
+			function sayHello
+				log 'Hello'
+
+	item
+		title Function with unchecked params
+		ittf
+			function sayHello
+				param name
+				log 'Hello ' + name
+	
+	item
+		title Function with checked params
+		ittf
+			function sayHello
+				string name
+				log 'Hello ' + name
+
+	item
+		title Function with checked params and callback
+		ittf
+			function sayHello
+				string name
+				callback
+				log 'Hello ' + name
+
+	item
+		title Function with checked params and callback
+		ittf
+			function sayHello
+				string name
+				any greetings
+				gotcha fiona
+				callback
+				log 'Hello ' + name
+

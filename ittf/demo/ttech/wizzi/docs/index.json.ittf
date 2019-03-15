@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'docs',
+			label: 'Docs',
+			experimentsWith: 'wizzi documentation',
+			path: [
+				{
+					name: 'wizzi',
+					label: 'Wizzi',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

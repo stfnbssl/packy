@@ -1,0 +1,257 @@
+// 28/4/2017:16:11:34  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "css", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //128
+$.a($0, $1, 5);
+var $2 = { n: "<", v: "*", r: 2, c: 5, s: "f1", u: "f1",  }; //129
+$.a($1, $2, 7);
+var $3 = { n: "+", v: "*:before", r: 3, c: 9, s: "f1", u: "f1",  }; //130
+$.a($2, $3, 9);
+var $4 = { n: "+", v: "*:after", r: 4, c: 9, s: "f1", u: "f1",  }; //131
+$.a($2, $4, 11);
+var $5 = { n: "-moz-box-sizing", v: "border-box", r: 5, c: 9, s: "f1", u: "f1",  }; //132
+$.a($2, $5, 13);
+var $6 = { n: "-webkit-box-sizing", v: "border-box", r: 6, c: 9, s: "f1", u: "f1",  }; //133
+$.a($2, $6, 15);
+var $7 = { n: "box-sizing", v: "border-box", r: 7, c: 9, s: "f1", u: "f1",  }; //134
+$.a($2, $7, 17);
+var $8 = { n: "position", v: "relative", r: 8, c: 9, s: "f1", u: "f1",  }; //135
+$.a($2, $8, 19);
+var $9 = { n: ".", v: "root", r: 9, c: 5, s: "f1", u: "f1",  }; //136
+$.a($1, $9, 21);
+var $10 = { n: "height", v: "100vh", r: 10, c: 9, s: "f1", u: "f1",  }; //137
+$.a($9, $10, 23);
+var $11 = { n: "width", v: "100vw", r: 11, c: 9, s: "f1", u: "f1",  }; //138
+$.a($9, $11, 25);
+var $12 = { n: ".", v: "Resizer", r: 12, c: 5, s: "f1", u: "f1",  }; //139
+$.a($1, $12, 27);
+var $13 = { n: "-moz-box-sizing", v: "border-box", r: 13, c: 9, s: "f1", u: "f1",  }; //140
+$.a($12, $13, 29);
+var $14 = { n: "-webkit-box-sizing", v: "border-box", r: 14, c: 9, s: "f1", u: "f1",  }; //141
+$.a($12, $14, 31);
+var $15 = { n: "box-sizing", v: "border-box", r: 15, c: 9, s: "f1", u: "f1",  }; //142
+$.a($12, $15, 33);
+var $16 = { n: "background", v: "#000", r: 16, c: 9, s: "f1", u: "f1",  }; //143
+$.a($12, $16, 35);
+var $17 = { n: "opacity", v: ".2", r: 17, c: 9, s: "f1", u: "f1",  }; //144
+$.a($12, $17, 37);
+var $18 = { n: "z-index", v: "1", r: 18, c: 9, s: "f1", u: "f1",  }; //145
+$.a($12, $18, 39);
+var $19 = { n: "-moz-background-clip", v: "padding", r: 19, c: 9, s: "f1", u: "f1",  }; //146
+$.a($12, $19, 41);
+var $20 = { n: "-webkit-background-clip", v: "padding", r: 20, c: 9, s: "f1", u: "f1",  }; //147
+$.a($12, $20, 43);
+var $21 = { n: "background-clip", v: "padding-box", r: 21, c: 9, s: "f1", u: "f1",  }; //148
+$.a($12, $21, 45);
+var $22 = { n: ".", v: "Resizer:hover", r: 22, c: 5, s: "f1", u: "f1",  }; //149
+$.a($1, $22, 47);
+var $23 = { n: "-webkit-transition", v: "all 2s ease", r: 23, c: 9, s: "f1", u: "f1",  }; //150
+$.a($22, $23, 49);
+var $24 = { n: "transition", v: "all 2s ease", r: 24, c: 9, s: "f1", u: "f1",  }; //151
+$.a($22, $24, 51);
+var $25 = { n: ".", v: "Resizer.horizontal", r: 25, c: 5, s: "f1", u: "f1",  }; //152
+$.a($1, $25, 53);
+var $26 = { n: "height", v: "11px", r: 26, c: 9, s: "f1", u: "f1",  }; //153
+$.a($25, $26, 55);
+var $27 = { n: "margin", v: "-5px 0", r: 27, c: 9, s: "f1", u: "f1",  }; //154
+$.a($25, $27, 57);
+var $28 = { n: "border-top", v: "5px solid rgba(255, 255, 255, 0)", r: 28, c: 9, s: "f1", u: "f1",  }; //155
+$.a($25, $28, 59);
+var $29 = { n: "border-bottom", v: "5px solid rgba(255, 255, 255, 0)", r: 29, c: 9, s: "f1", u: "f1",  }; //156
+$.a($25, $29, 61);
+var $30 = { n: "cursor", v: "row-resize", r: 30, c: 9, s: "f1", u: "f1",  }; //157
+$.a($25, $30, 63);
+var $31 = { n: "width", v: "100%", r: 31, c: 9, s: "f1", u: "f1",  }; //158
+$.a($25, $31, 65);
+var $32 = { n: ".", v: "Resizer.horizontal:hover", r: 32, c: 5, s: "f1", u: "f1",  }; //159
+$.a($1, $32, 67);
+var $33 = { n: "border-top", v: "5px solid rgba(0, 0, 0, 0.5)", r: 33, c: 9, s: "f1", u: "f1",  }; //160
+$.a($32, $33, 69);
+var $34 = { n: "border-bottom", v: "5px solid rgba(0, 0, 0, 0.5)", r: 34, c: 9, s: "f1", u: "f1",  }; //161
+$.a($32, $34, 71);
+var $35 = { n: ".", v: "Resizer.vertical", r: 35, c: 5, s: "f1", u: "f1",  }; //162
+$.a($1, $35, 73);
+var $36 = { n: "width", v: "15px", r: 36, c: 9, s: "f1", u: "f1",  }; //163
+$.a($35, $36, 75);
+var $37 = { n: "color", v: "blue", r: 37, c: 9, s: "f1", u: "f1",  }; //164
+$.a($35, $37, 77);
+var $38 = { n: "margin", v: "0 -5px", r: 38, c: 9, s: "f1", u: "f1",  }; //165
+$.a($35, $38, 79);
+var $39 = { n: "border-left", v: "5px solid rgba(255, 255, 0, 0)", r: 39, c: 9, s: "f1", u: "f1",  }; //166
+$.a($35, $39, 81);
+var $40 = { n: "border-right", v: "5px solid rgba(255, 255, 0, 0)", r: 40, c: 9, s: "f1", u: "f1",  }; //167
+$.a($35, $40, 83);
+var $41 = { n: "cursor", v: "col-resize", r: 41, c: 9, s: "f1", u: "f1",  }; //168
+$.a($35, $41, 85);
+var $42 = { n: ".", v: "Resizer.vertical:hover", r: 42, c: 5, s: "f1", u: "f1",  }; //169
+$.a($1, $42, 87);
+var $43 = { n: "border-left", v: "5px solid rgba(0, 0, 0, 0.5)", r: 43, c: 9, s: "f1", u: "f1",  }; //170
+$.a($42, $43, 89);
+var $44 = { n: "border-right", v: "5px solid rgba(0, 0, 0, 0.5)", r: 44, c: 9, s: "f1", u: "f1",  }; //171
+$.a($42, $44, 91);
+var $45 = { n: ".", v: "vertical section", r: 45, c: 5, s: "f1", u: "f1",  }; //172
+$.a($1, $45, 93);
+var $46 = { n: "width", v: "100vh", r: 46, c: 9, s: "f1", u: "f1",  }; //173
+$.a($45, $46, 95);
+var $47 = { n: "height", v: "100vh", r: 47, c: 9, s: "f1", u: "f1",  }; //174
+$.a($45, $47, 97);
+var $48 = { n: "display", v: "-webkit-box", r: 48, c: 9, s: "f1", u: "f1",  }; //175
+$.a($45, $48, 99);
+var $49 = { n: "display", v: "-webkit-flex", r: 49, c: 9, s: "f1", u: "f1",  }; //176
+$.a($45, $49, 101);
+var $50 = { n: "display", v: "-ms-flexbox", r: 50, c: 9, s: "f1", u: "f1",  }; //177
+$.a($45, $50, 103);
+var $51 = { n: "display", v: "flex", r: 51, c: 9, s: "f1", u: "f1",  }; //178
+$.a($45, $51, 105);
+var $52 = { n: "-webkit-box-orient", v: "vertical", r: 52, c: 9, s: "f1", u: "f1",  }; //179
+$.a($45, $52, 107);
+var $53 = { n: "-webkit-box-direction", v: "normal", r: 53, c: 9, s: "f1", u: "f1",  }; //180
+$.a($45, $53, 109);
+var $54 = { n: "-webkit-flex-direction", v: "column", r: 54, c: 9, s: "f1", u: "f1",  }; //181
+$.a($45, $54, 111);
+var $55 = { n: "-ms-flex-direction", v: "column", r: 55, c: 9, s: "f1", u: "f1",  }; //182
+$.a($45, $55, 113);
+var $56 = { n: "flex-direction", v: "column", r: 56, c: 9, s: "f1", u: "f1",  }; //183
+$.a($45, $56, 115);
+var $57 = { n: ".", v: "vertical header", r: 57, c: 5, s: "f1", u: "f1",  }; //184
+$.a($1, $57, 117);
+var $58 = { n: "padding", v: "1rem", r: 58, c: 9, s: "f1", u: "f1",  }; //185
+$.a($57, $58, 119);
+var $59 = { n: "background", v: "#eee", r: 59, c: 9, s: "f1", u: "f1",  }; //186
+$.a($57, $59, 121);
+var $60 = { n: ".", v: "vertical footer", r: 60, c: 5, s: "f1", u: "f1",  }; //187
+$.a($1, $60, 123);
+var $61 = { n: "padding", v: "1rem", r: 61, c: 9, s: "f1", u: "f1",  }; //188
+$.a($60, $61, 125);
+var $62 = { n: "background", v: "#eee", r: 62, c: 9, s: "f1", u: "f1",  }; //189
+$.a($60, $62, 127);
+var $63 = { n: "<", v: "#vertically-nested-in-container-example", r: 63, c: 5, s: "f1", u: "f1",  }; //190
+$.a($1, $63, 129);
+var $64 = { n: "-webkit-box-flex", v: "1", r: 64, c: 9, s: "f1", u: "f1",  }; //191
+$.a($63, $64, 131);
+var $65 = { n: "-webkit-flex", v: "1", r: 65, c: 9, s: "f1", u: "f1",  }; //192
+$.a($63, $65, 133);
+var $66 = { n: "-ms-flex", v: "1", r: 66, c: 9, s: "f1", u: "f1",  }; //193
+$.a($63, $66, 135);
+var $67 = { n: "flex", v: "1", r: 67, c: 9, s: "f1", u: "f1",  }; //194
+$.a($63, $67, 137);
+var $68 = { n: "display", v: "-webkit-box", r: 68, c: 9, s: "f1", u: "f1",  }; //195
+$.a($63, $68, 139);
+var $69 = { n: "display", v: "-webkit-flex", r: 69, c: 9, s: "f1", u: "f1",  }; //196
+$.a($63, $69, 141);
+var $70 = { n: "display", v: "-ms-flexbox", r: 70, c: 9, s: "f1", u: "f1",  }; //197
+$.a($63, $70, 143);
+var $71 = { n: "display", v: "flex", r: 71, c: 9, s: "f1", u: "f1",  }; //198
+$.a($63, $71, 145);
+var $72 = { n: ".", v: "horizontal section", r: 72, c: 5, s: "f1", u: "f1",  }; //199
+$.a($1, $72, 147);
+var $73 = { n: "width", v: "100vh", r: 73, c: 9, s: "f1", u: "f1",  }; //200
+$.a($72, $73, 149);
+var $74 = { n: "height", v: "100vh", r: 74, c: 9, s: "f1", u: "f1",  }; //201
+$.a($72, $74, 151);
+var $75 = { n: "display", v: "flex", r: 75, c: 9, s: "f1", u: "f1",  }; //202
+$.a($72, $75, 153);
+var $76 = { n: "flex-direction", v: "column", r: 76, c: 9, s: "f1", u: "f1",  }; //203
+$.a($72, $76, 155);
+var $77 = { n: ".", v: "horizontal header", r: 77, c: 5, s: "f1", u: "f1",  }; //204
+$.a($1, $77, 157);
+var $78 = { n: "padding", v: "1rem", r: 78, c: 9, s: "f1", u: "f1",  }; //205
+$.a($77, $78, 159);
+var $79 = { n: "background", v: "#eee", r: 79, c: 9, s: "f1", u: "f1",  }; //206
+$.a($77, $79, 161);
+var $80 = { n: ".", v: "horizontal footer", r: 80, c: 5, s: "f1", u: "f1",  }; //207
+$.a($1, $80, 163);
+var $81 = { n: "padding", v: "1rem", r: 81, c: 9, s: "f1", u: "f1",  }; //208
+$.a($80, $81, 165);
+var $82 = { n: "background", v: "#eee", r: 82, c: 9, s: "f1", u: "f1",  }; //209
+$.a($80, $82, 167);
+var $83 = { n: "<", v: "#horizontally-nested-in-container-example", r: 83, c: 5, s: "f1", u: "f1",  }; //210
+$.a($1, $83, 169);
+var $84 = { n: "flex", v: "1", r: 84, c: 9, s: "f1", u: "f1",  }; //211
+$.a($83, $84, 171);
+var $85 = { n: "display", v: "flex", r: 85, c: 9, s: "f1", u: "f1",  }; //212
+$.a($83, $85, 173);
+var $86 = { n: ".", v: "parent", r: 86, c: 5, s: "f1", u: "f1",  }; //213
+$.a($1, $86, 175);
+var $87 = { n: "width", v: "100%", r: 87, c: 9, s: "f1", u: "f1",  }; //214
+$.a($86, $87, 177);
+var $88 = { n: "height", v: "100%", r: 88, c: 9, s: "f1", u: "f1",  }; //215
+$.a($86, $88, 179);
+var $89 = { n: "-webkit-box-flex", v: "1", r: 89, c: 9, s: "f1", u: "f1",  }; //216
+$.a($86, $89, 181);
+var $90 = { n: "-webkit-flex", v: "1", r: 90, c: 9, s: "f1", u: "f1",  }; //217
+$.a($86, $90, 183);
+var $91 = { n: "-ms-flex", v: "1", r: 91, c: 9, s: "f1", u: "f1",  }; //218
+$.a($86, $91, 185);
+var $92 = { n: "flex", v: "1", r: 92, c: 9, s: "f1", u: "f1",  }; //219
+$.a($86, $92, 187);
+var $93 = { n: "display", v: "-webkit-box", r: 93, c: 9, s: "f1", u: "f1",  }; //220
+$.a($86, $93, 189);
+var $94 = { n: "display", v: "-webkit-flex", r: 94, c: 9, s: "f1", u: "f1",  }; //221
+$.a($86, $94, 191);
+var $95 = { n: "display", v: "-ms-flexbox", r: 95, c: 9, s: "f1", u: "f1",  }; //222
+$.a($86, $95, 193);
+var $96 = { n: "display", v: "flex", r: 96, c: 9, s: "f1", u: "f1",  }; //223
+$.a($86, $96, 195);
+var $97 = { n: "-webkit-box-orient", v: "vertical", r: 97, c: 9, s: "f1", u: "f1",  }; //224
+$.a($86, $97, 197);
+var $98 = { n: "-webkit-box-direction", v: "normal", r: 98, c: 9, s: "f1", u: "f1",  }; //225
+$.a($86, $98, 199);
+var $99 = { n: "-webkit-flex-direction", v: "column", r: 99, c: 9, s: "f1", u: "f1",  }; //226
+$.a($86, $99, 201);
+var $100 = { n: "-ms-flex-direction", v: "column", r: 100, c: 9, s: "f1", u: "f1",  }; //227
+$.a($86, $100, 203);
+var $101 = { n: "flex-direction", v: "column", r: 101, c: 9, s: "f1", u: "f1",  }; //228
+$.a($86, $101, 205);
+var $102 = { n: ".", v: "header", r: 102, c: 5, s: "f1", u: "f1",  }; //229
+$.a($1, $102, 207);
+var $103 = { n: "background", v: "#aaa", r: 103, c: 9, s: "f1", u: "f1",  }; //230
+$.a($102, $103, 209);
+var $104 = { n: "height", v: "3rem", r: 104, c: 9, s: "f1", u: "f1",  }; //231
+$.a($102, $104, 211);
+var $105 = { n: "line-height", v: "3rem", r: 105, c: 9, s: "f1", u: "f1",  }; //232
+$.a($102, $105, 213);
+var $106 = { n: ".", v: "wrapper", r: 106, c: 5, s: "f1", u: "f1",  }; //233
+$.a($1, $106, 215);
+var $107 = { n: "background", v: "#ffa", r: 107, c: 9, s: "f1", u: "f1",  }; //234
+$.a($106, $107, 217);
+var $108 = { n: "margin", v: "5rem", r: 108, c: 9, s: "f1", u: "f1",  }; //235
+$.a($106, $108, 219);
+var $109 = { n: "-webkit-box-flex", v: "1", r: 109, c: 9, s: "f1", u: "f1",  }; //236
+$.a($106, $109, 221);
+var $110 = { n: "-webkit-flex", v: "1", r: 110, c: 9, s: "f1", u: "f1",  }; //237
+$.a($106, $110, 223);
+var $111 = { n: "-ms-flex", v: "1", r: 111, c: 9, s: "f1", u: "f1",  }; //238
+$.a($106, $111, 225);
+var $112 = { n: "flex", v: "1", r: 112, c: 9, s: "f1", u: "f1",  }; //239
+$.a($106, $112, 227);
+var $113 = { n: ".", v: "no-margin", r: 115, c: 5, s: "f1", u: "f1",  }; //240
+$.a($1, $113, 229);
+var $114 = { n: "margin", v: "0", r: 116, c: 9, s: "f1", u: "f1",  }; //241
+$.a($113, $114, 231);
+var $115 = { n: "padding", v: "0", r: 117, c: 9, s: "f1", u: "f1",  }; //242
+$.a($113, $115, 233);
+var $116 = { n: ".", v: "full-height", r: 118, c: 5, s: "f1", u: "f1",  }; //243
+$.a($1, $116, 235);
+var $117 = { n: "height", v: "100%", r: 119, c: 9, s: "f1", u: "f1",  }; //244
+$.a($116, $117, 237);
+var $118 = { n: ".", v: "list-well-title", r: 120, c: 5, s: "f1", u: "f1",  }; //245
+$.a($1, $118, 239);
+var $119 = { n: "height", v: "15%", r: 121, c: 9, s: "f1", u: "f1",  }; //246
+$.a($118, $119, 241);
+var $120 = { n: "height", v: "calc(15% - 20px)", r: 122, c: 9, s: "f1", u: "f1",  }; //247
+$.a($118, $120, 243);
+var $121 = { n: "overflow", v: "hidden", r: 123, c: 9, s: "f1", u: "f1",  }; //248
+$.a($118, $121, 245);
+var $122 = { n: "position", v: "relative", r: 124, c: 9, s: "f1", u: "f1",  }; //249
+$.a($118, $122, 247);
+var $123 = { n: ".", v: "list-well-content", r: 125, c: 5, s: "f1", u: "f1",  }; //250
+$.a($1, $123, 249);
+var $124 = { n: "height", v: "85%", r: 126, c: 9, s: "f1", u: "f1",  }; //251
+$.a($123, $124, 251);
+var $125 = { n: "margin-bottom", v: "0", r: 127, c: 9, s: "f1", u: "f1",  }; //252
+$.a($123, $125, 253);
+var $126 = { n: "overflow", v: "auto", r: 128, c: 9, s: "f1", u: "f1",  }; //253
+$.a($123, $126, 255);
+var $127 = { n: "position", v: "relative", r: 129, c: 9, s: "f1", u: "f1",  }; //254
+$.a($123, $127, 257);

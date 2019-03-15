@@ -1,0 +1,173 @@
+class ValidChecker
+
+	ctor
+		param scope
+		param modelName
+		param modelUiName
+		param controls
+
+		set this.scope = scope
+		set this.modelName = modelName
+		set this.modelUiName = modelUiName
+		set this.controls = controls || []
+
+		set this.isValid = true
+
+		_ this.initRegex()
+
+	m initRegex
+		set this.numericRegex = /^[0-9]+$/
+		set this.integerRegex = /^\-?[0-9]+$/
+		set this.decimalRegex = /^\-?[0-9]*\.?[0-9]+$/
+		set this.emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+		set this.alphaRegex = /^[a-z]+$/i
+		set this.alphaNumericRegex = /^[a-z0-9]+$/i
+		set this.urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/
+		set this.dateRegex_422 = /\d{4}[/]\d{1,2}[/]\d{1,2}/
+		set this.dateRegex_224 = /\d{1,2}[/]\d{1,2}[/]\d{4}/
+		set this.messages
+            {
+                @ required 'The field is required.'
+                @ matches 'The field does not match the %s field.'
+                @ "default" 'The field is still set to default, please change.'
+                @ valid_email 'The field must contain a valid email address.'
+                @ valid_emails 'The field must contain all valid email addresses.'
+                @ min_length 'The field must be at least %s characters in length.'
+                @ max_length 'The field must not exceed %s characters in length.'
+                @ exact_length 'The field must be exactly %s characters in length.'
+                @ greater_than 'The field must contain a number greater than %s.'
+                @ less_than 'The field must contain a number less than %s.'
+                @ alpha 'The field must only contain alphabetical characters.'
+                @ alpha_numeric 'The field must only contain alpha-numeric characters.'
+                @ alpha_dash 'The field must only contain alpha-numeric characters, underscores, and dashes.'
+                @ numeric 'The field must contain only numbers.'
+                @ integer 'The field must contain an integer.'
+                @ decimal 'The field must contain a decimal number.'
+                @ is_natural 'The field must contain only positive numbers.'
+                @ is_natural_no_zero 'The field must contain a number greater than zero.'
+                @ valid_ip 'The field must contain a valid IP.'
+                @ valid_base64 'The field must contain a base64 string.'
+                @ valid_credit_card 'The field must contain a valid credit card number.'
+                @ is_file_type 'The field must contain only files.'
+                @ valid_url 'The field must contain a valid URL.'
+				@ date_AMG 'The field must contain a date in the format AAAA/MM/GG.'
+				@ date_MGA 'The field must contain a date in the format MM/GG/AAAA.'
+				@ date_GMA 'The field must contain a date in the format GG/MM/AAAA.'
+                @ greater_than_date 'The field must contain a more recent date than %s.'
+                @ less_than_date 'The field must contain an older date than %s.'
+                @ greater_than_or_equal_date 'The field must contain a date that is at least as recent as %s.'
+                @ less_than_or_equal_date 'The field must contain a date that is %s or older.'
+
+	m start
+		var uimodel = this.scope[this.modelUiName] 
+		foreach ctrl in this.controls
+			set uimodel[ctrl.id] = {}
+	
+	m validate
+		set this.isValid = true
+		foreach ctrl in this.controls
+			if ctrl.required
+				_ this.checkRequired(ctrl.id)
+			elif ctrl.number
+				_ this.checkNumber(ctrl.id)
+			elif ctrl.date_AMG
+				_ this.checkDate(ctrl.id, '422', 'AMG')
+			elif ctrl.date_GMA
+				_ this.checkDate(ctrl.id, '224', 'GMA')
+			elif ctrl.date_MGA
+				_ this.checkDate(ctrl.id, '224', 'MGA')
+			elif ctrl.email
+				_ this.checkEmail(ctrl.id)
+			elif ctrl.url
+				_ this.checkUrl(ctrl.id)
+
+	m checkRequired
+		param id
+		var value = this.scope[this.modelName] ? this.scope[this.modelName][id] : null
+		if value === null || typeof value === 'undefined' || (typeof value === 'string' && value.length === 0)
+			_ this.setResult(id, false, this.messages.required)
+		else
+			_ this.setResult(id, true)
+
+	m checkNumber
+		param id
+		var value = this.scope[this.modelName] ? this.scope[this.modelName][id] : null
+		if this.numericRegex.test(value)
+			_ this.setResult(id, true)
+		else
+			_ this.setResult(id, false, this.messages.numeric)
+
+	m checkDate
+		param id
+		param regexSuffix
+		param format
+		var value = this.scope[this.modelName] ? this.scope[this.modelName][id] : null
+		if this['dateRegex_' + regexSuffix].test(value)
+			set dateArray = value.split('/')
+			var A, M, G
+			if (format === 'GMA')
+				set G = parseInt(dateArray[0])
+				set M = parseInt(dateArray[1])
+				set A = parseInt(dateArray[2])
+			elif (format === 'MGA')
+				set G = parseInt(dateArray[1])
+				set M = parseInt(dateArray[0])
+				set A = parseInt(dateArray[2])
+			elif (format === 'AMG')
+				set G = parseInt(dateArray[2])
+				set M = parseInt(dateArray[1])
+				set A = parseInt(dateArray[0])
+			if G > 0 && G < 32 && M > 0 && M < 13 && A > 1900 && A < 2100
+				_ this.setResult(id, true)
+				return
+		_ this.setResult(id, false, this.messages['date_' + format])
+
+	m checkEmail
+		param id
+		var value = this.scope[this.modelName] ? this.scope[this.modelName][id] : null
+		if this.emailRegex.test(value)
+			_ this.setResult(id, true)
+		else
+			_ this.setResult(id, false, this.messages.valid_email)
+
+	m checkUrl
+		param id
+		var value = this.scope[this.modelName] ? this.scope[this.modelName][id] : null
+		if this.urlRegex.test(value)
+			_ this.setResult(id, true)
+		else
+			_ this.setResult(id, false, this.messages.valid_url)
+
+	m setResult
+		param id
+		param isValid
+		param message
+		var uimodel = this.scope[this.modelUiName] 
+		if isValid === false
+			set uimodel[id].hasError = true
+			set uimodel[id].errorMessage = message
+			set this.isValid = false
+			log 'ValidChecker.setResult', this.isValid
+		else
+			set uimodel[id] = {}
+
+	m setValidationInfo
+		static
+		param text
+		param control
+		if text === null || typeof text !== 'string'
+			return
+		set text = text.trim()
+		if ['required', 'number', 'email', 'url'].indexOf(text) > -1
+			set control.hasValidation = true
+			set control[text] = true
+		elif text === 'date|GMA'
+			set control.hasValidation = true
+			set control.date_GMA = true
+		elif text === 'date|MGA'
+			set control.hasValidation = true
+			set control.date_MGA = true
+		elif text === 'date|AMG'
+			set control.hasValidation = true
+			set control.date_AMG = true
+

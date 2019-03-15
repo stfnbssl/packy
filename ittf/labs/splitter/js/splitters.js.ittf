@@ -1,0 +1,38 @@
+﻿module
+	kind react
+
+	$include j/bx/ui/lorem
+	$include j/bx/ui/splitter
+
+	class Splitters
+		super React.Component
+
+		m render
+			return
+				< BxSplitter
+					. my-pane
+						h2 1st Pane
+						p This is the 1st pane, and this is the primary pane by default.
+						p Try to resize the window and see how secondary pane's size keeps.
+						pre
+							 + &lt;SplitterLayout primaryIndex={'{0}'}&gt;{'\n'}
+							 + &nbsp;&nbsp;<strong>&lt;div&gt;1st&lt;/div&gt;</strong>{'\n'}
+							 + &nbsp;&nbsp;&lt;div&gt;2nd&lt;/div&gt;{'\n'}
+							 + &lt;/SplitterLayout&gt;
+						< BxLorem
+							@ title 1st Pane
+					. my-pane
+						h2 2nd Pane
+						p This is the 2nd pane, and this is the secondary pane by default.
+						p Try to resize the window and see how secondary pane's size keeps.
+						pre
+							+ &lt;SplitterLayout primaryIndex={'{0}'}&gt;{'\n'}
+							+ &nbsp;&nbsp;&lt;div&gt;1st&lt;/div&gt;{'\n'}
+							+ &nbsp;&nbsp;<strong>&lt;div&gt;2nd&lt;/div&gt;</strong>{'\n'}
+							+ &lt;/SplitterLayout&gt;
+						< BxLorem
+							@ title 2nd Pane
+
+	_ ReactDOM.render
+		< Splitters
+		@ document.getElementById('container')

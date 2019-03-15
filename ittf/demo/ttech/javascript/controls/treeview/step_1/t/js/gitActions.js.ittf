@@ -1,0 +1,10 @@
+﻿$group
+
+	$include git/init
+	$include git/clone
+	$include git/checkout
+	$include git/stage
+	$include git/commit
+	$include git/push
+	$include git/fetch
+	$include git/remove

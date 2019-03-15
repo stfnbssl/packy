@@ -1,0 +1,274 @@
+﻿module
+	kind es6
+
+	import path from 'path'
+	$if appEnvironment === 'browser'
+		import verify from '../../utils/verify'
+	$else
+		import Firestore from '@google-cloud/firestore'
+		import { verify } from 'wizzi-utils'
+
+	class FbFsClient
+		ctor
+			set this.user = 'default'
+			set this.project = 'default'
+			set this.refsPool = {}
+			$if appEnvironment !== 'browser'
+				set this.firestore
+					new Firestore
+						{
+							@ projectId 'wizzifactory'
+							@ keyFilename
+								_ path.join
+									@ __dirname
+									@ '..'
+									@ 'config'
+									@ 'serviceAccountKey.json'
+
+		$if appEnvironment === 'browser'
+			m init
+				_ firebase.initializeApp
+					{
+						@ apiKey "AIzaSyACBhxkQICMYxWeftA2DmsOzCAqVf3aTOQ"
+						@ authDomain "wizzifactory.firebaseapp.com"
+						@ databaseURL "https://wizzifactory.firebaseio.com"
+						@ projectId "wizzifactory"
+						@ storageBucket ""
+						@ messagingSenderId "676985835415"
+				+
+				set this.firestore = firebase.firestore()
+				+
+				_ this.firestore.settings
+					{
+						# your settings...
+						@ timestampsInSnapshots true
+
+		m getFirestore
+			return this.firestore
+
+		m setDocument
+			param docPath
+			param data
+			param callback
+			# log 'this.firestore', this.getFirestore()
+			var dRef = this.getFirestore().doc(docPath)
+			_ dRef.set
+				@ data
+				._ then
+					=>
+						const message = 'setDocument successful'
+						log message
+						r_cb( message )
+				._ catch
+					=>
+						param err
+						const message = 'setDocument failed'
+						log message
+						return callback(err)
+
+		m getDocument
+			param docPath
+			param callback
+			var dRef = this.getFirestore().doc(docPath)
+			_ dRef.get
+				._ then
+					=>
+						param doc
+						if doc && doc.exists
+							r_cb( doc.data() )
+						else
+							const message = 'FbFsClient.getDocument. Doc not found: ' + docPath
+							log message
+							r_cb( null )
+				._ catch
+					function
+						param err
+						const message = 'FbFsClient.getDocument. Got an error reading document ' + docPath + ' : ' + err + '\n' + err.stack
+						log message
+						r_cb_error( Error
+							@ message
+
+		m getCollection
+			param collPath
+			param options
+			param callback
+			if typeof callback === 'undefined'
+				set callback = options
+				set options = {}
+			log '*** getCollection', collPath
+			var cRef = this.getFirestore().collection(collPath)
+			if options.where
+				set cRef
+					_ cRef.where
+						@ options.where.field
+						@ options.where.op
+						@ options.where.value
+			const that = this
+			_ cRef.get
+				._ then
+					=>
+						param coll
+						_ that._extractCollection
+							@ coll 
+							@ callback
+				._ catch
+					function
+						param err
+						const message = 'FbFsClient.getCollection. Got an error reading collection ' + collPath + ' : ' + err + '\n' + err.stack
+						log message
+						r_cb_error( Error
+							@ message
+
+		m _extractCollection
+			param coll
+			param callback
+			const returnItems = []
+			if coll
+				_ coll.docs.forEach
+					=>
+						param doc
+						_ returnItems.push
+							{
+								@ path doc.ref.path
+								@ data doc.data()
+				r_cb( returnItems )
+			else
+				const message = 'FbFsClient.getCollection. Collection not found: ' + collPath
+				r_cb_error( Error
+					@ message
+
+		m deleteDocument
+			param docPath
+			param callback
+			var dRef = this.getFirestore().doc(docPath)
+			_ dRef.delete
+				._ then
+					=>
+						const message = 'FbFsClient.deleteDocument. Document deleted: ' + docPath
+						r_cb_error( Error
+							@ message
+				._ catch
+					function
+						param err
+						const message = 'FbFsClient.deleteDocument. Got an error deleting document ' + docPath + ' : ' + err + '\n' + err.stack
+						log message
+						r_cb_error( Error
+							@ message
+
+		m renameDocument
+			param oldDocPath
+			param newDocPath
+			param callback
+
+			var oldDocRef = this.getFirestore().doc(oldDocPath)
+			var newDocRef = this.getFirestore().doc(newDocPath)
+
+			_ this.getFirestore().runTransaction
+				=>
+					param t
+					log 'FbFsClient.renameDocument.transaction.start', oldDocPath, newDocPath
+					return
+						_ t.get
+							@ oldDocRef
+							._ then
+								=>
+									param doc
+									log 'FbFsClient.renameDocument.transaction.got', doc.data()
+									var data = doc.data()
+									_ t.set
+										@ newDocRef
+										@ data
+									_ t.delete
+										@ oldDocRef
+				._ then
+					=>
+						log 'FbFsClient.renameDocument.transaction.ended.success'
+						_ callback
+							@ null
+							{
+								@ message 'FbFsClient.renameDocument. Document renamed'
+					._ catch
+						=>
+							param  err
+							log 'FbFsClient.renameArchive.transaction.ended.failure'
+							_ callback
+								new Error
+									@ 'FbFsClient.renameDocument. Document rename failed: ' + err
+
+
+		m setBatch
+			param parentCollPath
+			param documents
+			param callback
+			if verify.isObject(documents)
+				var temp = []
+				for var k in documents
+					_ temp.push
+						{
+							@ name k
+							@ content documents[k]
+				set documents = temp
+			if documents.length > 0
+				let wBatch = this.getFirestore().batch()
+				var dRef
+				foreach d in documents
+					set dRef = this.getFirestore().doc(parentCollPath + '/' + d.name)
+					_ wBatch.set
+						@ dRef
+						@ d.content
+					log 'setBatch. item ', parentCollPath + '/' + d.name
+				_ wBatch.commit
+					._ then
+						=>
+							const message = 'setBatch successful, to parentCollPath: ' + parentCollPath
+							log message
+							r_cb( message )
+					._ catch
+						=>
+							param err
+							const message = 'setBatch failed, to parentCollPath: ' + parentCollPath + ', Error: ' + err + '\n' + err.stack
+							log message
+							return callback(err)
+			else
+				const message = 'setBatch failed, no documents to upload'
+				log message
+				r_cb( message )
+
+		m batchFromUpdatesQueue
+			param updatesQueue
+			param callback
+			var updates = updatesQueue.startBatch()
+			if updates.length > 0
+				let wBatch = this.getFirestore().batch()
+				var dRef
+				foreach item in updates
+					set dRef = this.getFirestore().doc(item.path)
+					if item.oper === 'set'
+						_ wBatch.set
+							@ dRef
+							@ item.data
+						log 'batchFromUpdatesQueue. set item ', item.path
+					elif item.oper === 'delete'
+						_ wBatch.delete
+							@ dRef
+						log 'batchFromUpdatesQueue. delete item ', item.path
+				_ wBatch.commit
+					._ then
+						=>
+							const message = 'batchFromUpdatesQueue successful'
+							log message
+							_ updatesQueue.commitBatch()
+							r_cb( message )
+					._ catch
+						=>
+							param err
+							const message = 'batchFromUpdatesQueue failed, Error: ' + err + '\n' + err.stack
+							log message
+							_ updatesQueue.rollbackBatch()
+							return callback(err)
+			else
+				const message = 'batchFromUpdatesQueue failed, no documents to upload'
+				log message
+				r_cb( message )
+
+	export default FbFsClient

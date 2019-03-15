@@ -1,0 +1,35 @@
+﻿$group
+
+	$global
+		var gcurrentPage = currentPage;
+		var gcurrentSubPage = currentSubPage;
+
+	head
+
+		@title The Wizzi Factory
+		css https://fonts.googleapis.com/css?family=Roboto
+		$if currentSubPage == null
+			css sanitize.css
+			css wizzifactory.css
+		$else
+			css ../sanitize.css
+			css ../wizzifactory.css
+		$hook styles
+
+	body
+		$if currentSubPage == null
+			class ${currentPage}
+		$else
+			class ${currentPage}-${currentSubPage}
+		. site
+			navigation( isCompile )
+			main
+				id wrapper
+				$hook
+		
+		$if currentSubPage == null
+			js jquery-3.2.1.js
+			js wizzifactory.js
+		$else
+			js ../jquery-3.2.1.js
+			js ../wizzifactory.js

@@ -1,0 +1,14 @@
+$group
+
+	$
+		var frag_4_sigma = 'frag_4_sigma'
+	
+	. frag_4
+		
+		h3 I am frag_4 and i am INCLUDED by frag_3. So i can see the value declared in frag_3 :
+			\b  typeof(frag_3_tau) = ${ typeof(frag_3_tau) }, value = ${frag_3_tau}
+
+		p But i cannot see the context of primary:  typeof(primary_var_alpha) = ${ typeof(primary_var_alpha) }
+
+		p I declare a local var : typeof(frag_4_sigma) = ${ typeof(frag_3_tau) }, value = ${frag_4_sigma}
+

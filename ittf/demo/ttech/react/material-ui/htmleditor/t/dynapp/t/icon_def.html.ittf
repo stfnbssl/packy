@@ -1,0 +1,14 @@
+﻿$group
+	$params name
+	
+	set global.icons['${name}']
+		function
+			function iDef
+				return
+					$hook
+			if !global.iconStore['${name}']
+				set global.iconStore['${name}']
+					_ createSvgIcon
+						_ iDef
+						@ '${name}'
+			return global.iconStore['${name}']

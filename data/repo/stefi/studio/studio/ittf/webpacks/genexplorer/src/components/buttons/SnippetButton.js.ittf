@@ -1,0 +1,36 @@
+﻿module
+	kind react
+	
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import classNames from 'classnames'
+	import { withStyles, createStyleSheet } from 'material-ui/styles'
+	+
+	import NewButton from './NewButton'
+	import SaveButton from './SaveButton'
+	+
+	export 
+		function SnippetButton
+			param props
+			const canForkAndNotSave = props.canFork && !props.canSave
+			const savingOrForking = props.saving || props.forking;
+
+			return
+				. button menuButton
+				span
+					i
+						@ className 'fa fa-lg fa-file-code-o fa-fw'
+					+ &nbsp;Snippet
+				ul
+					li
+						< NewButton
+							@ {...props}
+					li
+						< SaveButton
+							@ {...props}
+
+	set SnippetButton.propTypes
+		{
+			@ canSave React.PropTypes.bool
+			@ onSave React.PropTypes.func
+			@ saving  React.PropTypes.bool

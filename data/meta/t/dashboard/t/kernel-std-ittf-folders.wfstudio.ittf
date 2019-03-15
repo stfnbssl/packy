@@ -1,0 +1,20 @@
+﻿$group
+
+	folder src/ittf/examples
+		aspect ittf-subfolder
+		aspect examples
+	folder src/ittf/lib
+		aspect ittf-subfolder
+		aspect lib
+	folder src/ittf/meta
+		aspect ittf-subfolder
+		aspect meta
+	folder src/ittf/root
+		aspect ittf-subfolder
+		aspect root
+	folder src/ittf/t
+		aspect ittf-subfolder
+		aspect t-folder
+	folder src/ittf/tests
+		aspect ittf-subfolder
+		aspect tests

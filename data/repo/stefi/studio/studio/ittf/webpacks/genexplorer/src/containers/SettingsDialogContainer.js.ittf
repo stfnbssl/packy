@@ -1,0 +1,38 @@
+﻿module
+	kind react
+
+	import {connect} from 'react-redux'
+	import SettingsDialog from '../components/SettingsDialog'
+	import {closeSettingsDialog, setGeneratorSettings} from '../store/actions'
+	import {showSettingsDialog, getGenerator, getGeneratorSettings} from '../store/selectors'
+	
+	function mapStateToProps
+		param state
+		return
+			{
+				@ visible showSettingsDialog(state)
+				@ generator getGenerator(state)
+				@ generatorSettings getGeneratorSettings(state)
+
+	function mapDispatchToProps
+		param dispatch
+		return
+			{
+				@ onSave
+					=>
+						param generator
+						param newSettings
+						_ dispatch
+							_ setGeneratorSettings(newSettings)
+
+				@ onWantToClose
+					=>
+						_ dispatch
+							_ closeSettingsDialog()
+
+	export default
+		_ connect
+			@ mapStateToProps
+			@ mapDispatchToProps
+			(
+				@ SettingsDialog

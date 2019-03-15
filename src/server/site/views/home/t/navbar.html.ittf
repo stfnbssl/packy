@@ -1,0 +1,41 @@
+nav
+    id top-navbar
+    role navigation
+    
+    a Home
+        href /
+        class top-link
+    
+    $foreach panel in mpage.navTop.panels
+        $if panel.kind === 'flex'
+            $foreach item in panel.items
+                $if item.label !== 'Home'
+                    a ${item.label}
+                        href ${item.href}
+                        class top-link
+
+    a Ittf
+        href /ittf
+        class top-link
+
+    a App
+        href /packy/app
+        class top-link
+
+    $if locals.user
+        a Repositories
+            href /repo/list
+            class top-link
+        a Profile
+            href /account/user
+            class top-link
+        a Log Out
+            id qsLogoutBtn
+            href /account/logout
+            class top-link
+    $else
+        a Log In
+            id qsLoginBtn
+            href /account/login
+            class top-link
+

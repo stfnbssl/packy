@@ -1,0 +1,1194 @@
+﻿$group
+
+	el_def( react_editor, SplitPane
+		p_def( split, enum, The splitter orientation.
+			[ enumItems
+				@ 'vertical'
+				@ 'horizontal' 
+			@ default 'vertical'
+		p_def( primary, enum, The primary pane.
+			[ enumItems
+				@ 'first'
+				@ 'second' 
+			@ default 'first'
+		p_def( minSize, string, The minimal size of the 'fixed' pane
+		p_def( maxSize, string, The maximal size of the 'fixed' pane
+		p_def( defaultSize, string, The default size of the 'fixed' pane
+		p_def( step, string, You can use the step prop to only allow resizing in fixed increments
+		p_def( paneStyle, object, Styling to be applied to both panes
+		p_def( pane1Style, object, Styling to be applied to the first pane, with precedence over paneStyle
+		p_def( pane2Style, object, Styling to be applied to the second pane, with precedence over paneStyle
+		p_def( resizerStyle, object, Styling to be applied to the resizer bar
+
+	el_def( mui, AppBar
+		
+		p_def( children, node, The content of the component.
+
+		p_def( color, enum, The color of the component. It supports those theme colors that make sense for this component.
+			[ enumItems
+				@ 'default'
+				@ 'inherit' 
+				@ 'primary'
+				@ 'secondary'
+			@ default 'default'
+		
+		p_def( position, enum, The positioning type. The behavior of the different options is described here. Note: sticky is not universally supported and will fall back to static when unavailable.
+			[ enumItems
+				@ 'fixed'
+				@ 'absolute' 
+				@ 'sticky' 
+				@ 'static'
+			@ default 'fixed'
+				
+	el_def( mui, Avatar
+		p_def( children, node, The content of the component.
+
+		p_def( alt, string, Used in combination with src or srcSet to provide an alt attribute for the rendered img element.
+		
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'div'	
+		
+		p_def( imgProps, object, Attributes applied to the img element when the component is used to display an image.
+		
+		p_def( sizes, string, The sizes attribute for the img element.
+		
+		p_def( src, string, The src attribute for the img element.
+		
+		p_def( srcSet, string, The srcSet attribute for the img element.
+
+	el_def( mui, Backdrop
+		p_def( invisible, boolean, If true  the backdrop is invisible. It can be used when rendering a popover or a custom select component.
+			@ default false
+		p_def( open, boolean, If true  the backdrop is open.
+			@ default false
+		p_def( transitionDuration, union, The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.
+			[ types
+				@ 'number'
+				{
+					@ enter 'number'
+					@ exit 'number'
+			@ default
+				{
+					@ enter 500
+					@ exit 500
+
+	el_def( mui, Badge
+		p_def( badgeContent, node, The content rendered within the badge.
+			@ required true
+			@ default 'dummy content (is required)'
+		
+		p_def( children, node, The content of the component.
+			
+		p_def( color, enum, The color of the component. It supports those theme colors that make sense for this component.
+			[ enumItems
+				@ 'default'
+				@ 'inherit' 
+				@ 'primary'
+				@ 'secondary'
+			@ default 'default'
+
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'span'
+
+	el_def( mui, BottomNavigation
+		p_def( children, node, The content of the component.
+
+	el_def( mui, BottomNavigationAction
+		p_def( children, node, The content of the component.
+
+	el_def( mui, Button
+		p_def( children, node, The content of the component.
+		p_def( color, enum, The color of the component. It supports those theme colors that make sense for this component.
+			[ enumItems
+				@ 'default'
+				@ 'inherit' 
+				@ 'primary'
+				@ 'secondary'
+			@ default 'default'
+		p_def( disabled, boolean, If true the button will be disabled.
+		p_def( disableFocusRipple, boolean, If true the keyboard focus ripple will be disabled. disableRipple must also be true.
+		p_def( disableRipple, boolean, If true the ripple effect will be disabled.
+		p_def( fullWidth, boolean, If true the button will take up the full width of its container.
+		p_def( href, string, The URL to link to when the button is clicked. If defined, an a element will be used as the root node.
+		p_def( mini, boolean, If true and variant is 'fab' will use mini floating action button styling.
+		p_def( size, enum, he size of the button. small is equivalent to the dense button styling.
+			[ enumItems
+				@ 'small'
+				@ 'medium'
+				@ 'large'
+			@ default 'medium'
+		p_def( variant,	enum, The type of button.
+			[ enumItems
+				@ 'text'
+				@ 'flat'
+				@ 'outlined'
+				@ 'contained'
+				@ 'raised'
+				@ 'fab'
+			@ default 'text'
+	el_def( mui, ButtonBase
+		p_def( children, node, The content of the component.
+	el_def( mui, Card
+		p_def( children, node, The content of the component.
+	el_def( mui, CardActions
+		p_def( children, node, The content of the component.
+	el_def( mui, CardContent
+		p_def( children, node, The content of the component.
+	el_def( mui, CardHeader
+		p_def( children, node, The content of the component.
+	el_def( mui, CardMedia
+		p_def( children, node, The content of the component.
+	el_def( mui, Checkbox
+	
+	el_def( mui, Chip
+		p_def( avatar, element, Avatar element.
+		p_def( clickable, boolean, If true, the chip will appear clickable, and will raise when pressed, even if the onClick property is not defined. This can be used, for example, along with the component property to indicate an anchor Chip is clickable.
+			@ default false
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'div'	
+		p_def( deleteIcon, element, Override the default delete icon element. Shown only if onDelete is set.
+		p_def( label, node, The content of the label.
+		p_def( onDelete, func, Callback function fired when the delete icon is clicked. If set, the delete icon will be shown.
+	
+	el_def( mui, CircularProgress
+	el_def( mui, ClickAwayListener
+	el_def( mui, Collapse
+		p_def( children, node, The content node to be collapsed.
+		p_def( collapsedHeight,	string, The height of the container when collapsed.
+			@ default '0px'
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'div'	
+
+		p_def( in, bool, If true, the component will transition in.
+			@ default false
+
+		p_def( timeout, union, The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.
+			\b Set to 'auto' to automatically calculate transition time based on height.
+			[ types
+				@ 'number'
+				{
+					@ enter 'number'
+					@ exit 'number'
+				{
+					[ enumItems
+						@ 'auto'
+			@ default 500
+
+	el_def( mui, CssBaseline
+	
+	el_def( mui, Dialog
+		p_def( children, node, The content node to be collapsed.
+		
+		p_def( disableBackdropClick, boolean, If true  clicking the backdrop will not fire the onClose callback.
+			@ default false
+		
+		p_def( disableEscapeKeyDown, boolean, If true  hitting escape will not fire the onClose callback.
+			@ default false
+		
+		p_def( fullScreen, boolean, If true  the dialog will be full-screen
+			@ default false
+		
+		p_def( fullWidth, boolean, If true  the dialog stretches to maxWidth.
+			@ default false
+		
+		p_def( maxWidth, enum, Determine the max width of the dialog. The dialog width grows with the size of the screen, this property is useful on the desktop where you might need some coherent different width size across your application. Set to false to disable maxWidth.
+			[ enumItems
+				@ 'xs'
+				@ 'sm'
+				@ 'md'
+				@ false
+			@ default 'sm'	
+		
+		p_def( onBackdropClick,	func, Callback fired when the backdrop is clicked.
+		
+		p_def( onClose, func, Callback fired when the component requests to be closed.
+			\b Signature:
+			\b function(event: object) => void
+			\b event: The event source of the callback
+		
+		p_def( onEnter, func, Callback fired before the dialog enters.
+		
+		p_def( onEntered, func, Callback fired when the dialog has entered.
+		
+		p_def( onEntering, func, Callback fired when the dialog is entering.
+		
+		p_def( onEscapeKeyDown, func, Callback fired when the escape key is pressed, disableKeyboard is false and the modal is in focus.
+		
+		p_def( onExit, func, Callback fired before the dialog exits.
+		
+		p_def( onExited, func, Callback fired when the dialog has exited.
+		
+		p_def( onExiting, func, Callback fired when the dialog is exiting.
+		
+		p_def( open, boolean, If true  the Dialog is open.
+			@ default false
+		
+		p_def( PaperProps, object, Properties applied to the Paper element.
+		
+		p_def( TransitionComponent, union, Transition component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'Fade'
+		
+		p_def( transitionDuration, union, The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.
+			[ types
+				@ 'number'
+				{
+					@ enter 'number'
+					@ exit 'number'
+			@ default
+				{
+					@ enter 500
+					@ exit 500
+		p_def( TransitionProps,	object, Properties applied to the Transition element.
+	
+	el_def( mui, DialogActions
+		p_def( children, node, The content node to be collapsed.
+		p_def( disableActionSpacing, boolean, If true  the dialog actions do not have additional margin.
+			@ default false
+	
+	el_def( mui, DialogContent
+		p_def( children, node, The content node to be collapsed.
+	
+	el_def( mui, DialogContentText
+		p_def( children, node, The content node to be collapsed.
+	
+	el_def( mui, DialogTitle
+		p_def( children, node, The content node to be collapsed.
+		p_def( disableTypography, boolean, If true  the children won't be wrapped by a typography component. For instance, this can be useful to render an h4 instead of the default h2.
+			@ default false
+	
+	el_def( mui, Divider
+		p_def( absolute, boolean
+			@ default false	
+
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'hr'
+		
+		p_def( inset, boolean, If true  the divider will be indented.
+			@ default false
+		
+		p_def(light, boolean, If true  the divider will have a lighter color.
+			@ default false
+
+	el_def( mui, Drawer
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, ExpansionPanel
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, ExpansionPanelActions
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, ExpansionPanelDetails
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, ExpansionPanelSummary
+		p_def( children, node, The content node to be collapsed.
+	
+	el_def( mui, Fade
+	
+	el_def( mui, FormControl
+		p_def( children, node, The contents of the form control.
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'div'
+		p_def( disabled, boolean, If true  the label, input and helper text should be displayed in a disabled state.
+			@ default false
+		p_def( error, boolean, If true  the label should be displayed in an error state.
+			@ default false
+		p_def( fullWidth, boolean, If true  the component will take up the full width of its container.
+			@ default false
+		p_def( margin, enum, If dense or normal, will adjust vertical spacing of this and contained components.
+			[ enumItems
+				@ 'none'
+				@ 'dense'
+				@  'normal'
+			@ default 'none'
+		p_def( required, boolean, false	If true  the label will indicate that the input is required.
+			@ default false
+
+	el_def( mui, FormControlLabel
+		p_def( checked,	union, If true  the component appears selected.
+			[ types
+				@ 'bool'
+				@ 'string'
+		p_def( control,	element, A control element. For instance, it can be be a Radio, a Switch or a Checkbox.
+		p_def( disabled, boolean, If true  the control will be disabled.
+			@ default false
+		p_def( inputRef,	union, Use that property to pass a ref callback to the native input component.
+			[ types
+				@ 'func'
+				@ 'object'
+		p_def( label, node, The text to be used in an enclosing label element.
+		p_def( name, string
+		p_def( onChange, func, Callback fired when the state is changed.
+			\b Signature:
+			\b function(event: object, checked: boolean) => void
+			\b event: The event source of the callback. You can pull out the new value by accessing event.target.checked.
+		p_def( checked, boolean, The checked value of the switch
+			@ default false
+		p_def( value, string, The value of the component.
+
+	el_def( mui, FormGroup
+		p_def( children, node, The contents of the form control.
+		p_def( row, boolean, Display group of elements in a compact row.
+			@ default false
+
+	el_def( mui, FormHelperText
+		p_def( children, node, The contents of the form control.
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'p'
+		p_def( disabled, boolean, If true  the helper text should be displayed in a disabled state.
+			@ default false
+		p_def( error, boolean, If true  helper text should be displayed in an error state.
+			@ default false
+		p_def( margin, enum, If dense, will adjust vertical spacing. This is normally obtained via context from FormControl.
+			[ enumItems
+				@ 'none'
+				@ 'dense'
+				@  'normal'
+			@ default 'none'
+
+	el_def( mui, FormLabel
+		p_def( children, node, The contents of the form control.
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'label'
+		p_def( disabled, boolean, If true  the label should be displayed in a disabled state.
+			@ default false
+		p_def( error, boolean, If true  the label should be displayed in an error state.
+			@ default false
+		p_def( focused, boolean, If true  the input of this label is focused (used by FormGroup components).
+			@ default false
+		p_def( required, boolean,  If true  the label will indicate that the input is required.
+			@ default false
+	
+	el_def( mui, Grid
+
+		p_def( alignContent, enum, Defines the align-content style property. It's applied for all screen sizes.
+			[ enumItems
+				@ 'stretch'
+				@ 'center'
+				@ 'flex-start'
+				@ 'flex-end'
+				@ 'space-between'
+				@ 'space-around'
+			@ default 'stretch'
+
+		p_def( alignItems, enum, Defines the align-items style property. It's applied for all screen sizes.
+			[ enumItems
+				@ 'flex-start'
+				@ 'center'
+				@ 'flex-end'
+				@ 'stretch'
+				@ 'baseline'
+			@ default 'stretch'
+
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'div'
+
+		p_def( container, boolean, If true  the component will have the flex container behavior. You should be wrapping items with a container.
+			@ default false
+
+		p_def( direction, enum, Defines the flex-direction style property. It is applied for all screen sizes.
+			[ enumItems
+				@ 'row'
+				@ 'row-reverse'
+				@ 'column'
+				@ 'column-reverse'
+			@ default 'row'
+
+		p_def( item, boolean, If true  the component will have the flex item behavior. You should be wrapping items with a container.
+			@ default false
+
+		p_def( justify, enum, Defines the justify-content style property. It is applied for all screen sizes.
+			[ enumItems
+				@ 'flex-start'
+				@ 'center'
+				@ 'flex-end'
+				@ 'space-between'
+				@ 'space-around'
+			@ default 'flex-start'
+		
+		p_def( lg, enum,Defines the number of grids the component is going to use. It's applied for the lg breakpoint and wider screens if not overridden.
+			[ enumItems
+				@ false
+				@ 'auto'
+				@ true
+				@ 1
+				@ 2
+				@ 3
+				@ 4
+				@ 5
+				@ 6
+				@ 7
+				@ 8
+				@ 9
+				@ 10
+				@ 11
+				@ 12
+			{ required
+				@ default false
+				{ where
+					@ prop 'item'
+					@ eq true
+
+		p_def( md, enum, Defines the number of grids the component is going to use. It's applied for the md breakpoint and wider screens if not overridden.
+			[ enumItems
+				@ false
+				@ 'auto'
+				@ true
+				@ 1
+				@ 2
+				@ 3
+				@ 4
+				@ 5
+				@ 6
+				@ 7
+				@ 8
+				@ 9
+				@ 10
+				@ 11
+				@ 12
+			{ required
+				@ default false
+				{ where
+					@ prop 'item'
+					@ eq true
+
+		p_def( sm, enum, Defines the number of grids the component is going to use. It's applied for the sm breakpoint and wider screens if not overridden.
+			[ enumItems
+				@ false
+				@ 'auto'
+				@ true
+				@ 1
+				@ 2
+				@ 3
+				@ 4
+				@ 5
+				@ 6
+				@ 7
+				@ 8
+				@ 9
+				@ 10
+				@ 11
+				@ 12
+			{ required
+				@ default false
+				{ where
+					@ prop 'item'
+					@ eq true
+
+		p_def( spacing, enum, Defines the space between the type item component. It can only be used on a type container component.
+			[ enumItems
+				@ 0
+				@ 8
+				@ 16
+				@ 24
+				@ 32
+				@ 40
+			# @ default 0
+
+		p_def( wrap, enum, Defines the flex-wrap style property. It's applied for all screen sizes.
+			[ enumItems
+				@ 'nowrap'
+				@ 'wrap'
+				@ 'wrap-reverse'
+			# @ default 'wrap'
+
+		p_def( xl, enum, Defines the number of grids the component is going to use. It's applied for the xl breakpoint and wider screens.
+			[ enumItems
+				@ false
+				@ 'auto'
+				@ true
+				@ 1
+				@ 2
+				@ 3
+				@ 4
+				@ 5
+				@ 6
+				@ 7
+				@ 8
+				@ 9
+				@ 10
+				@ 11
+				@ 12
+			{ required
+				@ default false
+				{ where
+					@ prop 'item'
+					@ eq true
+	
+		p_def( xs, enum, Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority.
+			[ enumItems
+				@ false
+				@ 'auto'
+				@ true
+				@ 1
+				@ 2
+				@ 3
+				@ 4
+				@ 5
+				@ 6
+				@ 7
+				@ 8
+				@ 9
+				@ 10
+				@ 11
+				@ 12
+			{ required
+				@ default false
+				{ where
+					@ prop 'item'
+					@ eq true
+
+		p_def( zeroMinWidth, boolean, If true  it sets min-width: 0 on the item. Refer to the limitations section of the documentation to better understand the use case.
+			# @ default false
+	
+	el_def( mui, GridList
+		p_def( cellHeight, union, Number of px for one cell height. You can set 'auto' if you want to let the children determine the height.
+			[ types
+				@ 'number'
+				{ 
+					@ enumItems
+						[
+							@ 'auto'
+			@ default 180
+
+		p_def( children, node, Grid Tiles that will be in Grid List.
+			@ required true
+
+		p_def( cols, number, Number of columns.
+			@ default 2	
+
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'ul'
+
+		p_def( spacing,	number, Number of px for the spacing between tiles.
+			@ default 4
+	
+	el_def( mui, GridListTile
+		
+		p_def( cols, number, Width of the tile in number of grid cells.
+			@ default 1	
+
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'li'
+
+		p_def( rows, number, Height of the tile in number of grid cells.
+			@ default 1	
+
+	el_def( mui, GridListTileBar
+
+		p_def( actionIcon, node, An IconButton element to be used as secondary action target (primary action target is the tile itself).
+		
+		p_def( actionPosition, enum, Position of secondary action IconButton.
+			[ enumItems
+				@ 'left'
+				@ 'right'
+			@ default 'right'
+
+		p_def( subtitle, node, String or element serving as subtitle (support text).
+
+		p_def( title, node, Title to be displayed on tile.
+
+		p_def( titlePosition, enum, Position of the title bar.
+			[ enumItems
+				@ 'top'
+				@ 'bottom'
+			@ default 'bottom'
+	
+	el_def( mui, Grow
+	
+	el_def( mui, Hidden
+	el_def( mui, Icon
+	el_def( mui, IconButton
+	
+	el_def( mui, Input
+		p_def( autoComplete, string, This property helps users to fill forms faster, 
+			\b especially on mobile devices. The name can be confusing, as it's more like an autofill. 
+			\b You can learn more about it here: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
+		
+		p_def( autoFocus, boolean, If true  the input will be focused during the first mount.
+		
+		p_def( classes, object, Override or extend the styles applied to the component. See CSS API below for more details.
+		
+		p_def( className, string, The CSS class name of the wrapper element.
+		
+		p_def( defaultValue, union, The default input value, useful when not controlling the component.
+			[ types
+				@ 'string'
+				@ 'number'
+		
+		p_def( disabled, boolean, If true  the input will be disabled.
+		
+		p_def( disableUnderline, boolean, If true  the input will not have an underline.
+			@ default false
+		
+		p_def( endAdornment, node, End InputAdornment for this component.
+		
+		p_def( error, boolean, If true  the input will indicate an error. This is normally obtained via context from FormControl.
+		
+		p_def( fullWidth, boolean,	If true  the input will take up the full width of its container.
+			@ default false
+		
+		p_def( id, string, The id of the input element.
+		
+		p_def( inputComponent, union, The component used for the native input. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+		
+		p_def( inputProps, object, Attributes applied to the input element.
+		
+		p_def( inputRef, union, Use that property to pass a ref callback to the native input component.
+			[ types
+				@ 'func'
+				@ 'object'
+		
+		p_def( margin, enum, If dense, will adjust vertical spacing. This is normally obtained via context from FormControl.
+			[ enumItems
+				@ 'dense'
+				@ 'none'
+			@ default 'none'
+		
+		p_def( multiline, boolean,	If true  a textarea element will be rendered.
+			@ default false
+		
+		p_def( name, string, Name attribute of the input element.
+		
+		p_def( onChange, func, Callback fired when the value is changed.
+			\b Signature:
+			\b function(event: object) => void
+			\b event: The event source of the callback. You can pull out the new value by accessing event.target.value.
+		
+		p_def( placeholder, string, The short hint displayed in the input before the user enters a value.
+		
+		p_def( rows, union, Number of rows to display when multiline option is set to true.
+			[ types
+				@ 'string'
+				@ 'number'
+		
+		p_def( rowsMax, union, Maximum number of rows to display when multiline option is set to true.
+			[ types
+				@ 'string'
+				@ 'number'
+		p_def( startAdornment, node, Start InputAdornment for this component.
+		
+		p_def( type, string, Type of the input element. It should be a valid HTML5 input type.
+			@ default 'text'
+		
+		p_def( value, union
+			[ types
+				@ "string"
+				@ "number"
+				@ "arrayOf"
+
+	el_def( mui, InputAdornment
+	
+	el_def( mui, InputLabel
+	
+	el_def( mui, LinearProgress
+
+	el_def( mui, List
+		
+		p_def( children, node, The content node to be collapsed.
+		
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'ul'
+		
+		p_def( dense, boolean, If true  compact vertical padding designed for keyboard and mouse input will be used for the list and list items. The property is available to descendant components as the dense context.
+			@ default false
+		
+		p_def( disablePadding, boolean, If true  vertical padding will be removed from the list.
+			@ default false
+		
+		p_def( subheader, node,	The content of the subheader, normally ListSubheader.
+
+	el_def( mui, ListItem
+
+		p_def( children, node, The content node to be collapsed.
+		
+		p_def( button, boolean, If true  the list item will be a button (using ButtonBase).
+			@ default false
+		
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component. By default, it's a li when button is false and a div when button is true.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'li'
+
+		p_def( ContainerComponent, union, The container component used when a ListItemSecondaryAction is rendered.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'li'
+		
+		p_def( ContainerProps, object, Properties applied to the container element when the component is used to display a ListItemSecondaryAction.
+		
+		p_def( dense, boolean, If true  compact vertical padding designed for keyboard and mouse input will be used.
+			@ default false
+		
+		p_def( disableGutters, boolean, If true  the left and right padding is removed.
+			@ default false
+		
+		p_def( divider,	boolean, If true  a 1px light border is added to the bottom of the list item.
+			@ default false
+
+	el_def( mui, ListItemAvatar
+		p_def( children, node, The content node to be collapsed.
+	
+	el_def( mui, ListItemIcon
+		p_def( children, node, The content node to be collapsed.
+	
+	el_def( mui, ListItemSecondaryAction
+		p_def( children, node, The content node to be collapsed.
+	
+	el_def( mui, ListItemText
+		p_def( disableTypography, boolean, If true  the children won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the children (or primary) text, and optional secondary text with the Typography component.
+			@ default false
+		p_def( inset, boolean, If true  the children will be indented. This should be used if there is no left avatar or left icon.
+			@ default false
+		p_def( primary, node, The main content element.
+		p_def( primaryTypographyProps, object, These props will be forwarded to the primary typography component (as long as disableTypography is not true).
+		p_def( secondary, node, The secondary content element.
+		p_def( secondaryTypographyProps, object, These props will be forwarded to the secondary typography component (as long as disableTypography is not true).
+
+	el_def( mui, ListSubheader
+		
+		p_def( color, enum, The color of the component. It supports those theme colors that make sense for this component.
+			[ enumItems
+				@ 'default'
+				@ 'inherit' 
+				@ 'primary'
+				@ 'secondary'
+			@ default 'default'
+
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component. 
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'li'
+
+		p_def( disableSticky, boolean, If true  the List Subheader will not stick to the top during scroll.
+			@ default false
+		
+		p_def( inset, boolean, If true  the List Subheader will be indented.
+			@ default false
+	
+	el_def( mui, Menu
+	el_def( mui, MenuItem
+	el_def( mui, MenuList
+	
+	el_def( mui, MobileStepper
+	el_def( mui, Modal
+	el_def( mui, ModalManager
+	el_def( mui, NativeSelect
+	el_def( mui, Paper
+	el_def( mui, Popover
+	el_def( mui, Portal
+	el_def( mui, Radio
+	el_def( mui, RadioGroup
+	el_def( mui, RootRef
+	el_def( mui, Select
+	
+	el_def( mui, Slide
+		p_def( children, node, The content node to be collapsed.
+		p_def( direction, enum, Direction the child node will enter from.
+			[ enumItems
+				@ 'left'
+				@ 'right'
+				@ 'up'
+				@ 'down'
+			@ default 'down'	
+		
+		p_def( in, boolean, If true  show the component; triggers the enter or exit animation.
+	
+		p_def( timeout, union, The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an 
+			[ types
+				@ 'number'
+				{
+					@ enter 'number'
+					@ exit 'number'
+			@ default
+				{
+					@ enter 500
+					@ exit 500
+	
+	
+	el_def( mui, Snackbar
+		p_def( children, node, The content node to be collapsed.
+		p_def( action, node, The action to display.
+		p_def( anchorOrigin, union, The anchor of the Snackbar.
+			# ? horizontal
+				# : union
+				[ types
+					@ 'number'
+					@ 'enum'
+						[ enumItems
+							@ 'left'
+							@ 'center'
+							@ 'right'
+			# ? vertical
+				# union
+					@ 'number'
+					@ 'enum'
+						[ enumItems
+							@ 'top'
+							@ 'center'
+							@ 'bottom'
+			@ default
+				{
+					@ vertical 'bottom'
+					@ horizontal 'center'
+		
+		p_def( autoHideDuration, number, The number of milliseconds to wait before automatically calling the onClose function. onClose should then set the state of the open prop to hide the Snackbar. This behavior is disabled by default with the null value.
+		
+		p_def( ContentProps, object, Properties applied to the SnackbarContent element.
+		
+		p_def( disableWindowBlurListener, boolean, If true  the autoHideDuration timer will expire even if the window is not focused.
+			@ default false
+		
+		p_def( key,	any, When displaying multiple consecutive Snackbars from a parent rendering a single <Snackbar/>, add the key property to ensure independent treatment of each message. e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and features such as autoHideDuration may be canceled.
+		
+		p_def( message,	node, The message to display.
+		
+		p_def( onClose,	func, Callback fired when the component requests to be closed. Typically onClose is used to set state in the parent component, which is used to control the Snackbar open prop. The reason parameter can optionally be used to control the response to onClose, for example ignoring clickaway.
+			\b Signature:
+			\b function(event: object, reason: string) => void
+			\b event: The event source of the callback
+			\b reason: Can be:"timeout" (autoHideDuration expired) or: "clickaway"
+		
+		p_def( onEnter, func, Callback fired before the transition is entering.
+		
+		p_def( onEntered, func, Callback fired when the transition has entered.
+		
+		p_def( onEntering, func, Callback fired when the transition is entering.
+		
+		p_def( onExit, func, Callback fired before the transition is exiting.
+		
+		p_def( onExited, func, Callback fired when the transition has exited.
+		
+		p_def( onExiting, func, Callback fired when the transition is exiting.
+		
+		p_def( open, boolean, If true  Snackbar is open.
+		
+		p_def( resumeHideDuration, number, The number of milliseconds to wait before dismissing after user interaction. If autoHideDuration property isn't specified, it does nothing. If autoHideDuration property is specified but resumeHideDuration isn't, we default to autoHideDuration / 2 ms.
+		
+		p_def( TransitionComponent, union, Transition component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'Fade'
+		
+		p_def( transitionDuration, union, The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.
+			[ types
+				@ 'number'
+				{
+					@ enter 'number'
+					@ exit 'number'
+			@ default
+				{
+					@ enter 500
+					@ exit 500
+		p_def( TransitionProps,	object, Properties applied to the Transition element.
+
+	el_def( mui, SnackbarContent
+		p_def(message, node, the message to display.
+	el_def( mui, Step
+	el_def( mui, StepButton
+	el_def( mui, StepConnector
+	el_def( mui, StepContent
+	el_def( mui, StepIcon
+	el_def( mui, StepLabel
+	el_def( mui, Stepper
+	el_def( mui, SvgIcon
+	el_def( mui, SwipeableDrawer
+	el_def( mui, Switch
+	
+	el_def( mui, Table
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, TableBody
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, TableCell
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, TableFooter
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, TableHead
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, TablePagination
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, TableRow
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, TableSortLabel
+		p_def( children, node, The content node to be collapsed.
+	
+	el_def( mui, Tabs
+		p_def( children, node, The content node to be collapsed.
+	el_def( mui, Tab
+		p_def( children, node, The content node to be collapsed.
+	
+	el_def( mui, TextField
+		p_def( autoComplete, string, This property helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it here: https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill
+
+		p_def( autoFocus, boolean, If true  the input will be focused during the first mount.
+
+		p_def( defaultValue, union, The default value of the Input element.
+			[ types
+				@ 'string'
+				@ 'number'
+		
+		p_def( disabled, boolean, If true  the input will be disabled.
+			@ default false
+		
+		p_def( error, boolean, If true  the label will be displayed in an error state.
+			@ default false
+		
+		p_def( FormHelperTextProps, object, Properties applied to the FormHelperText element.
+		
+		p_def( fullWidth, boolean, If true  the input will take up the full width of its container.
+			@ default false
+		
+		p_def( helperText, node, The helper text content.
+		
+		p_def( id, string, The id of the input element. Use that property to make label and helperText accessible for screen readers.
+		
+		p_def( InputLabelProps, object, Properties applied to the InputLabel element.
+		
+		p_def( InputProps, object, Properties applied to the Input element.
+		
+		p_def( inputProps, object, Attributes applied to the native input element.
+		
+		p_def( inputRef, union, Use that property to pass a ref callback to the native input component.
+			[ types
+				@ 'func'
+				@ 'object'
+		
+		p_def( label, node, The label content.
+
+		p_def( margin, enum, If dense or normal, will adjust vertical spacing of this and contained components.
+			[ enumItems
+				@ 'dense'
+				@ 'normal'
+				@ 'none'
+			@ default 'none'
+
+		p_def( multiline, boolean, If true  a textarea element will be rendered instead of an input.
+			@ default false
+		
+		p_def( name, string, Name attribute of the input element.
+		
+		p_def( onChange, func, Callback fired when the value is changed.
+			\b Signature:
+			\b function(event: object) => void
+			\b event: The event source of the callback. You can pull out the new value by accessing event.target.value.
+		
+		p_def( placeholder,	string, The short hint displayed in the input before the user enters a value.
+		
+		p_def( required, boolean, If true  the label is displayed as required.
+			@ default false
+		
+		p_def( rows, union, Number of rows to display when multiline option is set to true.
+			[ types
+				@ 'string'
+				@ 'number'
+		p_def( rowsMax,	union, Maximum number of rows to display when multiline option is set to true.
+			[ types
+				@ 'string'
+				@ 'number'
+		
+		p_def( select, boolean,	Render a Select element while passing the Input element to Select as input parameter. If this option is set you must pass the options of the select as children.
+			@ default false
+		
+		p_def( SelectProps,	object, Properties applied to the Select element.
+		
+		p_def( type, string, Type attribute of the Input element. It should be a valid HTML5 input type.
+		
+		p_def( value, union, The value of the Input element, required for a controlled component.
+			[ types
+				@ 'string'
+				@ 'number'
+				@ 'arrayOf'
+
+	el_def( mui, Toolbar
+		p_def( children, node, The content node to be collapsed.
+	
+	el_def( mui, Tooltip
+		
+		p_def( children, element, Tooltip reference element.
+			@ required true
+			@ default ''
+
+		p_def( disableFocusListener, boolean, Do not respond to focus events.
+			@ default false
+		
+		p_def( disableHoverListener, boolean, Do not respond to hover events.
+			@ default false
+		
+		p_def( disableTouchListener, boolean, Do not respond to long press touch events.
+			@ default false
+		
+		p_def( enterDelay, number, The number of milliseconds to wait before showing the tooltip. This property won't impact the enter touch delay (enterTouchDelay).
+			@ default 0
+		
+		p_def( enterTouchDelay,	number, The number of milliseconds a user must touch the element before showing the tooltip.
+			@ default 1000
+		
+		p_def( id, string, The relationship between the tooltip and the wrapper component is not clear from the DOM. By providing this property, we can use aria-describedby to solve the accessibility issue.
+		
+		p_def( leaveDelay, number, The number of milliseconds to wait before hiding the tooltip. This property won't impact the leave touch delay (leaveTouchDelay).
+			@ default 0
+		
+		p_def( leaveTouchDelay, number, The number of milliseconds after the user stops touching an element before hiding the tooltip.
+			@ default 1500
+		
+		p_def( onClose, func, Callback fired when the tooltip requests to be closed.
+			\b Signature:
+			\b function(event: object) => void
+			\b event: The event source of the callback
+		
+		p_def( onOpen, func, Callback fired when the tooltip requests to be open.
+			\b Signature:
+			\b function(event: object) => void
+			\b event: The event source of the callback
+
+		p_def( open, boolean, If true  the tooltip is shown.
+			@ default false
+		
+		p_def( placement, enum, Tooltip placement
+			[ enumItems
+				@ 'bottom-end'
+				@ 'bottom-start'
+				@ 'bottom'
+				@ 'left-end'
+				@ 'left-start'
+				@ 'left'
+				@ 'right-end'
+				@ 'right-start'
+				@ 'right'
+				@ 'top-end'
+				@ 'top-start'
+				@ 'top'
+			@ default 'bottom'
+		
+		p_def( PopperProps,	object, 	Properties applied to the Popper element.
+		
+		p_def( title, node, Tooltip title. Zero-length titles string are never displayed.
+			@ required true
+			@ default ''
+	
+	el_def( mui, Typography
+		p_def( children, node, The content node to be collapsed.
+		
+		p_def( align, enum, Set the text-align on the component.
+			[ enumItems
+				@ 'inherit'
+				@ 'left'
+				@ 'center'
+				@ 'right'
+				@ 'justify'
+			@ default 'inherit'	
+		
+		p_def( color, enum, The color of the component. It supports those theme colors that make sense for this component.
+			[ enumItems
+				@ 'inherit'
+				@ 'primary'
+				@ 'textSecondary'
+				@ 'secondary'
+				@ 'error'
+				@ 'default'
+			@ default 'default'	
+
+		p_def( component, union, The component used for the root node. Either a string to use a DOM element or a component. By default, it maps the variant to a good default headline component.
+			[ types
+				@ 'string'
+				@ 'func'
+				@ 'object'
+			@ default 'li'
+
+		p_def( gutterBottom, boolean, If true  the text will have a bottom margin.
+			@ default false
+		
+		p_def( headlineMapping, object, display4: 'h1', display3: 'h1', display2: 'h1', display1: 'h1', headline: 'h1', title: 'h2', subheading: 'h3', body2: 'aside', body1: 'p',}	We are empirically mapping the variant property to a range of different DOM element types. For instance, h1 to h6. If you wish to change that mapping, you can provide your own. Alternatively, you can use the component property.
+		
+		p_def( noWrap, boolean, If true  the text will not wrap, but instead will truncate with an ellipsis.
+			@ default false
+		
+		p_def( paragraph, boolean, If true  the text will have a bottom margin.
+			@ default false
+		
+		p_def( variant, enum, Applies the theme typography styles.
+			[ enumItems
+				@ 'display4'
+				@ 'display3'
+				@ 'display2'
+				@ 'display1'
+				@ 'headline'
+				@ 'title'
+				@ 'subheading'
+				@ 'body2'
+				@ 'body1'
+				@ 'caption'
+				@ 'button'
+			@ default 'body1'
+	
+	el_def( mui, Zoom
+	
+	el_def( mui, withStyles
+
+	function getElementTypesSuggestions
+		if !window['ELEMENT_TYPES_SUGGESTIONS']
+			const arr = []
+			foreach item in Object.keys(global.componentTypes)
+				_ arr.push({ label: item })
+			set window['ELEMENT_TYPES_SUGGESTIONS'] = arr
+		return window['ELEMENT_TYPES_SUGGESTIONS']

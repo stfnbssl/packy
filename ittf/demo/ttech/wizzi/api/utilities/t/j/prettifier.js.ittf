@@ -1,0 +1,17 @@
+﻿$group
+
+	function prettifier_1
+		var u = wizziStandalone.default.wizziUtils
+		log 'u', u
+
+		var content
+			[
+				@ 'html'
+				@ '    head'
+				@ '    body'
+				._ join('\n')
+
+		_ u.prettifyFromString
+			@ content
+			f_cb_test( result )
+				log 'prettifier_1', content, 'result\n', result

@@ -1,0 +1,16 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'embedding',
+			label: 'Embedding',
+			experimentsWith: 'html embedding',
+			path: [
+				{
+					name: 'html',
+					label: 'Html',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

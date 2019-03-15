@@ -1,0 +1,148 @@
+﻿$group
+
+	$include app/splash
+
+	class AppManager : wz.EventTarget
+		ctor
+			param props
+			set this.props = props
+			set this.props.rootFolder = props.rootFolder || '/ixdb'
+			set this.props.formsContainerId = props.formsContainerId || 'forms-container'
+			set this.selectedTreeNode = null
+			set this.lastTreeNodeUpdate = null
+			set this.ittfResultKind = 'gen'
+			set this.snippetResultKind = 'wizzify'
+			set this.timers = {}
+
+		m start
+
+			set this.editBrowse
+				new EditBrowseController
+					{
+
+			set this.editorSplash
+				new SplashControl
+					{
+						@ key 'editor-splash'
+						@ container 'editor-container'
+						@ className 'splash-editor'
+			_ this.editorSplash.initialize
+
+			set this.resultSplash
+				new SplashControl
+					{
+						@ key 'result-splash'
+						@ container 'result-container'
+						@ className 'splash-result'
+			_ this.resultSplash.initialize
+
+			set this.browserFs
+				new BrowserFileSystem
+					{
+						@ rootFolder this.props.rootFolder
+	
+			_ wz.fsGit
+				
+				a_cb_throw( fsGit )
+					
+					set window.git = fsGit.git
+					
+					_ this.browserFs.initialize
+						a_cb_throw()
+				
+							set this.treeFs
+								new TreeFileSystem
+									{
+										@ fsAdapter this.browserFs
+					
+							set this.treeView
+								new TreeView
+									{
+										@ app this
+										@ filesystem this.treeFs
+										@ formsContainerId this.props.formsContainerId
+
+							_ this.treeView.render
+								a_cb_throw( element )
+							
+									_ wz.replaceChildren
+										@ 'tree-view'
+										@ element
+
+									var editManager
+										new IttfEditManager
+											{
+												@ app this
+												@ treeView this.treeView
+												@ ittfEditorTitle 'ittf-editor-title'
+									_ editManager.initialize
+
+									var browseManager
+										new BrowseManager
+											{
+												@ app this
+												@ treeView this.treeView
+												@ resultBrowserTitle 'result-browser-title'
+									_ browseManager.initialize
+									_ this.createCommandBars
+
+									_ glEventHub.on
+										@ 'select-tree-node'
+										=>
+											param data
+											if data.key !== 'default'
+												return
+											# log 'AppManager.treeView.select', data.treeNode
+											var treeNode = data.treeNode
+											var item = treeNode.item
+											if !!item.isFolder == false
+												_ glEventHub.emit
+													@ 'splash-hide'
+													{
+														@ key 'editor-splash'
+												_ this.resultBar.setState
+													{
+														@ isIttf (treeNode.item.isIttfDocument && !treeNode.item.isFragment)
+														@ schema treeNode.item.schema
+														@ mime treeNode.item.mime
+												set this.selectedTreeNode = treeNode
+												_ editManager.setCurrentFile
+													@ treeNode
+												_ this.onTreeNodeUpdate
+													@ this.selectedTreeNode
+													{
+														@ immediate true
+
+									_ glEventHub.on
+										@ 'tree-node-updated'
+										=>
+											param data
+											if data.key !== 'default'
+												return
+											# log 'AppManager.treeView.updated', data.treeNode
+											var treeNode = data.treeNode
+											var item = treeNode.item
+											set this.selectedTreeNode = treeNode
+											_ this.onTreeNodeUpdate
+												@ this.selectedTreeNode
+												{
+													@ immediate true
+
+
+		m createCommandBars
+			set this.resultBar
+				new ResultBar
+			_ wz.element
+				@ 'result-bar'
+				._ appendChild
+					_ this.resultBar.render
+			
+		m onTreeNodeUpdate
+			param treeNode
+			param options
+			
+			set options = options || {}
+			_ this.editBrowse.onEditValueChange
+				@ treeNode.item
+				@ options
+

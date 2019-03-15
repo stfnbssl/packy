@@ -1,0 +1,258 @@
+h/root/empty_layout()
+
+	$append body-scripts
+		js /static/lib/browserFS/browserfs.js
+		script
+		    module
+		        kind es6
+
+				_ createMFS
+					f_cb_throw( mfs )
+						#
+							_ test_isDirectory
+								@ mfs
+								@ '/ixdb'
+							_ test_isDirectory
+								@ mfs
+								@ '/ixdb/hello'
+							_ test_isDirectory
+								@ mfs
+								@ '/ixdb/hello/bye'
+							_ test_mkdir
+								@ mfs
+								@ '/ixdb/hello/bye'
+						_ test_unlink
+							@ mfs
+							@ '/ixdb/hello/bye.txt'
+						_ test_rmdir
+							@ mfs
+							@ '/ixdb/hello'
+
+						#
+
+							_ test_readdir
+								@ mfs
+								@ '/ixdb'
+
+							_ test_writeFile
+								@ mfs
+								@ '/ixdb/strange/bye.txt'
+								@ 'bye bye'
+							_ test_writeFile
+								@ mfs
+								@ '/ixdb/hello/bye.txt'
+								@ 'bye bye'
+
+				function createMFS
+					param callback
+					_ BrowserFS.install(window)
+					_ BrowserFS.configure
+						{ 
+							@ fs "MountableFileSystem"
+							{ options
+								{ '/tmp'
+									@ fs "InMemory"
+								{ '/ixdb'
+									@ fs "IndexedDB"
+									{ options
+										@ storeName 'wizziRepo'
+						f_cb()
+							var fs = BrowserFS.BFSRequire('fs')
+							log 'fs from browserFS', fs
+							_ callback
+								@ null
+								@ fs
+
+				function test_isDirectory
+					param mfs
+					param filePath
+					_ mfs.stat
+						@ filePath
+						f_cb_no_err( result )
+							# /ixdb means : mountPoint = '/ixdb', path = '/'
+							log 'stat ', filePath, 'err', err, 'result', result
+							if result
+								log 'isDirectory', result.isDirectory()
+								log 'isFile', result.isFile()
+
+				function test_mkdir
+					param mfs
+					param filePath
+					_ mfs.mkdir
+						@ filePath
+						f_cb_no_err( result )
+							log 'mkdir ', filePath, 'err', err, 'result', result
+
+				function test_rmdir
+					param mfs
+					param filePath
+					_ mfs.rmdir
+						@ filePath
+						f_cb_no_err( result )
+							log 'rmdir ', filePath, 'err', err, 'result', result
+
+				function test_readdir
+					param mfs
+					param filePath
+					_ mfs.readdir
+						@ filePath
+						f_cb_no_err( result )
+							log 'readdir ', filePath, 'err', err, 'result', result
+
+				function test_unlink
+					param mfs
+					param filePath
+					_ mfs.unlink
+						@ filePath
+						f_cb_no_err( result )
+							log 'unlink ', filePath, 'err', err, 'result', result
+
+				function test_writeFile
+					param mfs
+					param filePath
+					param content
+					_ mfs.writeFile
+						@ filePath
+						@ content
+						f_cb_no_err( result )
+							log 'writeFile ', filePath, 'err', err, 'result', result
+							_ mfs.readFile
+								@ filePath
+								f_cb_no_err( result )
+									log 'readFile ', filePath, 'err', err, 'result', result
+									if result
+										log 'content ', result.toString('utf8')
+
+				function step_2
+					_ BrowserFS.install(window)
+					# Configures BrowserFS to use the LocalStorage file system.
+					_ BrowserFS.configure
+						{ 
+							@ fs "LocalStorage"
+						function 
+							param e
+							if e
+								# An error happened!
+								throw e
+							var fs = require('fs')
+							_ fs.writeFile
+								@ '/test.txt'
+								@ 'Cool, I can do this in the browser!'
+								function 
+									param err
+									log 'written'
+									_ fs.readFile
+										@ '/test.txt'
+										function 
+											param err
+											param contents
+											log contents.toString()
+				function step_3
+					_ BrowserFS.install(window)
+					# Configures BrowserFS to use the LocalStorage file system.
+					_ BrowserFS.configure
+						{ 
+							@ fs "IndexedDB"
+							{ options
+								@ storeName 'wizziRepo'
+						function 
+							param e
+							if e
+								# An error happened!
+								throw e
+							var fs = require('fs')
+							_ fs.writeFile
+								@ '/test.txt'
+								@ 'Cool, I can do this in the browser!'
+								function 
+									param err
+									log 'written'
+									_ fs.readFile
+										@ '/test.txt'
+										function 
+											param err
+											param contents
+											log contents.toString()
+				
+				function step_4
+					_ BrowserFS.install(window)
+					# Configures BrowserFS to use the LocalStorage file system.
+					_ BrowserFS.configure
+						{ 
+							@ fs "InMemory"
+						function 
+							param e
+							if e
+								# An error happened!
+								throw e
+							var fs = require('fs')
+							_ fs.writeFile
+								@ '/test.txt'
+								@ 'Cool, I can do this in the browser!'
+								function 
+									param err
+									log 'written'
+									_ fs.readFile
+										@ '/test.txt'
+										function 
+											param err
+											param contents
+											log contents.toString()
+
+				function step_5
+					_ BrowserFS.install(window)
+					_ BrowserFS.configure
+						{ 
+							@ fs "MountableFileSystem"
+							{ options
+								{ 'tmp:/'
+									@ fs "InMemory"
+								{ 'ixdb:/'
+									@ fs "IndexedDB"
+									{ options
+										@ storeName 'wizziRepo'
+								{ 'ls:/'
+									@ fs "LocalStorage"   
+						function 
+							param e
+							if e
+								# An error happened!
+								throw e
+							var fs = require('fs')
+							#
+								_ mountable_writes
+									@ fs
+							_ mountable_reads
+								@ fs
+
+				function mountable_writes
+					param mfs
+					_ mfs.writeFile
+						@ 'tmp:/.touch'
+						@ '0123456789'
+						f_cb_throw( result1 )
+							log 'result1', result1
+							_ mfs.writeFile
+								@ 'ixdb:/.touch'
+								@ '0123456789'
+								f_cb_throw(result2)
+									log 'result2', result2
+									_ mfs.writeFile
+										@ 'ls:/.touch'
+										@ '0123456789'
+										f_cb_throw(result3)
+											log 'result3', result3
+
+				function mountable_reads
+					param mfs
+					_ mfs.readFile
+						@ 'ixdb:/.touch'
+						f_cb_throw(result2)
+							log 'result2', result2.toString('utf8')
+							_ mfs.readFile
+								@ 'ls:/.touch'
+								f_cb_throw(result3)
+									log 'result3', result3.toString('utf8')
+
+
+

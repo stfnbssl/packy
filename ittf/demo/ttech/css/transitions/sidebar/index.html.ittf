@@ -1,0 +1,23 @@
+﻿h/root/empty_layout()
+
+	$append head-styles
+		css css/styles.css.ittf
+
+    . area
+    
+	nav 
+        class main-menu
+        ul 
+			sb-item( /ittf/home/index.html.ittf, home, Dashboard
+			sb-item( /ittf/demo/ttech/index.html.ittf, laptop, Target technologies
+			sb-item( /, folder-open, ittfEditor App
+			sb-item( /app/wf/, table, wf App
+        ul 
+            class logout
+            li 
+                a 
+                    href #
+                    i 
+                        class fa fa-power-off fa-2x
+                    span Logout
+                        class nav-text

@@ -1,0 +1,1697 @@
+{
+  "name": "wfjob",
+  "preserveTags": true,
+  "requires": [],
+  "exportTos": [
+    "json"
+  ],
+  "elements": [
+    {
+      "name": "wfjob",
+      "super": null,
+      "isRoot": true,
+      "tags": [
+        "wfjob"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "modelsBaseFolder",
+          "type": "string",
+          "tags": [
+            "models-base-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The base path for the source models used by this \"wfjob\"."
+          ]
+        },
+        {
+          "name": "destBaseFolder",
+          "type": "string",
+          "tags": [
+            "dest-base-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The base folder path for the generated artifacts."
+          ]
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "A short description of the job."
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "require",
+          "role": "requires",
+          "tags": [
+            "require"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "model",
+          "role": "models",
+          "tags": [
+            "model"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "line",
+          "role": "lines",
+          "tags": [
+            "line"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "production",
+          "role": "productions",
+          "tags": [
+            "production"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "execFile",
+          "role": "execFiles",
+          "tags": [
+            "exec-file"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "The root element of the wfjob schema."
+      ]
+    },
+    {
+      "name": "comment",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "#"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A comment line for describing job items."
+      ]
+    },
+    {
+      "name": "xrequire",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "require"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "Requires a WizziFactoryPackage.",
+        "The IttfNodeValue is the package name.",
+        "If the package is not globally installed must be a fully qualified path."
+      ]
+    },
+    {
+      "name": "model",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "model"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "src",
+          "type": "string",
+          "tags": [
+            "src"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The path to the primary ittf document of the \"model\" or to the the POJO source.",
+            "When relative, the base path is the \"modelsBaseFolder\"",
+            "declared on the \"wfjob\" element."
+          ]
+        },
+        {
+          "name": "schema",
+          "type": "string",
+          "tags": [
+            "schema"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "In case of a wizzi model is the name of the schema that will validate the \"model\".",
+            "Is alternative to the attribute 'format'."
+          ]
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "tags": [
+            "format"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "json",
+                  "comments": [
+                    "Native JSON file."
+                  ]
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "xml",
+                  "comments": [
+                    "Native Xml file."
+                  ]
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "js",
+                  "comments": [
+                    "Native javascript module file that may export object properties or",
+                    "a function named 'toModel'."
+                  ]
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": [
+            "In case of a POJO model is the native format of the source file.",
+            "Is alternative to the attribute 'schema'."
+          ]
+        },
+        {
+          "name": "dumpFile",
+          "type": "string",
+          "tags": [
+            "dump-file"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "A filepath where the loaded must be dumped for test.",
+            "The model must implement the toJson method. See the \"exportTo\" attribute in wizzischema root nodes.",
+            "When declared the loaded model is JSON.stringyfied and written",
+            "to the \"dumpFile\" filepath."
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "modelRef",
+          "role": "modelRefs",
+          "tags": [
+            "model-ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "References to \"model\" instances acting as data context during this \"model\" evaluation.",
+            "A \"model\" is referenced by its name."
+          ]
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A wizzi model instance or a POJO acting as a context during an mTree loading",
+        "or an artifact generation.",
+        "The ittf node value is the name of the model that must be unique",
+        "in a \"wfjob\"; it will become the default export name of the context",
+        "value that exposes the model.",
+        "A \"model\" will be loaded once, and will be reused if",
+        "referenced in many evaluations."
+      ]
+    },
+    {
+      "name": "modelRef",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "model-ref"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "exportName",
+          "type": "string",
+          "tags": [
+            "export-name"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The name of the context property that will expose the loaded model during",
+            "an evaluation. Overrides the name of the \"model\" that is the default export name."
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "transformer",
+          "role": "transformers",
+          "tags": [
+            "transformer"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "A model may have one or more transformers.",
+            "Transformers are chained and the output of a transformation",
+            "is the input for the next one."
+          ]
+        },
+        {
+          "name": "modelCollection",
+          "role": "modelCollections",
+          "tags": [
+            "model-coll"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "TODO This is a one-to-one relation, not yet implemented.",
+            "Single items of a collection contained in the \"model\" may act as data contexts",
+            "of artifacts where each collection item generates a separate artifact."
+          ]
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "this.modelCollections.length > 0",
+              "statements": [
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "this.modelCollection = this.modelCollections[0]",
+                  "statements": []
+                },
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "this.collName = this.modelCollection.wzName",
+                  "statements": []
+                },
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "this.collItemName = this.modelCollection.itemName",
+                  "statements": []
+                },
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "this.collPathTemplateValues = []",
+                  "statements": []
+                },
+                {
+                  "tag": "foreach",
+                  "name": "foreach",
+                  "value": "item in this.modelCollection.pathTemplateValues",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "this.collPathTemplateValues.push",
+                      "statements": [
+                        {
+                          "tag": "{",
+                          "name": "jsObject",
+                          "value": "",
+                          "statements": [
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "token item.token",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "attribute item.attribute",
+                              "statements": []
+                            },
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "function item.function",
+                              "statements": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "modelCollection",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "model-coll"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "itemName",
+          "type": "string",
+          "tags": [
+            "item-name"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The export name of a collection item when acting as a data context."
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "pathTemplateValue",
+          "role": "pathTemplateValues",
+          "tags": [
+            "path-template-value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "Single items of a collection contained in a \"model\" may act as data contexts",
+        "of artifacts where each collection item generates a separate artifact.",
+        "This element, contained in a \"modelRef\" element, specifies:",
+        ". the collection name: the IttfNodeValue of this element",
+        ". the export name of the collection item when acting as a data context: the \"item-name\" attribute",
+        ". the property names of the collection item that will be used to build the destination path",
+        "of the artifact: the \"pathTemplateValues\" child elements"
+      ]
+    },
+    {
+      "name": "pathTemplateValue",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "path-template-value"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "attribute",
+          "type": "string",
+          "tags": [
+            "attribute"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The property of the context object (a collection item) containing the value which will replace",
+            "the \"token\" value in the generated artifact path template.",
+            "Is alternative to \"function\""
+          ]
+        },
+        {
+          "name": "function",
+          "type": "string",
+          "tags": [
+            "function"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The function of the context object (a collection item) that returns the value which will replace",
+            "the \"token\" value in the generated artifact path template.",
+            "Is alternative to \"attribute\""
+          ]
+        },
+        {
+          "name": "token",
+          "type": "string",
+          "tags": [
+            "token"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The token that will be replaced by the value returned accessing \"attribute\" or calling \"function\"",
+            "on a context object."
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "transformer",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "transformer"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "dumpFile",
+          "type": "string",
+          "tags": [
+            "dump-file"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "A filepath where the transformed model must be dumped for test.",
+            "When declared the transformed model is JSON.stringyfied and written",
+            "to the \"dumpFile\" filepath."
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A model transformer .",
+        "The ittf node value is the transformer name {wizzischema}/{transformer}",
+        "to be found in {wizziPackage}/artifacts/{wizzischema}/{transformer}/trans/main.js"
+      ]
+    },
+    {
+      "name": "artifact",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "artifact"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "src",
+          "type": "string",
+          "tags": [
+            "src"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The path to the primary ittf source document of the artifact, in case of a wizzi model, or",
+            "to a native source in case of a POJO.",
+            "TODO explain why this:",
+            "Or it may contain the literal 'context' if the artifact generator require a context object only",
+            "and not a primary model.",
+            "If relative, the base path is the cwdFolder of the parent line.",
+            "Can be a glob pattern.",
+            "If the artifact is a code write artifact the 'src' attribute must be omitted."
+          ]
+        },
+        {
+          "name": "ignore",
+          "type": "string",
+          "tags": [
+            "ignore"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "File returned by the src pattern that must be ignored.",
+            "Can be a glob pattern."
+          ]
+        },
+        {
+          "name": "schema",
+          "type": "string",
+          "tags": [
+            "schema"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "When the artifact source is a schemed ittf document, is the schema that will load and",
+            "validate the wizzi model instance.",
+            "May be null (absent) if the artifact is a final artifact or the artifact source is a POJO;",
+            "in this case the 'format' attribute must be declared."
+          ]
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "tags": [
+            "format"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "json",
+                  "comments": [
+                    "Native JSON file."
+                  ]
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "xml",
+                  "comments": [
+                    "Native Xml file."
+                  ]
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "js",
+                  "comments": [
+                    "Native javascript module file that may export object properties or",
+                    "a function named 'toModel'."
+                  ]
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": [
+            "When the artifact source is a POJO model is the native format of the source file.",
+            "Is alternative to the attribute 'schema'."
+          ]
+        },
+        {
+          "name": "isCompile",
+          "type": "boolean",
+          "tags": [
+            "is-compile"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "Indicator that the mTree buildup script must be 'compiled' for javascript",
+            "and loaded with a 'require-from-string' function instead of",
+            "being submitted to js-wizzi."
+          ]
+        },
+        {
+          "name": "isWfJob",
+          "type": "boolean",
+          "tags": [
+            "is-wf-job"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "Indicator that the artifact source is a wizzi factory job, alias a wizzi model of schema 'wfjob'.",
+            "The job will be executed before any other artifact production of the current wfjob.",
+            "This could be autodected from the schema, but autodetection would forbid other uses or transformations",
+            "of a \"wfjob\" model, so the indicator is required."
+          ]
+        },
+        {
+          "name": "isWfModelType",
+          "type": "boolean",
+          "tags": [
+            "is-wf-model-type"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "Indicator that the artifact source is a wizzi schema, alias a wizzi model of schema 'wfschema'",
+            "and that the generation of the artifacts for the wizzi model described by the wfschema is requested.",
+            "This could be autodected from the schema, but autodetection would forbid other uses or transformations",
+            "of a \"wfschema\" model, so the indicator is required."
+          ]
+        },
+        {
+          "name": "generator",
+          "type": "string",
+          "tags": [
+            "generator"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "When the artifact source is a wizzi model instance or a POJO, acting as a context, is the name of",
+            "the artifact generator that will transform the context into a software artifact.",
+            "When the artifact is a code write generation or a final artifact must be omitted."
+          ]
+        },
+        {
+          "name": "destPath",
+          "type": "string",
+          "tags": [
+            "dest-path"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The artifact source file path, 'src', is the default relative destination path",
+            "of the generated artifact. When set, this attribute overrides the default.",
+            "It can be an absolute or relative path.",
+            "If the artifact is a code write generation the 'destPath' attribute is required."
+          ]
+        },
+        {
+          "name": "extension",
+          "type": "string",
+          "tags": [
+            "extension"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The document path extension of the generated artifact. Optional. The default is the 'src' extension",
+            "without the ending '.ittf' string, if present."
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "transformer",
+          "role": "transformers",
+          "tags": [
+            "transformer"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "When the artifact source is an Ittf document, the loaded WizziModel may need",
+            "one or more transformations before being passed to the artifact generator.",
+            "Transformers are chained and the output of a transformation",
+            "is the input for the next one."
+          ]
+        },
+        {
+          "name": "modelRef",
+          "role": "modelRefs",
+          "tags": [
+            "model-ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "References to 'model/s' acting as context objects.",
+            "In case of a final artifact must not be declared."
+          ]
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "Describe an artifact to be generated.",
+        "It is a child element of a \"line\" element.",
+        "",
+        "Can be one of:",
+        ". A Wizzi model instance, acting as a template, which WizziSchema targets a code language technology.",
+        ". A swig template.",
+        ". A code write generation that takes in input a context of one or more WizziModels.",
+        ". A final artifact to be copied to a destination folder without transformations.",
+        ". A reference to another WfJob, to be executed before the current WfJob where the artifact is declared.",
+        "",
+        "Context value objects for template transformations are declared in the \"model\" element, child of the \"wfjob\" root element",
+        "and may be referenced in the elements \"modelRef\", children of the \"artifact\" element.",
+        "",
+        "The \"src\" or \"destPath\" attributes of an \"artifact\" element may contain tokens enclosed in graph parens.",
+        "When one of the \"modelRef@\" is a collection model, the artifact generation is repeated",
+        "for each item of the collection and the \"src\" or \"destPath\" attributes become the template of the destination path.",
+        "See the \"pathTemplateValues\" child elements of the \"modelRef\" for the values that will replace the tokens.",
+        "",
+        "Example",
+        "",
+        "artifact",
+        "dest-path app/db/{table}Datalayer.js.ittf",
+        "...",
+        "model-ref rdbms",
+        "model-coll tables",
+        "item-name table",
+        "path-template-value",
+        "attribute tableName",
+        "token table",
+        "",
+        "model rdbms",
+        "...",
+        "",
+        "the Wizzi model instance after loading rdbms: {",
+        "....",
+        "tables: [{",
+        "tableName: 'user',",
+        "...",
+        "},{",
+        "...",
+        "}]",
+        "}",
+        "",
+        "will produce an artifact of path .../app/db/userDatalayer.js, and as many as the items in the tables collection.",
+        ""
+      ]
+    },
+    {
+      "name": "line",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "line"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "cwdFolder",
+          "type": "string",
+          "tags": [
+            "cwd-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The source folder of the artifact templates of this line."
+          ]
+        },
+        {
+          "name": "destFolder",
+          "type": "string",
+          "tags": [
+            "dest-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The destination folder of the generated artifacts of this line.",
+            "Overrides the attribute \"destFolder\" of the \"production\" element."
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "artifact",
+          "role": "artifacts",
+          "tags": [
+            "artifact"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "The artifacts of the \"line\""
+          ]
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A line is a group of artifacts having the same source \"cwdFolder\"."
+      ]
+    },
+    {
+      "name": "lineRef",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "line-ref"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A reference to a line."
+      ]
+    },
+    {
+      "name": "production",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "production"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "destFolder",
+          "type": "string",
+          "tags": [
+            "dest-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The destination folder of the generated artifacts."
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "modelRef",
+          "role": "modelRefs",
+          "tags": [
+            "model-ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "References to the context WizziWodels used by this \"production\"."
+          ]
+        },
+        {
+          "name": "lineRef",
+          "role": "lineRefs",
+          "tags": [
+            "line-ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "References to the \"line(s)\" to be generated."
+          ]
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.wfjob = this.wzParent;",
+              "statements": []
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "modelRef in this.modelRefs",
+              "statements": [
+                {
+                  "tag": "var",
+                  "name": "xvar",
+                  "value": "model = this.wfjob.getModel(modelRef.wzName)",
+                  "statements": []
+                },
+                {
+                  "tag": "if",
+                  "name": "xif",
+                  "value": "model == null",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "this.error('Model ' + modelRef.wzName + ' not found.', modelRef)",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "modelRef.___model = model",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.lines = [];",
+              "statements": []
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "lineRef in this.lineRefs",
+              "statements": [
+                {
+                  "tag": "var",
+                  "name": "xvar",
+                  "value": "line = this.wfjob.getLine(lineRef.wzName)",
+                  "statements": []
+                },
+                {
+                  "tag": "if",
+                  "name": "xif",
+                  "value": "line == null",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "this.error('line ' + lineRef.wzName + ' not found.', lineRef)",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "this.lines.push(line)",
+                  "statements": []
+                },
+                {
+                  "tag": "foreach",
+                  "name": "foreach",
+                  "value": "artifact in line.artifacts",
+                  "statements": [
+                    {
+                      "tag": "foreach",
+                      "name": "foreach",
+                      "value": "modelRef in artifact.modelRefs",
+                      "statements": [
+                        {
+                          "tag": "var",
+                          "name": "xvar",
+                          "value": "model = this.wfjob.getModel(modelRef.wzName)",
+                          "statements": []
+                        },
+                        {
+                          "tag": "if",
+                          "name": "xif",
+                          "value": "model == null",
+                          "statements": [
+                            {
+                              "tag": "_",
+                              "name": "call",
+                              "value": "this.error('Model ' + modelRef.wzName + ' not found.', modelRef)",
+                              "statements": []
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "set",
+                          "name": "set",
+                          "value": "modelRef.___model = model;",
+                          "statements": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": [
+        "A job execution unit that generates a set of Software artifacts",
+        "into one destination folder."
+      ]
+    },
+    {
+      "name": "env",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "env"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "default": "string",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "string",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "boolean",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "number",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "__name",
+          "type": "string",
+          "tags": [
+            "__name"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "__value",
+          "type": "string",
+          "tags": [
+            "__value"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "nv = verify.parseNameValue(this.wzName)",
+              "statements": []
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.__name = nv.name",
+              "statements": []
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.__value = verify.convert(nv.value, this.type)",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "arg",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "arg"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "default": "string",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "string",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "boolean",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "number",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "__name",
+          "type": "string",
+          "tags": [
+            "__name"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "__value",
+          "type": "string",
+          "tags": [
+            "__value"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "nv = verify.parseNameValue(this.wzName)",
+              "statements": []
+            },
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "nv.value && nv.value.length > 0",
+              "statements": [
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "this.__name = nv.name",
+                  "statements": []
+                },
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "this.__value = verify.convert(nv.value, this.type)",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "else",
+              "name": "xelse",
+              "value": "",
+              "statements": [
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "this.__value = verify.convert(nv.name, this.type)",
+                  "statements": []
+                }
+              ]
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "execFile",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "exec-file"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "exePath",
+          "type": "string",
+          "tags": [
+            "exe-path"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The path to the executable."
+          ]
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "A short description of the execution."
+          ]
+        },
+        {
+          "name": "cwd",
+          "type": "string",
+          "tags": [
+            "cwd"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "Current working directory of the child process."
+          ]
+        },
+        {
+          "name": "encoding",
+          "type": "string",
+          "tags": [
+            "encoding"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "Default: 'utf8'"
+          ]
+        },
+        {
+          "name": "timeout",
+          "type": "integer",
+          "tags": [
+            "timeout"
+          ],
+          "default": "0",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "Default: 0"
+          ]
+        },
+        {
+          "name": "__options",
+          "type": "string",
+          "tags": [
+            "__options"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "__args",
+          "type": "string",
+          "tags": [
+            "__args"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "arg",
+          "role": "args",
+          "tags": [
+            "arg"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "env",
+          "role": "envs",
+          "tags": [
+            "env"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "options = {}",
+              "statements": []
+            },
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "this.cwd && this.cwd.length > 0",
+              "statements": [
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "options.cwd = this.cwd",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "this.encoding && this.encoding.length > 0",
+              "statements": [
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "options.encoding = this.encoding",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "this.timeout > 0",
+              "statements": [
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "options.timeout = this.timeout",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "this.envs.length > 0",
+              "statements": [
+                {
+                  "tag": "var",
+                  "name": "xvar",
+                  "value": "envObj = {}",
+                  "statements": []
+                },
+                {
+                  "tag": "foreach",
+                  "name": "foreach",
+                  "value": "env in this.envs",
+                  "statements": [
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "envObj[env.__name] = env.__value",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "options.env = envObj",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.__options = options",
+              "statements": []
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.__args = []",
+              "statements": []
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "arg in this.args",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "this.__args.push(arg.__value)",
+                  "statements": []
+                }
+              ]
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": [
+        "An execution of a child process using",
+        "-> child_process.execFile(file[, args][, options][, callback])"
+      ]
+    }
+  ]
+}

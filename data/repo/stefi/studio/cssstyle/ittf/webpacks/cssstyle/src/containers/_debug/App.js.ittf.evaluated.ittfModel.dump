@@ -1,0 +1,136 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { Component, PropTypes } from 'react' ids: undefined undefined
+    import { connect } from 'react-redux' ids: undefined undefined
+    import { Style } from 'radium' ids: undefined undefined
+    import dhQuery from 'dom-helpers/query' ids: undefined undefined
+    import sizeMe from 'react-sizeme' ids: undefined undefined
+    import normalize from '../styles/normalize'; ids: undefined undefined
+    # import { getCommons } from '../actions' ids: undefined undefined
+    import Form from '../components/Form' ids: undefined undefined
+    import Control from '../components/Control' ids: undefined undefined
+    import { Row, Col } from '../components/grid' ids: undefined undefined
+    import { StyledElement } from '../components/html' ids: undefined undefined
+    import StylesData from './StylesData' ids: undefined undefined
+    class App ids: undefined undefined
+      super Component ids: undefined undefined
+      ctor  ids: undefined undefined
+        set this.state ids: undefined undefined
+          {  ids: undefined undefined
+            @ selectedStyledId null ids: undefined undefined
+            @ styledStyles null ids: undefined undefined
+            @ metaPlay null ids: undefined undefined
+        set this.updateDimensions = this.updateDimensions.bind(this) ids: undefined undefined
+        set this.handleChangeStyled = this.handleChangeStyled.bind(this) ids: undefined undefined
+        set this.handleChangeStyle = this.handleChangeStyle.bind(this) ids: undefined undefined
+      m componentWillMount ids: undefined undefined
+        set this.stylesData = new StylesData() ids: undefined undefined
+        log 'componentDidMount.this.stylesData', this.stylesData ids: undefined undefined
+        _ this.refreshStylesState ids: undefined undefined
+          =>  ids: undefined undefined
+            _ this.updateDimensions() ids: undefined undefined
+      m componentDidMount ids: undefined undefined
+        _ window.addEventListener ids: undefined undefined
+          @ "resize" ids: undefined undefined
+          @ this.updateDimensions ids: undefined undefined
+      m updateDimensions ids: undefined undefined
+        _ this.setState ids: undefined undefined
+          {  ids: undefined undefined
+            @ ...this.state ids: undefined undefined
+            @ width dhQuery.width(window) ids: undefined undefined
+            @ height dhQuery.height(window) ids: undefined undefined
+      m handleChangeStyled ids: undefined undefined
+        param id ids: undefined undefined
+        param value ids: undefined undefined
+        # log 'handleChangeStyled', arguments ids: undefined undefined
+        _ this.stylesData.selectStyled(value) ids: undefined undefined
+        _ this.refreshStylesState() ids: undefined undefined
+      m handleChangeStyle ids: undefined undefined
+        param id ids: undefined undefined
+        param values ids: undefined undefined
+        _ this.stylesData.updateStyles(values) ids: undefined undefined
+        _ this.refreshStylesState() ids: undefined undefined
+      m componentWillUnmount ids: undefined undefined
+        _ window.removeEventListener ids: undefined undefined
+          @ "resize" ids: undefined undefined
+          @ this.updateDimensions ids: undefined undefined
+      m refreshStylesState ids: undefined undefined
+        param callback ids: undefined undefined
+        log 'refreshStylesState.stylesData', this.stylesData ids: undefined undefined
+        _ this.setState ids: undefined undefined
+          {  ids: undefined undefined
+            @ ...this.state ids: undefined undefined
+            @ selectedStyledId this.stylesData.selectedStyledId ids: undefined undefined
+            @ styledStyles this.stylesData.styledStyles ids: undefined undefined
+            @ metaPlay this.stylesData.metaPlay ids: undefined undefined
+          =>  ids: undefined undefined
+            log 'refreshStylesState', this.state ids: undefined undefined
+            if callback ids: undefined undefined
+              _ callback() ids: undefined undefined
+      m render ids: undefined undefined
+        log 'render.state', this.state ids: undefined undefined
+        const { width, height } = this.props.size ids: undefined undefined
+        const { metaPlay, styledStyles } = this.state ids: undefined undefined
+        const { styledMeta } = this.stylesData ids: undefined undefined
+        const styledIds = this.stylesData.maps.styledIds || [] ids: undefined undefined
+        return  ids: undefined undefined
+          div  ids: undefined undefined
+            < Style ids: undefined undefined
+              @ rules {normalize} ids: undefined undefined
+            < Row ids: undefined undefined
+              < Col ids: undefined undefined
+                @ span {4} ids: undefined undefined
+                h3 Select styled element ids: undefined undefined
+                < Control ids: undefined undefined
+                  @ id "styledId" ids: undefined undefined
+                  @ key "styledId" ids: undefined undefined
+                  @ type "select" ids: undefined undefined
+                  @ label "styled" ids: undefined undefined
+                  @ value {this.state.selectedStyledId} ids: undefined undefined
+                  @ data ids: undefined undefined
+                    {  ids: undefined undefined
+                      @ options styledIds ids: undefined undefined
+                  @ onChangeValue {this.handleChangeStyled} ids: undefined undefined
+                h3 Styled element ids: undefined undefined
+                < StyledElement ids: undefined undefined
+                  @ meta {styledMeta} ids: undefined undefined
+                  @ styles {styledStyles} ids: undefined undefined
+              < Col ids: undefined undefined
+                @ span {8} ids: undefined undefined
+                h3 Styles ids: undefined undefined
+                < Form ids: undefined undefined
+                  @ id test ids: undefined undefined
+                  @ caption Styles Form ids: undefined undefined
+                  @ meta {metaPlay} ids: undefined undefined
+                  @ onChangeValues {this.handleChangeStyle} ids: undefined undefined
+            div App size: {width}px x {height}px ids: undefined undefined
+            div Window size: {this.state.width}px x {this.state.height}px ids: undefined undefined
+    const mapStateToProps ids: undefined undefined
+      =>  ids: undefined undefined
+        param state ids: undefined undefined
+        return  ids: undefined undefined
+          {  ids: undefined undefined
+            @ ...state ids: undefined undefined
+    const mapDispatchToProps ids: undefined undefined
+      =>  ids: undefined undefined
+        param dispatch ids: undefined undefined
+        return  ids: undefined undefined
+          {  ids: undefined undefined
+            @ loadCommons ids: undefined undefined
+              =>  ids: undefined undefined
+                # _ dispatch(getCommons()) ids: undefined undefined
+    const AppConnected ids: undefined undefined
+      _ connect ids: undefined undefined
+        @ mapStateToProps ids: undefined undefined
+        @ mapDispatchToProps ids: undefined undefined
+        (  ids: undefined undefined
+          @ App ids: undefined undefined
+    const AppConnectedSized ids: undefined undefined
+      _ sizeMe ids: undefined undefined
+        {  ids: undefined undefined
+          @ monitorHeight true ids: undefined undefined
+          @ monitorPosition true ids: undefined undefined
+        (  ids: undefined undefined
+          @ AppConnected ids: undefined undefined
+    export default AppConnectedSized ids: undefined undefined

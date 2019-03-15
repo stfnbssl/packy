@@ -1,0 +1,15 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { PropTypes } from 'react' ids: undefined undefined
+    +  ids: undefined undefined
+    const Flags ids: undefined undefined
+      =>  ids: undefined undefined
+        param { flags } ids: undefined undefined
+        if !flags || !flags.length ids: undefined undefined
+          return null ids: undefined undefined
+        else  ids: undefined undefined
+          return  ids: undefined undefined
+            span {flags.join(', ')} ids: undefined undefined
+    +  ids: undefined undefined
+    export default Flags ids: undefined undefined

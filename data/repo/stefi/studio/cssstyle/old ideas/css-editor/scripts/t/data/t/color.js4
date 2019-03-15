@@ -1,0 +1,10 @@
+﻿__o
+	$args name label|@@null
+	__p name ${name}
+	__p label ${label}
+	__p type:object Wmteditor.ValueWidget
+	__p editor Color
+	__p schema
+		__o 
+			__p name ${name}
+			__p type string

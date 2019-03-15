@@ -1,0 +1,43 @@
+﻿html
+
+	$
+		var opt = {}
+		opt.useMonaco = true;
+
+	page( &opt
+
+		$append styles
+			@style
+				css
+					# root
+						width 800px
+						height 600px
+						border 1px solid grey
+
+		$append scripts-1
+			script
+				module
+
+					ready
+						kind window
+						_ require.config
+							{
+								@ paths
+									{
+										@ vs '/static/lib/monaco-editor/package/min/vs'
+						_ require
+							[
+								@ 'vs/editor/editor.main'
+							function
+								var editor
+									_ monaco.editor.create
+										_ document.getElementById
+											@ 'root'
+										{
+											@ value
+												[
+													@ 'function x() {'
+													@ '\tconsole.log("Hello world!");'
+													@ '}'
+													._ join('\n')
+											@ language 'javascript'

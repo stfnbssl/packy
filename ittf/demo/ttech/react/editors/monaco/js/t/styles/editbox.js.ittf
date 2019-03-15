@@ -1,0 +1,92 @@
+﻿$group
+	$params &opt
+
+	@ editbox
+		{
+			@ flex '1 auto'
+			@ display 'flex'
+
+	@ editorbox
+		{
+			@ margin '.5vw .5vw'
+			@ flex '1 auto'
+			@ display 'flex'
+			@ flexDirection 'column'
+
+	@ editorHead
+		{
+			@ margin '4px'
+			@ backgroundColor '${opt.gray_3_ehead}'
+			@ height '40px'
+			@ width '100%'
+			@ display 'flex'
+			@ justifyContent 'flex-end'
+
+	@ editorHeadControls
+		{
+			@ margin '0 0 4px 15px'
+			@ flex '1 auto'
+
+	@ editorHeadControl
+		{
+			@ padding '0 15px'
+			@ display 'inline-block'
+
+	@ editorButton
+		{
+			@ fontFamily '"Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif'
+			@ fontSize '1rem'
+			@ padding '2px 6px'
+			@ margin '4px 10px 0 10px'
+			@ height '32px'
+			@ position 'relative'
+			@ borderRadius '2px'
+			@ color 'white'
+			@ cursor 'pointer'
+			@ whiteSpace 'nowrap'
+			@ textOverflow 'ellipsis'
+			@ textDecoration 'none !important'
+			@ textAlign 'center'
+			@ fontWeight 'normal !important'
+			@ border '1px solid #343436'
+			@ background '#343436'
+			@ '&:hover'
+				{
+					@ background '#454547'
+
+	@ editorHeadText
+		{
+			@ color '#bbb'
+			@ fontFamily '"Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif'
+			@ fontWeight 'bold'
+			@ margin '0'
+			@ fontSize '1.3rem'
+			@ display 'inline-block'
+			@ flex '1 auto'
+			@ padding '4px 6px'
+			@ verticalAlign 'middle'
+
+	@ editor
+		{
+			@ position 'relative'
+			@ flex '1 auto'
+			@ overflow 'hidden'
+
+	@ formControl
+		{
+			@ margin theme.spacing.unit
+			@ minWidth 120
+
+	@ avatar
+		{
+			@ position 'absolute'
+			@ margin 'auto'
+			@ top '0'
+			@ left '0'
+			@ right '0'
+			@ bottom '0'
+
+	@ editorPane
+		{
+			@ margin '15px 10px'
+			@ overflow 'auto'

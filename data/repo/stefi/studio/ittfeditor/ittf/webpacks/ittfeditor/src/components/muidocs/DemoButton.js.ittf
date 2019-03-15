@@ -1,0 +1,44 @@
+﻿r-component( DemoButton )
+	
+	$append imports
+		import find from 'lodash/find'
+		import { Link } from 'react-router'
+		import IconButton from 'material-ui/IconButton'
+		import PlayCircleOutlineIcon from 'material-ui-icons/PlayCircleOutline'
+		import { kebabCase } from '../../utils/helpers'
+		import { demoComponentsTree } from '../files'
+
+	prop routes
+		[
+		required
+
+	style
+
+	render
+		
+		prop routes
+		
+		const currentRoute = routes[routes - 1]
+		
+		if !currentRoute.componentAPI
+			return null
+		
+		const item
+			_ find
+				@ demoComponentsTree
+				=>
+					param node
+					return
+						_ find
+							@ node.components
+							=>
+								param component
+								return component === currentRoute.componentAPI.name)
+		if !item
+			return null
+
+		return
+			< IconButton
+				@ component {Link}
+				@ to {`/component-demos/${kebabCase(item.demo.name)}`}
+				< PlayCircleOutlineIcon

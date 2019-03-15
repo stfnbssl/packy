@@ -1,0 +1,42 @@
+{
+    "title": "Schema cheat sheet",
+    "language": "css",
+    "elements": [
+        {
+            "name": "selectorr",
+            "tag": ". | # | <",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "Css element selector",
+                    "ittfWrapped": "css \\n    < body\\n        background-color #dedede\\n        color 000",
+                    "generated": "\\nbody {\\n    background-color: #dedede;\\n    color: 000;\\n}\\n"
+                },
+                {
+                    "title": "Css class selector",
+                    "ittfWrapped": "css \\n    . page\\n        background-color #dedede\\n        color 000",
+                    "generated": "\\n.page {\\n    background-color: #dedede;\\n    color: 000;\\n}\\n"
+                },
+                {
+                    "title": "Css id selector",
+                    "ittfWrapped": "css \\n    # page\\n        background-color #dedede\\n        color 000",
+                    "generated": "\\n#page {\\n    background-color: #dedede;\\n    color: 000;\\n}\\n"
+                }
+            ]
+        },
+        {
+            "name": "include svg",
+            "tag": "background-image + svg",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "script tag with inclusion of a svg model",
+                    "ittfWrapped": "css \\n    < body\\n        background-image \\n            svg \\n                width 100%\\n                height 100%\\n                view-box 0 0 1600 900\\n                path \\n                    fill #A0E2DB\\n                    d M0 504 0 899 1600 899 1600 120z\\n                path \\n                    fill #CBF2F3\\n                    d M1600 567 1600 899 0 899 0 165z\\n                path \\n                    fill #719D71\\n                    d M0 680 0 899 1600 899 1600 300z\\n                path \\n                    fill # 37EB67E\\n                    d M1600 719 1600 899 0 899 0 353z\\n                path \\n                    fill #004D66\\n                    d M0 788 0 899 1600 899 1600 625z",
+                    "generated": "\\nbody {\\n    background-image: url(\\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 900'%3E%3Cpath d='M0 504 0 899 1600 899 1600 120z' style='fill:%23A0E2DB;'%3E%3C/path%3E%3Cpath d='M1600 567 1600 899 0 899 0 165z' style='fill:%23CBF2F3;'%3E%3C/path%3E%3Cpath d='M0 680 0 899 1600 899 1600 300z' style='fill:%23719D71;'%3E%3C/path%3E%3Cpath d='M1600 719 1600 899 0 899 0 353z' style='fill:%23 37EB67E;'%3E%3C/path%3E%3Cpath d='M0 788 0 899 1600 899 1600 625z' style='fill:%23004D66;'%3E%3C/path%3E%3C/svg%3E\\\");\\n}\\n"
+                }
+            ]
+        }
+    ]
+}

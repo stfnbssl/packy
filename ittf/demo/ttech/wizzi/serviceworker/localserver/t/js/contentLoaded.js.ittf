@@ -1,0 +1,127 @@
+﻿$group
+
+	# clickListener SHOULD BECAME eventListener
+
+	_ wz.contentLoaded
+		function
+			log '*** content loaded'
+
+			var editorImpl
+				new AceEditor
+					{
+						@ key 'ittf-editor'
+						@ editorElementId 'editorContainer'
+						@ width '1100px'
+						@ height '600px'
+						
+			var ctx
+				{
+					@ editorImpl editorImpl
+					@ modalsContainerId 'modalsContainer'
+					@ formsContainerId 'formsContainer'
+	
+			
+			set ctx.editManager
+				new EditManager
+					@ ctx
+					{
+						@ dataIttfPath 'ittfpath'
+						@ dataPrettyElementId 'ittfpretty'
+						@ dataTextPath 'textpath'
+
+
+			set ctx.formManager
+				new FormManager
+					@ ctx
+					{
+						@ dataFormId 'formid'
+						@ dataPath 'path'
+
+			set ctx.folderBrowseManager
+				new FolderBrowseManager
+					@ ctx
+					{
+						@ dataFolderPath 'folderpath'
+						@ dataIttfPath 'ittfpath'
+						@ dataTextPath 'textpath'
+
+			set ctx.ittfDocumentManager
+				new IttfDocumentManager
+					@ ctx
+					{
+						@ dataFolderPath 'folderpath'
+
+			set ctx.notifyManager = new NotifyManager(ctx)
+			set ctx.modalManager = new ModalManager(ctx)
+			set ctx.dataManager = new DataManager(ctx)
+			set ctx.fileManager = new FileManager(ctx)
+			set ctx.storeManager = new StoreManager(ctx)
+
+			_ setupClickListener
+				[
+					{
+						@ containerId 'ittfdocument-fragment-list'
+						@ targetClass 'edit-ittf-content-button'
+						@ dataField
+							[
+								@ 'ittfpath'
+								@ 'textpath'
+								@ 'ittfpretty'
+						@ clickHandler ctx.editManager
+					{
+						@ containerId 'bf-container'
+						@ targetClass 'edit-fs-button'
+						@ dataField
+							[
+								@ 'formid'
+								@ 'path'
+						@ clickHandler ctx.formManager
+					{
+						@ containerId 'bf-container'
+						@ targetClass 'bf-select'
+						@ dataField
+							[
+								@ 'folderpath'
+								@ 'ittfpath'
+								@ 'textpath'
+						@ clickHandler ctx.folderBrowseManager
+					{
+						@ eventName 'contextmenu'
+						@ containerId 'bf-container'
+						@ targetClass 'bf-context'
+						@ dataField
+							[
+								@ 'folderpath'
+								@ 'ittfpath'
+								@ 'textpath'
+						@ clickHandler ctx.folderBrowseManager
+					{
+						@ containerId 'ittfdocument-breadcrumbs'
+						@ targetClass 'ittfdocument-select'
+						@ dataField
+							[
+								@ 'folderpath'
+						@ clickHandler ctx.ittfDocumentManager
+
+			# ------------------------------------------
+			# Global ctx functions
+			# ------------------------------------------
+			
+			set ctx.sendWorkerMessage
+				function
+					param message
+					return
+						_ sendMessage
+							@ message
+
+			set ctx.toggleFolderBrowser
+				function
+					_ ctx.folderBrowseManager.toggle
+
+			set ctx.toggleIttfDocument
+				function
+					_ ctx.ittfDocumentManager.toggle
+
+			set window.appContext = ctx
+
+

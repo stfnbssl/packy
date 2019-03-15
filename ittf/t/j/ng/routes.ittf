@@ -1,0 +1,21 @@
+﻿iife
+	$params module, routes, dependencies|@@null
+
+	$ var deps = dependencies ? dependencies.trim().split(';') : []
+
+	function
+	
+		_ angular.module
+			@ '${module}'
+			._ config
+				[
+					@ '$stateProvider'
+					$foreach dep in deps
+						@ '${dep}'
+					@ ${routes}
+
+		function ${routes}
+			param $stateProvider
+			$foreach dep in deps
+				param ${dep}
+			$hook

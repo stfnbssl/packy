@@ -1,0 +1,50 @@
+﻿$group
+
+	function hoverable
+		param Component
+		class hoverableComponent
+			super React.Component
+			ctor
+				set this.state =
+					{ 
+						@ hovered false
+				set this.onMouseOverHandler = this.onMouseOverHandler.bind(this)
+				set this.onMouseOutHandler = this.onMouseOutHandler.bind(this)
+			
+			m componentDidMount
+				_ ReactDOM.findDOMNode(this)
+					._ addEventListener
+						@ "mouseover"
+						@ this.onMouseOverHandler
+				_ ReactDOM.findDOMNode(this)
+					._ addEventListener
+						@ "mouseout"
+						@ this.onMouseOutHandler
+            
+			m  componentWillUnmount
+				_ ReactDOM.findDOMNode(this)
+					._ removeEventListener
+						@ "mouseover"
+						@ this.onMouseOverHandler
+				_ ReactDOM.findDOMNode(this)
+					._ removeEventListener
+						@ "mouseout"
+						@ this.onMouseOutHandler
+            
+			m onMouseOverHandler
+				_ this.setState
+					{ 
+						@ hovered true
+							
+			m onMouseOutHandler
+				_ this.setState
+					{ 
+						@ hovered false
+                    
+			m render
+				return
+					< Component
+						@ {...this.props}
+						@ {...this.state} 
+        
+		return hoverableComponent

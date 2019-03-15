@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'basic',
+			label: 'Basic',
+			experimentsWith: 'basic react components',
+			path: [
+				{
+					name: 'react',
+					label: 'React',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

@@ -1,0 +1,8 @@
+select
+	$params id, label, model|@@null, value|@@null
+	class form-control input-sm
+	id ${id}
+	name ${id}
+	$if model
+		data-ng-model ${model}
+	$hook

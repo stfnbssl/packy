@@ -1,0 +1,84 @@
+﻿module
+    kind jsfile
+
+	var path = require('path')
+	var fsjsondb = require('fsjsondb')
+	
+	var dbContext
+		_ fsjsondb.dbContext
+			_ path.join
+				@ __dirname
+				@ 'data'
+
+	var authors
+		_ fsjsondb.collection
+			@ dbContext
+			@ 'authors'
+			[
+				@ 'name'
+
+	_ authors.insert
+		{
+			@ name 'pippo franco'
+			@ email 'pippo.franco@gmail.com'
+		function
+			param err
+			param ok
+			log err, ok
+	_ authors.insert
+		{
+			@ name 'topo gigio'
+			@ email 'topo.gigio@gmail.com'
+		function
+			param err
+			param ok
+			log err, ok
+	_ authors.update
+		{
+			@ name 'topo gigio'
+			@ email 'topo.gigio@yahoo.com'
+		function
+			param err
+			param ok
+			log err, ok
+	_ authors.update
+		{
+			@ name 'chicca bella'
+			@ email 'chicca.bella@yahoo.com'
+		function
+			param err
+			param ok
+			log err, ok
+	_ authors.insert
+		{
+			@ name 'eta beta'
+			@ email 'eta.beta@gmail.com'
+		function
+			param err
+			param ok
+			log err, ok
+	
+	_ authors.delete
+		{
+			@ name 'pippo franco'
+		function
+			param err
+			param ok
+			log err, ok
+	
+	_ authors.findOne
+		{
+			@ name 'topo gigio'
+		function
+			param err
+			param ok
+			log err, ok
+	
+	_ authors.find
+		function
+			param err
+			param ok
+			log err, ok
+
+
+

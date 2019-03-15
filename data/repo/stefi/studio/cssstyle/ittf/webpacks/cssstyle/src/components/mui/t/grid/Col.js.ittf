@@ -1,0 +1,27 @@
+﻿$group
+
+	wz-class Col
+		super Component
+
+		m render
+			const { span, children } = this.props
+			return
+				div
+					@style {this.getStyle(span)}
+					+ {children}
+
+		m getStyle
+			param span
+			return
+				{
+					@ boxSizing "border-box"
+					@ position "relative"
+					@ width (span / 12 * 100) + '%'
+					@ float "left"
+					@ paddingLeft 10
+					@ paddingRight 10
+					@ minHeight 1
+							
+	set Col.propTypes
+		{
+			@ span PropTypes.number.isRequired

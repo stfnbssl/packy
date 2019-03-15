@@ -1,0 +1,215 @@
+﻿$group
+
+	function setIttfDocument
+		param data
+
+		_ setJson
+			@ data
+
+		_ fragmentListBar
+			@ data
+		_ fragmentListEdit
+			@ data
+
+		function setJson
+			param data
+			
+			html_start(
+				@ '<h2>Ittf document</h2>'
+				@ '<pre>'
+				@ JSON.stringify(data, null, 2)
+				@ '</pre>'
+			
+			html_set( ittfdocument-json, false )
+
+		function fragmentListBar
+			param data
+
+			html_start(
+				@ '<ul>'
+				@ '  <li>'
+				@ '    <a href="#' + data.primaryUri + '" class="mc-item-link">'
+				@ data.primaryUri
+				@ '    </a>'
+				@ '  </li>'
+
+			foreach f in data.fragments
+				html_add(
+					@ '  <li>'
+					@ '    <a href="#' + f.uri + '" class="mc-item-link">'
+					@ f.relUri
+					@ '    </a>'
+					@ '  </li>'
+
+			foreach r in data.ittfReferences
+				html_add(
+					@ '  <li>'
+					@ '    <a href="#' + r.documentState.primaryPath + '" class="mc-item-link">'
+					@ r.relUri
+					@ '    </a>'
+					@ '  </li>'
+
+				foreach f in r.documentState.fragments
+					html_add(
+						@ '  <li>'
+						@ '    <a href="#' + f.uri + '" class="mc-item-link">'
+						@ f.relUri
+						@ '    </a>'
+						@ '  </li>'
+			
+			html_set( mc-sidebar-left-ittfdocument )
+
+		function fragmentListEdit
+			param data
+
+			html_start(
+				@ '<div class="mc-pane">'
+				@ '  <div class="code-panel" id="' + data.primaryUri + '">'
+				@ '    <div class="modal-view-container">'
+				@ '      <h4 class="d-h2">' + data.primaryUri + ' (primary)</h4>'
+				@ '      <div class="code-edit-button">'
+				@ '        <span class="edit-ittf-content-button"' +
+					\b ' data-ittfcontent="'+ data.id + '_ittf"' + 
+					\b ' data-ittfpretty="'+ data.id + '_pretty"' + 
+					\b ' data-ittftitle="'+ data.primaryUri + '"' + 
+					\b ' data-ittfhash="'+ data.primaryHash + '">' 
+				@ '        </span>'
+				@ '        <textarea style="display:none;" id="' + data.id + '">'
+				@ data.primaryIttf.content
+				@ '        </textarea>'
+				@ '      </div>'
+				@ '      <pre class="prettyprint" id="' + data.id + '_pretty">'
+				@ data.primaryIttf.pretty
+				@ '      </pre>'
+				@ '    </div>'
+				@ '  </div>'
+				@ '</div>'
+
+			foreach f in data.fragments
+				html_add(
+					@ '<div class="mc-pane">'
+					@ '  <div class="code-panel" id="' + f.uri + '">'
+					@ '    <div class="modal-view-container">'
+					@ '      <h4 class="d-h2">' + f.relUri + '</h4>'
+					@ '      <div class="code-edit-button">'
+					@ '        <span class="edit-ittf-content-button"' +
+						\b ' data-ittfcontent="'+ f.id + '_ittf"' + 
+						\b ' data-ittfpretty="'+ f.id + '_pretty"' + 
+						\b ' data-ittftitle="'+ f.uri + '"' + 
+						\b ' data-ittfhash="'+ f.hash + '">' 
+					@ '        </span>'
+					@ '        <textarea style="display:none;" id="' + f.id + '">'
+					@ f.ittfContent
+					@ '        </textarea>'
+					@ '      </div>'
+					@ '      <pre class="prettyprint" id="' + f.id + '_pretty">'
+					@ f.ittfPretty
+					@ '      </pre>'
+					@ '    </div>'
+					@ '  </div>'
+					@ '</div>'
+
+			html_set( mc-content-ittfdocument )
+
+	function setFolderBrowse
+		param data
+
+		_ htmlBreadcrumbsJson
+			@ data.breadCrumbs
+		_ htmlBreadcrumbs
+			@ data.breadCrumbs
+		
+		_ htmlCurrentFolder
+			@ data
+		
+		_ htmlFolderContentJson
+			@ data.fsitems
+		_ htmlFolderContent
+			@ data.fsitems
+
+		function htmlBreadcrumbs
+			param data
+
+			html_start(
+				@ '<nav class="tn-breadcrumbs">'
+				@ '    <div class="breadcrumbs-panel">'
+			
+			foreach bc in data
+				if bc.isLast
+					html_add(
+						@ '        <div class="breadcrumb-item">'
+						@ '            <span>' + bc.name + '</span>'
+						@ '        </div>'
+				else
+					html_add(
+						@ '        <div class="breadcrumb-item">'
+						@ '            <a href="#" class="bf-folder-select" data-folderpath="' + bc.uri + '">' + bc.name + '</a>'
+						@ '        </div>'
+			html_add(
+				@ '    </div>'
+				@ '</nav>'
+
+			html_set( breadcrumbs )
+
+		function htmlBreadcrumbsJson
+			param data
+
+			html_start(
+				@ '<h2>Breadcrumbs</h2>'
+				@ '<pre>'
+				@ JSON.stringify(data, null, 2)
+				@ '</pre>'
+			html_set( breadcrumbs-json, false )
+
+		function htmlCurrentFolder
+			param data
+			_ wz.html
+				_ wz.element('#currentFolder')
+				[
+					@ '<h2>Current folder: ' + data.folderUri + '</h2>'
+					._ join('\n')
+			_ wz.show('#currentFolder')
+
+		function htmlFolderContent
+			param data
+
+			html_start(
+				@ '<ul>'
+
+			foreach f in data
+				if f.isFolder
+					html_add()
+						@ '<li class="fsitem">'
+						@ '    <img src="/ittf/images/folder.svg.ittf" />'
+						@ '    <a href="#" class="mc-item-link bf-folder-select" data-folderpath="' + f.uri + '">' + f.name + '</a>'
+						@ '</li>'
+
+			foreach f in data
+				if !f.isFolder
+					html_add()
+						@ '<li class="fsitem">'
+						@ '    <img src="/ittf/images/file.svg.ittf" />'
+						@ '    <a href="#' + f.uri + '" class="mc-item-link">'
+						@ f.basename
+						@ '</a>'
+						@ '    <a href="#' + f.uri + '?meta=html" class="mc-item-link">'
+						@ 'edit'
+						@ '</a>'
+						@ '</li>'
+
+			html_add(
+				@ '</ul>'
+			
+			html_set( foldercontent )
+
+		function htmlFolderContentJson
+			param data
+
+			html_start(
+				@ '<h2>Folder content</h2>'
+				@ '<pre>'
+				@ JSON.stringify(data, null, 2)
+				@ '</pre>'
+
+			html_set( foldercontent-json, false )
+

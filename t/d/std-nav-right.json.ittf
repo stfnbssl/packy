@@ -1,0 +1,98 @@
+﻿$group
+
+	{ navRight
+		fixed true
+		fullHeight true
+		width 200
+		backgroundColor "${l_colors[11]}"
+		padding "0.5rem 1rem"
+		[ groups
+			{
+				title 'Labs'
+				[ items
+					{
+						label "Router"
+						icon ""
+						href "/ittf/labs/router/index.html.ittf"
+					{
+						label "Splitter"
+						icon ""
+						href "/ittf/labs/splitter/index.html.ittf"
+					{
+						label "Repo"
+						icon ""
+						href "/ittf/labs/repo/index.html.ittf"
+					{
+						label "Jss basic"
+						icon ""
+						href "/ittf/labs/jss/basic.html.ittf"
+					{
+						label "Jss render"
+						icon ""
+						href "/ittf/labs/jss/render.html.ittf"
+					{
+						label "Jss react"
+						icon ""
+						href "/ittf/labs/jss/react.html.ittf"
+					{
+						label "Jss theme"
+						icon ""
+						href "/ittf/labs/jss/theme.html.ittf"
+					{
+						label "Latin"
+						icon ""
+						href "/ittf/labs/latin/index.html.ittf"
+					{
+						label "Netlify 18 lines of code"
+						icon ""
+						href "/ittf/labs/netlify/index.html.ittf"
+					{
+						label "Wizzi factory site"
+						icon ""
+						href "/ittf/labs/wfsite/index.html.ittf"
+			{
+				title 'In evidence'
+				[ items
+					{
+						label "Html node editor"
+						icon ""
+						href "/ittf/demo/ttech/react/material-ui/htmleditor/index.html.ittf"
+					{
+						label "Css explorer"
+						icon ""
+						href "/ittf/demo/apps/cssexplorer/index.html.ittf"
+					{
+						label "You must implement this ..."
+						icon ""
+						href "https://ractive.js.org/playground/index.html?env=docs&hidemenu"
+					{
+						label "... and this could help"
+						icon ""
+						href "https://github.com/nathancahill/Split.js/blob/master/src/split.js"
+			{
+				title 'Webpacks'
+				[ items
+					{
+						label "Wizzi factory"
+						icon ""
+						href "/ittf/demo/apps/wizzifactory/index.html.ittf"
+					{
+						label "Studio"
+						icon ""
+						href "/ittf/demo/apps/studio/index.html.ittf"
+					{
+						label "Css style"
+						icon ""
+						href "/ittf/demo/apps/cssstyle/index.html.ittf"
+					{
+						label "GenExplorer"
+						icon ""
+						href "/ittf/demo/apps/genexplorer/index.html.ittf"
+					{
+						label "Ittf Editor"
+						icon ""
+						href "/ittf/demo/apps/ittfeditor/index.html.ittf"
+					{
+						label "Processes"
+						icon ""
+						href "/ittf/demo/apps/processes/index.html.ittf"

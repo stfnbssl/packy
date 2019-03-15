@@ -1,0 +1,48 @@
+﻿module
+	kind es6
+
+	$include g/js/wz/core
+	$include g/js/wz/ace
+	$include g/js/wz/htmlBuilder
+	$include g/js/wz/form
+	$include g/js/wz/contextMenu
+
+	$include js/notifyManager
+	$include js/storeManager
+	$include js/editManager
+	$include js/formManager
+	$include js/fileManager
+	$include js/folderBrowseManager
+	$include js/ittfDocumentManager
+	$include js/modalManager
+	$include js/dataManager
+	$include js/clickListener
+	$include js/contentLoaded
+
+	$include js/setHtmlSections
+	$include js/testCommandHandlers
+
+	function sendMessage
+		param msg
+		return 
+			new Promise
+				function
+					param resolve
+					param reject
+					# Create a Message Channel
+					var msgChannel = new MessageChannel()
+					# Handler for receiving message reply from service worker
+					set msgChannel.port1.onmessage
+						function
+							param event
+							if event.data.error
+								_ reject
+									@ event.data.error
+							else
+								_ resolve
+									@ event.data
+								
+					_ navigator.serviceWorker.controller.postMessage
+						@ msg
+						[
+							@ msgChannel.port2

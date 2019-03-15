@@ -1,0 +1,227 @@
+  html  ids: 15 57
+    $args:  $params: commands|@@null
+    $  ids: 17 58
+      var std_js = true; ids: 18 59
+      var std_css = true; ids: 19 60
+      var cmds = commands ? commands.trim().split(';') : [] ids: 20 61
+    $foreach cmd in cmds ids: 21 62
+      $if cmd.trim() == 'nojs' ids: 22 63
+        $ std_js = false; ids: 23 64
+      $if cmd.trim() == 'nocss' ids: 24 65
+        $ std_css = false; ids: 25 66
+    head  ids: 26 67
+      $if std_css ids: 27 68
+        css /static/lib/bootstrap/dist/css/bootstrap.min.css ids: 28 69
+      @style  ids: 29 70
+        $. body {__LS__  min-height: 2000px;__LS__  padding-top: 101px;__LS__} __LS__.navbar {__LS__  border-radius: 0;__LS__} __LS__.form-control { color: #000; font-weight:bold}__LS__textarea { font-family:  Verdana, Lucida Console, monospace; }__LS__input { font-family: Verdana, Lucida Console, monospace; }__LS__.wz-row { margin-top: 30px; } ids: 30 71
+      $hook head-styles-0 ids: 42 83
+      $hook head-styles ids: 43 84
+      $hook head-styles-2 ids: 44 85
+    body  ids: 45 86
+      nav  ids: 98 164
+        $args: false  $params: isloggedin:boolean|false
+        $  ids: 100 165
+          var pagecontext = {}; ids: 101 166
+        class navbar navbar-inverse navbar-fixed-top no-margin ids: 102 167
+        role navigation ids: 103 168
+        . container-fluid ids: 104 169
+          . navbar-header ids: 229 248
+            $args: WizziMT, /, demo-navbar-collapse-1  $params: label, href, target
+            style margin-left:50px; ids: 231 249
+            button  ids: 232 250
+              type button ids: 233 251
+              class navbar-toggle ids: 234 252
+              data-toggle collapse ids: 235 253
+              data-target #${target} ids: 236 254
+              span Toggle navigation ids: 237 255
+                class sr-only ids: 238 256
+              span  ids: 239 257
+                class icon-bar ids: 240 258
+              span  ids: 241 259
+                class icon-bar ids: 242 260
+              span  ids: 243 261
+                class icon-bar ids: 244 262
+            a ${label} ids: 245 263
+              class navbar-brand ids: 246 264
+              href ${href} ids: 247 265
+          . collapse navbar-collapse ids: 106 171
+            id demo-navbar-collapse-1 ids: 107 172
+            form  ids: 108 173
+              class navbar-form navbar-left ids: 109 174
+              . form-group ids: 110 175
+                $hook breadcrumb ids: 111 176
+            ul  ids: 112 177
+              class nav navbar-nav ids: 113 178
+              li  ids: 114 179
+                class dropdown ids: 115 180
+                a Html, js, css demos <b class="caret"></b> ids: 116 181
+                  href # ids: 117 182
+                  class dropdown-toggle ids: 118 183
+                  data-toggle dropdown ids: 119 184
+                ul  ids: 120 185
+                  class dropdown-menu ids: 121 186
+                  li  ids: 266 272
+                    $args: Target technologies, /ittf/demo/ttech/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 268 273
+                    tabindex -1 ids: 269 274
+                    a ${text} ids: 270 275
+                      href ${href} ids: 271 276
+                  li  ids: 266 277
+                    $args: Demo apps, /ittf/demo/apps/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 268 278
+                    tabindex -1 ids: 269 279
+                    a ${text} ids: 270 280
+                      href ${href} ids: 271 281
+                  li  ids: 266 282
+                    $args: Action three, /ittf/demo/action1/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 268 283
+                    tabindex -1 ids: 269 284
+                    a ${text} ids: 270 285
+                      href ${href} ids: 271 286
+                  li  ids: 287 289
+                    class divider ids: 288 290
+                  li  ids: 266 291
+                    $args: Action four, /ittf/demo/action1/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 268 292
+                    tabindex -1 ids: 269 293
+                    a ${text} ids: 270 294
+                      href ${href} ids: 271 295
+            form  ids: 127 192
+              class navbar-form navbar-left ids: 128 193
+              role search ids: 129 194
+              . form-group ids: 296 304
+                $args: navSearch  $params: id, label|@@null, labelclass|@@null
+                $if label ids: 298 305
+                  label ${label} ids: 299 306
+                    for ${id} ids: 300 307
+                    class ${labelclass} ids: 301 308
+                . col-sm-10 ids: 302 309
+                  input  ids: 311 317
+                    $args: fc_nav_search, Search  $params: id, label
+                    type text ids: 313 318
+                    class form-control ids: 314 319
+                    id ${id} ids: 315 320
+                    placeholder ${label} ids: 316 321
+              button ${label} ids: 322 328
+                $args: Submit  $params: label, kind|default, id|@@null
+                type submit ids: 324 329
+                class btn btn-${kind} ids: 325 330
+                $if id !== null ids: 326 331
+                  id ${id} ids: 327 332
+            ul  ids: 133 198
+              class nav navbar-nav ids: 134 199
+              li  ids: 135 200
+                class dropdown ids: 136 201
+                a Support <b class="caret"></b> ids: 137 202
+                  href # ids: 138 203
+                  class dropdown-toggle ids: 139 204
+                  data-toggle dropdown ids: 140 205
+                ul  ids: 141 206
+                  class dropdown-menu ids: 142 207
+                  li  ids: 266 333
+                    $args: Features, /ittf/demo/features/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 268 334
+                    tabindex -1 ids: 269 335
+                    a ${text} ids: 270 336
+                      href ${href} ids: 271 337
+                  li  ids: 266 338
+                    $args: Issues, /ittf/demo/issues/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 268 339
+                    tabindex -1 ids: 269 340
+                    a ${text} ids: 270 341
+                      href ${href} ids: 271 342
+                  li  ids: 266 343
+                    $args: Contacts, #  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 268 344
+                    tabindex -1 ids: 269 345
+                    a ${text} ids: 270 346
+                      href ${href} ids: 271 347
+              li  ids: 266 348
+                $args: Docs, /ittf/docs/index.html.ittf  $params: text, href, clazz|@@null
+                class ${clazz} ids: 268 349
+                tabindex -1 ids: 269 350
+                a ${text} ids: 270 351
+                  href ${href} ids: 271 352
+            ul  ids: 147 212
+              class nav navbar-nav navbar-right ids: 148 213
+              $if isloggedin ids: 149 214
+                li  ids: 266 353
+                  $args: ${pagecontext.email}, /account/profile?user=${pagecontext.email}  $params: text, href, clazz|@@null
+                  class ${clazz} ids: 268 354
+                  tabindex -1 ids: 269 355
+                  a ${text} ids: 270 356
+                    href ${href} ids: 271 357
+                li  ids: 266 358
+                  $args: Sign out, /account/logout  $params: text, href, clazz|@@null
+                  class ${clazz} ids: 268 359
+                  tabindex -1 ids: 269 360
+                  a ${text} ids: 270 361
+                    href ${href} ids: 271 362
+              $else  ids: 152 217
+                li  ids: 153 218
+                  class dropdown ids: 154 219
+                  a Sign In <strong class="caret"></strong> ids: 155 220
+                    class dropdown-toggle ids: 156 221
+                    href # ids: 157 222
+                    data-toggle dropdown ids: 158 223
+                  div  ids: 159 224
+                    class dropdown-menu ids: 160 225
+                    style padding: 15px; padding-bottom: 0px; ids: 161 226
+                    form  ids: 363 400
+                      action /account/login ids: 364 401
+                      method post ids: 365 402
+                      accept-charset UTF-8 ids: 366 403
+                      label Email ids: 367 404
+                        class string optional ids: 368 405
+                        for user_email ids: 369 406
+                      input  ids: 370 407
+                        id user_email ids: 371 408
+                        style margin-bottom: 15px; ids: 372 409
+                        type text ids: 373 410
+                        name user[email] ids: 374 411
+                        size 30 ids: 375 412
+                      label Password ids: 376 413
+                        class string optional ids: 377 414
+                        for user_password ids: 378 415
+                      input  ids: 379 416
+                        id user_password ids: 380 417
+                        style margin-bottom: 15px; ids: 381 418
+                        type password ids: 382 419
+                        name user[password] ids: 383 420
+                        size 30 ids: 384 421
+                      input  ids: 385 422
+                        id user_remember_me ids: 386 423
+                        style float: left; margin-right: 10px; ids: 387 424
+                        type checkbox ids: 388 425
+                        name user[remember_me] ids: 389 426
+                        value 1 ids: 390 427
+                      label Remember me ids: 391 428
+                        class string optional ids: 392 429
+                        for user_remember_me ids: 393 430
+                      input  ids: 394 431
+                        class btn btn-primary ids: 395 432
+                        style clear: left; width: 100%; height: 32px; font-size: 13px; ids: 396 433
+                        type submit ids: 397 434
+                        name commit ids: 398 435
+                        value Sign In ids: 399 436
+                li  ids: 266 437
+                  $args: Register, /ittf/demo/account/register.html.ittf  $params: text, href, clazz|@@null
+                  class ${clazz} ids: 268 438
+                  tabindex -1 ids: 269 439
+                  a ${text} ids: 270 440
+                    href ${href} ids: 271 441
+      . container no-margin ids: 47 88
+        . row no-margin ids: 48 89
+          . col-md-12 no-margin ids: 49 90
+            $append head-styles ids: 2 9
+              css https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css ids: 3 10
+              css ./styles.css.ittf ids: 4 11
+            $append body-scripts ids: 5 12
+              js /webpack/reduxstarter/bundle.js ids: 6 13
+            # root ids: 7 14
+      $if std_js ids: 51 92
+        js /static/lib/jquery/dist/jquery.js ids: 52 93
+        js /static/lib/bootstrap/dist/js/bootstrap.js ids: 53 94
+      $hook body-scripts-0 ids: 54 95
+      $hook body-scripts ids: 55 96
+      $hook body-scripts-2 ids: 56 97

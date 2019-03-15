@@ -1,0 +1,15 @@
+﻿$group
+	$params name
+
+	var ${name}
+		iife
+			react ${name}_Styled
+
+				$hook
+
+			return
+				_ withStyles
+					@ styles
+					(
+						@ ${name}_Styled
+			(

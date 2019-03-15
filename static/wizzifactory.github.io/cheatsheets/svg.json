@@ -1,0 +1,55 @@
+{
+    "title": "Schema cheat sheet",
+    "language": "svg",
+    "elements": [
+        {
+            "name": "svg base",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "",
+                    "ittfWrapped": "svg ",
+                    "generated": "\\n&lt;?xml version=\\\"1.0\\\"?&gt;\\n&lt;svg xmlns='http://www.w3.org/2000/svg'&gt;\\n&lt;/svg&gt;\\n"
+                }
+            ]
+        },
+        {
+            "name": "shapes",
+            "tag": "rect | circle",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "rect shape",
+                    "ittfWrapped": "svg \\n    rect ",
+                    "generated": "\\n&lt;?xml version=\\\"1.0\\\"?&gt;\\n&lt;svg xmlns='http://www.w3.org/2000/svg'&gt;\\n    &lt;rect&gt;&lt;/rect&gt;\\n&lt;/svg&gt;\\n"
+                },
+                {
+                    "title": "circle shape",
+                    "ittfWrapped": "svg \\n    circle ",
+                    "generated": "\\n&lt;?xml version=\\\"1.0\\\"?&gt;\\n&lt;svg xmlns='http://www.w3.org/2000/svg'&gt;\\n    &lt;circle&gt;&lt;/circle&gt;\\n&lt;/svg&gt;\\n"
+                }
+            ]
+        },
+        {
+            "name": "shapes",
+            "tag": "rect | circle",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "rect shape",
+                    "ittfWrapped": "svg \\n    rect ",
+                    "generated": "\\n&lt;?xml version=\\\"1.0\\\"?&gt;\\n&lt;svg xmlns='http://www.w3.org/2000/svg'&gt;\\n    &lt;rect&gt;&lt;/rect&gt;\\n&lt;/svg&gt;\\n"
+                },
+                {
+                    "title": "circle shape",
+                    "ittfWrapped": "svg \\n    circle ",
+                    "generated": "\\n&lt;?xml version=\\\"1.0\\\"?&gt;\\n&lt;svg xmlns='http://www.w3.org/2000/svg'&gt;\\n    &lt;circle&gt;&lt;/circle&gt;\\n&lt;/svg&gt;\\n"
+                }
+            ]
+        }
+    ]
+}

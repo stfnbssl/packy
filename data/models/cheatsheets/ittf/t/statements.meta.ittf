@@ -1,0 +1,86 @@
+﻿$group
+
+	element jsWizzi statements
+		tag
+		ast 
+		category
+
+
+		item
+			title Conditions in scripts
+			ittf
+				root
+					${d}
+						var name = 'Derby', winner = null;
+						if (name == 'Ascot') {
+							winner = 'Ribot';
+						} else if (name == 'Arc de triomphe') {
+							winner = 'Varenne';
+						} else if (name == 'Derby') {
+							winner = 'Ribot';
+						} else {
+							winner = 'Varenne';
+						}
+					node If the race was ${d}{name} the winner was ${d}{winner}.
+
+		item
+			title Conditions in markup
+			ittf
+				root
+					${d}
+						var name = 'Derby';
+					${d}if name == 'Ascot'
+						node If the race was ${d}{name} the winner was Ribot
+					${d}elif name == 'Arc de triomphe'
+						node If the race was ${d}{name} the winner was Varenne
+					${d}elif name == 'Derby'
+						node If the race was ${d}{name} the winner was Ribot
+					${d}else
+						node If the race was ${d}{name} the winner was Varenne
+
+		item
+			title For loop in scripts
+			ittf
+				root
+					${d}
+						var sletters = 'a,b,c,d,e,f,g,h';
+						var aletters = sletters.split(',');
+						var letter, label='';
+						for (var i=0; i<aletters.length; i++) {
+							letter = aletters[i];
+							label += i % 2 == 0 ? letter : letter.toUpperCase();
+						}
+					node The resulting label has the even letters upper cased: ${d}{label}.
+
+		item
+			title For loop in markup
+			ittf
+				root
+					${d}
+						var sletters = 'a,b,c,d,e,f,g,h';
+						var aletters = sletters.split(',');
+					node The resulting tree has the even node values upper cased:
+						${d}foreach letter in aletters
+							node ${d}{ _index} ${d}{ _index % 2 == 0 ? letter : letter.toUpperCase() }
+
+		item
+			title While loop in scripts
+			ittf
+				root
+					${d}
+						var x = 1, odds = '1';
+						while ( x < 10 ) {
+							x += 2;
+							odds += ', ' + x 
+						}
+					node First odd numbers: ${d}{odds}.
+
+		item
+			title While loop in markup
+			ittf
+				root
+					${d} var x = 1, odds = '1'
+					${d}while x < 10
+						${d} x += 2
+						node ${d}{ odds += ', ' + x } 
+						

@@ -1,0 +1,32 @@
+﻿module
+	kind jsfile
+
+	var expect = require('expect')
+	var _ = require('../lib/utils')
+
+	var parsed
+
+	describe utils.keys
+		it should extract an array of property names from an object or [] if null or undefined
+			var r1
+				_ _.keys
+					{
+						@ name 'stefi'
+						@ email 'stefi@tau.org'
+			var r2
+				_ _.keys
+			_ expect(r1.length).toBe(2)
+			_ expect(r1[0]).toBe('name')
+			_ expect(r1[1]).toBe('email')
+			_ expect(r2.length).toBe(0)
+
+	describe utils.extractKey
+		it should extract an object key from an array of key names and an object
+			var objkey
+				_ _.extractKey
+					[
+						@ 'name'
+					{
+						@ name 'stefi'
+						@ email 'stefi@tau.org'
+			_ expect(objkey.name).toBe('stefi')

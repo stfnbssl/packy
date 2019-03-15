@@ -1,0 +1,161 @@
+/*
+    artifact generator: C:\My\wizzi\v5\apps\node_modules\wizzi-js\lib\artifacts\js\module\gen\main.js
+    primary source IttfDocument: c:/my/wizzi/v5/apps/wizzi-studio/wizzi-studio-express/dist/server/data/jobs/gists/stefi/scan_wizzi.js.ittf
+    utc time: Tue, 04 Sep 2018 13:18:05 GMT
+*/
+'use strict';
+var path = require('path');
+var file = require('wizzi-utils').file;
+var wizziPath = 'c:/my/wizzi';
+var result = {
+    versions: [
+        
+    ], 
+    packages: {
+        
+    }
+};
+var folders = getFolders(wizziPath);
+var i, i_items=folders, i_len=folders.length, f;
+for (i=0; i<i_len; i++) {
+    f = folders[i];
+    if (f[0] === 'v') {
+        var folders_1 = getFolders(wizziPath, f);
+        if (folders_1.indexOf('kernel') > -1 && folders_1.indexOf('plugins')) {
+            // log f, folders_1
+            var version = {
+                name: f
+            };
+            var versionPackages = {
+                version: f, 
+                kernel: [
+                    
+                ], 
+                plugins: [
+                    
+                ], 
+                apps: [
+                    
+                ]
+            };
+            var folders_2 = getFolders(wizziPath + '/' + f, 'kernel');
+            var j, j_items=folders_2, j_len=folders_2.length, f2;
+            for (j=0; j<j_len; j++) {
+                f2 = folders_2[j];
+                var ok = file.isDirectory(path.join(wizziPath, f, 'kernel', f2, 'src', 'ittf', 'meta'));
+                if (ok) {
+                    var kernel = {
+                        name: f2, 
+                        uri: f + '/kernel/' + f2
+                    };
+                    versionPackages.kernel.push(kernel);
+                }
+            }
+            folders_2 = getFolders(wizziPath + '/' + f, 'plugins');
+            var j, j_items=folders_2, j_len=folders_2.length, f2;
+            for (j=0; j<j_len; j++) {
+                f2 = folders_2[j];
+                var ok = file.isDirectory(path.join(wizziPath, f, 'plugins', f2, 'src', 'ittf', 'meta'));
+                if (ok) {
+                    var plugin = {
+                        name: f2, 
+                        uri: f + '/plugin/' + f2
+                    };
+                    versionPackages.plugins.push(plugin);
+                }
+            }
+            folders_2 = getFolders(wizziPath + '/' + f, 'apps');
+            var j, j_items=folders_2, j_len=folders_2.length, f2;
+            for (j=0; j<j_len; j++) {
+                f2 = folders_2[j];
+                var ok = file.isDirectory(path.join(wizziPath, f, 'apps', f2, 'wizzi', 'ittf'));
+                if (!ok) {
+                    ok = file.isDirectory(path.join(wizziPath, f, 'apps', f2, 'src', 'ittf'));
+                }
+                if (ok) {
+                    var app = {
+                        name: f2, 
+                        appId: f2, 
+                        uri: f + '/app/' + f2, 
+                        appPath: path.join(wizziPath, f, 'apps', f2)
+                    };
+                    versionPackages.apps.push(app);
+                }
+                else {
+                    var folders_3 = getFolders(wizziPath + '/' + f + '/' + 'apps', f2);
+                    var k, k_items=folders_3, k_len=folders_3.length, f3;
+                    for (k=0; k<k_len; k++) {
+                        f3 = folders_3[k];
+                        var ok = file.isDirectory(path.join(wizziPath, f, 'apps', f2, f3, 'wizzi', 'ittf'));
+                        if (ok) {
+                            var app = {
+                                name: f3, 
+                                appId: f2 + '/' + f3, 
+                                uri: f + '/app/' + f2 + '/' + f3, 
+                                appPath: path.join(wizziPath, f, 'apps', f2, f3)
+                            };
+                            versionPackages.apps.push(app);
+                        }
+                        else {
+                            var folders_4 = getFolders(wizziPath + '/' + f + '/' + 'apps' + '/' + f2, f3);
+                            var l, l_items=folders_4, l_len=folders_4.length, f4;
+                            for (l=0; l<l_len; l++) {
+                                f4 = folders_4[l];
+                                var ok = file.isDirectory(path.join(wizziPath, f, 'apps', f2, f3, f4, 'wizzi', 'ittf'));
+                                if (ok) {
+                                    var app = {
+                                        name: f4, 
+                                        appId: f2 + '/' + f3 + '/' + f4, 
+                                        uri: f + '/app/' + f2 + '/' + f3 + '/' + f4, 
+                                        appPath: path.join(wizziPath, f, 'apps', f2, f3, f4)
+                                    };
+                                    versionPackages.apps.push(app);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (versionPackages.kernel.length > 0 && versionPackages.plugins.length > 0) {
+                result.versions.push(version);
+                result.packages[version.name] = versionPackages;
+            }
+        }
+    }
+}
+// log JSON.stringify(result, null, 2)
+console.log(JSON.stringify(getPackageTree('v5', result.packages), null, 2));
+function getFolders(p1, p2) {
+    var p = p2 ? p1 + '/' + p2 : p1;
+    return file.getFolders(p, {
+            deep: false
+        });
+}
+function getPackageTree(version, packages) {
+    var v = packages[version];
+    /**
+        var kernels = [];
+        var i, i_items=v.kernel, i_len=v.kernel.length, item;
+        for (i=0; i<i_len; i++) {
+            item = v.kernel[i];
+            kernels.push();
+        }
+    */
+    return {
+            name: version, 
+            children: [
+                {
+                    name: 'kernel', 
+                    children: v.kernel
+                }, 
+                {
+                    name: 'plugins', 
+                    children: v.plugins
+                }, 
+                {
+                    name: 'apps', 
+                    children: v.apps
+                }
+            ]
+        };
+}

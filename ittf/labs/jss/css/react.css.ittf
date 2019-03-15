@@ -1,0 +1,30 @@
+﻿css
+    < *
+        box-sizing border-box
+    < html
+        + body
+        + button
+        + input
+        + select
+        + textarea
+        font 14px "Helvetica Neue",Helvetica,Arial,sans-serif
+        line-height 18px
+    < html
+        + body
+        height 100%
+        width 100%
+        margin 0
+        padding 0
+        background-color #fafafa
+    < a
+        color #000000
+        text-decoration initial
+    < a:hover
+        + a:active
+        + a.active
+        color #42a5f5
+    < pre
+        white-space pre
+    . my-pane
+        margin 20px
+

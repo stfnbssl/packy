@@ -1,0 +1,84 @@
+﻿module 
+    kind react
+	+
+	import {
+		\b GET_DOCUMENTS_REQUEST,
+		\b GET_DOCUMENTS_SUCCESS,
+		\b GET_DOCUMENTS_FAILURE,
+		\b CREATE_DOCUMENT_SUCCESS,
+		\b SELECT_DOCUMENT,
+		\b SELECT_DOCUMENT_SUCCESS,
+		\b SELECT_DOCUMENT_FAILURE,
+		\b DOCUMENT_CHANGED,
+		\b UPDATE_DOCUMENT_SUCCESS,
+		\b GENERATE_ARTIFACT_SUCCESS
+		\b } from '../actions'
+	+
+	const documentInitialState
+		{
+			@ items []
+	+
+	r( document, documentInitialState )
+	
+		c( GET_DOCUMENTS_REQUEST
+			{
+				@ ...state
+				@ isLoading true
+		
+		c( GET_DOCUMENTS_SUCCESS
+			{
+				@ items Object.values(action.payload.documents)
+				@ isLoading false
+				@ error null
+
+		c( GET_DOCUMENTS_FAILURE
+			{
+				@ items []
+				@ isLoading false
+				@ error action.payload.error
+
+		c( CREATE_DOCUMENT_SUCCESS
+			{
+				@ items
+					[
+						@ ...state.items
+						@ action.payload
+				@ isLoading false
+				@ error null
+
+		c( SELECT_DOCUMENT
+			{
+				@ ...state
+				@ selectedDocument
+					_ state.items.map
+						=>
+							param item
+							if item.uri = action.uri
+								return item
+
+		c( SELECT_DOCUMENT_SUCCESS
+			{
+				@ ...state
+				@ selectedDocumentIttfContent action.payload
+				@ selectedDocumentUri action.uri
+				@ selectedDocumentSchema action.schema
+		
+		c( UPDATE_DOCUMENT_SUCCESS
+			{
+				@ ...state
+				@ generatedArtifact null
+				@ selectedDocumentIttfContent action.newIttfContent
+
+		c( DOCUMENT_CHANGED
+			{
+				@ ...state
+				@ selectedDocumentIttfContent action.newContent
+
+		c( GENERATE_ARTIFACT_SUCCESS
+			{
+				@ ...state
+				@ generatedArtifact action.payload.generatedArtifact
+				@ evaluatedIttfModel action.payload.evaluatedIttfModel
+				@ evaluationScript action.payload.evaluationScript
+
+	export default documentReducer

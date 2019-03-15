@@ -1,0 +1,86 @@
+﻿r-component( AceCodeEditor )
+
+	$append imports
+		import AceEditor from 'react-ace'
+		+ import 'brace'
+		+ import 'brace/mode/jade'
+		+ import 'brace/theme/monokai'
+		+ import 'brace/ext/language_tools'
+
+	style
+
+	prop mode
+		string
+		required
+		default 'jade'
+
+	prop name
+		string
+		required
+		default 'IttfDocumentEditor'
+	
+	prop value
+		string
+		required
+		default ''
+
+	will-receive-props
+		log '**** AceEditor.will-receive-props.value', nextProps.value
+		set this.value = this.origValue = nextProps.value
+
+	did-mount
+		#
+			const undo_manager = this.refs.ace.editor.getSession().getUndoManager()
+			log 'undo_manager', undo_manager
+			set this.editor = this.refs.ace.editor
+			_ undo_manager.reset();
+			_ this.refs.ace.editor.getSession().setUndoManager(undo_manager);
+
+	=> handleRef
+		param node
+		if node
+			log 'AceCodeEditor.handleRef.node', node
+			const undo_manager = node.editor.getSession().getUndoManager()
+			log 'undo_manager', undo_manager
+			set this.editor = node.editor
+			_ undo_manager.reset();
+			_ node.editor.getSession().setUndoManager(undo_manager);
+			const { onEditorRef } = this.props
+			if onEditorRef
+				_ onEditorRef(this)
+
+	=> handleChange
+		const { onChange } = this.props
+		set this.value = this.editor.getValue()
+		log 'AceEditor.onChange', this.value
+		if onChange
+			_ onChange(this.value)
+
+	render
+		
+		prop name
+		prop value
+		prop mode
+		prop onChange
+		
+		const defaultOptions
+			{
+				@ enableBasicAutocompletion false
+				@ enableLiveAutocompletion false
+				@ tabSize 2
+				@ fontSize 12
+				@ showGutter true
+		return
+			< AceEditor
+				@ ref {this.handleRef}
+				@ mode {mode}
+				@ theme "monokai"
+				@ name {name}
+				@ height "500px"
+				@ width "100%"
+				@ setOptions { defaultOptions }
+				@ value {value}
+				@ onChange {this.handleChange}
+				@ editorProps
+					{
+						@ $blockScrolling Infinity

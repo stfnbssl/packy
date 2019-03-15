@@ -1,0 +1,179 @@
+﻿$group
+
+	$include app/splash
+
+	$include app/initial_snippets
+	$include app/initial_ittfs
+
+	class AppManager
+		ctor
+			param props
+			set this.props = props
+			set this.store = null
+			set this.timers = {}
+
+		m start
+
+			set this.dataManager
+				new DataManager
+					{
+			set this.treeManager
+				new TreeManager
+					{
+
+			_ this.initStore
+			_ this.createEditors
+			_ this.setEvents
+			_ this.createOptions
+
+		m initStore
+			set this.store = new LocalStorage('wizzify')
+			if !this.store.get('lastSchema')
+				_ this.store.set('lastSchema', 'js')
+
+		m createOptions
+			set this.selectedSchema = this.store.get('lastSchema')
+			_ wz.value('selectedSchema', this.selectedSchema)
+
+			# _ this.setIttfContentFromStore
+			# _ this.setSnippetContentFromStore
+
+			_ wz.change
+				@ 'selectedSchema'
+				=>
+					log 'onChangeSchema', event.target.value
+					set this.selectedSchema = event.target.value
+					emit( schema-selected
+						@ name this.selectedSchema
+					_ this.store.set('lastSchema', this.selectedSchema)
+					# _ this.setIttfContentFromStore
+					# _ this.setSnippetContentFromStore
+
+			emit( schema-selected
+				@ name this.selectedSchema
+
+			_ wz.show('selectedSchema')
+
+		m setIttfContentFromStore
+			var content
+				_ this.store.get
+					@ this.selectedSchema + '_ittf_content'
+					@ initialIttfs[this.selectedSchema] || this.selectedSchema
+					@ true
+			emit( seteditvalue
+				@ key 'gen-ittf'
+				@ value content
+
+		m setSnippetContentFromStore
+			var content
+				_ this.store.get
+					@ this.selectedSchema + '_snippet_content'
+					@ initialSnippets[this.selectedSchema] || this.selectedSchema
+					@ true
+			emit( seteditvalue
+				@ key 'snippet-source'
+				@ value content
+
+		m createEditors
+
+			set this.genIttfEditor
+				new EditorControl
+					{
+						@ key 'gen-ittf'
+						@ elementId 'gen-ittf-editor'
+			_ this.genIttfEditor.initialize
+
+			set this.genResultEditor
+				new EditorControl
+					{
+						@ key 'gen-result'
+						@ elementId 'gen-result-editor'
+						@ readOnly true
+			_ this.genResultEditor.initialize
+
+			set this.snippetSourceEditor
+				new EditorControl
+					{
+						@ key 'snippet-source'
+						@ elementId 'snippet-source-editor'
+			_ this.snippetSourceEditor.initialize
+
+			set this.snippetResultEditor
+				new EditorControl
+					{
+						@ key 'snippet-result'
+						@ elementId 'snippet-result-editor'
+						@ readOnly true
+			_ this.snippetResultEditor.initialize
+
+		m setEvents
+			on( editvaluechanged
+				var key = data.key
+				var value = data.value
+				var defer = data.defer
+				var elapse = data.defer ? 2 * 1500 : 100
+				if key === 'gen-ittf'
+					if this.timers['gen']
+						_ clearTimeout
+							@ this.timers['gen']
+					set this.timers['gen']
+						_ setTimeout
+							=>
+								_ this.generate
+									@ value
+							@ elapse
+					_ this.store.set
+						@ this.selectedSchema + '_ittf_content'
+						@ value
+				elif key === 'snippet-source'
+					if this.timers['wizzify']
+						_ clearTimeout
+							@ this.timers['wizzify']
+					set this.timers['wizzify']
+						_ setTimeout
+							=>
+								_ this.wizzify
+									@ value
+							@ elapse
+					_ this.store.set
+						@ this.selectedSchema + '_snippet_content'
+						@ value
+
+		m generate
+			param value
+			_ wz.genFromText
+				@ value
+				{
+					@ schema this.selectedSchema || 'js'
+				=>
+					param err
+					param result
+					if err
+						emit( seteditvalue
+							@ key 'gen-result'
+							@ value JSON.stringify(err, null, 2)
+					else
+						emit( artifactgenerated
+							@ content result
+						emit( seteditvalue
+							@ key 'gen-result'
+							@ value result
+
+		m wizzify
+			param value
+			_ wz.wizzify
+				@ this.selectedSchema || 'js'
+				@ value
+				=>
+					param err
+					param result
+					if err
+						emit( seteditvalue
+							@ key 'snippet-result'
+							@ value JSON.stringify(err, null, 2)
+					else
+						emit( artifactwizzified
+							@ content result
+						emit( seteditvalue
+							@ key 'snippet-result'
+							@ value result

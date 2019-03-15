@@ -1,0 +1,28 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { Component, PropTypes } from 'react' ids: undefined undefined
+    import { ListGroup } from 'react-bootstrap' ids: undefined undefined
+    import SchemaListItem from './SchemaListItem' ids: undefined undefined
+    class SchemaList ids: undefined undefined
+      super Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { schemas, selectedSchemaUri, onSchemaSelected } = this.props ids: undefined undefined
+        return  ids: undefined undefined
+          < ListGroup ids: undefined undefined
+            {  ids: undefined undefined
+              _ schemas.map ids: undefined undefined
+                =>  ids: undefined undefined
+                  param schema ids: undefined undefined
+                  return  ids: undefined undefined
+                    < SchemaListItem ids: undefined undefined
+                      @ key {schema.uri} ids: undefined undefined
+                      @ {...schema} ids: undefined undefined
+                      onClick  ids: undefined undefined
+                        =>  ids: undefined undefined
+                          _ onSchemaSelected ids: undefined undefined
+                            @ schema.uri ids: undefined undefined
+                      @ selectedSchemaUri {selectedSchemaUri} ids: undefined undefined
+    set SchemaList.propTypes ids: undefined undefined
+      {  ids: undefined undefined
+    export default SchemaList ids: undefined undefined

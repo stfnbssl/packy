@@ -1,0 +1,11 @@
+@media screen and (max-width: 1028px) {
+    #mc-toggle-object-intro:checked ~ .mc-pane-object-intro {
+        display: block;
+    }
+    #mc-toggle-object-1:checked ~ .mc-pane-object-1 {
+        display: block;
+    }
+    #mc-toggle-object-2:checked ~ .mc-pane-object-2 {
+        display: block;
+    }
+}

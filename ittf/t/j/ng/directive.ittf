@@ -1,0 +1,20 @@
+﻿iife
+	$params module, directive, dependencies|@@null
+
+	$ var deps = dependencies ? dependencies.trim().split(';') : []
+
+	function
+	
+		_ angular.module
+			@ '${module}'
+			._ directive
+				@ '${directive}'
+				[
+					$foreach dep in deps
+						@ '${dep}'
+					@ ${directive}
+
+		function ${directive}
+			$foreach dep in deps
+				param ${dep}
+			$hook

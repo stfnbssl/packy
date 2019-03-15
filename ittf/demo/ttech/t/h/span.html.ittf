@@ -1,0 +1,7 @@
+﻿$group
+	$params title, id, xclass
+
+	span ${title}
+		id ${id}
+		class ${xclass}
+		$hook

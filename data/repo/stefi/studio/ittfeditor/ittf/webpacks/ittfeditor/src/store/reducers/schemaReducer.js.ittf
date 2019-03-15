@@ -1,0 +1,56 @@
+﻿module 
+    kind react
+	+
+	import {
+		\b GET_SCHEMAS_REQUEST,
+		\b GET_SCHEMAS_SUCCESS,
+		\b GET_SCHEMAS_FAILURE,
+		\b GET_SCHEMA_REQUEST,
+		\b GET_SCHEMA_SUCCESS,
+		\b GET_SCHEMA_FAILURE
+		\b } from '../actions'
+	+
+	const schemaInitialState
+		{
+			@ items []
+	+
+	r( schema, schemaInitialState )
+	
+		c( GET_SCHEMAS_REQUEST
+			{
+				@ ...state
+				@ isLoading true
+		
+		c( GET_SCHEMAS_SUCCESS
+			{
+				@ items action.payload.schemas
+				@ isLoading false
+				@ error null
+
+		c( GET_SCHEMAS_FAILURE
+			{
+				@ items []
+				@ isLoading false
+				@ error action.payload.error
+
+		c( GET_SCHEMA_REQUEST
+			{
+				@ ...state
+				@ isLoading true
+
+		c( GET_SCHEMA_SUCCESS
+			{
+				@ ...state
+				@ selectedSchemaUri action.payload.uri
+				@ ittfDocument action.payload.ittfDocument
+				@ jsonDoc action.payload.jsonDoc
+				@ factory action.payload.factory
+				@ model action.payload.model
+
+		c( GET_SCHEMA_FAILURE
+			{
+				@ items []
+				@ isLoading false
+				@ error action.payload.error
+
+	export default schemaReducer

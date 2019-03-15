@@ -1,0 +1,113 @@
+﻿$group
+	+
+	http( fragments, get )
+	+
+	wz-const getFragments
+		=>
+			param project
+			return
+				{
+					@ type GET_FRAGMENTS
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ GET_FRAGMENTS_REQUEST
+									@ GET_FRAGMENTS_SUCCESS
+									@ GET_FRAGMENTS_FAILURE
+							@ url '/api/studio/fragments'
+							@ method 'get'
+							@ queryParams
+								{
+									@ project project
+	+
+	http( fragment, create, select, update )
+	+
+	wz-const createFragment
+		=>
+			param name
+			param schema
+			param folder
+			param project
+			return
+				{
+					@ type CREATE_FRAGMENT
+					@ name name
+					@ schema schema
+					@ folder folder
+					@ project project
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ CREATE_FRAGMENT_REQUEST
+									@ CREATE_FRAGMENT_SUCCESS
+									@ CREATE_FRAGMENT_FAILURE
+							@ url '/api/studio/fragment'
+							@ method 'post'
+							@ payload
+								{
+									@ name name
+									@ schema schema
+									@ folder folder
+									@ project project
+	+
+	wz-const selectFragment
+		=>
+			param uri
+			param schema
+			log 'action.selectFragment', uri, schema
+			return
+				{
+					@ type SELECT_FRAGMENT
+					@ uri uri
+					@ schema schema
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ SELECT_FRAGMENT_REQUEST
+									@ SELECT_FRAGMENT_SUCCESS
+									@ SELECT_FRAGMENT_FAILURE
+							@ url '/api/studio/fragment'
+							@ method 'get'
+							@ queryParams
+								{
+									@ uri uri
+	+
+	wz-const FRAGMENT_CHANGED = 'FRAGMENT_CHANGED'
+	+
+	wz-const changeFragment
+		=>
+			param newContent
+			return
+				{
+					@ type FRAGMENT_CHANGED
+					@ newContent newContent
+	+
+	wz-const updateFragment
+		=>
+			param uri
+			param newIttfContent
+			return
+				{
+					@ type UPDATE_FRAGMENT
+					@ uri uri
+					@ newIttfContent newIttfContent
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ UPDATE_FRAGMENT_REQUEST
+									@ UPDATE_FRAGMENT_SUCCESS
+									@ UPDATE_FRAGMENT_FAILURE
+							@ url '/api/studio/fragment'
+							@ method 'post'
+							@ payload
+								{
+									@ uri uri
+									@ newcontent newIttfContent
+							@ delayId UPDATE_FRAGMENT + uri
+							@ delay 2000
+
+

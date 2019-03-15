@@ -1,0 +1,15 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { PropTypes } from 'react' ids: undefined undefined
+    +  ids: undefined undefined
+    const ElementListItem ids: undefined undefined
+      =>  ids: undefined undefined
+        param { onClick, selectedName, name } ids: undefined undefined
+        const className = selectedName === name ? 'list-group-item active' : 'list-group-item' ids: undefined undefined
+        return  ids: undefined undefined
+          a {name} ids: undefined undefined
+            href # ids: undefined undefined
+            class {className} ids: undefined undefined
+            onClick {onClick} ids: undefined undefined
+    export default ElementListItem ids: undefined undefined

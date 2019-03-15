@@ -1,0 +1,42 @@
+h/root/empty_layout()
+
+	$
+		var opt = {}
+		opt.useWizzi = true;
+
+	page( &opt
+
+		$append styles
+			@style
+				css
+
+		js ./main.js.ittf
+		
+		script
+			module
+				kind es6
+
+				# _ ittfDocumentScanner_1
+
+				_ prettifier_1
+
+				function step_1
+					var wf = wizziStandalone.default
+					var u = wf.wizziUtils
+					_ u.IttfMTreeEx.createFrom
+						[
+							@ 'module'
+							@ '    kind react'
+							@ '    react Hello'
+							@ '        state'
+							@ '            @ name "stefi"'
+							._ join
+								@ '\n'
+						{
+							@ fromString true
+							@ clean true
+						f_cb_test( result )
+							log 'result.findByRow(3). should be react node.', result.findByRow(3)
+
+
+

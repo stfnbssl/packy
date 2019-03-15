@@ -1,0 +1,50 @@
+﻿css
+
+	$include layout
+
+	$include options
+
+	-
+		- cheatsheets
+		- docs/style.css.ittf
+		-
+
+	< h1, h2, h3, h4, h5, h6
+		margin 0
+
+	< h3
+		font-size 18px
+
+	. wrapper
+		font-family arial, verdana
+		font-size 15px
+		padding 2rem
+
+	< pre[class*="language-"] 
+		margin 0 0 1rem 0
+		padding 0 1rem
+
+	< code[class*="language-"], pre[class*="language-"]
+		line-height 1
+
+	. head-bar-item
+		display flex
+		flex-direction column
+		border 1px solid #222
+		margin-bottom 2rem
+	
+	. head-bar-title
+		padding 0.2rem 2rem
+		background-color #015ba0
+		color #fefefe
+
+	. head-bar-value
+		padding 0.5rem 2rem
+		text-align center
+		font-size 1.5rem
+
+	$include s/root/wz-prettyprint
+
+	$include tn
+	$include mc
+	

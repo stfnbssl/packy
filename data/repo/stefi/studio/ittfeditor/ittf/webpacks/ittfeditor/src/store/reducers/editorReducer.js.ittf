@@ -1,0 +1,46 @@
+﻿module 
+    kind react
+	+
+	import {
+		\b SELECT_DOCUMENT_SUCCESS,
+		\b SELECT_FRAGMENT_SUCCESS,
+		\b UPDATE_DOCUMENT_SUCCESS,
+		\b UPDATE_FRAGMENT_SUCCESS
+		\b } from '../actions'
+	+
+	const editorInitialState
+		{
+			@ selectedContent ''
+			@ selectedType null
+			@ selectedUri null
+			@ selectedSchema null
+	+
+	r( editor, editorInitialState )
+	
+		c( SELECT_FRAGMENT_SUCCESS
+			{
+				@ ...state
+				@ selectedContent action.payload
+				@ selectedType 'fragment'
+				@ selectedUri action.uri
+				@ selectedSchema action.schema
+
+		c( SELECT_DOCUMENT_SUCCESS
+			{
+				@ ...state
+				@ selectedContent action.payload
+				@ selectedType 'document'
+				@ selectedUri action.uri
+				@ selectedSchema action.schema
+
+		c( UPDATE_DOCUMENT_SUCCESS
+			{
+				@ ...state
+				@ selectedContent action.newIttfContent
+
+		c( UPDATE_FRAGMENT_SUCCESS
+			{
+				@ ...state
+				@ selectedContent action.newIttfContent
+
+	export default editorReducer

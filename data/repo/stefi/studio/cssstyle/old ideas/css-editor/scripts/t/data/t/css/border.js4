@@ -1,0 +1,37 @@
+﻿stack borderpane Border
+	widgets_4
+		tab_2 bordersubtab
+			widgets_5
+				stack_2 globalborder "Global border"
+					widgets_6
+						pixelvalue border-width "width" 0 100
+						color border-color "color"
+						select border-style "style" css_enums border-style
+				stack_2 bordertop "Border top"
+					widgets_6
+						pixelvalue border-top-width "width" 0 100
+						color border-top-color "color"
+						select border-top-style "style" css_enums border-style
+				stack_2 borderbottom "Border bottom"
+					widgets_6
+						pixelvalue border-bottom-width "width" 0 100
+						color border-bottom-color "color"
+						select border-bottom-style "style" css_enums border-style
+				stack_2 borderleft "Border left"
+					widgets_6
+						pixelvalue border-left-width "width" 0 100
+						color border-left-color "color"
+						select border-left-style "style" css_enums border-style
+				stack_2 borderright "Border right"
+					widgets_6
+						pixelvalue border-right-width "width" 0 100
+						color border-right-color "color"
+						select border-right-style "style" css_enums border-style
+				stack_2 Outline
+					widgets_6
+						pixelvalue outline-width "width" 0 100
+						color outline-color "color"
+						select outline-style "style" css_enums border-style
+
+
+

@@ -1,0 +1,465 @@
+﻿element class
+	tag class
+	ast 
+	category
+	
+	item
+		title Simple class
+		expected
+			+ class Greeter {
+				+ greeting: string;
+				+ constructor(message: string) {
+					+ this.greeting = message;
+				+ }
+				+ greet() {
+					+ return "Hello, " + this.greeting;
+				+ }
+			+ }
+			+ let greeter = new Greeter("world");
+
+		ittf
+			class Greeter
+				p greeting
+					:string 
+				ctor 
+					param message
+						:string 
+					set this.greeting = message
+				m greet
+					return "Hello, " + this.greeting
+			let greeter = new Greeter("world")
+	
+	item
+		title Class extension
+		expected
+			+ class Animal {
+				+ move(distanceInMeters: number = 0) {
+					+ console.log(`Animal moved ${distanceInMeters}m.`);
+				+ }
+			+ }
+			+ class Dog extends Animal {
+				+ bark() {
+					+ console.log('Woof! Woof!');
+				+ }
+			+ }
+
+		ittf
+			class Animal
+				m move
+					param distanceInMeters
+						:number 
+						:= 0
+					_ console.log
+						`lit 
+							+ Animal moved\b
+							@ distanceInMeters
+							+ m.
+			class Dog
+				super Animal
+				m bark
+					_ console.log('Woof! Woof!')
+        
+	item
+		title Complex class example
+		expected
+			+ class Animal {
+				+ name: string;
+				+ constructor(theName: string) { this.name = theName; }
+				+ move(distanceInMeters: number = 0) {
+					+ console.log(`${this.name} moved ${distanceInMeters}m.`);
+				+ }
+			+ }
+			+ class Snake extends Animal {
+				+ constructor(name: string) { super(name); }
+				+ move(distanceInMeters = 5) {
+					+ console.log("Slithering...");
+					+ super.move(distanceInMeters);
+				+ }
+			+ }
+			+ class Horse extends Animal {
+				+ constructor(name: string) { super(name); }
+				+ move(distanceInMeters = 45) {
+					+ console.log("Galloping...");
+					+ super.move(distanceInMeters);
+				+ }
+			+ }
+			+ let sam = new Snake("Sammy the Python");
+			+ let tom: Animal = new Horse("Tommy the Palomino");
+			+ sam.move();
+			+ tom.move(34);
+
+		ittf
+			+
+				class Animal
+					p name
+						:string 
+					ctor 
+						param theName
+							:string 
+						set this.name = theName
+					m move
+						param distanceInMeters
+							:number 
+							:= 0
+						_ console.log
+							`lit 
+								+ 
+								@ this.name
+								+ \bmoved\b
+								@ distanceInMeters
+								+ m.
+				class Snake
+					super Animal
+					ctor 
+						param name
+							:string 
+						_ super(name)
+					m move
+						param distanceInMeters = 5
+						_ console.log("Slithering...")
+						_ super.move(distanceInMeters)
+			
+				class Horse
+					super Animal
+					ctor 
+						param name
+							:string 
+						_ super(name)
+					m move
+						param distanceInMeters = 45
+						_ console.log("Galloping...")
+						_ super.move(distanceInMeters)
+    
+	item
+		title Class accessors
+		expected
+			+ class Animal {
+				+ private name: string;
+				+ constructor(theName: string) { this.name = theName; }
+			+ }
+			+ class Rhino extends Animal {
+				+ constructor() { super("Rhino"); }
+			+ }
+			+ class Employee {
+				+ private name: string;
+				+ constructor(theName: string) { this.name = theName; }
+			+ }
+			+ let animal = new Animal("Goat");
+			+ let rhino = new Rhino();
+			+ let employee = new Employee("Bob");
+			+ animal = rhino;
+			+ animal = employee; // Error: 'Animal' and 'Employee' are not compatible
+
+		ittf
+			+
+				class Animal
+					p name
+						:private 
+						:string 
+					ctor 
+						param theName
+							:string 
+						set this.name = theName
+				class Rhino
+					super Animal
+					ctor 
+						_ super("Rhino")
+				class Employee
+					p name
+						:private 
+						:string 
+					ctor 
+						param theName
+							:string 
+						set this.name = theName
+				let animal = new Animal("Goat")
+				let rhino = new Rhino()
+				let employee = new Employee("Bob")
+				set animal = rhino
+				set animal = employee
+	
+	item
+		title Class accessors
+		expected
+			+ class Person {
+				+ protected name: string;
+				+ constructor(name: string) { this.name = name; }
+			+ }
+			+ class Employee extends Person {
+				+ private department: string;
+				+ constructor(name: string, department: string) {
+					+ super(name);
+					+ this.department = department;
+				+ }
+				+ public getElevatorPitch() {
+					+ return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+				+ }
+			+ }
+			+ let howard = new Employee("Howard", "Sales");
+			+ console.log(howard.getElevatorPitch());
+			+ console.log(howard.name); // error
+
+		ittf
+			+
+				class Person
+					p name
+						:protected 
+						:string 
+					ctor 
+						param name
+							:string 
+						set this.name = name
+    
+				class Employee
+					super Person
+					p department
+						:private 
+						:string 
+					ctor 
+						param name
+							:string 
+						param department
+							:string 
+						_ super(name)
+						set this.department = department
+					m getElevatorPitch
+						:public 
+						return 
+							`lit 
+								+ Hello, my name is\b
+								@ this.name
+								+ \band I work in\b
+								@ this.department
+								+ .
+	
+	item
+		title Readonly modifier
+		expected
+			+ class Octopus {
+				+ readonly name: string;
+				+ readonly numberOfLegs: number = 8;
+				+ constructor(theName: string) {
+					+ this.name = theName;
+				+ }
+			+ }
+			+ let dad = new Octopus("Man with the 8 strong legs");
+			+ dad.name = "Man with the 3-piece suit"; // error! name is readonly.
+
+		ittf
+			+
+				class Octopus
+					p name
+						:readonly 
+						:string 
+					p numberOfLegs
+						:readonly 
+						:number 
+						:= 8
+					ctor 
+						param theName
+							:string 
+						set this.name = theName
+				let dad = new Octopus("Man with the 8 strong legs")
+				set dad.name = "Man with the 3-piece suit"
+
+	item
+		title Parameter properties
+		expected
+			+ class Octopus {
+				+ readonly numberOfLegs: number = 8;
+				+ constructor(readonly name: string) {
+				+ }
+			+ }
+
+		ittf
+			+
+				class Octopus
+					p numberOfLegs
+						:readonly 
+						:number 
+						:= 8
+					ctor 
+						param 
+							:readonly 
+							:string 
+	item
+		title Static members
+		expected
+			+ class Grid {
+				+ static origin = { x: 0, y: 0 };
+				+ calculateDistanceFromOrigin(point: { x: number; y: number; }) {
+					+ let xDist = (point.x - Grid.origin.x);
+					+ let yDist = (point.y - Grid.origin.y);
+					+ return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+				+ }
+				+ constructor(public scale: number) { }
+			+ }
+
+		ittf
+			class Grid
+				p origin
+					static
+					{ 
+						@ x 0
+						@ y 0
+				m calculateDistanceFromOrigin
+					param point
+						:{ 
+							:p x
+								:number 
+							:p y
+								:number 
+					let xDist = (point.x - Grid.origin.x)
+					let yDist = (point.y - Grid.origin.y)
+					return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale
+				ctor 
+					param scale
+						:public 
+						:number 
+	
+	item
+		title Abstract classes 1
+		expected
+			+ abstract class Animal {
+				+ abstract makeSound(): void;
+				+ move(): void {
+					+ console.log("roaming the earth...");
+				+ }
+			+ }
+
+		ittf
+			+
+				class Animal
+					:abstract
+					:m makeSound
+						:abstract
+						:return
+							:void 
+					m move
+						:return
+							:void 
+						_ console.log("roaming the earth...")
+
+	item
+		title Abstract classes 2
+		expected
+			+ abstract class Department {
+				+ constructor(public name: string) {
+				+ }
+				+ printName(): void {
+					+ console.log("Department name: " + this.name);
+				+ }
+				+ abstract printMeeting(): void; // must be implemented in derived classes
+			+ }
+			+ class AccountingDepartment extends Department {
+				+ constructor() {
+					+ super("Accounting and Auditing"); // constructors in derived classes must call super()
+				+ }
+				+ printMeeting(): void {
+					+ console.log("The Accounting Department meets each Monday at 10am.");
+				+ }
+				+ generateReports(): void {
+					+ console.log("Generating accounting reports...");
+				+ }
+			+ }
+			+ let department: Department; // ok to create a reference to an abstract type
+			+ department = new Department(); // error: cannot create an instance of an abstract class
+			+ department = new AccountingDepartment(); // ok to create and assign a non-abstract subclass
+			+ department.printName();
+			+ department.printMeeting();
+			+ department.generateReports(); // error: method doesn't exist on declared abstract type
+		ittf
+			+
+				class Department
+					:abstract
+					ctor 
+						param name
+							:public 
+							:string 
+					m printName
+						:return
+							:void 
+						_ console.log("Department name: " + this.name)
+					:m printMeeting
+						:abstract
+						:return
+							:void 
+				class AccountingDepartment
+					super Department
+					ctor 
+						_ super("Accounting and Auditing")
+					m printMeeting
+						:return
+							:void 
+						_ console.log("The Accounting Department meets each Monday at 10am.")
+					m generateReports
+						:return
+							:void 
+						_ console.log("Generating accounting reports...")
+				let department
+					:ref Department
+				set department = new Department()
+				set department = new AccountingDepartment()
+				_ department.printName
+				_ department.printMeeting
+				_ department.generateReports
+				# error: method doesn't exist on declared abstract type
+    
+	item
+		title Static members
+		expected
+			+ class Greeter {
+				+ static standardGreeting = "Hello, there";
+				+ greeting: string;
+				+ greet() {
+					+ if (this.greeting) {
+						+ return "Hello, " + this.greeting;
+					+ } else {
+						+ return Greeter.standardGreeting;
+					+ }
+				+ }
+			+ }
+		ittf
+			+
+				class Greeter
+					p standardGreeting
+						static
+						:= "Hello, there"
+					p greeting
+						:string 
+					m greet
+						if this.greeting
+							return "Hello, " + this.greeting
+						else
+							return Greeter.standardGreeting
+    
+	item
+		title Class extended by interface
+		expected
+			+ class Point {
+				+ x: number;
+				+ y: number;
+			+ }
+			+ interface Point3d extends Point {
+				+ z: number;
+			+ }
+			+ let point3d: Point3d = { x: 1, y: 2, z: 3 };
+		ittf
+			+
+				class Point
+					p x
+						:number 
+					p y
+						:number 
+    
+				:interface Point3d
+					:extends Point
+					:p z
+						:number 
+    
+				let point3d
+					:ref Point3d
+					{ 
+						@ x 1
+						@ y 2
+						@ z 3

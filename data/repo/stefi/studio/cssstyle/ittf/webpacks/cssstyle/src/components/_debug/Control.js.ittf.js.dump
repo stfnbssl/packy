@@ -1,0 +1,163 @@
+// 13/5/2017:11:21:53  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "module", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //81
+$.a($0, $1, 5);
+var $2 = { n: "kind", v: "react", r: 2, c: 5, s: "f1", u: "f1",  }; //82
+$.a($1, $2, 7);
+var $3 = { n: "+", v: "", r: 3, c: 5, s: "f1", u: "f1",  }; //83
+$.a($1, $3, 9);
+var $4 = { n: "import", v: "React, { Component, PropTypes } from 'react'", r: 4, c: 5, s: "f1", u: "f1",  }; //84
+$.a($1, $4, 11);
+var $5 = { n: "import", v: "{ Input, Select, Range } from './controlTypes'", r: 5, c: 5, s: "f1", u: "f1",  }; //85
+$.a($1, $5, 13);
+var $6 = { n: "import", v: "{ Row, Col } from './grid'", r: 6, c: 5, s: "f1", u: "f1",  }; //86
+$.a($1, $6, 15);
+var $7 = { n: "class", v: "Control", r: 8, c: 5, s: "f1", u: "f1",  }; //87
+$.a($1, $7, 17);
+var $8 = { n: "super", v: "Component", r: 9, c: 9, s: "f1", u: "f1",  }; //88
+$.a($7, $8, 19);
+var $9 = { n: "ctor", v: "", r: 10, c: 9, s: "f1", u: "f1",  }; //89
+$.a($7, $9, 21);
+var $10 = { n: "param", v: "props", r: 11, c: 13, s: "f1", u: "f1",  }; //90
+$.a($9, $10, 23);
+var $11 = { n: "base", v: "props", r: 12, c: 13, s: "f1", u: "f1",  }; //91
+$.a($9, $11, 25);
+var $12 = { n: "set", v: "this.handleChange = this.handleChange.bind(this)", r: 14, c: 13, s: "f1", u: "f1",  }; //92
+$.a($9, $12, 27);
+var $13 = { n: "m", v: "handleChange", r: 16, c: 9, s: "f1", u: "f1",  }; //93
+$.a($7, $13, 29);
+var $14 = { n: "param", v: "value", r: 17, c: 13, s: "f1", u: "f1",  }; //94
+$.a($13, $14, 31);
+var $15 = { n: "const", v: "{ id, onChangeValue } = this.props", r: 18, c: 13, s: "f1", u: "f1",  }; //95
+$.a($13, $15, 33);
+var $16 = { n: "if", v: "onChangeValue", r: 19, c: 13, s: "f1", u: "f1",  }; //96
+$.a($13, $16, 35);
+var $17 = { n: "log", v: "'Control.handleChange', id, value", r: 20, c: 17, s: "f1", u: "f1",  }; //97
+$.a($16, $17, 37);
+var $18 = { n: "_", v: "onChangeValue(id, value, this.origValue)", r: 21, c: 17, s: "f1", u: "f1",  }; //98
+$.a($16, $18, 39);
+var $19 = { n: "m", v: "render", r: 23, c: 9, s: "f1", u: "f1",  }; //99
+$.a($7, $19, 41);
+var $20 = { n: "const", v: "{ id, label, type, value, layout, data } = this.props", r: 24, c: 13, s: "f1", u: "f1",  }; //100
+$.a($19, $20, 43);
+var $21 = { n: "const", v: "{ onChange } = this.props", r: 25, c: 13, s: "f1", u: "f1",  }; //101
+$.a($19, $21, 45);
+var $22 = { n: "const", v: "ControlComponent = createComponent(type)", r: 26, c: 13, s: "f1", u: "f1",  }; //102
+$.a($19, $22, 47);
+var $23 = { n: "return", v: "", r: 27, c: 13, s: "f1", u: "f1",  }; //103
+$.a($19, $23, 49);
+var $24 = { n: "<", v: "Row", r: 28, c: 17, s: "f1", u: "f1",  }; //104
+$.a($23, $24, 51);
+var $25 = { n: "<", v: "Col", r: 29, c: 21, s: "f1", u: "f1",  }; //105
+$.a($24, $25, 53);
+var $26 = { n: "@", v: "span {4}", r: 30, c: 25, s: "f1", u: "f1",  }; //106
+$.a($25, $26, 55);
+var $27 = { n: "+", v: "{label || id}", r: 31, c: 25, s: "f1", u: "f1",  }; //107
+$.a($25, $27, 57);
+var $28 = { n: "<", v: "Col", r: 32, c: 21, s: "f1", u: "f1",  }; //108
+$.a($24, $28, 59);
+var $29 = { n: "@", v: "span {8}", r: 33, c: 25, s: "f1", u: "f1",  }; //109
+$.a($28, $29, 61);
+var $30 = { n: "<", v: "ControlComponent", r: 34, c: 25, s: "f1", u: "f1",  }; //110
+$.a($28, $30, 63);
+var $31 = { n: "@", v: "id {id}", r: 35, c: 29, s: "f1", u: "f1",  }; //111
+$.a($30, $31, 65);
+var $32 = { n: "@", v: "value {value}", r: 36, c: 29, s: "f1", u: "f1",  }; //112
+$.a($30, $32, 67);
+var $33 = { n: "@", v: "data {data}", r: 37, c: 29, s: "f1", u: "f1",  }; //113
+$.a($30, $33, 69);
+var $34 = { n: "@", v: "onChange {this.handleChange}", r: 38, c: 29, s: "f1", u: "f1",  }; //114
+$.a($30, $34, 71);
+var $35 = { n: "function", v: "createComponent", r: 40, c: 5, s: "f1", u: "f1",  }; //115
+$.a($1, $35, 73);
+var $36 = { n: "param", v: "type", r: 41, c: 9, s: "f1", u: "f1",  }; //116
+$.a($35, $36, 75);
+var $37 = { n: "const", v: "inputTypes", r: 43, c: 9, s: "f1", u: "f1",  }; //117
+$.a($35, $37, 77);
+var $38 = { n: "[", v: "", r: 44, c: 13, s: "f1", u: "f1",  }; //118
+$.a($37, $38, 79);
+var $39 = { n: "@", v: "'checkbox'", r: 45, c: 17, s: "f1", u: "f1",  }; //119
+$.a($38, $39, 81);
+var $40 = { n: "@", v: "'color'", r: 46, c: 17, s: "f1", u: "f1",  }; //120
+$.a($38, $40, 83);
+var $41 = { n: "@", v: "'date'", r: 47, c: 17, s: "f1", u: "f1",  }; //121
+$.a($38, $41, 85);
+var $42 = { n: "@", v: "'datetime'", r: 48, c: 17, s: "f1", u: "f1",  }; //122
+$.a($38, $42, 87);
+var $43 = { n: "@", v: "'datetime-local'", r: 49, c: 17, s: "f1", u: "f1",  }; //123
+$.a($38, $43, 89);
+var $44 = { n: "@", v: "'email'", r: 50, c: 17, s: "f1", u: "f1",  }; //124
+$.a($38, $44, 91);
+var $45 = { n: "@", v: "'file'", r: 51, c: 17, s: "f1", u: "f1",  }; //125
+$.a($38, $45, 93);
+var $46 = { n: "@", v: "'hidden'", r: 52, c: 17, s: "f1", u: "f1",  }; //126
+$.a($38, $46, 95);
+var $47 = { n: "@", v: "'month'", r: 54, c: 17, s: "f1", u: "f1",  }; //127
+$.a($38, $47, 97);
+var $48 = { n: "@", v: "'number'", r: 55, c: 17, s: "f1", u: "f1",  }; //128
+$.a($38, $48, 99);
+var $49 = { n: "@", v: "'password'", r: 56, c: 17, s: "f1", u: "f1",  }; //129
+$.a($38, $49, 101);
+var $50 = { n: "@", v: "'radio'", r: 57, c: 17, s: "f1", u: "f1",  }; //130
+$.a($38, $50, 103);
+var $51 = { n: "@", v: "'range'", r: 58, c: 17, s: "f1", u: "f1",  }; //131
+$.a($38, $51, 105);
+var $52 = { n: "@", v: "'search'", r: 60, c: 17, s: "f1", u: "f1",  }; //132
+$.a($38, $52, 107);
+var $53 = { n: "@", v: "'tel'", r: 62, c: 17, s: "f1", u: "f1",  }; //133
+$.a($38, $53, 109);
+var $54 = { n: "@", v: "'text'", r: 63, c: 17, s: "f1", u: "f1",  }; //134
+$.a($38, $54, 111);
+var $55 = { n: "@", v: "'time'", r: 64, c: 17, s: "f1", u: "f1",  }; //135
+$.a($38, $55, 113);
+var $56 = { n: "@", v: "'url'", r: 65, c: 17, s: "f1", u: "f1",  }; //136
+$.a($38, $56, 115);
+var $57 = { n: "@", v: "'week'", r: 66, c: 17, s: "f1", u: "f1",  }; //137
+$.a($38, $57, 117);
+var $58 = { n: "const", v: "inputButtons", r: 68, c: 9, s: "f1", u: "f1",  }; //138
+$.a($35, $58, 119);
+var $59 = { n: "[", v: "", r: 69, c: 13, s: "f1", u: "f1",  }; //139
+$.a($58, $59, 121);
+var $60 = { n: "@", v: "'button'", r: 70, c: 17, s: "f1", u: "f1",  }; //140
+$.a($59, $60, 123);
+var $61 = { n: "@", v: "'reset'", r: 71, c: 17, s: "f1", u: "f1",  }; //141
+$.a($59, $61, 125);
+var $62 = { n: "@", v: "'submit'", r: 72, c: 17, s: "f1", u: "f1",  }; //142
+$.a($59, $62, 127);
+var $63 = { n: "@", v: "'image'", r: 73, c: 17, s: "f1", u: "f1",  }; //143
+$.a($59, $63, 129);
+var $64 = { n: "var", v: "ret", r: 75, c: 9, s: "f1", u: "f1",  }; //144
+$.a($35, $64, 131);
+var $65 = { n: "if", v: "inputTypes.indexOf(type) > -1", r: 76, c: 9, s: "f1", u: "f1",  }; //145
+$.a($35, $65, 133);
+var $66 = { n: "set", v: "ret = Input(type)", r: 77, c: 13, s: "f1", u: "f1",  }; //146
+$.a($65, $66, 135);
+var $67 = { n: "elif", v: "type === 'select'", r: 78, c: 9, s: "f1", u: "f1",  }; //147
+$.a($35, $67, 137);
+var $68 = { n: "set", v: "ret = Select()", r: 79, c: 13, s: "f1", u: "f1",  }; //148
+$.a($67, $68, 139);
+var $69 = { n: "elif", v: "type === 'range'", r: 80, c: 9, s: "f1", u: "f1",  }; //149
+$.a($35, $69, 141);
+var $70 = { n: "set", v: "ret = Range()", r: 81, c: 13, s: "f1", u: "f1",  }; //150
+$.a($69, $70, 143);
+var $71 = { n: "else", v: "", r: 82, c: 9, s: "f1", u: "f1",  }; //151
+$.a($35, $71, 145);
+var $72 = { n: "set", v: "ret = Input('text')", r: 83, c: 13, s: "f1", u: "f1",  }; //152
+$.a($71, $72, 147);
+var $73 = { n: "#", v: "log 'createComponent.ret', ret", r: 84, c: 9, s: "f1", u: "f1",  }; //153
+$.a($35, $73, 149);
+var $74 = { n: "return", v: "ret", r: 85, c: 9, s: "f1", u: "f1",  }; //154
+$.a($35, $74, 151);
+var $75 = { n: "set", v: "Control.propTypes", r: 87, c: 5, s: "f1", u: "f1",  }; //155
+$.a($1, $75, 153);
+var $76 = { n: "{", v: "", r: 88, c: 9, s: "f1", u: "f1",  }; //156
+$.a($75, $76, 155);
+var $77 = { n: "@", v: "id PropTypes.string.isRequired", r: 89, c: 13, s: "f1", u: "f1",  }; //157
+$.a($76, $77, 157);
+var $78 = { n: "@", v: "type PropTypes.string.isRequired", r: 90, c: 13, s: "f1", u: "f1",  }; //158
+$.a($76, $78, 159);
+var $79 = { n: "@", v: "onChangeValue PropTypes.func.isRequired", r: 91, c: 13, s: "f1", u: "f1",  }; //159
+$.a($76, $79, 161);
+var $80 = { n: "export", v: "default Control", r: 93, c: 5, s: "f1", u: "f1",  }; //160
+$.a($1, $80, 163);

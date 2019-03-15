@@ -1,0 +1,54 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { PropTypes } from 'react' ids: undefined undefined
+    import Comments from './Comments' ids: undefined undefined
+    import Flags from './Flags' ids: undefined undefined
+    import Attribute from './Attribute' ids: undefined undefined
+    +  ids: undefined undefined
+    const Element ids: undefined undefined
+      =>  ids: undefined undefined
+        param { element } ids: undefined undefined
+        const attributes ids: undefined undefined
+          _ element.attributes.map ids: undefined undefined
+            =>  ids: undefined undefined
+              param attr ids: undefined undefined
+              < Attribute ids: undefined undefined
+                @ attr {attr} ids: undefined undefined
+        return  ids: undefined undefined
+          div  ids: undefined undefined
+            h4 Element {element.name} ids: undefined undefined
+            < Comments ids: undefined undefined
+              @ data {element.comments} ids: undefined undefined
+            table  ids: undefined undefined
+              class table ids: undefined undefined
+              thead  ids: undefined undefined
+                tr  ids: undefined undefined
+                  th Tag ids: undefined undefined
+                  th Super ids: undefined undefined
+                  th Is root ids: undefined undefined
+                  th Flags ids: undefined undefined
+              tbody  ids: undefined undefined
+                tr  ids: undefined undefined
+                  td {element.tags.join(' | ' )} ids: undefined undefined
+                  td {element.super} ids: undefined undefined
+                  td {element.isRoot} ids: undefined undefined
+                  td  ids: undefined undefined
+                    < Flags ids: undefined undefined
+                      @ flags {element.flags} ids: undefined undefined
+            section  ids: undefined undefined
+              h5 Attributes ids: undefined undefined
+              table  ids: undefined undefined
+                class table ids: undefined undefined
+                thead  ids: undefined undefined
+                  tr  ids: undefined undefined
+                    th Tag ids: undefined undefined
+                    th Name ids: undefined undefined
+                    th Type ids: undefined undefined
+                    th Default ids: undefined undefined
+                    th Flags ids: undefined undefined
+                    th Description ids: undefined undefined
+                tbody  ids: undefined undefined
+                  + {attributes} ids: undefined undefined
+    +  ids: undefined undefined
+    export default Element ids: undefined undefined

@@ -1,0 +1,164 @@
+h/std/empty_layout()
+
+	# demo-snap
+		h1 Snap
+        canvas Your browser does not support the HTML5 canvas
+            id grid
+        canvas 
+            id drag
+        div 
+            id status
+            div 
+                id controls
+                section 
+                    id sliders
+                    h3 grid spacing
+                    input 
+                        id grid-x
+                        type range
+                        value 500
+                        min 20
+                        max 500
+                        title x-axis
+                    input 
+                        id grid-y
+                        type range
+                        value 500
+                        min 20
+                        max 500
+                        title x-axis
+                    br 
+                    h3 grid offset
+                    input 
+                        id offset-x
+                        type range
+                        value 240
+                        min 0
+                        max 500
+                        title x-axis
+                    input 
+                        id offset-y
+                        type range
+                        value 240
+                        min 0
+                        max 500
+                        title x-axis
+                    br 
+                    h3 snap range
+                    input 
+                        id snap-range
+                        type range
+                        min 10
+                        value -1
+                        max 150
+                        title snap range
+                br 
+                section 
+                    id modes
+                    h3 snap mode
+                    label Off
+                        for off-mode
+                        class snap-mode
+                        input 
+                            id off-mode
+                            type radio
+                            name snap-mode
+                            checked true
+                    br 
+                    label Grid Mode
+                        for grid-mode
+                        class snap-mode
+                        input 
+                            id grid-mode
+                            type radio
+                            name snap-mode
+                            checked true
+                    br 
+                    label Anchor Mode
+                        for anchor-mode
+                        class snap-mode
+                        input 
+                            id anchor-mode
+                            type radio
+                            name snap-mode
+                    br 
+                    br 
+                    label Snap at end only
+                        for end-only
+                        input 
+                            id end-only
+                            type checkbox
+                            checked 
+                    label Inertia
+                        for inertia
+                        input 
+                            id inertia
+                            type checkbox
+                    label Relative to "startCoords"
+                        for relative
+                        input 
+                            id relative
+                            type checkbox
+                    br 
+                    br 
+                    label Anchor drag mode
+                        for drag-anchors
+                        style display: none
+                        input 
+                            id drag-anchors
+                            type checkbox
+
+
+    $append head-styles
+		@style
+			css
+				< canvas
+					position absolute
+					top 0
+					left 0
+					margin 20px
+					padding 0
+					touch-action none
+				< #status
+					width 20%
+					height 100%
+					position fixed
+					right 0
+					top 0
+					padding 5px 5px
+					border none
+					border-left solid 8px #3a6bff
+					background-color rgba(0, 143, 179, 0.298)
+					text-align center
+					font-size 1.4em
+				< #status h3
+					font-size 1.1em
+					margin 3px 0px 0px 0px
+					padding 0
+					line-height 22px
+					text-transform capitalize
+					font-weight normal
+				< #status input[type=radio]
+					+ #status input[type=checkbox]
+					float right
+				< #status [type=range]
+					margin auto
+					width 90%
+				< #status [disabled]
+					cursor default
+				< #status label
+					float left
+					cursor pointer
+					width 95%
+					text-align left
+				< #modes
+					+ #sliders
+					overflow hidden
+					width 100%
+					margin auto
+				< #modes.disabled label.snap-mode
+					cursor default
+					color gray
+                    
+    $append body-scripts
+		js ./script.js.ittf                                                      

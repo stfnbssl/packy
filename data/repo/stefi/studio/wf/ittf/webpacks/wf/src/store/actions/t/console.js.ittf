@@ -1,0 +1,96 @@
+﻿$group
+	+
+	wz-const CHANGE_VIEW = 'CHANGE_VIEW'
+	+
+	http( console, list, get, save, run )
+	+
+	wz-const listConsole
+		=>
+			param refresh
+			return
+				{
+					@ type LIST_CONSOLE
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ LIST_CONSOLE_REQUEST
+									@ LIST_CONSOLE_SUCCESS
+									@ LIST_CONSOLE_FAILURE
+							@ url '/api/jobs/scripts'
+							@ method 'get'
+							@ queryParams
+								{
+									@ refresh (refresh ? 'true' : 'false')
+	+
+	wz-const getConsole
+		=>
+			param name
+			return
+				{
+					@ type GET_CONSOLE
+					@ name name
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ GET_CONSOLE_REQUEST
+									@ GET_CONSOLE_SUCCESS
+									@ GET_CONSOLE_FAILURE
+							@ url '/api/jobs/script'
+							@ method 'get'
+							@ queryParams
+								{
+									@ name name
+	+
+	wz-const saveConsole
+		=>
+			param name
+			param ittfContent
+			return
+				{
+					@ type SAVE_CONSOLE
+					@ name name
+					@ ittfContent ittfContent
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ SAVE_CONSOLE_REQUEST
+									@ SAVE_CONSOLE_SUCCESS
+									@ SAVE_CONSOLE_FAILURE
+							@ url '/api/jobs/script'
+							@ method 'post'
+							@ payload
+								{
+									@ name name
+									@ content ittfContent
+	+
+	wz-const runConsole
+		=>
+			param name
+			return
+				{
+					@ type RUN_CONSOLE
+					@ name name
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ RUN_CONSOLE_REQUEST
+									@ RUN_CONSOLE_SUCCESS
+									@ RUN_CONSOLE_FAILURE
+							@ url '/api/jobs/runscript'
+							@ method 'get'
+							@ queryParams
+								{
+									@ name name
+
+	+
+	wz-const changeView
+		=>
+			param viewName
+			return
+				{
+					@ type CHANGE_VIEW
+					@ view viewName

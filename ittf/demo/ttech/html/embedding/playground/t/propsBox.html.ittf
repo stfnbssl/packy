@@ -1,0 +1,21 @@
+﻿$group
+	
+	section
+		class controls
+		id propsBox
+                   
+		h/control( size )
+			h/input( iframe-width, small, iframe-width, "100%" )
+			h/input( iframe-height, small, iframe-height, "600" )
+		
+		h/control( frame )
+			h/input( iframe-border, small, iframe-border, "0" )
+
+		h/select( embeds, embeds, none,
+			\b iframe;object
+
+		h/select( sites, sites, none,
+			\b HuffPost;Dago;Lettera43;Remo;PiccoleNote;OcchiDellaGuerra
+
+		h/select( pdfs, pdfs, none,
+			\b Css;Html;Canvas;Javascript

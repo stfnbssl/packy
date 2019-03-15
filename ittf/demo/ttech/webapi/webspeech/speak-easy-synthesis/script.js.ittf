@@ -1,0 +1,66 @@
+﻿module
+    kind react
+    var synth = window.speechSynthesis
+    var inputForm = document.querySelector('form')
+    var inputTxt = document.querySelector('.txt')
+    var voiceSelect = document.querySelector('select')
+    var pitch = document.querySelector('#pitch')
+    var pitchValue = document.querySelector('.pitch-value')
+    var rate = document.querySelector('#rate')
+    var rateValue = document.querySelector('.rate-value')
+    var voices = []
+    function populateVoiceList
+        set voices = synth.getVoices()
+        var selectedIndex
+            iif voiceSelect.selectedIndex < 0
+                then 0
+                else voiceSelect.selectedIndex
+        set voiceSelect.innerHTML = ''
+        for var i = 0; i < voices.length; i++
+            var option = document.createElement('option')
+            set option.textContent = voices[i].name + ' (' + voices[i].lang + ')'
+            if voices[i].default
+                set option.textContent += ' -- DEFAULT'
+            _ option.setAttribute('data-lang', voices[i].lang)
+            _ option.setAttribute('data-name', voices[i].name)
+            _ voiceSelect.appendChild(option)
+        set voiceSelect.selectedIndex = selectedIndex
+    _ populateVoiceList
+    if speechSynthesis.onvoiceschanged !== undefined
+        set speechSynthesis.onvoiceschanged = populateVoiceList
+    function speak
+        if synth.speaking
+            _ console.error('speechSynthesis.speaking')
+            return 
+        if inputTxt.value !== ''
+            var utterThis = new SpeechSynthesisUtterance(inputTxt.value)
+            set utterThis.onend =
+                function 
+                    param event
+                    _ console.log('SpeechSynthesisUtterance.onend')
+            set utterThis.onerror =
+                function 
+                    param event
+                    _ console.error('SpeechSynthesisUtterance.onerror')
+            var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name')
+            for var i = 0; i < voices.length; i++
+                if voices[i].name === selectedOption
+                    set utterThis.voice = voices[i]
+            set utterThis.pitch = pitch.value
+            set utterThis.rate = rate.value
+            _ synth.speak(utterThis)
+    set inputForm.onsubmit =
+        function 
+            param event
+            _ event.preventDefault
+            _ speak
+            _ inputTxt.blur
+    set pitch.onchange =
+        function 
+            set pitchValue.textContent = pitch.value
+    set rate.onchange =
+        function 
+            set rateValue.textContent = rate.value
+    set voiceSelect.onchange =
+        function 
+            _ speak

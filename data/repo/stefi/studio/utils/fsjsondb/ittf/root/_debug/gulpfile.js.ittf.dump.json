@@ -1,0 +1,105 @@
+{
+  "WmtTag": "module",
+  "WmtName": "",
+  "no_iife": false,
+  "use_strict": false,
+  "kind": "jsfile",
+  "exportKind": "var",
+  "includes": [],
+  "statements": [
+    {
+      "WmtTag": "var",
+      "WmtName": "gulp = require('gulp')",
+      "statements": []
+    },
+    {
+      "WmtTag": "var",
+      "WmtName": "mocha = require('gulp-mocha')",
+      "statements": []
+    },
+    {
+      "WmtTag": "_",
+      "WmtName": "gulp.task",
+      "statements": [
+        {
+          "WmtTag": "@",
+          "WmtName": "'test'",
+          "statements": []
+        },
+        {
+          "WmtTag": "function",
+          "WmtName": "",
+          "statements": [
+            {
+              "WmtTag": "_",
+              "WmtName": "gulp.src",
+              "statements": [
+                {
+                  "WmtTag": "@",
+                  "WmtName": "'tests/**/*.js'",
+                  "statements": []
+                },
+                {
+                  "WmtTag": "._",
+                  "WmtName": "pipe",
+                  "statements": [
+                    {
+                      "WmtTag": "_",
+                      "WmtName": "mocha",
+                      "statements": [
+                        {
+                          "WmtTag": "{",
+                          "WmtName": "",
+                          "statements": [
+                            {
+                              "WmtTag": "@",
+                              "WmtName": "reporter 'spec'",
+                              "statements": []
+                            },
+                            {
+                              "WmtTag": "@",
+                              "WmtName": "clearRequireCache true",
+                              "statements": []
+                            },
+                            {
+                              "WmtTag": "@",
+                              "WmtName": "ignoreLeaks true",
+                              "statements": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "args": []
+        }
+      ]
+    },
+    {
+      "WmtTag": "_",
+      "WmtName": "gulp.task",
+      "statements": [
+        {
+          "WmtTag": "@",
+          "WmtName": "'default'",
+          "statements": []
+        },
+        {
+          "WmtTag": "[",
+          "WmtName": "",
+          "statements": [
+            {
+              "WmtTag": "@",
+              "WmtName": "'test'",
+              "statements": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

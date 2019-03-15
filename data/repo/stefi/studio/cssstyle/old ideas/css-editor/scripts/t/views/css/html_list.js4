@@ -1,0 +1,43 @@
+﻿bb_view Spa.HtmlListView : Backbone.Marionette.CompositeView
+	__p id htmlList
+	__p itemView:object Spa.HtmlItemView
+
+	bb_action_click add
+		event.preventDefault();
+		var self = this;
+		var form = new Spa.HtmlForm({ 
+			mode: 'insert', 
+			app: this.app, 
+			model: new Spa.HtmlModel(),
+			save: function(model) {
+				self.app.putHtml(model);
+				self.render();
+			}
+		}).render();
+		this.app.rootApp.modal.show(form);
+	
+	method initialize options
+		__log 'HtmlListView options: ', options
+		this.app = options.itemViewOptions.app;
+		var self = this;
+		this.app.rootApp.vent.on("htmlList:noResults", function() { self.showMessage("No html document found") });
+    
+	method appendHtml collectionView itemView
+		__log 'HtmlListView itemView: ', itemView
+		collectionView.$("#html-list-tbody").append(itemView.el);
+  
+	method showMessage message
+		this.$('.items').html('<h1 class="notFound">' + message + '</h1>');
+	
+	bb_template ctx
+		div
+			. n-l-h1
+				bb/b_action add Add n-l-btn
+					style float: right;
+			h2 Html documents
+			# html-list-container
+				table
+					thead
+						th name
+					tbody
+						id html-list-tbody

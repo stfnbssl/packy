@@ -1,0 +1,66 @@
+﻿module
+	$params name, withRouter:boolean|false
+	kind react
+
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import { connect } from 'react-redux'
+	$if withRouter
+		import { withRouter } from 'react-router'
+	$hook imports
+	+
+	react ${name}Container
+		$hook
+
+	+
+	const mapDispatchToProps
+		=>
+			param dispatch
+			return
+				{
+					$hook dispatch-to-props
+
+	+
+	const mapStateToProps
+		=>
+			param state
+			return
+				{
+					$hook state-to-props
+
+	+
+	const mergeProps
+		=>
+			param stateProps
+			param dispatchProps
+			param ownProps
+			log 'DocumentEditor.mergeProps.stateProps', stateProps
+			log 'DocumentEditor.mergeProps.dispatchProps', dispatchProps
+			log 'DocumentEditor.mergeProps.ownProps', ownProps
+			return
+				_ Object.assign
+					{
+					@ ownProps
+					@ stateProps
+					@ dispatchProps
+					{
+						$hook merge-props
+	+
+	const ${name}ContainerConnected
+		$if withRouter
+			_ withRouter
+				_ connect
+					@ mapStateToProps
+					@ mapDispatchToProps
+					@ mergeProps
+					(
+						@ ${name}Container
+		$else
+			_ connect
+				@ mapStateToProps
+				@ mapDispatchToProps
+				@ mergeProps
+				(
+					@ ${name}Container
+
+	export default ${name}ContainerConnected

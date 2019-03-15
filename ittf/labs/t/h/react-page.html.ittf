@@ -1,0 +1,19 @@
+﻿html
+	$params name, usecss|yes
+	head
+		css https://fonts.googleapis.com/css?family=Open+Sans:300,400,700
+		css https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css
+		$hook head
+		$if usecss == 'yes'
+			css css/${name}.css.ittf
+	body
+		# container
+		js https://unpkg.com/react@15.5.4/dist/react.min.js
+		js https://unpkg.com/react-dom/dist/react-dom.min.js
+		js /static/lib/react/prop-types.js
+		js https://unpkg.com/babel-standalone@6.15.0/babel.min.js
+			data-plugins transform-decorators-legacy
+		$hook body-scripts
+		script
+			src js/${name}.js.ittf
+			type text/babel

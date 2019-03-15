@@ -1,0 +1,15 @@
+﻿class Spa.CssDataProvider
+	ctor app
+		this.app = app;
+	method htmlcombo
+		var coll = this.app.htmlCollection;
+		coll.fetch({async: false});
+		var items = [];
+		coll.each(function (model) {
+			items.push({
+				id: model.get('id'),
+				label: model.get('name')
+			});
+		});
+		console.log('htmlcombo :', items);
+		return items;

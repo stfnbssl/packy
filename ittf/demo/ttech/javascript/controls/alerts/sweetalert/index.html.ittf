@@ -1,0 +1,93 @@
+html
+
+	$
+		var opt = {}
+		opt.title = 'Sweetalert demo';
+		opt.useSweetalert = true;
+	
+	h/root/empty_layout_opt(&opt)
+	    
+	    $append head-styles
+	        @style
+	            css
+	                < button
+	                    margin 0px 30px
+	
+	    h1 Sweetalerts2
+	    
+	    p Examples 
+	        a \bhere
+	            href https://sweetalert2.github.io/#examples
+
+	
+		div
+		    button Error
+		        id error
+		    button Question
+		        id question
+		    button Html
+		        id html
+		    button Retval
+		        id retval
+		
+		$append body-scripts
+			
+			script
+			    module
+			    
+			        _ document.querySelector('#error').addEventListener
+			            @ 'click'
+			            =>
+                            _ Swal
+                                { 
+                                    @ title 'Error!'
+                                    @ text 'Do you want to continue'
+                                    @ type 'error'
+                                    @ confirmButtonText 'Cool'	
+                                    
+			        _ document.querySelector('#question').addEventListener
+			            @ 'click'
+			            =>
+                            _ Swal
+                                { 
+                                    @ title 'How old are you?'
+                                    @ type 'question'
+                                    @ input 'range'
+                                    { inputAttributes
+                                        @ min 8
+                                        @ max 120
+                                        @ step 1
+                                    @ inputValue 25      
+                                    
+			        _ document.querySelector('#html').addEventListener
+			            @ 'click'
+			            =>
+                            _ Swal
+                                { 
+                                    @ title '<strong>HTML <u>example</u></strong>'
+                                    @ type 'info'
+                                    @ html 'You can use <b>bold text</b>, ' + '<a href="//github.com">links</a> ' + 'and other HTML tags'
+                                    @ showCloseButton true
+                                    @ showCancelButton true
+                                    @ focusConfirm false
+                                    @ confirmButtonText '<i class="fa fa-thumbs-up"></i> Great!'
+                                    @ confirmButtonAriaLabel 'Thumbs up, great!'
+                                    @ cancelButtonText '<i class="fa fa-thumbs-down"></i>'
+                                    @ cancelButtonAriaLabel 'Thumbs down'
+                                    
+ 			        _ document.querySelector('#retval').addEventListener
+			            @ 'click'
+			            =>
+			                async-function go
+                                const 
+                                    {
+                                        @ value email
+                                    _ = await Swal
+                                        { 
+                                            @ title 'Input email address'
+                                            @ input 'email'
+                                            @ inputPlaceholder 'Enter your email address'
+                                if email
+                                    _ Swal('Entered email: ' + email)			            
+                            _ go
+                                   

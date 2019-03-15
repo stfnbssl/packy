@@ -1,0 +1,25 @@
+﻿$group
+
+    async-function gitStage
+		{ 
+			@ filepath
+			@ glEventHub
+            
+		let dir
+		
+		await 
+			_ git.findRoot
+				{ 
+					@ fs
+					@ filepath
+            
+		let rpath = path.relative(dir, filepath)
+            
+		await 
+			_ git.add
+				{ 
+					@ fs
+					@ dir
+					@ filepath rpath
+            
+		_ glEventHub.emit('refreshGitStatusFile', filepath)

@@ -1,0 +1,28 @@
+module
+    kind react
+    const swalWithBootstrapButtons
+        _ Swal.mixin
+            { 
+                @ confirmButtonClass 'btn btn-success'
+                @ cancelButtonClass 'btn btn-danger'
+                @ buttonsStyling false
+    _ swalWithBootstrapButtons
+        { 
+            @ title 'Are you sure?'
+            @ text "You won't be able to revert this!"
+            @ type 'warning'
+            @ showCancelButton true
+            @ confirmButtonText 'Yes, delete it!'
+            @ cancelButtonText 'No, cancel!'
+            @ reverseButtons true
+        ._ then
+            => 
+                param result
+                if result.value
+                    _ swalWithBootstrapButtons('Deleted!', 'Your file has been deleted.', 'success')
+                else
+                    if 
+                        test
+                            # Read more about handling dismissals
+                            set result.dismiss === Swal.DismissReason.cancel
+                        _ swalWithBootstrapButtons('Cancelled', 'Your imaginary file is safe :)', 'error')

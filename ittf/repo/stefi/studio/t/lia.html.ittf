@@ -1,0 +1,9 @@
+li
+	$params text, href, title|@@null
+	a ${text}
+		href ${href}
+		target _blank
+		$if title != null
+		    span &nbsp; ${title}
+		        style color:red; font-weight:700;
+	$hook

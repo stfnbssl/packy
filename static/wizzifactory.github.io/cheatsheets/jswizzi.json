@@ -1,0 +1,44 @@
+{
+    "title": "Schema cheat sheet",
+    "language": "ittf",
+    "elements": [
+        {
+            "name": "jsWizzi statements",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "Conditions in scripts",
+                    "ittfWrapped": "root \\n    $ \\n        var name = 'Derby', winner = null;\\n        if (name == 'Ascot') {\\n            winner = 'Ribot';\\n        } else if (name == 'Arc de triomphe') {\\n            winner = 'Varenne';\\n        } else if (name == 'Derby') {\\n            winner = 'Ribot';\\n        } else {\\n            winner = 'Varenne';\\n        } \\n    node If the race was ${name} the winner was ${winner}.",
+                    "generated": "\\n// 17/1/2019:14:21:7  by C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\debugInfoBuilder.js\\n$.n(); // set the context state to NodeContext\\nvar $0 = {}; // the root node of the MTree buildup\\nvar $1 = { n: \\\"root\\\", v: \\\"\\\", r: 1, c: 1, s: \\\"f1\\\", u: \\\"f1\\\",  }; //14\\n$.a($0, $1, 5);\\n$.s(\\\"f1\\\");\\nvar name = 'Derby', winner = null; //16\\nif (name == 'Ascot') { //17\\nwinner = 'Ribot'; //18\\n} else if (name == 'Arc de triomphe') { //19\\nwinner = 'Varenne'; //20\\n} else if (name == 'Derby') { //21\\nwinner = 'Ribot'; //22\\n} else { //23\\nwinner = 'Varenne'; //24\\n}  //25\\n$.n();\\nvar $3 = { n: \\\"node\\\", v: $.ip(\\\"f1\\\", \\\"If the race was ${name} the winner was ${winner}.\\\", \\\"string\\\", 18, false), r: 13, c: 5, s: \\\"f1\\\", u: \\\"f1\\\",  }; //26\\n$.a($1, $3, 19);"
+                },
+                {
+                    "title": "Conditions in markup",
+                    "ittfWrapped": "root \\n    $ \\n        var name = 'Derby';\\n    $if name == 'Ascot'\\n        node If the race was ${name} the winner was Ribot\\n    $elif name == 'Arc de triomphe'\\n        node If the race was ${name} the winner was Varenne\\n    $elif name == 'Derby'\\n        node If the race was ${name} the winner was Ribot\\n    $else \\n        node If the race was ${name} the winner was Varenne",
+                    "generated": "\\n// 17/1/2019:14:21:7  by C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\debugInfoBuilder.js\\n$.n(); // set the context state to NodeContext\\nvar $0 = {}; // the root node of the MTree buildup\\nvar $1 = { n: \\\"root\\\", v: \\\"\\\", r: 1, c: 1, s: \\\"f1\\\", u: \\\"f1\\\",  }; //12\\n$.a($0, $1, 5);\\n$.s(\\\"f1\\\");\\nvar name = 'Derby'; //14\\nif (name == 'Ascot') { //15\\n    $.n();\\n    var $4 = { n: \\\"node\\\", v: $.ip(\\\"f1\\\", \\\"If the race was ${name} the winner was Ribot\\\", \\\"string\\\", 10, false), r: 5, c: 9, s: \\\"f1\\\", u: \\\"f1\\\",  }; //16\\n    $.a($1, $4, 11);\\n}\\nelse if (name == 'Arc de triomphe') { //17\\n    $.n();\\n    var $6 = { n: \\\"node\\\", v: $.ip(\\\"f1\\\", \\\"If the race was ${name} the winner was Varenne\\\", \\\"string\\\", 15, false), r: 7, c: 9, s: \\\"f1\\\", u: \\\"f1\\\",  }; //18\\n    $.a($1, $6, 16);\\n}\\nelse if (name == 'Derby') { //19\\n    $.n();\\n    var $8 = { n: \\\"node\\\", v: $.ip(\\\"f1\\\", \\\"If the race was ${name} the winner was Ribot\\\", \\\"string\\\", 20, false), r: 9, c: 9, s: \\\"f1\\\", u: \\\"f1\\\",  }; //20\\n    $.a($1, $8, 21);\\n}\\nelse {\\n    $.n();\\n    var $10 = { n: \\\"node\\\", v: $.ip(\\\"f1\\\", \\\"If the race was ${name} the winner was Varenne\\\", \\\"string\\\", 25, false), r: 11, c: 9, s: \\\"f1\\\", u: \\\"f1\\\",  }; //22\\n    $.a($1, $10, 26);\\n}"
+                },
+                {
+                    "title": "For loop in scripts",
+                    "ittfWrapped": "root \\n    $ \\n        var sletters = 'a,b,c,d,e,f,g,h';\\n        var aletters = sletters.split(',');\\n        var letter, label='';\\n        for (var i=0; i<aletters.length; i++) {\\n            letter = aletters[i];\\n            label += i % 2 == 0 ? letter : letter.toUpperCase();\\n        } \\n    node The resulting label has the even letters upper cased: ${label}.",
+                    "generated": "\\n// 17/1/2019:14:21:7  by C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\debugInfoBuilder.js\\n$.n(); // set the context state to NodeContext\\nvar $0 = {}; // the root node of the MTree buildup\\nvar $1 = { n: \\\"root\\\", v: \\\"\\\", r: 1, c: 1, s: \\\"f1\\\", u: \\\"f1\\\",  }; //11\\n$.a($0, $1, 5);\\n$.s(\\\"f1\\\");\\nvar sletters = 'a,b,c,d,e,f,g,h'; //13\\nvar aletters = sletters.split(','); //14\\nvar letter, label=''; //15\\nfor (var i=0; i&lt;aletters.length; i++) { //16\\nletter = aletters[i]; //17\\nlabel += i % 2 == 0 ? letter : letter.toUpperCase(); //18\\n}  //19\\n$.n();\\nvar $3 = { n: \\\"node\\\", v: $.ip(\\\"f1\\\", \\\"The resulting label has the even letters upper cased: ${label}.\\\", \\\"string\\\", 15, false), r: 10, c: 5, s: \\\"f1\\\", u: \\\"f1\\\",  }; //20\\n$.a($1, $3, 16);"
+                },
+                {
+                    "title": "For loop in markup",
+                    "ittfWrapped": "root \\n    $ \\n        var sletters = 'a,b,c,d,e,f,g,h';\\n        var aletters = sletters.split(',');\\n    node The resulting tree has the even node values upper cased:\\n        $foreach letter in aletters\\n            node ${ _index} ${ _index % 2 == 0 ? letter : letter.toUpperCase() }",
+                    "generated": "\\n// 17/1/2019:14:21:7  by C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\debugInfoBuilder.js\\n$.n(); // set the context state to NodeContext\\nvar $0 = {}; // the root node of the MTree buildup\\nvar $1 = { n: \\\"root\\\", v: \\\"\\\", r: 1, c: 1, s: \\\"f1\\\", u: \\\"f1\\\",  }; //8\\n$.a($0, $1, 5);\\n$.s(\\\"f1\\\");\\nvar sletters = 'a,b,c,d,e,f,g,h'; //10\\nvar aletters = sletters.split(','); //11\\n$.n();\\nvar $3 = { n: \\\"node\\\", v: \\\"The resulting tree has the even node values upper cased:\\\", r: 5, c: 5, s: \\\"f1\\\", u: \\\"f1\\\",  }; //12\\n$.a($1, $3, 11);\\n$.s(\\\"f1\\\");\\nvar letter_count = aletters.length; //13\\nfor (var i4=0; i4&lt;letter_count; i4++) { //13\\n    var letter = aletters[i4]; //13\\n    var letter_index = i4; //13\\n    $.n();\\n    var $5 = { n: \\\"node\\\", v: $.ip(\\\"f1\\\", \\\"${ _index} ${ _index % 2 == 0 ? letter : letter.toUpperCase() }\\\", \\\"string\\\", 18, false), r: 7, c: 13, s: \\\"f1\\\", u: \\\"f1\\\",  }; //14\\n    $.a($3, $5, 19);\\n}"
+                },
+                {
+                    "title": "While loop in scripts",
+                    "ittfWrapped": "root \\n    $ \\n        var x = 1, odds = '1';\\n        while ( x < 10 ) {\\n            x += 2;\\n            odds += ', ' + x\\n        } \\n    node First odd numbers: ${odds}.",
+                    "generated": "\\n// 17/1/2019:14:21:7  by C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\debugInfoBuilder.js\\n$.n(); // set the context state to NodeContext\\nvar $0 = {}; // the root node of the MTree buildup\\nvar $1 = { n: \\\"root\\\", v: \\\"\\\", r: 1, c: 1, s: \\\"f1\\\", u: \\\"f1\\\",  }; //9\\n$.a($0, $1, 5);\\n$.s(\\\"f1\\\");\\nvar x = 1, odds = '1'; //11\\nwhile ( x &lt; 10 ) { //12\\nx += 2; //13\\nodds += ', ' + x //14\\n}  //15\\n$.n();\\nvar $3 = { n: \\\"node\\\", v: $.ip(\\\"f1\\\", \\\"First odd numbers: ${odds}.\\\", \\\"string\\\", 13, false), r: 8, c: 5, s: \\\"f1\\\", u: \\\"f1\\\",  }; //16\\n$.a($1, $3, 14);"
+                },
+                {
+                    "title": "While loop in markup",
+                    "ittfWrapped": "root \\n    $ var x = 1, odds = '1'\\n    $while x < 10\\n        $ x += 2\\n        node ${ odds += ', ' + x }",
+                    "generated": "\\n// 17/1/2019:14:21:7  by C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\debugInfoBuilder.js\\n$.n(); // set the context state to NodeContext\\nvar $0 = {}; // the root node of the MTree buildup\\nvar $1 = { n: \\\"root\\\", v: \\\"\\\", r: 1, c: 1, s: \\\"f1\\\", u: \\\"f1\\\",  }; //6\\n$.a($0, $1, 5);\\n$.s(\\\"f1\\\");\\nvar x = 1, odds = '1'\\nwhile (x &lt; 10) { //8\\n    $.s(\\\"f1\\\");\\n    x += 2\\n    $.n();\\n    var $5 = { n: \\\"node\\\", v: $.ip(\\\"f1\\\", \\\"${ odds += ', ' + x }\\\", \\\"string\\\", 12, false), r: 5, c: 9, s: \\\"f1\\\", u: \\\"f1\\\",  }; //10\\n    $.a($1, $5, 13);\\n}"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,80 @@
+﻿module
+    kind react
+	+
+	import { 
+		\b LIST_EXECFILE_REQUEST,
+		\b LIST_EXECFILE_SUCCESS,
+		\b LIST_EXECFILE_FAILURE,
+		\b RUN_EXECFILE_REQUEST,
+		\b RUN_EXECFILE_SUCCESS, 
+		\b RUN_EXECFILE_FAILURE 
+		\b } from '../actions'
+	+
+	function makeArray
+		param dim
+		param init
+		var ret = []
+		for var i=0; i<dim; i++
+			set ret[i] = init
+		return ret
+	+
+	function updateArray
+		param arr
+		param index
+		param value
+		var newarr = arr
+		set newarr[index] = value
+		log 'updateArray', newarr
+		return newarr
+	+
+	const execfileInitialState
+		{
+			@ isRequestingList false
+			@ isRequestingRun false
+			@ jobfiles []
+			@ jobmodels []
+			@ selectedExecFile null
+			@ listerror null
+			@ stdOut null
+			@ stdErr null
+			@ runerror null
+	+
+	r( execfile, execfileInitialState )
+	
+		c( LIST_EXECFILE_REQUEST
+			{
+				@ ...state
+				@ isRequestingList true
+		
+		c( LIST_EXECFILE_SUCCESS
+			{
+				@ ...state
+				@ isRequestingList false
+				@ jobfiles action.payload.files
+				@ jobmodels action.payload.models
+				@ listerror null
+		
+		c( LIST_EXECFILE_FAILURE
+			{
+				@ ...state
+				@ isRequestingList false
+				@ listerror action.payload.error
+		c( RUN_EXECFILE_REQUEST
+			{
+				@ ...state
+				@ isRequestingRun true
+		
+		c( RUN_EXECFILE_SUCCESS
+			{
+				@ ...state
+				@ isRequestingRun false
+				@ stdout action.payload.stdout
+				@ stderr action.payload.stderr
+				@ selectedExecFile action.name
+				@ runerror null
+		
+		c( RUN_EXECFILE_FAILURE
+			{
+				@ ...state
+				@ isRequestingRun false
+				@ runerror action.payload.error

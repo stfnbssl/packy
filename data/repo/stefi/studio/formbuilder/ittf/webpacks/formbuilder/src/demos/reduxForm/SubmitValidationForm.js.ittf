@@ -1,0 +1,15 @@
+﻿r-form( SubmitValidationForm )
+
+	$append imports
+		import SubmitValidationFormSubmit from './SubmitValidationFormSubmit'
+
+	return
+		form
+			@ onSubmit {handleSubmit(SubmitValidationFormSubmit)}
+
+			text( username, Username)
+			password( password, Password)
+			
+			div
+				button-submit()
+				button-clear()

@@ -1,0 +1,17 @@
+﻿r-component( LayoutPanel )
+
+	render
+		prop data = this.props
+		return
+			div
+				@ id { data.id }
+				{
+					_ data.panels.map
+						=>
+							param panel
+							param index
+							if panel.kind === 'flex'
+								return
+									< FlexPanel
+										@ key { index }
+										@ data { panel }    

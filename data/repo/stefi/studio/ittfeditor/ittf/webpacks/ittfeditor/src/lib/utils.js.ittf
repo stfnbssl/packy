@@ -1,0 +1,36 @@
+﻿module
+	kind react
+	+
+	import _ from 'lodash'
+	+
+	wz-function notEmptyString
+		param text
+		return _.isString(text) && text.length > 0
+
+	wz-function error
+		param source
+		return 
+			function
+				param message
+				param method
+				return
+					{
+						@ __is_error true
+						@ message message
+						@ source source + '/' + method
+
+	wz-function throwError
+		param source
+		var errorBuilder = error(source)
+		return 
+			function
+				param message
+				param method
+				set message
+					_ errorBuilder
+						@ message
+						@ method
+				log message
+				throw
+					new Error
+						@ message

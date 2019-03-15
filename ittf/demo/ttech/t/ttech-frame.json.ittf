@@ -1,0 +1,81 @@
+$group
+	$params &opt
+
+	$
+
+		var l_colors = "#B9D2DE;#919FA6;#3C7590;#D1E5EE;#D9E7EE;#C0C4E3;#9799AA;#3E4893;#D5D9F1;#DDDFF1;#BDE5CE;#95AC9F;#3D9563;#D2F2E0;#DBF2E5;#FFEAD2;#BFB4A6;#A67944;#FFF0DE;#FFF4E7".split(';')
+		
+		var pagePath = "";
+		for ( var i=0; i<opt.path.length; i++) {
+			if ( i>0 ) { pagePath += '/'; }
+			pagePath += opt.path[i].name;
+		}
+		if (opt.path.length > 0) {
+			pagePath += '/';
+		}
+		pagePath += opt.name;
+
+
+	{ debug
+		showPalette false
+
+	{ theme
+		fontAwesome true
+		[ colors
+			$foreach c in l_colors
+				"${c}"
+					
+	{ html
+		fontSize 14
+	
+	{ body
+		backgroundColor "${l_colors[4]}"
+		fontFamily 'roboto'
+		
+	$include d/std-nav-top
+	$$ $include d/std-nav-sub-top
+	{ navSubTop
+		fixed false
+		[ items
+	$include d/std-nav-left
+	$include d/std-nav-right
+
+	{ breadCrumbs
+		[ items
+			{
+				label "Wizzi"
+				href "/ittf/home/index.html.ittf"
+			{
+				label "Target technologies"
+				href "/ittf/demo/ttech/index.html.ittf"
+			$foreach item in opt.path
+				{
+					label "${item.label}"
+					href "/ittf/demo/ttech/${item.name}/index.html.ittf"
+			{
+				label "${opt.label}"
+
+	{ pageTitle
+		label "Experiments with ${opt.experimentsWith}"
+	
+	{ pageSubTitle
+		label "Page path (for debug):  ${pagePath}"
+
+	{ wrapMain
+		fixed false
+		padding 0
+
+	{ contMain
+		fixed false
+		padding 2
+		[ panels
+			{
+				kind "cards"
+				[ cards
+
+					$foreach item in $.api('categories',pagePath)
+						d/card-min( ${item.wzName}, /ittf/demo/ttech/${pagePath}/${item.nameLower}/index.html.ittf )
+					$foreach item in $.api('demos',pagePath)
+						d/card-min( ${item.wzName}, /ittf/demo/ttech/${item.getUri()} )
+
+

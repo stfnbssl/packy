@@ -1,0 +1,7 @@
+﻿div
+	$params id, active|@@null
+	$if active == null
+		class tab-pane
+	$else
+		class tab-pane ${active}
+	id ${id}

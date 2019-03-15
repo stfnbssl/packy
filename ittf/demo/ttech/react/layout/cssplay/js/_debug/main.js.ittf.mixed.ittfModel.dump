@@ -1,0 +1,1254 @@
+  module  ids: 1 231
+    kind react ids: 2 232
+    $group  ids: 461 540
+      var builder ids: 462 541
+        {  ids: 463 542
+          @ create ids: 464 543
+            function  ids: 465 544
+              param component ids: 466 545
+              const { kind } = component ids: 467 546
+              if kind === 'wrapper' ids: 468 547
+                return WrapperPanel ids: 469 548
+              elif kind === 'section' ids: 470 549
+                return SectionPanel ids: 471 550
+              elif kind === 'flex' ids: 472 551
+                return FlexPanel ids: 473 552
+              elif kind === 'side' ids: 474 553
+                return SidePanel ids: 475 554
+              elif kind === 'slide' ids: 476 555
+                return SlidePanel ids: 477 556
+              elif kind === 'info' ids: 478 557
+                return InfoPanel ids: 479 558
+              elif kind === 'infoLinks' ids: 480 559
+                return InfoLinks ids: 481 560
+              elif kind === 'menu' ids: 482 561
+                return MenuBar ids: 483 562
+              elif kind === 'toggler' ids: 484 563
+                return Toggler ids: 485 564
+              elif kind === 'link' ids: 486 565
+                return Link ids: 487 566
+              elif kind === 'p' ids: 488 567
+                return Paragraph ids: 489 568
+              elif kind === 'heading' ids: 490 569
+                return Heading ids: 491 570
+              else  ids: 492 571
+                throw Error('Builder.create error, unknown component kind: ' + kind) ids: 493 572
+          @ setFlex ids: 494 573
+            function  ids: 495 574
+              param style ids: 496 575
+              param direction ids: 497 576
+              return  ids: 498 577
+                _ Object.assign ids: 499 578
+                  @ style ids: 500 579
+                  {  ids: 501 580
+                    @ display 'flex' ids: 502 581
+                    @ flexDirection direction ids: 503 582
+                    @ flexWrap 'wrap' ids: 504 583
+                    @ justifyContent 'space-between' ids: 505 584
+          @ events ids: 506 585
+            iife () ids: 507 586
+              function  ids: 508 587
+                var topics ids: 509 588
+                  {  ids: 510 589
+                var hOP = topics.hasOwnProperty ids: 511 590
+                return  ids: 512 591
+                  {  ids: 513 592
+                    @ subscribe ids: 514 593
+                      function  ids: 515 594
+                        param topic ids: 516 595
+                        param listener ids: 517 596
+                        if ! (hOP.call(topics, topic)) ids: 518 597
+                          set topics[topic] = [] ids: 519 598
+                        var index = (topics[topic].push(listener) - 1) ids: 520 599
+                        return  ids: 521 600
+                          {  ids: 522 601
+                            @ remove ids: 523 602
+                              function  ids: 524 603
+                                set delete (topics[topic][index]) ids: 525 604
+                    @ publish ids: 526 605
+                      function  ids: 527 606
+                        param topic ids: 528 607
+                        param info ids: 529 608
+                        if ! (hOP.call(topics, topic)) ids: 530 609
+                          return  ids: 531 610
+                        _ topics[topic].forEach ids: 532 611
+                          function  ids: 533 612
+                            param item ids: 534 613
+                            _ item ids: 535 614
+                              iif info != undefined ids: 536 615
+                                then info ids: 537 616
+                                else  ids: 538 617
+                                  {  ids: 539 618
+    $group  ids: 619 662
+      function hoverable ids: 620 663
+        param Component ids: 621 664
+        class hoverableComponent ids: 622 665
+          super React.Component ids: 623 666
+          ctor  ids: 624 667
+            set this.state = ids: 625 668
+              {  ids: 626 669
+                @ hovered false ids: 627 670
+            set this.onMouseOverHandler = this.onMouseOverHandler.bind(this) ids: 628 671
+            set this.onMouseOutHandler = this.onMouseOutHandler.bind(this) ids: 629 672
+          m componentDidMount ids: 630 673
+            _ ReactDOM.findDOMNode(this) ids: 631 674
+              ._ addEventListener ids: 632 675
+                @ "mouseover" ids: 633 676
+                @ this.onMouseOverHandler ids: 634 677
+            _ ReactDOM.findDOMNode(this) ids: 635 678
+              ._ addEventListener ids: 636 679
+                @ "mouseout" ids: 637 680
+                @ this.onMouseOutHandler ids: 638 681
+          m componentWillUnmount ids: 639 682
+            _ ReactDOM.findDOMNode(this) ids: 640 683
+              ._ removeEventListener ids: 641 684
+                @ "mouseover" ids: 642 685
+                @ this.onMouseOverHandler ids: 643 686
+            _ ReactDOM.findDOMNode(this) ids: 644 687
+              ._ removeEventListener ids: 645 688
+                @ "mouseout" ids: 646 689
+                @ this.onMouseOutHandler ids: 647 690
+          m onMouseOverHandler ids: 648 691
+            _ this.setState ids: 649 692
+              {  ids: 650 693
+                @ hovered true ids: 651 694
+          m onMouseOutHandler ids: 652 695
+            _ this.setState ids: 653 696
+              {  ids: 654 697
+                @ hovered false ids: 655 698
+          m render ids: 656 699
+            return  ids: 657 700
+              < Component ids: 658 701
+                @ {...this.props} ids: 659 702
+                @ {...this.state} ids: 660 703
+        return hoverableComponent ids: 661 704
+    $group  ids: 705 725
+      class Paragraph ids: 706 726
+        super React.Component ids: 707 727
+        m render ids: 708 728
+          const { data } = this.props ids: 709 729
+          const { text, style: elementStyle } = data ids: 710 730
+          return  ids: 711 731
+            p { text } ids: 712 732
+              @style { this.style(elementStyle) } ids: 713 733
+        m style ids: 714 734
+          param elementStyle ids: 715 735
+          if elementStyle ids: 716 736
+            return elementStyle ids: 717 737
+          else  ids: 718 738
+            return  ids: 719 739
+              {  ids: 720 740
+                @ padding '5px 20px' ids: 721 741
+                @ margin 0 ids: 722 742
+                @ font "400 16px/20px 'Open Sans', sans-serif" ids: 723 743
+                @ color "#333" ids: 724 744
+    $group  ids: 745 768
+      class Heading ids: 746 769
+        super React.Component ids: 747 770
+        m render ids: 748 771
+          const { data } = this.props ids: 749 772
+          const { format, text, span } = data ids: 750 773
+          if format === 'h1.span' ids: 751 774
+            return  ids: 752 775
+              h1 { text } ids: 753 776
+                @style { this.h1_style() } ids: 754 777
+                span { span } ids: 755 778
+                  @style { this.span_style() } ids: 756 779
+          elif format === 'h1' ids: 757 780
+            return  ids: 758 781
+              h1 { text } ids: 759 782
+                @style { this.h1_style() } ids: 760 783
+          else  ids: 761 784
+            return  ids: 762 785
+              div { 'Unknown Heading format ' + format } ids: 763 786
+        m h1_style ids: 764 787
+          return this.props.data.style.h1 ids: 765 788
+        m span_style ids: 766 789
+          return this.props.data.style.span ids: 767 790
+    $group  ids: 791 866
+      class Link ids: 792 867
+        super React.Component ids: 793 868
+        m render ids: 794 869
+          var  ids: 795 870
+            decl item ids: 796 871
+            decl format ids: 797 872
+          if this.props.item ids: 798 873
+            set item = this.props.item ids: 799 874
+            set format = this.props.format ids: 800 875
+          else  ids: 801 876
+            set item = this.props.data ids: 802 877
+            set format = this.props.data.format ids: 803 878
+          const { text, href, src, class: xclass, img_style } = item ids: 804 879
+          if format === 'ul.li.a' ids: 805 880
+            return  ids: 806 881
+              li  ids: 807 882
+                @style { this.ul_li_style() } ids: 808 883
+                a { text } ids: 809 884
+                  href { href } ids: 810 885
+                  @style { this.style() } ids: 811 886
+          elif format === 'div.a.i' ids: 812 887
+            return  ids: 813 888
+              a  ids: 814 889
+                @style { this.style() } ids: 815 890
+                href { href } ids: 816 891
+                i  ids: 817 892
+                  class { xclass } ids: 818 893
+          elif format === 'a.img' ids: 819 894
+            return  ids: 820 895
+              a  ids: 821 896
+                @style { this.style() } ids: 822 897
+                href { href } ids: 823 898
+                img  ids: 824 899
+                  src { src } ids: 825 900
+                  @style { this.img_style(img_style) } ids: 826 901
+          else  ids: 827 902
+            return  ids: 828 903
+              div { 'Unknown Link format ' + format } ids: 829 904
+        m ul_li_style ids: 830 905
+          return  ids: 831 906
+            {  ids: 832 907
+              @ font "700 25px/55px 'Open Sans', sans-serif" ids: 833 908
+        m img_style ids: 834 909
+          param elementStyle ids: 835 910
+          return  ids: 836 911
+            _ Object.assign ids: 837 912
+              {  ids: 838 913
+              {  ids: 839 914
+              @ elementStyle ids: 840 915
+        m style ids: 841 916
+          var { format } = this.props ids: 842 917
+          if format === 'ul.li.a' ids: 843 918
+            var color = this.props.hovered ? '#2ab' : '#333' ids: 844 919
+            return  ids: 845 920
+              {  ids: 846 921
+                @ transition '0.3s' ids: 847 922
+                @ position 'relative' ids: 848 923
+                @ marginLeft 30 ids: 849 924
+                @ color color ids: 850 925
+                @ textDecoration 'none' ids: 851 926
+          elif format === 'a.img' ids: 852 927
+            return {} ids: 853 928
+          elif format === 'div.a.i' ids: 854 929
+            var color = this.props.hovered ? '#666' : '#888' ids: 855 930
+            return  ids: 856 931
+              {  ids: 857 932
+                @ transition '0.2s' ids: 858 933
+                @ margin '5px' ids: 859 934
+                @ color color ids: 860 935
+                @ fontSize '20px' ids: 861 936
+                @ display 'inline-block' ids: 862 937
+          else  ids: 863 938
+            return {} ids: 864 939
+      set Link = hoverable(Link) ids: 865 940
+    $group  ids: 941 1031
+      class Toggler ids: 942 1032
+        super React.Component ids: 943 1033
+        ctor  ids: 944 1034
+          set this.state ids: 945 1035
+            {  ids: 946 1036
+              @ toggled false ids: 947 1037
+          set this.onClick = this.onClick.bind(this) ids: 948 1038
+        m componentDidMount ids: 949 1039
+          const { data } = this.props ids: 950 1040
+          const { event } = data ids: 951 1041
+          set this.event = event ids: 952 1042
+        m onClick ids: 953 1043
+          _ this.setState ids: 954 1044
+            {  ids: 955 1045
+              @ toggled !this.state.toggled ids: 956 1046
+          _ builder.events.publish ids: 957 1047
+            @ this.event ids: 958 1048
+            @ this.state.toggled ids: 959 1049
+        m render ids: 960 1050
+          return  ids: 961 1051
+            span  ids: 962 1052
+              @style { this.style() } ids: 963 1053
+              onClick { this.onClick } ids: 964 1054
+              span { ' ' } ids: 965 1055
+                @style { this.span_before_style() } ids: 966 1056
+              span { ' ' } ids: 967 1057
+                @style { this.span_style() } ids: 968 1058
+              span { ' ' } ids: 969 1059
+                @style { this.span_after_style() } ids: 970 1060
+        m _span_style_base ids: 971 1061
+          return  ids: 972 1062
+            {  ids: 973 1063
+              @ display 'block' ids: 974 1064
+              @ width '17px' ids: 975 1065
+              @ height '3px' ids: 976 1066
+              @ background '#fff' ids: 977 1067
+              @ position 'absolute' ids: 978 1068
+              @ transition '0.3s' ids: 979 1069
+        m span_style ids: 980 1070
+          const background = this.state.toggled ? 'transparent' : '#fff' ids: 981 1071
+          return  ids: 982 1072
+            _ Object.assign ids: 983 1073
+              {  ids: 984 1074
+              _ this._span_style_base() ids: 985 1075
+              {  ids: 986 1076
+                @ left '12px' ids: 987 1077
+                @ top '19px' ids: 988 1078
+                @ background background ids: 989 1079
+                @ transition 'background 0.3s' ids: 990 1080
+        m span_before_style ids: 991 1081
+          const ret ids: 992 1082
+            _ Object.assign ids: 993 1083
+              {  ids: 994 1084
+              _ this._span_style_base() ids: 995 1085
+              {  ids: 996 1086
+                @ left '12px' ids: 997 1087
+                @ top '13px' ids: 998 1088
+                @ transformOrigin 'left top' ids: 999 1089
+          if this.state.toggled ids: 1000 1090
+            set ret.transform = 'rotate(45deg)' ids: 1001 1091
+            set ret.width = '18px' ids: 1002 1092
+            set ret.left = '14px' ids: 1003 1093
+          return ret ids: 1004 1094
+        m span_after_style ids: 1005 1095
+          const ret ids: 1006 1096
+            _ Object.assign ids: 1007 1097
+              {  ids: 1008 1098
+              _ this._span_style_base() ids: 1009 1099
+              {  ids: 1010 1100
+                @ left '12px' ids: 1011 1101
+                @ top '25px' ids: 1012 1102
+                @ transformOrigin 'left bottom' ids: 1013 1103
+          if this.state.toggled ids: 1014 1104
+            set ret.transform = 'rotate(-45deg)' ids: 1015 1105
+            set ret.width = '18px' ids: 1016 1106
+            set ret.left = '14px' ids: 1017 1107
+          return ret ids: 1018 1108
+        m style ids: 1019 1109
+          return  ids: 1020 1110
+            {  ids: 1021 1111
+              @ display 'block' ids: 1022 1112
+              @ width '41px' ids: 1023 1113
+              @ height '41px' ids: 1024 1114
+              @ background '#333' ids: 1025 1115
+              @ position 'absolute' ids: 1026 1116
+              @ right '20px' ids: 1027 1117
+              @ top '20px' ids: 1028 1118
+              @ cursor 'pointer' ids: 1029 1119
+              @ zIndex 20 ids: 1030 1120
+    $group  ids: 1121 1160
+      class MenuBar ids: 1122 1161
+        super React.Component ids: 1123 1162
+        m render ids: 1124 1163
+          const { data } = this.props ids: 1125 1164
+          const { items, format } = data ids: 1126 1165
+          var menuItems ids: 1127 1166
+            _ items.map ids: 1128 1167
+              =>  ids: 1129 1168
+                param item ids: 1130 1169
+                return  ids: 1131 1170
+                  < Link ids: 1132 1171
+                    @ format { format } ids: 1133 1172
+                    @ item { item } ids: 1134 1173
+          if format === 'ul.li.a' ids: 1135 1174
+            return  ids: 1136 1175
+              div  ids: 1137 1176
+                ul  ids: 1138 1177
+                  @style {this.get_ul_Style()} ids: 1139 1178
+                  + { menuItems } ids: 1140 1179
+          elif format === 'div.a.i' ids: 1141 1180
+            return  ids: 1142 1181
+              div  ids: 1143 1182
+                @style {this.get_ul_Style()} ids: 1144 1183
+                + { menuItems } ids: 1145 1184
+          else  ids: 1146 1185
+            return  ids: 1147 1186
+              < div unknown menu format: { format } ids: 1148 1187
+        m get_ul_Style ids: 1149 1188
+          return  ids: 1150 1189
+            {  ids: 1151 1190
+              @ width '200px' ids: 1152 1191
+              @ padding '0' ids: 1153 1192
+              @ listStyle 'none' ids: 1154 1193
+              @ margin '0 auto' ids: 1155 1194
+        m get_li_Style ids: 1156 1195
+          return  ids: 1157 1196
+            {  ids: 1158 1197
+              @ font "700 25px/55px 'Open Sans', sans-serif" ids: 1159 1198
+    $group  ids: 1199 1224
+      class SidePanel ids: 1200 1225
+        super React.Component ids: 1201 1226
+        m render ids: 1202 1227
+          const { data } = this.props ids: 1203 1228
+          const { id, style: elementStyle, panels } = data ids: 1204 1229
+          return  ids: 1205 1230
+            div  ids: 1206 1231
+              @ id { id } ids: 1207 1232
+              @style { this.style(elementStyle) } ids: 1208 1233
+              {  ids: 1209 1234
+                _ panels.map ids: 1210 1235
+                  =>  ids: 1211 1236
+                    param panel ids: 1212 1237
+                    var PanelComponent = builder.create(panel) ids: 1213 1238
+                    return  ids: 1214 1239
+                      < PanelComponent ids: 1215 1240
+                        @ data { panel } ids: 1216 1241
+        m style ids: 1217 1242
+          param elementStyle ids: 1218 1243
+          return  ids: 1219 1244
+            _ Object.assign ids: 1220 1245
+              {  ids: 1221 1246
+              {  ids: 1222 1247
+              @ elementStyle ids: 1223 1248
+    $group  ids: 1249 1323
+      class InfoPanel ids: 1250 1324
+        super React.Component ids: 1251 1325
+        m render ids: 1252 1326
+          const { data } = this.props ids: 1253 1327
+          const { id, format, text, href, src, heading, flex, style: elementStyle, p_style } = data ids: 1254 1328
+          const childPanels ids: 1255 1329
+            _ data.panels.map ids: 1256 1330
+              =>  ids: 1257 1331
+                param panel ids: 1258 1332
+                set panel.p_style = panel.p_style || p_style ids: 1259 1333
+                var PanelComponent = builder.create(panel) ids: 1260 1334
+                return  ids: 1261 1335
+                  < PanelComponent ids: 1262 1336
+                    @ data { panel } ids: 1263 1337
+          if format === 'a.img' ids: 1264 1338
+            return  ids: 1265 1339
+              div  ids: 1266 1340
+                @ id { id } ids: 1267 1341
+                @style { this.style(flex, elementStyle) } ids: 1268 1342
+                a  ids: 1269 1343
+                  @style { this.a_style() } ids: 1270 1344
+                  href { href } ids: 1271 1345
+                  img  ids: 1272 1346
+                    src { src } ids: 1273 1347
+                    @style { this.img_style() } ids: 1274 1348
+                p { text } ids: 1275 1349
+                  @style { this.p_style() } ids: 1276 1350
+                + { childPanels } ids: 1277 1351
+          elif format === 'h2.p+' ids: 1278 1352
+            return  ids: 1279 1353
+              div  ids: 1280 1354
+                @ id { id } ids: 1281 1355
+                @style { this.style(flex, elementStyle) } ids: 1282 1356
+                h2 { heading } ids: 1283 1357
+                  @style { this.h2_style() } ids: 1284 1358
+                + { childPanels } ids: 1285 1359
+          else  ids: 1286 1360
+            return  ids: 1287 1361
+              div { 'Unknown InfoPanel format ' + format } ids: 1288 1362
+        m a_style ids: 1289 1363
+          return  ids: 1290 1364
+            {  ids: 1291 1365
+        m img_style ids: 1292 1366
+          return  ids: 1293 1367
+            {  ids: 1294 1368
+              @ display 'block' ids: 1295 1369
+              @ width '100%' ids: 1296 1370
+        m p_style ids: 1297 1371
+          return this.props.data.p_style || {} ids: 1298 1372
+        m h2_style ids: 1299 1373
+          return  ids: 1300 1374
+            {  ids: 1301 1375
+              @ font "700 25px/40px 'Open Sans', sans-serif" ids: 1302 1376
+              @ color '#2ab' ids: 1303 1377
+              @ padding '0 20px' ids: 1304 1378
+              @ margin '0' ids: 1305 1379
+        m style ids: 1306 1380
+          param flex ids: 1307 1381
+          param elementStyle ids: 1308 1382
+          const ret ids: 1309 1383
+            _ Object.assign ids: 1310 1384
+              {  ids: 1311 1385
+              {  ids: 1312 1386
+                @ width '32%' ids: 1313 1387
+                @ backgroundColor '#fff' ids: 1314 1388
+                @ marginBottom '20px' ids: 1315 1389
+                @ paddingBottom '60px' ids: 1316 1390
+                @ border '1px solid #ccc' ids: 1317 1391
+                @ position 'relative' ids: 1318 1392
+              @ elementStyle ids: 1319 1393
+          if flex === 'row' || flex === 'column' ids: 1320 1394
+            _ builder.setFlex(ret, flex) ids: 1321 1395
+          return ret ids: 1322 1396
+    $group  ids: 1397 1436
+      class InfoLinks ids: 1398 1437
+        super React.Component ids: 1399 1438
+        m render ids: 1400 1439
+          const { data } = this.props ids: 1401 1440
+          const { id, format, links, style: elementStyle } = data ids: 1402 1441
+          const childLinks ids: 1403 1442
+            _ links.map ids: 1404 1443
+              =>  ids: 1405 1444
+                param link ids: 1406 1445
+                const { label, href, text } = link ids: 1407 1446
+                return  ids: 1408 1447
+                  span { label } ids: 1409 1448
+                    a { text } ids: 1410 1449
+                      href { href } ids: 1411 1450
+                    br  ids: 1412 1451
+          if format === 'p.[text.a]+' ids: 1413 1452
+            return  ids: 1414 1453
+              p  ids: 1415 1454
+                @style { this.style(elementStyle) } ids: 1416 1455
+                + {childLinks} ids: 1417 1456
+          else  ids: 1418 1457
+            return  ids: 1419 1458
+              div { 'Unknown InfoLinks format ' + format } ids: 1420 1459
+        m style ids: 1421 1460
+          param elementStyle ids: 1422 1461
+          log 'elementStyle', elementStyle ids: 1423 1462
+          return  ids: 1424 1463
+            _ Object.assign ids: 1425 1464
+              {  ids: 1426 1465
+              {  ids: 1427 1466
+                @ padding '0 0 0 30px' ids: 1428 1467
+                @ margin '0 5%' ids: 1429 1468
+                @ font "400 16px/20px 'Open Sans', sans-serif" ids: 1430 1469
+                @ color '#333' ids: 1431 1470
+                @ position 'absolute' ids: 1432 1471
+                @ left '0' ids: 1433 1472
+                @ bottom '20px' ids: 1434 1473
+              @ elementStyle ids: 1435 1474
+    $group  ids: 1475 1505
+      class FlexPanel ids: 1476 1506
+        super React.Component ids: 1477 1507
+        m render ids: 1478 1508
+          const { data } = this.props ids: 1479 1509
+          const { id, direction, style: elementStyle } = data ids: 1480 1510
+          return  ids: 1481 1511
+            div  ids: 1482 1512
+              @ id { id } ids: 1483 1513
+              @style { this.style(direction, elementStyle) } ids: 1484 1514
+              {  ids: 1485 1515
+                _ data.panels.map ids: 1486 1516
+                  =>  ids: 1487 1517
+                    param panel ids: 1488 1518
+                    var PanelComponent = builder.create(panel) ids: 1489 1519
+                    return  ids: 1490 1520
+                      < PanelComponent ids: 1491 1521
+                        @ data { panel } ids: 1492 1522
+        m style ids: 1493 1523
+          param direction ids: 1494 1524
+          param elementStyle ids: 1495 1525
+          return  ids: 1496 1526
+            _ Object.assign ids: 1497 1527
+              {  ids: 1498 1528
+              {  ids: 1499 1529
+                @ display 'flex' ids: 1500 1530
+                @ flexDirection direction || 'row' ids: 1501 1531
+                @ flexWrap 'wrap' ids: 1502 1532
+                @ justifyContent 'space-between' ids: 1503 1533
+              @ elementStyle ids: 1504 1534
+    $group  ids: 1535 1598
+      class SlidePanel ids: 1536 1599
+        super React.Component ids: 1537 1600
+        ctor  ids: 1538 1601
+          set this.state ids: 1539 1602
+            {  ids: 1540 1603
+              @ visible false ids: 1541 1604
+        m componentDidMount ids: 1542 1605
+          const { data } = this.props ids: 1543 1606
+          const { toggleEvent, visibleOnStart } = data ids: 1544 1607
+          _ this.setState ids: 1545 1608
+            {  ids: 1546 1609
+              @ visible visibleOnStart ids: 1547 1610
+          if toggleEvent ids: 1548 1611
+            var that = this ids: 1549 1612
+            set this.toggleEventHandler ids: 1550 1613
+              _ builder.events.subscribe ids: 1551 1614
+                @ toggleEvent ids: 1552 1615
+                function  ids: 1553 1616
+                  log 'WrapperPanel received event ' + toggleEvent ids: 1554 1617
+                  _ that.setState ids: 1555 1618
+                    {  ids: 1556 1619
+                      @ visible !that.state.visible ids: 1557 1620
+        m componentWillUnmount ids: 1558 1621
+          if this.toggleEventHandler ids: 1559 1622
+            _ this.toggleEventHandler.remove() ids: 1560 1623
+        m render ids: 1561 1624
+          const { data } = this.props ids: 1562 1625
+          const { id, percWidth, flex, style: elementStyle } = data ids: 1563 1626
+          return  ids: 1564 1627
+            div  ids: 1565 1628
+              @ id { id } ids: 1566 1629
+              @style { this.style(percWidth, flex, elementStyle) } ids: 1567 1630
+              {  ids: 1568 1631
+                _ data.panels.map ids: 1569 1632
+                  =>  ids: 1570 1633
+                    param panel ids: 1571 1634
+                    var PanelComponent = builder.create(panel) ids: 1572 1635
+                    return  ids: 1573 1636
+                      < PanelComponent ids: 1574 1637
+                        @ data { panel } ids: 1575 1638
+        m style ids: 1576 1639
+          param percWidth ids: 1577 1640
+          param flex ids: 1578 1641
+          param elementStyle ids: 1579 1642
+          const ret ids: 1580 1643
+            _ Object.assign ids: 1581 1644
+              {  ids: 1582 1645
+              {  ids: 1583 1646
+                @ width (percWidth + '%') ids: 1584 1647
+                @ height '100%' ids: 1585 1648
+                @ top 0 ids: 1586 1649
+                @ left ('-' + percWidth + '%') ids: 1587 1650
+                @ position 'fixed' ids: 1588 1651
+                @ zIndex '10' ids: 1589 1652
+                @ background '#fff' ids: 1590 1653
+                @ transition '0.3s' ids: 1591 1654
+              @ elementStyle ids: 1592 1655
+          if flex === 'row' || flex === 'column' ids: 1593 1656
+            _ builder.setFlex(ret, flex) ids: 1594 1657
+          if this.state.visible ids: 1595 1658
+            set ret.left = 0 ids: 1596 1659
+          return ret ids: 1597 1660
+    $group  ids: 1661 1686
+      class SectionPanel ids: 1662 1687
+        super React.Component ids: 1663 1688
+        m render ids: 1664 1689
+          const { data } = this.props ids: 1665 1690
+          const { id, style: elementStyle } = data ids: 1666 1691
+          return  ids: 1667 1692
+            div  ids: 1668 1693
+              @ id { id } ids: 1669 1694
+              @style { this.style(elementStyle) } ids: 1670 1695
+              {  ids: 1671 1696
+                _ data.panels.map ids: 1672 1697
+                  =>  ids: 1673 1698
+                    param panel ids: 1674 1699
+                    var PanelComponent = builder.create(panel) ids: 1675 1700
+                    return  ids: 1676 1701
+                      < PanelComponent ids: 1677 1702
+                        @ data { panel } ids: 1678 1703
+        m style ids: 1679 1704
+          param elementStyle ids: 1680 1705
+          return  ids: 1681 1706
+            _ Object.assign ids: 1682 1707
+              {  ids: 1683 1708
+              {  ids: 1684 1709
+              @ elementStyle ids: 1685 1710
+    $group  ids: 1711 1765
+      class WrapperPanel ids: 1712 1766
+        super React.Component ids: 1713 1767
+        ctor  ids: 1714 1768
+          set this.state ids: 1715 1769
+            {  ids: 1716 1770
+              @ fixed false ids: 1717 1771
+        m componentDidMount ids: 1718 1772
+          const { data } = this.props ids: 1719 1773
+          const { fixEvent } = data ids: 1720 1774
+          if fixEvent ids: 1721 1775
+            var that = this ids: 1722 1776
+            set this.fixEventHandler ids: 1723 1777
+              _ builder.events.subscribe ids: 1724 1778
+                @ fixEvent ids: 1725 1779
+                function  ids: 1726 1780
+                  log 'WrapperPanel received event ' + fixEvent ids: 1727 1781
+                  _ that.setState ids: 1728 1782
+                    {  ids: 1729 1783
+                      @ fixed !that.state.fixed ids: 1730 1784
+        m componentWillUnmount ids: 1731 1785
+          if this.fixEventHandler ids: 1732 1786
+            _ this.fixEventHandler.remove() ids: 1733 1787
+        m render ids: 1734 1788
+          const { data } = this.props ids: 1735 1789
+          const { id, flex, style: elementStyle } = data ids: 1736 1790
+          return  ids: 1737 1791
+            div  ids: 1738 1792
+              @ id { id } ids: 1739 1793
+              @style { this.style(flex, elementStyle) } ids: 1740 1794
+              {  ids: 1741 1795
+                _ data.panels.map ids: 1742 1796
+                  =>  ids: 1743 1797
+                    param panel ids: 1744 1798
+                    var PanelComponent = builder.create(panel) ids: 1745 1799
+                    return  ids: 1746 1800
+                      < PanelComponent ids: 1747 1801
+                        @ data { panel } ids: 1748 1802
+        m style ids: 1749 1803
+          param flex ids: 1750 1804
+          param elementStyle ids: 1751 1805
+          const ret ids: 1752 1806
+            _ Object.assign ids: 1753 1807
+              {  ids: 1754 1808
+              {  ids: 1755 1809
+                @ width '100%' ids: 1756 1810
+                @ minWidth '320px' ids: 1757 1811
+              @ elementStyle ids: 1758 1812
+          if flex === 'row' || flex === 'column' ids: 1759 1813
+            _ builder.setFlex(ret, flex) ids: 1760 1814
+          if this.state.fixed ids: 1761 1815
+            set ret.height = '100%' ids: 1762 1816
+            set ret.overflow = 'hidden' ids: 1763 1817
+          return ret ids: 1764 1818
+    $group  ids: 1819 1835
+      class LayoutPanel ids: 1820 1836
+        super React.Component ids: 1821 1837
+        m render ids: 1822 1838
+          const { data } = this.props ids: 1823 1839
+          return  ids: 1824 1840
+            div  ids: 1825 1841
+              @ id { data.id } ids: 1826 1842
+              {  ids: 1827 1843
+                _ data.panels.map ids: 1828 1844
+                  =>  ids: 1829 1845
+                    param panel ids: 1830 1846
+                    if panel.kind === 'flex' ids: 1831 1847
+                      return  ids: 1832 1848
+                        < FlexPanel ids: 1833 1849
+                          @ data { panel } ids: 1834 1850
+    const p_style ids: 18 248
+      {  ids: 19 249
+        @ padding 0 ids: 20 250
+        @ margin '20px 5%' ids: 21 251
+        @ font "300 16px/22px 'Open Sans', sans-serif" ids: 22 252
+        @ color '#333' ids: 23 253
+    var layoutData ids: 24 254
+      {  ids: 1991 2000
+        $args: wrapper, wrapper  $params: kind, id|@@null
+        @ kind '${kind}' ids: 1993 2001
+        $if id != null ids: 1994 2002
+          @ id '${id}' ids: 1995 2003
+        $hook props ids: 1996 2004
+        @ panels ids: 1997 2005
+          [  ids: 1998 2006
+            $append props ids: 26 256
+              @ fixEvent 'toggle-mainmenu' ids: 27 257
+              @ flex 'row' ids: 28 258
+            {  ids: 1991 2008
+              $args: section, header  $params: kind, id|@@null
+              @ kind '${kind}' ids: 1993 2009
+              $if id != null ids: 1994 2010
+                @ id '${id}' ids: 1995 2011
+              $hook props ids: 1996 2012
+              @ panels ids: 1997 2013
+                [  ids: 1998 2014
+                  $append props ids: 30 260
+                    @ style ids: 31 261
+                      {  ids: 32 262
+                        @ order 1 ids: 33 263
+                        @ width '100%' ids: 34 264
+                        @ backgroundColor '#fff' ids: 35 265
+                        @ marginBottom '20px' ids: 36 266
+                        @ borderBottom '1px solid #ccc' ids: 37 267
+                        @ position 'relative' ids: 38 268
+                  {  ids: 39 269
+                    @ kind 'link' ids: 40 270
+                    @ format 'a.img' ids: 41 271
+                    @ href 'https://search.google.com/search-console/mobile-friendly?id=-qDOe1JWk0myCaSmUtHC9A' ids: 42 272
+                    @ src "/static/images/react/mobile-friendly.jpg" ids: 43 273
+                    @ title "Google Mobile-Friendly Tested" ids: 44 274
+                    @ img_style ids: 45 275
+                      {  ids: 46 276
+                        @ display 'block' ids: 47 277
+                        @ height '110px' ids: 48 278
+                        @ position 'absolute' ids: 49 279
+                        @ left '10px' ids: 50 280
+                        @ top '4px' ids: 51 281
+                  {  ids: 52 282
+                    @ kind 'heading' ids: 53 283
+                    @ format 'h1.span' ids: 54 284
+                    @ text 'Legoland ' ids: 55 285
+                    @ span "Photographs" ids: 56 286
+                    @ style ids: 57 287
+                      {  ids: 58 288
+                        @ h1 ids: 59 289
+                          {  ids: 60 290
+                            @ textAlign 'center' ids: 61 291
+                            @ font "700 45px/60px 'Open Sans', sans-serif" ids: 62 292
+                            @ color '#2ab' ids: 63 293
+                        @ span ids: 64 294
+                          {  ids: 65 295
+                            @ color '#333' ids: 66 296
+                            @ font "300 45px/60px 'Open Sans', sans-serif" ids: 67 297
+                            @ textAlign 'center' ids: 68 298
+                  {  ids: 1991 2016
+                    $args: toggler, menuPanel  $params: kind, id|@@null
+                    @ kind '${kind}' ids: 1993 2017
+                    $if id != null ids: 1994 2018
+                      @ id '${id}' ids: 1995 2019
+                    $hook props ids: 1996 2020
+                    @ panels ids: 1997 2021
+                      [  ids: 1998 2022
+                        $append props ids: 70 300
+                          @ event 'toggle-mainmenu' ids: 71 301
+                  {  ids: 1991 2024
+                    $args: slide, menuBox  $params: kind, id|@@null
+                    @ kind '${kind}' ids: 1993 2025
+                    $if id != null ids: 1994 2026
+                      @ id '${id}' ids: 1995 2027
+                    $hook props ids: 1996 2028
+                    @ panels ids: 1997 2029
+                      [  ids: 1998 2030
+                        $append props ids: 73 303
+                          @ flex 'row' ids: 74 304
+                          @ percWidth 100 ids: 75 305
+                          @ toggleEvent 'toggle-mainmenu' ids: 76 306
+                          @ visibleOnStart false ids: 77 307
+                          @ style ids: 78 308
+                            {  ids: 79 309
+                              @ width '100%' ids: 80 310
+                              @ height '100%' ids: 81 311
+                              @ backgroundCololr '#fff' ids: 82 312
+                              @ position 'fixed' ids: 83 313
+                              @ top '0' ids: 84 314
+                              # zIndex '10' ids: 85 315
+                              @ transition '0.3s' ids: 86 316
+                        {  ids: 1991 2032
+                          $args: side, menuLeft  $params: kind, id|@@null
+                          @ kind '${kind}' ids: 1993 2033
+                          $if id != null ids: 1994 2034
+                            @ id '${id}' ids: 1995 2035
+                          $hook props ids: 1996 2036
+                          @ panels ids: 1997 2037
+                            [  ids: 1998 2038
+                              {  ids: 2040 2050
+                                $args: div.a.i  $params: format, id|@@null
+                                @ kind 'menu' ids: 2042 2051
+                                @ format '${format}' ids: 2043 2052
+                                $if id != null ids: 2044 2053
+                                  @ id '${id}' ids: 2045 2054
+                                $hook props ids: 2046 2055
+                                @ items ids: 2047 2056
+                                  [  ids: 2048 2057
+                                    {  ids: 2059 2063
+                                      $args: fa fa-facebook social, #url1  $params: xclass, href|#url
+                                      @ class '${xclass}' ids: 2061 2064
+                                      @ href '${href}' ids: 2062 2065
+                                    {  ids: 2059 2066
+                                      $args: fa fa-twitter social, #url2  $params: xclass, href|#url
+                                      @ class '${xclass}' ids: 2061 2067
+                                      @ href '${href}' ids: 2062 2068
+                                    {  ids: 2059 2069
+                                      $args: fa fa-linkedin social, #url3  $params: xclass, href|#url
+                                      @ class '${xclass}' ids: 2061 2070
+                                      @ href '${href}' ids: 2062 2071
+                                    {  ids: 2059 2072
+                                      $args: fa fa-google-plus social, #url4  $params: xclass, href|#url
+                                      @ class '${xclass}' ids: 2061 2073
+                                      @ href '${href}' ids: 2062 2074
+                        {  ids: 1991 2075
+                          $args: side, menuRight  $params: kind, id|@@null
+                          @ kind '${kind}' ids: 1993 2076
+                          $if id != null ids: 1994 2077
+                            @ id '${id}' ids: 1995 2078
+                          $hook props ids: 1996 2079
+                          @ panels ids: 1997 2080
+                            [  ids: 1998 2081
+                              {  ids: 2040 2083
+                                $args: ul.li.a  $params: format, id|@@null
+                                @ kind 'menu' ids: 2042 2084
+                                @ format '${format}' ids: 2043 2085
+                                $if id != null ids: 2044 2086
+                                  @ id '${id}' ids: 2045 2087
+                                $hook props ids: 2046 2088
+                                @ items ids: 2047 2089
+                                  [  ids: 2048 2090
+                                    {  ids: 2092 2096
+                                      $args: link 1, #url1  $params: text, href|#url
+                                      @ text '${text}' ids: 2094 2097
+                                      @ href '${href}' ids: 2095 2098
+                                    {  ids: 2092 2099
+                                      $args: link 2, #url2  $params: text, href|#url
+                                      @ text '${text}' ids: 2094 2100
+                                      @ href '${href}' ids: 2095 2101
+                                    {  ids: 2092 2102
+                                      $args: link 3, #url3  $params: text, href|#url
+                                      @ text '${text}' ids: 2094 2103
+                                      @ href '${href}' ids: 2095 2104
+            {  ids: 2105 2115
+              $args: h2.p+, infoPanel  $params: format, id|@@null
+              @ kind 'info' ids: 2107 2116
+              @ format '${format}' ids: 2108 2117
+              $if id != null ids: 2109 2118
+                @ id '${id}' ids: 2110 2119
+              $hook props ids: 2111 2120
+              @ panels ids: 2112 2121
+                [  ids: 2113 2122
+                  $append props ids: 99 329
+                    @ flex 'column' ids: 100 330
+                    @ heading 'Flexbox Layout' ids: 101 331
+                    @ style ids: 102 332
+                      {  ids: 103 333
+                        @ order 2 ids: 104 334
+                        @ width 'calc(66% * 0.98)' ids: 105 335
+                        @ margin '0 auto 20px auto' ids: 106 336
+                        @ border '1px solid #ccc' ids: 107 337
+                        @ backgroundColor '#fff' ids: 108 338
+                        @ paddingBottom '20px' ids: 109 339
+                    @ p_style ids: 110 340
+                      {  ids: 111 341
+                        @ padding '5px 20px' ids: 112 342
+                        @ margin '0' ids: 113 343
+                        @ font "400 16px/20px 'Open Sans', sans-serif" ids: 114 344
+                        @ color '#333' ids: 115 345
+                  {  ids: 2124 2129
+                    $args: 19th January 2017 - for all the latest browsers and OS  $params: text
+                    @ kind 'p' ids: 2126 2130
+                    @ text '${text}' ids: 2127 2131
+                  {  ids: 2124 2133
+                    $args: A simple CSS only layout using flexbox to organise and position the various panels.  $params: text
+                    @ kind 'p' ids: 2126 2134
+                    @ text '${text}' ids: 2127 2135
+                  {  ids: 2124 2137
+                    $args: No javascript or jQuery has been used in this layout, even the menu uses just CSS and works in all the latest browsers and operating systems.  $params: text
+                    @ kind 'p' ids: 2126 2138
+                    @ text '${text}' ids: 2127 2139
+                  {  ids: 2124 2141
+                    $args: If you are viewing on a PC then you can see the panels resize and reflow as the browser window size changes.  $params: text
+                    @ kind 'p' ids: 2126 2142
+                    @ text '${text}' ids: 2127 2143
+                  {  ids: 2124 2145
+                    $args: The layout can be viewed on tablets and mobiles and the navigation resizes to suit.  $params: text
+                    @ kind 'p' ids: 2126 2146
+                    @ text '${text}' ids: 2127 2147
+                  {  ids: 2124 2149
+                    $args: The photograph panels with will always be the same height in each row, and the order can be changed when resizing to keep similar size photographs on the same line.  $params: text
+                    @ kind 'p' ids: 2126 2150
+                    @ text '${text}' ids: 2127 2151
+                  {  ids: 2124 2153
+                    $args: If you are using Firefox then the "Top of Page" arrow in the footer will give a smooth scroll back to the top of the page, using just CSS.  $params: text
+                    @ kind 'p' ids: 2126 2154
+                    @ text '${text}' ids: 2127 2155
+            {  ids: 2157 2167
+              $args: content  $params: id|@@null
+              @ kind 'flex' ids: 2159 2168
+              @ direction 'row' ids: 2160 2169
+              $if id != null ids: 2161 2170
+                @ id '${id}' ids: 2162 2171
+              $hook props ids: 2163 2172
+              @ panels ids: 2164 2173
+                [  ids: 2165 2174
+                  $append props ids: 124 354
+                    @ style ids: 125 355
+                      {  ids: 126 356
+                        @ order 2 ids: 127 357
+                        @ width '98%' ids: 128 358
+                        @ maxWidth '1900px' ids: 129 359
+                        @ margin '0 auto' ids: 130 360
+                  {  ids: 2157 2176
+                    $args: centerPanel  $params: id|@@null
+                    @ kind 'flex' ids: 2159 2177
+                    @ direction 'row' ids: 2160 2178
+                    $if id != null ids: 2161 2179
+                      @ id '${id}' ids: 2162 2180
+                    $hook props ids: 2163 2181
+                    @ panels ids: 2164 2182
+                      [  ids: 2165 2183
+                        $append props ids: 132 362
+                          @ style ids: 133 363
+                            {  ids: 134 364
+                              @ order 3 ids: 135 365
+                              @ width '66%' ids: 136 366
+                        {  ids: 2105 2185
+                          $args: a.img  $params: format, id|@@null
+                          @ kind 'info' ids: 2107 2186
+                          @ format '${format}' ids: 2108 2187
+                          $if id != null ids: 2109 2188
+                            @ id '${id}' ids: 2110 2189
+                          $hook props ids: 2111 2190
+                          @ panels ids: 2112 2191
+                            [  ids: 2113 2192
+                              $append props ids: 138 368
+                                @ src '/static/images/react/layout/z1.jpg' ids: 139 369
+                                @ href '#url' ids: 140 370
+                                @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: 141 371
+                                @ p_style p_style ids: 142 372
+                              $group  ids: 1851 1865
+                                {  ids: 1852 1866
+                                  @ kind 'infoLinks' ids: 1853 1867
+                                  @ format 'p.[text.a]+' ids: 1854 1868
+                                  @ links ids: 1855 1869
+                                    [  ids: 1856 1870
+                                      {  ids: 1857 1871
+                                        @ label 'Photo ' ids: 1858 1872
+                                        @ text 'Stu Nicholls' ids: 1859 1873
+                                        @ href '#url' ids: 1860 1874
+                                      {  ids: 1861 1875
+                                        @ label 'Date 16/01/2017 | ' ids: 1862 1876
+                                        @ text 'Set 1' ids: 1863 1877
+                                        @ href '#url' ids: 1864 1878
+                        {  ids: 2105 2194
+                          $args: a.img  $params: format, id|@@null
+                          @ kind 'info' ids: 2107 2195
+                          @ format '${format}' ids: 2108 2196
+                          $if id != null ids: 2109 2197
+                            @ id '${id}' ids: 2110 2198
+                          $hook props ids: 2111 2199
+                          @ panels ids: 2112 2200
+                            [  ids: 2113 2201
+                              $append props ids: 145 375
+                                @ src '/static/images/react/layout/z2.jpg' ids: 146 376
+                                @ href '#url' ids: 147 377
+                                @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: 148 378
+                                @ p_style p_style ids: 149 379
+                              $group  ids: 1851 1879
+                                {  ids: 1852 1880
+                                  @ kind 'infoLinks' ids: 1853 1881
+                                  @ format 'p.[text.a]+' ids: 1854 1882
+                                  @ links ids: 1855 1883
+                                    [  ids: 1856 1884
+                                      {  ids: 1857 1885
+                                        @ label 'Photo ' ids: 1858 1886
+                                        @ text 'Stu Nicholls' ids: 1859 1887
+                                        @ href '#url' ids: 1860 1888
+                                      {  ids: 1861 1889
+                                        @ label 'Date 16/01/2017 | ' ids: 1862 1890
+                                        @ text 'Set 1' ids: 1863 1891
+                                        @ href '#url' ids: 1864 1892
+                        {  ids: 2105 2203
+                          $args: a.img  $params: format, id|@@null
+                          @ kind 'info' ids: 2107 2204
+                          @ format '${format}' ids: 2108 2205
+                          $if id != null ids: 2109 2206
+                            @ id '${id}' ids: 2110 2207
+                          $hook props ids: 2111 2208
+                          @ panels ids: 2112 2209
+                            [  ids: 2113 2210
+                              $append props ids: 152 382
+                                @ src '/static/images/react/layout/z3.jpg' ids: 153 383
+                                @ href '#url' ids: 154 384
+                                @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: 155 385
+                                @ p_style p_style ids: 156 386
+                              $group  ids: 1851 1893
+                                {  ids: 1852 1894
+                                  @ kind 'infoLinks' ids: 1853 1895
+                                  @ format 'p.[text.a]+' ids: 1854 1896
+                                  @ links ids: 1855 1897
+                                    [  ids: 1856 1898
+                                      {  ids: 1857 1899
+                                        @ label 'Photo ' ids: 1858 1900
+                                        @ text 'Stu Nicholls' ids: 1859 1901
+                                        @ href '#url' ids: 1860 1902
+                                      {  ids: 1861 1903
+                                        @ label 'Date 16/01/2017 | ' ids: 1862 1904
+                                        @ text 'Set 1' ids: 1863 1905
+                                        @ href '#url' ids: 1864 1906
+                        {  ids: 2105 2212
+                          $args: a.img  $params: format, id|@@null
+                          @ kind 'info' ids: 2107 2213
+                          @ format '${format}' ids: 2108 2214
+                          $if id != null ids: 2109 2215
+                            @ id '${id}' ids: 2110 2216
+                          $hook props ids: 2111 2217
+                          @ panels ids: 2112 2218
+                            [  ids: 2113 2219
+                              $append props ids: 159 389
+                                @ src '/static/images/react/layout/z4.jpg' ids: 160 390
+                                @ href '#url' ids: 161 391
+                                @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: 162 392
+                                @ p_style p_style ids: 163 393
+                              $group  ids: 1851 1907
+                                {  ids: 1852 1908
+                                  @ kind 'infoLinks' ids: 1853 1909
+                                  @ format 'p.[text.a]+' ids: 1854 1910
+                                  @ links ids: 1855 1911
+                                    [  ids: 1856 1912
+                                      {  ids: 1857 1913
+                                        @ label 'Photo ' ids: 1858 1914
+                                        @ text 'Stu Nicholls' ids: 1859 1915
+                                        @ href '#url' ids: 1860 1916
+                                      {  ids: 1861 1917
+                                        @ label 'Date 16/01/2017 | ' ids: 1862 1918
+                                        @ text 'Set 1' ids: 1863 1919
+                                        @ href '#url' ids: 1864 1920
+                        {  ids: 2105 2221
+                          $args: a.img  $params: format, id|@@null
+                          @ kind 'info' ids: 2107 2222
+                          @ format '${format}' ids: 2108 2223
+                          $if id != null ids: 2109 2224
+                            @ id '${id}' ids: 2110 2225
+                          $hook props ids: 2111 2226
+                          @ panels ids: 2112 2227
+                            [  ids: 2113 2228
+                              $append props ids: 166 396
+                                @ src '/static/images/react/layout/z5.jpg' ids: 167 397
+                                @ href '#url' ids: 168 398
+                                @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: 169 399
+                                @ p_style p_style ids: 170 400
+                              $group  ids: 1851 1921
+                                {  ids: 1852 1922
+                                  @ kind 'infoLinks' ids: 1853 1923
+                                  @ format 'p.[text.a]+' ids: 1854 1924
+                                  @ links ids: 1855 1925
+                                    [  ids: 1856 1926
+                                      {  ids: 1857 1927
+                                        @ label 'Photo ' ids: 1858 1928
+                                        @ text 'Stu Nicholls' ids: 1859 1929
+                                        @ href '#url' ids: 1860 1930
+                                      {  ids: 1861 1931
+                                        @ label 'Date 16/01/2017 | ' ids: 1862 1932
+                                        @ text 'Set 1' ids: 1863 1933
+                                        @ href '#url' ids: 1864 1934
+                        {  ids: 2105 2230
+                          $args: a.img  $params: format, id|@@null
+                          @ kind 'info' ids: 2107 2231
+                          @ format '${format}' ids: 2108 2232
+                          $if id != null ids: 2109 2233
+                            @ id '${id}' ids: 2110 2234
+                          $hook props ids: 2111 2235
+                          @ panels ids: 2112 2236
+                            [  ids: 2113 2237
+                              $append props ids: 173 403
+                                @ src '/static/images/react/layout/z6.jpg' ids: 174 404
+                                @ href '#url' ids: 175 405
+                                @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: 176 406
+                                @ p_style p_style ids: 177 407
+                              $group  ids: 1851 1935
+                                {  ids: 1852 1936
+                                  @ kind 'infoLinks' ids: 1853 1937
+                                  @ format 'p.[text.a]+' ids: 1854 1938
+                                  @ links ids: 1855 1939
+                                    [  ids: 1856 1940
+                                      {  ids: 1857 1941
+                                        @ label 'Photo ' ids: 1858 1942
+                                        @ text 'Stu Nicholls' ids: 1859 1943
+                                        @ href '#url' ids: 1860 1944
+                                      {  ids: 1861 1945
+                                        @ label 'Date 16/01/2017 | ' ids: 1862 1946
+                                        @ text 'Set 1' ids: 1863 1947
+                                        @ href '#url' ids: 1864 1948
+                        {  ids: 2105 2239
+                          $args: a.img  $params: format, id|@@null
+                          @ kind 'info' ids: 2107 2240
+                          @ format '${format}' ids: 2108 2241
+                          $if id != null ids: 2109 2242
+                            @ id '${id}' ids: 2110 2243
+                          $hook props ids: 2111 2244
+                          @ panels ids: 2112 2245
+                            [  ids: 2113 2246
+                              $append props ids: 180 410
+                                @ src '/static/images/react/layout/z7.jpg' ids: 181 411
+                                @ href '#url' ids: 182 412
+                                @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: 183 413
+                                @ p_style p_style ids: 184 414
+                              $group  ids: 1851 1949
+                                {  ids: 1852 1950
+                                  @ kind 'infoLinks' ids: 1853 1951
+                                  @ format 'p.[text.a]+' ids: 1854 1952
+                                  @ links ids: 1855 1953
+                                    [  ids: 1856 1954
+                                      {  ids: 1857 1955
+                                        @ label 'Photo ' ids: 1858 1956
+                                        @ text 'Stu Nicholls' ids: 1859 1957
+                                        @ href '#url' ids: 1860 1958
+                                      {  ids: 1861 1959
+                                        @ label 'Date 16/01/2017 | ' ids: 1862 1960
+                                        @ text 'Set 1' ids: 1863 1961
+                                        @ href '#url' ids: 1864 1962
+                        {  ids: 2105 2248
+                          $args: a.img  $params: format, id|@@null
+                          @ kind 'info' ids: 2107 2249
+                          @ format '${format}' ids: 2108 2250
+                          $if id != null ids: 2109 2251
+                            @ id '${id}' ids: 2110 2252
+                          $hook props ids: 2111 2253
+                          @ panels ids: 2112 2254
+                            [  ids: 2113 2255
+                              $append props ids: 187 417
+                                @ src '/static/images/react/layout/z8.jpg' ids: 188 418
+                                @ href '#url' ids: 189 419
+                                @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: 190 420
+                                @ p_style p_style ids: 191 421
+                              $group  ids: 1851 1963
+                                {  ids: 1852 1964
+                                  @ kind 'infoLinks' ids: 1853 1965
+                                  @ format 'p.[text.a]+' ids: 1854 1966
+                                  @ links ids: 1855 1967
+                                    [  ids: 1856 1968
+                                      {  ids: 1857 1969
+                                        @ label 'Photo ' ids: 1858 1970
+                                        @ text 'Stu Nicholls' ids: 1859 1971
+                                        @ href '#url' ids: 1860 1972
+                                      {  ids: 1861 1973
+                                        @ label 'Date 16/01/2017 | ' ids: 1862 1974
+                                        @ text 'Set 1' ids: 1863 1975
+                                        @ href '#url' ids: 1864 1976
+                        {  ids: 2105 2257
+                          $args: a.img  $params: format, id|@@null
+                          @ kind 'info' ids: 2107 2258
+                          @ format '${format}' ids: 2108 2259
+                          $if id != null ids: 2109 2260
+                            @ id '${id}' ids: 2110 2261
+                          $hook props ids: 2111 2262
+                          @ panels ids: 2112 2263
+                            [  ids: 2113 2264
+                              $append props ids: 194 424
+                                @ src '/static/images/react/layout/z9.jpg' ids: 195 425
+                                @ href '#url' ids: 196 426
+                                @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: 197 427
+                                @ p_style p_style ids: 198 428
+                              $group  ids: 1851 1977
+                                {  ids: 1852 1978
+                                  @ kind 'infoLinks' ids: 1853 1979
+                                  @ format 'p.[text.a]+' ids: 1854 1980
+                                  @ links ids: 1855 1981
+                                    [  ids: 1856 1982
+                                      {  ids: 1857 1983
+                                        @ label 'Photo ' ids: 1858 1984
+                                        @ text 'Stu Nicholls' ids: 1859 1985
+                                        @ href '#url' ids: 1860 1986
+                                      {  ids: 1861 1987
+                                        @ label 'Date 16/01/2017 | ' ids: 1862 1988
+                                        @ text 'Set 1' ids: 1863 1989
+                                        @ href '#url' ids: 1864 1990
+                  {  ids: 2105 2266
+                    $args: h2.p+, leftPanel  $params: format, id|@@null
+                    @ kind 'info' ids: 2107 2267
+                    @ format '${format}' ids: 2108 2268
+                    $if id != null ids: 2109 2269
+                      @ id '${id}' ids: 2110 2270
+                    $hook props ids: 2111 2271
+                    @ panels ids: 2112 2272
+                      [  ids: 2113 2273
+                        $append props ids: 201 431
+                          @ heading 'Legoland' ids: 202 432
+                          @ style ids: 203 433
+                            {  ids: 204 434
+                              @ order 1 ids: 205 435
+                              @ width '16%' ids: 206 436
+                              @ background '#fff' ids: 207 437
+                              @ marginBottom '20px' ids: 208 438
+                              @ border '1px solid #ccc' ids: 209 439
+                        {  ids: 2124 2275
+                          $args: Legoland (trademark in uppercase as LEGOLAND&reg;) is a chain of Lego-themed children"s/family theme parks.  $params: text
+                          @ kind 'p' ids: 2126 2276
+                          @ text '${text}' ids: 2127 2277
+                        {  ids: 2124 2279
+                          $args: They are not fully owned by Lego Group itself; rather they are owned and operated by the British theme park company Merlin Entertainments.  $params: text
+                          @ kind 'p' ids: 2126 2280
+                          @ text '${text}' ids: 2127 2281
+                        {  ids: 2124 2283
+                          $args: It has over 55 interactive rides, attractions, live shows, building workshops and driving schools, not to mention a staggering 80 million LEGO&reg; bricks, all set in 150 acres of beautiful parkland.  $params: text
+                          @ kind 'p' ids: 2126 2284
+                          @ text '${text}' ids: 2127 2285
+                  {  ids: 2105 2287
+                    $args: h2.p+, rightPanel  $params: format, id|@@null
+                    @ kind 'info' ids: 2107 2288
+                    @ format '${format}' ids: 2108 2289
+                    $if id != null ids: 2109 2290
+                      @ id '${id}' ids: 2110 2291
+                    $hook props ids: 2111 2292
+                    @ panels ids: 2112 2293
+                      [  ids: 2113 2294
+                        $append props ids: 214 444
+                          @ heading 'Attractions' ids: 215 445
+                          @ style ids: 216 446
+                            {  ids: 217 447
+                              @ order 3 ids: 218 448
+                              @ width '16%' ids: 219 449
+                              @ background '#fff' ids: 220 450
+                              @ marginBottom '20px' ids: 221 451
+                              @ border '1px solid #ccc' ids: 222 452
+                        {  ids: 2124 2296
+                          $args: The parks are marketed to families with younger children (11 and under), and although the attractions include a number of roller coasters, the roller coasters are not as numerous or as extreme as those in other parks, and there is a greater emphasis on rides suitable for younger children.  $params: text
+                          @ kind 'p' ids: 2126 2297
+                          @ text '${text}' ids: 2127 2298
+                        {  ids: 2124 2300
+                          $args: Legoland parks are split into various areas, which are consistent among the chain"s parks. For example, all six of the parks include a Lego miniland, a model village which includes models of landmarks and scenes from around the world, made from millions of genuine Lego bricks.  $params: text
+                          @ kind 'p' ids: 2126 2301
+                          @ text '${text}' ids: 2127 2302
+    ready  ids: 225 455
+      var MainComponent = builder.create(layoutData) ids: 226 456
+      _ ReactDOM.render ids: 227 457
+        < MainComponent ids: 228 458
+          @ data { layoutData } ids: 229 459
+        @ document.getElementById('container') ids: 230 460

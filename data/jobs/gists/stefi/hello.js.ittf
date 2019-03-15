@@ -1,0 +1,6 @@
+module
+	kind jsfile
+
+	var name = 'stefi'
+
+	log 'Hello ' + name + ', bye', Date.now()

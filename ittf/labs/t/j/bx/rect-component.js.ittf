@@ -1,0 +1,23 @@
+﻿$group
+	$params name
+
+	set bxComponents.${name}
+		iife
+			function
+
+				$hook static
+
+				var styles
+					{
+						$hook styles
+	
+				class ${name}
+					super React.Component
+		
+					$hook
+
+				return
+					_ injectSheet
+						@ styles
+						(
+							@ ${name}

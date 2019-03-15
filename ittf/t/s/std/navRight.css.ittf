@@ -1,0 +1,78 @@
+﻿$group
+
+	. nav-right
+		background-color ${mpage.navRight.backgroundColor}
+		
+		$if mpage.navRight.fixed || mpage.navRight.drawer
+			position fixed
+			right 0
+			$if mpage.navTop.fixed
+				$if mpage.navSubTop && mpage.navSubTop.fixed
+					top ${mpage.navTop.height + mpage.navSubTop.height}px
+				$else
+					top ${mpage.navTop.height}px
+			$else
+				top 0
+			bottom 0
+			$if mpage.navRight.drawer
+				width ${mpage.navRight.drawerClosedWidth}px
+				overflow hidden
+				-webkit-transition width .05s linear
+				transition width .05s linear
+				-webkit-transform translateZ(0) scale(1,1)
+			$else
+				width ${mpage.navRight.width}px
+		padding ${mpage.navRight.padding}
+		z-index 1000
+		$if mpage.navRight.drawer
+			& :hover
+				width ${mpage.navRight.width}px
+				overflow visible
+
+	$if mpage.navRight.drawer
+		. nav-right-fa
+			display inline-block
+			font-family FontAwesome
+			font-style normal
+			font-weight normal
+			line-height 1
+			-webkit-font-smoothing antialiased
+			-moz-osx-font-smoothing grayscale
+			position relative
+			display table-cell
+			width 60px
+			height 36px
+			text-align center
+			vertical-align middle
+			font-size 20px
+
+
+	$if mpage.navRight.drawer
+
+		. nav-right>ul
+			margin 7px 0
+    
+		. nav-right li
+			position relative
+			display block
+			width 250px
+    
+		. nav-right li>a
+			position relative
+			display table
+			border-collapse collapse
+			border-spacing 0
+			color #eee
+			font-family arial
+			font-size 14px
+			text-decoration none
+			-webkit-transform translateZ(0) scale(1,1)
+			-webkit-transition all .1s linear
+			transition all .1s linear
+    
+		. nav-right .nav-right-text-1
+			position relative
+			display table-cell
+			vertical-align middle
+			width 190px
+			font-family 'Titillium Web', sans-serif

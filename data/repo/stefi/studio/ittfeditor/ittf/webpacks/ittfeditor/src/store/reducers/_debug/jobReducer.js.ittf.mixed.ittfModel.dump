@@ -1,0 +1,50 @@
+  module  ids: 1 20
+    kind react ids: 2 21
+    +  ids: 3 22
+    import { EXEC_JOB_REQUEST, EXEC_JOB_SUCCESS, EXEC_JOB_FAILURE } from '../actions' ids: 4 23
+    +  ids: 5 24
+    $group  ids: 39 51
+      $args: job, {}  $params: name, initialState|[]
+      function ${name}Reducer ids: 41 52
+        param state ids: 42 53
+        param action ids: 43 54
+        # log ${name}Reducer, state, action ids: 44 55
+        if typeof state === 'undefined' ids: 45 56
+          return ${initialState} ids: 46 57
+        switch action.type ids: 47 58
+          $group  ids: 62 71
+            $args: EXEC_JOB_REQUEST $params: name
+            case ${name} ids: 64 72
+              # log '${name}', 'initial state:', state ids: 65 73
+              $hook preprocess ids: 66 74
+              var temp ids: 67 75
+                {  ids: 8 27
+                  @ ...state ids: 9 28
+                  @ isLoading true ids: 10 29
+              log '${name}', 'final state:', temp ids: 69 77
+              return temp ids: 70 78
+          $group  ids: 62 79
+            $args: EXEC_JOB_SUCCESS $params: name
+            case ${name} ids: 64 80
+              # log '${name}', 'initial state:', state ids: 65 81
+              $hook preprocess ids: 66 82
+              var temp ids: 67 83
+                {  ids: 12 31
+                  @ isLoading false ids: 13 32
+                  @ error null ids: 14 33
+              log '${name}', 'final state:', temp ids: 69 85
+              return temp ids: 70 86
+          $group  ids: 62 87
+            $args: EXEC_JOB_FAILURE $params: name
+            case ${name} ids: 64 88
+              # log '${name}', 'initial state:', state ids: 65 89
+              $hook preprocess ids: 66 90
+              var temp ids: 67 91
+                {  ids: 16 35
+                  @ isLoading false ids: 17 36
+                  @ error action.failure ids: 18 37
+              log '${name}', 'final state:', temp ids: 69 93
+              return temp ids: 70 94
+          default  ids: 49 60
+            return state ids: 50 61
+    export default jobReducer ids: 19 38

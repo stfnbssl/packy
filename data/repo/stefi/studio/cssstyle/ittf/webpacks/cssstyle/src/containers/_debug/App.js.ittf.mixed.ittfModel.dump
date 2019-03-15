@@ -1,0 +1,136 @@
+  module  ids: 1 137
+    kind react ids: 2 138
+    +  ids: 3 139
+    import React, { Component, PropTypes } from 'react' ids: 4 140
+    import { connect } from 'react-redux' ids: 5 141
+    import { Style } from 'radium' ids: 6 142
+    import dhQuery from 'dom-helpers/query' ids: 7 143
+    import sizeMe from 'react-sizeme' ids: 8 144
+    import normalize from '../styles/normalize'; ids: 9 145
+    # import { getCommons } from '../actions' ids: 10 146
+    import Form from '../components/Form' ids: 11 147
+    import Control from '../components/Control' ids: 12 148
+    import { Row, Col } from '../components/grid' ids: 13 149
+    import { StyledElement } from '../components/html' ids: 14 150
+    import StylesData from './StylesData' ids: 15 151
+    class App ids: 16 152
+      super Component ids: 17 153
+      ctor  ids: 18 154
+        set this.state ids: 19 155
+          {  ids: 20 156
+            @ selectedStyledId null ids: 21 157
+            @ styledStyles null ids: 22 158
+            @ metaPlay null ids: 23 159
+        set this.updateDimensions = this.updateDimensions.bind(this) ids: 24 160
+        set this.handleChangeStyled = this.handleChangeStyled.bind(this) ids: 25 161
+        set this.handleChangeStyle = this.handleChangeStyle.bind(this) ids: 26 162
+      m componentWillMount ids: 27 163
+        set this.stylesData = new StylesData() ids: 28 164
+        log 'componentDidMount.this.stylesData', this.stylesData ids: 29 165
+        _ this.refreshStylesState ids: 30 166
+          =>  ids: 31 167
+            _ this.updateDimensions() ids: 32 168
+      m componentDidMount ids: 33 169
+        _ window.addEventListener ids: 34 170
+          @ "resize" ids: 35 171
+          @ this.updateDimensions ids: 36 172
+      m updateDimensions ids: 37 173
+        _ this.setState ids: 38 174
+          {  ids: 39 175
+            @ ...this.state ids: 40 176
+            @ width dhQuery.width(window) ids: 41 177
+            @ height dhQuery.height(window) ids: 42 178
+      m handleChangeStyled ids: 43 179
+        param id ids: 44 180
+        param value ids: 45 181
+        # log 'handleChangeStyled', arguments ids: 46 182
+        _ this.stylesData.selectStyled(value) ids: 47 183
+        _ this.refreshStylesState() ids: 48 184
+      m handleChangeStyle ids: 49 185
+        param id ids: 50 186
+        param values ids: 51 187
+        _ this.stylesData.updateStyles(values) ids: 52 188
+        _ this.refreshStylesState() ids: 53 189
+      m componentWillUnmount ids: 54 190
+        _ window.removeEventListener ids: 55 191
+          @ "resize" ids: 56 192
+          @ this.updateDimensions ids: 57 193
+      m refreshStylesState ids: 58 194
+        param callback ids: 59 195
+        log 'refreshStylesState.stylesData', this.stylesData ids: 60 196
+        _ this.setState ids: 61 197
+          {  ids: 62 198
+            @ ...this.state ids: 63 199
+            @ selectedStyledId this.stylesData.selectedStyledId ids: 64 200
+            @ styledStyles this.stylesData.styledStyles ids: 65 201
+            @ metaPlay this.stylesData.metaPlay ids: 66 202
+          =>  ids: 67 203
+            log 'refreshStylesState', this.state ids: 68 204
+            if callback ids: 69 205
+              _ callback() ids: 70 206
+      m render ids: 71 207
+        log 'render.state', this.state ids: 72 208
+        const { width, height } = this.props.size ids: 73 209
+        const { metaPlay, styledStyles } = this.state ids: 74 210
+        const { styledMeta } = this.stylesData ids: 75 211
+        const styledIds = this.stylesData.maps.styledIds || [] ids: 76 212
+        return  ids: 77 213
+          div  ids: 78 214
+            < Style ids: 79 215
+              @ rules {normalize} ids: 80 216
+            < Row ids: 81 217
+              < Col ids: 82 218
+                @ span {4} ids: 83 219
+                h3 Select styled element ids: 84 220
+                < Control ids: 85 221
+                  @ id "styledId" ids: 86 222
+                  @ key "styledId" ids: 87 223
+                  @ type "select" ids: 88 224
+                  @ label "styled" ids: 89 225
+                  @ value {this.state.selectedStyledId} ids: 90 226
+                  @ data ids: 91 227
+                    {  ids: 92 228
+                      @ options styledIds ids: 93 229
+                  @ onChangeValue {this.handleChangeStyled} ids: 94 230
+                h3 Styled element ids: 95 231
+                < StyledElement ids: 96 232
+                  @ meta {styledMeta} ids: 97 233
+                  @ styles {styledStyles} ids: 98 234
+              < Col ids: 99 235
+                @ span {8} ids: 100 236
+                h3 Styles ids: 101 237
+                < Form ids: 102 238
+                  @ id test ids: 103 239
+                  @ caption Styles Form ids: 104 240
+                  @ meta {metaPlay} ids: 105 241
+                  @ onChangeValues {this.handleChangeStyle} ids: 106 242
+            div App size: {width}px x {height}px ids: 107 243
+            div Window size: {this.state.width}px x {this.state.height}px ids: 108 244
+    const mapStateToProps ids: 109 245
+      =>  ids: 110 246
+        param state ids: 111 247
+        return  ids: 112 248
+          {  ids: 113 249
+            @ ...state ids: 114 250
+    const mapDispatchToProps ids: 115 251
+      =>  ids: 116 252
+        param dispatch ids: 117 253
+        return  ids: 118 254
+          {  ids: 119 255
+            @ loadCommons ids: 120 256
+              =>  ids: 121 257
+                # _ dispatch(getCommons()) ids: 122 258
+    const AppConnected ids: 123 259
+      _ connect ids: 124 260
+        @ mapStateToProps ids: 125 261
+        @ mapDispatchToProps ids: 126 262
+        (  ids: 127 263
+          @ App ids: 128 264
+    const AppConnectedSized ids: 129 265
+      _ sizeMe ids: 130 266
+        {  ids: 131 267
+          @ monitorHeight true ids: 132 268
+          @ monitorPosition true ids: 133 269
+        (  ids: 134 270
+          @ AppConnected ids: 135 271
+    export default AppConnectedSized ids: 136 272

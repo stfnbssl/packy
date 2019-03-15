@@ -1,0 +1,37 @@
+﻿$group
+
+	$if mpage.showCase
+		# showcase
+			min-height ${mpage.showCase.height}px
+			color ${mpage.showCase.color}
+			text-align center
+
+		# showcase .bg-image
+			position absolute
+			background ${mpage.showCase.backgroundColor} url('${mpage.showCase.image.url}')
+			background-position center
+			background-repeat no-repeat
+			background-size cover
+			width 100%
+			height ${mpage.showCase.height}px
+			z-index -1
+			opacity 0.4
+
+		# showcase h1
+			padding-top 100px
+			padding-bottom 0
+
+		# showcase .content-wrap
+			padding 0 1.5em
+
+		. showcase-btn-1
+			display inline-block
+			background-color ${mpage.showCase.btnBackgroundColor}
+			color ${mpage.showCase.btnColor}
+			margin .5em 0
+			padding 1em 2em
+			text-decoration none
+			border 1px solid #666
+			& :hover
+				background-color ${mpage.showCase.btnColor}
+				color ${mpage.showCase.btnBackgroundColor}

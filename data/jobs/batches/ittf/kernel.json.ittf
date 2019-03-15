@@ -1,0 +1,14 @@
+﻿[
+	kernel_generate( wizzi-utils, v5 )
+		[ args
+			{
+				name 'isWebpackTarget'
+				type 'boolean'
+				defaultValue false
+	kernel_generate( wizzi-mtree, v5 )
+	kernel_generate( wizzi-repo, v5 )
+	kernel_generate( wizzi, v5 )
+	kernel_generate( wizzi-utils, v4 )
+	kernel_generate( wizzi-mtree, v4 )
+	kernel_generate( wizzi-repo, v4 )
+	kernel_generate( wizzi, v4 )

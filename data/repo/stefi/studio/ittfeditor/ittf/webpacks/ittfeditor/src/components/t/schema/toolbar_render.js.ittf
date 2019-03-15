@@ -1,0 +1,14 @@
+﻿$group
+
+	< Toolbar
+		< Typography
+			@ type "title"
+			@ color 'inherit'
+			@ noWrap
+			+ Schema
+		< Button
+			@ raised
+			@ className {classes.marginLeft_10}
+			@ title Select or create schema
+			@ onClick { this.handleOpenSelectSchemaDialog }
+			+ {selectedSchemaUri || 'Create' }

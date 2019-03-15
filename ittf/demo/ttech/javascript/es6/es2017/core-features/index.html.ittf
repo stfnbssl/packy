@@ -1,0 +1,142 @@
+h/root/empty_layout()
+
+	script
+		module
+			kind es6
+			# var vs let/const
+			var x1 = 3
+			function func1
+				param randomize
+				if randomize
+					# (A) scope: whole function
+					var x1 = Math.random()
+					return x1
+				# accesses the x1 from line A
+				return x1
+
+			log 'Should return undefined'
+			_ func1(false)
+
+			let x2 = 3
+			function func2
+				param randomize
+				if randomize
+					# (A) scope: whole function
+					let x2 = Math.random()
+					return x2
+				# accesses the x2 from line A
+				return x2
+
+			log 'Should return 3'
+			_ func2(false)
+			
+            function printCoord
+                param x
+                param y
+                log `(${x}, ${y})`
+                
+            _ printCoord
+                @ 23
+                @ 48
+                
+            #
+                const HTML5_SKELETON
+                    $.
+                        <!doctype html>
+                        <html>
+                        <head>
+                            <meta charset="UTF-8">
+                            <title></title>
+                        </head>
+                        <body>
+                        </body>
+                        </html>
+                    
+            const [, year, month, day] = /^(\d\d\d\d)-(\d\d)-(\d\d)$/ .exec('2999-12-31');
+            log year
+            log month
+            log day
+            
+            const arr = ['a', 'b', 'c']
+            for const [index, elem] of arr.entries()
+                log index + ' . ' + elem      
+                
+            # es5
+            function selectEntries1
+                param options
+                var start = options.start || 0
+                var end = options.end || -1
+                var step = options.step || 1
+                log "start, end, step", start, end, step
+            _ selectEntries1
+                {
+                    @ start 5
+                    @ step 1
+                    
+            # es6
+            
+            $* see issue
+            function selectEntries2
+                param
+                    {
+                        @ start 0
+                        @ end -1
+                        @ step 1
+            log "start, end, step", start, end, step
+            _ selectEntries2
+                {
+                    @ start 5
+                    @ step 1
+            *$
+                    
+            function format
+                param pattern
+                param ...args
+                log pattern
+                log args
+            _ format
+                @ 'alpha'
+                @ 'beta'
+                @ 'gamma'
+                
+                
+            # ES6 – spread operator:
+            var mmax
+                _ Math.max
+                    @ ...[-1, 5, 11, 3]
+            log 'mmax', mmax
+            
+            # arra spread operator
+            var arr1 = ['a', 'b']
+            var arr2 = ['c', 'd']
+            _ arr1.push(...arr2)
+            log arr1
+            
+            # TODO
+                const obj
+                    {
+                        function foo
+                            log 'i am foo'
+                        function bar
+                            _ this.foo()
+                _ obj.bar
+            function fparamSpread
+                {
+                    @ a
+                    @ b = 'hello b'
+                [
+                    @ x
+                    @ y
+                    @ z = 'bye 3'
+                    
+                log 'object spread param', a
+                log 'object spread param', b
+                log 'array spread param x', x
+                log 'array spread param y', y
+                log 'array spread param z', z
+            _ fparamSpread
+                {
+                    @ a 'hello object spread param'
+                [
+                    @ 'bye 1'
+                    @ 'bye 2'

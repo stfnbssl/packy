@@ -1,0 +1,20 @@
+h/root/layout( )
+	$params title|Title
+
+	_breadcrumbs()
+	
+	$append left-sidebar
+		_items()
+	
+	h1 Svg samples
+		$$ style margin-top: 100px;
+
+	. panel
+		. panel-header
+			h3 ${title}
+		. panel-body
+
+			div 
+				id container
+
+				$hook

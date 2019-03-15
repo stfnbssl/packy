@@ -1,0 +1,72 @@
+h/root/empty_layout()
+
+	$
+		var items = [
+			{
+				a: 'hello'
+			},
+			{
+				a: 'bye'
+			},
+			{
+				a: ''
+			},
+			{
+				a: null
+			},
+			];
+
+	$append head-styles
+		@style
+			css
+				< body
+					margin 3rem
+				< p
+					font-size 1.2rem
+				< code
+					background #ddd
+					font-size 1.2rem
+					padding 0 1rem
+				. primary
+					color #000
+					background #eea
+					padding 1rem
+				. wrong
+					color red
+				. right
+					color darkgreen
+
+
+    h3 If a collection item in a context model has a property with a value in some items
+        \b and no value in others, when has no value the provious value is returned instead of crashing.
+	div
+		class primary
+		
+		h3 When the first loop has not existing vars 
+		. wrong
+		 	ul
+				$foreach item in items
+					li ${item.b}
+		p It gives empty values. It's ok.
+
+		h3 First loop with existing vars
+		. right
+			ul
+				$foreach item in items
+					li ${item.a}
+		p It's ok.
+				
+		h3 Second loop with existing and not existing vars
+		. wrong
+			ul
+				$foreach item in items
+					li ${item.a}
+					li ${item.b}
+		p In this case item.b do not exists and in its place item.a is wrongly used.
+
+		h3 Third loop with not existing vars only
+		. wrong
+			ul
+				$foreach item in items
+					li ${item.b}
+		p Idem item.b do not exists and in its place the last item.a is wrongly used.

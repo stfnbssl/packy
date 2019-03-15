@@ -1,0 +1,57 @@
+﻿bb_view Spa.CssForm : WmtForm
+	__p className modal
+	
+	bb_action_click save
+		event.preventDefault();
+		this.model.set(this.getValue());
+		this.close();
+		this.save(this.model);
+	
+	bb_action_click delete
+		event.preventDefault();
+		this.close();
+		this.delete(this.model);
+
+	bb_action_click cancel
+		event.preventDefault();
+		this.close();
+
+	jf/schema
+		jf/text name
+		jf/select htmlid
+			__p options
+				__f
+					return this.app.dataprovider.htmlcombo();
+	
+	method initialize options
+		this.app = options.app;
+		this.mode = options.mode;
+		this.save = options.save;
+		this.delete = options.delete;
+		var func = this.schema.htmlid.options
+			, self = this;
+		this.schema.htmlid.options = function() {
+			return func.apply(self);
+		};
+		WmtForm.prototype.initialize.call(this, options);
+
+	bb_template ctx
+		. panel
+			id css-edit-dlg
+			. panel-heading
+				h3 Edit css
+					id css-edit-title
+			. panel-body
+				form
+					fieldset
+						div
+							data-field name
+						br
+						div
+							data-field htmlid
+			. panel-footer
+				bb/b_action save Save
+				bb/b_action delete Delete
+				bb/b_action cancel Cancel
+
+

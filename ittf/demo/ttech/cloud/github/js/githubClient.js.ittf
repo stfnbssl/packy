@@ -1,0 +1,382 @@
+﻿module
+	kind es6
+
+	class HttpException : Error
+		ctor
+			param {message, status, statusText, url}
+			set this.message = message
+			set this.status = status
+			set this.statusText = statusText
+			set this.url = url
+
+	class GitHubClient
+		
+		ctor
+			param {baseUri, token}
+			param ...features
+			set this.baseUri = baseUri
+			set this.credentials
+				iif token !== null && token.length > 0
+					then "token" + ' ' + token
+					else null
+			set this.headers
+				{
+					@ "Content-Type" "application/json"
+					@ "Accept" "application/vnd.github.v3.full+json"
+					@ "Authorization" this.credentials
+			return
+				_ Object.assign
+					@ this
+					@ ...features
+
+		m callGitHubAPI
+			param {method, path, data}
+			let _response = {}
+			log 'callGitHubAPI', method, path, data, this.headers
+			return 
+				_ fetch
+					@ this.baseUri + path
+					{ 
+						@ method method
+						@ headers this.headers
+						@ body
+							iif data !== null
+								then JSON.stringify(data)
+								else null
+					._ then
+						=> 
+							param response
+							set _response = response
+							# if response is ok transform response.text to json object
+							# else throw error
+							if response.ok
+								return response.json()
+							else
+								throw 
+									new HttpException
+										{ 
+											@ message
+												`lit 
+													+ HttpException[
+													@ method
+													+ ]
+											@ status response.status
+											@ statusText response.statusText
+											@ url response.url
+					._ then
+						=> 
+							param jsonData
+							set _response.data = jsonData
+							return _response
+
+		m getData
+			{ 
+				@ path path
+			return 
+				_ this.callGitHubAPI
+					{ 
+						@ method 'GET'
+						@ path path
+						@ data null
+		
+		m deleteData
+			{ 
+				@ path path
+			return 
+				_ this.callGitHubAPI
+					{ 
+						@ method 'DELETE'
+						@ path path
+						@ data null
+		
+		m postData
+			{ 
+				@ path path
+				@ data data
+			return 
+				_ this.callGitHubAPI
+					{ 
+						@ method 'POST'
+						@ path path
+						@ data data
+		
+		m putData
+			{ 
+				@ path path
+				@ data data
+			return 
+				_ this.callGitHubAPI
+					{ 
+						@ method 'PUT'
+						@ path path
+						@ data data
+
+		m fetchUserRepositories
+			{ 
+				@ handle handle
+			return 
+				_ this.getData
+					{ 
+						@ path
+							`lit 
+								+ /users/
+								@ handle
+								+ /repos
+					._ then
+						=> 
+							param response
+							return response.data
+
+		m fetchContent
+			{ 
+				@ path path
+				@ owner owner
+				@ repository repository
+				@ decode decode
+			return 
+				_ this.getData
+					{ 
+						@ path
+							`lit 
+								+ /repos/
+								@ owner
+								+ /
+								@ repository
+								+ /contents/
+								@ path
+					._ then
+						=> 
+							param response
+							if decode == true
+								set response.data.contentText = atob(response.data.content)
+							return response.data
+		m createFile
+			{ 
+				@ file file
+				@ content content
+				@ message message
+				@ branch branch
+				@ owner owner
+				@ repository repository
+			let contentB64 = new Buffer(content).toString('base64')
+			return 
+				_ this.putData
+					{ 
+						@ path
+							`lit 
+								+ /repos/
+								@ owner
+								+ /
+								@ repository
+								+ /contents/
+								@ file
+						{ data
+							@ message message
+							@ branch branch
+							@ content contentB64
+					._ then
+						=> 
+							param response
+							return response.data
+		
+		m searchCode
+			{ 
+				@ q q
+			return 
+				_ this.getData
+					{ 
+						@ path
+							`lit 
+								+ /search/code?q=
+								@ q
+					._ then
+						=> 
+							param response
+							return response.data
+
+		m fetchTreeBySHA
+			{ 
+				@ sha sha
+				@ owner owner
+				@ repository repository
+			return 
+				_ this.getData
+					{ 
+						@ path
+							`lit 
+								+ /repos/
+								@ owner
+								+ /
+								@ repository
+								+ /git/trees/
+								@ sha
+					._ then
+						=> 
+							param response
+							return response.data
+		
+		m fetchCommitBySHA
+			{ 
+				@ sha sha
+				@ owner owner
+				@ repository repository
+			return 
+				_ this.getData
+					{ 
+						@ path
+							`lit 
+								+ /repos/
+								@ owner
+								+ /
+								@ repository
+								+ /git/commits/
+								@ sha
+					._ then
+						=> 
+							param response
+							return response.data
+
+		m getReferences
+			{ 
+				@ owner owner
+				@ repository repository
+			return 
+				_ this.getData
+					{ 
+						@ path
+							`lit 
+								+ /repos/
+								@ owner
+								+ /
+								@ repository
+								+ /git/refs
+					._ then
+						=> 
+							param response
+							return response.data
+
+		m getReferencesHeads
+			{ 
+				@ owner owner
+				@ repository repository
+			return 
+				_ this.getData
+					{ 
+						@ path
+							`lit 
+								+ /repos/
+								@ owner
+								+ /
+								@ repository
+								+ /git/refs/heads
+					._ then
+						=> 
+							param response
+							return response.data
+
+		m getReference
+			{ 
+				@ owner owner
+				@ repository repository
+				@ ref ref
+			return 
+				_ this.getData
+					{ 
+						@ path
+							`lit 
+								+ /repos/
+								@ owner
+								+ /
+								@ repository
+								+ /git/refs/
+								@ ref
+					._ then
+						=> 
+							param response
+							return response.data
+		
+		m createReference
+			{ 
+				@ ref ref
+				@ sha sha
+				@ owner owner
+				@ repository repository
+			return 
+				_ this.postData
+					{ 
+						@ path
+							`lit 
+								+ /repos/
+								@ owner
+								+ /
+								@ repository
+								+ /git/refs
+						{ data
+							@ ref ref
+							@ sha sha
+					._ then
+						=> 
+							param response
+							return response.data
+		
+		m createBranch
+			{ 
+				@ branch branch
+				@ from from
+				@ owner owner
+				@ repository repository
+			return 
+				_ this.getReference
+					{ 
+						@ owner owner
+						@ repository repository
+						@ ref
+							`lit 
+								+ heads/
+								@ from
+					._ then
+						=> 
+							param data
+							let sha = data.object.sha
+							return 
+								_ this.createReference
+									{ 
+										@ ref
+											`lit 
+												+ refs/heads/
+												@ branch
+										@ sha sha
+										@ owner owner
+										@ repository repository
+		
+		m createBranchFromRelease
+			{ 
+				@ branch branch
+				@ from from
+				@ owner owner
+				@ repository repository
+			return 
+				_ this.getReference
+					{ 
+						@ owner owner
+						@ repository repository
+						@ ref
+							`lit 
+								+ tags/
+								@ from
+					._ then
+						=> 
+							param data
+							let sha = data.object.sha
+							return 
+								_ this.createReference
+									{ 
+										@ ref
+											`lit 
+												+ refs/heads/
+												@ branch
+										@ sha sha
+										@ owner owner
+										@ repository repository
+
+

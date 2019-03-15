@@ -1,0 +1,5 @@
+﻿__o
+	$args name class|be-tab
+	__p name ${name}
+	__p class ${class}
+	__p type:object Wmteditor.TabWidget

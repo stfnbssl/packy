@@ -1,0 +1,71 @@
+﻿$group
+	
+	const styles
+		=>
+			param theme
+			return
+				{
+					{ root
+						@ textAlign  'center'
+						@ paddingTop theme.spacing.unit * 20
+					{ icon
+						@ marginRight theme.spacing.unit
+				
+	react App
+
+		state
+			@ open false
+
+		=> handleClose
+			_ this.setState
+				{
+					@ open false
+		=> handleClick
+			_ this.setState
+				{
+					@ open true
+
+		render
+			const { classes } = this.props
+			const { open } = this.state
+			return
+				< MuiThemeProvider
+					@ theme {theme}
+					div
+						class {classes.root}
+						< CssBaseline
+						< Dialog
+							@ open {open}
+							@ onClose {this.handleClose}
+							< DialogTitle
+								+ Super Secret Password
+							< DialogContent
+								< DialogContentText
+									+ 1-2-3-4-5
+							< DialogActions
+								< Button
+									@ color primary
+									@ onClick {this.handleClose}
+									+ OK
+						< Typography
+							@ variant display1
+							@ gutterBottom
+							+ Material-UI
+						< Typography
+							@ variant subheading
+							@ gutterBottom
+							+ example project
+						< Button
+							@ variant raised
+							@ color secondary
+							@ onClick {this.handleClick}
+							< Icon
+								class {classes.icon}
+								+ fingerprint
+							+ Super Secret Password
+
+	const StyledApp
+		_ withStyles
+			@ styles
+			(
+				@ App

@@ -1,0 +1,29 @@
+﻿element react
+	tag _
+	ast 
+	category react
+	
+	item
+		title class
+		ittf
+			react MyComponent
+				render
+					return
+						h1 Hello world
+
+	item
+		title var
+		ittf
+			var Hello
+				div
+					p sicut amet nequi abisse
+
+	item
+		title var svg
+		ittf
+			var Hello
+				div
+					svg
+						rect
+							stroke-dashoffset 10
+

@@ -1,0 +1,44 @@
+﻿module 
+    kind jsfile
+
+	$include ./styleBuilder
+	$include ./position
+	$include ./richDiv
+	$include ./util
+
+	ready
+
+		var bodyPos = new ElementPosition(document.body)
+		log 'bodyPos', bodyPos.getPositionData()
+		var headrPos = new ElementPosition('#header')
+		log 'headrPos', headrPos.getPositionData()
+		var mainContentPos = new ElementPosition('#main-content')
+		log 'mainContentPos', mainContentPos.getPositionData()
+		
+		var mainContentPopLayoutInfo = new RichDiv('#mainContentPopLayoutInfo', popupStyle())
+		_ mainContentPopLayoutInfo.beaPopup
+			{
+				@ onClickElement '#main-content'
+				@ width (20 * 16)
+				@ height (20 * 9)
+		
+		var headerPopLayoutInfo = new RichDiv('#headerPopLayoutInfo', popupStyle())
+		_ headerPopLayoutInfo.beaPopup
+			{
+				@ onClickElement '#header'
+				@ width (20 * 16)
+				@ height (20 * 9)
+
+	function popupStyle
+		return
+			{
+				@ padding 5
+				@ border
+					{
+						@ size 5
+						@ color '#2288AA'
+						@ style 'solid'
+				@ backgroundColor '#DDEEFF'
+				@ overflow 'auto'
+
+		

@@ -1,0 +1,310 @@
+﻿$group
+
+	#
+	# params
+	# { ctx
+	#
+	class FolderBrowseManager
+		ctor
+			param ctx
+			param options
+			set this.ctx = ctx
+			set this.options = options
+			set this.dataFolderPath = options.dataFolderPath
+			set this.dataIttfPath = options.dataIttfPath
+			set this.dataTextPath = options.dataTextPath
+
+		m handleClick
+			param target
+			param dataValue
+			log 'wz.folderBrowseManager.handleClick.dataValue', dataValue
+			
+			var currentFolder = dataValue[this.dataFolderPath]
+			var ittfPath = dataValue[this.dataIttfPath]
+			var textPath = dataValue[this.dataTextPath]
+			
+			if currentFolder && currentFolder.length > 0
+				#
+					_ alert
+						@ currentFolder
+
+				_ this.ctx.storeManager.setCurrentFolder
+					@ currentFolder
+
+				_ this.activate
+
+			if ittfPath && ittfPath.length > 0
+				#
+					_ alert
+						@ 'ittfPath ' + ittfPath
+
+				_ this.ctx.storeManager.setIttfDocument
+					@ ittfPath
+
+				_ this.hide
+
+				_ this.ctx.ittfDocumentManager.activate
+
+		m hide
+			_ wz.hide
+				@ '#test-browse-folder'
+
+		m show
+			_ wz.show
+				@ '#test-browse-folder'
+
+		m toggle
+			var style = document.querySelector('#test-browse-folder').style
+			set style.display = style.display === 'none' ? 'block' : 'none'
+			log 'FolderBrowseManager.toggle', style.display
+			if style.display === 'block'
+				_ this.activate
+
+		m activate
+			_ this.show
+			var currentFolder
+				_ this.ctx.storeManager.getCurrentFolder
+			log 'FolderBrowseManager.activate', currentFolder
+			var that = this
+			_ this.ctx.fileManager.getFolderBrowseData
+				@ currentFolder
+				f_cb_no_err( data )
+					log 'FolderBrowseManager.err', err
+					log 'FolderBrowseManager.data', data
+					if err
+						_ that.setHtmlError
+							@ err
+					else
+						_ that.setHtml
+							@ data
+
+		m resetHtml
+			html_start(
+				@ '<div></div>'
+			html_set( foldercontent )
+			html_set( foldercontent-json, false )
+			html_set( breadcrumbs )
+			html_set( breadcrumbs-json, false )
+		
+		m setHtmlError
+			param err
+			_ this.resetHtml
+			html_start(
+				@ '<h2>Folder browse error</h2>'
+				@ '<pre>'
+				@ JSON.stringify(err, null, 2)
+				@ '</pre>'
+			html_set( breadcrumbs-json, false )
+
+		m setHtml
+			param data
+
+			_ htmlBreadcrumbsJson
+				@ data.breadCrumbs
+			_ htmlBreadcrumbs
+				@ data.breadCrumbs
+		
+			_ htmlCurrentFolder
+				@ data
+		
+			_ htmlFolderContentJson
+				@ data.fsitems
+			_ htmlFolderContent
+				@ data.fsitems
+
+			if this.ctx.storeManager.isPastePending()
+				_ wz.show
+					@ '#bf-paste-img-container'
+			else
+				_ wz.hide
+					@ '#bf-paste-img-container'
+
+			function htmlBreadcrumbs
+				param data
+
+				html_start(
+					@ '<nav class="tn-breadcrumbs">'
+					@ '    <div class="breadcrumbs-panel">'
+			
+				foreach bc in data
+					if bc.isLast
+						html_add(
+							@ '        <div class="breadcrumb-item">'
+							@ '            <span>' + bc.name + '</span>'
+							@ '        </div>'
+					else
+						html_add(
+							@ '        <div class="breadcrumb-item">'
+							@ '            <a href="#" class="bf-select" data-folderpath="' + bc.uri + '">' + bc.name + '</a>'
+							@ '        </div>'
+				html_add(
+					@ '    </div>'
+					@ '</nav>'
+
+				html_set( breadcrumbs )
+
+			function htmlBreadcrumbsJson
+				param data
+
+				html_start(
+					@ '<h2>Breadcrumbs</h2>'
+					@ '<pre>'
+					@ JSON.stringify(data, null, 2)
+					@ '</pre>'
+				html_set( breadcrumbs-json, false )
+
+			function htmlCurrentFolder
+				param data
+				_ wz.html
+					_ wz.element('#currentFolder')
+					[
+						@ '<h2>Current folder: ' + data.folderUri + '</h2>'
+						._ join('\n')
+				_ wz.show('#currentFolder')
+
+			function htmlFolderContent
+				param data
+
+				html_start(
+					@ '<ul>'
+
+				foreach f in data
+					if f.isFolder
+						html_add()
+							@ '<li class="fsitem">'
+							@ '    <img src="/ittf/images/folder.svg.ittf" />'
+							@ '    <a href="#" class="mc-item-link bf-select bf-context" data-folderpath="' + f.uri + '">' + f.name + '</a>'
+							@ '</li>'
+
+				foreach f in data
+					if !f.isFolder
+						html_add()
+							@ '<li class="fsitem">'
+							@ '    <img src="/ittf/images/file.svg.ittf" />'
+						if f.isIttfDocument
+							html_add()
+								@ '    <a href="__ixdb__' + f.uri + '" class="mc-item-link bf-context" data-ittfpath="' + f.uri + '">'
+						else
+							html_add()
+								@ '    <a href="__ixdb__' + f.uri + '" class="mc-item-link bf-context" data-textpath="' + f.uri + '">'
+						html_add()
+							@ f.basename
+							@ '</a>'
+						if f.isIttfDocument
+							html_add()
+								@ '    <a href="#" class="mc-item-link bf-select" data-ittfpath="' + f.uri + '">'
+						else
+							html_add()
+								@ '    <a href="#" class="mc-item-link bf-select" data-textpath="' + f.uri + '">'
+						html_add()
+							@ 'edit'
+							@ '</a>'
+							@ '</li>'
+
+				html_add(
+					@ '</ul>'
+			
+				html_set( foldercontent )
+
+			function htmlFolderContentJson
+				param data
+
+				html_start(
+					@ '<h2>Folder content</h2>'
+					@ '<pre>'
+					@ JSON.stringify(data, null, 2)
+					@ '</pre>'
+
+				html_set( foldercontent-json, false )
+
+		m handleContextMenu
+			param target
+			param dataValue
+			log 'wz.folderBrowseManager.handleContextMenu.dataValue', dataValue
+			
+			var event = dataValue['__event__']
+			var currentFolder = dataValue[this.dataFolderPath]
+			var ittfPath = dataValue[this.dataIttfPath]
+			var textPath = dataValue[this.dataTextPath]
+
+			var that = this
+
+			if !this.contextmenu
+				set this.contextmenu
+					new wz.ContextMenu
+						{
+							@ menusContainerId this.ctx.formsContainerId
+				_ this.contextmenu.create
+					{
+						{ menu
+							@ id 'folderBrowse-contextmenu'
+							[ items
+								{
+									@ label 'edit'
+								{
+									@ label 'copy'
+								{
+									@ label 'cut'
+								{
+									@ label 'rename'
+								{
+									@ label 'duplicate'
+								{
+									@ label 'delete'
+						@ onClick
+							function
+								param data
+								log 'handleContextMenu_ittfDocument.onClick', data
+								if data.command === 'copy' || data.command === 'cut'
+									if data.payload.ittfPath || data.payload.textPath 
+										_ that.ctx.storeManager.setClipboard
+											{
+												@ command data.command
+												@ filePath data.payload.ittfPath || data.payload.textPath
+									if data.payload.currentFolder
+										_ that.ctx.storeManager.setClipboard
+											{
+												@ command data.command
+												@ folderPath data.payload.currentFolder
+								if data.command === 'rename' && ( data.payload.ittfPath || data.payload.textPath )
+									_ that.ctx.formManager.getRenameFileDialog
+										@ 'dlgRenameFile'
+										@ data.payload.ittfPath || data.payload.textPath
+									_ that.ctx.modalManager.show
+										@ 'dlgRenameFile'
+										@ 'dlgRenameFile'
+								if data.command === 'duplicate' && ( data.payload.ittfPath || data.payload.textPath )
+									_ that.ctx.formManager.getDuplicateFileDialog
+										@ 'dlgDuplicateFile'
+										@ data.payload.ittfPath || data.payload.textPath
+									_ that.ctx.modalManager.show
+										@ 'dlgDuplicateFile'
+										@ 'dlgDuplicateFile'
+								if data.command === 'delete' && ( data.payload.ittfPath || data.payload.textPath )
+									_ that.ctx.formManager.getDeleteFileDialog
+										@ data.payload.ittfPath || data.payload.textPath
+									_ that.ctx.modalManager.show
+										@ 'dlgDeleteFile'
+										@ 'dlgDeleteFile'
+								if data.command === 'rename' && data.payload.currentFolder
+									_ that.ctx.formManager.getRenameFolderDialog
+										@ 'dlgRenameFolder'
+										@ data.payload.currentFolder
+									_ that.ctx.modalManager.show
+										@ 'dlgRenameFolder'
+										@ 'dlgRenameFolder'
+								if data.command === 'delete' && data.payload.currentFolder
+									_ that.ctx.formManager.getDeleteFolderDialog
+										@ data.payload.currentFolder
+									_ that.ctx.modalManager.show
+										@ 'dlgDeleteFolder'
+										@ 'dlgDeleteFolder'
+
+			_ this.contextmenu.handleRightClick
+				@ event
+				{
+					@ currentFolder currentFolder
+					@ ittfPath ittfPath
+					@ textPath textPath
+
+		m checkContextMenu

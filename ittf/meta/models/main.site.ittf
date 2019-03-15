@@ -1,0 +1,16 @@
+﻿site
+
+	$$ c = category
+
+	$include anna 
+	$include javascript
+	$include react
+	$include vue
+	$include html
+	$include css
+	$include svg
+	$include webapi
+	$include wizzi
+	$include cloud
+
+	lia( Kendrick Lamar - Alright, https://www.youtube.com/watch?v=Z-48u_uWMHY

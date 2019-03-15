@@ -1,0 +1,55 @@
+﻿module 
+    kind react
+	+
+	import { INITIAL_LOAD_SUCCESS, SELECT_PROJECT_SUCCESS, CREATE_PROJECT_SUCCESS } from '../actions'
+	+
+	const commonsInitialState
+		{
+			@ userState {}
+			@ projects []
+			@ pluginProjects []
+			@ schemas
+				{
+					@ js
+						{
+							@ artifacts
+								[
+									@ 'js/module'
+					@ html
+						{
+							@ artifacts
+								[
+									@ 'html/document'
+					@ css
+						{
+							@ artifacts
+								[
+									@ 'css/document'
+	+
+	r( commons, commonsInitialState )
+	
+		c( INITIAL_LOAD_SUCCESS
+			$append preprocess
+				var userState = action.payload.userState || {}
+			{
+				@ ...state
+				@ userState userState
+				@ schemas action.payload.schemas
+				@ projects action.payload.projects
+				@ currentProject userState.currentProject
+
+		c( SELECT_PROJECT_SUCCESS
+			$append preprocess
+				var userState = action.payload || {}
+			{
+				@ ...state
+				@ userState userState
+				@ currentProject userState.currentProject
+
+		c( CREATE_PROJECT_SUCCESS
+			{
+				@ ...state
+				@ projects action.payload.projects
+				@ currentProject action.payload.inserted.name
+
+	export default commonsReducer

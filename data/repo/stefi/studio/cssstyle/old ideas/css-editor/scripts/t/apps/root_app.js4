@@ -1,0 +1,25 @@
+﻿bb_ma_app Spa.RootApp
+	method start
+		this.initialize();
+		Backbone.Marionette.Application.prototype.start.apply(this, arguments);
+	method initialize
+		var self = this;
+		this.addRegions({
+			content: "#content",
+			modal: Spa.ModalRegion
+		});
+		this.cssApp = new Spa.CssApp(this);
+		this.vent.on("layout:rendered", function() {
+			// ...
+		});
+		this.vent.on("routing:started", function() {
+			console.log( 'Spa.RootApp: routing:started' );
+			if( ! Backbone.History.started ) Backbone.history.start();
+		});
+		this.addInitializer(function() {
+			var router = new Spa.CssRouter({
+				cssApp: self.cssApp
+			});
+			self.vent.trigger("routing:started");
+		});
+

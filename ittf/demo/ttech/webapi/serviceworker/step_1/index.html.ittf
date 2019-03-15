@@ -1,0 +1,43 @@
+﻿h/root/empty_layout()
+
+	$append head-styles
+		@style
+			css
+				< body
+					white-space pre
+					font-family monospace
+					font-size 14px
+	
+	ul
+		li
+			a This page is served by the service worker
+				href bye
+	$append body-scripts
+		script
+			module
+				function log
+					_ document.body.appendChild(document.createTextNode(Array.prototype.join.call(arguments, ", ") + '\n'))
+					_ console.log.apply(console, arguments)
+
+				set window.onerror
+					function
+						param err
+						_ log("Error", err)
+
+				if 'serviceWorker' in navigator
+					_ window.addEventListener
+						@ 'load'
+						function
+							_ navigator.serviceWorker.register
+								@ 'sw.js.ittf'
+								{
+									@ scope './'
+								._ then
+									function
+										param sw
+										_ log("Registered!", sw)
+								._ catch
+									function
+										param err
+										_ log("Error", err)
+										log err

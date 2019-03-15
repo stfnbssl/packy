@@ -1,0 +1,78 @@
+﻿$group
+	$params name, p1|@@null, p2|@@null, p3|@@null, p4|@@null, p5|@@null, p6|@@null, p7|@@null, p8|@@null
+
+	$
+		var p1gname = p1 ? 'Bx' + _.capitalize(p1) : null;
+		var p2gname = p2 ? 'Bx' + _.capitalize(p2) : null;
+		var p3gname = p3 ? 'Bx' + _.capitalize(p3) : null;
+		var p4gname = p4 ? 'Bx' + _.capitalize(p4) : null;
+		var p5gname = p5 ? 'Bx' + _.capitalize(p5) : null;
+		var p6gname = p6 ? 'Bx' + _.capitalize(p6) : null;
+		var p7gname = p7 ? 'Bx' + _.capitalize(p7) : null;
+		var p8gname = p8 ? 'Bx' + _.capitalize(p8) : null;
+	+
+	var ${name}
+		iife
+			function
+				$if p1 != null
+					param ${p1}
+				$if p2 != null
+					param ${p2}
+				$if p3 != null
+					param ${p3}
+				$if p4 != null
+					param ${p4}
+				$if p5 != null
+					param ${p5}
+				$if p6 != null
+					param ${p6}
+				$if p7 != null
+					param ${p7}
+				$if p8 != null
+					param ${p8}
+
+				$if p1 != null
+					if !${p1}
+						throw Error('In iife ${name} the parameter ${p1} is undefined')
+				$if p2 != null
+					if !${p2}
+						throw Error('In iife ${name} the parameter ${p2} is undefined')
+				$if p3 != null
+					if !${p3}
+						throw Error('In iife ${name} the parameter ${p3} is undefined')
+				$if p4 != null
+					if !${p4}
+						throw Error('In iife ${name} the parameter ${p4} is undefined')
+				$if p5 != null
+					if !${p5}
+						throw Error('In iife ${name} the parameter ${p5} is undefined')
+				$if p6 != null
+					if !${p6}
+						throw Error('In iife ${name} the parameter ${p6} is undefined')
+				$if p7 != null
+					if !${p7}
+						throw Error('In iife ${name} the parameter ${p7} is undefined')
+				$if p8 != null
+					if !${p8}
+						throw Error('In iife ${name} the parameter ${p8} is undefined')
+				+
+				$hook
+				+
+
+			$if p1 != null
+				@ ${p1gname}
+			$if p2 != null
+				@ ${p2gname}
+			$if p3 != null
+				@ ${p3gname}
+			$if p4 != null
+				@ ${p4gname}
+			$if p5 != null
+				@ ${p5gname}
+			$if p6 != null
+				@ ${p6gname}
+			$if p7 != null
+				@ ${p7gname}
+			$if p8 != null
+				@ ${p8gname}
+	+

@@ -1,0 +1,5 @@
+﻿{
+	$params text
+	@ kind 'p'
+	@ text '${text}'
+	$hook

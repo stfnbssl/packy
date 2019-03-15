@@ -1,0 +1,16 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'webspeech',
+			label: 'Web speech',
+			experimentsWith: 'the web speech api',
+			path: [
+				{
+					name: 'webapi',
+					label: 'WebApi',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

@@ -1,0 +1,13 @@
+﻿$group
+
+	$
+		var opt = {};
+		opt.headerHeight = 65;
+		opt.footerHeight = 60;
+		opt.footerCommandsHeight = 40;
+		opt.splitterResizerSize = 25;
+		opt.splitterResizerDiff = opt.headerHeight + opt.footerHeight + 4;
+		opt.gray_1_tb = '#020302';
+		opt.gray_2_aside = '#0d0a10';
+		opt.gray_3_ehead = '#0a0a0a';
+		opt.gray_4_page = '#1d1f20';

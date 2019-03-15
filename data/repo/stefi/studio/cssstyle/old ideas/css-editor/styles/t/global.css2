@@ -1,0 +1,34 @@
+﻿$group
+	e body
+		font-size 11px
+	e ul
+		list-style-type none
+	e a
+		text-decoration: none;
+    e div.cpicker
+        z-index 5
+    e input.colorinput
+        padding 1px
+        border 3px #eee solid
+    e hr
+        border 0px
+        height 1px
+        background-color #eee
+        color #eee
+    e input
+        border-radius 5px
+        border 1px #d5d5d5 solid
+        padding 3px
+    e select
+        border-radius 5px
+        border 1px #d5d5d5 solid
+        padding 2px 3px
+    e input.radius-input
+        border-radius 5px
+        padding 6px
+        width 30px
+        font-size 16px
+        font-weight bold
+        color #666
+        border 1px #d5d5d5 solid
+        z-index 2

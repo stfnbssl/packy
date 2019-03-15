@@ -1,0 +1,24 @@
+﻿module 
+    kind react
+	+
+	import { EXEC_JOB_REQUEST, EXEC_JOB_SUCCESS, EXEC_JOB_FAILURE } from '../actions'
+	+
+	r( job, {} )
+	
+		c( EXEC_JOB_REQUEST
+			{
+				@ ...state
+				@ isLoading true
+		
+		c( EXEC_JOB_SUCCESS
+			{
+				@ isLoading false
+				@ error null
+
+		c( EXEC_JOB_FAILURE
+			{
+				@ isLoading false
+				@ error action.payload.error
+
+	export default jobReducer
+

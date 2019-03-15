@@ -1,0 +1,17 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'flex',
+			label: 'Flex',
+			experimentsWith: 'css flex',
+			path: [
+				{
+					name: 'css',
+					label: 'Css',
+				},
+			]
+		};
+
+	ttech-frame(&opt)
+

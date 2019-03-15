@@ -1,0 +1,22 @@
+﻿element include json
+	tag json + {
+	ast
+	category
+	
+	item
+		title json tag (not standard) with inclusion of a json model
+		ittf
+			html
+				body
+					json profile
+						{
+							name 'stefi'
+							job 'wizzi'
+
+					script
+						module
+							var p
+								_ JSON.parse
+									@ document.querySelector('#profile').text
+							log 'profile.name', p.name
+							log 'profile.job', p.job

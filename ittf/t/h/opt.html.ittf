@@ -1,0 +1,4 @@
+option ${text}
+	$params text, value|@@null
+	$if value
+		value ${value}

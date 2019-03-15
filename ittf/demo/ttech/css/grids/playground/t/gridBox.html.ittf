@@ -1,0 +1,38 @@
+﻿$group
+	
+	section
+		class controls
+		id flexBox
+                   
+		h/control( columns )
+				h/input( grid-template-columns, xl, grid-template-columns, 100px 100px )
+                    
+		h/control( rows )
+				h/input( grid-template-rows, xl, grid-template-rows, 150px 150px )
+
+		h/control( gap )
+				h/input( grid-gap, mid, grid-gap, 20px )
+
+		h/control( column area )
+				h/input( grid-column-start, mid, grid-column-start, 1 )
+				h/input( grid-column-end, mid, grid-column-end, 2 )
+
+		h/control( row area )
+				h/input( grid-row-start, mid, grid-row-start, 1 )
+				h/input( grid-row-end, mid, grid-row-end, 2 )
+
+		$*
+		h/control( # of flex items )
+				h/span( +, count-increase, count-control small )
+				h/span( -, count-decrease, count-control small )
+                    
+		h/select( flex-direction, flex-direction, none , 
+			\b row;row-reverse;column;column-reverse )
+					
+		h/select( flex-wrap, flex-wrap, none,
+			\b wrap;wrap-reverse;nowrap
+
+		h/select( justify-content, justify-content, 
+			\b To see a change set 'flex' property to something like 'flex: 0 1 auto'|justify-content-tip,
+			\b flex-start;flex-end;center;space-between;space-around
+		*$

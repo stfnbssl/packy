@@ -1,0 +1,21 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { PropTypes } from 'react' ids: undefined undefined
+    import { ListGroupItem } from 'react-bootstrap' ids: undefined undefined
+    +  ids: undefined undefined
+    const SchemaListItem ids: undefined undefined
+      =>  ids: undefined undefined
+        param { onClick, selectedSchemaUri, name } ids: undefined undefined
+        return  ids: undefined undefined
+          < ListGroupItem ids: undefined undefined
+            onClick {onClick} ids: undefined undefined
+            @ bsStyle { selectedSchemaUri === name ? 'danger' : 'info' } ids: undefined undefined
+            + {name} ids: undefined undefined
+    +  ids: undefined undefined
+    set SchemaListItem.propTypes ids: undefined undefined
+      {  ids: undefined undefined
+        @ onClick PropTypes.func.isRequired ids: undefined undefined
+        @ selectedSchemaUri PropTypes.string ids: undefined undefined
+        @ name PropTypes.string.isRequired ids: undefined undefined
+    export default SchemaListItem ids: undefined undefined

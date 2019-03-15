@@ -1,0 +1,88 @@
+﻿$group
+	+
+	http( wizzify, js, html, css, xml )
+	+
+	wz-const jsWizzify
+		=>
+			param source
+			param checked
+			return
+				{
+					@ type JS_WIZZIFY
+					@ source source
+					@ checked checked || false
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ JS_WIZZIFY_REQUEST
+									@ JS_WIZZIFY_SUCCESS
+									@ JS_WIZZIFY_FAILURE
+							@ url '/api/wf/jswizzify'
+							@ method 'post'
+							@ payload
+								{
+									@ source source
+									@ checked checked || false
+	+
+	wz-const htmlWizzify
+		=>
+			param source
+			return
+				{
+					@ type HTML_WIZZIFY
+					@ source source
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ HTML_WIZZIFY_REQUEST
+									@ HTML_WIZZIFY_SUCCESS
+									@ HTML_WIZZIFY_FAILURE
+							@ url '/api/wf/htmlwizzify'
+							@ method 'post'
+							@ payload
+								{
+									@ source source
+	+
+	wz-const cssWizzify
+		=>
+			param source
+			return
+				{
+					@ type CSS_WIZZIFY
+					@ source source
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ CSS_WIZZIFY_REQUEST
+									@ CSS_WIZZIFY_SUCCESS
+									@ CSS_WIZZIFY_FAILURE
+							@ url '/api/wf/csswizzify'
+							@ method 'post'
+							@ payload
+								{
+									@ source source
+	+
+	wz-const xmlWizzify
+		=>
+			param source
+			return
+				{
+					@ type XML_WIZZIFY
+					@ source source
+					@ checked checked || false
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ XML_WIZZIFY_REQUEST
+									@ XML_WIZZIFY_SUCCESS
+									@ XML_WIZZIFY_FAILURE
+							@ url '/api/wf/xmlwizzify'
+							@ method 'post'
+							@ payload
+								{
+									@ source source
+	+

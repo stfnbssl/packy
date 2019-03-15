@@ -1,0 +1,11 @@
+h/bs/list_group()
+	h/bs/li_a( "GraphDb client", /ittf/demo/apps/graphdb/ )
+	h/bs/li_a( "Wizzi forms", /ittf/demo/apps/formbuilder/index.html.ittf )
+	h/bs/li_a( "Wizzi studio", /ittf/demo/apps/wizzistudio/index.html.ittf )
+	h/bs/li_a( "Coursera", /ittf/demo/apps/coursera/index.html.ittf )
+	h/bs/li_a( "Ace-React", /ittf/demo/apps/acereact/index.html.ittf )
+	h/bs/li_a( "Studio", /ittf/demo/apps/studio/index.html.ittf )
+	h/bs/li_a( "Css explorer", /ittf/demo/apps/cssexplorer/index.html.ittf )
+	h/bs/li_a( "Css play", /ittf/demo/apps/cssplay/index.html.ittf )
+	h/bs/li_a( "Processes", /ittf/demo/apps/processes/index.html.ittf )
+

@@ -1,0 +1,20 @@
+﻿$group
+
+	wz-function Range
+		return
+			=>
+				param { id, value, min, max, step, onChange }
+				return
+					input
+						id {id}
+						type range
+						value {value}
+						min {min}
+						max {max}
+						step {step}
+						@ onChange
+							=>
+								param e
+								_ onChange(e.target.value)
+
+

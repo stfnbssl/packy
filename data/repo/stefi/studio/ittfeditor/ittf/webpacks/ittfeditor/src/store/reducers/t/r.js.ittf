@@ -1,0 +1,14 @@
+﻿$group
+	$params name, initialState|[]
+
+	function ${name}Reducer
+		param state
+		param action
+		# log ${name}Reducer, state, action
+		if typeof state === 'undefined'
+			return ${initialState}
+		switch action.type
+			$hook
+			default
+				return state
+

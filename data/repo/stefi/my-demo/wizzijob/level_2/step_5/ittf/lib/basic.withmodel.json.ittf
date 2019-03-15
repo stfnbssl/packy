@@ -1,0 +1,12 @@
+﻿{
+	item 'The wizzi factory'
+	kind 'Software factory'
+	{ github
+		url 'https://github.com/wizzifactory'
+	[ packages
+		$foreach item in wf.nodesOfType('wf:Package')
+			{
+				url '${item.__id}'
+				description '${item.description}'
+	$include copy
+

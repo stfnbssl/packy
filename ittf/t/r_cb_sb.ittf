@@ -1,0 +1,8 @@
+﻿$group
+	
+	return
+		_ callback
+			@ null
+			[
+				$hook
+				._ join('\n')

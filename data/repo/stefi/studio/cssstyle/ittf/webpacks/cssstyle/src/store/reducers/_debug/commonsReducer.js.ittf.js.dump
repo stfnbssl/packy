@@ -1,0 +1,65 @@
+// 13/5/2017:11:21:53  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "module", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //20
+$.a($0, $1, 5);
+var $2 = { n: "kind", v: "react", r: 2, c: 5, s: "f1", u: "f1",  }; //21
+$.a($1, $2, 7);
+var $3 = { n: "+", v: "", r: 3, c: 5, s: "f1", u: "f1",  }; //22
+$.a($1, $3, 9);
+var $4 = { n: "import", v: "{ GET_COMMONS_SUCCESS } from '../actions'", r: 4, c: 5, s: "f1", u: "f1",  }; //23
+$.a($1, $4, 11);
+var $5 = { n: "+", v: "", r: 5, c: 5, s: "f1", u: "f1",  }; //24
+$.a($1, $5, 13);
+var $6 = { n: "const", v: "commonsInitialState", r: 6, c: 5, s: "f1", u: "f1",  }; //25
+$.a($1, $6, 15);
+var $7 = { n: "{", v: "", r: 7, c: 9, s: "f1", u: "f1",  }; //26
+$.a($6, $7, 17);
+var $8 = { n: "@", v: "projects []", r: 8, c: 13, s: "f1", u: "f1",  }; //27
+$.a($7, $8, 19);
+var $9 = { n: "@", v: "packages []", r: 9, c: 13, s: "f1", u: "f1",  }; //28
+$.a($7, $9, 21);
+var $10 = { n: "@", v: "schemas []", r: 10, c: 13, s: "f1", u: "f1",  }; //29
+$.a($7, $10, 23);
+var $11 = { n: "+", v: "", r: 11, c: 5, s: "f1", u: "f1",  }; //30
+$.a($1, $11, 25);
+var $12 = { n: "function", v: $.ip("f2", "${name}Reducer", "string", 26), r: 4, c: 5, s: "f2", u: "f2",  }; //52
+$.a($1, $12, 27);
+var $13 = { n: "param", v: "state", r: 5, c: 9, s: "f2", u: "f2",  }; //53
+$.a($12, $13, 29);
+var $14 = { n: "param", v: "action", r: 6, c: 9, s: "f2", u: "f2",  }; //54
+$.a($12, $14, 31);
+var $15 = { n: "#", v: $.ip("f2", "log ${name}Reducer, state, action", "string", 32), r: 7, c: 9, s: "f2", u: "f2",  }; //55
+$.a($12, $15, 33);
+var $16 = { n: "if", v: "typeof state === 'undefined'", r: 8, c: 9, s: "f2", u: "f2",  }; //56
+$.a($12, $16, 35);
+var $17 = { n: "return", v: $.ip("f2", "${initialState}", "string", 36), r: 9, c: 13, s: "f2", u: "f2",  }; //57
+$.a($16, $17, 37);
+var $18 = { n: "switch", v: "action.type", r: 10, c: 9, s: "f2", u: "f2",  }; //58
+$.a($12, $18, 39);
+var $19 = { n: "case", v: $.ip("f3", "${name}", "string", 40), r: 4, c: 5, s: "f3", u: "f3",  }; //72
+$.a($18, $19, 41);
+var $20 = { n: "#", v: $.ip("f3", "log '${name}', 'initial state:', state", "string", 42), r: 5, c: 9, s: "f3", u: "f3",  }; //73
+$.a($19, $20, 43);
+var $21 = { n: "var", v: "temp", r: 7, c: 9, s: "f3", u: "f3",  }; //75
+$.a($19, $21, 45);
+var $22 = { n: "{", v: "", r: 15, c: 13, s: "f1", u: "f1",  }; //33
+$.a($21, $22, 47);
+var $23 = { n: "@", v: "...state", r: 16, c: 17, s: "f1", u: "f1",  }; //34
+$.a($22, $23, 49);
+var $24 = { n: "@", v: "packages Object.values(action.payload.packages)", r: 17, c: 17, s: "f1", u: "f1",  }; //35
+$.a($22, $24, 51);
+var $25 = { n: "@", v: "projects Object.values(action.payload.projects)", r: 18, c: 17, s: "f1", u: "f1",  }; //36
+$.a($22, $25, 53);
+var $26 = { n: "@", v: "schemas Object.values(action.payload.schemas)", r: 19, c: 17, s: "f1", u: "f1",  }; //37
+$.a($22, $26, 55);
+var $27 = { n: "log", v: $.ip("f3", "'${name}', 'final state:', temp", "string", 56), r: 9, c: 9, s: "f3", u: "f3",  }; //77
+$.a($19, $27, 57);
+var $28 = { n: "return", v: "temp", r: 10, c: 9, s: "f3", u: "f3",  }; //78
+$.a($19, $28, 59);
+var $29 = { n: "default", v: "", r: 12, c: 13, s: "f2", u: "f2",  }; //60
+$.a($18, $29, 61);
+var $30 = { n: "return", v: "state", r: 13, c: 17, s: "f2", u: "f2",  }; //61
+$.a($29, $30, 63);
+var $31 = { n: "export", v: "default commonsReducer", r: 21, c: 5, s: "f1", u: "f1",  }; //38
+$.a($1, $31, 65);

@@ -1,0 +1,9 @@
+h/std/index()
+
+    $append cont-main
+        ul
+            $foreach job in mpage.jobs
+                li
+                    a ${job.name}
+                        href #
+

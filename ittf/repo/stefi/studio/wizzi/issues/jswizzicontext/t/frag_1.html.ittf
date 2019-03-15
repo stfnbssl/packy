@@ -1,0 +1,14 @@
+$group
+
+	$
+		var frag_1_beta = 'frag_1_beta'
+
+	
+	div
+		class frag_1
+		h3 I am on INCLUDED frag_1 and typeof(frag_1_beta) = ${ typeof(frag_1_beta) }, value = ${frag_1_beta}
+			\b and typeof(primary_var_alpha) = ${ typeof(primary_var_alpha) }, value = ${primary_var_alpha}
+		
+		p So when included my context is that of the includer.
+			class frag_1
+

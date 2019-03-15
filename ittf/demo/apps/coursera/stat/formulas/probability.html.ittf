@@ -1,0 +1,69 @@
+﻿$group
+
+	$
+		var c = "$";
+		var cc = "$$";
+
+	table
+
+		f($ \sigma $-algebra)
+			fnote()
+				dd A $\sigma$-algebra on $\Omega$ is a collection ${\mathcal{A}} \subset 2^{\Omega}$, 
+					\b that includes the empty set $\emptyset$, such that
+				ol
+					li $\Omega \in {\mathcal{A}}$ and $\Omega$ is considered to be the universal set in the following context.
+					li $E \in {\mathcal{A}} \implies E^c \in {\mathcal{A}} $
+						\b (closed under complement).
+					li $\{E_1, E_2, E_3, ...\} \in {\mathcal{A}} \implies \cup_{i=1}^{\infty} \in {\mathcal{A}}$
+						\b (closed under countable unions), and also
+						\b $\{E_1, E_2, ... E_n\} \in {\mathcal{A}} \implies \cup_{i=1}^n \in {\mathcal{A}}$
+						\b (closed under finite unions).
+				dd It follows that 
+					ul
+						li $\sigma$-algebra is also closed under countable intersections (by applying De Morgan's laws).
+						li The empty set $\emptyset \in {\mathcal{A}}$, since by (1) $\Omega \in {\mathcal{A}}$ and (2) asserts 
+							\b that its complement, $\emptyset$, also $\in {\mathcal{A}}$. 
+						li Moreover, since $(\Omega, \emptyset)$ satisfies condition (3) as well, 
+							\b it follows that $\{\Omega, \emptyset\}$ is the smallest possible $\sigma$-algebra on $\Omega$. 
+						li The largest possible $\sigma$-algebra on $\Omega$ is $2^{\Omega}$.
+				dd Elements of the σ-algebra are called measurable sets. 
+				dd An ordered pair $\{\Omega, {\mathcal{A}}\}$, where $\Omega$ is a set and ${\mathcal{A}}$ is a $\sigma$-algebra over $\Omega$, 
+					\b is called a measurable space. 
+				dd A function between two measurable spaces is called a measurable function if 
+					\b the preimage of every measurable set is measurable. 
+				dd The collection of measurable spaces forms a category, with the measurable functions as morphisms. 
+				dd Measures are defined as certain types of functions $\sigma$-algebra $\to [0, \infty]$.
+
+		f(Probability measure)
+			fnote()
+				dd A probability measure $P$ on $\{\Omega, {\mathcal{A}}\}$ is $fn \space P:{\mathcal{A}} \to [0, 1]$
+					\b such that
+					ol
+						li $P(\emptyset)=0$ and $P(\Omega)=1$.
+						li $P(\bigcup_{i=1}^{\infty} \space E_i) = \sum_{i=1}^{\infty} P(E_i) $
+							\b for any $\{E_1, E_2, E_3, ...\} \in {\mathcal{A}}$ that are pairwise disjoint.
+						li $P(A \bigcup F) = P(E) + P(F) - P(E \bigcap F) \space (E, F \in {\mathcal{A}})$.
+						li $P(E) = 1 - P(E^c) \space (\forall E \in {\mathcal{A}})$.
+						li If $E \subset F$ then $P(E) \le P(F) \space (E, F \in {\mathcal{A}})$. 
+							\b Called $monotonicity$.
+						li If $E_1, E_2, ... \in {\mathcal{A}}$ then $P(\bigcup_{i=1}^{\infty} \space E_i) \le \sum_{i=1}^{\infty} P(E_i)$.
+						li If $E_1 \subset E_2 \subset E_3 ...$ then $P(\bigcup_{i=1}^{\infty} \space E_i) = \lim_{1 \to \infty} P(E_i)$
+							\b (continuity from below)
+						li If $E_1 \supset E_2 \supset E_3 ...$ then $P(\bigcap_{i=1}^{\infty} \space E_i) = \lim_{1 \to \infty} P(E_i)$
+							\b (continuity from above)
+
+		f(Cumulative distribution function $(CDF)$)
+			fnote()
+				dd A $CDF$ is a function $F:\Re \to \Re$ such that
+				ol
+					li $x_1 \le x_2 \implies F(x_1) \le F(x_2)$ 
+						\b $(x_1, x_2 \in \Re)$. 
+						\b $F$ is not decreasing.
+					li ${cc}\lim_{x\rightarrow a} F(x) = F(a)${cc}
+						\b $F$ is right continuos.
+					li ${cc}\lim_{x\rightarrow\infty} F(x) = 1${cc}
+					li ${cc}\lim_{x\rightarrow-\infty} F(x) = 0${cc}
+
+		f(Correspondence from $(CDF)$ and Borel probability measure)
+			fnote()
+				dd $F(x) = P((\infty, x])$ defines an equivalence between $CDF$s F and (Borel) probability measure $P$ on $\Re$.

@@ -1,0 +1,56 @@
+html
+	$params title|@@null
+
+    head 
+		$if title != null
+			@title ${title}
+        meta 
+            charset utf-8
+        meta 
+            name viewport
+			content width=device-width, initial-scale=1
+
+		$hook head-styles-0
+		
+		css /static/lib/bootstrap/dist/css/bootstrap.min.css
+		css /ittf/styles/layout.css.ittf
+		
+		$hook head-styles
+		
+    body 
+        nav 
+            class main-menu
+            ul 
+				$include layout-sidebar
+            ul 
+                class logout
+                li 
+                    a 
+                        href #
+                        i 
+                            class fa fa-power-off fa-2x
+                        span Logout
+                            class nav-text
+        . area
+			. logo
+				img
+					$$src /static/images/logo.png
+					src /ittf/images/logo.svg.ittf
+					width 120
+					height 50px
+			$hook breadcrumb
+			$hook left-sidebar
+			$hook
+
+	
+		$include h/script_meta
+
+		$hook body-scripts-0
+		
+		js /static/lib/underscore/underscore.js
+		js /static/lib/jquery/dist/jquery.js
+		js /static/lib/bootstrap/dist/js/bootstrap.min.js
+		
+		$hook body-scripts
+
+

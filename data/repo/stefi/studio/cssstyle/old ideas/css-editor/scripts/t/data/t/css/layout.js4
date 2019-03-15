@@ -1,0 +1,49 @@
+﻿stack layoutpane Layout
+	widgets_4
+		tab_2 layoutsubtab
+			widgets_5
+				stack_2 "display"
+					widgets_6
+						select display "Display" css_enums display
+						select float "Float" css_enums float
+						select clear "Clear" css_enums clear
+						select overflow "Overflow" css_enums overflow
+				stack_2 "size"
+					widgets_6
+						pixelvalue width Width 0 500
+						pixelvalue height Height 0 500
+						pixelvalue min-width "Min Width" 0 500
+						pixelvalue min-height "Min Height" 0 500
+						pixelvalue max-width "Max Width" 0 500
+						pixelvalue max-height "Max Height" 0 500
+				stack_2 "position"
+					widgets_6
+						select position "Position" css_enums position
+						pixelvalue top Top 0 500
+						pixelvalue bottom Bottom 0 500
+						pixelvalue left Left 0 500
+						pixelvalue right Right 0 500
+				stack_2 "margins"
+					widgets_6
+						pixelvalue margin "Global margin" 0 100
+						pixelvalue margin-top "Margin top" 0 100
+						pixelvalue margin-bottom "Margin bottom" 0 100
+						pixelvalue margin-left "Margin left" 0 100
+						pixelvalue margin-right "Margin right" 0 100
+				stack_2 "padding"
+					widgets_6
+						pixelvalue padding "Global padding" 0 100
+						pixelvalue padding-top "Padding top" 0 100
+						pixelvalue padding-bottom "Padding bottom" 0 100
+						pixelvalue padding-left "Padding left" 0 100
+						pixelvalue padding-right "Padding right" 0 100
+				stack_2 "radius"
+					widgets_6
+						pixelvalue border-radius "Global radius" 0 100
+						/*
+						valuepanel ..
+						pixelvalue_double border-top-left-radius "Top left radius" 0 100
+						pixelvalue_double border-top-right-radius "Top right radius" 0 100
+						pixelvalue_double border-bottom-left-radius "Bottom left radius" 0 100
+						pixelvalue_double border-bottom-right-radius "Bottom right radius" 0 100
+						*/

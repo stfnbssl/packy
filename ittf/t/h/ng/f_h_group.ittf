@@ -1,0 +1,14 @@
+. form-group
+	$params id, label|@@null, labelclass|@@null, errorModel|@@null
+	$if errorModel
+		ng-class {'has-error': ${errorModel}.hasError}
+	$if label
+		label ${label}
+			for ${id}
+			class ${labelclass}
+	. col-sm-9
+		$hook
+		$if errorModel
+			div
+				style color:red; font-size:small; text-align:left;
+				+ {{ ${errorModel}.errorMessage }}

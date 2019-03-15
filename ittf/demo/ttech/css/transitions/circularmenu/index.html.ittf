@@ -1,0 +1,363 @@
+﻿../_layout( Circular menu by STU Nichols)
+
+	$append head-styles
+		css css/styles.css.ittf
+		css https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+
+	p Hidden input tags are of type=radio, only one at a time selected
+
+
+	form 
+		id navigation
+		input 
+			type radio
+			id pX
+			name circular
+			class pX
+		input 
+			type radio
+			id p0
+			name circular
+			class p0
+		input 
+			type radio
+			id p1
+			name circular
+			class p0 p1
+		input 
+			type radio
+			id p2
+			name circular
+			class p0 p2
+		input 
+			type radio
+			id p3
+			name circular
+			class p0 p3
+		input 
+			type radio
+			id p4
+			name circular
+			class p0 p4
+		input 
+			type radio
+			id p5
+			name circular
+			class p0 p5
+		input 
+			type radio
+			id p6
+			name circular
+			class p0 p6
+		input 
+			type radio
+			id p7
+			name circular
+			class p0 p7
+		input 
+			type radio
+			id p8
+			name circular
+			class p0 p8
+		input 
+			type radio
+			id p9
+			name circular
+			class p0 p9
+		. circular
+			label 
+				for pX
+				i 
+					class fa fa-bars
+			label 
+				for p0
+				i 
+					class fa fa-bars
+			div 
+				p 
+					label 
+						for p0
+						i 
+							class fa fa-cab
+					label 
+						for p1
+						i 
+							class fa fa-cab
+					a 
+						href #
+						i 
+							class fa fa-car
+					a 
+						href #
+						i 
+							class fa fa-taxi
+					a 
+						href #
+						i 
+							class fa fa-bicycle
+			div 
+				p 
+					label 
+						for p0
+						i 
+							class fa fa-sign-language
+					label 
+						for p2
+						i 
+							class fa fa-sign-language
+					a 
+						href #
+						i 
+							class fa fa-deaf
+					a 
+						href #
+						i 
+							class fa fa-braille
+					a 
+						href #
+						i 
+							class fa fa-wheelchair
+					a 
+						href #
+						i 
+							class fa fa-low-vision
+			div 
+				p 
+					label 
+						for p0
+						i 
+							class fa fa-money
+					label 
+						for p3
+						i 
+							class fa fa-money
+					a 
+						href #
+						i 
+							class fa fa-gbp
+					a 
+						href #
+						i 
+							class fa fa-euro
+					a 
+						href #
+						i 
+							class fa fa-dollar
+					a 
+						href #
+						i 
+							class fa fa-yen
+					a 
+						href #
+						i 
+							class fa fa-rub
+			div 
+				p 
+					label 
+						for p0
+						i 
+							class fa fa-file
+					label 
+						for p4
+						i 
+							class fa fa-file
+					a 
+						href #
+						i 
+							class fa fa-file-audio-o
+					a 
+						href #
+						i 
+							class fa fa-file-image-o
+					a 
+						href #
+						i 
+							class fa fa-file-movie-o
+					a 
+						href #
+						i 
+							class fa fa-file-sound-o
+					a 
+						href #
+						i 
+							class fa fa-file-word-o
+					a 
+						href #
+						i 
+							class fa fa-file-text-o
+			div 
+				p 
+					label 
+						for p0
+						i 
+							class fa fa-youtube-play
+					label 
+						for p5
+						i 
+							class fa fa-youtube-play
+					a 
+						href #
+						i 
+							class fa fa-backward
+					a 
+						href #
+						i 
+							class fa fa-eject
+					a 
+						href #
+						i 
+							class fa fa-pause
+					a 
+						href #
+						i 
+							class fa fa-play
+					a 
+						href #
+						i 
+							class fa fa-random
+					a 
+						href #
+						i 
+							class fa fa-step-backward
+					a 
+						href #
+						i 
+							class fa fa-forward
+			div 
+				p 
+					label 
+						for p0
+						i 
+							class fa fa-heart
+					label 
+						for p6
+						i 
+							class fa fa-heart
+					a 
+						href #
+						i 
+							class fa fa-ambulance
+					a 
+						href #
+						i 
+							class fa fa-h-square
+					a 
+						href #
+						i 
+							class fa fa-heartbeat
+					a 
+						href #
+						i 
+							class fa fa-hospital-o
+					a 
+						href #
+						i 
+							class fa fa-medkit
+					a 
+						href #
+						i 
+							class fa fa-stethoscope
+					a 
+						href #
+						i 
+							class fa fa-user-md
+					a 
+						href #
+						i 
+							class fa fa-wheelchair
+			div 
+				p 
+					label 
+						for p0
+						i 
+							class fa fa-android
+					label 
+						for p7
+						i 
+							class fa fa-android
+					a 
+						href #
+						i 
+							class fa fa-apple
+					a 
+						href #
+						i 
+							class fa fa-bluetooth
+					a 
+						href #
+						i 
+							class fa fa-chrome
+					a 
+						href #
+						i 
+							class fa fa-dropbox
+					a 
+						href #
+						i 
+							class fa fa-facebook
+					a 
+						href #
+						i 
+							class fa fa-firefox
+					a 
+						href #
+						i 
+							class fa fa-google
+					a 
+						href #
+						i 
+							class fa fa-opera
+					a 
+						href #
+						i 
+							class fa fa-edge
+			div 
+				p 
+					label 
+						for p0
+						i 
+							class fa fa-font
+					label 
+						for p8
+						i 
+							class fa fa-font
+					a 
+						href #
+						i 
+							class fa fa-copy
+					a 
+						href #
+						i 
+							class fa fa-cut
+					a 
+						href #
+						i 
+							class fa fa-list
+					a 
+						href #
+						i 
+							class fa fa-align-left
+					a 
+						href #
+						i 
+							class fa fa-align-right
+					a 
+						href #
+						i 
+							class fa fa-indent
+					a 
+						href #
+						i 
+							class fa fa-rotate-left
+					a 
+						href #
+						i 
+							class fa fa-rotate-right
+					a 
+						href #
+						i 
+							class fa fa-save
+					a 
+						href #
+						i 
+							class fa fa-paste

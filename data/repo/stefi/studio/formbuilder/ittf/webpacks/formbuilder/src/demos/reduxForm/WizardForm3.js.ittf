@@ -1,0 +1,29 @@
+﻿r-wizard-page( WizardForm3, wizard, WizardFormValidate )
+
+	$append imports
+		import WizardFormValidate from './WizardFormValidate'
+
+		const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet']
+
+	prop previousPage
+		func
+
+	return
+		form
+			@ onSubmit {handleSubmit}
+
+			select( favoriteColor, Favorite Color) 
+				@ options {colors}
+				@ emptyOption {'Select a color...'}
+			checkbox( employed, Employed )
+			textarea( notes, Notes, bla bla )
+			
+			div
+				button
+					type button
+					class previous
+					@ onClick {previousPage}
+				button
+					type submit
+					class next
+					+ Submit

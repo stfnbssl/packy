@@ -1,0 +1,9 @@
+function
+	$params okparam
+	param err
+	param ${okparam}
+	if err
+		return
+			_ callback(err)
+	else
+		$hook

@@ -1,0 +1,19 @@
+﻿$group
+
+	#
+	#
+	class ViewManager
+		ctor
+			param ctx
+			param options
+			
+			set this.ctx = ctx
+			set this.options = options
+
+			set this.codeViewElementId = ctx.codeViewElementId
+
+		m onCodeGenerated
+			param code
+			var block = wz.element(this.codeViewElementId)
+			_ wz.text(block, code)
+			_ Prism.highlightElement(block)

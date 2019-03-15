@@ -1,0 +1,18 @@
+{
+
+	$
+
+		var opt = {
+			name: 'controls',
+			label: 'Controls',
+			experimentsWith: 'javascript editors',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+			]
+		};
+
+
+	ttech-frame(&opt)

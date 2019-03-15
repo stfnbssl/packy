@@ -1,0 +1,11 @@
+{
+
+	$
+		var opt = {
+			name: 'react',
+			label: 'ReactJs',
+			experimentsWith: 'the javascript ReactJs framework',
+			path: []
+		};
+
+	ttech-frame(&opt)

@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'npl',
+			label: 'NpL',
+			experimentsWith: 'the NpL project',
+			path: [
+				{
+					name: 'anna',
+					label: 'Anna',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

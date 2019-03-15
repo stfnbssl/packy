@@ -1,0 +1,56 @@
+﻿$group
+	$params &opt
+
+	$$ opt.experimentsWith    example "javascript bundlers"
+	$$ opt.path               example "javascript/bundlers"
+
+	$
+		var pagePath = "";
+		for ( var i=0; i<opt.path.length; i++) {
+			if ( i>0 ) { pagePath += '/'; }
+			pagePath += opt.path[i].name;
+		}
+		if (opt.path.length > 0) {
+			pagePath += '/';
+		}
+		pagePath += opt.name;
+	
+	$$ TODO $append breadcrumb
+	$$      kernel error !!! 
+	$$      $append child node context is not that of this ittf document. It should be !!!
+		
+	h/bs/breadcrumb()
+		h/bs/li_a_divider( Wizzi, /ittf/home/index.html.ittf )
+		h/bs/li_a_divider( Target technologies, /ittf/demo/ttech/index.html.ittf )
+		$foreach item in opt.path
+			h/bs/li_a_divider( ${item.label}, /ittf/demo/ttech/${item.name}/index.html.ittf )
+		h/bs/li_active( ${opt.label} )
+	
+	h2 Experiments with ${opt.experimentsWith}
+
+	h4 Page path (for debug) ${pagePath}
+
+	h/bs/tabs()
+		h/bs/tab( "Play", ttech-play )
+		h/bs/tab( "Useful links", ttech-reference )
+
+	h/bs/panes()
+		
+		h/bs/pane( ttech-play, active )
+			
+			h/bs/list_group()
+				$foreach item in $.api('categories',pagePath)
+					h/bs/li_a( ${item.wzName}, /ittf/demo/ttech/${pagePath}/${item.nameLower}/index.html.ittf )
+				$foreach item in $.api('demos',pagePath)
+					$$ h/bs/li_a( ${item.wzName}, /ittf/demo/ttech/${pagePath}/${item.nameLower}/index.html.ittf )
+					h/bs/li_a( ${item.wzName}, /ittf/demo/ttech/${item.getUri()} )
+	
+		h/bs/pane( ttech-reference )
+			
+			ul
+				$foreach item in $.api('links',pagePath)
+					lia( ${item.label}, ${item.wzName} )
+
+	$hook
+
+	

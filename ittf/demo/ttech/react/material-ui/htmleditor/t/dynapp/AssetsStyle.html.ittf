@@ -1,0 +1,6 @@
+﻿$group
+
+	el_html( style
+		p_def( margin, string, The margin css property
+		p_def( padding, string, The padding css property
+		p_def( border, string, The border css property

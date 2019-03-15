@@ -1,0 +1,16 @@
+﻿mdx
+	
+	h1 Tech reference
+
+	h3 Css3 documentation
+	ul
+		lia( Css3 docs on Mozilla Developer Network, https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3 )
+
+	h3 On line courses
+	ul
+		lia( Css3 su Coursera, https://www.coursera.org/learn/introcss )
+			
+	h3 PostCSS
+	ul
+		lia( PostCSS Plugin Guidelines (Darvin pligin packs - plugins schemas transformers generators ?) , https://github.com/postcss/postcss/blob/master/docs/guidelines/plugin.md )
+

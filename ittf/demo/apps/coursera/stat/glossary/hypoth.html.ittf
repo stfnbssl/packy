@@ -1,0 +1,153 @@
+$group
+
+	glo(Acceptance region) 
+		dd The set of values of the test statistic for which we fail to reject the null hypothesis.
+
+	glo(Alternative hypothesis)
+		dd Is symbolized by ha.
+		dd Claims that the parameter you're interested in falls within an 
+			\b alternative <b>RANGE</b> of values. 
+
+	glo(Critical value)
+		dd The threshold value delimiting the regions of acceptance and rejection for the test statistic.
+
+	glo(Null hypothesis)
+		dd Is symbolized by H0.
+		dd Claims that the parameter you're interested in takes a <b>SPECIFIC</b> value.
+		dd It usually imply no relation between variables, or no difference between groups.
+		dd It is the hypothesis that will be rejected if the data in your sample 
+			\b suggests that it is a highly unlikely expectation. 
+	
+	glo(P-value)
+		dd The probability, assuming the null hypothesis is true, of observing a result 
+			\b at least as extreme as the test statistic.
+
+	glo(Rejection region)
+		dd The set of values of the test statistic for which the null hypothesis is rejected.
+
+	glo(Significance level)
+		dd symbol $ \alpha $
+		dd If you increase $ \alpha $ you increase the reject region and 
+			\b increase the possibility that the null hypothesis is rejected;
+			\b thus you increase the possibility to have a false negative and a type I error.
+		dd It is the upper bound imposed on the size of a test. 
+			\b Its value is chosen by the statistician prior to looking at the data or 
+			\b choosing any particular test to be used. 
+			\b It is the maximum exposure to erroneously rejecting H0 he/she is ready to accept. 
+			\b Testing H0 at significance level $ \alpha $ means testing H0 with a test 
+			\b whose size does not exceed $ \alpha $. In most cases, one uses tests whose size 
+			\b is equal to the significance level.
+		dd Before we conduct a test, we decide how small the p-value needs to be 
+			\b to actually reject the null hypothesis. 
+		dd The most commonly used significance level is 0.05. That means that 
+			\b if $ p \le 0.05 $, we say that a sample provides enough evidence 
+			\b to reject the null hypothesis. 
+
+
+	glo(Significance test)
+		dd Is, just like the confidence interval, a method of inferential statistics. 
+		dd Is based on two hypotheses, the null hypothesis and the alternative hypothesis,
+			\b which are always mutually exclusive. 
+		dd If you do a significance test, you assume that the null hypothesis 
+			\b is true unless your data provide strong evidence against it.
+		dd If you find enough support for your alternative hypothesis, 
+			\b you reject the null hypothesis, and if you don't find enough proof 
+			\b you don't reject it.
+		dd In the actual research practice, your expectation about the parameter 
+			\b you're interested in forms your alternative hypothesis. 
+			\b The null hypothesis, then, is the opposite, but it has to be a single value, 
+			\b not a range of values. 
+		dd In general, the results of a two-tailed significance test are in line 
+			\b with conclusions coming from a confidence interval.
+
+	glo(Significance test about a proportion) 
+		dd Uses a t-distribution.
+		dd Because we look at a sample, we focus on the sampling distribution. 
+
+	glo(Significance test about a population mean) 
+		dd Uses a t-distribution.
+	
+	glo(Statistical hypotheses)
+		dd They form the main ingredients of the method of significance testing. 
+		dd It is an expectation about a population. 
+		dd Usually it is formulated as a claim that a population parameter takes a particular value 
+			\b or falls within a specific range of values. 
+		dd On the basis of information from a sample we assess if a hypothesis makes sense or not. 
+	 
+	glo(Statistic)
+		dd A value calculated from a sample, often to summarize the sample for comparison purposes.
+
+	glo(test statistic)
+		dd The number of standard errors the sample statistic is removed 
+			\b from the assumed population parameter. 
+
+	glo(rejection region)
+	
+	glo(one-tailed test) 
+		dd Is used if deviations of the estimated parameter in one direction only
+			\b from some benchmark value is considered theoretically possible. 
+	
+	glo(two-tailed test)
+		dd Is used if deviations of the estimated parameter in either direction 
+			\b from some benchmark value are considered theoretically possible. 
+		dd In practice, two-tailed tests are used much more often. 
+			\b Only use the one-sided alternative if you have very good theoretical reasons to do so.
+
+
+	glo(Type I error)
+		dd If the null hypothesis is true and you reject it
+			\b the wrong decision is called a Type I error.
+		dd It is a false positive
+		dd P(Type I error) = significance level ($ \alpha $).
+	
+	glo(Type II error)	
+		dd If the null hypothesis is false and you don't reject it
+			\b the wrong decision is called a Type II error.
+		dd It is a false negative
+		dd P(Type II error) = beta ($ \beta $). Depends on $ \alpha $, the sample size and the true value of the parameter.
+			\b Difficult to compute.
+		dd A low $ \alpha $ increases P(Type II error).
+		
+	glo(Power of a Test)	
+		dd Is the probability of correctly rejecting the null hypothesis given that it is false.
+		dd Power of a Test = 1 - P(Type II error) = 1 - $ \beta $.
+
+
+$*
+Statistical hypothesis 
+A statement about the parameters describing a population (not a sample).
+
+Simple hypothesis 
+Any hypothesis which specifies the population distribution completely.
+
+Composite hypothesis 
+Any hypothesis which does not specify the population distribution completely.
+
+Null hypothesis (H0) 
+A simple hypothesis associated with a contradiction to a theory one would like to prove.
+
+Alternative hypothesis (H1) 
+A hypothesis (often composite) associated with a theory one would like to prove.
+
+Statistical test 
+A procedure whose inputs are samples and whose result is a hypothesis.
+
+
+Size
+For simple hypotheses, this is the test's probability of incorrectly rejecting the null hypothesis. The false positive rate. For composite hypotheses this is the supremum of the probability of rejecting the null hypothesis over all cases covered by the null hypothesis. The complement of the false positive rate is termed specificity in biostatistics. ("This is a specific test. Because the result is positive, we can confidently say that the patient has the condition.") See sensitivity and specificity and Type I and type II errors for exhaustive definitions.
+
+Statistical significance test 
+A predecessor to the statistical hypothesis test (see the Origins section). An experimental result was said to be statistically significant if a sample was sufficiently inconsistent with the (null) hypothesis. This was variously considered common sense, a pragmatic heuristic for identifying meaningful experimental results, a convention establishing a threshold of statistical evidence or a method for drawing conclusions from data. The statistical hypothesis test added mathematical rigor and philosophical consistency to the concept by making the alternative hypothesis explicit. The term is loosely used to describe the modern version which is now part of statistical hypothesis testing.
+
+Conservative test 
+A test is conservative if, when constructed for a given nominal significance level, the true probability of incorrectly rejecting the null hypothesis is never greater than the nominal level.
+
+Exact test
+A test in which the significance level or critical value can be computed exactly, i.e., without any approximation. In some contexts this term is restricted to tests applied to categorical data and to permutation tests, in which computations are carried out by complete enumeration of all possible outcomes and their probabilities.
+A statistical hypothesis test compares a test statistic (z or t for examples) to a threshold. The test statistic (the formula found in the table below) is based on optimality. For a fixed level of Type I error rate, use of these statistics minimizes Type II error rates (equivalent to maximizing power). The following terms describe tests in terms of such optimality:
+
+Most powerful test
+For a given size or significance level, the test with the greatest power (probability of rejection) for a given value of the parameter(s) being tested, contained in the alternative hypothesis.
+Uniformly most powerful test (UMP)
+A test with the greatest power for all values of the parameter(s) being tested, contained in the alternative hypothesis.
+*$

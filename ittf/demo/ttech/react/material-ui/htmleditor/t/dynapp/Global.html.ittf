@@ -1,0 +1,36 @@
+﻿$group
+
+	var global
+		{
+			@ counter 1
+			@ dynApp null
+			@ meta {}
+			@ mTreeNodes {}
+			@ propMetaGroups {}
+			@ assets {}
+			@ icons {}
+			@ iconStore {}
+			@ componentTypes {}
+
+	function componentTypeCanHaveTextChildren
+		param elementType
+		const asset = global.assets['cmp_' + elementType] 
+		if !asset
+			return true
+		foreach p in asset.props
+			if p.name === 'children' && p.type === 'element'
+				return false
+		return true
+
+	function howManyChildrenComponentCanHave
+		param elementType
+		const asset = global.assets['cmp_' + elementType] 
+		# 2 means more than one
+		if !asset
+			return 2
+		foreach p in asset.props
+			if p.name === 'children' && p.type === 'element'
+				return 1
+			if p.name === 'children' && p.type === 'node'
+				return 2
+		return 0

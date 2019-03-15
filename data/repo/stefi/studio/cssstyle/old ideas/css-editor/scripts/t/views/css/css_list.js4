@@ -1,0 +1,44 @@
+﻿bb_view Spa.CssListView : Backbone.Marionette.CompositeView
+	__p id cssList
+	__p itemView:object Spa.CssItemView
+
+	bb_action_click add
+		event.preventDefault();
+		var self = this;
+		var form = new Spa.CssForm({ 
+			mode: 'insert', 
+			app: this.app, 
+			model: new Spa.CssModel(),
+			save: function(model) {
+				self.app.putCss(model);
+				self.render();
+			}
+		}).render();
+		this.app.rootApp.modal.show(form);
+
+	method initialize options
+		this.app = options.itemViewOptions.app;
+		var self = this;
+		this.app.rootApp.vent.on("cssList:noResults", function() { self.showMessage("No css document found") });
+    
+	method appendHtml collectionView itemView
+		collectionView.$("#css-list-tbody").append(itemView.el);
+  
+	method showMessage message
+		this.$('.items').html('<h1 class="notFound">' + message + '</h1>');
+	
+	bb_template ctx
+		div
+			. n-l-h1
+				bb/b_action add Add n-l-btn
+					style float: right;
+				bb/a_action html Html n-l-btn
+					style float: right;
+			h2 Css documents
+			# css-list-container
+				table
+					thead
+						th name
+						th html
+					tbody
+						id css-list-tbody

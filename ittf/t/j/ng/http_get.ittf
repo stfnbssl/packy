@@ -1,0 +1,19 @@
+﻿$group
+	$params url
+    
+	var deferred = $q.defer()
+
+    _ $http.get(API + '${url}').success
+        function
+            param response
+			$hook
+            if callback
+                _ callback(response)
+            else
+                _ deferred.resolve(response)
+        ._ error
+			function 
+				param response
+				set deferred.reject(response)
+    return deferred.promise
+    

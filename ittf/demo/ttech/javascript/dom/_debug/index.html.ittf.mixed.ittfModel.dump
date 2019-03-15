@@ -1,0 +1,42 @@
+  html  ids: 1 49
+    head  ids: 2 50
+      css /static/lib/normalize.css ids: 3 51
+      css ./style.css.ittf ids: 4 52
+    body  ids: 5 53
+      # header ids: 6 54
+        style height: 150px; background-color: #33CCDD; padding:10px ids: 7 55
+        p header ids: 8 56
+        p make sure left/right margins or left/right padding are 0px here it'll mess with the width otherwise ids: 9 57
+      # container ids: 11 58
+        style width: 100%; ids: 12 59
+        # left-sidebar ids: 13 60
+          style float:left; width: 20%; background-color: #33DDEE; height: 300px; overflow: auto; ids: 14 61
+          p left sidebar ids: 16 62
+            style padding:10px; ids: 17 63
+          ul  ids: 18 64
+            style padding:10px; ids: 19 65
+            li Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat. ids: 20 66
+            li Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus. ids: 21 67
+            li Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi. ids: 22 68
+            li Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc. ids: 23 69
+        # main-content ids: 24 70
+          style float:left; width: 60%; background-color: #33BBCC; height: 300px; overflow: auto; ids: 25 71
+          p main content ids: 27 72
+            style padding:10px; ids: 28 73
+          p Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus ids: 29 74
+            style padding:10px; ids: 30 75
+        # right-sidebar ids: 31 76
+          style float:left; width: 20%; background-color: #33AABB; height: 300px; overflow: auto; ids: 32 77
+          p right sidebar ids: 34 78
+            style padding:10px; ids: 35 79
+        div  ids: 36 80
+          style clear:both; ids: 37 81
+      # footer ids: 38 82
+        style height: 150px; background-color: #3399AA; padding:10px ids: 39 83
+        p footer ids: 40 84
+      # mainContentPopLayoutInfo ids: 41 85
+        style display:none overflow: auto; ids: 42 86
+      # headerPopLayoutInfo ids: 44 87
+        style display:none overflow: auto; ids: 45 88
+      js //cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js ids: 47 89
+      js js/main.js.ittf ids: 48 90

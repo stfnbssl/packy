@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'firebase',
+			label: 'Firebase',
+			experimentsWith: 'the Firebase real time database service',
+			path: [
+				{
+					name: 'cloud',
+					label: 'Cloud',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

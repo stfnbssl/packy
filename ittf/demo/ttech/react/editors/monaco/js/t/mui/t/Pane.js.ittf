@@ -1,0 +1,47 @@
+﻿$group
+
+	react Pane
+
+		prop split
+			default 'vertical'
+			string
+		
+		prop primary
+			default false
+			boolean
+		
+		prop size
+			default 0
+			number
+		
+		prop percentage
+			default false
+			boolean
+		
+		prop children
+			default []
+			one-of-type
+				[ node
+				node
+
+		render
+			const size = this.props.size || 0
+			const { percentage, primary, split, children } = this.props
+			const unit = percentage ? '%' : 'px'
+			let classes = 'layout-pane'
+			const style = {}
+			if !primary
+				if split === 'horizontal'
+					set style.height = size + unit
+				else
+					set style.width = size + unit
+			else
+				set classes += ' layout-pane-primary'
+			
+			return
+				div
+					@ className {classes}
+					@ style {style}
+					+ {children}
+
+

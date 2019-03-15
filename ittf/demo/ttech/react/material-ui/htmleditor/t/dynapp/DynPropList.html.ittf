@@ -1,0 +1,158 @@
+﻿$group
+
+	react PropsList
+
+		state
+			@ props []
+
+		did-mount
+			prop propsMeta
+			_ this.setState(propsMeta)
+
+		=> handlePropAdd
+		
+			prop onAdd
+
+			const newName = 'name' + global.counter++
+			
+			const result
+				_ onAdd
+					@ newName
+					@ 'text'
+					@ ''
+			
+			if result.code == 'ok'
+				const oldState 
+					{
+						@ ...this.state
+				set oldState.props
+					[
+						@ ...oldState.props
+						@ result.item
+				log 'handlePropAdd newState', oldState
+				_ this.setState(oldState)
+
+		=> handlePropChange
+			param name
+			param type
+			param value
+
+			log 'PropsList.handlePropChange', name, value
+
+			prop onChange
+
+			const props = this.state.props
+			var newprops = []
+			foreach p in props
+				if p.name === name
+					set p.type = type
+					set p.value = value
+				_ newprops.push(p)
+
+			_ this.setState
+				{
+					@ ...this.state
+					@ props newprops
+				f_cb()
+					log 'PropsList.handlePropChange.after.state', name, value
+					_ onChange
+						@ name
+						@ type
+						@ value
+
+		=> handlePropRename
+			param oldName
+			param newName
+
+			prop onRename
+			const ok
+				_ onRename
+					@ oldName
+					@ newName
+
+			if ok
+				const props = this.state.props
+				var newprops = []
+				foreach p in props
+					if p.name !== oldName
+						_ newprops.push(p)
+					else
+						set p.name = newName
+						_ newprops.push(p)
+					_ this.setState
+						{
+							@ ...this.state
+							@ props newprops
+					log 'PropsList. State after rename:', this.state
+
+		=> handlePropDelete
+			param name
+
+			prop onDelete
+			const ok
+				_ onDelete
+					@ name
+
+			const props = this.state.props
+			var newprops = []
+			foreach p in props
+				if p.name !== name
+					_ newprops.push(p)
+			_ this.setState
+				{
+					@ ...this.state
+					@ props newprops
+
+		render
+			const {props} = this.state
+			prop level
+			prop isComponentType
+
+			# log 'PropList.render', this.state, isComponentType
+
+			if props.length == 0
+				return
+					div
+						style { { height: '300px'} }
+						+ &nbsp;
+			
+			return
+				div
+					style { {marginLeft: level*10 + 'px'} }
+					< Table
+						< TableHead
+							< TableCell
+								+ name
+							< TableCell
+								+ type
+							< TableCell
+								+ value
+							{
+								&&
+									+ !isComponentType
+									< TableCell
+										@ span 2
+										+ commands
+						< TableBody
+							{
+								_ props.map
+									=>
+										param p
+										# log 'PropsList.item.render', p
+										return
+											< TableRow
+												@ key {p._id}
+												< DynProp
+													@ isComponentType {isComponentType}
+													@ id {p._id}
+													@ name {p.name}
+													@ type {p.type}
+													@ value {p.value}
+													@ comment {p.options && p.options.comment}
+													@ enumItems {p.options && p.options.enumItems}
+													@ defaultValue {p.options && p.options.default}
+													@ onAdd { this.handlePropAdd }
+													@ onChange { this.handlePropChange }
+													@ onRename { this.handlePropRename }
+													@ onDelete { this.handlePropDelete }
+

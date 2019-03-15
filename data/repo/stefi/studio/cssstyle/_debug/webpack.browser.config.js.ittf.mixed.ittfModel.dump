@@ -1,0 +1,55 @@
+  module  ids: 1 56
+    kind jsfile ids: 2 57
+    var path = require('path') ids: 3 58
+    var webpack = require('webpack') ids: 4 59
+    var pack ids: 5 60
+      {  ids: 6 61
+        @ name "cssplay" ids: 7 62
+    var paths ids: 8 63
+      {  ids: 9 64
+        @ appSrc path.join(__dirname, 'src') ids: 10 65
+        @ appIndexJs path.join(__dirname, 'src', 'index') ids: 11 66
+        @ appBuild path.join(__dirname, 'dist') ids: 12 67
+        @ nodePaths [] ids: 13 68
+        @ appNodeModules [] ids: 14 69
+    set module.exports = ids: 15 70
+      {  ids: 16 71
+        @ devtool 'cheap-module-eval-source-map' ids: 17 72
+        @ entry ids: 18 73
+          [  ids: 19 74
+            @ require.resolve('react-dev-utils/webpackHotDevClient') ids: 20 75
+            @ require.resolve('../polyfills') ids: 21 76
+            @ paths.appIndexJs ids: 22 77
+        @ output ids: 23 78
+          {  ids: 24 79
+            @ path paths.appBuild ids: 25 80
+            @ pathinfo true ids: 26 81
+            @ filename 'bundle.js' ids: 27 82
+            @ publicPath '/webpack/' + pack.name ids: 28 83
+        @ resolve ids: 29 84
+          {  ids: 30 85
+            @ extensions ['.js', '.json', '.jsx'] ids: 31 86
+            @ alias ids: 32 87
+              {  ids: 33 88
+                @ 'react-native' 'react-native-web' ids: 34 89
+        @ module ids: 35 90
+          {  ids: 36 91
+            @ rules ids: 37 92
+              [  ids: 38 93
+                {  ids: 39 94
+                  @ parser ids: 40 95
+                    {  ids: 41 96
+                      @ requireEnsure false ids: 42 97
+                {  ids: 43 98
+                  @ test /\.(js|jsx)$/ ids: 44 99
+                  @ include paths.appSrc ids: 45 100
+                  @ loader 'babel-loader' ids: 46 101
+                  @ options ids: 47 102
+                    {  ids: 48 103
+                      @ babelrc false ids: 49 104
+                      @ presets [require.resolve('babel-preset-react-app')] ids: 50 105
+                      @ cacheDirectory true ids: 51 106
+        @ plugins ids: 52 107
+          [  ids: 53 108
+            new webpack.HotModuleReplacementPlugin() ids: 54 109
+            new webpack.NoEmitOnErrorsPlugin() ids: 55 110

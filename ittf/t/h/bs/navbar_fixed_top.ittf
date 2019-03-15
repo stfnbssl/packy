@@ -1,0 +1,8 @@
+﻿. navbar navbar-default navbar-fixed-top
+	$params brand
+	role navigation
+	. container-fluid
+		. navbar-header
+			a ${brand}
+				class navbar-brand
+				href #

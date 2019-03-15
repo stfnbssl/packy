@@ -1,0 +1,35 @@
+﻿$group
+	$params prefix|bx, render:boolean|true
+
+	class ${prefix}TabPane
+
+		ctor
+			param props
+			set this.props = props
+
+		$if render
+			m render
+		$else
+			m attach
+				param el
+
+		m eventsOn
+			set this.handlePublish = this.handlePublish.bind(this)
+			set this.pubsubToken
+				_ PubSub.subscribe
+					@ '${prefix}Tabs'
+					@ this.handlePublish
+
+		m eventsOff
+			_ this.pubsubToken()
+
+		m handlePublish
+			param message
+			param data
+			if message == '${prefix}TabItem.select'
+				if data.selected == this.props.tabKey
+					_ this.$el.show()
+				else
+					_ this.$el.hide()
+
+

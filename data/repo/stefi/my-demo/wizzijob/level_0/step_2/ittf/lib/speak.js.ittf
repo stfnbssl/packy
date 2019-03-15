@@ -1,0 +1,7 @@
+﻿module
+	kind jsfile
+
+	var Horse = require('animals').Horse
+
+	var horse = new Horse('Varenne')
+	_ horse.sayHello

@@ -1,0 +1,42 @@
+﻿module
+    kind jsfile
+
+	class Queue
+		ctor
+			set this.queue = [];
+		
+		m next
+			$$ log 'Queue. next. this.queue.length', this.queue.length
+			if this.queue.length === 0
+				$$ log 'Queue. next. queue empty'
+				return
+			var job = this.queue[0]
+			$$ log 'executing job.params[0]', job.args[0]
+			_ job.f.apply(job.ctx, job.args)
+
+		m add
+			var self = this
+			var job
+				{
+					@ f arguments[0]
+					@ ctx arguments[1]
+					@ cb arguments[2]
+			var len = arguments.length - 3
+			set job.args = new Array(len + 1)
+			for var i = 0; i < len; ++i
+				set job.args[i] = arguments[i+3]
+			set job.args[len]
+				function
+					param err
+					param ok
+					$$ log 'Queue. cb intercepted. job finished. job.args[0]', job.args[0]
+					_ self.queue.splice(0, 1);
+					_ self.next()
+					_ job.cb(err, ok)
+			_ self.queue.push
+				@ job
+			$$ log 'Queue. add. self.queue.length', self.queue.length
+			if self.queue.length === 1
+				_ self.next()	
+
+	set module.exports = Queue

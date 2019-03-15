@@ -1,0 +1,9 @@
+﻿__o
+	$args name label|@@null
+	__p name ${name}
+	__p label ${label}
+	__p class be-valuepanel
+	__p type:object Wmteditor.ValuePanelWidget
+	__p schema
+		__o 
+			__p name ${name}

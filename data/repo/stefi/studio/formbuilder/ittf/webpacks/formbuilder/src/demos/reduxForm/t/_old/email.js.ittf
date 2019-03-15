@@ -1,0 +1,15 @@
+﻿$group
+	$params name, label, placeholder|@@null
+	
+	div
+		label
+			@ htmlFor ${name}
+			+ ${label}
+		div
+			< Field
+				@ name ${name}
+				@ id ${name}
+				@ component input
+				@ type email
+				$if placeholder != null
+					@ placeholder ${placeholder}

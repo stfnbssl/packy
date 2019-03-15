@@ -1,0 +1,21 @@
+﻿$group
+	$params command, method, p1|@@null, p2|@@null, p3|@@null
+
+	if command === '${command}'
+		return
+			new Promise
+				=>
+					param resolve
+					param reject
+					_ this.${method}
+						$if p1 != null
+							@ data.${p1}
+						$if p2 != null
+							@ data.${p2}
+						$if p3 != null
+							@ data.${p3}
+						f_cb_no_err(result)
+							if err
+								return reject(err)
+							else
+								return resolve(result)

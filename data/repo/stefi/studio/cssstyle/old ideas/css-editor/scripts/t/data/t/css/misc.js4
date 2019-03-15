@@ -1,0 +1,5 @@
+﻿stack miscpane Misc
+	widgets_4
+		panel tx-basic
+			widgets_5
+				select cursor "Cursor" css_enums cursor

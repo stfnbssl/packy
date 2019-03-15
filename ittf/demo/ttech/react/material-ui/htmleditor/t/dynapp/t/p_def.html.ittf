@@ -1,0 +1,7 @@
+﻿$group
+	$params name, type, comment|''
+	{
+		@ name "${name}"
+		@ type "${type}"
+		@ comment "${comment}"
+		$hook

@@ -1,0 +1,161 @@
+﻿module
+	kind es6
+
+	function log
+		var args = [].slice.call(arguments)
+		if typeof(WizziBrowser) !== 'undefined'
+			_ WizziBrowser.log.apply(null, args)
+		else
+			_ console.log.apply(null, args)
+
+	class WizziPackage
+		ctor
+			param options
+			this.fsStoreName = options.fsStoreName || 'wizziRepo'
+			# clone starts from terminal folder
+			this.terminalFolder = options.terminalFolder || 'wizzi'
+			this.packageName = options.name
+
+		m _init
+			_ BrowserFS.configure
+				{ 
+					@ fs 'IndexedDB'
+					{ options
+						@ storeName this.fsStoreName
+				=>
+					param err
+					if err
+						return log(err)
+					set this.fs = BrowserFS.BFSRequire('fs')
+					_ log('BrowserFS configured')
+						
+					# Initialize isomorphic-git with our new file system
+					_ git.plugins.set('fs', fs)
+					_ log('git configured')
+						
+					# make a Promisified version for convenience
+					set this.pfs = pify(fs)
+					_ log('pfs ( pify(fs) ) configured')
+
+		m clone
+			param url
+			var name = url.split('/').pop()
+			if typeof this.packageName === 'undefined'
+				set this.packageName = name
+			elif this.packageName !== name
+				throw new Error('Package name to clone differs from this packageName.')
+			_ await GIT.clone
+				{
+					@ dir this.terminalFolder
+					@ url url
+
+	var GIT
+		{
+			@ clone
+				function
+					async
+					param k
+					_ log
+						@ 'git.clone'
+						_ await git.clone
+							{
+								@ k.dir
+								@ corsProxy 'https://cors.isomorphic-git.org'
+								@ url k.url
+								@ ref k.ref || 'master'
+								@ singleBranch true
+								@ depth 1
+						@ '-'
+
+    function getAllStats
+        { 
+            @ fs fs
+            @ cwd cwd
+            @ branch branch
+        function notGitDir
+            param name
+            return !name.match(/^\.git\/?/)
+        return 
+            _ gitroot(cwd).then
+                => 
+                    param dir
+                    return 
+                        _ Promise.all
+                            [ 
+                                _ listBranchFiles
+                                    { 
+                                        @ fs fs
+                                        @ dir dir
+                                        @ branch branch
+                                @ listDir(dir)
+                            ._ then
+                                => 
+                                    param [tracked, rest]
+                                    var re = new RegExp('^' + dir)
+                                    set rest =
+                                        _ rest.files.map
+                                            => 
+                                                param path
+                                                _ path.replace(re, '')
+                                    return 
+                                        _ Promise.all
+                                            _ union(tracked, rest).filter(notGitDir).map
+                                                => 
+                                                    param filepath
+                                                    return 
+                                                        _ git.status
+                                                            { 
+                                                                @ fs fs
+                                                                @ dir dir
+                                                                @ filepath filepath
+                                                            ._ then
+                                                                => 
+                                                                    param status
+                                                                    return 
+                                                                        [ 
+                                                                            @ filepath
+                                                                            @ status
+
+    function gitAddAll
+        { 
+            @ fs fs
+            @ dir dir
+            @ branch branch
+            @ all all
+        return 
+            _ getAllStats
+                { 
+                    @ fs fs
+                    @ cwd dir
+                    @ branch branch
+                ._ then
+                    => 
+                        param files
+                        var skip_status
+                            [ 
+                                @ 'unmodified'
+                                @ 'ignored'
+                                @ 'modified'
+                                @ 'deleted'
+                                @ 'added'
+                                @ 'absent'
+                        if !all
+                            _ skip_status.push('*added')
+                        return 
+                            _ files.filter
+                                => 
+                                    param [_, status]
+                                    + !skip_status.includes(status)
+                ._ then
+                    => 
+                        param files
+                        return 
+                            _ Promise.all
+                                _ files.map
+                                    => 
+                                        param [filepath, status]
+                                        _ git.add
+                                            { 
+                                                @ fs fs
+                                                @ dir dir
+                                                @ filepath filepath

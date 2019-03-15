@@ -1,0 +1,54 @@
+﻿module
+	kind react
+
+	$include j/3dparty/colors
+	$include j/3dparty/classnames
+	$include j/3dparty/reactjss
+
+	$include react/localJss
+	$include react/components/index
+
+	j/iife-wrapped( BxApp, reactModule, propTypesModule, Components )
+
+		const {Component} = reactModule
+		const {PropTypes} = propTypesModule
+		const {Button, Splitter, Lorem} = Components
+
+		class App
+			super Component
+
+			m render
+				return
+					$*
+					< Button
+						@ text {'Hello world'}
+					*$
+					< Splitter
+						. my-pane
+							h2 1st Pane
+							p This is the 1st pane, and this is the primary pane by default.
+							p Try to resize the window and see how secondary pane's size keeps.
+							pre
+								 + &lt;SplitterLayout primaryIndex={'{0}'}&gt;{'\n'}
+								 + &nbsp;&nbsp;<strong>&lt;div&gt;1st&lt;/div&gt;</strong>{'\n'}
+								 + &nbsp;&nbsp;&lt;div&gt;2nd&lt;/div&gt;{'\n'}
+								 + &lt;/SplitterLayout&gt;
+							< Lorem
+								@ title 1st Pane
+						. my-pane
+							h2 2nd Pane
+							p This is the 2nd pane, and this is the secondary pane by default.
+							p Try to resize the window and see how secondary pane's size keeps.
+							pre
+								+ &lt;SplitterLayout primaryIndex={'{0}'}&gt;{'\n'}
+								+ &nbsp;&nbsp;&lt;div&gt;1st&lt;/div&gt;{'\n'}
+								+ &nbsp;&nbsp;<strong>&lt;div&gt;2nd&lt;/div&gt;</strong>{'\n'}
+								+ &lt;/SplitterLayout&gt;
+							< Lorem
+								@ title 2nd Pane
+
+		return App
+
+	_ BxReactDOMModule.render
+		< BxApp 
+		@ document.getElementById('container')

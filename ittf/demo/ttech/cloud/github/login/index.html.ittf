@@ -1,0 +1,22 @@
+h/root/empty_layout()
+
+	$append head-styles
+		@style
+			css
+				< #login-button
+					background-color #3c4146
+					color #EEF4EC
+					padding 1em
+					position fixed
+					top 50%
+					left 50%
+					margin-left -100px
+					margin-top -1em
+					text-decoration none
+					font-family Arial, Helvetica, sans-serif
+					width 150px
+					text-align center
+
+	a Login with github
+		id login-button
+		href /account/login

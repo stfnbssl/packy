@@ -1,0 +1,7 @@
+$group
+
+	var keys = _.keys(objkey)
+	if keys.length == 0
+		return 
+			_ callback
+				_ CRUD.missingObjectError()

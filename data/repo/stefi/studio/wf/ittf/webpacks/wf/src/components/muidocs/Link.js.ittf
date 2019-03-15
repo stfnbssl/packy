@@ -1,0 +1,70 @@
+﻿r-component( Link )
+	
+	$append imports
+		import { Link as LinkRouter } from 'react-router'
+
+	prop classes
+		{
+		required
+	
+	prop className
+		string
+	
+	prop component
+		one-of-type
+			string
+			func
+	
+	prop to
+		string
+	
+	prop variant
+		one-of
+			@ 'primary'
+			@ 'accent'
+
+	style
+
+		@ root
+			{ 
+				@ color 'inherit'
+				@ textDecoration 'none'
+				@ '&:hover'
+					{ 
+						@ textDecoration 'underline'
+		@ primary
+			{ 
+				@ color theme.palette.primary[500]
+		@ accent
+			{ 
+				@ color theme.palette.accent.A400
+
+	render
+		prop component: ComponentProp
+		prop classes
+		prop className
+		prop variant
+		prop to
+		prop ...other
+
+		let Component
+
+		if ComponentProp
+			set Component = ComponentProp
+		elif to
+			set Component = LinkRouter
+		else
+			set Component = 'a'
+
+		return
+			< Component
+				@ to {to}
+				@ className
+					_ classNames
+						@ classes.root
+						{
+							@ [classes.primary] variant === 'primary'
+							@ [classes.accent] variant === 'accent'
+						@ className
+				@ {...other}
+

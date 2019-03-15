@@ -1,0 +1,28 @@
+﻿element selectorr
+	tag . | # | <
+	ast
+	category
+	
+	item
+		title Css element selector
+		ittf
+			css
+				< body
+					background-color #dedede
+					color 000
+
+	item
+		title Css class selector
+		ittf
+			css
+				. page
+					background-color #dedede
+					color 000
+
+	item
+		title Css id selector
+		ittf
+			css
+				# page
+					background-color #dedede
+					color 000

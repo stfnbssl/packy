@@ -1,0 +1,10 @@
+﻿module
+	kind jsfile
+
+	function sayHello
+		param name
+		log 'Hello ' + name
+
+	_ sayHello
+		@ 'stefi'
+

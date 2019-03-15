@@ -1,0 +1,10 @@
+﻿$group
+	$params name, label
+	
+	< Field
+		@ name ${name}
+		@ label ${label}
+		@ component {renderField}
+		@ type checkbox
+		$hook
+

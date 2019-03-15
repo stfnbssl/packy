@@ -1,0 +1,16 @@
+﻿$group
+	$params result|notUsed
+
+	=>
+		param err
+		param ${result}
+		if err
+			emit( seteditvalue
+				@ key 'gen-result'
+				@ value result
+			_ this.emit
+				@ 'json-result'
+				@ err
+				@ treeNode
+		else
+			$hook

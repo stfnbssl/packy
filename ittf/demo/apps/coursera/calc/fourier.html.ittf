@@ -1,0 +1,9 @@
+_layout( Fourier transformations )
+
+	h2 Formulas
+		
+	formulas/fourier()
+
+	h2 Glossary
+		
+	glossary/fourier()

@@ -1,0 +1,26 @@
+﻿meta
+	schema json
+	element
+		tag vtt
+		ast 
+		category
+
+		item 
+			title Json object
+			ittf
+				{
+					name 'stefi'
+					job 'wizzi'
+					[ friends
+						'arthur'
+						'marius'
+						'george'
+
+		item
+			title Json Array
+			ittf
+				[
+					{
+						id 1
+					{
+						id 2

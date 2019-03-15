@@ -1,0 +1,11 @@
+{
+
+	$
+		var opt = {
+			name: 'css',
+			label: 'Css',
+			experimentsWith: 'the Cascading Style Sheets technology',
+			path: []
+		};
+
+	ttech-frame(&opt)

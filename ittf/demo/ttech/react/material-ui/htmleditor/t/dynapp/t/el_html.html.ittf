@@ -1,0 +1,23 @@
+﻿$group
+	$params name, flagsString|none
+
+	$
+		var flags = {};
+		var ss = flagsString.split(';')
+		for (var i=0; i<ss.length; i++) {
+			flags[ss[i]] = true; 
+		}
+	
+	const html_${name}
+		{
+			@ type 'element'
+			@ name '${name}'
+			$if flags.isVoid
+				@ isVoid true
+			[ props
+				$if name !== 'style'
+					p_def( id, string 
+					p_def( title, string 
+					p_def( className, string 
+				$hook
+    set global.assets['html_${name}'] = html_${name}

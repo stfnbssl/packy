@@ -1,0 +1,21 @@
+﻿$group
+
+	ul
+		class nav-top
+		$foreach panel in mpage.navTop.panels
+			$if panel.kind === 'img-logo'
+				. nav-top-log
+					a
+						href ${panel.href}
+						img
+							src ${panel.src}
+							height ${panel.height}
+							width ${panel.width}
+			
+			$if panel.kind === 'flex'
+				. flex-row
+					$foreach item in panel.items
+						li
+							class nav-top-text-1
+							a ${item.label}
+								href ${item.href}

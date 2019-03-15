@@ -1,0 +1,9 @@
+﻿$group
+	$params file, value|false
+
+	_ glEventHub.emit
+		@ 'setFolderStateData'
+		{ 
+			@ fullpath filepath
+			@ key 'busy'
+			@ value false

@@ -1,0 +1,9 @@
+﻿$group
+
+	$
+		var opt = {
+			iframeW: 300,
+			iframeH: 200,
+			videoW: 300,
+			videoH: 200,
+		}

@@ -1,0 +1,109 @@
+﻿html
+	head
+		@title My page
+		meta
+			charset utf-8
+		meta
+			name viewport
+			content user-scalable=0, initial-scale=1, minimum-scale=1, width=device-width, height=device-height
+		script
+			# src https://unpkg.com/prop-types@15.6/prop-types.min.js
+			src https://cdn.jsdelivr.net/npm/prop-types@15.6.2/prop-types.js
+			crossorigin anonymous
+		script
+			# src https://unpkg.com/react@latest/umd/react.development.js
+			src https://cdn.jsdelivr.net/npm/react@16.4.1/umd/react.development.js
+			crossorigin anonymous
+		script
+			# src https://unpkg.com/react-dom@latest/umd/react-dom.development.js
+			src https://cdn.jsdelivr.net/npm/react-dom@16.4.1/umd/react-dom.development.js
+			crossorigin anonymous
+		script
+			# src https://unpkg.com/@material-ui/core/umd/material-ui.development.js
+			src https://cdn.jsdelivr.net/npm/material-ui@1.0.0-beta.47/umd/material-ui.development.js
+			crossorigin anonymous
+		script
+			# src https://unpkg.com/babel-standalone@latest/babel.min.js
+			src https://cdn.jsdelivr.net/npm/@babel/standalone@7.0.0-beta.51/babel.min.js
+			crossorigin anonymous
+		script
+			src https://cdn.jsdelivr.net/npm/downshift@2.0.10/dist/downshift.umd.min.js
+			crossorigin anonymous
+		
+		js scripts/cdn-react-editor.js
+
+		css https://fonts.googleapis.com/css?family=Roboto:300,400,500
+		css https://fonts.googleapis.com/icon?family=Material+Icons
+
+	body
+		# root
+		script
+			type text/babel
+			module
+				kind react
+
+				const {
+					\b Button,
+					\b Checkbox,
+					\b Chip,
+					\b colors,
+					\b createMuiTheme,
+					\b CssBaseline,
+					\b Dialog,
+					\b DialogActions,
+					\b DialogContent,
+					\b DialogContentText,
+					\b DialogTitle,
+					\b Icon,
+					\b Input,
+					\b Paper,
+					\b MenuItem,
+					\b Select,
+					\b SvgIcon,
+					\b TextField,
+					\b Table,
+					\b TableHead,
+					\b TableBody,
+					\b TableRow,
+					\b TableCell,
+					\b Toolbar,
+					\b Tooltip,
+					\b MuiThemeProvider,
+					\b Typography,
+					\b withStyles,
+					\b } = window['material-ui']
+
+				const Downshift = Downshift.default
+				const SplitPane = reactEditorLib.default.SplitPane
+				const nodeUtils = reactEditorLib.default.nodeUtils
+				const muiIcons = reactEditorLib.default.muiIcons
+				const verify = reactEditorLib.default.verify
+
+				const theme
+					_ createMuiTheme
+						{
+							{ palette
+								{ primary
+									@ light colors.purple[300]
+									@ main colors.purple[500]
+									@ dark colors.purple[700]
+								{ secondary
+									@ light colors.green[300]
+									@ main colors.green[500]
+									@ dark colors.green[700]
+
+				const {
+					\b AddIcon,
+					\b DeleteIcon,
+					\b } = muiIcons
+				log 'AddIcon', AddIcon
+
+
+				$$ $include App
+				$include dynapp/index
+
+				_ ReactDOM.render
+					$$ < StyledApp
+					< DynApp
+					_ document.getElementById
+						@ 'root'

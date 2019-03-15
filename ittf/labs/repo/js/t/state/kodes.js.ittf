@@ -1,0 +1,15 @@
+﻿$group
+
+	var bxKodes
+		{
+			@ AREA
+				{
+					@ STATE 'STATE'
+					@ REPO 'REPO'
+			@ STATE
+				{
+					@ SUCCESS 'SUCCESS'
+					@ FAILURE 'FAILURE'
+					@ LOADING 'LOADING'
+			$include kodes/events
+			$include kodes/repo		

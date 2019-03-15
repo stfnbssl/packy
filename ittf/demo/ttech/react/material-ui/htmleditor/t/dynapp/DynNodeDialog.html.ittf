@@ -1,0 +1,80 @@
+﻿$group
+
+	withStyles( DynNodeDialog )
+
+		style 
+
+		state
+			@ elementType ''
+			@ name ''
+		
+		did-mount
+			prop elementType
+			prop name
+			prop uid
+
+			set this.uid_key = uid + 'DynNodeDialog'
+			set this.nameId = this.uid_key + '_name'
+			set this.elementTypeId = this.uid_key + '_elementType'
+
+			_ this.setState
+				{
+					@ elementType elementType
+					@ name name
+
+		=> handleInputChange
+			param e
+			const target = e.target
+			const value = target.type === 'checkbox' ? target.checked : target.value
+			const name = target.name.split('_')[1]
+			
+			log 'DynNodeDialog.handleInputChange', name, value
+
+			var newState
+				{
+					@ ...this.state
+					@ [name] value
+			_ this.setState(newState)
+
+			prop uid
+			if value && value.length > 0
+				const mTreeNode = global.mTreeNodes[uid]
+				set mTreeNode[name] = value
+				_ mTreeNode.hasChanged
+
+		=> handleElementTypeChange
+			param selectedItem
+			# log 'DynNodeDialog.handleElementTypeChange', selectedItem
+			_ this.setState
+				{
+					@ elementType selectedItem
+			prop uid
+			const mTreeNode = global.mTreeNodes[uid]
+			_ mTreeNode.set('elementType', selectedItem)
+
+		render
+			prop classes
+			prop uid
+			const mTreeNode = global.mTreeNodes[uid]
+			const PropEditor = mTreeNode.createPropertyEditor(0)
+			const children = [ PropEditor ]
+			
+			return
+				div
+					@ key { this.uid_key }
+					< Table
+						< TableBody
+							< TableRow
+								< TableCell
+									< MyDownshift
+										name { this.elementTypeId }
+										@ items { global.componentTypes }
+										@ selectedItem { this.state.elementType }
+										@ onChange { this.handleElementTypeChange }
+										@ placeholder {'Select element type'}
+								< TableCell
+									< Input
+										name { this.nameId }
+										value { this.state.name }
+										@ onChange { this.handleInputChange }
+					+ { PropEditor }

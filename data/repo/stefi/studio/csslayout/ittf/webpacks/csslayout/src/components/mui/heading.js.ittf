@@ -1,0 +1,23 @@
+﻿r-component( Heading )
+
+	style
+
+	render
+		prop data
+		const { format, text, span, style: styleProp } = data
+			
+		if format === 'h1.span'
+			return
+				h1 { text }
+					@style { styleProp.h1 }
+					span { span }
+						@style { styleProp.span }
+			
+		elif format === 'h1'
+			return
+				h1 { text }
+					@style { styleProp.h1 }
+			
+		else
+			return
+				div { 'Unknown Heading format ' + format }					

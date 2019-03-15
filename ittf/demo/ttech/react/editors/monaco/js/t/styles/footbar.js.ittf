@@ -1,0 +1,15 @@
+﻿$group
+	$params &opt
+
+	@ footbar
+		{
+			@ height '60px'
+			@ display 'flex'
+			@ flexDirection 'column'
+
+	@ footbarCommands
+		{
+			@ borderTop '1px solid #3d3f20'
+			@ marginTop '15px'
+			@ height '40px'
+			@ width '100%'

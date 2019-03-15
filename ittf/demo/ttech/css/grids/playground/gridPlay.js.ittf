@@ -1,0 +1,122 @@
+﻿module 
+    kind jsfile
+	var
+		decl grid_template_columns = "100px 100px"
+		decl grid_template_rows = "150px 150px"
+		decl grid_gap = "20px"
+		decl flex
+    
+	_ $
+        function 
+            var demo = $("#demo")
+            var demo_styles = $("#demo_styles")
+            var flex_items = $("#demo .flex-item")
+            var pallete = Math.floor(Math.random() * 360) + 100
+            
+			_ $('.grid-item')
+                ._ each
+                    function 
+                        param i
+                        var hue = pallete + i * 5
+                        var background_color = 'background:hsl(' + hue + ',50%,75%)'
+                        _ $(this)
+                            ._ attr("style", background_color)
+            
+			_ $(window)
+                ._ load
+                    function 
+						
+						$include updateResult
+                        
+						_ $("body")
+                            ._ addClass("go")
+                        
+						_ $("#toggle-controls")
+                            ._ click
+                                function 
+                                    _ $("#sidebar")
+                                        ._ toggleClass("minimized")
+                        
+						_ $('#grid-template-columns-control')
+                            ._ blur
+                                function 
+                                    set grid_template_columns
+                                        _ $('#grid-template-columns-control')
+                                            ._ val()
+                                    _ updateResult()
+                        
+						_ $('#grid-template-rows-control')
+                            ._ blur
+                                function 
+                                    set grid_template_rows
+                                        _ $('#grid-template-rows-control')
+                                            ._ val()
+                                    _ updateResult()
+
+						_ $('#grid-gap-control')
+                            ._ blur
+                                function 
+                                    set grid_gap
+                                        _ $('#grid-gap-control')
+                                            ._ val()
+                                    _ updateResult()
+
+                        _ $('#grid-column-start-control, #grid-column-end-control')
+                            ._ change
+                                function 
+                                    var grid_column_start
+                                        _ $('#grid-column-start')
+                                            ._ val()
+                                    var grid_column_end
+                                        _ $('#grid-column-end')
+                                            ._ val()
+                                    _ updateResult()
+                        
+                        _ $('#grid-row-start-control, #grid-row-end-control')
+                            ._ change
+                                function 
+                                    var grid_row_start
+                                        _ $('#grid-row-start')
+                                            ._ val()
+                                    var grid_row_end
+                                        _ $('#grid-row-end')
+                                            ._ val()
+                                    _ updateResult()
+                        
+						var text_array
+                            [ 
+                                @ "banana"
+                                @ "lorem"
+                                @ "culpa"
+                                @ "anim"
+                                @ "mollit"
+                                @ "id"
+                                @ "est"
+                                @ "laborum"
+                        
+						var c = 0
+                        _ $("#count-increase")
+                            ._ click
+                                function 
+                                    set c++
+                                    if c > 7
+                                        set c = 0
+                                    var flex_item_text = text_array[c]
+                                    var last_attr_style
+                                        _ $("#demo .flex-item")
+                                            ._ last()
+                                                ._ attr("style")
+                                    var base = last_attr_style.substring(15, 18)
+                                    var hue = (parseInt(base) + 5)
+                                    var new_flex_item = '<div style="background:hsl(' + hue + ',50%,75%);" class="flex-item"><span contenteditable="true">'
+										\b + flex_item_text + 
+										\b '</span></div>'
+                                    _ demo.append(new_flex_item)
+                        
+						_ $("#count-decrease")
+                            ._ click
+                                function 
+                                    if $("#demo .flex-item").length > 1
+                                        _ $("#demo .flex-item")
+                                            ._ last()
+                                                ._ remove()

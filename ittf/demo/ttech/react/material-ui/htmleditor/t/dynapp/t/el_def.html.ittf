@@ -1,0 +1,20 @@
+﻿$group
+	$params prefix, name
+	
+	const ${prefix}_${name}
+		{
+			@ type 'element'
+			@ name '${name}'
+			$if prefix === 'mui'
+				@ component window['material-ui']['${name}']
+			$else
+				@ component ${name}
+			[ props
+				$hook
+    set global.assets['cmp_${name}'] = ${prefix}_${name}
+	$if prefix === 'mui'
+		set global.componentTypes['${name}'] = window['material-ui']['${name}']
+	$elif prefix === 'react-editor'
+		set global.componentTypes['${name}'] = window['reactEditorLib.default']['${name}']
+	$else
+		set global.componentTypes['${name}'] = ${name}

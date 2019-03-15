@@ -1,0 +1,81 @@
+module
+    kind jsfile
+
+	var fs = require('fs')
+	var path = require('path')
+
+	var UTILS
+		{
+			@ isObject
+				function
+					param obj
+					var type = typeof obj
+					return type === 'function' || type === 'object' && !!obj
+			@ isArray
+				function
+					param obj
+					if Array.isArray
+						return Array.isArray(obj)
+					else
+						return toString.call(obj) === '[object Array]'
+			@ isString
+				function
+					param obj
+					return toString.call(obj) === '[object String]'
+			@ isNumber
+				function
+					param obj
+					return toString.call(obj) === '[object Number]'
+			@ isDate
+				function
+					param obj
+					return toString.call(obj) === '[object Date]'
+			@ isFunction
+				function
+					param obj
+					return toString.call(obj) === '[object Function]'
+
+			@ isUndefined
+				function
+					param obj
+					return obj === void 0
+			@ keys
+				function
+					param obj
+					if !UTILS.isObject(obj)
+						return []
+					if Object.keys
+						return Object.keys(obj)
+					var keys = []
+					for var key in obj
+						if hasOwnProperty.call(obj, key)
+							_ keys.push(key)
+					return keys
+			@ objkeyToString
+				function
+					param objkey
+					return JSON.stringify(objkey, null, 0)
+			@ extractKey
+				function
+					param keyNames
+					param obj
+					var objkey = {}
+					foreach keyname in keyNames
+						set objkey[keyname] = obj[keyname]
+					return objkey
+			@ isValidPath
+				function
+					param path
+					param callback
+
+					_ fs.stat
+						@ path
+						function 
+							param err
+							param stat
+							if err
+								return
+									_ callback(err)
+							_ callback(null)
+
+	set module.exports = UTILS

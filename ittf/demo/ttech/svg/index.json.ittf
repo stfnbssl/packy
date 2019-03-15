@@ -1,0 +1,11 @@
+{
+
+	$
+		var opt = {
+			name: 'svg',
+			label: 'Svg',
+			experimentsWith: 'the Scalar Vector Graphics (SVG) technology',
+			path: []
+		};
+
+	ttech-frame(&opt)

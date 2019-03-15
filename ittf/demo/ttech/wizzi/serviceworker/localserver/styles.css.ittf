@@ -1,0 +1,10 @@
+﻿css
+	
+	$include s/modal
+	$include s/editor
+	$include s/contextmenu
+	
+	. code-edit-button
+		cursor pointer
+		& :hover
+			text-decoration underline

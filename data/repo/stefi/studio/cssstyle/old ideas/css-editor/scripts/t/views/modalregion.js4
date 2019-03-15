@@ -1,0 +1,22 @@
+﻿bb_view Spa.ModalRegion : Backbone.Marionette.Region
+	__# see http://lostechies.com/derickbailey/2012/04/17/managing-a-modal-dialog-with-backbone-and-marionette/
+
+	__p el #modal
+
+	method constructor
+		Backbone.Marionette.Region.prototype.constructor.apply(this, arguments);
+		this.on("show", this.showModal, this);
+
+	method getEl selector
+		var $el = $(selector);
+		$el.on("hidden", this.close);
+		return $el;
+
+	method showModal view
+		view.on("close", this.hideModal, this);
+		this.$el.addClass('modal');
+		this.$el.modal({ backdrop: 'static', show: true });
+
+	method hideModal
+		this.$el.removeClass('modal');
+		this.$el.modal('hide');

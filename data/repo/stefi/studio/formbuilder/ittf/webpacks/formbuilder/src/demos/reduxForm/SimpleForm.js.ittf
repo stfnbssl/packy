@@ -1,0 +1,25 @@
+﻿r-form( SimpleForm )
+
+	$append imports
+
+	return
+		form
+			@ onSubmit {handleSubmit}
+			
+			text( firstName, First Name )
+			text( lastName, Last Name )
+			email( email, Email )
+			radio-group( Sex )
+				radio( sex, male, Male )
+				radio( sex, female, Female )
+			select( favoriteColor, Favorite Color) 
+				option( )
+				option( ff0000 , Red )
+				option( 00ff00 , Green )
+				option( 0000ff , Blue )
+			checkbox( employed, Employed )
+			textarea( notes, Notes )
+				+ bla bla
+			div
+				button-submit()
+				button-clear()

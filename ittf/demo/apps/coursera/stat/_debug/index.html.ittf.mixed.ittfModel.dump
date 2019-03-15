@@ -1,0 +1,327 @@
+  html  ids: 9 61
+    $args:  $params: commands|@@null
+    $  ids: 11 62
+      var std_js = true; ids: 12 63
+      var std_css = true; ids: 13 64
+      var std_sidebar = true; ids: 14 65
+      var cmds = commands ? commands.trim().split(';') : [] ids: 15 66
+    $foreach cmd in cmds ids: 16 67
+      $if cmd.trim() == 'nojs' ids: 17 68
+        $ std_js = false; ids: 18 69
+      $if cmd.trim() == 'nocss' ids: 19 70
+        $ std_css = false; ids: 20 71
+      $if cmd.trim() == 'nosidebar' ids: 21 72
+        $ std_sidebar = false; ids: 22 73
+    head  ids: 23 74
+      $if std_css ids: 24 75
+        css /static/lib/bootstrap/dist/css/bootstrap.css ids: 25 76
+      @style  ids: 26 77
+        $. body {__LS__  min-height: 2000px;__LS__  padding-top: 101px;__LS__} __LS__.navbar {__LS__  border-radius: 0;__LS__} __LS__.form-control { color: #000; font-weight:bold}__LS__textarea { font-family:  Verdana, Lucida Console, monospace; }__LS__input { font-family: Verdana, Lucida Console, monospace; }__LS__.wz-row { margin-top: 30px; } ids: 27 78
+      $hook head-styles-0 ids: 39 90
+      $hook head-styles ids: 40 91
+      $hook head-styles-2 ids: 41 92
+    body  ids: 42 93
+      nav  ids: 365 370
+        class navbar navbar-inverse navbar-fixed-top ids: 366 371
+        role navigation ids: 367 372
+        . container-fluid ids: 368 373
+          $  ids: 242 304
+            $args: false  $params: isloggedin:boolean|false
+            var pagecontext = {}; ids: 243 305
+          . navbar-header ids: 375 394
+            $args: WizziMT, /, demo-navbar-collapse-1  $params: label, href, target
+            style margin-left:50px; ids: 377 395
+            button  ids: 378 396
+              type button ids: 379 397
+              class navbar-toggle ids: 380 398
+              data-toggle collapse ids: 381 399
+              data-target #${target} ids: 382 400
+              span Toggle navigation ids: 383 401
+                class sr-only ids: 384 402
+              span  ids: 385 403
+                class icon-bar ids: 386 404
+              span  ids: 387 405
+                class icon-bar ids: 388 406
+              span  ids: 389 407
+                class icon-bar ids: 390 408
+            a ${label} ids: 391 409
+              class navbar-brand ids: 392 410
+              href ${href} ids: 393 411
+          . collapse navbar-collapse ids: 245 307
+            id demo-navbar-collapse-1 ids: 246 308
+            form  ids: 247 309
+              class navbar-form navbar-left ids: 248 310
+              . form-group ids: 249 311
+                $hook breadcrumb ids: 250 312
+            ul  ids: 251 313
+              class nav navbar-nav ids: 252 314
+              li  ids: 253 315
+                class dropdown ids: 254 316
+                a Html, js, css demos <b class="caret"></b> ids: 255 317
+                  href # ids: 256 318
+                  class dropdown-toggle ids: 257 319
+                  data-toggle dropdown ids: 258 320
+                ul  ids: 259 321
+                  class dropdown-menu ids: 260 322
+                  li  ids: 412 418
+                    $args: Target technologies, /ittf/demo/ttech/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 414 419
+                    tabindex -1 ids: 415 420
+                    a ${text} ids: 416 421
+                      href ${href} ids: 417 422
+                  li  ids: 412 423
+                    $args: Demo apps, /ittf/demo/apps/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 414 424
+                    tabindex -1 ids: 415 425
+                    a ${text} ids: 416 426
+                      href ${href} ids: 417 427
+                  li  ids: 412 428
+                    $args: Action three, /ittf/demo/action1/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 414 429
+                    tabindex -1 ids: 415 430
+                    a ${text} ids: 416 431
+                      href ${href} ids: 417 432
+                  li  ids: 433 435
+                    class divider ids: 434 436
+                  li  ids: 412 437
+                    $args: Action four, /ittf/demo/action1/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 414 438
+                    tabindex -1 ids: 415 439
+                    a ${text} ids: 416 440
+                      href ${href} ids: 417 441
+            form  ids: 266 328
+              class navbar-form navbar-left ids: 267 329
+              role search ids: 268 330
+              . form-group ids: 442 450
+                $args: navSearch  $params: id, label|@@null, labelclass|@@null
+                $if label ids: 444 451
+                  label ${label} ids: 445 452
+                    for ${id} ids: 446 453
+                    class ${labelclass} ids: 447 454
+                . col-sm-10 ids: 448 455
+                  input  ids: 457 463
+                    $args: fc_nav_search, Search  $params: id, label
+                    type text ids: 459 464
+                    class form-control ids: 460 465
+                    id ${id} ids: 461 466
+                    placeholder ${label} ids: 462 467
+              button ${label} ids: 468 474
+                $args: Submit  $params: label, kind|default, id|@@null
+                type submit ids: 470 475
+                class btn btn-${kind} ids: 471 476
+                $if id !== null ids: 472 477
+                  id ${id} ids: 473 478
+            ul  ids: 272 334
+              class nav navbar-nav ids: 273 335
+              li  ids: 274 336
+                class dropdown ids: 275 337
+                a Support <b class="caret"></b> ids: 276 338
+                  href # ids: 277 339
+                  class dropdown-toggle ids: 278 340
+                  data-toggle dropdown ids: 279 341
+                ul  ids: 280 342
+                  class dropdown-menu ids: 281 343
+                  li  ids: 412 479
+                    $args: Features, /ittf/demo/features/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 414 480
+                    tabindex -1 ids: 415 481
+                    a ${text} ids: 416 482
+                      href ${href} ids: 417 483
+                  li  ids: 412 484
+                    $args: Issues, /ittf/demo/issues/index.html.ittf  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 414 485
+                    tabindex -1 ids: 415 486
+                    a ${text} ids: 416 487
+                      href ${href} ids: 417 488
+                  li  ids: 412 489
+                    $args: Contacts, #  $params: text, href, clazz|@@null
+                    class ${clazz} ids: 414 490
+                    tabindex -1 ids: 415 491
+                    a ${text} ids: 416 492
+                      href ${href} ids: 417 493
+              li  ids: 412 494
+                $args: Docs, /ittf/docs/index.html.ittf  $params: text, href, clazz|@@null
+                class ${clazz} ids: 414 495
+                tabindex -1 ids: 415 496
+                a ${text} ids: 416 497
+                  href ${href} ids: 417 498
+            ul  ids: 286 348
+              class nav navbar-nav navbar-right ids: 287 349
+              $if isloggedin ids: 288 350
+                li  ids: 412 499
+                  $args: ${pagecontext.email}, /account/profile?user=${pagecontext.email}  $params: text, href, clazz|@@null
+                  class ${clazz} ids: 414 500
+                  tabindex -1 ids: 415 501
+                  a ${text} ids: 416 502
+                    href ${href} ids: 417 503
+                li  ids: 412 504
+                  $args: Sign out, /account/logout  $params: text, href, clazz|@@null
+                  class ${clazz} ids: 414 505
+                  tabindex -1 ids: 415 506
+                  a ${text} ids: 416 507
+                    href ${href} ids: 417 508
+              $else  ids: 291 353
+                li  ids: 292 354
+                  class dropdown ids: 293 355
+                  a Sign In <strong class="caret"></strong> ids: 294 356
+                    class dropdown-toggle ids: 295 357
+                    href # ids: 296 358
+                    data-toggle dropdown ids: 297 359
+                  div  ids: 298 360
+                    class dropdown-menu ids: 299 361
+                    style padding: 15px; padding-bottom: 0px; ids: 300 362
+                    form  ids: 509 546
+                      action /account/login ids: 510 547
+                      method post ids: 511 548
+                      accept-charset UTF-8 ids: 512 549
+                      label Email ids: 513 550
+                        class string optional ids: 514 551
+                        for user_email ids: 515 552
+                      input  ids: 516 553
+                        id user_email ids: 517 554
+                        style margin-bottom: 15px; ids: 518 555
+                        type text ids: 519 556
+                        name user[email] ids: 520 557
+                        size 30 ids: 521 558
+                      label Password ids: 522 559
+                        class string optional ids: 523 560
+                        for user_password ids: 524 561
+                      input  ids: 525 562
+                        id user_password ids: 526 563
+                        style margin-bottom: 15px; ids: 527 564
+                        type password ids: 528 565
+                        name user[password] ids: 529 566
+                        size 30 ids: 530 567
+                      input  ids: 531 568
+                        id user_remember_me ids: 532 569
+                        style float: left; margin-right: 10px; ids: 533 570
+                        type checkbox ids: 534 571
+                        name user[remember_me] ids: 535 572
+                        value 1 ids: 536 573
+                      label Remember me ids: 537 574
+                        class string optional ids: 538 575
+                        for user_remember_me ids: 539 576
+                      input  ids: 540 577
+                        class btn btn-primary ids: 541 578
+                        style clear: left; width: 100%; height: 32px; font-size: 13px; ids: 542 579
+                        type submit ids: 543 580
+                        name commit ids: 544 581
+                        value Sign In ids: 545 582
+                li  ids: 412 583
+                  $args: Register, /ittf/demo/account/register.html.ittf  $params: text, href, clazz|@@null
+                  class ${clazz} ids: 414 584
+                  tabindex -1 ids: 415 585
+                  a ${text} ids: 416 586
+                    href ${href} ids: 417 587
+      . container ids: 44 95
+        . row ids: 45 96
+          $if std_sidebar ids: 46 97
+            . col-md-2 ids: 47 98
+              $hook left-sidebar ids: 48 99
+              . wz-row ids: 49 100
+                ul  ids: 180 588
+                  class list-group ids: 181 589
+                  li  ids: 184 590
+                    $args: "Essential js tools", http://www.sitepoint.com/essential-tools-libraries-modern-javascript-developers/  $params: text, href, clazz|list-group-item
+                    class ${clazz} ids: 186 591
+                    tabindex -1 ids: 187 592
+                    a ${text} ids: 188 593
+                      href ${href} ids: 189 594
+          . col-md-8 ids: 52 103
+            $append breadcrumb ids: 112 118
+              ul  ids: 124 126
+                class breadcrumb list-inline ids: 125 127
+                li  ids: 128 135
+                  $args: Wizzi, /ittf/home/index.html.ittf  $params: text, href
+                  tabindex -1 ids: 130 136
+                  a ${text} ids: 131 137
+                    href ${href} ids: 132 138
+                  span  ids: 133 139
+                    class divider ids: 134 140
+                li  ids: 128 141
+                  $args: Demo apps, /ittf/demo/apps/index.html.ittf  $params: text, href
+                  tabindex -1 ids: 130 142
+                  a ${text} ids: 131 143
+                    href ${href} ids: 132 144
+                  span  ids: 133 145
+                    class divider ids: 134 146
+                li  ids: 128 147
+                  $args: Coursera, /ittf/demo/apps/coursera/index.html.ittf  $params: text, href
+                  tabindex -1 ids: 130 148
+                  a ${text} ids: 131 149
+                    href ${href} ids: 132 150
+                  span  ids: 133 151
+                    class divider ids: 134 152
+                li ${text} ids: 153 156
+                  $args: Statistic  $params: text
+                  class list-group-item active ids: 155 157
+            h1 Coursera Statistic ids: 3 7
+            ul  ids: 180 182
+              class list-group ids: 181 183
+              li  ids: 184 190
+                $args: "Exploring data", /ittf/demo/apps/coursera/stat/data.html.ittf  $params: text, href, clazz|list-group-item
+                class ${clazz} ids: 186 191
+                tabindex -1 ids: 187 192
+                a ${text} ids: 188 193
+                  href ${href} ids: 189 194
+              li  ids: 184 195
+                $args: "Correlation and regression", /ittf/demo/apps/coursera/stat/correlation.html.ittf  $params: text, href, clazz|list-group-item
+                class ${clazz} ids: 186 196
+                tabindex -1 ids: 187 197
+                a ${text} ids: 188 198
+                  href ${href} ids: 189 199
+              li  ids: 184 200
+                $args: "Probability", /ittf/demo/apps/coursera/stat/probability.html.ittf  $params: text, href, clazz|list-group-item
+                class ${clazz} ids: 186 201
+                tabindex -1 ids: 187 202
+                a ${text} ids: 188 203
+                  href ${href} ids: 189 204
+              li  ids: 184 205
+                $args: "Probability distributions", /ittf/demo/apps/coursera/stat/probability_distr.html.ittf  $params: text, href, clazz|list-group-item
+                class ${clazz} ids: 186 206
+                tabindex -1 ids: 187 207
+                a ${text} ids: 188 208
+                  href ${href} ids: 189 209
+              li  ids: 184 210
+                $args: "Sampling distributions", /ittf/demo/apps/coursera/stat/sampled.html.ittf  $params: text, href, clazz|list-group-item
+                class ${clazz} ids: 186 211
+                tabindex -1 ids: 187 212
+                a ${text} ids: 188 213
+                  href ${href} ids: 189 214
+              li  ids: 184 215
+                $args: "Confidence intervals", /ittf/demo/apps/coursera/stat/ci.html.ittf  $params: text, href, clazz|list-group-item
+                class ${clazz} ids: 186 216
+                tabindex -1 ids: 187 217
+                a ${text} ids: 188 218
+                  href ${href} ids: 189 219
+              li  ids: 184 220
+                $args: "Sample size", /ittf/demo/apps/coursera/stat/samples.html.ittf  $params: text, href, clazz|list-group-item
+                class ${clazz} ids: 186 221
+                tabindex -1 ids: 187 222
+                a ${text} ids: 188 223
+                  href ${href} ids: 189 224
+              li  ids: 184 225
+                $args: "Hypotheses", /ittf/demo/apps/coursera/stat/hypoth.html.ittf  $params: text, href, clazz|list-group-item
+                class ${clazz} ids: 186 226
+                tabindex -1 ids: 187 227
+                a ${text} ids: 188 228
+                  href ${href} ids: 189 229
+              li  ids: 184 230
+                $args: "MathJAX reference", http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference  $params: text, href, clazz|list-group-item
+                class ${clazz} ids: 186 231
+                tabindex -1 ids: 187 232
+                a ${text} ids: 188 233
+                  href ${href} ids: 189 234
+              li  ids: 184 235
+                $args: "MathJAX TeXSyntax", http://www.onemathematicalcat.org/MathJaxDocumentation/TeXSyntax.htm  $params: text, href, clazz|list-group-item
+                class ${clazz} ids: 186 236
+                tabindex -1 ids: 187 237
+                a ${text} ids: 188 238
+                  href ${href} ids: 189 239
+      $if std_js ids: 54 105
+        js /static/lib/underscore/underscore.js ids: 55 106
+        js /static/lib/jquery/dist/jquery.js ids: 56 107
+        js /static/lib/bootstrap/dist/js/bootstrap.js ids: 57 108
+      $hook body-scripts-0 ids: 58 109
+      $hook body-scripts ids: 59 110
+      $hook body-scripts-2 ids: 60 111

@@ -1,0 +1,6 @@
+﻿__o
+	$args name label|@@null class|@@null
+	__p name ${name}
+	__p label ${label}
+	__p class be-stack
+	__p type:object Wmteditor.StackWidget

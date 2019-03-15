@@ -1,0 +1,8 @@
+﻿artifact ${name}
+	$params name, destname|@@null
+	src ${name}
+	$if destname
+		dest-rel-path ${destname}
+	g swig
+	model-ref webapp
+	model-ref rdbms

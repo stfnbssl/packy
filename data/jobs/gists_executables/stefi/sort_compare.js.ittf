@@ -1,0 +1,47 @@
+/*
+    artifact generator: C:\My\wizzi\v5\apps\node_modules\wizzi-js\lib\artifacts\js\module\gen\main.js
+    primary source IttfDocument: c:/my/wizzi/v5/apps/wizzi-studio/wizzi-studio-express/dist/server/data/jobs/gists/stefi/sort_compare.js.ittf
+    utc time: Mon, 03 Sep 2018 14:46:16 GMT
+*/
+'use strict';
+function compareFsItems(a, b) {
+    var a_has_children = a.children && a.children.length > 0;
+    var b_has_children = b.children && b.children.length > 0;
+    if (a_has_children && !b_has_children) {
+        return -1;
+    }
+    else if (b_has_children && !a_has_children) {
+        return 1;
+    }
+    else if (a.name < b.name) {
+        return -1;
+    }
+    else if (b.name < a.name) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+var arr = [
+    {
+        name: 'zorro'
+    }, 
+    {
+        name: 'beta', 
+        children: [
+            'uu'
+        ]
+    }, 
+    {
+        name: 'alfa', 
+        children: [
+            'oo'
+        ]
+    }, 
+    {
+        name: 'chicco'
+    }
+];
+var sorted = arr.sort(compareFsItems);
+console.log(JSON.stringify(sorted, null, 2));

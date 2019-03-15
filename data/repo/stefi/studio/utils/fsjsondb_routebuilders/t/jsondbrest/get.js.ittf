@@ -1,0 +1,37 @@
+﻿_ router.get
+	@ '/'
+	function
+		param req
+		param res
+
+		log 'router.get.req.query', req.query
+
+		var paging
+			{
+				@ on false
+		if req.query.pageSize && req.query.pageCurrent
+			var pageSize = parseInt(req.query.pageSize, 10) 
+			var pageCurrent = parseInt(req.query.pageCurrent, 10)
+			set paging.on = true
+			set paging.pageSize = pageSize
+			set paging.pageCurrent = pageCurrent
+			set paging.firstItem = pageSize * (pageCurrent - 1) + 1
+			set paging.lastItem = pageSize * pageCurrent
+
+		if req.query.queryTerm && req.query.queryTerm.length > 0
+			_ collectionDb.search
+				@ null
+				@ req.query.queryTerm
+				@ paging
+				function
+					param err
+					param list
+					send_json( list )
+		else
+			_ collectionDb.find
+				@ null
+				@ paging
+				function
+					param err
+					param list
+					send_json( list )

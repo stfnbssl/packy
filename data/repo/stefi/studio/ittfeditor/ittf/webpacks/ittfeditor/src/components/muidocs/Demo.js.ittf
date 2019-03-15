@@ -1,0 +1,106 @@
+﻿r-component( Demo )
+
+	$append imports
+	
+		import IconButton from 'material-ui/IconButton'
+		import Collapse from 'material-ui/transitions/Collapse'
+		import CodeIcon from 'material-ui-icons/Code'
+		import MarkdownElement from './MarkdownElement'
+		# const requireDemos = require.context('home/src', true, /\.js$/)
+		# const requireDemoSource = require.context('!raw-loader!home/src', true, /\.js$/)
+
+	prop classes
+		{
+		required
+	
+	prop demo
+		string
+		required
+
+	style
+    
+		@ root
+			{ 
+				@ fontFamily theme.typography.fontFamily
+				@ position 'relative'
+				@ backgroundColor theme.palette.background.contentFrame
+				@ marginBottom 40
+				@ marginLeft -16
+				@ marginRight -16
+    
+		@ demo
+			_ theme.mixins.gutters
+				{ 
+					@ display 'flex'
+					@ justifyContent 'center'
+					@ paddingTop 20
+					@ paddingBottom 20
+    
+		@ codeButton
+			{ 
+				@ display 'none'
+				@ zIndex 10
+				@ position 'absolute'
+				@ top 2
+				@ right 7
+    
+		@ code
+			{ 
+				@ display 'none'
+				@ padding 0
+				@ margin 0
+				@ '& pre'
+					{ 
+						@ overflow 'auto'
+						@ margin '0px !important'
+						@ borderRadius '0px !important'
+    
+		@ [theme.breakpoints.up(600)]
+			{ 
+				@ codeButton
+					{ 
+						@ display 'block'
+				@ code
+					{ 
+						@ display 'block'
+				@ root
+					{ 
+						@ marginLeft 0
+						@ marginRight 0
+
+	state
+		@ codeOpen false
+
+	=> handleCodeButtonClick
+		_ this.setState
+			{
+				@ codeOpen !this.state.codeOpen
+
+	render
+		
+		prop classes
+		prop demo
+
+		# const DemoComponent = requireDemos(`./${demo}`).default
+		# const demoSource = requireDemoSource(`./${demo}`)
+		# const code = `\`\`\`js\n${demoSource}\n\`\`\``
+
+		return
+			h1 Demo {demo} not implemented
+			$*
+			div
+				@ className {classes.root}
+				< IconButton
+					@ onClick {this.handleCodeButtonClick}
+					@ className {classes.codeButton}
+					< CodeIcon
+				< Collapse
+					@ in {this.state.codeOpen}
+					< MarkdownElement
+						@ className {classes.code}
+						@ text {code}
+				div
+					@ className {classes.demo}
+					@ data-mui-demo {demo}
+					< DemoComponent
+			*$

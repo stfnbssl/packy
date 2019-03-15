@@ -1,0 +1,117 @@
+﻿module
+	kind
+
+	function getValue
+		param valueAcc
+		log valueAcc
+		var
+			decl v_start = -1
+			decl v_end
+			decl v_ch
+		for var i=0; i<valueAcc.length; i++
+			set v_ch = valueAcc[i]
+			if v_ch === ' ' || v_ch === '\t'
+				# skip
+			else
+				if v_start < 0
+					set v_start = i
+				set v_end = i
+		log "v_start, v_end", v_start, v_end
+		if valueAcc.length > v_start + 1 && valueAcc[v_start] === '\\' && valueAcc[v_start+1] === 'b'
+			set v_start += 2
+		if v_end > v_start + 1 && valueAcc[v_end] === 'b' && valueAcc[v_end-1] === '\\'
+			set v_end -= 2
+		log "v_start, v_end", v_start, v_end
+		return valueAcc.slice(v_start, v_end + 1).join('')
+
+	function stringAppend
+		param times
+		param stringLen
+
+		var str = new Array(stringLen).join('a')
+		var acc = ''
+		for var i=0;i<times;i++
+			set acc += str
+	
+	function stringPush
+		param times
+		param stringLen
+
+		var str = new Array(stringLen).join('a')
+		var acc_a = []
+		for var i=0;i<times;i++
+			_ acc_a.push(str)
+		var acc = acc_a.join('')
+
+	class Perf
+		ctor
+			param fn1
+			param fn2
+			param paramValues1
+			param paramValues2
+			set this.fn1 = fn1
+			set this.fn2 = fn2
+			set this.paramValues1 = paramValues1
+			set this.paramValues2 = paramValues2
+
+		m exec
+			var result = []
+			if this.paramValues1 && this.paramValues1.length
+				if this.paramValues2 && this.paramValues2.length
+					foreach pv1 in this.paramValues1
+						var result2 = []
+						foreach pv2 in this.paramValues2
+							_ result2.push
+								{
+									@ p1 pv1
+									@ p2 pv2
+									@ result
+										_ this.execItem
+											@ pv1
+											@ pv2
+						_ result.push(result2)
+				else
+					foreach pv1 in this.paramValues1
+						_ result.push
+							{
+								@ p1 pv1
+								@ result
+									_ this.execItem
+										@ pv1
+			else
+				_ result.push
+					{
+						@ result
+							_ this.execItem
+			return result
+
+		m execItem
+			param p1
+			param p2
+			var start1 = new Date()
+			_ this.fn1
+				@ p1
+				@ p2
+			var end1 = new Date()
+			var result1 = end1 - start1
+			var start2 = new Date()
+			_ this.fn2
+				@ p1
+				@ p2
+			var end2 = new Date()
+			var result2 = end2 - start2
+			return [ result1, result2]
+
+	var p
+		new Perf
+			@ stringAppend
+			@ stringPush
+			@ [ 1000000, 5000000 ]
+			@ [ 1, 10, 50 ]
+	
+	if false
+		var r
+			_ p.exec
+		log 'Result', JSON.stringify(r, null, 4)
+
+	

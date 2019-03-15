@@ -1,0 +1,17 @@
+﻿var Comments
+	=>
+		param { comments: c }
+		if !c || !c.length
+			return null
+		else
+			return
+				div
+					@ className schema-comments-box
+					{
+						_ c.map
+							=>
+								param comment
+								param index
+								return
+									div { comment }
+										@ key {index}

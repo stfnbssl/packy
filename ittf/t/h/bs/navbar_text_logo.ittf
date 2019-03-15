@@ -1,0 +1,21 @@
+. navbar-header
+	$params label, href, target
+	style margin-left:50px;
+	
+	button
+		type button
+		class navbar-toggle
+		data-toggle collapse
+		data-target #${target}
+		span Toggle navigation
+			class sr-only
+		span
+			class icon-bar
+		span
+			class icon-bar
+		span
+			class icon-bar
+	
+	a ${label}
+		class navbar-brand
+		href ${href}

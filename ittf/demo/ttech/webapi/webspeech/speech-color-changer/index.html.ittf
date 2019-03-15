@@ -1,0 +1,15 @@
+h/root/empty_layout( webspeech phrase matcher )
+
+	$append head-styles
+        css ./style.css.ittf
+    
+    body 
+        h1 Speech color changer
+        p 
+            class hints
+        div 
+            p 
+                class output
+                em ...diagnostic messages
+    
+	js script.js.ittf

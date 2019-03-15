@@ -1,0 +1,148 @@
+html
+
+	$include options
+
+	$include common/options-init
+
+	$
+		opt.logo_w = 70;
+		opt.logo_h = 30;
+		opt.sidebar_1 = false;
+		opt.sb_1_min_w = 0;
+		opt.title = 'Wizzi cheat sheets';
+	
+	$include common/options-analize
+
+	layout( &opt )
+
+		$append head-styles
+			css style.css
+
+			@style
+
+				$
+					var cbase = ['#B9D2DE',	'#919FA6', '#3C7590', '#D1E5EE', '#D9E7EE' ]
+					var cseca = ['#C0C4E3', '#9799AA', '#3E4893', '#D5D9F1', '#DDDFF1' ]
+					var csecb = ['#BDE5CE', '#95AC9F', '#3D9563', '#D2F2E0', '#DBF2E5' ]
+					var ccomp = ['#FFEAD2', '#BFB4A6', '#A67944', '#FFF0DE', '#FFF4E7' ]
+
+				css
+					. grid
+						display grid
+						grid-template-columns 1fr 1fr 1fr
+						grid-gap 20px
+						align-items stretch
+						padding 2rem
+					. grid > li
+						border 1px solid #ccc
+						box-shadow 2px 2px 6px 0px  rgba(0,0,0,0.3)
+					. grid > article img
+						max-width 100%
+					
+					. card1
+						box-shadow 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15)
+						border-radius 8px
+						< a
+							color #111
+					
+					. card1-teaser
+						font-size 34px
+						padding 2rem
+
+					. card1-title
+						font-size 24px
+						font-weight 900
+						padding 1rem 2rem 2rem 2rem
+						$$ background #FFEAD2
+
+					. card1-sub-title
+						font-size 16px
+						padding 0 2rem 1rem 2rem
+
+					. card1-ittf
+						background ${cbase[0]}
+
+					. card1-mtree
+						background ${cbase[0]}
+
+					. card1-html
+						background ${cbase[4]}
+
+					. card1-css
+						background ${cbase[2]}
+
+					. card1-scss
+						background ${cbase[2]}
+
+					. card1-svg
+						background ${cbase[3]}
+
+					. card1-js
+						background ${cseca[0]}
+					
+					. card1-svg
+						background ${cseca[1]}
+
+					. card1-md
+						background ${cseca[2]}
+
+					. card1-vtt
+						background ${cseca[3]}
+
+					. text
+						padding 0 20px 20px
+					. text > button
+						background gray
+						border 0
+						color white
+						padding 10px
+						width 100%
+
+
+
+
+		$$ h/root/layout( Documentation )
+
+		# mc-wrapper
+			class mc-wrapper-layout
+
+			. mc-frame-bar
+				div Wizzi cheat sheets
+					class mc-frame-bar-item
+			. mc-frame
+
+				. grid
+					
+					card1( ittf, Start here, ittf & jsWizzi, ./ittf.html,
+						\ Familiarize with the indented tree text format and its script engine
+					
+					card1( mtree, Powerful, mTree composition, ./mtree.html,
+						\ Building complex models composing ittf documents
+					
+					card1( ittf, Geeky, jsWizzi inside, ./jswizzi.html,
+						\ How a jsWizzi script builds up an mTree.
+
+					card1( html, Intuitive, html schema, ./html.html,
+						\ Simple to start with
+					
+					card1( css, Html companion, css schema, ./css.html )
+					
+					card1( scss, More than CSS, scss schema, ./scss.html )
+					
+					card1( js, Geeky, js schema, ./js.html,
+						\ Templating javascript modules
+					
+					card1( ts, Advanced, ts schema, ./ts.html,
+						\ Templating typescript modules
+
+					card1( svg, Funny, svg schema, ./svg.html,
+						\ Model driven 2D graphics
+					
+					card1( md, Start here, md (markdown) schema, ./md.html,
+						\ An html like markdown
+					
+					card1( vtt, Start here, vtt schema, ./vtt.html,
+						\ Simple video text formatter
+					
+					card1( json, Easy, json (pseudo) schema, ./json.html,
+						\ The ubiquitous data model

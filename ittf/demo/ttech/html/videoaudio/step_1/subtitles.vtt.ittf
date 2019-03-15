@@ -1,0 +1,68 @@
+﻿vtt
+
+	#
+		style
+			:: #figo
+				color lime
+			:: .red
+				color red
+
+	region rBottomCenter
+		width 80%
+		lines 3
+		region-anchor 50%,100% 
+		viewport-anchor 50%,90%
+		scroll up
+
+	cue 0 10
+		position 10%,line-left
+		align left
+		size 35%
+		+ Ganzo
+
+	cue 10 15
+		c
+			. red
+			. bg_yellow
+			+ Che figo
+
+	cue 15 20
+		id figo
+		region rBottomCenter
+		p Extra
+		p Figo
+		p Extra
+		p Figo
+		p Extra
+		p Figo
+		p Extra
+		p Figo
+
+
+	cue 20 26
+		+ Extra \b
+			u Fighissimo
+
+	cue 26 28
+		+ Bello bello
+
+	cue 28 30
+		+ Bello\b
+			b bello
+	
+	cue 30 33
+		+ Bello\b
+			b bello\b
+				u bello\b
+
+	cue 33 36
+		+ Bello\b
+			b bello\b
+				u bello\b
+					i bello
+
+	cue 36 40
+		+ Bello bello bello
+
+	cue 40 3:35
+		+ Na magata

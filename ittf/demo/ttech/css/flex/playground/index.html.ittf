@@ -1,0 +1,73 @@
+﻿h/root/empty_layout()
+    
+	$append head-styles
+        @title Cssexplorer
+        link 
+            rel stylesheet
+            type text/css
+            href css/cssExplorer.css.ittf
+            media screen
+        
+
+    section 
+        class flex
+        aside 
+            id sidebar
+            class sidebar flex
+            hgroup 
+                class hgroup flex
+                a cssexplorer
+                    href https://wizzifactory.github.io/cssexplorer
+                span &lsaquo;
+                    class toggle-controls
+                    id toggle-controls
+            menu 
+                class controls flex
+
+				h/select( css-feature, css-feature, none,
+					\b float;flexbox;grid
+
+				$include ./flexBox
+
+                $include h/twitter
+            
+		figure 
+            id demo
+            class flex-container demo
+				
+			$ var items = 'Lorem ipsum;dolor;sit;amet;consectetur;adipiscing elit;nunc:enim;nunc;volutpat eget;aliquam;nec;accumsan rutrum;bacon;maecenas;nunc;voldermere;it;las;quid;tostidos;gray';
+				
+			$foreach item in items.split(';')
+				. flex-item
+					span ${item}
+						contenteditable true
+				
+    section 
+        class results flex
+        @style 
+            data-noprefix 
+            class demo-styles
+            id demo_styles
+            contenteditable true
+            $. 
+                .flex-container {
+					display: -webkit-flex;
+					display: flex;
+					-webkit-flex-flow: row wrap;
+                flex-flow: row wrap;
+                }
+                .flex-item {
+					-webkit-flex: 1 auto;
+					flex: 1 auto;
+                }
+        . resources
+            h1 New features support
+            h2 
+                a CSS Flexible Box
+                    href  https://caniuse.com/#feat=flexbox
+            h2 
+                a CSS Grid
+                    href https://caniuse.com/#search=css%20grid
+        
+	js https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
+	js js/flexExplorer.js.ittf

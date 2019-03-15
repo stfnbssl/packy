@@ -1,0 +1,21 @@
+﻿module 
+    kind react
+	+
+	import { GET_COMMONS_SUCCESS } from '../actions'
+	+
+	const commonsInitialState
+		{
+			@ projects []
+			@ packages []
+			@ schemas []
+	+
+	r( commons, commonsInitialState )
+	
+		c( GET_COMMONS_SUCCESS
+			{
+				@ ...state
+				@ packages Object.values(action.payload.packages)
+				@ projects Object.values(action.payload.projects)
+				@ schemas Object.values(action.payload.schemas)
+
+	export default commonsReducer

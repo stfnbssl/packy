@@ -1,0 +1,10 @@
+﻿$group
+
+	folder src
+		aspect package-src
+	folder dist
+		aspect package-build
+	folder t
+		aspect package-t
+	folder src/ittf
+		aspect package-ittf

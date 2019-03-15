@@ -1,0 +1,595 @@
+﻿$group
+
+	# module 
+		# kind jsfile
+
+	var module
+		{
+			{ exports
+    
+	var md
+        set module.exports =
+            { 
+
+    var START = 0
+    var WAIT_PROP_NAME = 1
+	var WAIT_PROP_VALUE = 2
+    # VIA var WAIT_ITEM = 3
+    var PROP_NAME = 4
+	var PROP_VALUE = 5
+	var PROP_VALUE_STRING = 6
+	var WAIT_PROP_COMMA = 7
+	var WAIT_OBJECT_CLOSE = 8
+	
+	var WAIT_ARRAY_VALUE = 10
+	var ARRAY_VALUE = 11
+	var ARRAY_VALUE_STRING = 12
+	var WAIT_ARRAY_COMMA = 13
+	var WAIT_ARRAY_CLOSE = 14
+	
+	var WAIT_COLON = 20
+
+	var COMMENT_COULD = 30
+	var COMMENT_SINGLE_IS = 31
+	var COMMENT_MULTI_IS = 32
+	var COMMENT_MULTI_END_COULD = 33
+	
+	function isWhiteSpace
+		param ch
+		if ch === '\n'
+			return true
+		if ch === '\t'
+			return true
+		if ch === '\r'
+			return true
+		if ch === ' '
+			return true
+		return false
+
+	set md.parse
+        function 
+            param input
+			param handlers
+			param callback
+
+			log 'input', input
+            
+			var state
+                { 
+                    @ cur START
+                    @ prev null
+                    @ stack
+                        [ 
+                    @ line 1
+                    @ col 1
+                    @ chprev null
+					@ name []
+					@ value []
+					@ hb []
+            
+			for var k in handlers
+                set state[k] = handlers[k]
+
+			function onObject
+				param open
+				_ state.onObject
+					@ open
+
+			function onArray
+				param open
+				_ state.onArray
+					@ open
+
+			function onPropName
+				_ state.onPropName
+					@ state.name.join('')
+				set state.name.length = 0
+
+			function onObjectProp
+				_ state.onObjectProp
+					@ state.name.join('')
+				set state.name.length = 0
+
+			function onArrayProp
+				_ state.onArrayProp
+					@ state.name.join('')
+				set state.name.length = 0
+
+			function onProp
+				_ state.onProp
+					@ state.name.join('')
+					@ state.value.join('')
+				set state.name.length = 0
+				set state.value.length = 0
+
+			function onClosePropName
+				_ state.onClosePropName
+
+			function onArrayValue
+				_ state.onArrayValue
+					@ state.value.join('')
+				set state.value.length = 0
+
+			function onHandlebar
+				_ state.onHandlebar
+					@ state.hb.join('')
+				set state.hb.length = 0
+
+			function error
+				param ch
+				set state.ch = ch
+				return
+					_ callback
+						@ state
+			
+			var 
+                decl ch
+                decl l = input.length
+            
+			for var i = 0; i < l; i++
+				set state.col++
+                set ch = input[i]
+				# log 'ch', ch, 'state', state.cur
+				log 'ch, state.cur', ch, ch.charCodeAt(0), state.cur
+
+				function withEscapeCheck
+					param arr
+					# beware NO real ESCAPE !!!
+					# this is not a real parser but simply a wizzifier !!!
+					_ arr.push(ch)
+					if ch === '\\' && i + 1 < l
+						set i++
+						set state.col++
+						set ch = input[i]
+						_ arr.push(ch)
+					# always true
+					return true
+
+				function setString
+					if state.cur === PROP_VALUE_STRING || state.cur === ARRAY_VALUE_STRING
+						return withEscapeCheck(state.value)
+					elif state.cur === PROP_NAME
+						return withEscapeCheck(state.name)
+					else
+						return false
+
+				function tryCommentOrString
+					param doSetString
+					# log 'ch, state.cur', ch, ch.charCodeAt(0), state.cur
+					if ch === '/'
+						if setString()
+							return true
+						elif state.cur === COMMENT_SINGLE_IS || state.cur === COMMENT_MULTI_IS
+							return true
+						elif state.cur === COMMENT_COULD
+							set state.cur = COMMENT_SINGLE_IS
+							return true
+						elif state.cur === COMMENT_MULTI_END_COULD
+							log 'COMMENT_MULTI_END_COULD done', state.before_comment
+							set state.cur = state.before_comment
+							return true
+						else
+							log 'COMMENT_COULD prev', state.cur
+							set state.before_comment = state.cur
+							set state.cur = COMMENT_COULD
+							return true
+					elif ch === '*'
+						if setString()
+							return true
+						elif state.cur === COMMENT_SINGLE_IS
+							return true
+						elif state.cur === COMMENT_COULD
+							set state.cur = COMMENT_MULTI_IS
+							return true
+						elif state.cur === COMMENT_MULTI_IS
+							log 'COMMENT_MULTI_END_COULD'
+							set state.cur = COMMENT_MULTI_END_COULD
+							return true
+						else
+							return false
+					else
+						if state.cur === COMMENT_COULD
+							set state.cur = state.before_comment
+							_ setString('/')
+							if doSetString
+								return setString()
+							else
+								return false
+						elif state.cur === COMMENT_MULTI_END_COULD
+							if ch === '/'
+								set state.cur = state.before_comment
+							else
+								set state.cur = COMMENT_MULTI_IS
+							return true
+						elif state.cur === COMMENT_SINGLE_IS
+							log 'COMMENT_SINGLE_IS', ch === '\n'
+							if ch === '\n'
+								set state.cur = state.before_comment
+								set state.line++
+								set state.col = 0
+							return true
+						elif state.cur === COMMENT_MULTI_IS
+							if ch === '*'
+								set state.cur = COMMENT_MULTI_END_COULD
+							return true
+						else
+							if doSetString
+								return setString()
+							else
+								return false
+
+
+				function tryHB
+					var j, chb, gop = 1
+					for j = i+1; j < l; j++
+						set chb = input[j]
+						# log 'tryHB state', state.cur, 'ch', chb, 'gop', gop
+						if gop == 1
+							if chb === '{'
+								set gop++
+							elif isWhiteSpace(chb)
+								# ok
+							else
+								return false
+						elif gop == 2 
+							if '{[]'.indexOf(chb) > -1
+								set state.hb.length = 0
+								return false
+							elif chb === '}'
+								set gop++
+							else
+								_ state.hb.push(chb)
+						elif gop == 3 
+							if isWhiteSpace(chb)
+								# ok
+							elif chb === '}'
+								_ onHandlebar
+								set i = j
+								return true
+							else
+								set state.hb.length = 0
+								return false
+						else
+							set state.hb.length = 0
+							return false
+
+				if ch === '{'
+					if tryCommentOrString(true)
+						# ok
+					elif state.cur === START
+						_ onObject(true)
+						_ state.stack.push(state.cur)
+						set state.cur = WAIT_PROP_NAME
+					elif state.cur === WAIT_ARRAY_VALUE
+						if tryHB() == false
+							_ state.stack.push(WAIT_ARRAY_COMMA)
+							_ onObject(true)
+							set state.cur = WAIT_PROP_NAME
+					elif state.cur === WAIT_PROP_VALUE
+						if tryHB() == false
+							# _ onPropName
+							_ onObjectProp
+							set state.cur = WAIT_PROP_COMMA
+							_ state.stack.push(state.cur)
+							# _ onObject(true)
+							set state.cur = WAIT_PROP_NAME
+					elif state.cur === ARRAY_VALUE
+						_ onArrayValue
+						if tryHB() == false
+							return error(ch)
+					elif state.cur === PROP_VALUE
+						_ onObjectProp
+						if tryHB() == false
+							return error(ch)
+					elif state.cur === WAIT_PROP_NAME
+						if tryHB() == false
+							_ onObject(true)
+							_ state.stack.push(state.cur)
+							set state.cur = WAIT_PROP_NAME
+					elif state.cur === WAIT_ARRAY_COMMA ||
+						\b state.cur === WAIT_PROP_COMMA
+						if tryHB() == false
+							return error(ch)
+					else
+						return error(ch)
+				
+				elif ch === '}'
+					# no setString
+					if tryCommentOrString(false)
+						# ok
+					elif state.cur === PROP_VALUE_STRING || state.cur === ARRAY_VALUE_STRING
+						_ state.value.push(ch)
+					elif state.cur === PROP_NAME
+						_ state.name.push(ch)
+					elif state.cur === PROP_VALUE
+						_ onProp
+						_ onObject(false)
+						set state.cur = state.stack.pop(ch)
+						# FIXME
+							if state.cur === WAIT_PROP_COMMA
+								_ onClosePropName
+					elif state.cur === WAIT_OBJECT_CLOSE
+						# accept comma after last prop
+						_ onObject(false)
+						set state.cur = state.stack.pop(ch)
+					else
+						_ onObject(false)
+						set state.cur = state.stack.pop(ch)
+						# FIXME
+							if state.cur === WAIT_PROP_COMMA
+								_ onClosePropName
+
+				elif ch === '['
+					if tryCommentOrString(true)
+						# ok
+					elif state.cur === START
+						_ onArray(true)
+						_ state.stack.push(state.cur)
+						set state.cur = WAIT_ARRAY_VALUE
+					elif state.cur === WAIT_ARRAY_VALUE
+						_ onArray(true)
+						_ state.stack.push(WAIT_ARRAY_COMMA)
+					elif state.cur === WAIT_PROP_VALUE
+						# _ onPropName
+						_ onArrayProp
+						_ state.stack.push(WAIT_PROP_COMMA)
+						# _ onArray(true)
+						set state.cur = WAIT_ARRAY_VALUE
+					else
+						return error(ch)
+
+				elif ch === ']'
+					if tryCommentOrString(true)
+						# ok
+					elif state.cur === ARRAY_VALUE
+						_ onArrayValue
+						_ onArray(false)
+						set state.cur = state.stack.pop(ch)
+						# FIXME
+							if state.cur === WAIT_PROP_COMMA
+								_ onClosePropName
+					elif state.cur === WAIT_ARRAY_VALUE
+						# empty array
+						_ onArray(false)
+						set state.cur = state.stack.pop(ch)
+					elif state.cur === WAIT_ARRAY_CLOSE
+						# accept comma after last value
+						_ onArray(false)
+						set state.cur = state.stack.pop(ch)
+					elif state.cur === WAIT_ARRAY_COMMA
+						_ onArray(false)
+						set state.cur = state.stack.pop(ch)
+					else
+						return error(ch)
+					# FIXME
+						if state.cur === WAIT_PROP_COMMA
+							_ onClosePropName
+
+				elif ch === ':'
+					if tryCommentOrString(true)
+						# ok
+					elif state.cur === WAIT_COLON
+						set state.cur = WAIT_PROP_VALUE
+					else
+						return error(ch)
+
+				elif ch === '"'
+					# no setString
+					if tryCommentOrString(false)
+						# ok
+					elif state.cur === WAIT_PROP_NAME
+						set state.cur = PROP_NAME
+					elif state.cur === PROP_NAME
+						set state.cur = WAIT_COLON
+					elif state.cur === WAIT_PROP_VALUE
+						_ state.value.push(ch)
+						set state.cur = PROP_VALUE_STRING
+					elif state.cur === PROP_VALUE_STRING
+						_ state.value.push(ch)
+						_ onProp
+						set state.cur = WAIT_PROP_COMMA
+					elif state.cur === WAIT_ARRAY_VALUE
+						_ state.value.push(ch)
+						set state.cur = ARRAY_VALUE_STRING
+					elif state.cur === ARRAY_VALUE_STRING
+						_ state.value.push(ch)
+						_ onArrayValue
+						set state.cur = WAIT_ARRAY_COMMA
+					else
+						return error(ch)
+
+				elif ch === ','
+					if tryCommentOrString(true)
+						# ok
+					elif state.cur === PROP_VALUE
+						_ onProp
+						set state.cur = WAIT_PROP_NAME
+					elif state.cur === ARRAY_VALUE
+						_ onArrayValue
+						set state.cur = WAIT_ARRAY_VALUE
+					elif state.cur === WAIT_PROP_COMMA
+						set state.cur = WAIT_PROP_NAME
+					elif state.cur === WAIT_ARRAY_COMMA
+						set state.cur = WAIT_ARRAY_VALUE
+					elif state.cur === 	WAIT_ARRAY_VALUE
+						# allow comma after last value
+						set state.cur = WAIT_ARRAY_CLOSE
+					elif state.cur === 	WAIT_PROP_NAME
+						# allow comma after last prop
+						set state.cur = WAIT_OBJECT_CLOSE
+					else
+						return error(ch)
+
+			
+				else
+					if tryCommentOrString(true)
+						# ok
+					elif ch === '\n'
+						set state.line++
+						set state.col = 0
+					elif ch === ' ' || ch === '\t' || ch === '\r'
+						# skip
+					elif state.cur === PROP_VALUE || state.cur === ARRAY_VALUE
+						_ state.value.push(ch)
+					elif state.cur === WAIT_PROP_VALUE
+						_ state.value.push(ch)
+						set state.cur = PROP_VALUE
+					elif state.cur === WAIT_ARRAY_VALUE
+						_ state.value.push(ch)
+						set state.cur = ARRAY_VALUE
+					else
+						return error(ch)
+
+			return
+				_ callback
+					@ null
+					@ state
+
+	var json_parser = md
+
+	function parseInternal
+		param jsonString
+		param options
+		param callback
+			
+		if typeof callback === 'undefined'
+			set callback = options
+			set options = {}
+		set options = (options || {})
+
+		var wizziTree
+			{ 
+				@ children
+					[ 
+		_ json_parser.parse
+			@ jsonString
+			{ 
+				@ onObject
+					function 
+						param open
+						# log  'onObject', open
+						if open
+							var n
+								{ 
+									@ tag '{'
+									@ name ''
+									@ children
+										[ 
+							set n.parent = wizziTree
+							_ wizziTree.children.push(n)
+							set wizziTree = n
+						else
+							# log  "onObject wizziTree.tag", wizziTree.tag
+							set wizziTree = wizziTree.parent
+							# log  "onObject wizziTree.tag", wizziTree.tag
+				@ onArray
+					function
+						param open
+						# log  'onArray', open
+						if open
+							var n
+								{ 
+									@ tag '['
+									@ name ''
+									@ children
+										[ 
+							set n.parent = wizziTree
+							_ wizziTree.children.push(n)
+							set wizziTree = n
+						else
+							# FIXME
+							# log  "onArray wizziTree.tag", wizziTree.tag
+							set wizziTree = wizziTree.parent
+							# log  "onArray wizziTree.tag", wizziTree.tag
+				@ onPropName
+					function 
+						param name
+						# log  "onPropName", name
+						var n
+							{ 
+								@ tag name
+								@ name ''
+								@ children
+									[ 
+						set n.parent = wizziTree
+						_ wizziTree.children.push(n)
+						# log  wizziTree.tag
+						set wizziTree = n
+						# log  wizziTree.tag
+				@ onProp
+					function 
+						param name
+						param value
+						# log  "onProp", name, value
+						var n
+							{ 
+								@ tag name
+								@ name value
+								@ children
+									[ 
+						set n.parent = wizziTree
+						_ wizziTree.children.push(n)
+				@ onObjectProp
+					function 
+						param name
+						# log  "onObjectProp", name
+						var n
+							{ 
+								@ tag '{'
+								@ name name
+								@ children
+									[ 
+						set n.parent = wizziTree
+						_ wizziTree.children.push(n)
+						set wizziTree = n
+				@ onArrayProp
+					function 
+						param name
+						# log  "onObjectProp", name
+						var n
+							{ 
+								@ tag '['
+								@ name name
+								@ children
+									[ 
+						set n.parent = wizziTree
+						_ wizziTree.children.push(n)
+						set wizziTree = n
+				@ onClosePropName
+					function
+						# log  'onClosePropName'
+						set wizziTree = wizziTree.parent
+				@ onArrayValue
+					function 
+						param value
+						# log  "onArrayValue", value
+						var n
+							{ 
+								@ tag value
+								@ name ''
+								@ children
+									[ 
+						_ wizziTree.children.push(n)
+				@ onHandlebar
+					function 
+						param hb
+						# log  "onHandlebar", hb
+						var n
+							{ 
+								@ tag '{{'
+								@ name hb
+								@ children
+									[ 
+						_ wizziTree.children.push(n)
+			f_cb( result )
+				while wizziTree.parent != null
+					set wizziTree = wizziTree.parent
+				# log  'wizziTree\n', wizziTree
+				var synthax = wizziTree.children[0]
+				if !synthax
+					return
+						_ callback
+							new Error('Json.Wizzifier.Wizzi parse failed. wizziTree: ' + util.inspect(wizziTree, {depth: 2}))
+				r_cb( synthax )
+
+

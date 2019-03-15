@@ -1,0 +1,85 @@
+nav
+	$params isloggedin:boolean|false
+	$
+		var pagecontext = {};
+	class navbar navbar-inverse navbar-fixed-top no-margin $* navbar-default *$
+	role navigation
+	. container-fluid
+		h/bs/navbar_text_logo( WizziMT, /, demo-navbar-collapse-1 )
+		. collapse navbar-collapse
+			id demo-navbar-collapse-1
+			form
+				class navbar-form navbar-left
+				. form-group
+					$hook breadcrumb
+			ul
+				class nav navbar-nav
+				$*
+				h/li_a( Home, /ittf/home/index.html.ittf, active )
+				h/li_a( Section one, # )
+				h/li_a( Section two, # )
+				*$
+				li
+					class dropdown
+					a Html, js, css demos <b class="caret"></b>
+						href #
+						class dropdown-toggle
+						data-toggle dropdown
+					ul
+						class dropdown-menu
+						h/li_a( Target technologies, /ittf/demo/ttech/index.html.ittf )
+						h/li_a( Demo apps, /ittf/demo/apps/index.html.ittf )
+						h/li_a( Action three, /ittf/demo/action1/index.html.ittf )
+						h/li_divider()
+						h/li_a( Action four, /ittf/demo/action1/index.html.ittf )
+			$*
+			ul
+				class nav navbar-nav
+				li
+					class dropdown
+					a Section four <b class="caret"></b>
+						href #
+						class dropdown-toggle
+						data-toggle dropdown
+					ul
+						class dropdown-menu
+						h/li_a( Action one, /ittf/demo/action1/index.html.ittf )
+						h/li_a( Action two, /ittf/demo/action1/index.html.ittf )
+			*$
+			form
+				class navbar-form navbar-left
+				role search
+				h/bs/form_group( navSearch )
+					h/bs/i_text( fc_nav_search, Search )
+				h/bs/btn( Submit )
+			ul
+				class nav navbar-nav
+				li
+					class dropdown
+					a Support <b class="caret"></b>
+						href #
+						class dropdown-toggle
+						data-toggle dropdown
+					ul
+						class dropdown-menu
+						h/li_a( Features, /ittf/demo/features/index.html.ittf )
+						h/li_a( Issues, /ittf/demo/issues/index.html.ittf )
+						h/li_a( Contacts, # )
+				h/li_a( Docs, /ittf/docs/index.html.ittf )
+			ul
+				class nav navbar-nav navbar-right
+				$if isloggedin
+					h/li_a( ${pagecontext.email}, /account/profile?user=${pagecontext.email} )
+					h/li_a( Sign out, /account/logout )
+				$else
+					li
+						class dropdown
+						a Sign In <strong class="caret"></strong>
+							class dropdown-toggle
+							href #
+							data-toggle dropdown
+						div
+							class dropdown-menu
+							style padding: 15px; padding-bottom: 0px;
+							login_form()
+					h/li_a( Register, /ittf/demo/account/register.html.ittf )

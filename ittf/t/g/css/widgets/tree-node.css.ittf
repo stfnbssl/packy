@@ -1,0 +1,78 @@
+﻿$group
+
+	. tree-node
+        position relative
+		font-size 13px
+		line-height 1.8
+		. copying
+			border 1px dashed #dedede
+		. cutting
+			border 1px dashed #dedede
+			opacity 0.5
+		. icon-item-group
+			position relative !important
+			display inline-block !important
+			width 100% !important
+			cursor pointer !important
+			z-index 1 !important
+			white-space nowrap !important
+			outline 0px !important
+			padding 0px 16px !important
+			& .selected
+				background #cdcdcd
+		. item-name
+			vertical-align -1px !important
+			user-select none !important
+			margin 0px 6px !important
+    
+	. tree-node .tree-child-leaves
+        display block
+        margin-left 15px
+    
+	. tree-node .hidden
+        display none
+    
+	. tree-node .tree-expando
+        background #ddd
+        border-radius 3px
+        cursor pointer
+        float left
+        height 10px
+        line-height 10px
+        position relative
+        text-align center
+        top 5px
+        width 10px
+    
+	. tree-node .hidden
+        visibility hidden
+    
+	. tree-node .tree-expando:hover
+        background #aaa
+    
+	. tree-node .tree-node-text
+        cursor pointer
+        float left
+        margin-left 5px
+    
+	. tree-node .tree-node-text:hover
+        color blue
+    
+	. tree-node .tree-node-content
+		display flex
+		flex-direction row
+		& :hover
+			background #dedede
+
+	. tree-node-context-menu-on
+		background #cdcdcd
+	
+	$*
+	. tree-node .tree-node-content:before
+        + .tree-node .tree-node-content:after
+        content " "
+        display table
+    
+	. tree-node .tree-node-content:after
+        clear both
+	*$

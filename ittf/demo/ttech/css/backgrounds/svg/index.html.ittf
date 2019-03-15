@@ -1,0 +1,8 @@
+﻿h/root/empty_layout()
+
+	$append head-styles
+		css css/reset.css.ittf
+		css css/styles.css.ittf
+	
+	. wrapper
+		. page

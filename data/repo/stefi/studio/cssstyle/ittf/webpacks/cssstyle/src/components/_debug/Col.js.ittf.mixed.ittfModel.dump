@@ -1,0 +1,27 @@
+  module  ids: 1 28
+    kind react ids: 2 29
+    +  ids: 3 30
+    import React, { Component, PropTypes } from 'react' ids: 4 31
+    class Col ids: 5 32
+      super Component ids: 6 33
+      m render ids: 7 34
+        const { span, children } = this.props ids: 8 35
+        return  ids: 9 36
+          div  ids: 10 37
+            @style {getStyle(span)} ids: 11 38
+            + {children} ids: 12 39
+    function getStyle ids: 13 40
+      param span ids: 14 41
+      return  ids: 15 42
+        {  ids: 16 43
+          @ boxSizing "border-box" ids: 17 44
+          @ position "relative" ids: 18 45
+          @ width (span / 12 * 100) + '%' ids: 19 46
+          @ float "left" ids: 20 47
+          @ paddingLeft 10 ids: 21 48
+          @ paddingRight 10 ids: 22 49
+          @ minHeight 1 ids: 23 50
+    set Col.propTypes ids: 24 51
+      {  ids: 25 52
+        @ span PropTypes.number.isRequired ids: 26 53
+    export default Col ids: 27 54

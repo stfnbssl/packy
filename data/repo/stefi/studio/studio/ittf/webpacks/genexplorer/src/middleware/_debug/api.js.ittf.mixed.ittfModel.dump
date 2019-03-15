@@ -1,0 +1,69 @@
+  module  ids: 1 70
+    kind react ids: 2 71
+    import util ids: 3 72
+    import _ from 'lodash' ids: 4 73
+    import utils from '../lib/utils' ids: 5 74
+    import http from './http' ids: 6 75
+    import config from './config' ids: 7 76
+    +  ids: 8 77
+    const { notEmptyString } = utils ids: 9 78
+    const error = utils.error('reduxstarter/middleware/api') ids: 10 79
+    const throwError = utils.throwError('reduxstarter/middleware/api') ids: 11 80
+    +  ids: 12 81
+    const timers = {} ids: 13 82
+    +  ids: 14 83
+    function validateHttpRequest ids: 15 84
+      param store ids: 16 85
+      param actionHttpRequest ids: 17 86
+      +  ids: 18 87
+      const { types } = actionHttpRequest ids: 19 88
+      +  ids: 20 89
+      if !types || !types.length || types.length != 3 ids: 21 90
+        _ throwError ids: 22 91
+          @ 'The requestType, successType and failureType action types are required. actionHttpRequest: ' + util.inspect(actionHttpRequest, { depth:null }) ids: 23 92
+          @ 'validateHttpRequest' ids: 24 93
+    var api ids: 25 94
+      function  ids: 26 95
+        param store ids: 27 96
+        return  ids: 28 97
+          function  ids: 29 98
+            param next ids: 30 99
+            return  ids: 31 100
+              function  ids: 32 101
+                param action ids: 33 102
+                +  ids: 34 103
+                log 'reduxstarter.middleware.api.action:', action ids: 35 104
+                +  ids: 36 105
+                # The action requires an http request? ids: 37 106
+                const actionHttpRequest = action[config.HTTP_REQUEST] ids: 38 107
+                if typeof actionHttpRequest === 'undefined' ids: 39 108
+                  # NO ids: 40 109
+                  return next(action) ids: 41 110
+                # YES ids: 42 111
+                _ validateHttpRequest ids: 43 112
+                  @ store ids: 44 113
+                  @ actionHttpRequest ids: 45 114
+                #  ids: 46 115
+                if actionHttpRequest.delayId ids: 47 116
+                  if timers[actionHttpRequest.delayId] ids: 48 117
+                    _ clearInterval(timers[actionHttpRequest.delayId]) ids: 49 118
+                  log new Date().getSeconds(), 'setting delayed request', actionHttpRequest.delayId ids: 50 119
+                  set timers[actionHttpRequest.delayId] ids: 51 120
+                    _ setInterval ids: 52 121
+                      function  ids: 53 122
+                        log new Date().getSeconds(), 'executing delayed', actionHttpRequest.delayId ids: 54 123
+                        _ http.sendRequest ids: 55 124
+                          @ actionHttpRequest ids: 56 125
+                          @ action ids: 57 126
+                          @ next ids: 58 127
+                        _ clearInterval(timers[actionHttpRequest.delayId]) ids: 59 128
+                        delete timers[actionHttpRequest.delayId] ids: 60 129
+                      @ actionHttpRequest.delay ids: 61 130
+                  return timers[actionHttpRequest.delayId] ids: 62 131
+                else  ids: 63 132
+                  return  ids: 64 133
+                    _ http.sendRequest ids: 65 134
+                      @ actionHttpRequest ids: 66 135
+                      @ action ids: 67 136
+                      @ next ids: 68 137
+    export default api ids: 69 138

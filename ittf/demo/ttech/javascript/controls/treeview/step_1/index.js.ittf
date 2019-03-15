@@ -1,0 +1,75 @@
+﻿module
+	kind es6
+
+	$include g/js/wz/core
+	$include g/js/wz/node
+	$include g/js/wz/ace
+	$include g/js/wz/htmlBuilder
+	$include g/js/wz/contextMenu
+	$include g/js/wz/standalone
+	$include g/js/widgets/editorControl
+	$include g/js/widgets/itemUtils
+	$include g/js/widgets/treeNode
+	$include g/js/widgets/treeView
+	$include g/js/widgets/treeFilesystem
+
+	$include js/browserFilesystem
+	$include js/gitActions
+	$include js/appManager
+	$include js/ittfEditManager
+	$include js/resultBrowser
+	$include js/resultBar
+	$include js/sampleTreeData
+	$include js/editBrowseController
+
+	let glEventHub = new EventEmitter3()
+	set window.glEventHub = glEventHub
+	set window.path = wz.utils.path
+
+    async-function prompt
+        param text
+        if typeof text === 'string'
+            return 
+                _ Swal
+                    { 
+                        @ text
+                        @ input 'text'
+                        @ useRejections true
+        else
+            if typeof text === 'object'
+                if text.input === undefined
+                    set text.input = 'text'
+                set text.useRejections = true
+                return Swal(text)
+
+
+	$*
+	var folderPath = '/ixdb/wizzi/default'
+	_ wz.fs.getFolders
+        @ folderPath
+        {
+            @ deep false
+		a_cb_throw( result )
+			# log 'getFolders.result', '\n', JSON.stringify(result, null, 2)
+			_ wz.fs.getFiles
+				@ folderPath
+				{
+					@ deep false
+					@ documentContent true
+				a_cb_throw( result )
+					# log 'getFiles.result', '\n', JSON.stringify(result, null, 2)
+
+	_ wz.fs.getTreeFolderView
+		@ folderPath
+		a_cb_throw( result )
+			# log 'getTreeFolderView.result', '\n', JSON.stringify(result, null, 2)
+	*$
+
+	var app
+		new AppManager
+			{
+				@ rootFolder '/ixdb'
+				@ formsContainerId 'forms-container'
+	_ app.start
+
+	

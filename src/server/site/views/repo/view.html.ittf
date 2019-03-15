@@ -1,0 +1,37 @@
+layout()
+    . w3-card-4
+        h1 ${user.nickname}
+        h2 Repository ${repo.name}
+        h4 Revisions
+        ul
+            $foreach rev in repo._revisions
+                li 
+                    a ${rev.ref}
+                        href ${rev.url}
+        $foreach rev in repo._revisions
+            pre
+                code
+                    + ${JSON.stringify(rev, null, 2)}
+        h4 Commits
+        ul
+            $foreach commit in repo._commits
+                li 
+                    a ${commit.commit.message} ${commit.author.date} ${commit.author.login}
+                        href ${commit.html_url}
+        $foreach commit in repo._commits
+            pre
+                code
+                    + ${JSON.stringify(commit, null, 2)}                    
+
+        h4 Contents
+        ul
+            $foreach content in repo._contents
+                li 
+                    a ${content.path}
+                        href ${content.html_url}
+                    a url
+                        href ${content.url}
+        $foreach content in repo._contents
+            pre
+                code
+                    + ${JSON.stringify(content, null, 2)}                                        

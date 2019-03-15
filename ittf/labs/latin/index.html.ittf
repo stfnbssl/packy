@@ -1,0 +1,167 @@
+﻿html
+	head
+		css css/latin.css.ittf
+	body
+	h1 Latin
+	table
+		class latin-table
+		tr
+			td presente
+			td
+				p o, as, at, āmus, ātis, ant
+				p eo, es, et, ēmus, ētis, ent
+				p o, is, it, īmus, ītis, unt
+				p io, is, it, īmus, ītis, iunt
+				
+		tr
+			td imperfetto
+			td
+				p ā-bam, ā-bas, ā-bat, a-bāmus, a-bātis, ā-bant
+				p ē-bam, ē-bas, ē-bat, e-bāmus, e-bātis, ē-bant
+				p ē-bam, ē-bas, ē-bat, e-bāmus, e-bātis, ē-bant
+				p iē-bam, iē-bas, iē-bat, ie-bāmus, ie-bātis, iē-bant
+				
+		tr
+			td futuro
+			td
+				p ābo, ābis, ābit, abīmus, abītis, ābunt
+				p ēbo, ēbis, ēbit, ebīmus, ebītis, ēbunt
+				p am, es, et, ēmus, ētis, ent
+				p iam, ies, iet, iēmus, iētis, ient
+				
+		tr
+			td perfetto
+			td
+				p i, isti, it, imus, istis, erunt
+				
+		tr
+			td piùccheperfetto
+			td
+				p ĕram, ĕras, ĕrat, erāmus, erātis, ĕrant
+				
+		tr
+			td futuro anteriore
+			td
+				p ĕro, ĕris, ĕrit, erīmus, erītis, ĕrint
+				
+		tr
+			td presente
+			td
+				p em, es, et, ēmus, ētis, ent
+				p ĕam, eas, eat, eāmus, eātis, eant
+				p am, as, at, āmus, ātis, ant
+				p iam, ias, iat, iāmus, iātis, iant
+				
+		tr
+			td imperfetto
+			td
+				p ā-rem, ā-res, ā-ret, a-rĕmus, a-rĕtis, ā-rent
+				p ē-rem, ē-res, ē-ret, e-rĕmus, e-rĕtis, ē-rent
+				p ĕ-rem, ĕ-res, ĕ-ret, e-rēmus, e-rētis, ĕ-rent
+				p i-rem, i-res, i-ret, i-rēmus, i-rētis, i-rent
+				
+		tr
+			td perfetto
+			td
+				p ĕrim, ĕris, ĕrit, erīmus, erītis, ĕrint
+				
+		tr
+			td piùccheperfetto
+			td
+				p iss-em, iss-es, iss-et, iss-ēmus, iss-ētis, iss-ent
+
+
+	table
+		class latin-table
+		tr
+			td Agg I classe ŭs, ă, ŭm
+			td
+				table-mfn()
+					caso(N, ŭs, ă, ŭm, i, ae, ă)
+					caso(G, i, ae, i, ōrum, ārum, ōrum)
+					caso(D, ō, ae, ō, is, is, is)
+					caso(A, ŭm, ăm, ŭm, ōs, ās, ā)
+					caso(V, ĕ, ā, ŭm, i, ae, ă)
+					caso(A, ō, ā, ō, is, is, is)
+		
+		caso(Nom, -, ă, ŭm, i, ae, ă)
+		caso(Gen, i, ae, i, ōrum, ārum, ōrum)
+		caso(Dat, ō, ae, ō, is, is, is)
+		caso(Acc, ŭm, ăm, ŭm, ōs, ās, ā)
+		caso(Voc, -, ā, ŭm, i, ae, ă)
+		caso(Abl, ō, ā, ō, is, is, is)
+
+		caso(Nom, -, ă, ŭm, i, ae, ă)
+		caso(Gen, i, ae, i, ōrum, ārum, ōrum)
+		caso(Dat, ō, ae, ō, is, is, is)
+		caso(Acc, ŭm, ăm, ŭm, ōs, ās, ā)
+		caso(Voc, -, ā, ŭm, i, ae, ă)
+		caso(Abl, ō, ā, ō, is, is, is)
+
+		caso(Nom, ego, tu, is, ea, nos, vos, ii, eae)
+		caso(Gen, mei, tui, eius, eius, nostri(nustrum), vestri(vestrum), eorum, earum)
+		caso(Dat, mihi, tibi, ei, ei, nobis, vobis, iis, iis)
+		caso(Acc, me, te, eum, eam, nos, vos, eos, eas)
+		caso(Abl, me, te, eo, ea, nobis, vobis, iis, iis)
+		
+		caso(Nom, hic, haec, hoc, hi, hae, haec)
+		caso(Gen, huius, huius, huius, hōrum, hārum, hōrum)
+		caso(Dat, huic - hoc, huic - hae, huic, his - hĭbus, his - hĭbus, his - hĭbus)
+		caso(Acc, hunc, hanc, hoc, hos, has, haec, 
+		caso(Abl, hoc, hac, hoc, his, his, his)
+		
+		caso(Nom, qui, quae, quod, qui, quae, quae)
+		caso(Gen, cuius, cuius, cuius, quorum, quarum, quorum)
+		caso(Dat, cui, cui, cui, quibus, quibus, quibus)
+		caso(Acc, quem, quam, quod, quos, quas, quae)
+		caso(Abl, quo, qua, quo, quibus, quibus, quibus)
+
+		caso(Nom, quis?, -, quid?, qui?, -, quae?)
+		caso(Gen, cuius?, -, cuius rei?, quorum?, -, quarum rerrum?)
+		caso(Dat, cui?, -, cui rei?, quibus?, -, quibus rebus?)
+		caso(Acc, quem?, -, quid?, quos?, -, quae?)
+		caso(Abl, quo?, -, qua re?, quibus?, -, quibus rebus?)
+
+		caso(Nom, is, eă, id, ii(ei), eae, eă)
+		caso(Gen, eius, eius, eius, eorum, earum, eorum)
+		caso(Dat, ei, ei, ei, iis(eis), iis(eis), iis(eis))
+		caso(Acc, eum, eam, id, eos, eas, eă)
+		caso(Abl, eo, eā, eo, iis(eis), iis(eis), iis(eis))
+
+		caso(Nom, idem, eădem, idem, iidem(eidem), eaedem, eădem)
+		caso(Gen, eiusdem, eiusdem, eiusdem, eorundem, earundem, eorundem)
+		caso(Dat, eidem, eidem, eidem, iisdem(eisdem), iisdem(eisdem), iisdem(eisdem))
+		caso(Acc, eundem, eandem, idem, eosdem, easdem, eădem)
+		caso(Abl, eodem, eādem, eodem, iisdem(eisdem), iisdem(eisdem), iisdem(eisdem))
+
+		caso(Nom, ipse, ipsă, ipsum, ipsi, ipsae, ipsă)
+		caso(Gen, ipsius, ipsius, ipsius, ipsorum, ipsarum, ipsorum)
+		caso(Dat, ipsi, ipsi, ipsi, ipsis, ipsis, ipsis)
+		caso(Acc, ipsum, ipsam, ipsum, ipsos, ipsas, ipsā)
+		caso(Abl, ipso, ipsā, ipso, ipsis, ipsis, ipsis)
+
+		caso(Nom, qui, quae, quod, qui, quae, quae)
+		caso(Gen, cuiusipsius, ipsius, ipsius, ipsorum, ipsarum, ipsorum)
+		caso(Dat, ipsi, ipsi, ipsi, ipsis, ipsis, ipsis)
+		caso(Acc, ipsum, ipsam, ipsum, ipsos, ipsas, ipsā)
+		caso(Abl, ipso, ipsā, ipso, ipsis, ipsis, ipsis)
+
+		caso(Nom, aliquis, -, aliquid, aliqui, -, aliquă)
+		caso(Gen, alicuius, -, alicuius rei, aliquorum, -, aliquārum)
+		caso(Dat, alicui, -, alicui rei, aliquibus, -, aliquibus rebus)
+		caso(Acc, aliquem, -, aliquid, aliquos, -, aliqua)
+		caso(Abl, aliquo, - , aliquā re, aliquibus, -, aliquibus rebus)
+
+		caso(Nom, aliqui, aliquă, aliquod, aliqui, aliquae, aliquă)
+		caso(Gen, alicuius, alicuius, alicuius, aliquorum, aliquārum, aliquorum)
+		caso(Dat, alicui, alicui, alicui, aliquibus, aliquibus, aliquibus)
+		caso(Acc, aliquem, aliquam, aliquod, aliquos, aliquas, aliquă)
+		caso(Abl, aliquo, aliquā, aliquo, aliquibus, aliquibus, aliquibus)
+
+		$*
+		caso(Nom, plerique, pleraeque, pleraque, , , )
+		caso(Gen, , , , , , )
+		caso(Dat, , , , , , )
+		caso(Acc, , , , , , )
+		caso(Abl, , , , , , )
+		*$

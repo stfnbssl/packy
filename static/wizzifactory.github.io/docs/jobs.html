@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="sanitize.css" rel="stylesheet" />
+    <link href="../styles/main.css" rel="stylesheet" />
+    <link href="../styles/documentation-wizzi jobs.css" rel="stylesheet" />
+</head>
+<body class="Documentation-Wizzi Jobs">
+    <!-- top navigation markup -->
+    <input type="checkbox" id="tn-input-toggle" />
+    <nav class="tn-bar">
+        <nav class="tn-main">
+            <a href="index.html.ittf"><div class="logo">
+                <img src="../images/logo.svg" />
+            </div>
+            </a>
+            <label for="tn-input-toggle" class="tn-label-toggle"></label>
+            <label for="tn-input-toggle" class="tn-label-toggle-close">&times;</label>
+            <ul>
+                <li><a href="../concepts.html" title="Concepts">Concepts</a>
+                </li>
+                <li class="tn-pageSelected"><a href="../docs/intro.html" title="Documentation">Documentation</a>
+                <nav class="tn-subPages_mobile">
+                    <ul>
+                        <li><a href="../docs/intro.html" title="Introduction">intro</a>
+                        </li>
+                        <li><a href="../docs/ittf.html" title="ITTF Documents">ittf</a>
+                        </li>
+                        <li><a href="../docs/jswizzi.html" title="JsWizzi">jswizzi</a>
+                        </li>
+                        <li><a href="../docs/schemas.html" title="Wizzi Schemas">schemas</a>
+                        </li>
+                        <li><a href="../docs/models.html" title="Wizzi Models">models</a>
+                        </li>
+                        <li><a href="../docs/artifacts.html" title="Artifact generations">artifacts</a>
+                        </li>
+                        <li><a href="../docs/jobs.html" title="Wizzi Jobs">jobs</a>
+                        </li>
+                        <li><a href="../docs/plugins.html" title="Wizzi Plugins">plugins</a>
+                        </li>
+                        <li><a href="../docs/wizzifiers.html" title="Wizzifiers">wizzifiers</a>
+                        </li>
+                    </ul>
+                </nav>
+                </li>
+                <li><a href="../api.html" title="Api">Api</a>
+                </li>
+                <li><a href="../code/intro.html" title="Code">Code</a>
+                </li>
+                <li><a href="../starters.html" title="Starters">Starters</a>
+                </li>
+                <li><a href="../project.html" title="Project">Project</a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="tn-subPages">
+            <ul>
+                <li><a href="../docs/intro.html" title="Introduction">intro</a>
+                </li>
+                <li><a href="../docs/ittf.html" title="ITTF Documents">ittf</a>
+                </li>
+                <li><a href="../docs/jswizzi.html" title="JsWizzi">jswizzi</a>
+                </li>
+                <li><a href="../docs/schemas.html" title="Wizzi Schemas">schemas</a>
+                </li>
+                <li><a href="../docs/models.html" title="Wizzi Models">models</a>
+                </li>
+                <li><a href="../docs/artifacts.html" title="Artifact generations">artifacts</a>
+                </li>
+                <li class="tn-subPageSelected"><a href="../docs/jobs.html" title="Wizzi Jobs">jobs</a>
+                </li>
+                <li><a href="../docs/plugins.html" title="Wizzi Plugins">plugins</a>
+                </li>
+                <li><a href="../docs/wizzifiers.html" title="Wizzifiers">wizzifiers</a>
+                </li>
+            </ul>
+        </nav>
+    </nav>
+    <!-- main content markup -->
+    <main id="mc-wrapper" class="mc-wrapper-layout-sub">
+        <input type="checkbox" id="mc-toggle-toc" />
+        <input type="checkbox" id="mc-toggle-toc-close" onchange="mc_toggle_toc_Close()" />
+        <div class="mc-frame">
+            <div class="mc-frame-bar">
+                <h1 class="mc-sidebar-left-title">Wizzi Jobs</h1>
+                <h1>
+                    <label for="mc-toggle-toc-close" class="mc-label-toggle-close">&times;</label>
+                </h1>
+            </div>
+            <nav class="mc-sidebar-left">
+                <ul>
+                    <li><a href="#concept-intro" class="mc-item-link">Introduction</a>
+                    <label for="mc-toggle-concept-intro" class="mc-label-toggle">Introduction</label>
+                    </li>
+                    <li><a href="#concept-1" class="mc-item-link">The production manager</a>
+                    <label for="mc-toggle-concept-1" class="mc-label-toggle">&nbsp; The production manager</label>
+                    </li>
+                    <li><a href="#concept-2" class="mc-item-link">The 'wfjob" schema</a>
+                    <label for="mc-toggle-concept-2" class="mc-label-toggle">&nbsp; The 'wfjob" schema</label>
+                    </li>
+                    <li><a href="#concept-3" class="mc-item-link">The 'runnerServer" execution environment.</a>
+                    <label for="mc-toggle-concept-3" class="mc-label-toggle">&nbsp; The 'runnerServer" execution environment.</label>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mc-content">
+                <div>
+                    <input type="checkbox" id="mc-toggle-concept-intro" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-1" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-2" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-3" onchange="m_toggleChanged()" />
+                    <h1 class="mc-content-title" id="concept-intro">Wizzi Jobs</h1>
+                    <div class="mc-pane mc-pane-concept-intro">
+                        <div class="summary">
+                            <p>Wizzi jobs are the automation component of the wizzi factory.</p></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-1">
+                        <h2 id="concept-1">The production manager</h2>
+                        <div class="summary">
+                            <p>The production of complex software systems can require a great number of model processing, transformations and artifact generations.</p><p>The wizzi.production.productionManager class implements an api for scheduling complex jobs. It is the wizzi factory task manager.</p><p>A Wizzi Model type implemented by the 'wizzi-core' plugin , the 'wfjob' schema, can be used to describe wizzi factory jobs. A 'wfjob' model organizes models processing and artifact generations in production lines that are executed in sequence, so that a line can prepare models and artifacts for the next one.</p><p>A job is executed calling the following method of the wizzi.wizziFactory instance class.</p><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">...</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">m</span><span class="pp-pln"> executeJob</span></li><li class="L3"><span class="pnl">    </span><span class="pp-tag">{</span><span class="pp-pln"> jobRequest</span></li><li class="L4"><span class="pnl">      </span><span class="pp-tag">string</span><span class="pp-pln"> name</span></li><li class="L5"><span class="pnl">        </span><span class="pp-tag">#</span><span class="pp-pln"> for info and error messages</span></li><li class="L6"><span class="pnl">      </span><span class="pp-tag">string</span><span class="pp-pln"> path</span></li><li class="L7"><span class="pnl">        </span><span class="pp-tag">#</span><span class="pp-pln"> path to the 'wfjob' ittf document that the wizzi.production.productionManager will load.</span></li><li class="L8"><span class="pnl">      </span><span class="pp-tag">{</span><span</span><span class="pp-pln"> productionOptions</span></li><li class="L9"><span class="pnl">        </span><span class="pp-tag">boolean</span><span class="pp-pln"> verbose</span></li><li class="L0"><span class="pnl">          </span><span class="pp-tag">#</span><span class="pp-pln"> not implemented yet</span></li><li class="L1"><span class="pnl">      </span><span class="pp-tag">{</span><span</span><span</span><span class="pp-pln"> globalContext</span></li><li class="L2"><span class="pnl">        </span><span class="pp-tag">optional</span><span class="pp-pln"> </span></li><li class="L3"><span class="pnl">    </span><span class="pp-tag">callback</span><span class="pp-pln"> </span></li></ol></pre></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-2">
+                        <h2 id="concept-2">The 'wfjob" schema</h2>
+                        <div class="summary">
+                            <p>The wfjob schema, implemented by the wizzi-core plugin, is the configuration schema of the production manager, the wizzi task manager.</p><h4>The wfjob elements are</h4><ul>    <li>Wfjob    </li><li>Model    </li><li>ModelRef    </li><li>Line    </li><li>LineRef    </li><li>Artifact    </li><li>Production    </li></ul><h3>The WfJob element</h3><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">wfjob</span><span class="pp-pln"> `name`</span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">#</span><span class="pp-pln"> For info and error messages</span></li><li class="L3"><span class="pnl">  </span><span class="pp-tag">string</span><span class="pp-pln"> title `short-description`</span></li><li class="L4"><span class="pnl">    </span><span class="pp-tag">#</span><span class="pp-pln"> For info and error messages</span></li><li class="L5"><span class="pnl">  </span><span class="pp-tag">string</span><span class="pp-pln"> models-base-folder `path`</span></li><li class="L6"><span class="pnl">    </span><span class="pp-tag">#</span><span class="pp-pln"> The base path to use when the 'src' attribute of models is a relative path</span></li><li class="L7"><span class="pnl">  </span><span class="pp-tag">string</span><span class="pp-pln"> dest-base-folder `path`</span></li><li class="L8"><span class="pnl">    </span><span class="pp-tag">#</span><span class="pp-pln"> The base path of the destination folder of artifacts generated by this job</span></li><li class="L9"><span class="pnl">    </span><span class="pp-tag">#</span><span class="pp-pln"> Can be overridden by the 'dest-folder' attribute of Line elements</span></li><li class="L0"><span class="pnl">  </span><span class="pp-tag">[</span><span class="pp-pln"> models</span></li><li class="L1"><span class="pnl">  </span><span class="pp-tag">[</span><span class="pp-pln"> lines</span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">[</span><span class="pp-pln"> productions</span></li></ol></pre><h3>Model element</h3><p>A model can be:</p><ul>    <li>An ittf documents targeting a wizzi schema exposed by a plugin loaded in the wizzi.wizziFactory instance that is executing the job.    </li><li>A POJO module coded in one of these known formats: 'json', 'nodejs' module exporting the function 'toModel'.    </li></ul><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">...</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">model</span><span class="pp-pln"> `model-name`</span></li><li class="L3"><span class="pnl">    </span><span class="pp-tag">string</span><span class="pp-pln"> src `path`</span></li><li class="L4"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> The source path of the ittf document or POJO module.</span></li><li class="L5"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> When relative the base path is the 'models-base-folder' attribute of the</span></li><li class="L6"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> WfJob element.</span></li><li class="L7"><span class="pnl">    </span><span class="pp-tag">string</span><span class="pp-pln"> schema `schema-name`</span></li><li class="L8"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> The name of the Wizzi Model type (wfschema) that will load the</span></li><li class="L9"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> mTree defined in the source ittf document.</span></li><li class="L0"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> Is alternative to the 'format' attribute.</span></li><li class="L1"><span class="pnl">    </span><span class="pp-tag">string</span><span class="pp-pln"> format `format-name`</span></li><li class="L2"><span class="pnl">      </span><span class="pp-tag">One-of</span><span class="pp-pln"> 'json', 'nodejs'</span></li><li class="L3"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> Is alternative to 'schema' attribute.</span></li><li class="L4"><span class="pnl">    </span><span class="pp-tag">string</span><span class="pp-pln"> dump-file `path`</span></li><li class="L5"><span class="pnl">    </span><span class="pp-tag">[</span><span class="pp-pln"> modelRefs</span></li><li class="L6"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> References to the models to be used, as properties of the mTreeBuildUpContext</span></li><li class="L7"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> parameter, passed to the wizzi-mtree.loader.loadMTree function,</span></li><li class="L8"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> for loading the model mTree.</span></li></ol></pre><h3>ModelRef element</h3><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">...</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">model-ref</span><span class="pp-pln"> `model-name`</span></li><li class="L3"><span class="pnl">    </span><span class="pp-tag">string</span><span class="pp-pln"> export-name `name`</span></li><li class="L4"><span class="pnl">    </span><span class="pp-tag">[</span><span class="pp-pln"> transformers</span></li></ol></pre><h3>Line element</h3><p>Production lines declare artifacts that are processed asynchronously and concurrently.</p><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">...</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">line</span><span class="pp-pln"> `line-name`</span></li><li class="L3"><span class="pnl">    </span><span class="pp-tag">string</span><span class="pp-pln"> cwd-folder `path`</span></li><li class="L4"><span class="pnl">    </span><span class="pp-tag">string</span><span class="pp-pln"> dest-folder `path`</span></li><li class="L5"><span class="pnl">    </span><span class="pp-tag">[</span><span class="pp-pln"> artifacts</span></li></ol></pre><h3>Artifact element</h3><p>An Artifact element declares one artifact production that is driven by a source model. Each production has one driver model, but an Artifact element can result in many production because the 'src' attribute of this element may refer to:    <ul>        <li>one single source model        </li><li>a group of source models described by a glob pattern        </li><li>one single source model which Model element declares a model collection property, meaning that each item of the collection is a source model of the production and produces one artifact.        </li>    </ul></p><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">...</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">artifact</span><span class="pp-pln"> `artifact-name`</span></li><li class="L3"><span class="pnl">    </span><span class="pp-tag">#</span><span class="pp-pln"> For info and errors messages.</span></li><li class="L4"><span class="pnl">    </span><span class="pp-tag">string</span><span class="pp-pln"> src `path` | `glob-pattern`</span></li><li class="L5"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> Can be:</span></li><li class="L6"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> . the path of a final artifact that must be simply copied in the destination path.</span></li><li class="L7"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> . the glob-pattern of final artifacts that must be simply copied in the destination path.</span></li><li class="L8"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> . the path of a source ittf document</span></li><li class="L9"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> . the glob-pattern of sources ittf documents</span></li><li class="L0"><span class="pnl">    </span><span class="pp-tag">schema</span><span class="pp-pln"> `schema-name`</span></li><li class="L1"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> When the 'src' attribute is the path of an ittf document, is the wizzi</span></li><li class="L2"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> model type (wfschema) that will load and validate the document.</span></li><li class="L3"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> Is alternative to the 'format' attribute.</span></li><li class="L4"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> Can be null if the artifact is a final artifact.</span></li><li class="L5"><span class="pnl">    </span><span class="pp-tag">ignore</span><span class="pp-pln"> `path` | `glob-pattern`</span></li><li class="L6"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> Files returned by the 'src' attribute glob-pattern that are to be ignored.</span></li><li class="L7"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> Can be a glob pattern.</span></li><li class="L8"><span class="pnl">    </span><span class="pp-tag">generation</span><span class="pp-pln"> `artifact-generator-name`</span></li><li class="L9"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> The name of the artifact generator that will produce the artifact.</span></li><li class="L0"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> When the artifact is a final artifact must be omitted.</span></li><li class="L1"><span class="pnl">    </span><span class="pp-tag">dest-path</span><span class="pp-pln"> `artifact-file-path`</span></li><li class="L2"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> The 'src' attribute is the default</span></li><li class="L3"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> relative destination path of the generated artifact,</span></li><li class="L4"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> but, when set, this attribute overrides the default.</span></li><li class="L5"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> It may be an absolute path.</span></li><li class="L6"><span class="pnl">    </span><span class="pp-tag">extension</span><span class="pp-pln"> `artifact-file-extension`</span></li><li class="L7"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> The path extension of the generated artifact.</span></li><li class="L8"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> Optional. The default is the 'src' atribute path extension without</span></li><li class="L9"><span class="pnl">      </span><span class="pp-tag">#</span><span class="pp-pln"> the ending '.ittf' string.</span></li><li class="L0"><span class="pnl">    </span><span class="pp-tag">#</span><span class="pp-pln"> Child elements</span></li><li class="L1"><span class="pnl">    </span><span class="pp-tag">[</span><span class="pp-pln"> modelRefs</span></li></ol></pre><h3>Production element</h3><p>Production elements contain a list of references to previously declared production lines that must be sequentially executed.</p><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">...</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">production</span><span class="pp-pln"> 'production-name'</span></li><li class="L3"><span class="pnl">    </span><span class="pp-tag">string</span><span class="pp-pln"> dest-folder `path`</span></li><li class="L4"><span class="pnl">    </span><span class="pp-tag">[</span><span class="pp-pln"> lineRefs</span></li></ol></pre><h3>LineRef element</h3><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">...</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">line-ref</span><span class="pp-pln"> `line-name`</span></li></ol></pre><h4>Example of the wizzi job that produces this documentation html page.</h4><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">wfjob</span><span class="pp-pln"> wizzi-docs-concepts</span></li><li class="L2"><span class="pnl">  </span><span class="pp-kwd">$</span><span class="pp-expr"> </span></li><li class="L3"><span class="pnl">    </span><span class="pp-expr">var</span><span class="pp-expr"> models_folder     = path.join(__dirname, 'models');</span></li><li class="L4"><span class="pnl">    </span><span class="pp-expr">var</span><span class="pp-expr"> html_folder       = path.join(__dirname, 'html');</span></li><li class="L5"><span class="pnl">    </span><span class="pp-expr">var</span><span class="pp-expr"> dest_folder       = "c:/my/wizzi/v5/github/wizzifactory.github.io";</span></li><li class="L6"><span class="pnl">  </span><span class="pp-tag">models-base-folder</span><span class="pp-pln"> ${models_folder}</span></li><li class="L7"><span class="pnl">  </span><span class="pp-tag">model</span><span class="pp-pln"> concepts</span></li><li class="L8"><span class="pnl">    </span><span class="pp-tag">src</span><span class="pp-pln"> wizzi-jobs.docs.ittf</span></li><li class="L9"><span class="pnl">    </span><span class="pp-tag">schema</span><span class="pp-pln"> docs</span></li><li class="L0"><span class="pnl">  </span><span class="pp-tag">line</span><span class="pp-pln"> html</span></li><li class="L1"><span class="pnl">    </span><span class="pp-tag">cwd-folder</span><span class="pp-pln"> ${html_folder}</span></li><li class="L2"><span class="pnl">    </span><span class="pp-mix">wfjob/art-wo-html(</span><span class="pp-pln"> docs.html.ittf )</span></li><li class="L3"><span class="pnl">      </span><span class="pp-tag">model-ref</span><span class="pp-pln"> concepts</span></li><li class="L4"><span class="pnl">        </span><span class="pp-tag">transformer</span><span class="pp-pln"> docs/preprint</span></li><li class="L5"><span class="pnl">  </span><span class="pp-tag">production</span><span class="pp-pln"> </span></li><li class="L6"><span class="pnl">    </span><span class="pp-tag">dest-folder</span><span class="pp-pln"> ${dest_folder}</span></li><li class="L7"><span class="pnl">    </span><span class="pp-tag">line-ref</span><span class="pp-pln"> html</span></li></ol></pre></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-3">
+                        <h2 id="concept-3">The 'runnerServer" execution environment.</h2>
+                        <div class="summary">
+                            <p>When the Wizzi Factory is used in a server application, or in a long running process where many jobs are executed, it is useful to access factory services, prepared on startup, directly from the JsWizzi code inside ITTF Documents.</p><p>There are two jswizzi global functions for this purpose.</p><ul>    <li>$.api( functionName, ... arguments ... )        <p>Allow to call a user function declared on start up.        </p>    </li><li>$.loadModel( modelName )        <p>Allow the retrieval of a Wizzi Model preloaded on start up.        </p>    </li></ul><h3>The wizzifile.js</h3><p>... TODO ...</p><h4>Event handler wizzifile.onConfig( config )</h4><p>This event is raised before creating the runnerServer instance. At this point we can call the config.get(propertyName) and config.set(propertyName, value) methods on the config object.</p><h4>Event handler wizzifile.onStart( runnerServerInstance, config )</h4><p>This event is raised before the initialization of the wizzi factory contained in the runner server. At this point we can call the runnerServerInstance.registerApi(name, function) method, the runnerServerInstance.registerPlugin(pluginNameOrPath) method and the runnerServerInstance.registerGlobalContext(object) method.</p><h4>Event handler wizzifile.onPrepare( runnerServerInstance, config )</h4><p>This event is raised when the wizzi factory contained in the runner server has benn initialized. Now it is forbidden to call the registerPlugin and registerGlobalContext methods but we can call the runnerServerInstance.loadModel and runnerServerInstance.transformModel methods.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function m_toggleChanged() {
+            var el_toc = document.querySelector("input[id='mc-toggle-toc']");
+            var el_contents = document.querySelectorAll("input[id^='mc-toggle-concept-']");
+            var seenTrue = false;
+            var i, i_items=el_contents, i_len=el_contents.length, el;
+            for (i=0; i<i_len; i++) {
+                el = el_contents[i];
+                if (el.checked) {
+                    seenTrue = true;
+                }
+            }
+            el_toc.checked = seenTrue;
+        }
+        function mc_toggle_toc_Close() {
+            var el_toc = document.querySelector("input[id='mc-toggle-toc']");
+            var el_contents = document.querySelectorAll("input[id^='mc-toggle-concept-']");
+            var i, i_items=el_contents, i_len=el_contents.length, el;
+            for (i=0; i<i_len; i++) {
+                el = el_contents[i];
+                el.checked = false;
+            }
+            el_toc.checked = false;
+        }
+    </script>
+    <script src="../wizzifactory.js"></script>
+</body>
+
+</html>

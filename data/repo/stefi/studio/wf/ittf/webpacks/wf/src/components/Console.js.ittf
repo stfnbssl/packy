@@ -1,0 +1,81 @@
+﻿r-component( Console )
+	
+	$append imports
+		import List, { ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction } from 'material-ui/List'
+		import Toolbar from 'material-ui/Toolbar'
+		import Button from 'material-ui/Button'
+		import InboxIcon from 'material-ui-icons/Inbox'
+		import ConsoleDialog from './ConsoleDialog'
+		import DocumentEditor from './DocumentEditor'
+
+	style
+		@ content
+			_ theme.mixins.gutters
+				{ 
+					@ paddingTop 80
+					@ flex '1 1 100%'
+					@ maxWidth '100%'
+					@ margin '0 auto'
+
+		@ selected
+			{
+				@ color 'red'
+
+		@ marginLeft_10
+			{
+				@ marginLeft '10px'
+
+	state
+		@ openCreateScriptDialog false
+
+	$include console/dialog_handlers
+	$include console/list_handlers
+	$include console/toolbar_handlers
+
+	render
+		
+		prop classes
+
+		prop isRequestingList
+		prop isRequestingRun
+		prop jsmodels
+		prop listerror
+		prop selectedConsole
+		prop stdout
+		prop stderr
+		prop runerror
+		prop content
+		prop view
+		prop onRefreshListConsole
+		prop onGetConsole
+		prop onCreateConsole
+		prop onSaveConsole
+		prop onRunRequest
+		prop onChangeView
+
+		
+		
+		$include console/toolbar_render
+		$include console/list_render
+		if view == 'edit'
+			return
+				. {classes.content}
+					+ {toolbar}
+					h2 { 'Edit script ' + selectedConsole }
+					< DocumentEditor
+						@ value {content}
+						@ onEditorRef
+							=>
+								param node
+								set this.editor = node
+								log 'Console.onEditorRef.this.editor', this.editor
+		
+		if view == 'run'
+			var runcontent = runerror ? runerror : (stdout || stderr) ? (stdout + '\n' + stderr) : ''
+			return
+				. {classes.content}
+					+ {toolbar}
+					h2 { 'Execution of script ' + selectedConsole }
+					< DocumentEditor
+						@ value {runcontent}
+

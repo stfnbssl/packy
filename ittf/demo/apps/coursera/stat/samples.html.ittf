@@ -1,0 +1,9 @@
+_layout( Sample size )
+
+	h2 Formulas
+		
+	formulas/samples()
+
+	h2 Glossary
+		
+	glossary/samples()

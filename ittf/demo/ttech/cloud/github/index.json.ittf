@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'github',
+			label: 'GitHub',
+			experimentsWith: 'the gitHub cloud service',
+			path: [
+				{
+					name: 'cloud',
+					label: 'Cloud',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

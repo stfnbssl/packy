@@ -1,0 +1,9 @@
+﻿element svg base
+	tag
+	ast
+	category
+	
+	item
+		title 
+		ittf
+			svg

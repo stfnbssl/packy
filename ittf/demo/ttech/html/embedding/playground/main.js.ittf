@@ -1,0 +1,167 @@
+﻿module 
+    kind jsfile
+
+	$include g/js/wz/core
+	$include j/html-builder
+
+	var demo
+
+	var current_embed = null
+
+	var iframe_width = '100%'
+	var iframe_height = '600'
+	var iframe_src = 'https://www.huffingtonpost.it/'
+	
+	var object_width = '100%'
+	var object_height = '600'
+	var object_data = 'https://www.onblastblog.com/wp-content/uploads/2017/01/CSS3-Cheat-Sheet.pdf'
+
+	function createHtml
+		set demo = new HtmlBuilder('demo')
+		_ demo.prettyResult('demo-html')
+		_ createIframeHtml
+
+	function createIframeHtml
+		if current_embed === 'iframe'
+			return
+		_ demo.remove('h1')
+		_ demo.remove('object')
+		_ demo.addTop('h1')
+		_ demo.text('Hello iframe')
+		_ demo.addTop('iframe')
+		_ demo.set('src', iframe_src)
+		_ demo.set('width', iframe_width)
+		_ demo.set('height', iframe_height)
+		_ demo.set('frameborder', '0')
+		_ demo.set('allowfullscreen')
+		_ demo.set('sandbox')
+		_ demo.add('p')
+		_ demo.text("Fallback link for browsers that don't support iframes")
+		_ demo.add('a')
+		_ demo.set('href', iframe_src)
+		_ wz.hide
+				@ '#pdfs-box'
+		_ wz.show
+				@ '#sites-box'
+		set current_embed = 'iframe'
+
+	function createObjectHtml
+		if current_embed === 'object'
+			return
+		_ demo.remove('h1')
+		_ demo.remove('iframe')
+		_ demo.addTop('h1')
+		_ demo.text('Hello embedded object')
+		_ demo.addTop('object')
+		_ demo.set('data', object_data)
+		_ demo.set('type', 'application/pdf')
+		_ demo.set('width', '100%')
+		_ demo.set('height', '600')
+		_ demo.set('typemustmatch')
+		_ demo.add('p')
+		_ demo.text("Fallback link for browsers that don't support pdfs")
+		_ demo.add('a')
+		_ demo.set('href', object_data)
+		_ wz.hide
+				@ '#sites-box'
+		_ wz.show
+				@ '#pdfs-box'
+		set current_embed = 'object'
+
+	_ wz.loaded
+		function
+			
+			_ createHtml
+			
+			_ wz.addClass
+				@ 'body'
+				@ "go"
+			
+			_ wz.click
+				@ '#toggle-controls'
+				function
+					_ wz.toggleClass
+						@ '#sidebar'
+						@ "minimized"
+
+			_ wz.blur
+				@ '#iframe-width-control'
+				function
+					_ demo.select('iframe')
+					_ demo.set
+						@ 'width'
+						_ wz.val
+							@ '#iframe-width-control'
+    
+			_ wz.blur
+				@ '#iframe-height-control'
+				function
+					_ demo.select('iframe')
+					_ demo.set
+						@ 'height'
+						_ wz.val
+							@ '#iframe-height-control'
+
+			_ wz.blur
+				@ '#iframe-border-control'
+				function
+					_ demo.select('iframe')
+					_ demo.set
+						@ 'frameborder'
+						_ wz.val
+							@ '#iframe-border-control'
+
+			_ wz.change
+				@ '#embeds-control'
+				function
+					var embed
+						_ wz.val
+							@ '#embeds-control'
+					log 'embed', embed
+					if embed === 'iframe'
+						_ createIframeHtml
+					else
+						_ createObjectHtml
+
+			_ wz.change
+				@ '#sites-control'
+				function
+					var site
+						_ wz.val
+							@ '#sites-control'
+					log 'site', site
+
+					if demo.select('iframe')
+						if site === "HuffPost"
+							_ demo.set('src', 'https://www.huffingtonpost.it/')
+						elif site === "Dago"
+							_ demo.set('src', 'http://www.dagospia.com/')
+						elif site === "Lettera43"
+							_ demo.set('src', 'https://www.lettera43.it/it/')
+						elif site === "Remo"
+							_ demo.set('src', 'https://www.remocontro.it/')
+						elif site === "PiccoleNote"
+							_ demo.set('src', 'http://piccolenote.ilgiornale.it/')
+						elif site === "OcchiDellaGuerra"
+							_ demo.set('src', 'http://www.occhidellaguerra.it/')
+
+
+			_ wz.change
+				@ '#pdfs-control'
+				function
+					var pdf
+						_ wz.val
+							@ '#pdfs-control'
+					log 'pdf', pdf
+
+					if demo.select('object')
+						if pdf === "Css"
+							_ demo.set('data', 'https://www.onblastblog.com/wp-content/uploads/2017/01/CSS3-Cheat-Sheet.pdf')
+						elif pdf === "Html"
+							_ demo.set('data', 'https://websitesetup.org/HTML5-cheat-sheet.pdf')
+						elif pdf === "Canvas"
+							_ demo.set('data', 'http://www.cheat-sheets.org/saved-copy/HTML5_Canvas_Cheat_Sheet.pdf')
+						elif pdf === "Javascript"
+							_ demo.set('data', 'http://www.cheat-sheets.org/saved-copy/jsquick.pdf')
+
+

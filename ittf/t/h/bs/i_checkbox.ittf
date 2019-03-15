@@ -1,0 +1,7 @@
+. checkbox
+	$params id, label|@@null
+	label
+		input
+			id ${id}
+			type checkbox
+		+ ${label}

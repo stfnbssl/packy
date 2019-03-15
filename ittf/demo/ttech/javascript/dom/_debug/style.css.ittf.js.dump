@@ -1,0 +1,37 @@
+// 2/5/2017:22:21:17  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "css", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //18
+$.a($0, $1, 5);
+var $2 = { n: "<", v: "body", r: 9, c: 5, s: "f1", u: "f1",  }; //19
+$.a($1, $2, 7);
+var $3 = { n: "margin", v: "0", r: 10, c: 9, s: "f1", u: "f1",  }; //20
+$.a($2, $3, 9);
+var $4 = { n: "padding", v: "0", r: 11, c: 9, s: "f1", u: "f1",  }; //21
+$.a($2, $4, 11);
+var $5 = { n: "<", v: "::-webkit-scrollbar", r: 13, c: 5, s: "f1", u: "f1",  }; //22
+$.a($1, $5, 13);
+var $6 = { n: "width", v: "15px", r: 14, c: 9, s: "f1", u: "f1",  }; //23
+$.a($5, $6, 15);
+var $7 = { n: "<", v: "::-webkit-scrollbar-track", r: 16, c: 5, s: "f1", u: "f1",  }; //24
+$.a($1, $7, 17);
+var $8 = { n: "-webkit-box-shadow", v: "inset 0 0 6px rgba(0,0,0,0.3)", r: 17, c: 9, s: "f1", u: "f1",  }; //25
+$.a($7, $8, 19);
+var $9 = { n: "-webkit-border-radius", v: "10px", r: 18, c: 9, s: "f1", u: "f1",  }; //26
+$.a($7, $9, 21);
+var $10 = { n: "border-radius", v: "10px", r: 19, c: 9, s: "f1", u: "f1",  }; //27
+$.a($7, $10, 23);
+var $11 = { n: "<", v: "::-webkit-scrollbar-thumb", r: 21, c: 5, s: "f1", u: "f1",  }; //28
+$.a($1, $11, 25);
+var $12 = { n: "-webkit-border-radius", v: "10px", r: 22, c: 9, s: "f1", u: "f1",  }; //29
+$.a($11, $12, 27);
+var $13 = { n: "border-radius", v: "10px", r: 23, c: 9, s: "f1", u: "f1",  }; //30
+$.a($11, $13, 29);
+var $14 = { n: "background", v: "rgba(50,200,220,0.8)", r: 24, c: 9, s: "f1", u: "f1",  }; //31
+$.a($11, $14, 31);
+var $15 = { n: "-webkit-box-shadow", v: "inset 0 0 6px rgba(0,0,0,0.5)", r: 25, c: 9, s: "f1", u: "f1",  }; //32
+$.a($11, $15, 33);
+var $16 = { n: "<", v: "::-webkit-scrollbar-thumb:window-inactive", r: 27, c: 5, s: "f1", u: "f1",  }; //33
+$.a($1, $16, 35);
+var $17 = { n: "background", v: "rgba(255,0,0,0.4)", r: 28, c: 9, s: "f1", u: "f1",  }; //34
+$.a($16, $17, 37);

@@ -1,0 +1,69 @@
+h/root/empty_layout()
+
+    $
+
+	$append head-styles
+		@style
+			css
+				< body
+					margin 3rem
+				< p
+					font-size 1.2rem
+				< pre
+					background #ddd
+					font-size 1.2rem
+				< code
+					background #eee
+				. primary
+					color #000
+					background #eea
+					padding 1rem
+				. frag_1
+					color darkgreen
+					background #0ee
+					padding 1rem
+				. frag_2
+					color blue
+					background #e0e
+					padding 1rem
+				. frag_3
+					color darkgreen
+					background #0ee
+					padding 1rem
+				. frag_4
+					color blue
+					background #e0e
+					padding 1rem
+				. frag_5
+					color blue
+					background #e8e
+					padding 1rem
+				. wrong
+					color red
+				. right
+					color darkgreen
+
+    h3 
+	div
+		class primary
+		
+		$
+			var options = {
+				alpha: 1,
+				beta: true,
+			};
+		
+		h3 Primary here.
+
+		ul I declared var 'options' :
+			li options.alpha : ${options.alpha}
+			li options.beta: ${options.beta}
+
+		p I mix frag 1 with ref parameter &options.
+		code frag_1(&options)
+		frag_1(&options)
+		p Now i mix frag 3 with ref parameter &options, and frag_3 mixes frag_4, and frag_4 mixes frag_5
+		    \b on the root node.
+		frag_3(&options)
+
+			

@@ -1,0 +1,18 @@
+﻿module
+	kind react
+
+	import {connect} from 'react-redux'
+	import LoadingIndicator from '../components/LoadingIndicator'
+	import {isLoadingSnippet} from '../store/selectors'
+
+	function mapStateToProps
+		param state
+		return
+			{
+				@ visible isLoadingSnippet(state)
+
+	export default
+		_ connect
+			@ mapStateToProps
+			(
+				@ LoadingIndicator

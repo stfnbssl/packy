@@ -1,0 +1,82 @@
+﻿h/root/empty_layout( Html video audio step_1 )
+
+	$append head-styles
+		css https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css
+		css /static/lib/mejs/mediaelementplayer.css
+
+		@style 
+			css
+				< html
+					+ body
+					overflow-x hidden
+				< #container
+					padding 0 20px 50px
+				. error
+					color red
+				< a
+					word-wrap break-word
+				< code
+					font-size 0.8em
+				< video::cue(b)
+					color red
+
+
+	# container
+
+        . players
+            id player1-container
+            h3 Video Player
+            . media-wrapper
+				video 
+					id player1
+					width 640
+					height 360
+					style max-width:100%;
+					$$ poster http://www.mediaelementjs.com/images/big_buck_bunny.jpg
+					poster https://i.ytimg.com/vi/1KQmFjNBKjg/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&amp;rs=AOn4CLCtXX86EuTdITSyIepm3PYjloiq-A
+					preload none
+					controls 
+					@ playsinline 
+					@ webkit-playsinline 
+					source 
+						src https://www.youtube.com/watch?v=1KQmFjNBKjg&t=16s
+						type video/youtube
+					track 
+						srclang it
+						kind chapters
+						src chapters.vtt.ittf
+					track 
+						srclang it
+						kind subtitles
+						src subtitles.vtt.ittf
+
+            br 
+            . player-info
+                h4 Player information
+                div 
+                    id player1-rendername
+                    p 
+                        strong Source
+                        + :
+                        span 
+                            class src
+                            a https://www.youtube.com/watch?v=1KQmFjNBKjg&t=16s
+                                href https://www.youtube.com/watch?v=1KQmFjNBKjg&t=16s
+                                target _blank
+                    p 
+                        strong Renderer
+                        + :
+                        span html5
+                            class renderer
+                    p 
+                        class error
+
+
+	$append body-scripts
+		js /static/lib/mejs/mediaelement-and-player.js
+		js /static/lib/mejs/renderers/dailymotion.js
+		js /static/lib/mejs/renderers/facebook.js
+		js /static/lib/mejs/renderers/soundcloud.js
+		js /static/lib/mejs/renderers/twitch.js
+		js /static/lib/mejs/renderers/vimeo.js
+		js main.js.ittf

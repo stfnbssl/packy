@@ -1,0 +1,51 @@
+﻿$group
+
+	. nav-top
+		display flex
+		justify-content space-around
+		align-items center
+		background-color ${mpage.navTop.backgroundColor}
+		
+		$if mpage.navTop.fixed
+			position fixed
+			height ${mpage.navTop.height}px
+		
+		$if mpage.navLeft.fullHeight
+			$if mpage.navLeft.drawer
+				left ${mpage.navLeft.drawerClosedWidth}px
+				width calc(100% - ${mpage.navLeft.drawerClosedWidth}px)
+			$else
+				left ${mpage.navLeft.width}px
+				width calc(100% - ${mpage.navLeft.width}px)
+		$else
+			width 100%
+		z-index 1000
+
+	$if mpage.navSubTop
+		. nav-sub-top
+			display flex
+			justify-content space-around
+			align-items center
+			background-color ${mpage.navSubTop.backgroundColor}
+		
+			$if mpage.navSubTop.fixed
+				position fixed
+				top ${mpage.navTop.height}px
+				height ${mpage.navSubTop.height}px
+		
+			$if mpage.navLeft.fullHeight
+				$if mpage.navLeft.drawer
+					left ${mpage.navLeft.drawerClosedWidth}px
+					width calc(100% - ${mpage.navLeft.drawerClosedWidth}px)
+				$else
+					left ${mpage.navLeft.width}px
+					width calc(100% - ${mpage.navLeft.width}px)
+			$else
+				width 100%
+			z-index 1000
+
+	. nav-top-logo
+		display flex
+		flex 0 0 auto
+		height 36px
+		margin 6px 0

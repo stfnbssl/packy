@@ -1,0 +1,97 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    import React, { Component, PropTypes } from 'react' ids: undefined undefined
+    wz-function Input ids: undefined undefined
+      param type ids: undefined undefined
+      return  ids: undefined undefined
+        =>  ids: undefined undefined
+          param { id, value, onChange } ids: undefined undefined
+          return  ids: undefined undefined
+            input  ids: undefined undefined
+              id {id} ids: undefined undefined
+              type {type} ids: undefined undefined
+              value {value} ids: undefined undefined
+              onChange  ids: undefined undefined
+                =>  ids: undefined undefined
+                  param e ids: undefined undefined
+                  _ onChange(e.target.value) ids: undefined undefined
+    wz-function Select ids: undefined undefined
+      return  ids: undefined undefined
+        =>  ids: undefined undefined
+          param { id, value, data, onChange } ids: undefined undefined
+          const { options } = data ids: undefined undefined
+          const nroptions = normalizeOptions(options, value) ids: undefined undefined
+          var optionTags ids: undefined undefined
+            _ nroptions.map ids: undefined undefined
+              =>  ids: undefined undefined
+                param o ids: undefined undefined
+                return  ids: undefined undefined
+                  option {o.text} ids: undefined undefined
+                    @ key {o.key} ids: undefined undefined
+                    @ value {o.value} ids: undefined undefined
+          # log 'select', id, value, data, options, nroptions, optionTags ids: undefined undefined
+          return  ids: undefined undefined
+            select  ids: undefined undefined
+              id {id} ids: undefined undefined
+              value {value} ids: undefined undefined
+              onChange  ids: undefined undefined
+                =>  ids: undefined undefined
+                  param e ids: undefined undefined
+                  _ onChange(e.target.value) ids: undefined undefined
+              + {optionTags} ids: undefined undefined
+    function normalizeOptions ids: undefined undefined
+      param options ids: undefined undefined
+      param value ids: undefined undefined
+      var j = 0 ids: undefined undefined
+      return  ids: undefined undefined
+        _ options.map ids: undefined undefined
+          =>  ids: undefined undefined
+            param o ids: undefined undefined
+            if o != null && typeof o === 'object' && Array.isArray(o) === false ids: undefined undefined
+              return  ids: undefined undefined
+                {  ids: undefined undefined
+                  @ key 'k' + (++j) ids: undefined undefined
+                  @ value getValue(o) ids: undefined undefined
+                  @ text getText(o) ids: undefined undefined
+                  @ selected getValue(o) === value ids: undefined undefined
+            else  ids: undefined undefined
+              return  ids: undefined undefined
+                {  ids: undefined undefined
+                  @ key 'k' + (++j) ids: undefined undefined
+                  @ value o ids: undefined undefined
+                  @ text o ids: undefined undefined
+                  @ selected o === value ids: undefined undefined
+    function getValue ids: undefined undefined
+      param o ids: undefined undefined
+      if o.val ids: undefined undefined
+        return o.val ids: undefined undefined
+      elif o.id ids: undefined undefined
+        return o.id ids: undefined undefined
+      elif o.key ids: undefined undefined
+        return o.key ids: undefined undefined
+      return o.value ids: undefined undefined
+    function getText ids: undefined undefined
+      param o ids: undefined undefined
+      if o.label ids: undefined undefined
+        return o.label ids: undefined undefined
+      elif o.name ids: undefined undefined
+        return o.name ids: undefined undefined
+      elif o.key ids: undefined undefined
+        return o.key ids: undefined undefined
+      return o.text ids: undefined undefined
+    wz-function Range ids: undefined undefined
+      return  ids: undefined undefined
+        =>  ids: undefined undefined
+          param { id, value, min, max, step, onChange } ids: undefined undefined
+          return  ids: undefined undefined
+            input  ids: undefined undefined
+              id {id} ids: undefined undefined
+              type range ids: undefined undefined
+              value {value} ids: undefined undefined
+              min {min} ids: undefined undefined
+              max {max} ids: undefined undefined
+              step {step} ids: undefined undefined
+              onChange  ids: undefined undefined
+                =>  ids: undefined undefined
+                  param e ids: undefined undefined
+                  _ onChange(e.target.value) ids: undefined undefined

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<svg xmlns='http://www.w3.org/2000/svg' width='660' height='260' preserveAspectRatio='xMidYMid meet'>
+    <rect x='0' y='0' width='660' height='280' style='fill:black;stroke:none;'></rect>
+    <polyline points='10 250 45 10 60 10 75 130 120 210 120 130 175 210 175 110 230 210 230 250' style='fill:white;stroke:white;stroke-width:2;'></polyline>
+    <polyline points='250 250 260 90 290 90 300 250' style='fill:white;stroke:white;stroke-width:2;'></polyline>
+    <path d='M280, 30 C310,50 250,70 280, 84' style='fill:white;stroke:white;stroke-width:2;'></path>
+    <polyline points='320 250 320 230 420 130 400 110 400 90 450 90 420 230 440 230 440 250' style='fill:white;stroke:white;stroke-width:2;'></polyline>
+    <polyline points='450 250 450 230 550 130 530 110 530 90 580 90 550 230 570 230 570 250' style='fill:white;stroke:white;stroke-width:2;'></polyline>
+    <polyline points='590 250 600 90 630 90 640 250' style='fill:white;stroke:white;stroke-width:2;'></polyline>
+    <path d='M620, 30 C650,50 590,70 620, 84' style='fill:white;stroke:white;stroke-width:2;'></path>
+</svg>

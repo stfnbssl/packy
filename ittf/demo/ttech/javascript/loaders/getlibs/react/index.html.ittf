@@ -1,0 +1,19 @@
+﻿html
+
+	$
+		var opt = {};
+		opt.title = 'getlibs react example';
+	
+	h/root/empty_layout_opt(&opt)
+
+		$append head-styles
+			css ./index.css.ittf
+	
+		# app
+
+		$append body-scripts
+			js https://unpkg.com/getlibs
+
+			script
+				module
+					_ System.import('./index.js.ittf')

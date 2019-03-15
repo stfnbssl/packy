@@ -1,0 +1,12 @@
+﻿r-function( TabContainer )
+
+	prop children
+		node
+		required
+	
+	return
+		div
+			@ style
+				{
+					@ padding 20
+			+ {children}

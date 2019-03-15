@@ -1,0 +1,16 @@
+﻿css
+
+	< body
+		font-size 15px
+	
+	. control-panel
+		padding 1rem
+
+	. control
+		padding 1rem
+
+	. wizzified-panel
+		padding 1rem
+		border 1px solid #ccc
+		height 600px
+		overflow auto

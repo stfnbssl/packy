@@ -1,0 +1,34 @@
+﻿var Schema
+	=>
+		param { schema: schemaJson }
+
+		log 'Schema.schemaJson', schemaJson
+		return
+			div
+				@ className "schema-container"
+				div
+					span { 'schema '}
+						@ className schema-label-1
+					span {schemaJson.name}
+						@ className schema-title-1
+				< ModalMap
+					@ elements { schemaJson.elements }
+				div
+					@ className "schema-box"
+					div
+						@ className schema-label-title-1
+						div
+							@ className schema-element-box
+							@ dangerouslySetInnerHTML {{ __html: schemaJson.description }}
+					div
+						@ className "blog-posts"
+						{
+							_ schemaJson.elements.map
+								=>
+									param element
+									param index
+									return
+										< Element
+											@ element {element}
+											@ key {index}
+

@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'modules',
+			label: 'Modules',
+			experimentsWith: 'javascript modules',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

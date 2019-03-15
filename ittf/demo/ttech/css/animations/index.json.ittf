@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'animations',
+			label: 'Animations',
+			experimentsWith: 'css animations',
+			path: [
+				{
+					name: 'css',
+					label: 'Css',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

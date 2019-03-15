@@ -1,0 +1,17 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'editors',
+			label: 'Editors',
+			experimentsWith: 'javascript editors',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+			]
+		};
+
+	ttech-frame(&opt)
+

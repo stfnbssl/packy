@@ -1,0 +1,7 @@
+﻿$group
+
+	$
+		var c_bg_0 = "#333";
+		var c_0 = "#fff";
+		var c_bg_f_0 = "#000";
+		

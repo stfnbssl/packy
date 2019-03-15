@@ -1,0 +1,16 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'websocket',
+			label: 'Web socket',
+			experimentsWith: 'the web socket api',
+			path: [
+				{
+					name: 'webapi',
+					label: 'WebApi',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

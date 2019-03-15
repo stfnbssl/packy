@@ -1,0 +1,5 @@
+﻿html
+	head
+		css https://unpkg.com/netlify-cms/dist/cms.css
+	body
+		js https://unpkg.com/netlify-cms/dist/cms.js

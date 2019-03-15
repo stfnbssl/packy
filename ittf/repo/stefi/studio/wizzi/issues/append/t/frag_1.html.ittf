@@ -1,0 +1,14 @@
+$group
+
+	$
+		var frag_1_beta = 'frag_1_beta'
+
+	
+	div
+		class frag_1
+		h3 I am in MIXED frag_1, and declare : typeof(frag_1_beta) = ${ typeof(frag_1_beta) }, value = ${frag_1_beta},
+			\b and cannot see : typeof(primary_var_alpha) = ${ typeof(primary_var_alpha) }
+
+		$hook hook_1
+
+		

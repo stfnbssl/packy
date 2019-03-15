@@ -1,0 +1,501 @@
+<!doctype html>
+<html>
+<head>
+    <title>Schema cheat sheet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wz-content-1">
+        <nav class="tn-bar" style="display: flex; margin: 0.5rem;">
+            <div class="logo">
+                <img src="/images/logo.svg" width="70px" height="30px" />
+            </div>
+        </nav>
+        <div class="mc-wrapper-layout" id="mc-wrapper">
+            <div class="mc-frame-bar">
+                <div class="mc-frame-bar-item">Schema cheat sheet</div>
+            </div>
+            <div class="mc-frame">
+                <div class="mc-sidebar-left">
+                    <ul>
+                        <li><a href="#function">function</a>
+                        <ul>
+                            <li><a href="#Function with no params">Function with no params</a>
+                            </li>
+                            <li><a href="#Function with unchecked params">Function with unchecked params</a>
+                            </li>
+                            <li><a href="#Function with checked params">Function with checked params</a>
+                            </li>
+                            <li><a href="#Function with checked params and callback">Function with checked params and callback</a>
+                            </li>
+                            <li><a href="#Function with checked params and callback">Function with checked params and callback</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#call">call</a>
+                        <ul>
+                            <li><a href="#Call with no parameters">Call with no parameters</a>
+                            </li>
+                            <li><a href="#Call with string and number parameters">Call with string and number parameters</a>
+                            </li>
+                            <li><a href="#Call with string and call parameters">Call with string and call parameters</a>
+                            </li>
+                            <li><a href="#Call with string and object parameters">Call with string and object parameters</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#loops">loops</a>
+                        <ul>
+                            <li><a href="#foreach loop">foreach loop</a>
+                            </li>
+                            <li><a href="#while loop">while loop</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#array">array</a>
+                        <ul>
+                            <li><a href="#array concat single line statement">array concat single line statement</a>
+                            </li>
+                            <li><a href="#array concat multi line statement">array concat multi line statement</a>
+                            </li>
+                            <li><a href="#array concat mixed line statement">array concat mixed line statement</a>
+                            </li>
+                            <li><a href="#array forEach statement with default thisArg">array forEach statement with default thisArg</a>
+                            </li>
+                            <li><a href="#array forEach statement with explicit thisArg">array forEach statement with explicit thisArg</a>
+                            </li>
+                            <li><a href="#array filter statement with default thisArg">array filter statement with default thisArg</a>
+                            </li>
+                            <li><a href="#array filter statement with explicit thisArg">array filter statement with explicit thisArg</a>
+                            </li>
+                            <li><a href="#array find statement with default thisArg">array find statement with default thisArg</a>
+                            </li>
+                            <li><a href="#array find statement with explicit thisArg">array find statement with explicit thisArg</a>
+                            </li>
+                            <li><a href="#array reduce statement">array reduce statement</a>
+                            </li>
+                        </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mc-content">
+                    <div style="display: flex;" id="function">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">function</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">function</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value">FunctionDeclaration</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value">function-statements</p>
+                        </div>
+                    </div>
+                    <h3 id="Function with no params">Function with no params</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> sayHello</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">log</span><span class="pp-pln"> 'Hello'</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+function sayHello() {
+    console.log('Hello');
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Function with unchecked params">Function with unchecked params</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> sayHello</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> name</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">log</span><span class="pp-pln"> 'Hello ' + name</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+function sayHello(name) {
+    console.log('Hello ' + name);
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Function with checked params">Function with checked params</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> sayHello</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">string</span><span class="pp-pln"> name</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">log</span><span class="pp-pln"> 'Hello ' + name</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+var verify = require('wizzi-utils-webpack').verify;
+function sayHello(name) {
+    if (verify.isNotEmpty(name) === false) {
+        return error(
+            'InvalidArgument', 'sayHello', { parameter: 'name', message: 'The name parameter must be a string. Received: ' + name }
+        );
+    }
+    console.log('Hello ' + name);
+}
+/**
+  params
+    string code
+      # the error name or number
+    string method
+    string message
+      # optional
+    { innerError
+      # optional
+*/
+function error(code, method, message, innerError) {
+    var parameter = null;
+    if (verify.isObject(message)) {
+        parameter = message.parameter;
+        message = message.message;
+    }
+    return verify.error(innerError, {
+        name: ( verify.isNumber(code) ? 'Err-' + code : code ),
+        method: '.' + method,
+        parameter: parameter,
+        sourcePath: __filename
+    }, message || 'Error message unavailable');
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Function with checked params and callback">Function with checked params and callback</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> sayHello</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">string</span><span class="pp-pln"> name</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">callback</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">log</span><span class="pp-pln"> 'Hello ' + name</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+var verify = require('wizzi-utils-webpack').verify;
+function sayHello(name, callback) {
+    if (typeof(callback) !== 'function') {
+        throw new Error(
+            error('InvalidArgument', 'sayHello', 'The callback parameter must be a function. Received: ' + callback)
+        );
+    };
+    if (verify.isNotEmpty(name) === false) {
+        return callback(error(
+            'InvalidArgument', 'sayHello', { parameter: 'name', message: 'The name parameter must be a string. Received: ' + name }
+        ));
+    }
+    console.log('Hello ' + name);
+}
+/**
+  params
+    string code
+      # the error name or number
+    string method
+    string message
+      # optional
+    { innerError
+      # optional
+*/
+function error(code, method, message, innerError) {
+    var parameter = null;
+    if (verify.isObject(message)) {
+        parameter = message.parameter;
+        message = message.message;
+    }
+    return verify.error(innerError, {
+        name: ( verify.isNumber(code) ? 'Err-' + code : code ),
+        method: '.' + method,
+        parameter: parameter,
+        sourcePath: __filename
+    }, message || 'Error message unavailable');
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Function with checked params and callback">Function with checked params and callback</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> sayHello</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">string</span><span class="pp-pln"> name</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">any</span><span class="pp-pln"> greetings</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">gotcha</span><span class="pp-pln"> fiona</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">callback</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">log</span><span class="pp-pln"> 'Hello ' + name</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: gotcha, wzElement: undefined, wzName:, row:6, col:9, source:c:/basefolder/temp.js.ittf\nIn js Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.js.ittf",
+  "stack": "Error\n    at new jsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\js-model.g.js:14314:23)\n    at xfunction.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\js-model.g.js:6464:23)\n    at module.jsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\js-model.g.js:97:18)\n    at module.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\js-model.g.js:1538:29)\n    at module.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\js-model.g.js:2601:48)\n    at module.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\js-model.g.js:2611:27)\n    at loadModelFromMTree (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\js-factory.g.js:70:29)\n    at C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\js-factory.g.js:188:21\n    at C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\index.js:82:25\n    at finalize (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\evaluator.js:106:5)"
+}</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="call">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">call</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">_</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value">CallExpression</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value">call-statements</p>
+                        </div>
+                    </div>
+                    <h3 id="Call with no parameters">Call with no parameters</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">_</span><span class="pp-pln"> execute</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+execute();
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Call with string and number parameters">Call with string and number parameters</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">_</span><span class="pp-pln"> display</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">@</span><span class="pp-pln"> 'name'</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">@</span><span class="pp-pln"> 3</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+display('name', 3);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Call with string and call parameters">Call with string and call parameters</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">_</span><span class="pp-pln"> showUserName</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">@</span><span class="pp-pln"> userId</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">_</span><span class="pp-pln"> getName</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> userId</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+showUserName(userId, getName(userId));
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Call with string and object parameters">Call with string and object parameters</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">_</span><span class="pp-pln"> showUserProfile</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">@</span><span class="pp-pln"> userId</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">{</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> showEmail</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">_</span><span class="pp-pln"> isEmailVisible</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">                </span><span class="pp-tag">@</span><span class="pp-pln"> userId</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">[</span><span class="pp-pln"> sections</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> 'about-me'</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> 'projects'</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+showUserProfile(userId, {
+    showEmail: isEmailVisible(userId), 
+    sections: [
+        'about-me', 
+        'projects'
+    ]
+});
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="loops">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">loops</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">_</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value">arrays</p>
+                        </div>
+                    </div>
+                    <h3 id="foreach loop">foreach loop</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">foreach</span><span class="pp-pln"> item in myarray</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">set</span><span class="pp-pln"> item.a = item.b / 2</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+var i, i_items=myarray, i_len=myarray.length, item;
+for (i=0; i&lt;i_len; i++) {
+    item = myarray[i];
+    item.a = item.b / 2;
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="while loop">while loop</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">while</span><span class="pp-pln"> item.parent</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">set</span><span class="pp-pln"> item = item.parent</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+while (item.parent) {
+    item = item.parent;
+}
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="array">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">array</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">_</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value">arrays</p>
+                        </div>
+                    </div>
+                    <h3 id="array concat single line statement">array concat single line statement</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">concat</span><span class="pp-pln"> myarray 0, 1, 2, [3, 4]</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+myarray.concat(0, 1, 2, [3, 4]);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="array concat multi line statement">array concat multi line statement</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">concat</span><span class="pp-pln"> myarray</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">@</span><span class="pp-pln"> 0</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">@</span><span class="pp-pln"> 1</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">@</span><span class="pp-pln"> 2</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">[</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> 3</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> 4</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+myarray.concat(0, 1, 2, [
+    3, 
+    4
+]);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="array concat mixed line statement">array concat mixed line statement</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">concat</span><span class="pp-pln"> myarray 0, 1</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">@</span><span class="pp-pln"> 2</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">[</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> 3</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> 4</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+myarray.concat(0, 1, 2, [
+    3, 
+    4
+]);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="array forEach statement with default thisArg">array forEach statement with default thisArg</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">each</span><span class="pp-pln"> item in myarray</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">set</span><span class="pp-pln"> item.a = item.b / 2</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+myarray.forEach(function(item, item_index, array) {
+    item.a = item.b / 2;
+}, this);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="array forEach statement with explicit thisArg">array forEach statement with explicit thisArg</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">each</span><span class="pp-pln"> item in myarray myinstance</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">set</span><span class="pp-pln"> item.a = item.b / 2</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+myarray.forEach(function(item, item_index, array) {
+    item.a = item.b / 2;
+}, myinstance);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="array filter statement with default thisArg">array filter statement with default thisArg</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">filter</span><span class="pp-pln"> item in myarray</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> item.a == 10</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+myarray.filter(function(item, item_index, array) {
+    return item.a == 10;
+}, this);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="array filter statement with explicit thisArg">array filter statement with explicit thisArg</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">filter</span><span class="pp-pln"> item in myarray myinstance</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> item.a == this.maxAge</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+myarray.filter(function(item, item_index, array) {
+    return item.a == this.maxAge;
+}, myinstance);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="array find statement with default thisArg">array find statement with default thisArg</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">find</span><span class="pp-pln"> item in myarray</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> item.a == 10</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+myarray.find(function(item, item_index, array) {
+    return item.a == 10;
+}, this);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="array find statement with explicit thisArg">array find statement with explicit thisArg</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">find</span><span class="pp-pln"> item in myarray myinstance</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> item.a == this.maxAge</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+myarray.find(function(item, item_index, array) {
+    return item.a == this.maxAge;
+}, myinstance);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="array reduce statement">array reduce statement</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">reduce</span><span class="pp-pln"> item in myarray 0</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> acc + item.a</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-javascript">
+    
+myarray.reduce( (acc, item, item_index, array) =&gt; {
+    return acc + item.a;
+}, 0);
+</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+</body>
+
+</html>

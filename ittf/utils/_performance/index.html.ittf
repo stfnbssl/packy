@@ -1,0 +1,39 @@
+html
+
+	$include options
+
+	$include common/options-init
+
+	$
+		opt.logo_w = 70;
+		opt.logo_h = 30;
+		opt.sidebar_1 = false;
+		opt.sb_1_min_w = 0;
+		opt.title = 'Javascript performance';
+	
+	$include common/options-analize
+
+	layout( &opt )
+
+		$append head-styles
+			css style.css.ittf
+		$append body-scripts
+			js script.js.ittf
+
+			script
+				module
+					_ window.addEventListener
+						@ "load"
+						function
+							log "getValue ['a']", getValue(['a'])
+							log "getValue ['a','b']", getValue(['a','b'])
+							log "getValue [' ', 'a','b']", getValue([' ', 'a','b'])
+							log "getValue [' ', 'a','b',' ', 'c']", '|'+ getValue([' ', 'a','b',' ', 'c']) + '|'
+							log "getValue [' ', 'a','b',' ', 'c',' ',' ']", '|'+ getValue([' ', 'a','b',' ', 'c',' ',' ']) + '|'
+							log "getValue [' ', 'a','b',' ', 'c',' ',' ', '\\', 'b']", '|'+ getValue([' ', 'a','b',' ', 'c',' ',' ', '\\', 'b']) + '|'
+							log "getValue ['\\', 'b', ' ', 'a','b',' ', 'c',' ',' ', '\\', 'b']", '|'+ getValue(['\\', 'b', ' ', 'a','b',' ', 'c',' ',' ', '\\', 'b']) + '|'
+
+		p see
+			a https://www.measurethat.net/
+				href https://www.measurethat.net/
+

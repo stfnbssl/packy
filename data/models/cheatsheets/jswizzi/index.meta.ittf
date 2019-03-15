@@ -1,0 +1,10 @@
+﻿meta
+	$
+		var d = '$';
+		var cont = '\\';
+		var contb = '\\b';
+		var contn = '\\n';
+
+	schema ittf
+
+	$include statements

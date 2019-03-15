@@ -1,0 +1,127 @@
+  css  ids: 1 128
+    < * ids: 2 129
+      + *:before ids: 3 130
+      + *:after ids: 4 131
+      -moz-box-sizing border-box ids: 5 132
+      -webkit-box-sizing border-box ids: 6 133
+      box-sizing border-box ids: 7 134
+      position relative ids: 8 135
+    . root ids: 9 136
+      height 100vh ids: 10 137
+      width 100vw ids: 11 138
+    . Resizer ids: 12 139
+      -moz-box-sizing border-box ids: 13 140
+      -webkit-box-sizing border-box ids: 14 141
+      box-sizing border-box ids: 15 142
+      background #000 ids: 16 143
+      opacity .2 ids: 17 144
+      z-index 1 ids: 18 145
+      -moz-background-clip padding ids: 19 146
+      -webkit-background-clip padding ids: 20 147
+      background-clip padding-box ids: 21 148
+    . Resizer:hover ids: 22 149
+      -webkit-transition all 2s ease ids: 23 150
+      transition all 2s ease ids: 24 151
+    . Resizer.horizontal ids: 25 152
+      height 11px ids: 26 153
+      margin -5px 0 ids: 27 154
+      border-top 5px solid rgba(255, 255, 255, 0) ids: 28 155
+      border-bottom 5px solid rgba(255, 255, 255, 0) ids: 29 156
+      cursor row-resize ids: 30 157
+      width 100% ids: 31 158
+    . Resizer.horizontal:hover ids: 32 159
+      border-top 5px solid rgba(0, 0, 0, 0.5) ids: 33 160
+      border-bottom 5px solid rgba(0, 0, 0, 0.5) ids: 34 161
+    . Resizer.vertical ids: 35 162
+      width 15px ids: 36 163
+      color blue ids: 37 164
+      margin 0 -5px ids: 38 165
+      border-left 5px solid rgba(255, 255, 0, 0) ids: 39 166
+      border-right 5px solid rgba(255, 255, 0, 0) ids: 40 167
+      cursor col-resize ids: 41 168
+    . Resizer.vertical:hover ids: 42 169
+      border-left 5px solid rgba(0, 0, 0, 0.5) ids: 43 170
+      border-right 5px solid rgba(0, 0, 0, 0.5) ids: 44 171
+    . vertical section ids: 45 172
+      width 100vh ids: 46 173
+      height 100vh ids: 47 174
+      display -webkit-box ids: 48 175
+      display -webkit-flex ids: 49 176
+      display -ms-flexbox ids: 50 177
+      display flex ids: 51 178
+      -webkit-box-orient vertical ids: 52 179
+      -webkit-box-direction normal ids: 53 180
+      -webkit-flex-direction column ids: 54 181
+      -ms-flex-direction column ids: 55 182
+      flex-direction column ids: 56 183
+    . vertical header ids: 57 184
+      padding 1rem ids: 58 185
+      background #eee ids: 59 186
+    . vertical footer ids: 60 187
+      padding 1rem ids: 61 188
+      background #eee ids: 62 189
+    < #vertically-nested-in-container-example ids: 63 190
+      -webkit-box-flex 1 ids: 64 191
+      -webkit-flex 1 ids: 65 192
+      -ms-flex 1 ids: 66 193
+      flex 1 ids: 67 194
+      display -webkit-box ids: 68 195
+      display -webkit-flex ids: 69 196
+      display -ms-flexbox ids: 70 197
+      display flex ids: 71 198
+    . horizontal section ids: 72 199
+      width 100vh ids: 73 200
+      height 100vh ids: 74 201
+      display flex ids: 75 202
+      flex-direction column ids: 76 203
+    . horizontal header ids: 77 204
+      padding 1rem ids: 78 205
+      background #eee ids: 79 206
+    . horizontal footer ids: 80 207
+      padding 1rem ids: 81 208
+      background #eee ids: 82 209
+    < #horizontally-nested-in-container-example ids: 83 210
+      flex 1 ids: 84 211
+      display flex ids: 85 212
+    . parent ids: 86 213
+      width 100% ids: 87 214
+      height 100% ids: 88 215
+      -webkit-box-flex 1 ids: 89 216
+      -webkit-flex 1 ids: 90 217
+      -ms-flex 1 ids: 91 218
+      flex 1 ids: 92 219
+      display -webkit-box ids: 93 220
+      display -webkit-flex ids: 94 221
+      display -ms-flexbox ids: 95 222
+      display flex ids: 96 223
+      -webkit-box-orient vertical ids: 97 224
+      -webkit-box-direction normal ids: 98 225
+      -webkit-flex-direction column ids: 99 226
+      -ms-flex-direction column ids: 100 227
+      flex-direction column ids: 101 228
+    . header ids: 102 229
+      background #aaa ids: 103 230
+      height 3rem ids: 104 231
+      line-height 3rem ids: 105 232
+    . wrapper ids: 106 233
+      background #ffa ids: 107 234
+      margin 5rem ids: 108 235
+      -webkit-box-flex 1 ids: 109 236
+      -webkit-flex 1 ids: 110 237
+      -ms-flex 1 ids: 111 238
+      flex 1 ids: 112 239
+    . no-margin ids: 113 240
+      margin 0 ids: 114 241
+      padding 0 ids: 115 242
+    . full-height ids: 116 243
+      height 100% ids: 117 244
+    . list-well-title ids: 118 245
+      height 15% ids: 119 246
+      height calc(15% - 20px) ids: 120 247
+      overflow hidden ids: 121 248
+      position relative ids: 122 249
+    . list-well-content ids: 123 250
+      height 85% ids: 124 251
+      margin-bottom 0 ids: 125 252
+      overflow auto ids: 126 253
+      position relative ids: 127 254

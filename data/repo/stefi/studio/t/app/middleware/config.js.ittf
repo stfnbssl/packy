@@ -1,0 +1,8 @@
+﻿$group
+	$params &app
+
+	wz-const HTTP_REQUEST = 'HTTP_REQUEST'
+	wz-const defaultTimeout = 20000
+	wz-const defaultResponseType = 'json'
+
+	$hook

@@ -1,0 +1,316 @@
+h/root/layout()
+
+    $append head-styles
+        @style
+            css
+                < h3
+                    background #343434
+                    color #dede00
+                    padding 5px 10px
+                < p
+                    border-bottom 1px solid #a9a9a9
+                . high-p
+                    color red
+                    font-size 600
+                . done
+                    color green
+                    font-size 500
+                . seemsdone
+                    color darkgreen
+                    font-size 500
+
+	h/bs/breadcrumb()
+		h/bs/li_a_divider( Studio, /ittf/repo/stefi/studio/index.html.ittf )
+		h/bs/li_a_divider( Wizzi, /ittf/repo/stefi/studio/wizzi/index.html.ittf )
+		h/bs/li_active( Activity log )
+
+	h1 What are we exploring and discovering?
+	
+	ul
+	    li
+	        a Expo io Yanez
+	            href https://expo.io/@yanez
+	            
+	h3 march , 11 - 17 / 2019
+	ul
+		lia( Cross Site Request Forgery Prevention, https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md, SECURITY)
+		lia( Cross Site Scripting Prevention, https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md, SECURITY)
+		lia( Content-Security-Policy header, https://content-security-policy.com/, SECUTITY)
+	    lia( NGrok exposes local servers behind NATs and firewalls to the public internet over secure tunnels, https://ngrok.com/product, SERVER
+	
+	h3 march , 4 - 10 / 2019
+	ul
+	    lia( auth0 - backend api, https://auth0.com/docs/api/management/v2#
+	
+	h3 february - march , 25 - 3 / 2019
+	ul
+	
+	h3 february, 18 - 24 / 2019
+	ul
+	    lia( best material-ui treeview component, https://github.com/fiffty/react-treeview-mui, REACT-MATERIAL-UI
+	    lia( embed codesandbox in remarks, https://github.com/elboman/gatsby-remark-embedded-codesandbox, CODESANDBOX+REMARKS
+	    lia( typescript library good example () <a href="https://marcobotto.com/blog/compiling-and-bundling-typescript-libraries-with-webpack/">Marco Botto</a>, https://github.com/elboman/typescript-lib-example, TYPESCRIPT+WEBPACK
+
+	h3 february, 11 - 17 / 2019
+	ul
+        lia( neonode (neo4j ORM), https://github.com/adam-cowley/neode/tree/master/src/Services, NEO4J+ORM
+	
+	h3 january - february, 4 - 10 / 2019
+	ul
+	    lia( graphql-code-generator, https://medium.com/the-guild/graphql-code-generator-a34e3785e6fb, GRAPHQL+CODEGEN
+	    lia( wordpress-vs-joomla-drupal, https://websitesetup.org/cms-comparison-wordpress-vs-joomla-drupal/, CMS
+	    lia( github hello world, https://guides.github.com/activities/hello-world/, GITHUB
+	
+	h3 january - february, 28 - 3 / 2019
+	ul
+	    lia( static typing in "React & Redux" apps using TypeScript, https://github.com/piotrwitek/react-redux-typescript-guide, REACT+TYPESCRIPT
+	    lia( firebase quickstart, https://github.com/firebase/quickstart-js, FIREBASE
+	    lia( shelljs, https://github.com/shelljs/shelljs, SHELL)
+	    lia( sculptor - templates, https://github.com/sculptor/sculptor/tree/develop/sculptor-generator/sculptor-generator-templates/src/main/java/org/sculptor/generator/template, CODE-GENERATOR
+	h3 january, 21 - 27 / 2019
+	ul
+	    lia( reveal, https://www.diycode.cc/projects/hakimel/reveal.js, SLIDES
+	    lia( public apis, https://github.com/toddmotto/public-apis, CLOUD
+	    lia( mongo express vue, https://github.com/didinj/mevn-stack-vue.js-2-example, MONGODB+EXPRESS+VUE
+	    lia( neo4j install starter, https://neo4j.com/download-thanks-desktop/?edition=desktop&flavour=winstall64&release=1.1.13&offline=true, NEO4J
+	    lia( oh-my-zsh plugins, https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#node, SHELL+ZSH
+	    lia( linux on window (bash), https://docs.microsoft.com/en-us/windows/wsl/install-win10, LINUX
+	    lia( github ranking, https://www.diycode.cc/trends, RANKING
+	    lia( storybook for Vue, https://storybook.js.org/basics/guide-vue/, VUE+STORYBOOK
+	    lia( SCSS parser, https://github.com/salesforce-ux/scss-parser, WIZZIFY+SCSS
+	    lia( Vuelidate, https://monterail.github.io/vuelidate/, VUE+VALIDATION
+	    lia( vue-vuex-vuetify-firebase, https://medium.freecodecamp.org/how-to-build-a-single-page-application-using-vue-js-vuex-vuetify-and-firebase-838b40721a07, VUE+VUEX+VUETIFY+FIREBASE
+	    lia( TideLift - paied support, https://tidelift.com/subscription/pricing, SUPPORT
+	    lia( vue-vuex-typescript-demo, https://github.com/qidaizhe11/vue-vuex-typescript-demo, VUE+VUEX+TYPESCRIPT
+	    lia( vue-router-demos, https://github.com/vuejs/vue-router-demos, VUE+ROUTER
+	    lia( path-to-regexp (express and vue-router), https://github.com/pillarjs/path-to-regexp, ROUTER
+	    lia( Block Element Modifier (BEM), http://getbem.com/, CSS
+	    lia( TC39 - proposal-decorators, https://github.com/tc39/proposal-decorators, JAVASCRIPT+TC39
+	    lia(Vue + Typescript simple starter, https://frontendsociety.com/writing-single-file-components-vue-files-in-typescript-vue-class-component-vs-vue-extend-c5c1d8e47b7, VUE+TYPESCRIPT
+	            
+	h3 january, 14 - 20 / 2019
+	ul
+	    lia( LGTM alerts and automated code review, https://lgtm.com/, CODE REVIEW
+	h3 january, 7-13  / 2019
+	ul
+	    lia( Yaml, https://yaml.org/, DATA SERIALIZATION
+	    lia( Rx, http://rx.codesimply.com/, SCHEMATA
+	    lia( Enzime, https://github.com/airbnb/enzyme, TEST
+	    lia( React boilerplate, https://github.com/react-boilerplate/react-boilerplate, REACT
+	    lia( ReactQL - Typescript + React + Graphql, https://github.com/leebenson/reactql, TYPESCRIPT+REACT+GRAPHQL
+	    lia( Typescript library starter, https://github.com/alexjoverm/typescript-library-starter, TYPESCRIPT
+	    lia( Prettier, https://prettier.io/, PRETTIER
+	    lia( Styled components for Typescript, https://www.styled-components.com/docs/api#typescript, TYPESCRIPT+STYLED COMPONENTS
+	    lia( Webpack with babel 7, https://medium.com/oredi/webpack-with-babel-7-b61f7caa9565, WEBPACK+BABEL
+	    lia( Using prettier in the browser, https://github.com/prettier/prettier/blob/master/docs/browser.md, PRETTIER
+	    lia( Create React App Documentation, https://facebook.github.io/create-react-app/docs/documentation-intro, REACT.JS
+	    lia( babel typescript definitions, https://github.com/babel/babel/blob/master/packages/babel-types/src/definitions/typescript.js, SCHEMAS
+	    lia( babel type traverse example, https://github.com/babel/babel/blob/master/packages/babel-types/src/traverse/traverse.js, JAVASCRIPT
+	        
+	h3 dicember - january, 31-6  / 2018/19
+	ul
+	    lia( Rust and Web Assembly, https://rustwasm.github.io/book/introduction.html, RUST
+	    lia( Typescript demo by Anders Heijlbergs, https://channel9.msdn.com/Events/Build/2017/B8088/, TYPESCRIPT
+	
+	h3 dicember, 24-30  / 2018
+	ul
+	    lia( WebAssembly, https://webassembly.org/, WEB VIRTUAL MACHINE
+	    lia( BuckleScript, https://bucklescript.github.io/bucklescript/Manual.html, JS Type system
+	    lia( BrowserSync - Time-saving synchronised browser testing, https://www.browsersync.io/, TEST
+
+	h3 dicember, 17-23  / 2018
+	ul
+	    lia( Writing a Parcel plugin, https://medium.com/@jasperdemoor/writing-a-parcel-plugin-3936271cbaaa, BUNDLER
+	    lia( How to build a CLI package, https://blog.npmjs.org/post/118810260230/building-a-simple-command-line-tool-with-npm, NPM CLI
+	    lia( L'importanza dei microdati, https://www.html.it/pag/19293/la-potenza-dei-microdati/, HTML
+	    lia( Parcel packager has example for loading dependencies, https://github.com/Ty3uK/parcel-plugin-pug/blob/master/src/PugAsset.ts
+	    lia( Inferno. An extremely fast React-like JavaScript library for building modern user interfaces, https://github.com/infernojs/inferno, JS Library (react like))
+	h3 dicember, 10-16  / 2018
+	ul
+	    lia( Vue Mastery, https://www.vuemastery.com/courses, ON LINE COURSES
+	    lia( Parcel, https://en.parceljs.org/getting_started.html, BUNDLER
+	    lia( Vuejs templates, https://github.com/vuejs-templates, VUE app TEMPLATES and generation template with VUE.CLI
+	    lia( Metalsmith, https://metalsmith.io/, STATIC SITE GENERATOR
+	    lia( Vue router examples, https://github.com/vuejs/vue-router, DEMO
+	    lia( Netlify account, https://app.netlify.com/sites/wizzimodel-docs/settings/access, HEADLESS
+	    lia( Contentful account, https://app.contentful.com/spaces/dzjh1b0miu8z/entries?id=Jf5poXVdKBlmcZ6z&contentTypeId=wizziSchema&contentTypeHidden=false&order.fieldId=updatedAt&order.direction=descending&displayedFieldIds=updatedAt&displayedFieldIds=author, CMS
+	    lia( Nuxt.js - a framework for creating Vue.js applications, https://nuxtjs.org/guide, JS Framework
+	    lia( CodeSandbox cloud ide, https://codesandbox.io/docs/, CLOUD IDE
+	    lia( A List of Content Management Systems for JAMstack Sites, https://headlesscms.org/, HEADLESS
+	    lia( Scrimba, https://github.com/scrimba/community/blob/master/DOCS.md#do-a-recording, LEARNING
+	    lia( Vuex (the Vue Redux), https://vuex.vuejs.org/, SPA STATE MANAGER
+	    lia( Vue - progressive javascript framework, https://vuejs.org/, JS FRAMEWORK
+	    lia( Deploying a Strapi API on Heroku, https://medium.com/strapi/deploying-a-strapi-api-on-heroku-9c8b7809675c, PaaS
+	    lia( Building a static blog using Gatsby and Strapi, https://hackernoon.com/building-a-static-blog-using-gatsby-and-strapi-8b5acfc82ad8, CMS
+	    lia( The JAMStack, https://jamstack.org/, SERVERLESS
+	    lia( diff, https://github.com/flitbit/diff, DIFF
+	    lia( Highlight used in wizzi, https://highlightjs.org/, CODE HIGHLIGHTER
+	    lia( Elasticlunr, http://elasticlunr.com/example/index.html, TEXT-SEARCH (in-browser))
+	    lia( Mermaid, https://github.com/knsv/mermaid, MARKDOWN GRAPHS
+	    lia( StackEdit, https://github.com/benweet/stackedit, MARKDOWN EDITOR (in-browser))
+	
+	h3 dicember, 3-9  / 2018
+	ul
+	    lia( William Hilton, https://github.com/wmhilton, PERSON
+	    lia( Integration SystemJS and Wizzi, https://github.com/systemjs/systemjs-transform-babel
+	    lia( SystemJS, https://guybedford.com/systemjs-2.0, MODULE LOADER
+	    lia( Plunker, https://plnkr.co/edit/?p=preview
+	    lia( Sweetalerts2, https://sweetalert2.github.io/, WIDGET
+	    lia( Blockstack browser, https://medium.com/@liphan48/how-to-install-blockstack-browser-and-register-for-a-free-blockstack-id-and-get-stacks-token-7c7f007839b5, BLOCKCHAIN
+	    lia( Zeke Sikelianos, http://zeke.sikelianos.com/, PERSON
+	    lia( NDE, https://nde.now.sh/nde/, IN-BROWSER-IDE+GIT (isomorphic git) )
+	    lia( GitHub API nodejs library, https://github.com/github-tools/github/blob/master/lib/Repository.js, GITHUB
+	    lia( Three legged OAuth authentication, http://shiya.io/how-to-do-3-legged-oauth-with-github-a-general-guide-by-example-with-node-js/, OAUTH
+	    lia( Runkit, https://runkit.com/stfnbssl, NODEJS CLOUD CONSOLE
+	    lia( GitHub rest API v3, https://developer.github.com/v3/, GITHUB
+	    lia( GitHub advanced search, https://github.com/search?utf8=%E2%9C%93&q=stars%3A%3E20000+language%3AJavaScript&type=Repositories&ref=advsearch&l=JavaScript&l=
+	    lia( Puppeter sandbox, https://puppeteersandbox.com/
+	    lia( Jest (Facebook), https://jestjs.io/en/, TEST FRAMEWORK
+	    lia( Repl.it, https://repl.it/, CLOUD IDE
+	    lia( Getting started with Puppeteer and Chrome Headless for Web Scraping, https://medium.com/@e_mad_ehsan/getting-started-with-puppeteer-and-chrome-headless-for-web-scrapping-6bf5979dee3e, HEADLESS BROWSER
+	
+	h3 november-dicember, 26-2  / 2018
+	ul
+	    lia( Beautifull SVG examples, http://svg-wow.org/, SVG
+	    lia( Typescript by example, https://www.typescriptlang.org/docs/handbook/declaration-files/by-example.html, TYPESCRIPT
+	
+	h3 november, 19-25 / 2018
+	ul
+	    lia( chrome/extensions, https://developer.chrome.com/extensions/overview, CHROME
+	    lia( babel/parser, https://babeljs.io/docs/en/babel-parser, BABEL
+	    lia( typescript && babel, https://blogs.msdn.microsoft.com/typescript/2018/08/27/typescript-and-babel-7/, TYPESCRIPT+BABEL
+	    lia( nginx - static web server, https://nginx.org/en/, WEB SERVER+STATIC
+	    lia( unified, https://github.com/unifiedjs/unified )
+	    lia( unist - Universal Syntax Tree used by <a href="https://unified.js.org">@unifiedjs<a>, https://github.com/syntax-tree/unist
+	    lia( vfile - virtual file for unified, https://github.com/vfile/vfile
+	    lia( Learn zeit/nextjs, https://nextjs.org/learn/
+	    lia( zeit/styled-jsx is the preferred css solution for zeit/now, https://github.com/zeit/styled-jsx
+	    lia( MDX, https://github.com/mdx-js/mdx, MDX+PRESENTATION
+	    lia( MDX-Deck - MDX based presentation framework, https://github.com/jxnblk/mdx-deck
+	    lia( MDX video introduction, https://www.youtube.com/watch?v=d2sQiI5NFAM&list=PLV5CVI1eNcJgCrPH_e6d57KRUTiDZgs0u
+	    lia( Tool for benchmarking the use of HTTP resources, https://github.com/wg/wrk
+	    lia( Zeit.co, https://zeit.co
+            p Setup with zeit.co, stfnbssl, github stfnbssl
+	    lia( Punto riferimento per i pagamenti online x gestire attività su internet., 
+	        \b https://stripe.com/it
+	    lia( Auth0 - a universal authentication & authorization platform for web, mobile and legacy applications, 
+	        \b https://auth0.com/, AUTH
+	
+	h3 november, 12-18 / 2018
+	ul
+	    lia( The entire pro-Git book, https://git-scm.com/book/en/v2, GIT
+	    li
+	        a Next editor has a fine layout example that merges editing and git 
+	            href https://next-editor.app/
+	    li
+	        a GOGS is a self hosted git service that has CORS enabled to be used
+	            \b with isomorphic-git
+	            href https://gogs.io/
+	    li
+	        a NDE uses isomorphic-git
+	            href https://github.com/wmhilton/nde
+        lia( isomorphic-git, https://github.com/isomorphic-git/isomorphic-git, GIT-API in-browser
+	    li 
+	        a Git guide with good images
+	            href http://marklodato.github.io/visual-git-guide/index-en.html
+	
+	h3 november, 5-11 / 2018
+	ul
+	    li Google chrome service worker examples, https://github.com/GoogleChrome/samples/tree/gh-pages/service-worker, SERVICE WORKER
+	    li
+	        a Nps is a project for project scripts enhancing npm scripts
+	            href https://github.com/kentcdodds/nps
+	    lia( Git usefull advanced functions, https://www.perforce.com/blog/git-beyond-basics-version-ignore-file, GIT
+	    lia( This git web terminal must be studied, https://github.com/jcubic/git/blob/master/js/main.js, GIT-API in browser
+	    lia( and this version too, https://jcubic.github.io/git/js/main.js, " "
+	    lia( Puppeter replaces PhantomJS, https://medium.com/@e_mad_ehsan/getting-started-with-puppeteer-and-chrome-headless-for-web-scrapping-6bf5979dee3e, HEADLESS BROWSER
+	    li
+	        a Apple proposal : HTML Template Instantiation
+	            href http://w3c.github.io/webcomponents/proposals/Template-Instantiation.html
+	    li
+	        a Optimization: HTTP/2 server push
+	            href https://www.smashingmagazine.com/2017/04/guide-http2-server-push/
+	    li
+	        a Optimization: HTML Preload feature
+	            href https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/
+	    li
+	        a Fastlane automates beta deployments and releases for iOS and Android apps
+	            href https://docs.fastlane.tools/
+	    li
+	        a Project expo guidelines, helpful
+	            href https://github.com/expo/expo/tree/master/guides
+	h3 october, november / 29-4 / 2018
+	ul
+	    li
+	        a GitHub Api Library
+	            href https://github.com/github-tools/github
+        li
+            a GH3 another GitHub Api Library
+                href https://github.com/k33g/gh3
+	    li
+	        a DropBox stone project: useful to improve wizzi schemas
+	            href https://github.com/dropbox/stone
+	    lia( example of estree walker, https://github.com/Rich-Harris/estree-walker, TREE WALKER
+	    li 
+	        a estree-eval useful to improve jsWizzi
+	            href https://github.com/jdanyow/estree-eval
+	    li
+	        a @types for typescript is a great resource (github.com/DefinitelyTyped/DefinitelyTyped)
+	            href https://github.com/DefinitelyTyped/DefinitelyTyped
+	    lia( ES6 training, http://es6katas.org/, JAVASCRIPT
+	    li
+	        a A simple process manager for developers. Start apps from your browser and access them using local domains
+	            href https://github.com/typicode/hotel
+	    lia( a A zero code json server, https://github.com/typicode/json-server, JSON SERVER
+	    li
+	        a With node-webkit write desktop apps with web technology
+	            href https://github.com/nwjs/nw.js
+	    li
+	        a ngrok: how to tunnel a web service from your computer
+	            href https://ngrok.com/product
+	    lia( Snack expo: wonderful app and resource (react monaco editor), https://snack.expo.io/, BROWSER IDE
+	    li
+	        a An example useful for wizzi-script: how to exec git add and commit
+	            href https://github.com/DavidWells/markdown-magic/blob/master/examples/generate-readme.js
+	    li
+	        a Markdown magic, useful for how to embed pretty code in generated artifacts
+	            href https://github.com/DavidWells/markdown-magic
+	    li
+	        a What husky ?
+	            href https://github.com/typicode/husky
+	    li
+	        a React Ace editor
+	            href https://github.com/securingsincity/react-ace
+	    li
+	        a Monaco editor webpack 3 plugin
+	            href https://github.com/hanjingboo/monaco-editor-webpack-3-plugin/blob/master/index.js
+	    li
+	        a Building a code editor with monaco
+	            href https://blog.expo.io/building-a-code-editor-with-monaco-f84b3a06deaf
+	    lia( Different Ways to Use ES Modules Today!, https://hackernoon.com/7-different-ways-to-use-es-modules-today-fc552254ebf4, ES MODULES
+	    li
+	        a Look at AVA test suite.
+	            href https://github.com/avajs/ava
+	
+	h3 october / 22-28 / 2018
+	ul
+	    li
+	        a Service-workers lifecycle
+	            href https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
+	    
+	    li Trying to use service workers to build in the browser, with the wizzi factory, responses to requests
+	        a \b see MDN Response.Response()
+	            href https://developer.mozilla.org/en-US/docs/Web/API/Response/Response
+            a \b and this
+                href https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream
+            br
+            a
+                h2 THIS seems to be the solution
+                href https://jakearchibald.com/2014/offline-cookbook/#serviceworker-side-templating
+	    li javascript target tecnology
+	        a \b drag & drop by interact.js
+	            href https://github.com/taye/interact.js
+		li issues resolution
+		li wizzi-js arrays
+		li js wizzifier debug
+	

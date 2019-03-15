@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'play',
+			label: 'Play',
+			experimentsWith: 'wizzi playground apps',
+			path: [
+				{
+					name: 'wizzi',
+					label: 'Wizzi',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

@@ -1,0 +1,11 @@
+﻿module
+	kind jsfile
+
+	function sayHello
+		param name
+		log 'Hello ' + name
+
+	$foreach item in wf.nodesOfType('wf:Package')
+		_ sayHello
+			@ '${item.__id}'
+

@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'rxjs',
+			label: 'RxJs',
+			experimentsWith: 'RxJs javascript library',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

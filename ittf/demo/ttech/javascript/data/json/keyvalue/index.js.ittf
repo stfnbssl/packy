@@ -1,0 +1,43 @@
+module
+	kind es6
+
+	$include g/js/wz/core
+	$include js/jsonStore
+	$include js/input
+
+	var db = new JsonStore()
+	
+	_ setCommandManager
+	_ setStoreKey
+                        
+    $*
+	_ db.value
+        @ 'alfa'
+        {
+    _ db.value
+        @ 'alfa.o_beta'
+        {
+    _ db.value
+        @ 'alfa.o_beta.a'
+        @ 52
+    _ db.value
+        @ 'alfa.o_beta.b'
+        @ 55
+    _ db.value
+        @ 'alfa.o_beta'
+    _ db.value
+        @ 'beta'
+        [
+    _ db.value
+        @ 'beta.0'
+        {
+    _ db.value
+        @ 'beta.0.a'
+        @ 15
+    _ db.value
+        @ 'beta'
+	*$   
+
+        
+	
+                        

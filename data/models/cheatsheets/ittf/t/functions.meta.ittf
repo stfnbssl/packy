@@ -1,0 +1,69 @@
+﻿$group
+
+	element jsWizzi functions
+		tag
+		ast 
+		category
+
+		item
+			title Functions in scripts
+			ittf
+				root
+					${d}
+						function sayHello(name) {
+							return 'Hii I am ' + name;
+						}
+						${d}${d}TODO var sh = sayHello;
+
+					p If Varenne could have talked he would have said: ${d}{ sayHello('Varenne') }.
+					${d}${d}TODO p If Ribot could have talked he would have said: ${d}{ sh('Ribot') }.
+
+		item
+			title Functions in markup
+			ittf
+				root
+					${d}function sayHello
+						${d}param name
+						node Hii I am ${d}{ name }
+
+					${d} var name = 'Ribot'
+					${d}_ sayHello
+						${d}@ name
+
+
+		item
+			title Functions in scripts + markup !!! powerful
+			ittf
+				root
+					${d}
+						function buildNode(parent, childCount, deep) {
+							parent.childs = [];
+							if (deep > 3) { return; }
+							parent.childs = [];
+							for (var i = 0; i < childCount; i++) {
+								var child = { id: parent.id + '-' + i};
+								buildNode (child, childCount, deep + 1);
+								parent.childs.push (child);
+							}
+						}
+						var tree = { id: 0 };
+						buildNode (tree, 2, 0);
+
+					node
+					node Let us inspect the 'tree' variable we built.
+					node
+					node ${d}{ _.inspect(tree) }
+
+					node
+					node beautiful tree buildup without depth limits
+					node
+	
+					${d}function nodeView
+						${d}param parent
+						div node${d}{parent.id}
+							${d}foreach nodeChild in parent.childs
+								${d}_ nodeView
+									${d}@ nodeChild
+
+					${d}_ nodeView
+						${d}@ tree

@@ -1,0 +1,10 @@
+$group
+
+	$if opt.useBootstrap
+		css /static/lib/bootstrap/dist/css/bootstrap.min.css
+	
+	$if opt.usePrism
+	    $if isWizziStudio
+		    css /static/lib/prism/prism.css
+		$else
+		    css https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css

@@ -1,0 +1,7 @@
+﻿< Route
+	$params name, title, component|@@null
+	@ title "${title}"
+	@ path {basepath + "/${name}"}
+	@ nav
+	$if component != null
+		@ component {${component}}

@@ -1,0 +1,17 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import { normalize, schema } from 'normalizr' ids: undefined undefined
+    const artifact ids: undefined undefined
+      new schema.Entity ids: undefined undefined
+        @ 'artifacts' ids: undefined undefined
+    const schema ids: undefined undefined
+      new schema.Entity ids: undefined undefined
+        @ 'schemas' ids: undefined undefined
+        {  ids: undefined undefined
+          @ artifacts [artifact] ids: undefined undefined
+    wz-const project ids: undefined undefined
+      new schema.Entity ids: undefined undefined
+        @ 'projects' ids: undefined undefined
+        {  ids: undefined undefined
+          @ schemas [schema] ids: undefined undefined

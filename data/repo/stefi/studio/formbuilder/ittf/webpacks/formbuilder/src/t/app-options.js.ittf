@@ -1,0 +1,26 @@
+﻿$group
+
+	$
+		var app = {};
+		app.name = 'FormBuilder';
+		app.version = '0.0.1';
+		app.title = 'Form builder';
+		app.description = 'Building react forms the wizzi way';
+		app.keywords = 'wizzi ui react forms builders';
+		app.rootContainer = 'MuiThemeContainer';
+		app.initialLoad = false;
+		app.primaryColor = 'orange';
+		app.accentColor = 'red';
+		app.sheetOrder = [];
+		app.useRedux = true;
+		app.useReduxForm = true;
+		app.useApiMiddleware = false;
+		app.useDevTools = false;
+		app.useNormalizr = false;
+		app.githubLink = false;
+		app.useSearch  = false;
+		app.useDrawer = true;
+		app.useMarkdownApi = false;
+		app.useMarkdownDemo = false;
+		app.useRouter = true;
+		app.routeBasepath = '/app/formbuilder';

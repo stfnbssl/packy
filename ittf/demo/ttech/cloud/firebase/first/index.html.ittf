@@ -1,0 +1,36 @@
+html
+
+	body
+	    js https://www.gstatic.com/firebasejs/5.8.1/firebase.js
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js
+		
+		$*
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-auth.js
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-database.js
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-firestore.js
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-messaging.js
+		js https://www.gstatic.com/firebasejs/5.8.1/firebase-functions.js
+		*$
+
+		script
+			module
+				kind es6
+				# Initialize Firebase
+				var config
+					{
+						@ apiKey "AIzaSyACBhxkQICMYxWeftA2DmsOzCAqVf3aTOQ"
+						@ authDomain "wizzifactory.firebaseapp.com"
+						@ databaseURL "https://wizzifactory.firebaseio.com"
+						@ projectId "wizzifactory"
+						# NOT YET storageBucket "wizzifactory.appspot.com"
+						@ storageBucket "" 
+						@ messagingSenderId "676985835415"
+				_ firebase.initializeApp(config)
+				set firestore = firebase.firestore()
+				+
+				_ firestore.settings
+					{
+						# your settings...
+						@ timestampsInSnapshots true
+
+

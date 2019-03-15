@@ -1,0 +1,68 @@
+module
+    kind jsfile
+
+    var files
+        [
+                @ 'a.js'
+                @ 'b/b.js'
+                @ 'c/b/c.js'
+
+    var tree
+        _ fsitem_flat_to_tree
+            @ files
+
+    log JSON.stringify(tree, null, 2)
+
+    # returns node
+	#   { item
+	#     int kind
+	#       oneOf 0,1
+	#     string name
+    #     string itemPath
+    #     string schema
+    #     boolean isFragment
+    #     string hash
+	#     [ children
+    function fsitem_flat_to_tree
+        param flatItems
+        var tree
+            {
+                [ children
+
+        var ss, cur, itemPath, hash, schema, isFragment
+        foreach f in flatItems
+            set itemPath = f
+            set hash = 0
+            set schema = ''
+            set isFragment = false
+            set ss = itemPath.split('/')
+            set cur = tree
+            foreach s in ss
+                set cur
+                    _ fsitem_getCreateChild
+                        @ cur
+                        @ s
+                        @ j < ss.length -1
+            set cur.itemPath = itemPath
+            if cur.kind == 1
+                set cur.hash = hash
+                set cur.schema = schema
+                set cur.isFragment = isFragment
+        return tree    
+
+    function fsitem_getCreateChild
+        param parent
+        param name
+        param isFolder
+        foreach item in parent.children
+            if item.name === name
+                return item
+        var ret
+            {
+                @ kind isFolder ? 0 : 1
+                @ name name
+                [ children
+        _ parent.children.push(ret)
+        return ret
+        
+    

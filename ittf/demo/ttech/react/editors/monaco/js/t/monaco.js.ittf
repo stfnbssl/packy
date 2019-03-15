@@ -1,0 +1,173 @@
+﻿$group
+
+	function noop
+
+	react MonacoEditor
+
+		prop width
+			one-of-type
+				string
+				number
+			default '100%'
+
+		prop height
+			one-of-type
+				string
+				number
+			default '100%'
+
+		prop value
+			string
+			default null
+
+		prop defaultValue
+			string
+			default ''
+
+		prop language
+			string
+			default 'javascript'
+		
+		prop theme
+			string
+			default 'vs-dark'
+		
+		prop options
+			{
+			default {}
+		
+		prop editorDidMount
+			func 
+			default noop
+		
+		prop editorWillMount
+			func
+			default noop
+		
+		prop onChange
+			func
+			default noop
+
+		ctor
+			set this.containerElement = null
+			set this.__current_value = props.value
+
+		did-mount
+			_ this.initMonaco
+
+		did-update
+			
+			prop value
+			prop language
+			prop theme
+			prop width
+			prop height
+			
+			if value !== this.__current_value
+				# Always refer to the latest value
+				set this.__current_value = value
+				# Consider the situation of rendering 1+ times before the editor mounted
+				if this.editor
+					set this.__prevent_trigger_change_event = true
+					_ this.editor.setValue
+						@ this.__current_value
+					set this.__prevent_trigger_change_event = false
+			
+			if language !== prevProps.language
+				_ monaco.editor.setModelLanguage
+					_ this.editor.getModel()
+					@ this.props.language
+			
+			if theme !== prevProps.theme
+				_ monaco.editor.setTheme
+					@ this.props.theme
+			
+			if this.editor && (width !== prevProps.width || height !== prevProps.height)
+				_ this.editor.layout()
+
+		will-unmount
+			_ this.destroyMonaco()
+
+		m editorWillMount
+			# called by -> did-mount -> initMonaco (before editor create)
+			
+			_ this.props.editorWillMount(monaco)
+
+		m editorDidMount
+			param editor
+			# called by -> did-mount -> initMonaco (after editor create)
+
+			_ this.props.editorDidMount(editor, monaco)
+			_ editor.onDidChangeModelContent
+				=>
+					param e
+					const value = editor.getValue()
+
+					# Always refer to the latest value
+					set this.__current_value = value
+
+					# Only invoking when user input changed
+					if !this.__prevent_trigger_change_event
+						_ this.props.onChange(value, event)
+  
+		m initMonaco
+
+			# called by -> did-mount
+
+			log 'initMonaco', this.containerElement
+			
+			const value = this.props.value !== null ? this.props.value : this.props.defaultValue
+			
+			const { language, theme, options } = this.props
+			
+			if this.containerElement
+				
+				# Before initializing monaco editor
+				_ this.editorWillMount()
+				
+				set this.editor
+					_ monaco.editor.create
+						@ this.containerElement
+						{
+							@ value
+							@ language
+							@ ...options
+				
+				if theme
+					log 'monaco.setTheme', theme
+					_ monaco.editor.setTheme(theme)
+				
+				# After initializing monaco editor
+				_ this.editorDidMount(this.editor)
+
+		m destroyMonaco
+
+			# called by -> will-unmount
+
+			if typeof this.editor !== 'undefined'
+				_ this.editor.dispose()
+
+		=> assignRef
+			param component
+			log 'assignRef', component
+			if component
+				set this.containerElement = component
+
+		render
+			prop width
+			prop height
+
+			const fixedWidth = width.toString().indexOf('%') !== -1 ? width : `${width}px`
+			const fixedHeight = height.toString().indexOf('%') !== -1 ? height : `${height}px`
+
+			const style
+				{
+					@ width fixedWidth
+					@ height fixedHeight
+					@ padding '4px'
+
+			return
+				. react-monaco-editor-container
+					@ ref {this.assignRef}
+					@ style {style}
+	

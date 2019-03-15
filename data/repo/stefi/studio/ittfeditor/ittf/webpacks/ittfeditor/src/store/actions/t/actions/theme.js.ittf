@@ -1,0 +1,3 @@
+﻿$group
+	+
+	wz-const TOGGLE_THEME_SHADE = 'TOGGLE_THEME_SHADE'

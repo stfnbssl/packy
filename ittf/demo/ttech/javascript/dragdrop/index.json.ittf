@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'dragdrop',
+			label: 'Drag & drop',
+			experimentsWith: 'javascript drag & drop',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

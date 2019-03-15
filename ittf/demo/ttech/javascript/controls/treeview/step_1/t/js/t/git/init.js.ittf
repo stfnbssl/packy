@@ -1,0 +1,14 @@
+﻿$group
+
+	async-function gitInit
+		{ 
+			@ filepath
+			@ glEventHub
+            
+		const dir = filepath
+            
+		await 
+			_ git.init
+				{ 
+					@ fs
+					@ dir

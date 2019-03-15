@@ -1,0 +1,54 @@
+  module  ids: 1 7
+    kind react ids: 2 8
+    +  ids: 3 9
+    import React, { Component, PropTypes } from 'react' ids: 4 10
+    $group  ids: 13 33
+      wz-class Row ids: 14 34
+        super Component ids: 15 35
+        m render ids: 16 36
+          const { children } = this.props ids: 17 37
+          return  ids: 18 38
+            div  ids: 19 39
+              @style {this.getStyle()} ids: 20 40
+              div  ids: 99 105
+                @style  ids: 100 106
+                  {  ids: 101 107
+                    @ display "table" ids: 102 108
+                    @ content " " ids: 103 109
+              + {children} ids: 22 42
+              div  ids: 111 115
+                @style  ids: 112 116
+                  {  ids: 113 117
+                    @ clear "both" ids: 114 118
+        m getStyle ids: 24 44
+          param span ids: 25 45
+          return  ids: 26 46
+            {  ids: 27 47
+              @ marginLeft 5 ids: 28 48
+              @ marginRight 5 ids: 29 49
+      set Row.propTypes ids: 30 50
+        {  ids: 31 51
+      export default Row ids: 32 52
+    $group  ids: 53 76
+      wz-class Col ids: 54 77
+        super Component ids: 55 78
+        m render ids: 56 79
+          const { span, children } = this.props ids: 57 80
+          return  ids: 58 81
+            div  ids: 59 82
+              @style {this.getStyle(span)} ids: 60 83
+              + {children} ids: 61 84
+        m getStyle ids: 62 85
+          param span ids: 63 86
+          return  ids: 64 87
+            {  ids: 65 88
+              @ boxSizing "border-box" ids: 66 89
+              @ position "relative" ids: 67 90
+              @ width (span / 12 * 100) + '%' ids: 68 91
+              @ float "left" ids: 69 92
+              @ paddingLeft 10 ids: 70 93
+              @ paddingRight 10 ids: 71 94
+              @ minHeight 1 ids: 72 95
+      set Col.propTypes ids: 73 96
+        {  ids: 74 97
+          @ span PropTypes.number.isRequired ids: 75 98

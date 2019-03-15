@@ -1,0 +1,39 @@
+﻿r-wizard-page( WizardForm2, wizard, WizardFormValidate )
+
+	$append imports
+		import WizardFormValidate from './WizardFormValidate'
+
+		const renderError
+			=>
+				param { meta: { touched, error } }
+				return
+					iif touched && error
+						then
+							span
+								+ {error}
+						else false
+	prop previousPage
+		func
+	
+	return
+		form
+			@ onSubmit {handleSubmit}
+
+			email( email, Email )
+			radio-group( Sex )
+				radio( sex, male, Male )
+				radio( sex, female, Female )
+				< Field
+					@ name sex
+					@ component {renderError}
+
+			div
+				button
+					type button
+					class previous
+					@ onClick {previousPage}
+				button
+					type submit
+					class next
+					+ Next
+

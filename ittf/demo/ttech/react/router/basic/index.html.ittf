@@ -1,0 +1,21 @@
+﻿html
+
+	$include options-init
+	
+	$
+		opt.useReact = true;
+		opt.useRouter = true;
+
+	h/root/empty_layout_opt(&opt)
+	
+	    # root
+	    
+	    $append body-scripts
+
+			react_app( &opt )
+
+				render
+					return 
+						h1 hello
+
+

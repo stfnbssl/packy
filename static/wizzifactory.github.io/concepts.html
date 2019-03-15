@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="sanitize.css" rel="stylesheet" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/concepts.css" rel="stylesheet" />
+</head>
+<body class="Concepts">
+    <!-- top navigation markup -->
+    <input type="checkbox" id="tn-input-toggle" />
+    <nav class="tn-bar">
+        <nav class="tn-main">
+            <a href="index.html.ittf"><div class="logo">
+                <img src="images/logo.svg" />
+            </div>
+            </a>
+            <label for="tn-input-toggle" class="tn-label-toggle"></label>
+            <label for="tn-input-toggle" class="tn-label-toggle-close">&times;</label>
+            <ul>
+                <li class="tn-pageSelected"><a href="concepts.html" title="Concepts">Concepts</a>
+                </li>
+                <li><a href="docs/intro.html" title="Documentation">Documentation</a>
+                </li>
+                <li><a href="api.html" title="Api">Api</a>
+                </li>
+                <li><a href="code/intro.html" title="Code">Code</a>
+                </li>
+                <li><a href="starters.html" title="Starters">Starters</a>
+                </li>
+                <li><a href="project.html" title="Project">Project</a>
+                </li>
+            </ul>
+        </nav>
+    </nav>
+    <!-- main content markup -->
+    <main id="mc-wrapper" class="mc-wrapper-layout">
+        <input type="checkbox" id="mc-toggle-toc" />
+        <input type="checkbox" id="mc-toggle-toc-close" onchange="mc_toggle_toc_Close()" />
+        <div class="mc-frame">
+            <div class="mc-frame-bar">
+                <h1 class="mc-sidebar-left-title">Concepts</h1>
+                <h1>
+                    <label for="mc-toggle-toc-close" class="mc-label-toggle-close">&times;</label>
+                </h1>
+            </div>
+            <nav class="mc-sidebar-left">
+                <ul>
+                    <li><a href="#concept-intro" class="mc-item-link">Introduction</a>
+                    <label for="mc-toggle-concept-intro" class="mc-label-toggle">Introduction</label>
+                    </li>
+                    <li><a href="#concept-1" class="mc-item-link">Vision</a>
+                    <label for="mc-toggle-concept-1" class="mc-label-toggle">&nbsp; Vision</label>
+                    </li>
+                    <li><a href="#concept-2" class="mc-item-link">Main components</a>
+                    <label for="mc-toggle-concept-2" class="mc-label-toggle">&nbsp; Main components</label>
+                    </li>
+                    <li><a href="#concept-3" class="mc-item-link">Ittf documents</a>
+                    <label for="mc-toggle-concept-3" class="mc-label-toggle">&nbsp; Ittf documents</label>
+                    </li>
+                    <li><a href="#concept-4" class="mc-item-link">Wizzi schemas and Wizzi Model DOMs</a>
+                    <label for="mc-toggle-concept-4" class="mc-label-toggle">&nbsp; Wizzi schemas and Wizzi Model DOMs</label>
+                    </li>
+                    <li><a href="#concept-5" class="mc-item-link">Wizzi models</a>
+                    <label for="mc-toggle-concept-5" class="mc-label-toggle">&nbsp; Wizzi models</label>
+                    </li>
+                    <li><a href="#concept-6" class="mc-item-link">Model transformers</a>
+                    <label for="mc-toggle-concept-6" class="mc-label-toggle">&nbsp; Model transformers</label>
+                    </li>
+                    <li><a href="#concept-7" class="mc-item-link">Artifact generators</a>
+                    <label for="mc-toggle-concept-7" class="mc-label-toggle">&nbsp; Artifact generators</label>
+                    </li>
+                    <li><a href="#concept-8" class="mc-item-link">Wizzi jobs</a>
+                    <label for="mc-toggle-concept-8" class="mc-label-toggle">&nbsp; Wizzi jobs</label>
+                    </li>
+                    <li><a href="#concept-9" class="mc-item-link">Wizzi plugins</a>
+                    <label for="mc-toggle-concept-9" class="mc-label-toggle">&nbsp; Wizzi plugins</label>
+                    </li>
+                    <li><a href="#concept-10" class="mc-item-link">Wizzifiers</a>
+                    <label for="mc-toggle-concept-10" class="mc-label-toggle">&nbsp; Wizzifiers</label>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mc-content">
+                <div>
+                    <input type="checkbox" id="mc-toggle-concept-intro" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-1" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-2" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-3" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-4" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-5" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-6" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-7" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-8" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-9" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-10" onchange="m_toggleChanged()" />
+                    <h1 class="mc-content-title" id="concept-intro">Concepts</h1>
+                    <div class="mc-pane mc-pane-concept-intro">
+                        <div class="summary">
+                            <p>The Wizzi Factory is a general purpose and language agnostic artifact generator.</p><p>It is model driven and regard software as a data structure that is generated processing data structures. Its inputs and outputs are printable and human readable streams of characters.</p><p>It is an open and interoperable tool for the development environment, with no runtime.</p></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-1">
+                        <h2 id="concept-1">Vision</h2>
+                        <div class="summary">
+                            <p>Nowadays computing has advanced tremendously thank to many new open and interoperable tools and programming languages.</p><p>Computing handles data structures and is itself described by data. A program  source is a human friendly representation of an Abstract Syntax Tree (AST), a data structure that represents the computations of the program. Programming is in essence a combination of data produced partly by programmers and in part by tools.</p><p>The Wizzi Factory is a new tool for describing and composing data structures in the form of both declarative and imperative code. It is aimed at those tasks, in the development process, where programming can be driven by data.</p><p>In the Wizzi Factory human friendly representations of tree data structures drive model transformations and code generations. The Wizzi Factory uses a minimal and universal text format and a template processor for composing tree data structures.</p><p>After composition, domain specific schematas can be applied to the resulting data, creating dynamic models that become context objects for code generations or in cascade new data compositions.</p></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-2">
+                        <h2 id="concept-2">Main components</h2>
+                        <div class="summary">
+                            <ul>    <li>ITTF Documents</li><li>Wizzi schemas and Wizzi Model DOMs    </li><li>Wizzi models    </li><li>Model transformers    </li><li>Artifact generators    </li><li>Plugins    </li><li>Wizzi jobs    </li></ul></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-3">
+                        <h2 id="concept-3">Ittf documents</h2>
+                        <div class="summary">
+                            <p>Ittf Documents are the source documents of the Wizzi Factory.</p><p>ITTF, that stands for Indented Text Tree Format, is a human-friendly serialization text format for representing and composing a tree data structure of nodes made of a name/value pair.</p><p>ITTF Documents can include or merge other ITTF Documents.</p><p>An ITTF Document is also a template and when processed can be merged and interpolated with context data. The ITTF Processor has a scripting engine and an ITTF document can contain scripts for manipulating its nodes.</p><p>A document may have semantic and template nodes. Semantic nodes, that can contain interpolation variables, are the document data. Template nodes drive the document composition and its merging with context data and disappear in the final tree structure. The ITTF Processor is agnostic about the content of semantic nodes. It processes template command nodes and interpolates semantic node names and values. The result of an ITTF process is a tree data structure of semantic nodes that must have a single root node.</p><h4>Example of ITTF Document (without template nodes)</h4><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">html</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">body</span><span class="pp-pln"> </span></li><li class="L3"><span class="pnl">    </span><span class="pp-tag">ul</span><span class="pp-pln"> </span></li><li class="L4"><span class="pnl">      </span><span class="pp-tag">li</span><span class="pp-pln"> </span></li><li class="L5"><span class="pnl">        </span><span class="pp-tag">a</span><span class="pp-pln"> The Wizzi Factory</span></li><li class="L6"><span class="pnl">          </span><span class="pp-tag">href</span><span class="pp-pln"> https://wizzifactory.github.io</span></li></ol></pre><p>Child nodes are indented to their parent.</p><p>Every line is a node consisting of a name value pair. The name is the first string of chars of the line and is separated from the value by a space or a tab.</p><p>Even the root node can be a command node that invokes the merge of its container.</p><h4>Example of a root node that merges its container (with template nodes).</h4><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-mix">layout(</span><span class="pp-pln"> Welcome to my site )</span></li><li class="L2"><span class="pnl">  </span><span class="pp-kwd">$append</span><span class="pp-pln"> appbar</span></li><li class="L3"><span class="pnl">    </span><span class="pp-tag">ul</span><span class="pp-pln"> </span></li><li class="L4"><span class="pnl">      </span><span class="pp-kwd">$foreach</span><span class="pp-pln"> item in menulist</span></li><li class="L5"><span class="pnl">        </span><span class="pp-tag">li</span><span class="pp-pln"> </span></li><li class="L6"><span class="pnl">          </span><span class="pp-tag">a</span><span class="pp-pln"> ${item.name}</span></li><li class="L7"><span class="pnl">            </span><span class="pp-tag">href</span><span class="pp-pln"> ${item.path}</span></li><li class="L8"><span class="pnl">  </span><span class="pp-tag">.</span><span class="pp-pln"> wrapper</span></li><li class="L9"><span class="pnl">    </span><span class="pp-tag">.</span><span class="pp-pln"> content</span></li></ol></pre><h4>Example of a container (with template nodes)</h4><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">html</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">  </span><span class="pp-kwd">$params</span><span class="pp-pln"> title</span></li><li class="L3"><span class="pnl">  </span><span class="pp-tag">head</span><span class="pp-pln"> </span></li><li class="L4"><span class="pnl">    </span><span class="pp-tag">title</span><span class="pp-pln"> ${title}</span></li><li class="L5"><span class="pnl">  </span><span class="pp-tag">body</span><span class="pp-pln"> </span></li><li class="L6"><span class="pnl">    </span><span class="pp-tag">header</span><span class="pp-pln"> </span></li><li class="L7"><span class="pnl">      </span><span class="pp-tag">h1</span><span class="pp-pln"> ${title}</span></li><li class="L8"><span class="pnl">      </span><span class="pp-kwd">$hook</span><span class="pp-pln"> appbar</span></li><li class="L9"><span class="pnl">    </span><span class="pp-tag">section</span><span class="pp-pln"> </span></li><li class="L0"><span class="pnl">      </span><span class="pp-kwd">$hook</span><span class="pp-pln"> </span></li></ol></pre><h4>ITTF Documents are of three kinds</h4><ul>    <li>primary    </li><li>merge    </li><li>include    </li></ul><p>A primary ITTF Document is the entry point of an ITTF Processing.</p><p>A merge document can receive parameters and my have hook nodes where to append child nodes of the merger document.</p><p>An include document is inserted as is and may not receive parameters.</p><h4>Example of a merge ITTF Document.</h4><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">li</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">  </span><span class="pp-kwd">$params</span><span class="pp-pln"> text, href</span></li><li class="L3"><span class="pnl">  </span><span class="pp-tag">a</span><span class="pp-pln"> ${text}</span></li><li class="L4"><span class="pnl">    </span><span class="pp-tag">href</span><span class="pp-pln"> ${href}</span></li></ol></pre><h4>Example of an include ITTF Document.</h4><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">div</span><span class="pp-pln"> License MIT</span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">span</span><span class="pp-pln"> copy Stefano Bassoli.</span></li></ol></pre><h4>mTrees</h4><p>The tree data structure resulting from an ITTF Processing is a javascript object that internally is named `mTree` and in the documentation is sometimes referred to as `model tree` or even `magical tree`.</p><h4>JsWizzi</h4><p>The template engine of the wizzi factory uses a customized subset of the ECMA-262 javascript standard, sandboxed, and tailored for ITTF Processing. JsWizzi is built on the quite efficent <a href="http://esprima.org/">esprima</a> parser and is run by a custom javascript engine (JsWizziRunner).</p><h4>Document types</h4><p>ITTF Documents become usefull as context data when they target a specific domain. Domain specific schematas can be applied to the result of an ITTF Processing, see <a href="#concept-4">Wizzi Schemas</a> below. The name of the Wizzi Schema that is applyed to an ITTF Document is said to be the type of the document. An ITTF Document of type `js` is a document designed to be processed and then validated and loaded by the `js` Wizzi Schema.</p><p>Each development team may create its own document types or use those already availables, see <a href="#concept-9">Wizzi Plugins</a> below.</p><h4>Document file name and extension</h4><p>An ITTF Document must have extension '.ittf' and the extension must be preceded by '.' + the name of the Wizzi Schema that describes the document or by '.ittf' again if the document is not typed.</p></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-4">
+                        <h2 id="concept-4">Wizzi schemas and Wizzi Model DOMs</h2>
+                        <div class="summary">
+                            <p>A Wizzi Schema is a formal description of the types and attributes of a tree data structure and is similar to an XML Schema.</p><p>It is domain specific and should be tailored to the generation purposes of that domain.</p><p>A Wizzi Schema can be processed to generate the javascript code of a Wizzi Model DOM, that means the classes of an object model that can load and validate the data structure of a processed ITTF Document that the schema describes.</p><p>A Wizzi Model DOM can contain autogenerated and user defined methods. Autogenerated methods perform validations and initializations. User methods can traverse, filter and manipulate the model data.</p><p>Each Wizzi Schema generates its own Wizzi Model DOM.</p><p>A Wizzi Schema is itself described by an ITTF Document of type `wfschema`, implemented in the `wizzi-core` plugin.</p><h4>Example of a Wizzi Schema (an ITTF Document of type `wfschema`)</h4><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">wfschema</span><span class="pp-pln"> rdbms</span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">e</span><span class="pp-pln"> catalog</span></li><li class="L3"><span class="pnl">    </span><span class="pp-tag">r</span><span class="pp-pln"> table/s</span></li><li class="L4"><span class="pnl">  </span><span class="pp-tag">e</span><span class="pp-pln"> table</span></li><li class="L5"><span class="pnl">    </span><span class="pp-tag">r</span><span class="pp-pln"> column/s</span></li><li class="L6"><span class="pnl">    </span><span class="pp-tag">r</span><span class="pp-pln"> index/es</span></li><li class="L7"><span class="pnl">  </span><span class="pp-tag">e</span><span class="pp-pln"> column</span></li><li class="L8"><span class="pnl">    </span><span class="pp-tag">a</span><span class="pp-pln"> type</span></li><li class="L9"><span class="pnl">    </span><span class="pp-tag">a</span><span class="pp-pln"> caption</span></li><li class="L0"><span class="pnl">    </span><span class="pp-tag">a</span><span class="pp-pln"> defaultValue</span></li><li class="L1"><span class="pnl">      </span><span class="pp-tag">tag</span><span class="pp-pln"> default</span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">e</span><span class="pp-pln"> index</span></li><li class="L3"><span class="pnl">    </span><span class="pp-tag">a</span><span class="pp-pln"> primary</span></li><li class="L4"><span class="pnl">      </span><span class="pp-tag">type</span><span class="pp-pln"> boolean</span></li><li class="L5"><span class="pnl">    </span><span class="pp-tag">a</span><span class="pp-pln"> unique</span></li><li class="L6"><span class="pnl">      </span><span class="pp-tag">type</span><span class="pp-pln"> boolean</span></li><li class="L7"><span class="pnl">    </span><span class="pp-tag">r</span><span class="pp-pln"> column/s</span></li></ol></pre><h4>Language Wizzi Schemas</h4><p>The most part of artifact generators targets imperative programming languages (PLs). The Wizzi Factory apply the power of ITTF Processing to PLs also.</p><p>A language Wizzi Schema describes a tree data structure that an artifact generator can transform targeting the syntax of a PL grammar.</p><p>It can be viewd as a profile of a PL grammar that is implemented partially, with some of its symbols stereotyped.</p><p>The schema developer should try to find the optimal balance between convenience and completeness and define the proper approximation of the schema in respect to the PL grammar. The purpose of a language schema is not to map a PL grammar but to make pieces of code templeatable and computable when convenient.</p><p>The Wizzi Factory is entirely coded using the `js` Wizzi Schema implemented by the `wizzi-js` plugin.</p><h4>Example of a `js` ITTF Document</h4><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">module</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">kind</span><span class="pp-pln"> jsfile</span></li><li class="L3"><span class="pnl">  </span><span class="pp-tag">class</span><span class="pp-pln"> Horse</span></li><li class="L4"><span class="pnl">    </span><span class="pp-tag">super</span><span class="pp-pln"> Animal</span></li><li class="L5"><span class="pnl">    </span><span class="pp-tag">ctor</span><span class="pp-pln"> </span></li><li class="L6"><span class="pnl">      </span><span class="pp-tag">param</span><span class="pp-pln"> name</span></li><li class="L7"><span class="pnl">      </span><span class="pp-tag">base</span><span class="pp-pln"> name</span></li><li class="L8"><span class="pnl">    </span><span class="pp-tag">m</span><span class="pp-pln"> say</span></li><li class="L9"><span class="pnl">      </span><span class="pp-tag">log</span><span class="pp-pln"> 'Hiiii i am ' + this.name</span></li><li class="L0"><span class="pnl">    </span><span class="pp-tag">m</span><span class="pp-pln"> create</span></li><li class="L1"><span class="pnl">      </span><span class="pp-tag">static</span><span class="pp-pln"> </span></li><li class="L2"><span class="pnl">      </span><span class="pp-tag">param</span><span class="pp-pln"> name</span></li><li class="L3"><span class="pnl">      </span><span class="pp-tag">return</span><span class="pp-pln"> </span></li><li class="L4"><span class="pnl">        </span><span class="pp-tag">new</span><span class="pp-pln"> Horse</span></li><li class="L5"><span class="pnl">          </span><span class="pp-tag">@</span><span class="pp-pln"> name</span></li></ol></pre></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-5">
+                        <h2 id="concept-5">Wizzi models</h2>
+                        <div class="summary">
+                            <p>A Wizzi Model is an instance of a Wizzi Model DOM that has been loaded with the tree data structure resulting from a processed ITTF Document.</p><p>Wizzi models act as context objects during ITTF Document processing, model transformations and artifact generations.</p><p>Wizzi models are described in terms of elements, attributes and relations. An element is a classifier and a relation is a relationship between elements.</p><h4>In a Wizzi Model:</h4><ul>    <li>An element may have one super element (abstraction) and many derived elements (specializations), may be abstract or concrete and may have a name and attributes.    </li><li>Relationships are one-to-many (default) and one-to-one. They do not have attributes. Both imply ownership of contained (child) elements: arrays (one-to-many) and single child (one-to-one).    </li><li>An attribute has a name and a value of a primitive type.    </li></ul><h4>The tree structure of a Wizzi Model is mapped to a javascript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript"> class</a>, where:</h4><ul>    <li>Elements are classes.    </li><li>Attributes are properties of element classes.    </li><li>One-to-many relationships are arrays of element classes on the related element class.    </li><li>One-to-one relationships are element classes on the related element class.    </li><li>Attributes and relationships are inherited from super elements.    </li></ul></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-6">
+                        <h2 id="concept-6">Model transformers</h2>
+                        <div class="summary">
+                            <p>Sometimes models require manipulations for special purposes. Model transformers can be applied to Wizzi Models every time a Wizzi Model is used as a context object.</p><p>A model trasformer is an API exported by a plugin and must respect the plugin interface. Its internal implementation is free. Usually the implementor is a javascript program that receives in input a Wizzi Model and returns a transformed model as a POJO object.</p><p>A model transformation can be declared in a Wizzi Job or executed invoking a method of the Wizzi Factory API.</p></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-7">
+                        <h2 id="concept-7">Artifact generators</h2>
+                        <div class="summary">
+                            <p>An artifact generator transforms a context object, usually a Wizzi Model, into a software artifact.</p><p>Software artifacts are printable text streams that may consist of imperative code targeting a programming language or declarative data structures (JSON, XML, YAML, … et cetera).</p><p>An artifact generator is an API exported by a plugin and must respect the plugin interface. Its implementation is free and usually the implementor is a javascript program that receives in input a Wizzi Model and returns the text of the generated artifact.</p><p>An artifact generation can be declared in a Wizzi Job or executed invoking a method of the Wizzi Factory API.</p></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-8">
+                        <h2 id="concept-8">Wizzi jobs</h2>
+                        <div class="summary">
+                            <p>The execution of a Wizzi Job is the main operation of the Wizzi Factory.</p><p>A Wizzi Job is an ITTF Document that declares how to load context models, execute model transformations, generate artifacts and persist them in their destination paths.</p><p>A core Wizzi Schema of the Wizzi Factory (wfJob) describes the types of a Wizzi Job declaration.</p><h4>Example of the Wizzi Job that produces this documentation html page.</h4><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">wfjob</span><span class="pp-pln"> wizzi-docs-concepts</span></li><li class="L2"><span class="pnl">  </span><span class="pp-kwd">$</span><span class="pp-expr"> </span></li><li class="L3"><span class="pnl">    </span><span class="pp-expr">var</span><span class="pp-expr"> models_folder     = path.join(__dirname, 'models');</span></li><li class="L4"><span class="pnl">    </span><span class="pp-expr">var</span><span class="pp-expr"> html_folder       = path.join(__dirname, 'html');</span></li><li class="L5"><span class="pnl">    </span><span class="pp-expr">var</span><span class="pp-expr"> dest_folder       = "c:/my/wizzi/v5/github/wizzifactory.github.io";</span></li><li class="L6"><span class="pnl">  </span><span class="pp-tag">models-base-folder</span><span class="pp-pln"> ${models_folder}</span></li><li class="L7"><span class="pnl">  </span><span class="pp-tag">model</span><span class="pp-pln"> concepts</span></li><li class="L8"><span class="pnl">    </span><span class="pp-tag">src</span><span class="pp-pln"> concepts.docs.ittf</span></li><li class="L9"><span class="pnl">    </span><span class="pp-tag">schema</span><span class="pp-pln"> docs</span></li><li class="L0"><span class="pnl">  </span><span class="pp-tag">line</span><span class="pp-pln"> html</span></li><li class="L1"><span class="pnl">    </span><span class="pp-tag">cwd-folder</span><span class="pp-pln"> ${html_folder}</span></li><li class="L2"><span class="pnl">    </span><span class="pp-mix">wfjob/artifact-html(</span><span class="pp-pln"> concepts.html.ittf )</span></li><li class="L3"><span class="pnl">      </span><span class="pp-tag">model-ref</span><span class="pp-pln"> concepts</span></li><li class="L4"><span class="pnl">        </span><span class="pp-tag">transformer</span><span class="pp-pln"> docs/preprint</span></li><li class="L5"><span class="pnl">  </span><span class="pp-tag">production</span><span class="pp-pln"> </span></li><li class="L6"><span class="pnl">    </span><span class="pp-tag">dest-folder</span><span class="pp-pln"> ${dest_folder}</span></li><li class="L7"><span class="pnl">    </span><span class="pp-tag">line-ref</span><span class="pp-pln"> html</span></li></ol></pre></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-9">
+                        <h2 id="concept-9">Wizzi plugins</h2>
+                        <div class="summary">
+                            <p>The Wizzi Factory is made of a few kernel modules and an ecosystem of plugins.</p><p>A plugin implements one or more Wizzi schemas and the generation components built around those schemas:</p><ul>    <li>Wizzi Models and their factories;    </li><li>model transformers;    </li><li>artifact generators.    </li></ul><p>It must have a standard folder structure and must export the     <a href="api.html#wizzi-plugin.createFactoryPlugin">createFactoryPlugin    </a><span> method in its entry point.    </span></p><p>    <a href="docs/plugins.html">Plugins documentation    </a></p></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-10">
+                        <h2 id="concept-10">Wizzifiers</h2>
+                        <div class="summary">
+                            <p>Ittf Documents represent code as a tree data structure to make source code templeatable and computable when convenient. They are normally edited by programmers but sometimes would be usefull the translation of existing code into an ITTF Document type and then add template nodes and scripts.</p><p>Some Wizzi Schemas of the default Wizzi Factory plugins have a related wizzifier tool that translates PL code into an ITTF Document of its type.</p><p>  for more details.    <a href="docs/wizzifiers.html">See the Wizzifiers documentation    </a></p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function m_toggleChanged() {
+            var el_toc = document.querySelector("input[id='mc-toggle-toc']");
+            var el_contents = document.querySelectorAll("input[id^='mc-toggle-concept-']");
+            var seenTrue = false;
+            var i, i_items=el_contents, i_len=el_contents.length, el;
+            for (i=0; i<i_len; i++) {
+                el = el_contents[i];
+                if (el.checked) {
+                    seenTrue = true;
+                }
+            }
+            el_toc.checked = seenTrue;
+        }
+        function mc_toggle_toc_Close() {
+            var el_toc = document.querySelector("input[id='mc-toggle-toc']");
+            var el_contents = document.querySelectorAll("input[id^='mc-toggle-concept-']");
+            var i, i_items=el_contents, i_len=el_contents.length, el;
+            for (i=0; i<i_len; i++) {
+                el = el_contents[i];
+                el.checked = false;
+            }
+            el_toc.checked = false;
+        }
+    </script>
+    <script src="wizzifactory.js"></script>
+</body>
+
+</html>

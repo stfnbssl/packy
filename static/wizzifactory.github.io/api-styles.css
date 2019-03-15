@@ -1,0 +1,116 @@
+.main-content p, .main-content blockquote, .main-content table, .main-content pre, .splash__section p, .splash__section blockquote, .splash__section table, .splash__section pre {
+    margin: 0;
+}
+.api-property-panel {
+    border: 1px solid #ede;
+    margin-top: 5px;
+    padding: 5px 10px;
+}
+.api-method-panel {
+    border: 1px solid #ede;
+    margin-top: 10px;
+    padding: 10px;
+}
+.api-method-section-title {
+    margin-top: 10px;
+    font-size: 0.9em;
+    font-style: italics;
+    font-weight: bold;
+}
+.api-method {
+    background-color: #ddd;
+    color: #222;
+    font-size: 1.5em;
+    padding: 5px 0px;
+}
+.api-property-panel {
+    border: 1px solid #ede;
+}
+.api-property {
+    background-color: #ddd;
+    color: #222;
+    font-size: 1.5em;
+    padding: 5px 0px;
+}
+.api-property-name {
+    color: #222;
+    font-size: 1em;
+}
+.api-property-type {
+    color: darkgreen;
+    font-size: 0.9em;
+}
+.api-param-panel {
+    border: 1px solid #ede;
+}
+.api-param-name {
+    color: #222;
+    font-size: 1em;
+}
+.api-param-type {
+    color: darkgreen;
+    font-size: 0.9em;
+}
+.api-ref-label {
+    color: darkblue;
+    font-size: 0.9em;
+}
+.api-ref {
+    color: #AA5039;
+    font-size: 1em;
+}
+.api-info-label {
+    color: orange;
+    font-size: 0.9em;
+}
+.api-info {
+    color: #888;
+    font-size: 1em;
+}
+.api-info-tag {
+    color: darkred;
+    font-size: 1em;
+}
+.api-info-name {
+    color: #222;
+    font-size: 1em;
+}
+.api-comment-api {
+    color: #222;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ededee;
+    font-size: 1em;
+}
+.api-comment-property {
+    color: #222;
+    padding: 10px;
+    font-size: 0.9em;
+}
+.api-comment-method {
+    color: #222;
+    padding: 10px;
+    font-size: 0.9em;
+}
+.api-comment-info {
+    color: #222;
+    padding: 10px;
+    font-size: 0.9em;
+}
+.api-comment-array-item {
+    color: #222;
+    padding: 10px;
+    font-size: 0.9em;
+}
+.api-comment-param {
+    color: #222;
+    font-size: 0.8em;
+}
+.api-comment-object-property {
+    color: #222;
+    font-size: 0.8em;
+}
+.api-comment-typed-value {
+    color: #222;
+    font-size: 0.8em;
+}

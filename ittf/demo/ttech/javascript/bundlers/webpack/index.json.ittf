@@ -1,0 +1,22 @@
+{
+
+	$
+
+		var opt = {
+			name: 'webpack',
+			label: 'Webpack',
+			experimentsWith: 'javascript webpack bundler',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'bundlers',
+					label: 'Bundlers',
+				},
+			]
+		};
+
+
+	ttech-frame(&opt)

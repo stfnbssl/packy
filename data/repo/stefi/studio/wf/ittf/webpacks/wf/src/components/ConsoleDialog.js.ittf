@@ -1,0 +1,72 @@
+﻿r-component( ConsoleDialog )
+
+	$append imports
+
+		import Dialog, { DialogTitle, DialogActions, DialogContent, DialogContentText } from 'material-ui/Dialog'
+		import Button from 'material-ui/Button'
+		import Input from 'material-ui/Input/Input'
+
+	prop open
+		boolean
+		default false
+
+	prop classes
+		{
+		required
+
+	prop onRequestClose
+		func
+		required
+
+	prop onCreateScript
+		func
+		required
+
+	style
+		@ container
+			{
+				@ display 'flex'
+				@ flexWrap 'wrap'
+		@ input
+			{
+				@ margin theme.spacing.unit
+
+	ctor
+		set this.formNodes = {}
+
+	render
+			
+		prop classes
+		prop open
+		prop onRequestClose
+		prop onCreateScript
+
+		log 'ScriptDialog.open', open
+
+		return
+			
+			< Dialog
+				@ open {open}
+				@ onRequestClose {onRequestClose}
+				
+				< DialogTitle
+					+ { 'Create a new script' }
+
+				< DialogContent
+					. {classes.container}
+						mui_Input( script, Script )
+				
+				< DialogActions
+					
+					< Button
+						@ onClick
+							=>
+								_ onCreateScript
+									@ this.formNodes.script.value
+						+ { 'Create script' }
+					
+					< Button
+						@ onClick
+							=>
+								_ onRequestClose()
+						+ { 'Cancel' }

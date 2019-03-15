@@ -1,0 +1,90 @@
+html
+
+	$
+		var opt = {}
+		opt.title = 'Wizzi repl 1';
+		opt.useWizzi = true;
+		opt.useAce = true;
+		opt.useSweetalert = true;
+		opt.useEventEmitter = true;
+	
+	h/root/empty_layout_opt(&opt)
+
+		$append head-styles
+		    $if isWizziStudio
+			    css ./index.css.ittf
+            $else			
+                css ./index.css
+	
+		$append body-scripts
+		    $if isWizziStudio
+			    js ./index.js.ittf
+            $else			  
+                js ./index.js
+
+		# root
+
+			. sh
+
+				. sh-he
+					. logo
+					    a
+                            $if isWizziStudio
+                                href #
+                            $else
+                                href /
+    						img
+    						    $if isWizziStudio
+    							    src /ittf/images/logo.svg.ittf
+    							$else
+    							    src /images/logo.svg
+    							width 100px
+    							height 40px
+				
+				. sh-bo
+
+					. sh-bo-lsb
+
+						. control-panel
+							style display: flex; flex-direction: column;
+
+							. control
+								label schema
+								select
+									id selectedSchema
+									style display: none;
+									option css
+									option html
+									option graphql
+									option js
+									option json
+									option md
+									option scss
+									option svg
+									option ts
+									option vtt
+									option vue
+									option xml
+
+							. control
+								# items-tree-view
+
+					. sh-bo-co
+
+						. sh-bo-co-ge
+						
+							. sh-bo-co-ge-ittf
+								# gen-ittf-editor
+
+							. sh-bo-co-ge-result
+								# gen-result-editor
+
+						. sh-bo-co-wi
+
+							. sh-bo-co-wi-snippet
+								# snippet-source-editor
+
+							. sh-bo-co-wi-result
+								# snippet-result-editor
+						
+				. sh-fo

@@ -1,0 +1,144 @@
+﻿$group
+
+	class JsonStore
+		ctor
+			param initialStore
+			set this.storeKey = initialStore || "jstore"
+			set this.__jstore = null
+
+		m jstore
+			param value
+			if this.__jstore == null
+				var data = localStorage.getItem(this.storeKey)
+				# log 'jstore data', data
+				if typeof data === 'undefined' || data == null
+					set this.__jstore = {}
+				else
+					set this.__jstore = JSON.parse(data)
+			# log 'jstore', this.__jstore, value
+			if typeof value === 'undefined'
+				return this.__jstore
+			else
+				set this.__jstore = value
+				_ localStorage.setItem
+					@ this.storeKey
+					_ JSON.stringify
+						@ this.__jstore
+
+		m setStoreKey
+			param value
+			if !value
+				return
+			if value.trim() !== this.storeKey
+				set this.storeKey = value
+				set this.__jstore = null
+
+		m value
+			param key
+			param value
+			var obj = this.jstore()
+			# log 'Value', obj
+			var ret
+				_ do_value
+					@ key
+					@ value
+					@ obj
+			if typeof value === 'undefined'
+				return ret
+			else
+				_ this.jstore(obj)
+				return obj
+
+	function do_return_value
+	    param num
+	    param obj
+	    param key
+	    param value
+        if typeof value === 'undefined'
+            # log 'return value', num, key, obj, obj[key]
+            return obj[key]
+        elif value === '::remove'
+            # log 'remove value', num, key, obj, obj[key]
+			if isArray(obj)
+				_ obj.splice(parseInt(key), 1)
+			else
+				delete obj[key]
+        else
+			if isArray(obj[key])
+				_ obj[key].push
+					@ value
+			else
+				set obj[key] = value
+
+	function do_value
+	    param key
+	    param value
+	    param obj
+	    if !key
+	        return
+        set obj = obj || db.jstore()
+        var
+            decl xDot = key.indexOf('.')
+            decl xBra1 = key.indexOf('[')
+            decl xBra2 = key.indexOf(']')
+            decl keyNow
+            decl keyNext
+            decl objNext
+        # log 'xDot, xBra1, xBra2', xDot, xBra1, xBra2
+        if xDot < 0 && xBra1 < 0
+            return
+                _ do_return_value
+                    @ 1
+                    @ obj
+                    @ key
+                    @ value
+        elif xBra1 > -1 && (xDot < 0 || xBra1 < xDot)
+            if xBra1 == 0
+                set keyNow = key.substr(1, xBra2-1)
+                set keyNext = key.substr(xBra2+1)
+				# log 21, 'keyNow, keyNext', keyNow, keyNext
+                if keyNext.length == 0
+                    return
+                        _ do_return_value
+                            @ 21
+                            @ obj
+                            @ keyNow
+                            @ value
+                else
+                    set objNext = obj[keyNow]
+                    return
+                        _ do_value
+                            @ keyNext
+                            @ value
+                            @ objNext
+			else
+                set keyNow = key.substr(0, xBra1)
+                set keyNext = key.substr(xBra1)
+				# log 22, 'keyNow, keyNext', keyNow, keyNext
+				set objNext = obj[keyNow]
+                return
+                    _ do_value
+                        @ keyNext
+                        @ value
+                        @ objNext
+        else
+            set keyNow = key.substr(0, xDot)
+            set keyNext = key.substr(xDot+1)
+            # log 3, 'keyNow, keyNext', keyNow, keyNext
+            if keyNext.length == 0
+                return
+                    _ do_return_value
+                        @ 31
+                        @ obj
+                        @ keyNow
+                        @ value
+            else
+                set objNext = obj[keyNow]
+                # log 32, 'obj', obj, 'objNext', objNext
+                return
+                    _ do_value
+                        @ keyNext
+                        @ value
+                        @ objNext
+
+

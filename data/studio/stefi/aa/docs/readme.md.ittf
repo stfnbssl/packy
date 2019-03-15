@@ -1,0 +1,19 @@
+mdx readme
+
+    h1 Hello
+    
+    li
+        a Bene
+            href /bene
+            
+    li
+        a Male
+            href /male            
+            
+    li
+        a CosìCosì
+            href /CosìCosì
+            
+    li
+        a BehAllora
+            href /BehAllora                                    

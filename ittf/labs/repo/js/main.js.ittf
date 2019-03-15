@@ -1,0 +1,17 @@
+﻿module
+	kind react
+
+	$include j/bx/lodash/isObject
+	$include j/bx/lodash/debounce
+	$include j/bx/watson/classnames
+	$include j/bx/ui/codemirror
+	$include state/index
+	$include components/repoBreadcrumbs
+	$include components/app
+	$include components/folderView
+	$include components/fileViewEdit
+	$include containers/repo
+
+	_ ReactDOM.render
+		< App
+		@ document.getElementById('container')

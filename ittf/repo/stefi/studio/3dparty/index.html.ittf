@@ -1,0 +1,42 @@
+h/root/layout()
+	
+	h1 Useful 3dParty packages
+	
+	h/bs/list_group()
+		h/bs/li_a( CodeSandbox github importers, https://github.com/codesandbox-app/codesandbox-importers
+
+	h3 Material-ui
+	h/bs/list_group()
+		h/bs/li_a( colors, https://material-ui.com/style/color/
+		h/bs/li_a( icons, https://material-ui.com/style/icons/
+		h/bs/li_a( typography, https://material-ui.com/style/typography/
+		h/bs/li_a( css-baseline, https://material-ui.com/style/css-baseline/
+
+	h3 Styles
+	h/bs/list_group()
+		h/bs/li_a( emotion, https://emotion.sh/
+	
+	h3 Documentation
+	h/bs/list_group()
+		h/bs/li_a( docusaurus, https://docusaurus.io/docs/en/installation
+		h/bs/li_a( crowdin, https://crowdin.com/
+	
+	h3 File system
+	h/bs/list_group()
+		h/bs/li_a( sander, https://github.com/rich-harris/sander
+	
+	h3 npm
+	h/bs/list_group()
+		h/bs/li_a( npm scripts, https://medium.freecodecamp.org/introduction-to-npm-scripts-1dbb2ae01633
+		h/bs/li_a( packd - rollup && browserify as a service, https://github.com/Rich-Harris/packd
+	
+	h3 Powershell
+	h/bs/list_group()
+		h/bs/li_a( vs tools documentation, https://adamdriscoll.gitbooks.io/powershell-tools-documentation/content/
+	
+	h3 Technicals
+	h/bs/list_group()
+		h/bs/li_a( RxJS is a library for composing asynchronous and event-based programs by using observable sequences,
+			\b https://rxjs-dev.firebaseapp.com/guide/overview
+	
+

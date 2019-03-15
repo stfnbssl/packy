@@ -1,0 +1,14 @@
+﻿$group
+	{
+		@ kind 'infoLinks'
+		@ format 'p.[text.a]+'
+		@ links
+			[
+				{
+					@ label 'Photo '
+					@ text 'Stu Nicholls'
+					@ href '#url'
+				{
+					@ label 'Date 16/01/2017 | '
+					@ text 'Set 1'
+					@ href '#url'			

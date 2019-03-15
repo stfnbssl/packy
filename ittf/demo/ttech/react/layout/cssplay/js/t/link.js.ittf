@@ -1,0 +1,90 @@
+﻿$group
+
+	class Link
+		super React.Component
+
+		m render
+			var
+				decl item
+				decl format
+
+			if this.props.item
+				set item = this.props.item
+				set format = this.props.format
+			else
+				set item = this.props.data
+				set format = this.props.data.format
+			
+			const { text, href, src, class: xclass, img_style } = item
+			
+			if format === 'ul.li.a'
+				return
+					li
+						@style { this.ul_li_style() }
+						a { text }
+							href { href }
+							@style { this.style() }
+			
+			elif format === 'div.a.i'
+				return
+					a 
+						@style { this.style() }
+						href { href }
+						i
+							class { xclass }
+			
+			elif format === 'a.img'
+				return
+					a 
+						@style { this.style() }
+						href { href }
+						img
+							src { src }
+							@style { this.img_style(img_style) }
+			else
+				return
+					div { 'Unknown Link format ' + format }
+						
+		m ul_li_style
+			return
+				{
+					@ font "700 25px/55px 'Open Sans', sans-serif"
+
+		m img_style
+			param elementStyle
+			return
+				_ Object.assign
+					{
+					{
+					@ elementStyle
+
+		m style
+			
+			var { format } = this.props
+			
+			if format === 'ul.li.a'
+				var color = this.props.hovered ? '#2ab' : '#333'
+				return
+					{
+						@ transition '0.3s'
+						@ position 'relative'
+						@ marginLeft 30
+						@ color color
+						@ textDecoration 'none'
+			
+			elif format === 'a.img'
+				return {}
+			elif format === 'div.a.i'
+				var color = this.props.hovered ? '#666' : '#888'
+				return
+					{
+						@ transition '0.2s'
+						@ margin '5px'
+						@ color color
+						@ fontSize '20px'
+						@ display 'inline-block'
+			
+			else
+				return {}
+
+	set Link = hoverable(Link)

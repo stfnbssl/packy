@@ -1,0 +1,19 @@
+﻿$group
+	
+	section
+		class controls
+		id flexBox
+                   
+		h/control( box margin )
+			h/input( box-margin, xl, box-margin, 10px 5px )
+                    
+		h/control( box padding )
+			h/input( box-padding, xl, box-padding, 1rem 0.5rem )
+
+		h/control( box border )
+			h/input( box-border, xl, box-border, 1px solid #ff0 )
+
+		$*
+		h/select( flex-direction, flex-direction, none , 
+			\b row;row-reverse;column;column-reverse )
+		*$

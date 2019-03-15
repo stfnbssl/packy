@@ -1,0 +1,45 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React from 'react' ids: undefined undefined
+    import { Tabs, Tab } from 'react-bootstrap' ids: undefined undefined
+    import ArtifactBrowser from '../ArtifactBrowser' ids: undefined undefined
+    import SchemaDoc from './SchemaDoc' ids: undefined undefined
+    let SchemaTabs ids: undefined undefined
+      =>  ids: undefined undefined
+        param { activeTab, onTabSelect, jsonDoc, model, factory } ids: undefined undefined
+        const jsonText ids: undefined undefined
+          iif jsonDoc ids: undefined undefined
+            then  ids: undefined undefined
+              _ JSON.stringify ids: undefined undefined
+                @ jsonDoc ids: undefined undefined
+                @ null ids: undefined undefined
+                @ 4 ids: undefined undefined
+            else  ids: undefined undefined
+              set 'Json' ids: undefined undefined
+        return  ids: undefined undefined
+          < Tabs ids: undefined undefined
+            @ id schemaTabs ids: undefined undefined
+            @ activeKey={activeTab} ids: undefined undefined
+            @ onSelect={onTabSelect} ids: undefined undefined
+            < Tab ids: undefined undefined
+              @ eventKey doc ids: undefined undefined
+              @ title "Doc" ids: undefined undefined
+              < SchemaDoc ids: undefined undefined
+                @ jsonDoc {jsonDoc} ids: undefined undefined
+            < Tab ids: undefined undefined
+              @ eventKey model ids: undefined undefined
+              @ title "Model" ids: undefined undefined
+              < ArtifactBrowser ids: undefined undefined
+                @ content {model} ids: undefined undefined
+            < Tab ids: undefined undefined
+              @ eventKey factory ids: undefined undefined
+              @ title "Factory" ids: undefined undefined
+              < ArtifactBrowser ids: undefined undefined
+                @ content {factory} ids: undefined undefined
+            < Tab ids: undefined undefined
+              @ eventKey json ids: undefined undefined
+              @ title "Json" ids: undefined undefined
+              < ArtifactBrowser ids: undefined undefined
+                @ content {jsonText} ids: undefined undefined
+    export default SchemaTabs ids: undefined undefined

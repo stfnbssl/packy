@@ -1,0 +1,159 @@
+﻿$group
+
+	#
+		# dependencies
+		# . g/js/wz/standalone.js.ittf
+		#   - wz.fs.getFs
+		#   - wz.fs.getTreeFolderView
+
+	class BrowserFileSystem
+		ctor
+			param options
+			set options = options || {}
+			set this.storeName = options.storeName || 'wizziRepo'
+			set this.rootFolder = options.rootFolder || '/ixdb'
+
+		m initialize
+			param callback
+			_ wz.fs.getFs
+				{
+					@ storeName this.storeName
+				a_cb( fs )
+					set this.fs = fs
+					r_cb()
+
+		m createFolder
+			param folderPath
+			param callback
+			_ this.fs.mkdir
+				@ folderPath
+				@ callback
+
+		m writeFile
+			param filePath
+			param content
+			param callback
+			_ this.fs.write
+				@ filePath
+				@ content
+				@ callback
+
+		m deleteFolder
+			param folderPath
+			param callback
+			_ this.fs.deleteFolder
+				@ folderPath
+				@ callback
+
+		m deleteFile
+			param filePath
+			param callback
+			_ this.fs.unlink
+				@ filePath
+				@ callback
+
+		m renameFolder
+			param oldPath
+			param newPath
+			param callback
+			_ this.fs.rename
+				@ oldPath
+				@ newPath
+				@ callback
+
+		m renameFile
+			param oldPath
+			param newPath
+			param callback
+			_ this.fs.rename
+				@ oldPath
+				@ newPath
+				@ callback
+
+		m copyFile
+			param fromPath
+			param destPath
+			param callback
+			log 'copyFile', fromPath, 'to', destPath
+			_ this.fs.copyFile
+				@ fromPath
+				@ destPath
+				@ callback
+			
+		m copyFolder
+			param fromPath
+			param destPath
+			param callback
+			log 'copyFolder', fromPath, 'to', destPath
+			_ this.fs.copyFolder
+				@ fromPath
+				@ destPath
+				@ callback
+
+		m moveFile
+			param fromPath
+			param destPath
+			param callback
+			log 'moveFile', fromPath, 'to', destPath
+			_ this.fs.moveFile
+				@ fromPath
+				@ destPath
+				@ callback
+			
+		m moveFolder
+			param fromPath
+			param destPath
+			param callback
+			log 'moveFolder', fromPath, 'to', destPath
+			_ this.fs.moveFolder
+				@ fromPath
+				@ destPath
+				@ callback
+
+		m getFolderItem
+			param parentItem
+			param callback
+			
+			if typeof callback === 'undefined'
+				set callback = parentItem
+				set parentItem = null
+			
+			if !parentItem
+				set parentItem
+					{
+						@ name 'root'
+						@ isFolder true
+						@ path this.rootFolder
+						[ children
+
+			_ wz.fs.getTreeFolderView
+				@ parentItem.path
+				a_cb_throw( result )
+					log 'BrowserFileSystem.getTreeFolderView.result', '\n', JSON.stringify(result, null, 2)
+					foreach f in result
+						var item
+							{
+								@ name f.basename
+								@ basename f.basename
+								@ expanded false
+								@ isFolder f.isFolder
+								@ path f.fullPath
+								@ fullPath f.fullPath
+								@ dirname f.dirname
+								@ mime f.mime
+								[ children
+						if f.isFolder
+						else
+							set item.content = f.content
+							set item.isIttfDocument = f.isIttfDocument
+							set item.isFragment = f.isFragment
+							set item.isJob = f.isJob
+							set item.isSchema = f.isSchema
+							set item.schema = f.schema
+						_ parentItem.children.push
+							@ item
+					set parentItem.expanded = true
+					set parentItem.loadedAt = Date.now()
+					r_cb( parentItem )
+
+

@@ -1,0 +1,25 @@
+﻿module
+	kind react
+
+	$include app-options
+	
+	app/components/AppRouter( &app )
+
+		$append imports
+			import DocumentContainer from '../containers/DocumentContainer'
+			import SchemaContainer from '../containers/SchemaContainer'
+
+		$append routes
+			route-group( factory, The factory )
+				route-url( /ittf/home/index.html.ittf, Dashboard )
+				route-comp( factory, document-editor, DocumentContainer, Document editor )
+				route-comp( factory, schema-browser, SchemaContainer, Schema browser )
+			route-group( getting-started, Getting started )
+				route-md( getting-started, installation, Installation )
+				route-md( getting-started, usage, Usage )
+				route-md( getting-started, references, Tech reference )
+			route-group( project, Project )
+				route-md( project, todo, TODO )
+				route-md( project, api, API )
+				route-md( project, demo, Demo )
+			route-group( demos, Demos )

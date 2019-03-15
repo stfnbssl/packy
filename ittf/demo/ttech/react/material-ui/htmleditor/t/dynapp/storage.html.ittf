@@ -1,0 +1,48 @@
+﻿$group
+
+	const STORAGE_KEY = 'dynapp-mtree-1'
+	var STORAGE_MTREE_INITIAL
+		{
+			@ wzTag 'div'
+			[ wzChildren
+				{
+					@ wzTag 'h1'
+					@ wzName 'hello stefi'
+					[ wzChildren
+				{
+					@ wzTag 'h1'
+					@ wzName 'hello annie'
+					[ wzChildren
+
+	function retrieveSourceNodeFromStorage
+		var ret = defaultStorage().get(STORAGE_KEY)
+		return ret ? JSON.parse(ret) : STORAGE_MTREE_INITIAL
+
+	function saveSourceNodeToStorage
+		param meta
+		_ defaultStorage().put
+			@ STORAGE_KEY
+			_ JSON.stringify
+				@ meta
+	+
+	function defaultStorage
+		return storageEngine(window.localStorage)
+
+	function storageEngine
+		param storage
+		return
+			{
+				@ 0 storage
+				@ put
+					function
+						param key, value
+						_ storage.setItem(key, value)
+				@ get 
+					function
+						param key
+						return storage.getItem(key)
+				@ del
+					function
+						param key
+						_ storage.removeItem(key)
+

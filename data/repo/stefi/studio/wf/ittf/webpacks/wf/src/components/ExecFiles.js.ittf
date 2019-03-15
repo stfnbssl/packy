@@ -1,0 +1,68 @@
+﻿r-component( ExecFiles )
+	
+	$append imports
+		import List, { ListItem, ListItemText } from 'material-ui/List'
+		import AppDrawerNavItem from './muidocs/AppDrawerNavItem'
+		import DocumentEditor from './DocumentEditor'
+
+	style
+		@ content
+			_ theme.mixins.gutters
+				{ 
+					@ paddingTop 80
+					@ flex '1 1 100%'
+					@ maxWidth '100%'
+					@ margin '0 auto'
+
+		@ selected
+			{
+				@ color 'red'
+
+	render
+		
+		prop classes
+		prop isRequestingList
+		prop isRequestingRun
+		prop jobmodels
+		prop jobfiles
+		prop listerror
+		prop selectedExecFile
+		prop stdout
+		prop stderr
+		prop onRunRequest
+		
+		return
+			. {classes.content}
+				< List
+					@ dense {true}
+					{
+						_ jobmodels.map
+							=>
+								param jobmodel
+								return
+									< AppDrawerNavItem
+										@ title {jobmodel.title} 
+										{
+											_ jobmodel.execFiles.map
+												=>
+													param execFile
+													return
+														< AppDrawerNavItem
+															@ title {execFile.wzName + ' / ' + execFile.title }
+															@ key {execFile.wzName}
+															@ to {execFile.wzName}
+															@ className {selectedExecFile === execFile.wzName ? classes.selected : ''}
+															@ onClick
+																=>
+																	_ onRunRequest
+																		@ execFile.wzName
+				{
+					&&
+						+ stdout || stderr
+						div
+							h2 { 'Execution of file ' + selectedExecFile }
+							< DocumentEditor
+								@ value {stdout + '\n' + stderr}
+
+
+

@@ -1,0 +1,7 @@
+﻿module
+	kind react
+	+
+	import React, { Component, PropTypes } from 'react'
+
+	$include html/StyledElement
+	$include html/StyledHtml

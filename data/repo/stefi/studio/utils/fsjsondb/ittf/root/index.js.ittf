@@ -1,0 +1,32 @@
+module
+	kind jsfile
+
+	var md = module.exports = {}
+
+	var arraycrud = require('./lib/arraycrud')
+	var FsJsonDb = require('./lib/fsjsondb')
+	var Queue = require('./lib/queue')
+	var Collection = require('./lib/collection')
+
+	set md.dbContext
+		function
+			param dataPath
+			return
+				{
+					@ crud arraycrud
+					@ db 
+						new FsJsonDb
+							@ dataPath
+					@ q 
+						new Queue
+
+	set md.collection
+		function
+			param dbContext
+			param collectionName
+			param keyNames
+			return
+				new Collection
+					@ dbContext
+					@ collectionName
+					@ keyNames

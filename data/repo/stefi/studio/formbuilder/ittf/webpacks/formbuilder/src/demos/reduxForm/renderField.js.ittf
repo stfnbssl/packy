@@ -1,0 +1,81 @@
+﻿r-function( renderField )
+
+	prop input
+		{
+	prop label
+	prop type
+	prop meta
+		{
+	prop children
+		[
+
+	const { touched, error, warning, asyncValidating } = meta
+
+	if type == 'select'
+		var options, emptyOption
+		log 'select.props', props
+		if props.options
+			set options
+				_ props.options.map
+					=>
+						param val
+						return
+							option
+								value {val}
+								@ key {val}
+								+ {val}
+			if props.emptyOption
+				set emptyOption
+					option
+						value {''}
+						+ {props.emptyOption}
+		else
+			set options = children
+		return
+			div
+				label
+					@ htmlFor {input.name}
+					+ {label}
+				. {asyncValidating ? 'async-validating' : ''}
+					select
+						@ {...input} 
+						+ {emptyOption}
+						+ {options}
+					{
+						&&
+							+ touched && error
+							span {error}
+	if type == 'textarea'
+		return
+			div
+				label
+					@ htmlFor {input.name}
+					+ {label}
+				. {asyncValidating ? 'async-validating' : ''}
+					textarea
+						@ {...input} 
+						+ {children}
+					{
+						&&
+							+ touched && error
+							span {error}
+	elif type == 'radio'
+		return
+			label
+				input
+					@ {...input} 
+					@ type radio
+				+ {' ' + label}
+	else
+		return
+			div
+				label {label}
+				. {asyncValidating ? 'async-validating' : ''}
+					input
+						@ {...input} 
+						@ placeholder {label}
+						@ type {type}
+					{
+						&&
+							+ touched && error
+							span {error}

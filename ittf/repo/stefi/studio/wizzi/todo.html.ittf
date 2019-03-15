@@ -1,0 +1,62 @@
+h/root/layout()
+	
+	h1 TODO
+	
+	    h3 3dParty
+	    p Have a look at \b
+	        a jekyll
+	            href https://jekyllrb.com/
+	    p Have a look at \b
+	        a liquid
+	            href https://shopify.github.io/liquid/
+
+        h3 wizzi-monorepo
+        p Must migrate to Lerna.
+        p Stop the clumsy v4, v5 and v6 repos.
+        p Development must be done using github pull requests.
+        
+        h3 wizzi-js
+        p flow annotation must be implemented!!! NOW !!!
+        p
+
+        h3 wizzi-play3 / repo
+        p The router should manage folders and documents navigation.
+                \b It  should by possible open a folder or document from an external page
+                \b having the url of the resource.
+        
+        h3 wizzi-play3 / gists
+        p Manage a global t-folder available to all gists.
+        p Manage a model contexts folders that when having the same name of
+                \b the gists are automatically loaded in the mTreeBuildUpContext
+        p Create a list of empty gist types to be selected when a new gist 
+                \b is created
+        p The selected schema should be inserted in the url. Example:
+                \b /gists/stefi/js/<gistname>.js.ittf
+
+        h3 wizzi
+        p The source of true of the globalContext is the wizzi.wizziFactory instance?
+                \b It should be so.
+                \b If that is the case why the wizzi.productionManager that has a pointer
+                \b to the wizzi.wizziFactory since construction manages an its own
+                \b globalContext?
+        p There is any reason to have a different globalContext for each
+                \b wfjob execution? It could be a jobContext.
+                \b The mTreeBuildUpContext will be the merge of globalContext,
+                \b jobContext and modelContext? 
+
+        p  A "light" API could be
+        pre
+                div wizzi.loadMTree(ittfPath[, context[, options]], function(err, mTreeModel) {...});
+                div alias wizzi.mtree
+                div wizzi.loadModel(ittfPath[, context], options]], function(err, wizziModel) {...});
+                div alias wizzi.model
+                div wizzi.transformModel(ittfPath[, context], options]], function(err, transformedModel) {...});
+                div alias wizzi.trans
+                div wizzi.generateArtifact(ittfPath[, context], options]], function(err, artifactText) {...});
+                div alias wizzi.gen
+                div wizzi.executeJob(ittfPath[, context], options]], function(err, jobResult) {...});
+                div alias wizzi.job
+                div wizzi.generateSchema(ittfPath[, context], options]], function(err, schemaPaths) {...});
+                div alias wizzi.schema
+                
+

@@ -1,0 +1,275 @@
+// 13/5/2017:11:21:53  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "module", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //137
+$.a($0, $1, 5);
+var $2 = { n: "kind", v: "react", r: 2, c: 5, s: "f1", u: "f1",  }; //138
+$.a($1, $2, 7);
+var $3 = { n: "+", v: "", r: 3, c: 5, s: "f1", u: "f1",  }; //139
+$.a($1, $3, 9);
+var $4 = { n: "import", v: "React, { Component, PropTypes } from 'react'", r: 4, c: 5, s: "f1", u: "f1",  }; //140
+$.a($1, $4, 11);
+var $5 = { n: "import", v: "{ connect } from 'react-redux'", r: 5, c: 5, s: "f1", u: "f1",  }; //141
+$.a($1, $5, 13);
+var $6 = { n: "import", v: "{ Style } from 'radium'", r: 6, c: 5, s: "f1", u: "f1",  }; //142
+$.a($1, $6, 15);
+var $7 = { n: "import", v: "dhQuery from 'dom-helpers/query'", r: 7, c: 5, s: "f1", u: "f1",  }; //143
+$.a($1, $7, 17);
+var $8 = { n: "import", v: "sizeMe from 'react-sizeme'", r: 8, c: 5, s: "f1", u: "f1",  }; //144
+$.a($1, $8, 19);
+var $9 = { n: "import", v: "normalize from '../styles/normalize';", r: 9, c: 5, s: "f1", u: "f1",  }; //145
+$.a($1, $9, 21);
+var $10 = { n: "#", v: "import { getCommons } from '../actions'", r: 10, c: 5, s: "f1", u: "f1",  }; //146
+$.a($1, $10, 23);
+var $11 = { n: "import", v: "Form from '../components/Form'", r: 11, c: 5, s: "f1", u: "f1",  }; //147
+$.a($1, $11, 25);
+var $12 = { n: "import", v: "Control from '../components/Control'", r: 12, c: 5, s: "f1", u: "f1",  }; //148
+$.a($1, $12, 27);
+var $13 = { n: "import", v: "{ Row, Col } from '../components/grid'", r: 13, c: 5, s: "f1", u: "f1",  }; //149
+$.a($1, $13, 29);
+var $14 = { n: "import", v: "{ StyledElement } from '../components/html'", r: 14, c: 5, s: "f1", u: "f1",  }; //150
+$.a($1, $14, 31);
+var $15 = { n: "import", v: "StylesData from './StylesData'", r: 15, c: 5, s: "f1", u: "f1",  }; //151
+$.a($1, $15, 33);
+var $16 = { n: "class", v: "App", r: 17, c: 5, s: "f1", u: "f1",  }; //152
+$.a($1, $16, 35);
+var $17 = { n: "super", v: "Component", r: 18, c: 9, s: "f1", u: "f1",  }; //153
+$.a($16, $17, 37);
+var $18 = { n: "ctor", v: "", r: 19, c: 9, s: "f1", u: "f1",  }; //154
+$.a($16, $18, 39);
+var $19 = { n: "set", v: "this.state", r: 20, c: 13, s: "f1", u: "f1",  }; //155
+$.a($18, $19, 41);
+var $20 = { n: "{", v: "", r: 21, c: 17, s: "f1", u: "f1",  }; //156
+$.a($19, $20, 43);
+var $21 = { n: "@", v: "selectedStyledId null", r: 22, c: 21, s: "f1", u: "f1",  }; //157
+$.a($20, $21, 45);
+var $22 = { n: "@", v: "styledStyles null", r: 23, c: 21, s: "f1", u: "f1",  }; //158
+$.a($20, $22, 47);
+var $23 = { n: "@", v: "metaPlay null", r: 24, c: 21, s: "f1", u: "f1",  }; //159
+$.a($20, $23, 49);
+var $24 = { n: "set", v: "this.updateDimensions = this.updateDimensions.bind(this)", r: 25, c: 13, s: "f1", u: "f1",  }; //160
+$.a($18, $24, 51);
+var $25 = { n: "set", v: "this.handleChangeStyled = this.handleChangeStyled.bind(this)", r: 26, c: 13, s: "f1", u: "f1",  }; //161
+$.a($18, $25, 53);
+var $26 = { n: "set", v: "this.handleChangeStyle = this.handleChangeStyle.bind(this)", r: 27, c: 13, s: "f1", u: "f1",  }; //162
+$.a($18, $26, 55);
+var $27 = { n: "m", v: "componentWillMount", r: 29, c: 9, s: "f1", u: "f1",  }; //163
+$.a($16, $27, 57);
+var $28 = { n: "set", v: "this.stylesData = new StylesData()", r: 30, c: 13, s: "f1", u: "f1",  }; //164
+$.a($27, $28, 59);
+var $29 = { n: "log", v: "'componentDidMount.this.stylesData', this.stylesData", r: 31, c: 13, s: "f1", u: "f1",  }; //165
+$.a($27, $29, 61);
+var $30 = { n: "_", v: "this.refreshStylesState", r: 32, c: 13, s: "f1", u: "f1",  }; //166
+$.a($27, $30, 63);
+var $31 = { n: "=>", v: "", r: 33, c: 17, s: "f1", u: "f1",  }; //167
+$.a($30, $31, 65);
+var $32 = { n: "_", v: "this.updateDimensions()", r: 34, c: 21, s: "f1", u: "f1",  }; //168
+$.a($31, $32, 67);
+var $33 = { n: "m", v: "componentDidMount", r: 36, c: 9, s: "f1", u: "f1",  }; //169
+$.a($16, $33, 69);
+var $34 = { n: "_", v: "window.addEventListener", r: 37, c: 13, s: "f1", u: "f1",  }; //170
+$.a($33, $34, 71);
+var $35 = { n: "@", v: "\"resize\"", r: 38, c: 17, s: "f1", u: "f1",  }; //171
+$.a($34, $35, 73);
+var $36 = { n: "@", v: "this.updateDimensions", r: 39, c: 17, s: "f1", u: "f1",  }; //172
+$.a($34, $36, 75);
+var $37 = { n: "m", v: "updateDimensions", r: 41, c: 9, s: "f1", u: "f1",  }; //173
+$.a($16, $37, 77);
+var $38 = { n: "_", v: "this.setState", r: 42, c: 13, s: "f1", u: "f1",  }; //174
+$.a($37, $38, 79);
+var $39 = { n: "{", v: "", r: 43, c: 17, s: "f1", u: "f1",  }; //175
+$.a($38, $39, 81);
+var $40 = { n: "@", v: "...this.state", r: 44, c: 21, s: "f1", u: "f1",  }; //176
+$.a($39, $40, 83);
+var $41 = { n: "@", v: "width dhQuery.width(window)", r: 45, c: 21, s: "f1", u: "f1",  }; //177
+$.a($39, $41, 85);
+var $42 = { n: "@", v: "height dhQuery.height(window)", r: 46, c: 21, s: "f1", u: "f1",  }; //178
+$.a($39, $42, 87);
+var $43 = { n: "m", v: "handleChangeStyled", r: 48, c: 9, s: "f1", u: "f1",  }; //179
+$.a($16, $43, 89);
+var $44 = { n: "param", v: "id", r: 49, c: 13, s: "f1", u: "f1",  }; //180
+$.a($43, $44, 91);
+var $45 = { n: "param", v: "value", r: 50, c: 13, s: "f1", u: "f1",  }; //181
+$.a($43, $45, 93);
+var $46 = { n: "#", v: "log 'handleChangeStyled', arguments", r: 52, c: 13, s: "f1", u: "f1",  }; //182
+$.a($43, $46, 95);
+var $47 = { n: "_", v: "this.stylesData.selectStyled(value)", r: 54, c: 13, s: "f1", u: "f1",  }; //183
+$.a($43, $47, 97);
+var $48 = { n: "_", v: "this.refreshStylesState()", r: 55, c: 13, s: "f1", u: "f1",  }; //184
+$.a($43, $48, 99);
+var $49 = { n: "m", v: "handleChangeStyle", r: 57, c: 9, s: "f1", u: "f1",  }; //185
+$.a($16, $49, 101);
+var $50 = { n: "param", v: "id", r: 58, c: 13, s: "f1", u: "f1",  }; //186
+$.a($49, $50, 103);
+var $51 = { n: "param", v: "values", r: 59, c: 13, s: "f1", u: "f1",  }; //187
+$.a($49, $51, 105);
+var $52 = { n: "_", v: "this.stylesData.updateStyles(values)", r: 61, c: 13, s: "f1", u: "f1",  }; //188
+$.a($49, $52, 107);
+var $53 = { n: "_", v: "this.refreshStylesState()", r: 62, c: 13, s: "f1", u: "f1",  }; //189
+$.a($49, $53, 109);
+var $54 = { n: "m", v: "componentWillUnmount", r: 64, c: 9, s: "f1", u: "f1",  }; //190
+$.a($16, $54, 111);
+var $55 = { n: "_", v: "window.removeEventListener", r: 65, c: 13, s: "f1", u: "f1",  }; //191
+$.a($54, $55, 113);
+var $56 = { n: "@", v: "\"resize\"", r: 66, c: 17, s: "f1", u: "f1",  }; //192
+$.a($55, $56, 115);
+var $57 = { n: "@", v: "this.updateDimensions", r: 67, c: 17, s: "f1", u: "f1",  }; //193
+$.a($55, $57, 117);
+var $58 = { n: "m", v: "refreshStylesState", r: 69, c: 9, s: "f1", u: "f1",  }; //194
+$.a($16, $58, 119);
+var $59 = { n: "param", v: "callback", r: 70, c: 13, s: "f1", u: "f1",  }; //195
+$.a($58, $59, 121);
+var $60 = { n: "log", v: "'refreshStylesState.stylesData', this.stylesData", r: 71, c: 13, s: "f1", u: "f1",  }; //196
+$.a($58, $60, 123);
+var $61 = { n: "_", v: "this.setState", r: 72, c: 13, s: "f1", u: "f1",  }; //197
+$.a($58, $61, 125);
+var $62 = { n: "{", v: "", r: 73, c: 17, s: "f1", u: "f1",  }; //198
+$.a($61, $62, 127);
+var $63 = { n: "@", v: "...this.state", r: 74, c: 21, s: "f1", u: "f1",  }; //199
+$.a($62, $63, 129);
+var $64 = { n: "@", v: "selectedStyledId this.stylesData.selectedStyledId", r: 75, c: 21, s: "f1", u: "f1",  }; //200
+$.a($62, $64, 131);
+var $65 = { n: "@", v: "styledStyles this.stylesData.styledStyles", r: 76, c: 21, s: "f1", u: "f1",  }; //201
+$.a($62, $65, 133);
+var $66 = { n: "@", v: "metaPlay this.stylesData.metaPlay", r: 77, c: 21, s: "f1", u: "f1",  }; //202
+$.a($62, $66, 135);
+var $67 = { n: "=>", v: "", r: 78, c: 17, s: "f1", u: "f1",  }; //203
+$.a($61, $67, 137);
+var $68 = { n: "log", v: "'refreshStylesState', this.state", r: 79, c: 21, s: "f1", u: "f1",  }; //204
+$.a($67, $68, 139);
+var $69 = { n: "if", v: "callback", r: 80, c: 21, s: "f1", u: "f1",  }; //205
+$.a($67, $69, 141);
+var $70 = { n: "_", v: "callback()", r: 81, c: 25, s: "f1", u: "f1",  }; //206
+$.a($69, $70, 143);
+var $71 = { n: "m", v: "render", r: 83, c: 9, s: "f1", u: "f1",  }; //207
+$.a($16, $71, 145);
+var $72 = { n: "log", v: "'render.state', this.state", r: 84, c: 13, s: "f1", u: "f1",  }; //208
+$.a($71, $72, 147);
+var $73 = { n: "const", v: "{ width, height } = this.props.size", r: 85, c: 13, s: "f1", u: "f1",  }; //209
+$.a($71, $73, 149);
+var $74 = { n: "const", v: "{ metaPlay, styledStyles } = this.state", r: 86, c: 13, s: "f1", u: "f1",  }; //210
+$.a($71, $74, 151);
+var $75 = { n: "const", v: "{ styledMeta } = this.stylesData", r: 87, c: 13, s: "f1", u: "f1",  }; //211
+$.a($71, $75, 153);
+var $76 = { n: "const", v: "styledIds = this.stylesData.maps.styledIds || []", r: 88, c: 13, s: "f1", u: "f1",  }; //212
+$.a($71, $76, 155);
+var $77 = { n: "return", v: "", r: 89, c: 13, s: "f1", u: "f1",  }; //213
+$.a($71, $77, 157);
+var $78 = { n: "div", v: "", r: 90, c: 17, s: "f1", u: "f1",  }; //214
+$.a($77, $78, 159);
+var $79 = { n: "<", v: "Style", r: 91, c: 21, s: "f1", u: "f1",  }; //215
+$.a($78, $79, 161);
+var $80 = { n: "@", v: "rules {normalize}", r: 92, c: 25, s: "f1", u: "f1",  }; //216
+$.a($79, $80, 163);
+var $81 = { n: "<", v: "Row", r: 93, c: 21, s: "f1", u: "f1",  }; //217
+$.a($78, $81, 165);
+var $82 = { n: "<", v: "Col", r: 94, c: 25, s: "f1", u: "f1",  }; //218
+$.a($81, $82, 167);
+var $83 = { n: "@", v: "span {4}", r: 95, c: 29, s: "f1", u: "f1",  }; //219
+$.a($82, $83, 169);
+var $84 = { n: "h3", v: "Select styled element", r: 96, c: 29, s: "f1", u: "f1",  }; //220
+$.a($82, $84, 171);
+var $85 = { n: "<", v: "Control", r: 97, c: 29, s: "f1", u: "f1",  }; //221
+$.a($82, $85, 173);
+var $86 = { n: "@", v: "id \"styledId\"", r: 98, c: 33, s: "f1", u: "f1",  }; //222
+$.a($85, $86, 175);
+var $87 = { n: "@", v: "key \"styledId\"", r: 99, c: 33, s: "f1", u: "f1",  }; //223
+$.a($85, $87, 177);
+var $88 = { n: "@", v: "type \"select\"", r: 100, c: 33, s: "f1", u: "f1",  }; //224
+$.a($85, $88, 179);
+var $89 = { n: "@", v: "label \"styled\"", r: 101, c: 33, s: "f1", u: "f1",  }; //225
+$.a($85, $89, 181);
+var $90 = { n: "@", v: "value {this.state.selectedStyledId}", r: 102, c: 33, s: "f1", u: "f1",  }; //226
+$.a($85, $90, 183);
+var $91 = { n: "@", v: "data", r: 103, c: 33, s: "f1", u: "f1",  }; //227
+$.a($85, $91, 185);
+var $92 = { n: "{", v: "", r: 104, c: 37, s: "f1", u: "f1",  }; //228
+$.a($91, $92, 187);
+var $93 = { n: "@", v: "options styledIds", r: 105, c: 41, s: "f1", u: "f1",  }; //229
+$.a($92, $93, 189);
+var $94 = { n: "@", v: "onChangeValue {this.handleChangeStyled}", r: 106, c: 33, s: "f1", u: "f1",  }; //230
+$.a($85, $94, 191);
+var $95 = { n: "h3", v: "Styled element", r: 107, c: 29, s: "f1", u: "f1",  }; //231
+$.a($82, $95, 193);
+var $96 = { n: "<", v: "StyledElement", r: 108, c: 29, s: "f1", u: "f1",  }; //232
+$.a($82, $96, 195);
+var $97 = { n: "@", v: "meta {styledMeta}", r: 109, c: 33, s: "f1", u: "f1",  }; //233
+$.a($96, $97, 197);
+var $98 = { n: "@", v: "styles {styledStyles}", r: 110, c: 33, s: "f1", u: "f1",  }; //234
+$.a($96, $98, 199);
+var $99 = { n: "<", v: "Col", r: 111, c: 25, s: "f1", u: "f1",  }; //235
+$.a($81, $99, 201);
+var $100 = { n: "@", v: "span {8}", r: 112, c: 29, s: "f1", u: "f1",  }; //236
+$.a($99, $100, 203);
+var $101 = { n: "h3", v: "Styles", r: 113, c: 29, s: "f1", u: "f1",  }; //237
+$.a($99, $101, 205);
+var $102 = { n: "<", v: "Form", r: 114, c: 29, s: "f1", u: "f1",  }; //238
+$.a($99, $102, 207);
+var $103 = { n: "@", v: "id test", r: 115, c: 33, s: "f1", u: "f1",  }; //239
+$.a($102, $103, 209);
+var $104 = { n: "@", v: "caption Styles Form", r: 116, c: 33, s: "f1", u: "f1",  }; //240
+$.a($102, $104, 211);
+var $105 = { n: "@", v: "meta {metaPlay}", r: 117, c: 33, s: "f1", u: "f1",  }; //241
+$.a($102, $105, 213);
+var $106 = { n: "@", v: "onChangeValues {this.handleChangeStyle}", r: 118, c: 33, s: "f1", u: "f1",  }; //242
+$.a($102, $106, 215);
+var $107 = { n: "div", v: "App size: {width}px x {height}px", r: 120, c: 21, s: "f1", u: "f1",  }; //243
+$.a($78, $107, 217);
+var $108 = { n: "div", v: "Window size: {this.state.width}px x {this.state.height}px", r: 121, c: 21, s: "f1", u: "f1",  }; //244
+$.a($78, $108, 219);
+var $109 = { n: "const", v: "mapStateToProps", r: 123, c: 5, s: "f1", u: "f1",  }; //245
+$.a($1, $109, 221);
+var $110 = { n: "=>", v: "", r: 124, c: 9, s: "f1", u: "f1",  }; //246
+$.a($109, $110, 223);
+var $111 = { n: "param", v: "state", r: 125, c: 13, s: "f1", u: "f1",  }; //247
+$.a($110, $111, 225);
+var $112 = { n: "return", v: "", r: 126, c: 13, s: "f1", u: "f1",  }; //248
+$.a($110, $112, 227);
+var $113 = { n: "{", v: "", r: 127, c: 17, s: "f1", u: "f1",  }; //249
+$.a($112, $113, 229);
+var $114 = { n: "@", v: "...state", r: 128, c: 21, s: "f1", u: "f1",  }; //250
+$.a($113, $114, 231);
+var $115 = { n: "const", v: "mapDispatchToProps", r: 130, c: 5, s: "f1", u: "f1",  }; //251
+$.a($1, $115, 233);
+var $116 = { n: "=>", v: "", r: 131, c: 9, s: "f1", u: "f1",  }; //252
+$.a($115, $116, 235);
+var $117 = { n: "param", v: "dispatch", r: 132, c: 13, s: "f1", u: "f1",  }; //253
+$.a($116, $117, 237);
+var $118 = { n: "return", v: "", r: 133, c: 13, s: "f1", u: "f1",  }; //254
+$.a($116, $118, 239);
+var $119 = { n: "{", v: "", r: 134, c: 17, s: "f1", u: "f1",  }; //255
+$.a($118, $119, 241);
+var $120 = { n: "@", v: "loadCommons", r: 135, c: 21, s: "f1", u: "f1",  }; //256
+$.a($119, $120, 243);
+var $121 = { n: "=>", v: "", r: 136, c: 25, s: "f1", u: "f1",  }; //257
+$.a($120, $121, 245);
+var $122 = { n: "#", v: "_ dispatch(getCommons())", r: 137, c: 29, s: "f1", u: "f1",  }; //258
+$.a($121, $122, 247);
+var $123 = { n: "const", v: "AppConnected", r: 139, c: 5, s: "f1", u: "f1",  }; //259
+$.a($1, $123, 249);
+var $124 = { n: "_", v: "connect", r: 140, c: 9, s: "f1", u: "f1",  }; //260
+$.a($123, $124, 251);
+var $125 = { n: "@", v: "mapStateToProps", r: 141, c: 13, s: "f1", u: "f1",  }; //261
+$.a($124, $125, 253);
+var $126 = { n: "@", v: "mapDispatchToProps", r: 142, c: 13, s: "f1", u: "f1",  }; //262
+$.a($124, $126, 255);
+var $127 = { n: "(", v: "", r: 143, c: 13, s: "f1", u: "f1",  }; //263
+$.a($124, $127, 257);
+var $128 = { n: "@", v: "App", r: 144, c: 17, s: "f1", u: "f1",  }; //264
+$.a($127, $128, 259);
+var $129 = { n: "const", v: "AppConnectedSized", r: 146, c: 5, s: "f1", u: "f1",  }; //265
+$.a($1, $129, 261);
+var $130 = { n: "_", v: "sizeMe", r: 147, c: 9, s: "f1", u: "f1",  }; //266
+$.a($129, $130, 263);
+var $131 = { n: "{", v: "", r: 148, c: 13, s: "f1", u: "f1",  }; //267
+$.a($130, $131, 265);
+var $132 = { n: "@", v: "monitorHeight true", r: 149, c: 17, s: "f1", u: "f1",  }; //268
+$.a($131, $132, 267);
+var $133 = { n: "@", v: "monitorPosition true", r: 150, c: 17, s: "f1", u: "f1",  }; //269
+$.a($131, $133, 269);
+var $134 = { n: "(", v: "", r: 151, c: 13, s: "f1", u: "f1",  }; //270
+$.a($130, $134, 271);
+var $135 = { n: "@", v: "AppConnected", r: 152, c: 17, s: "f1", u: "f1",  }; //271
+$.a($134, $135, 273);
+var $136 = { n: "export", v: "default AppConnectedSized", r: 154, c: 5, s: "f1", u: "f1",  }; //272
+$.a($1, $136, 275);

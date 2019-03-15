@@ -1,0 +1,21 @@
+﻿vtt
+
+	cue 0 6
+		id 1
+		+ Intro
+
+	cue 7 2:0
+		id 2
+		+ Il molo
+
+	cue 2:0 3:16
+		id 3
+		+ L'ora nostra
+
+	cue 3:16 4:31
+		id 4
+		+ Citta vecchia
+
+	cue 4:31 4:35
+		id 5
+		+ Chiusa

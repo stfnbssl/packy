@@ -1,0 +1,186 @@
+﻿$group
+	$params &app
+
+	r-component( AppFrame, true, true )
+
+		$append imports
+			import Typography from 'material-ui/Typography'
+			import AppBar from 'material-ui/AppBar'
+			import Toolbar from 'material-ui/Toolbar'
+			import IconButton from 'material-ui/IconButton'
+			import MenuIcon from 'material-ui-icons/Menu'
+			import LightbulbOutline from 'material-ui-icons/LightbulbOutline'
+			$if app.githubLink
+				import Github from './muidocs/Github'
+			$if app.useSearch
+				import AppSearch from './muidocs/AppSearch'
+			$if app.useDrawer
+				import AppDrawer from './muidocs/AppDrawer'
+
+			function getTitle
+				param routes
+				for var i = routes.length - 1; i >= 0; i -= 1
+					if routes[i].hasOwnProperty('title') && routes[i].title
+						return routes[i].title
+				return null
+
+		prop children
+			node
+			required
+	
+		prop classes
+			{
+			required
+	
+		prop dispatch
+			func
+			required
+	
+		prop routes
+			[
+			required
+	
+		prop width
+			string
+			required
+
+		style
+		
+			@ '@global'
+				{ 
+					@ html
+						{ 
+							@ boxSizing 'border-box'
+					@ '*, *:before, *:after'
+						{ 
+							@ boxSizing 'inherit'
+					@ body
+						{ 
+							@ margin 0
+							@ background theme.palette.background.default
+							@ color theme.palette.text.primary
+							@ lineHeight '1.2'
+							@ overflowX 'hidden'
+							@ WebkitFontSmoothing 'antialiased'
+							@ MozOsxFontSmoothing 'grayscale'
+					@ img
+						{ 
+							@ maxWidth '100%'
+							@ height 'auto'
+							@ width 'auto'
+			@ appFrame
+				{ 
+					@ display 'flex'
+					@ alignItems 'stretch'
+					@ minHeight '100vh'
+					@ width '100%'
+			@ grow
+				{ 
+					@ flex '1 1 auto'
+			@ title
+				{ 
+					@ marginLeft 24
+					@ flex '0 1 auto'
+			@ appBar
+				{ 
+					@ left 'auto'
+					@ right 0
+					@ transition theme.transitions.create('width')
+			@ appBarHome
+				{ 
+					@ backgroundColor 'transparent'
+					@ boxShadow 'none'
+			@ [theme.breakpoints.up('lg')]
+				{ 
+					@ drawer
+						{ 
+							@ width '250px'
+					@ appBarShift
+						{ 
+							@ width 'calc(100% - 250px)'
+					@ navIconHide
+						{ 
+							@ display 'none'
+
+		state
+			@ drawerOpen false
+
+		=> handleDrawerClose
+			_ this.setState
+				{
+					@ drawerOpen false
+
+		=> handleDrawerToggle
+			_ this.setState
+				{
+					@ drawerOpen !this.state.drawerOpen
+
+		=> handleToggleShade
+			_ this.props.dispatch
+				{
+					@ type 'TOGGLE_THEME_SHADE'
+
+		render
+			log 'AppFrame.props', this.props
+		
+			prop children
+			prop routes
+			prop width
+			prop classes
+		
+			const title = getTitle(routes)
+			log 'title', title
+		
+			# let drawerDocked = isWidthUp('lg', width)
+			let drawerDocked = true
+		
+			let navIconClassName = classes.icon
+			let appBarClassName = classes.appBar
+			if title === null
+				# home route, don't shift app bar or dock drawer
+				set drawerDocked = false
+				set appBarClassName += ` ${classes.appBarHome}`
+			else
+				set navIconClassName += ` ${classes.navIconHide}`
+				set appBarClassName += ` ${classes.appBarShift}`
+
+			return
+				. {classes.appFrame}
+					< AppBar
+						@ className {appBarClassName}
+						< Toolbar
+							$if app.useDrawer
+								< IconButton
+									@ onClick {this.handleDrawerToggle}
+									@ className {navIconClassName}
+									< MenuIcon
+							{
+								&&
+									+ title !== null
+									< Typography
+										@ className {classes.title}
+										@ type "title" 
+										@ color 'inherit'
+										@ noWrap
+										+ {title}
+							$if app.useSearch
+								. {classes.grow}
+									< AppSearch
+							< IconButton
+								@ title Toggle light/dark theme
+								@ onClick {this.handleToggleShade}
+								< LightbulbOutline
+							$if app.githubLink
+								< IconButton
+									@ component a
+									@ title GitHub
+									@ href https://github.com/wizzifactory
+									< Github
+					$if app.useDrawer
+						< AppDrawer
+							@ className {classes.drawer}
+							@ docked {drawerDocked}
+							@ routes {routes}
+							@ onRequestClose {this.handleDrawerClose}
+							@ open {drawerDocked || this.state.drawerOpen}
+					+ {children}

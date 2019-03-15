@@ -1,0 +1,18 @@
+﻿r-form-controller( AsyncValidationForm, Async validation form )
+
+	$append pre
+		ul
+			li Usernames that will fail validation (already taken):
+			+ {' '}
+			< code john
+			+ ,
+			+ {' '}
+			< code paul
+			+ ,
+			+ {' '}
+			< code george
+			+ , or
+			+ {' '}
+			< code ringo
+			+ .
+			li Every password is ok

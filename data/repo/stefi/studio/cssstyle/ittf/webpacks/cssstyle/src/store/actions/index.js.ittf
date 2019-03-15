@@ -1,0 +1,9 @@
+﻿module
+	kind react
+
+	$include app-options
+	
+	app/store/actions/index( &app )
+
+		$include initial
+		$include theme

@@ -1,0 +1,31 @@
+$group
+
+	$
+		var c = "$";
+		var cc = "$$";
+
+	table
+		class table
+		
+		f(Integral)
+			p ${cc}  \int_a^b f(x)dx  ${cc}
+
+		f(Integral definition)
+			p ${cc}  \int_a^b f(x)dx = \lim_{partitions \space max \space width \rightarrow 0} \sum_{i=1}^n f(x_{i}) (x_i - x_{i-1}) ${cc}
+
+		f(Calculus of $ \int_0^1 x^2 \space dx $ <br> using Right Riemann sum)
+			p ${cc}  \int_0^1 x^2 \space dx = \sum_{i=1}^n f(x_{i}) (x_i - x_{i-1}) = \sum_{i=1}^n ({i \over n})^2 {1 \over n} ${cc}
+			fnote()
+				dd where $ \sum_{i=1}^n ({i \over n})^2 {1 \over n} = {1 \over n^3} \sum_{i=1}^n i^2 = {1 \over n^3} { n(n+1)(2n+1) \over 6} $
+			dd <center>that is</center>
+			p ${cc} \int_0^1 x^2 \space dx = \lim_{n \rightarrow \infty } {1 \over n^3} { 2n^3 + 3n + n \over 6} = { 2n^3 \over 6n^3 } = {1 \over 3} ${cc}
+
+		f(Calculus of $ \int_0^2 x^3 \space dx $ <br> using Right Riemann sum)
+			p ${cc}  \int_0^2 x^3 \space dx = \sum_{i=1}^n f(x_{i}) (x_i - x_{i-1}) = \sum_{i=1}^n ({{2 \over n}i})^3 {2 \over n} = \sum_{i=1}^n { 16 \over n^4 } i^3 ${cc}
+			fnote()
+				dd where $ \sum_{i=1}^n { 16 \over n^4 } i^3 = {16 \over n^4} \sum_{i=1}^n i^3 = {16 \over n^4} { ({n(n+1) \over 2})^2 } $
+			dd <center>that is</center>
+			p ${cc} \int_0^2 x^3 \space dx = \lim_{n \rightarrow \infty } {{4n^2 (n+1)^2} \over n^4} = { 4n^4 \over n^4 } = {4} ${cc}
+			
+
+

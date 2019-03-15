@@ -1,0 +1,5 @@
+﻿__o
+	$args label value
+	__p value ${value}
+	__p label ${label}
+

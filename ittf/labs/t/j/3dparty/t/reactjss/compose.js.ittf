@@ -1,0 +1,29 @@
+﻿$group
+
+	#
+		# Adds 'composes' property to each top level rule
+		# in order to have a composed class name for dynamic style sheets.
+	
+	j/iife-wrapped( BxReactJssCompose )
+		
+		function reactJssCompose
+			param staticSheet
+			param styles
+			for const name in styles
+				const className = staticSheet.classes[name]
+				if !className
+					break
+				set styles[name]
+					{
+						@ ...styles[name]
+						@ composes className
+			if styles
+				for const name in staticSheet.classes
+					const className = styles[name]
+					if !className
+						set styles[name]
+							{
+								@ composes staticSheet.classes[name]
+			return styles
+
+		return reactJssCompose

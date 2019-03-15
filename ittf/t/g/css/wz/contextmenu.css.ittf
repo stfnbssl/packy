@@ -1,0 +1,31 @@
+﻿$group
+
+	. wz-context-menu
+		position absolute
+		display none
+		z-index 10 !important
+
+		< ul
+			margin 0
+			padding 4px !important
+			box-shadow rgba(0, 0, 0, 0.36) 0px 4px 8px !important
+			min-width 160px !important
+			background-color #fff !important
+			color #111 !important
+			list-style none !important
+			border-radius 5px !important
+			border-style solid !important
+			border-width 0px !important
+
+		< li
+			border-bottom solid 1px #CCC
+			& :last-child
+				border none
+			< a
+				display block
+				padding 5px 10px
+				text-decoration none
+				color #111 !important
+				& a:hover
+					background #eee
+					color #FFF

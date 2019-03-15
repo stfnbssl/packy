@@ -1,0 +1,14 @@
+﻿$group
+	$params name, label
+	
+	div
+		label
+			@ htmlFor ${name}
+			+ ${label}
+		div
+			< Field
+				@ name ${name}
+				@ id ${name}
+				@ component input
+				@ type checkbox
+

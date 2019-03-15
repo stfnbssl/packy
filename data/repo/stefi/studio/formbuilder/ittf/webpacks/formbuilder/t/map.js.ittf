@@ -1,0 +1,8 @@
+﻿$group
+	$params coll, item, ndx|i
+
+	_ ${coll}.map
+		=>
+			param ${item}
+			param ${ndx}
+			$hook

@@ -1,0 +1,15 @@
+﻿$group
+    function updateResult
+        var grid_container_code
+			[
+				@ '.grid-container {' 
+				@ '\tdisplay: grid;'
+				@ '\tgrid-template-columns: ' + grid_template_columns + ';'
+				@ '\tgrid-template-rows: ' + grid_template_rows + ';'
+				@ '\tgrid-gap: ' + grid_gap + ';'
+				@ '}'
+				._ join('\n')
+        var style = grid_container_code
+		log 'updateResult', style
+        _ $("#demo_styles")
+            ._ html(style)

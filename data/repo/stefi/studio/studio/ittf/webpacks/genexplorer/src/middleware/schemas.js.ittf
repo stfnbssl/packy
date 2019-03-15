@@ -1,0 +1,25 @@
+﻿module
+	kind react
+	+
+	import { normalize, schema } from 'normalizr'
+
+	const documentEntity
+		new schema.Entity
+			@ 'documents'
+			{
+			{
+				@ idAttribute 'name'
+	
+	const projectEntity
+		new schema.Entity
+			@ 'projects'
+			{
+				@ documents [documentEntity]
+			{
+				@ idAttribute 'name'
+
+	wz-const documents
+		{
+			@ projects [projectEntity]
+
+	log 'documents', documents

@@ -1,0 +1,11 @@
+{
+
+	$
+		var opt = {
+			name: 'cloud',
+			label: 'Cloud',
+			experimentsWith: 'Cloud services',
+			path: []
+		};
+
+	ttech-frame(&opt)

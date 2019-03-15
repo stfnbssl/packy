@@ -1,0 +1,56 @@
+﻿$group
+
+	var toolbar
+
+	if view == 'list'
+		set toolbar
+			< Toolbar
+				< Button
+					@ title 'refresh script list'
+					@ raised
+					@ className {classes.marginLeft_10}
+					@ onClick {onRefreshListConsole}
+					+ refresh
+				< Button
+					@ title 'create a new script'
+					@ raised
+					@ className {classes.marginLeft_10}
+					@ onClick {this.handleOpenCreateScriptDialog}
+					+ create
+	elif view == 'edit'
+		set toolbar
+			< Toolbar
+				< Button
+					@ title 'list'
+					@ raised
+					@ className {classes.marginLeft_10}
+					@ onClick {this.handleSetViewList}
+					+ list
+				< Button
+					@ title 'save'
+					@ raised
+					@ className {classes.marginLeft_10}
+					@ onClick {this.handleSaveScript}
+					+ save
+				< Button
+					@ title 'run'
+					@ raised
+					@ className {classes.marginLeft_10}
+					@ onClick {this.handleRunScript}
+					+ run
+
+	elif view == 'run'
+		set toolbar
+			< Toolbar
+				< Button
+					@ title 'list'
+					@ raised
+					@ className {classes.marginLeft_10}
+					@ onClick {this.handleSetViewList}
+					+ list
+				< Button
+					@ title 'edit'
+					@ raised
+					@ className {classes.marginLeft_10}
+					@ onClick {this.handleSetViewEdit}
+					+ edit

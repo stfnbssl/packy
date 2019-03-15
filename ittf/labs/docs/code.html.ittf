@@ -1,0 +1,76 @@
+﻿html
+
+	head
+
+		@title The Wizzi Factory
+		css https://fonts.googleapis.com/css?family=Roboto
+		css css/normalize.css
+		css css/styles.css.ittf
+
+	body
+		header
+			class navigation
+			
+			. header-items
+				role navigation
+				class header-items
+
+				div
+					class header-logo
+					a Wizzi Factory
+						class logo
+						href index.html
+		
+				nav_item_top(overview, Overview, View)
+				nav_item_top(starter, Starters)
+				nav_item_top(docs, Docs)
+
+				$*
+				nav_item_top(specs, Specifications, Specs)
+				*$
+				$if currentPage === 'api'
+					a Api
+						class selected-header-item
+						href wf-api.html
+				$else
+					a Api
+						class header-item
+						href wf-api.html
+
+				$if currentPage === 'code'
+					a Code
+						class selected-header-item
+						href wizzi-fs.html
+				$else
+					a Code
+						class header-item
+						href wizzi-fs.html
+
+				$*
+				nav_item_top(labs, Labs)
+				nav_item_top(project, Project)
+				nav_item_top(contribs, Contributing, Contribs)
+				*$
+
+			$if currentPage === 'code'
+				. navigation__bottom
+					. container navigation__inner
+						nav_item_bottom( wizzi, wizzi )
+						nav_item_bottom( wizzi-mtree, wizzi-mtree )
+						nav_item_bottom( wizzi-repo, wizzi-repo )
+						nav_item_bottom( wizzi-mongodb, wizzi-mongodb )
+						nav_item_bottom( wizzi-utils, wizzi-utils )
+						nav_item_bottom( wizzi-core, wizzi-core )
+						nav_item_bottom( wizzi-meta, wizzi-meta )
+						nav_item_bottom( wizzi-demo, wizzi-demo )
+			
+		main
+			id main-content
+
+			div Work in progress. Not ready.
+				style border-bottom: 1px solid blue
+
+			$hook
+
+		js jquery-3.2.1.js
+		js wizzifactory.js

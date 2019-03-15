@@ -1,0 +1,45 @@
+  module  ids: 1 46
+    kind react ids: 2 47
+    +  ids: 3 48
+    import React from 'react' ids: 4 49
+    import { Tabs, Tab } from 'react-bootstrap' ids: 5 50
+    import ArtifactBrowser from '../ArtifactBrowser' ids: 6 51
+    import SchemaDoc from './SchemaDoc' ids: 7 52
+    let SchemaTabs ids: 8 53
+      =>  ids: 9 54
+        param { activeTab, onTabSelect, jsonDoc, model, factory } ids: 10 55
+        const jsonText ids: 11 56
+          iif jsonDoc ids: 12 57
+            then  ids: 13 58
+              _ JSON.stringify ids: 14 59
+                @ jsonDoc ids: 15 60
+                @ null ids: 16 61
+                @ 4 ids: 17 62
+            else  ids: 18 63
+              set 'Json' ids: 19 64
+        return  ids: 20 65
+          < Tabs ids: 21 66
+            @ id schemaTabs ids: 22 67
+            @ activeKey={activeTab} ids: 23 68
+            @ onSelect={onTabSelect} ids: 24 69
+            < Tab ids: 25 70
+              @ eventKey doc ids: 26 71
+              @ title "Doc" ids: 27 72
+              < SchemaDoc ids: 28 73
+                @ jsonDoc {jsonDoc} ids: 29 74
+            < Tab ids: 30 75
+              @ eventKey model ids: 31 76
+              @ title "Model" ids: 32 77
+              < ArtifactBrowser ids: 33 78
+                @ content {model} ids: 34 79
+            < Tab ids: 35 80
+              @ eventKey factory ids: 36 81
+              @ title "Factory" ids: 37 82
+              < ArtifactBrowser ids: 38 83
+                @ content {factory} ids: 39 84
+            < Tab ids: 40 85
+              @ eventKey json ids: 41 86
+              @ title "Json" ids: 42 87
+              < ArtifactBrowser ids: 43 88
+                @ content {jsonText} ids: 44 89
+    export default SchemaTabs ids: 45 90

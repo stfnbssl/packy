@@ -1,0 +1,55 @@
+﻿stack backgroundpane Background
+	widgets_4
+		panel bg-basic
+			widgets_5
+				color background-color
+				select background-attachment Attachment css_enums background-attachment
+				select background-repeat Repeat css_enums background-repeat
+				pixelvalue opacity "Opacity" 0 100
+		valuepanel background-image "Gradient"
+			__p _is_valid
+				__f values
+					__log 'values ', values
+					__log '_is_valid', values.bg_gr_start_color && values.bg_gr_end_color 
+					return values.bg_gr_start_color && values.bg_gr_end_color 
+			__p _prepare_values
+				__f values
+					return _.extend(values, {
+						bg_gr_start_opacity : 100,
+						bg_gr_start_position : 0,
+						bg_gr_end_opacity : 100,
+						bg_gr_end_position : 100
+						});
+			__p _get_stops
+				__f values
+					var stops = [];
+					stops.push( { 
+						color : values.bg_gr_start_color,
+						opacity : values.bg_gr_start_opacity / 100,
+						position : values.bg_gr_start_position
+					} );
+					stops.push( { 
+						color : values.bg_gr_end_color,
+						opacity : values.bg_gr_end_opacity / 100,
+						position : values.bg_gr_end_position
+					} );
+					return stops;
+			__p to_value
+				__f subvalues
+					__log 'Gradient to_value subvalues ', subvalues
+					__if this._is_valid(subvalues)
+						var preparedvalues = this._prepare_values(subvalues);
+						__log 'preparedvalues ', preparedvalues
+						var stops = this._get_stops(preparedvalues);
+						return HTML.getDomObjectRules(stops, subvalues.bg_gr_orientation);
+			widgets_5
+				select bg-gr-orientation Orientation css_enums gradient-orientation 
+				pixelvalue bg-gr-start-position "Start pos" 0 100
+				pixelvalue bg-gr-start-opacity "Start opacity" 0 100 100
+				color bg-gr-start-color "Start color"
+				pixelvalue bg-gr-end-position "End pos" 0 100 100
+				pixelvalue bg-gr-end-opacity "End opacity" 0 100 100
+				color bg-gr-end-color "End color"
+
+
+

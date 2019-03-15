@@ -1,0 +1,43 @@
+﻿$group
+	+
+	http( execfile, list, run )
+	+
+	wz-const listExecFile
+		=>
+			param refresh
+			return
+				{
+					@ type LIST_EXECFILE
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ LIST_EXECFILE_REQUEST
+									@ LIST_EXECFILE_SUCCESS
+									@ LIST_EXECFILE_FAILURE
+							@ url '/api/jobs/execfiles'
+							@ method 'get'
+							@ queryParams
+								{
+									@ refresh (refresh ? 'true' : 'false')
+	+
+	wz-const runExecFile
+		=>
+			param name
+			return
+				{
+					@ type RUN_EXECFILE
+					@ name name
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ RUN_EXECFILE_REQUEST
+									@ RUN_EXECFILE_SUCCESS
+									@ RUN_EXECFILE_FAILURE
+							@ url '/api/jobs/runexecfile'
+							@ method 'get'
+							@ queryParams
+								{
+									@ name name
+	+

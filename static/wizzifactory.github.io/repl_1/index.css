@@ -1,0 +1,259 @@
+:root {
+    --font-normal: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-monospace: 'Fira Code', 'Fira Mono', Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+*:focus {
+    outline: none;
+}
+*:focus-visible {
+    outline: auto;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+html {
+    box-sizing: border-box;
+}
+body {
+    font-family: var(--font-normal);
+    font-size: 14px;
+    line-height: 1.428;
+    margin: 0;
+}
+#root {
+    height: 100vh;
+}
+.styler {
+    --color-primary: #4630eb;
+    --color-secondary: #5844ed;
+    --color-error: #f44336;
+    --color-warning: #ff9800;
+    --color-success: #4caf50;
+    --color-border: rgba(0, 0, 0, 0.08);
+    --color-accent: #000;
+    --color-accent-text: #fff;
+    --color-text: #111;
+    --color-background: #fafafa;
+    --color-content: #fff;
+    --color-editor-background: #fafafa;
+    --color-editor-text: #111;
+    --color-editor-border: transparent;
+    height: 100% !important;
+    width: 100% !important;
+}
+.fl {
+    margin: 12px 0;
+}
+.fl-nodes {
+    padding: 0 8px;
+}
+.fl-icon {
+    height: 16px !important;
+    width: 16px !important;
+    fill: currentcolor !important;
+    vertical-align: middle !important;
+    opacity: 0.7 !important;
+}
+.tree-node {
+    position: relative;
+    font-size: 13px;
+    line-height: 1.8;
+}
+.tree-node .copying {
+    border: 1px dashed #dedede;
+}
+.tree-node .cutting {
+    border: 1px dashed #dedede;
+    opacity: 0.5;
+}
+.tree-node .icon-item-group {
+    position: relative !important;
+    display: inline-block !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    z-index: 1 !important;
+    white-space: nowrap !important;
+    outline: 0px !important;
+    padding: 0px 16px !important;
+}
+.tree-node .icon-item-group.selected {
+    background: #cdcdcd;
+}
+.tree-node .item-name {
+    vertical-align: -1px !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -o-user-select: none !important;
+    user-select: none !important;
+    margin: 0px 6px !important;
+}
+.tree-node .tree-child-leaves {
+    display: block;
+    margin-left: 15px;
+}
+.tree-node .hidden {
+    display: none;
+}
+.tree-node .tree-expando {
+    background: #ddd;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+    float: left;
+    height: 10px;
+    line-height: 10px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    width: 10px;
+}
+.tree-node .hidden {
+    visibility: hidden;
+}
+.tree-node .tree-expando:hover {
+    background: #aaa;
+}
+.tree-node .tree-node-text {
+    cursor: pointer;
+    float: left;
+    margin-left: 5px;
+}
+.tree-node .tree-node-text:hover {
+    color: blue;
+}
+.tree-node .tree-node-content {
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: row;
+}
+.tree-node .tree-node-content:hover {
+    background: #dedede;
+}
+.tree-node-context-menu-on {
+    background: #cdcdcd;
+}
+.sh {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    width: 100% !important;
+    background-color: rgb(250, 250, 250) !important;
+    color: rgb(17, 17, 17) !important;
+    overflow: hidden !important;
+}
+.sh-he {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center !important;
+    -webkit-justify-content: space-between !important;
+    justify-content: space-between !important;
+    height: 60px !important;
+    background-color: rgb(255, 255, 255) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    padding: 10px 20px;
+}
+.sh-bo {
+    display: flex !important;
+    flex-direction: row;
+    min-height: 0px !important;
+    min-width: 0px !important;
+    -ms-flex: 1 1 0% !important;
+    flex: 1 1 0% !important;
+}
+.sh-bo-lsb {
+    -webkit-box-direction: normal !important;
+    -webkit-box-orient: vertical !important;
+    display: flex !important;
+    min-width: 10rem !important;
+    flex-direction: column !important;
+    background-color: rgb(230, 230, 230) !important;
+}
+.sh-bo-co {
+    -webkit-box-direction: normal !important;
+    -webkit-box-orient: vertical !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0px !important;
+    min-height: 0px !important;
+    -ms-flex: 1 1 0% !important;
+    flex: 1 1 0% !important;
+}
+.sh-bo-co-ge {
+    display: flex !important;
+    flex-direction: row;
+    min-height: 0px !important;
+    min-width: 0px !important;
+    -ms-flex: 1 1 0% !important;
+    flex: 1 1 0% !important;
+}
+.sh-bo-co-ge-ittf {
+    min-width: 50rem !important;
+    height: 100% !important;
+}
+.sh-bo-co-ge-result {
+    -ms-flex: 1 1 0% !important;
+    flex: 1 1 0% !important;
+    height: 100% !important;
+}
+.sh-bo-co-wi {
+    display: flex !important;
+    flex-direction: row;
+    min-height: 0px !important;
+    min-width: 0px !important;
+    -ms-flex: 1 1 0% !important;
+    flex: 1 1 0% !important;
+}
+.sh-bo-co-wi-snippet {
+    min-width: 50rem !important;
+    height: 100% !important;
+}
+.sh-bo-co-wi-result {
+    -ms-flex: 1 1 0% !important;
+    flex: 1 1 0% !important;
+    height: 100% !important;
+}
+.sh-fo {
+    -webkit-box-align: center !important;
+    -webkit-box-direction: normal !important;
+    -webkit-box-orient: horizontal !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    height: 30px !important;
+    z-index: 10 !important;
+    background-color: rgb(255, 255, 255) !important;
+    color: rgb(153, 153, 153) !important;
+    padding: 0px 0.25em !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+#gen-ittf-editor {
+    height: 100% !important;
+    width: 100% !important;
+}
+#gen-result-editor {
+    height: 100% !important;
+    width: 100% !important;
+}
+#snippet-source-editor {
+    height: 100% !important;
+    width: 100% !important;
+}
+#snippet-result-editor {
+    height: 100% !important;
+    width: 100% !important;
+}
+.control-panel {
+    padding: 1rem;
+}
+.control {
+    padding: 1rem;
+}

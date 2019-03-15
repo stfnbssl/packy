@@ -1,0 +1,11 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'html',
+			label: 'Html',
+			experimentsWith: 'the Html markup language',
+			path: []
+		};
+
+	ttech-frame(&opt)

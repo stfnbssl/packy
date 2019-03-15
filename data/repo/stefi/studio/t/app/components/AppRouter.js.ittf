@@ -1,0 +1,49 @@
+﻿$group
+	$params &app
+
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import classNames from 'classnames'
+	import {
+		\b applyRouterMiddleware,
+		\b browserHistory,
+		\b Router,
+		\b Route,
+		\b IndexRoute,
+		\b } from 'react-router'
+	import { useScroll } from 'react-router-scroll'
+	import AppFrame from './AppFrame'
+	import Home from '../pages/Home'
+	import AppContent from './muidocs/AppContent'
+	import MarkdownDocs from './muidocs/MarkdownDocs'
+	import { requireMarkdown } from './files'
+	
+	$hook imports
+
+	var basepath = '${app.routeBasepath}'
+
+	react AppRouter
+
+		$hook
+
+		render
+			return
+				< Router
+					@ history {browserHistory}
+					@ render {applyRouterMiddleware(useScroll())}
+					< Route
+						@ title "${app.title}"
+						@ path {basepath + "/"}
+						@ component {AppFrame}
+						< IndexRoute
+							@ dockDrawer 
+							@ component {Home}
+							@ title {null}
+						$hook routes
+	
+	export default AppRouter
+
+
+
+
+

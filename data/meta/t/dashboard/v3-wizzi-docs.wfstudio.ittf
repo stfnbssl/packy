@@ -1,0 +1,17 @@
+﻿$group
+
+	package v3-wizzi-docs
+
+		kind plugin
+		plugin-name wizzi-docs
+		base-folder-uri C:\My\wizzi\v5\plugins\wizzi-docs
+		std-folders()
+		plugin-std-ittf-folders()
+
+		schema docs
+
+		schema md
+
+			artifact document
+				language md
+				is-default

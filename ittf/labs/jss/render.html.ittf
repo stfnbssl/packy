@@ -1,0 +1,5 @@
+﻿h/react-page( render, nocss )
+
+	$append body-scripts
+		js /static/lib/jss/jss.js
+		js /static/lib/jss/jss-preset-default.js

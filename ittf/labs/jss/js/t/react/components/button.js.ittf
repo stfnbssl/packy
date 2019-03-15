@@ -1,0 +1,16 @@
+﻿$group
+
+	j/bx/rect-component( Button )
+
+		$append styles
+			@ button
+				{
+					@ backgroundColor 'yellow'
+					@ color 'green'
+	
+		m render
+			const {classes} = this.props.sheet
+			const {text} = this.props
+			return
+				< button {text}
+					@ className {classes.button}

@@ -1,0 +1,26 @@
+  module  ids: 1 24
+    kind react ids: 2 25
+    +  ids: 3 26
+    import React, { Component, PropTypes } from 'react' ids: 4 27
+    class Row ids: 5 28
+      super Component ids: 6 29
+      m render ids: 7 30
+        const { children } = this.props ids: 8 31
+        return  ids: 9 32
+          div  ids: 10 33
+            @style {getStyle()} ids: 11 34
+            + {children} ids: 12 35
+            br  ids: 47 51
+              @style  ids: 48 52
+                {  ids: 49 53
+                  @ clear "both" ids: 50 54
+    function getStyle ids: 14 37
+      param span ids: 15 38
+      return  ids: 16 39
+        {  ids: 17 40
+          @ width "100%" ids: 18 41
+          @ marginLeft 5 ids: 19 42
+          @ marginRight 5 ids: 20 43
+    set Row.propTypes ids: 21 44
+      {  ids: 22 45
+    export default Row ids: 23 46

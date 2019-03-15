@@ -1,0 +1,38 @@
+module
+    kind jsfile
+
+    function compareFsItems
+        param a
+        param b
+        var a_has_children = a.children && a.children.length > 0
+        var b_has_children = b.children && b.children.length > 0
+        if a_has_children && !b_has_children
+            return -1
+        elif b_has_children && !a_has_children
+            return 1
+        elif a.name < b.name
+            return -1
+        elif b.name < a.name
+            return 1
+        else
+            return 0
+
+    var arr
+        [
+            {
+                @ name 'zorro'
+            {
+                @ name 'beta'
+                [ children
+                    @ 'uu'
+            {
+                @ name 'alfa'
+                [ children
+                    @ 'oo'
+            {
+                @ name 'chicco'
+
+    var sorted = arr.sort(compareFsItems)
+
+    log JSON.stringify(sorted, null, 2)
+                    

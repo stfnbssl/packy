@@ -1,0 +1,28 @@
+﻿$group
+	$params module
+
+	iife
+
+		function
+
+			var dynamic = angular.module('${module}')
+			_ dynamic.directive
+				@ 'dynamic'
+				function 
+					param $compile
+					return
+						{
+							@ restrict 'A'
+							@ replace true
+							@ link
+								function 
+									param scope
+									param element
+									param attrs
+									_ scope.$watch
+										@ attrs.dynamic
+										function 
+											param html
+											set element.html(html)
+											set $compile(element.contents())(scope)
+

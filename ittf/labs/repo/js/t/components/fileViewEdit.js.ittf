@@ -1,0 +1,18 @@
+﻿$group
+
+	react-component( FileViewEdit )
+		
+		m render
+			const { folderData } = this.props
+			const { folderOrFile, userId, projectId, folderId } = folderData.data
+			const { content } = folderOrFile
+
+			return
+				. file js-code-editor container-preview show-code
+					_fileHeader()
+					. commit-create
+						< BxCodeMirror
+							@ value { content }
+							@ className form-control file-editor-textarea js-blob-contents js-code-textarea
+
+

@@ -1,0 +1,47 @@
+﻿$group
+
+	category React
+		lia( The magic behind 💅 styled-components, http://mxstbr.blog/2016/11/styled-components-magic-explained/ )
+		lia( propTypes, https://reactjs.org/docs/typechecking-with-proptypes.html )
+
+		category Basic
+			demo hello
+				label Hello starter
+
+			demo button
+				label Button component
+
+			demo app
+				label Simple app
+
+			demo app-material-ui
+				label Materia UI app
+		
+		category Layout
+			demo cssplay
+		
+			demo grid-layout
+				label Grid layout
+		
+		category Material-ui
+			lia( The magic behind 💅 styled-components, http://mxstbr.blog/2016/11/styled-components-magic-explained/ )
+			lia( Material-UI, https://material-ui.com/ )
+			lia( Material-UI CDN, https://github.com/mui-org/material-ui/blob/master/examples/cdn/index.html )
+			lia( Material-UI Icons, https://material.io/tools/icons/?icon=swap_horiz&style=baseline
+			lia( propTypes, https://reactjs.org/docs/typechecking-with-proptypes.html )
+
+			demo starter-1
+			demo htmleditor
+			demo downshift
+			demo downshift-multiple
+		
+		category Router
+			demo basic
+		
+		category Editors
+
+			lia( React Codemirror, https://github.com/scniro/react-codemirror2#readme
+			lia( React Acer, https://github.com/securingsincity/react-ace
+			lia( React Monaco, https://github.com/superRaytin/react-monaco-editor
+
+			demo monaco

@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="sanitize.css" rel="stylesheet" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/project.css" rel="stylesheet" />
+</head>
+<body class="Project">
+    <!-- top navigation markup -->
+    <input type="checkbox" id="tn-input-toggle" />
+    <nav class="tn-bar">
+        <nav class="tn-main">
+            <a href="index.html.ittf"><div class="logo">
+                <img src="images/logo.svg" />
+            </div>
+            </a>
+            <label for="tn-input-toggle" class="tn-label-toggle"></label>
+            <label for="tn-input-toggle" class="tn-label-toggle-close">&times;</label>
+            <ul>
+                <li><a href="concepts.html" title="Concepts">Concepts</a>
+                </li>
+                <li><a href="docs/intro.html" title="Documentation">Documentation</a>
+                </li>
+                <li><a href="api.html" title="Api">Api</a>
+                </li>
+                <li><a href="code/intro.html" title="Code">Code</a>
+                </li>
+                <li><a href="starters.html" title="Starters">Starters</a>
+                </li>
+                <li class="tn-pageSelected"><a href="project.html" title="Project">Project</a>
+                </li>
+            </ul>
+        </nav>
+    </nav>
+    <!-- main content markup -->
+    <main id="mc-wrapper" class="mc-wrapper-layout">
+        <input type="checkbox" id="mc-toggle-toc" />
+        <input type="checkbox" id="mc-toggle-toc-close" onchange="mc_toggle_toc_Close()" />
+        <div class="mc-frame">
+            <div class="mc-frame-bar">
+                <h1 class="mc-sidebar-left-title">Project</h1>
+                <h1>
+                    <label for="mc-toggle-toc-close" class="mc-label-toggle-close">&times;</label>
+                </h1>
+            </div>
+            <nav class="mc-sidebar-left">
+                <ul>
+                    <li><a href="#concept-0" class="mc-item-link">Introduction</a>
+                    <label for="mc-toggle-concept-0" class="mc-label-toggle">Introduction</label>
+                    </li>
+                    <li><a href="#concept-1" class="mc-item-link">Roadmap</a>
+                    <label for="mc-toggle-concept-1" class="mc-label-toggle">Roadmap</label>
+                    </li>
+                    <li><a href="#concept-2" class="mc-item-link">Tasks</a>
+                    <label for="mc-toggle-concept-2" class="mc-label-toggle">Tasks</label>
+                    </li>
+                    <li><a href="#concept-3" class="mc-item-link">Issues</a>
+                    <label for="mc-toggle-concept-3" class="mc-label-toggle">Issues</label>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mc-content">
+                <div>
+                    <input type="checkbox" id="mc-toggle-concept-0" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-1" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-2" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-3" onchange="m_toggleChanged()" />
+                    <h1 class="mc-content-title" id="concept-1">Project</h1>
+                    <div class="mc-pane mc-pane-concept-0">
+                        <div class="summary"></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-1">
+                        <h2 id="concept-1">Roadmap</h2>
+                        <h2 id="roadmap-1">Status</h2>
+                        <div class="summary">
+                            <p>Development of functionalities is satisfactory. Model definitions and generation processes are reaching a fluid and mature status. But engeneering, tests and tracking errors in source documents are Achille heels.    <br>        <span>This project comes from interests in economy and biology. We hope we will get engineers on board soon.</span><br>        </br>    </br></p></div>
+                        <h2 id="roadmap-2">Roadmap</h2>
+                        <div class="summary">
+                            <p>The roadmap is a living document, and can change at any time, but the list below should give some indication of our plans for the near future.</p><p>NOTE: today, 14 of september, the milestones for this year have been delayed 1 month. Sorry, but lots of tests have been added.    <br>        <br>        </br>    </br></p></div>
+                        <section>
+                            <h3>End of september 2017: first partial pre-release</h3>
+                            <div class="summary">
+                                <h5>'wizzi-demo' package</h5><ul>    <li>First documented pre-release.    </li><li>Announce on facebook and twitter with caution for weak error checking.    </li></ul><h5>'wizzi-docs' package</h5><ul>    <li>Continues the documentation effort.    </li><li>First release of complete Api and Code sections.    </li></ul><br>    <br>    </br></br></div>
+                        </section>
+                        <section>
+                            <h3>End of october 2017: wizzi factory v4 (0.4.0 pre-release)</h3>
+                            <div class="summary">
+                                <h5>jsWizzi and mTree loading</h5><ul>    <li>Complete test coverage of jsWizzi and mTree loading.    </li></ul><h5>'js' language schema and 'js/module' artifact</h5><ul>    <li>Automatic type check of function arguments when code is generate in debug mode. A new notation for declaring parameters will be implemented.<pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">function</span><span class="pp-pln"> alfa</span></li><li class="L2"><span class="pnl">  </span><span class="pp-tag">string</span><span class="pp-pln"> beta</span></li><li class="L3"><span class="pnl">  </span><span class="pp-tag">{</span><span class="pp-pln"> options</span></li><li class="L4"><span class="pnl">    </span><span class="pp-tag">boolean</span><span class="pp-pln"> gamma</span></li><li class="L5"><span class="pnl">      </span><span class="pp-tag">optional</span><span class="pp-pln"> </span></li></ol></pre>    </li><li>A js/preprocess model transformer (optional).        <div>It will consent to avoid the clumsy 'set' and '_' node tags when not needed for some specific mTree build-up purpose.        </div>    </li></ul><h5>'wizzi-demo' package</h5><ul>    <li>Plenty of examples.    </li></ul><br>    <br>    </br></br></div>
+                        </section>
+                        <section>
+                            <h3>End of december 2017: wizzi factory v5 (0.5.0 pre-release)</h3>
+                            <div class="summary">
+                                <p>We hope that starting from this version the wizzi factory will be usable without the risk of losing time for bad error tracking.    <br>        <span>Every effort will be put on tests, documentation and a neat error message system for loading and generation failures.</span>    </br><h5>jsWizzi and mTree loading    </h5><br>        <br>        </br>    </br></p></div>
+                        </section>
+                        <section>
+                            <h3>Year 2018: wizzi studio and plugins development</h3>
+                            <div class="summary">
+                                <p>The year 2018 will be dedicated to the development of a web application for managing ittf documents of models, transformers and artifact generators.</p><p>We will be able to monitor interactively the buildup of an mTree and its transformations.</p><p>The visitor pattern will be implemented to support model transformations.</p><p>We will focus on the automation of generation tasks based on the [#schema(wfjob)] schema.</p><p>New plugins will be developed for data management, form building, rest server apis and single page applications.</p></div>
+                        </section>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-2">
+                        <h2 id="concept-2">Tasks</h2>
+                        <table class="pretty-table">
+                            <tr>
+                                <td>
+                                    <h4>Features</h4>
+                                    <div class="summary">
+                                        <h3>wfjob and production manager</h3><p>Implement transpiling of native and generated artifacts. Introduce a 'transpile' element in the 'wfjob' schema.</p></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4>Documentation</h4>
+                                    <div class="summary">
+                                        <p>We are completing the sections    <a href="https://wizzifactory.github.io/docs">Docs</a><span>,    </span><a href="https://wizzifactory.github.io/api">Api    </a><span>and    </span><a href="https://wizzifactory.github.io/code/wizzi">Code    </a><span>of the project site on    </span><a href="https://wizzifactory.github.io">github    </a><span>.    </span></p><p>A new section    <a href="https://wizzifactory.github.io/plugins">Plugins    </a><span>, is under development. It will contain the generated documentation of plugins already developed.    </span></p></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4>Testing</h4>
+                                    <div class="summary">
+                                        <p>The mTree loader and the production manager are under heavy testing.</p></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-3">
+                        <h2 id="concept-3">Issues</h2>
+                        <table class="pretty-table">
+                            <tr>
+                                <td>
+                                    <h4>wizzi-mtree.loader. Missing value on a context model replaced arbitrarily</h4>
+                                    <div class="summary">
+                                        <p>If a collection item in a context model has a property with a value in some items and no value in others, when has no value a casual value is returned instead of empty.</p></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4>Error messages sometimes are obscure or incorrect</h4>
+                                    <div class="summary">
+                                        <p>We need a better strategy to print the exact file, and line of code where an error occurred</p></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4>IttfLoader - Mixins. Error loop when passing object arguments to a mixin.</h4>
+                                    <div class="summary">
+                                        <p>When a mixin has an object param and calls another mixin passing an object argument the loading loops</p></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4>The role of the require element of the wfschema is unclear</h4>
+                                    <div class="summary">
+                                        <p>Should be node-js require only or may be used to require features.</p></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function m_toggleChanged() {
+            var el_toc = document.querySelector("input[id='mc-toggle-toc']");
+            var el_contents = document.querySelectorAll("input[id^='mc-toggle-concept-']");
+            var seenTrue = false;
+            var i, i_items=el_contents, i_len=el_contents.length, el;
+            for (i=0; i<i_len; i++) {
+                el = el_contents[i];
+                if (el.checked) {
+                    seenTrue = true;
+                }
+            }
+            el_toc.checked = seenTrue;
+        }
+        function mc_toggle_toc_Close() {
+            var el_toc = document.querySelector("input[id='mc-toggle-toc']");
+            var el_contents = document.querySelectorAll("input[id^='mc-toggle-concept-']");
+            var i, i_items=el_contents, i_len=el_contents.length, el;
+            for (i=0; i<i_len; i++) {
+                el = el_contents[i];
+                el.checked = false;
+            }
+            el_toc.checked = false;
+        }
+    </script>
+    <script src="wizzifactory.js"></script>
+</body>
+
+</html>

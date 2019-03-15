@@ -1,0 +1,76 @@
+$group
+
+	$if typeof(mpage.aspect) !== 'undefined'
+		$if mpage.aspect.React
+			$if mpage.aspect.production
+				j( https://unpkg.com/prop-types@15.6/prop-types.min.js
+			$else
+				j( https://unpkg.com/prop-types@15.6/prop-types.js
+		
+			j( https://cdn.jsdelivr.net/npm/react@16.4.1/umd/react.development.js
+			j( https://cdn.jsdelivr.net/npm/react-dom@16.4.1/umd/react-dom.development.js
+
+		$if mpage.aspect.InteractJs
+		    j( /static/lib/interactjs/interact.js
+		
+		$if mpage.aspect.Jarallax
+			j( /static/lib/object-fit-images/ofi.min.js
+			$if mpage.aspect.production
+				j( /static/lib/jarallax/jarallax.min.js
+				j( /static/lib/jarallax/jarallax-video.min.js
+				j( /static/lib/jarallax/jarallax-element.min.js
+			$else
+				j( /static/lib/jarallax/jarallax.js
+				j( /static/lib/jarallax/jarallax-video.js
+				j( /static/lib/jarallax/jarallax-element.js
+		
+		$if mpage.aspect.JQuery
+			$if mpage.aspect.production
+				j( /static/lib/jquery/jquery.min.js
+			$else
+			    j( /static/lib/jquery/jquery.js
+		
+		$if mpage.aspect.MaterialUi
+			j( https://cdn.jsdelivr.net/npm/material-ui@1.0.0-beta.47/umd/material-ui.development.js
+		
+		$if mpage.aspect.React
+			j( https://cdn.jsdelivr.net/npm/@babel/standalone@7.0.0-beta.51/babel.min.js
+	
+		$if mpage.aspect.Ace
+			$if mpage.aspect.production
+				j( /static/lib/ace/src-min-noconflict/ace.js
+			$else
+				j( /static/lib/ace/src-noconflict/ace.js
+	
+		$if mpage.aspect.Codemirror
+			j( /static/lib/codemirror/lib/codemirror.js
+			j( /static/lib/codemirror/mode/javascript/javascript.js
+			j( /static/lib/codemirror/mode/xml/xml.js
+			j( /static/lib/codemirror/theme/monokai.css
+			j( /static/lib/codemirror/theme/twilight.css
+
+		$if mpage.aspect.Monaco
+			j( /static/lib/monaco-editor/package/min/vs/loader.js
+			$*
+				j( /static/lib/monaco-editor/package/min/vs/editor/editor.main.nls.js
+				j( /static/lib/monaco-editor/package/min/vs/editor/editor.main.js
+				script
+					+ var require = { paths: { 'vs': '/static/lib/monaco-editor/package/min/vs' } }
+			*$
+
+		$if mpage.aspect.Popper
+			j( /static/lib/popper/popper.js
+		
+		$if mpage.aspect.ScrollReveal
+			j( /static/lib/scrollreveal/scrollreveal.js
+
+		$if mpage.aspect.Tooltip
+			j( /static/lib/popper/tooltip.js
+			
+		$if mpage.aspect.Underscore
+			$if mpage.aspect.production
+				j( /static/lib/underscore/underscore.min.js
+			$else
+				j( /static/lib/underscore/underscore.js
+		
+			

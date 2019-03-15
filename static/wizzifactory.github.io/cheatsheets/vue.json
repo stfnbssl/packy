@@ -1,0 +1,19 @@
+{
+    "title": "Schema cheat sheet",
+    "language": "vue",
+    "elements": [
+        {
+            "name": "vue base",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "simple vue component",
+                    "ittfWrapped": "vue \\n    template \\n        - schema html syntax\\n        . item\\n            # greetings\\n            + Hello\\n    script \\n        # schema js syntax\\n        function hey\\n            param name\\n            _ document.querySelector('#greatings').innerHTML = 'Hello ' + name\\n        _ hey('Steave')\\n    style \\n        - schema css syntax\\n        . item\\n            color red",
+                    "generated": "\\n{\\n  \\\"name\\\": \\\"InvalidArgument\\\",\\n  \\\"inner\\\": null,\\n  \\\"shortmessage\\\": \\\"The artifactName parameter must be a string. Received: undefined\\\",\\n  \\\"message\\\": \\\"The artifactName parameter must be a string. Received: undefined\\\",\\n  \\\"info\\\": {\\n    \\\"method\\\": \\\"wizzi.wizziFactory.loadModelAndGenerateArtifactFromText\\\",\\n    \\\"parameter\\\": \\\"artifactName\\\",\\n    \\\"sourcePath\\\": \\\"C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi\\\\lib\\\\services\\\\wizziFactory.js\\\"\\n  },\\n  \\\"__is_error\\\": true\\n}"
+                }
+            ]
+        }
+    ]
+}

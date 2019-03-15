@@ -1,0 +1,17 @@
+﻿element xml base
+	tag
+	ast
+	category
+	
+	item
+		title
+		ittf
+			person
+				@ name Judy
+				@ age 45
+				friends
+					friend
+						@ name Mary
+					friend
+						@ name Edward
+

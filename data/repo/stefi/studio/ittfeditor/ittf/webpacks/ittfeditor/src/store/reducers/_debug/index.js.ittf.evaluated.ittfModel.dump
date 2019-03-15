@@ -1,0 +1,16 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import { combineReducers } from 'redux' ids: undefined undefined
+    import commonsReducer from './commonsReducer' ids: undefined undefined
+    import documentReducer from './documentReducer' ids: undefined undefined
+    import schemaReducer from './schemaReducer' ids: undefined undefined
+    import jobReducer from './jobReducer' ids: undefined undefined
+    +  ids: undefined undefined
+    export default ids: undefined undefined
+      _ combineReducers ids: undefined undefined
+        {  ids: undefined undefined
+          @ commons commonsReducer ids: undefined undefined
+          @ document documentReducer ids: undefined undefined
+          @ schema schemaReducer ids: undefined undefined
+          @ job jobReducer ids: undefined undefined

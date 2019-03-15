@@ -1,0 +1,27 @@
+﻿$group
+    
+	# Copyright 
+	# https://github.com/JedWatson/classnames
+	
+	function BxClassNames
+		var hasOwn
+			{ 
+				. hasOwnProperty
+        var classes
+            [ 
+        for var i = 0; i < arguments.length; i++
+            var arg = arguments[i]
+            if !(arg)
+                continue 
+            var argType = typeof(arg)
+            if (argType === 'string') || (argType === 'number')
+                _ classes.push(arg)
+            elif Array.isArray(arg) && arg.length
+                var inner = classNames.apply(null, arg)
+                if inner
+                    _ classes.push(inner)
+            elif argType === 'object'
+                for var key in arg
+                    if hasOwn.call(arg, key) && arg[key]
+                        _ classes.push(key)
+        return classes.join(' ')

@@ -1,0 +1,63 @@
+h/root/empty_layout( Uikit step 1 )
+
+	$append head-styles
+		css /static/lib/uikit-3.0.0/css/uikit.min.css
+
+	h1 Accordion
+
+		ul 
+			@ uk-accordion 
+			li 
+				class uk-open
+				a Item 1
+					class uk-accordion-title
+					href #
+				. uk-accordion-content
+					p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			li 
+				a Item 2
+					class uk-accordion-title
+					href #
+				. uk-accordion-content
+					p Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.
+			li 
+				a Item 3
+					class uk-accordion-title
+					href #
+				. uk-accordion-content
+					p Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.
+					
+    h1 Tab
+        ul 
+            @ uk-tab 
+            li 
+                class uk-active
+                a Left
+                    href #t1
+            li 
+                a Item
+                    href #t2
+            li 
+                a Item
+                    href #t3
+            li 
+                class uk-disabled
+                a Disabled
+        ul
+            class uk-tab
+            li
+                id t1
+                lorem 30
+            li
+                id t2
+                lorem 40
+            li
+                id t3
+                lorem 20
+                
+    
+
+	$append body-scripts
+        js /static/lib/uikit-3.0.0/js/uikit.min.js
+        js /static/lib/uikit-3.0.0/js/uikit-icons.min.js
+    

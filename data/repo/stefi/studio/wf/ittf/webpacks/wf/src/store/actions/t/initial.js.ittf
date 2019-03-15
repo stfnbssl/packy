@@ -1,0 +1,19 @@
+﻿$group
+	+
+	http( load, initial )
+	+
+	wz-const initialLoad
+		=>
+			return
+				{
+					@ type INITIAL_LOAD
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ INITIAL_LOAD_REQUEST
+									@ INITIAL_LOAD_SUCCESS
+									@ INITIAL_LOAD_FAILURE
+							@ url '/api/wf/commons'
+							@ method 'get'
+	+

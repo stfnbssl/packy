@@ -1,0 +1,100 @@
+﻿module
+    kind react
+	+
+	import util
+	import querystring
+	import axios
+	import _ from 'lodash'
+	# import { pushState } from 'redux-react-router'
+	import utils from '../lib/utils'
+	import config from './config'
+	import { normalize } from 'normalizr'
+	+
+	const { notEmptyString } = utils
+	const error = utils.error('dashredux/middleware/http')
+	const throwError = utils.throwError('dashredux/middleware/http')
+	+
+	$include http/validateHttp.js
+	+
+	function createReceiveAction
+		param actionType
+		param initialAction
+        param response
+		param schema
+		+
+		log 'createReceiveAction.response.data', response.data, response.status
+		const payload = schema ? normalize(response.data.data, schema) : response.data.data
+		log 'createReceiveAction.payload', payload
+		+
+		var finalAction
+			_ _.assign
+				{
+				@ initialAction
+				{ 
+					@ type actionType
+					@ payload payload
+					@ status response.status
+					@ statusText response.statusText
+					@ headers response.headers
+		delete finalAction[config.HTTP_REQUEST]
+		return finalAction
+    +
+	#
+		# param actionHttpRequest:Object { // the http request from witch the request for axios and the next action are built
+		#   url:String,
+		#   method:String,
+		#   queryParams:Object,
+		#   payload:Object,
+		#   responseType:String,
+		#   timeout:Number,
+		#   schema:Object, // normalizr schema of response
+		#   types:Object, // action types: requestType, successType, failureType
+		# }
+		# param initialAction: String // the action that activated the request
+		# param dispatch: Function // the dispatcher of the next action after completion or failure
+    wz-function sendRequest
+		param actionHttpRequest
+		param initialAction
+		param dispatch
+		const { schema, types } = actionHttpRequest
+		const [ requestType, successType, failureType ] = types
+		+
+		var axiosConfig
+			_ validateCreateAxiosConfig(actionHttpRequest)
+		+
+		log 'middleware/http/sendRequest.axiosConfig', axiosConfig
+		+
+		if notEmptyString(requestType)
+			# signal that request is executing
+			_ dispatch
+				{
+					@ type requestType
+        return 
+            _ axios
+                @ axiosConfig 
+                ._ then
+                    function 
+                        param response
+                        _ dispatch
+                            _ createReceiveAction
+								@ successType
+								@ initialAction
+                                @ response
+								@ schema
+						log 'sendRequest.then actionHttpRequest.next', actionHttpRequest.next
+						if actionHttpRequest.next != null
+							_ dispatch(actionHttpRequest.next)
+                    ._ catch
+                        function 
+                            param response
+                            _ dispatch
+                                _ createReceiveAction
+									@ failureType
+									@ initialAction
+                                    @ response
+                            
+							$* Error cannot resolve react-router/lib/isactive
+							_ dispatch
+                                _ pushState(null, '/error')
+							*$
+

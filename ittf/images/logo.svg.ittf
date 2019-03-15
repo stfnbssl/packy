@@ -1,0 +1,37 @@
+﻿svg
+	$
+		var opt = {};
+		opt.y0 = 10;
+		opt.y1 = 10;
+		opt.y1a = 90;
+		opt.y2 = 210;
+		opt.ybottom = 250;
+		opt.stroke = '#01579b';
+		opt.fill = '#01579b';
+	
+	width 660
+	height 260
+	preserve-aspect-ratio xMidYMid meet
+	rect
+		x 0
+		y 0
+		width 660
+		height 280
+		fill none
+		stroke none
+	
+	polyline
+		stroke ${opt.stroke}
+		fill ${opt.fill}
+		stroke-width 2
+		points 10 ${opt.ybottom}
+			\b 45 ${opt.y0} 60 ${opt.y0} 75 ${opt.y1a + 40} 
+			\b 120 ${opt.y2} 120 ${opt.y1a + 40} 
+			\b 175 ${opt.y2} 175 ${opt.y1a + 20} 
+			\b 230 ${opt.y2} 230 ${opt.ybottom}
+
+	i( 250, &opt )
+	zeta( 320, &opt )
+	zeta( 450, &opt )
+	i( 590, &opt )	
+

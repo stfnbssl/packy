@@ -1,0 +1,19 @@
+﻿$group
+	$params name, href, title, titleShort|@@null
+
+	$
+		title = title == null ? name : title;
+		var xtitle = titleShort == 'null' ? title : titleShort;
+
+	$if gcurrentPage == name
+		a ${title}
+			title ${gcurrentPage} ${name}
+			href ${href}.html
+			class navigation__link navigation__link--active
+
+	$else
+		a ${xtitle}
+			title ${gcurrentPage} ${name}
+			href ${href}.html
+			class navigation__link
+

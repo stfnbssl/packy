@@ -1,0 +1,6 @@
+﻿__o
+	$args value label|@@null
+	$set label = label == null ? value : label
+	__p value ${value}
+	__p label ${label}
+

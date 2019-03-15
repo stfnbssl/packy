@@ -1,0 +1,4625 @@
+{
+  "name": "wfsystem",
+  "preserveTags": true,
+  "requires": [],
+  "exportTos": [
+    "json"
+  ],
+  "elements": [
+    {
+      "name": "comment",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "#"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "commentable",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "commentable"
+      ],
+      "flags": "is-abstract ",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "wfsystem",
+          "tags": [
+            "wfsystem"
+          ]
+        },
+        {
+          "name": "xpackage",
+          "tags": [
+            "package"
+          ]
+        },
+        {
+          "name": "schema",
+          "tags": [
+            "schema"
+          ]
+        },
+        {
+          "name": "transformer",
+          "tags": [
+            "transformer"
+          ]
+        },
+        {
+          "name": "artifact",
+          "tags": [
+            "artifact"
+          ]
+        },
+        {
+          "name": "generatedPackage",
+          "tags": [
+            "generated-package"
+          ]
+        },
+        {
+          "name": "example",
+          "tags": [
+            "example"
+          ]
+        },
+        {
+          "name": "ittfExample",
+          "tags": [
+            "ittf-example"
+          ]
+        },
+        {
+          "name": "artifactExample",
+          "tags": [
+            "artifact-example"
+          ]
+        },
+        {
+          "name": "node",
+          "tags": [
+            "node"
+          ]
+        },
+        {
+          "name": "buildCwd",
+          "tags": [
+            "build-cwd"
+          ]
+        },
+        {
+          "name": "api",
+          "tags": [
+            "api"
+          ]
+        },
+        {
+          "name": "implementation",
+          "tags": [
+            "implementation"
+          ]
+        },
+        {
+          "name": "xinterface",
+          "tags": [
+            "interface"
+          ]
+        },
+        {
+          "name": "type",
+          "tags": [
+            "type"
+          ]
+        },
+        {
+          "name": "method",
+          "tags": [
+            "method"
+          ]
+        },
+        {
+          "name": "ctor",
+          "tags": [
+            "ctor"
+          ]
+        },
+        {
+          "name": "param",
+          "tags": [
+            "param"
+          ]
+        },
+        {
+          "name": "on",
+          "tags": [
+            "on"
+          ]
+        },
+        {
+          "name": "error",
+          "tags": [
+            "error"
+          ]
+        },
+        {
+          "name": "argument",
+          "tags": [
+            "argument"
+          ]
+        },
+        {
+          "name": "on",
+          "tags": [
+            "on"
+          ]
+        },
+        {
+          "name": "error",
+          "tags": [
+            "error"
+          ]
+        },
+        {
+          "name": "value",
+          "tags": [
+            "value"
+          ]
+        },
+        {
+          "name": "on",
+          "tags": [
+            "on"
+          ]
+        },
+        {
+          "name": "error",
+          "tags": [
+            "error"
+          ]
+        },
+        {
+          "name": "item",
+          "tags": [
+            "item"
+          ]
+        },
+        {
+          "name": "on",
+          "tags": [
+            "on"
+          ]
+        },
+        {
+          "name": "error",
+          "tags": [
+            "error"
+          ]
+        },
+        {
+          "name": "property",
+          "tags": [
+            "property"
+          ]
+        },
+        {
+          "name": "on",
+          "tags": [
+            "on"
+          ]
+        },
+        {
+          "name": "error",
+          "tags": [
+            "error"
+          ]
+        },
+        {
+          "name": "xreturn",
+          "tags": [
+            "return"
+          ]
+        },
+        {
+          "name": "infoItem",
+          "tags": [
+            "info-item"
+          ]
+        },
+        {
+          "name": "apiCall",
+          "tags": [
+            "api-call"
+          ]
+        },
+        {
+          "name": "internalCall",
+          "tags": [
+            "internal-call"
+          ]
+        },
+        {
+          "name": "apiCreate",
+          "tags": [
+            "api-create"
+          ]
+        },
+        {
+          "name": "apiReceive",
+          "tags": [
+            "api-receive"
+          ]
+        },
+        {
+          "name": "apiSend",
+          "tags": [
+            "api-send"
+          ]
+        },
+        {
+          "name": "send",
+          "tags": [
+            "send"
+          ]
+        },
+        {
+          "name": "receive",
+          "tags": [
+            "receive"
+          ]
+        },
+        {
+          "name": "create",
+          "tags": [
+            "create"
+          ]
+        },
+        {
+          "name": "set",
+          "tags": [
+            "set"
+          ]
+        },
+        {
+          "name": "merge",
+          "tags": [
+            "merge"
+          ]
+        },
+        {
+          "name": "dependency",
+          "tags": [
+            "dependency"
+          ]
+        },
+        {
+          "name": "info",
+          "tags": [
+            "info"
+          ]
+        },
+        {
+          "name": "xswitch",
+          "tags": [
+            "switch"
+          ]
+        },
+        {
+          "name": "xcase",
+          "tags": [
+            "case"
+          ]
+        },
+        {
+          "name": "restrict",
+          "tags": [
+            "restrict"
+          ]
+        },
+        {
+          "name": "facet",
+          "tags": [
+            "facet"
+          ]
+        },
+        {
+          "name": "enumFacet",
+          "tags": [
+            "enum"
+          ]
+        },
+        {
+          "name": "maxLengthFacet",
+          "tags": [
+            "max-length"
+          ]
+        },
+        {
+          "name": "minLengthFacet",
+          "tags": [
+            "min-length"
+          ]
+        },
+        {
+          "name": "maxValueFacet",
+          "tags": [
+            "max-value"
+          ]
+        },
+        {
+          "name": "minValueFacet",
+          "tags": [
+            "min-value"
+          ]
+        },
+        {
+          "name": "regexpFacet",
+          "tags": [
+            "regexp"
+          ]
+        },
+        {
+          "name": "elementFacet",
+          "tags": [
+            "element"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "wfsystem",
+      "super": "commentable",
+      "isRoot": true,
+      "tags": [
+        "wfsystem"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "package",
+          "role": "packages",
+          "tags": [
+            "package"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "api",
+          "role": "apis",
+          "tags": [
+            "api"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "The root tag of the wfsystem schema."
+      ]
+    },
+    {
+      "name": "xpackage",
+      "super": "commentable",
+      "isRoot": true,
+      "tags": [
+        "package"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "kind",
+          "type": "string",
+          "tags": [
+            "kind"
+          ],
+          "default": "ittfsource",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "ittfsource",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "kernel",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "plugin",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "demo",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "tags": [
+            "version"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "license",
+          "type": "string",
+          "tags": [
+            "license"
+          ],
+          "default": "MIT",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "fsBaseUri",
+          "type": "string",
+          "tags": [
+            "fs-base-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "packageBaseUri",
+          "type": "string",
+          "tags": [
+            "package-base-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "gitBaseUri",
+          "type": "string",
+          "tags": [
+            "git-base-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "schema",
+          "role": "schemas",
+          "tags": [
+            "schema"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "generatedPackage",
+          "role": "generatedPackages",
+          "tags": [
+            "generated-package"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "getJobs",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "ret",
+              "statements": [
+                {
+                  "tag": "{",
+                  "name": "jsObject",
+                  "value": "",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "name this.wzName",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "title this.title",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "srcCwd this.srcCwd",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "assetsCwd this.assetsCwd",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "buildCwds",
+                      "statements": [
+                        {
+                          "tag": "[",
+                          "name": "jsArray",
+                          "value": "",
+                          "statements": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "schemas",
+                      "statements": [
+                        {
+                          "tag": "[",
+                          "name": "jsArray",
+                          "value": "",
+                          "statements": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "jobs",
+                      "statements": [
+                        {
+                          "tag": "[",
+                          "name": "jsArray",
+                          "value": "",
+                          "statements": [
+                            {
+                              "tag": "{",
+                              "name": "jsObject",
+                              "value": "",
+                              "statements": [
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "title 'build ' + this.wzName + ' assets'",
+                                  "statements": []
+                                },
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "exe 'node'",
+                                  "statements": []
+                                },
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "cwd this.srcCwd",
+                                  "statements": []
+                                },
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "args 'index'",
+                                  "statements": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "this.schemas.length > 0",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "ret.jobs.push",
+                  "statements": [
+                    {
+                      "tag": "{",
+                      "name": "jsObject",
+                      "value": "",
+                      "statements": [
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "title 'generate ' + this.wzName + ' wizzi model types in the assets folder'",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "exe 'node'",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "cwd this.assetsCwd",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "args 'schemas'",
+                          "statements": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "foreach",
+                  "name": "foreach",
+                  "value": "item in this.schemas",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "ret.schemas.push",
+                      "statements": [
+                        {
+                          "tag": "{",
+                          "name": "jsObject",
+                          "value": "",
+                          "statements": [
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "name item.wzName",
+                              "statements": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "item in this.buildCwds",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "ret.buildCwds.push",
+                  "statements": [
+                    {
+                      "tag": "{",
+                      "name": "jsObject",
+                      "value": "",
+                      "statements": [
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "cwd item.wzName",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "title item.title",
+                          "statements": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "ret",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": [
+        "The root tag of the wfpackage schema."
+      ]
+    },
+    {
+      "name": "schema",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "schema"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "transformer",
+          "role": "transformers",
+          "tags": [
+            "transformer"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "artifact",
+          "role": "artifacts",
+          "tags": [
+            "artifact"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "example",
+          "role": "examples",
+          "tags": [
+            "example"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A wizzi schema defined by this wizzi package of kind plugin"
+      ]
+    },
+    {
+      "name": "transformer",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "transformer"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A model transformer"
+      ]
+    },
+    {
+      "name": "artifact",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "artifact"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "tags": [
+            "kind"
+          ],
+          "default": "ittf",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "ittf",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "codewrite",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "An artifact generator"
+      ]
+    },
+    {
+      "name": "generatedPackage",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "generated-package"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "kind",
+          "type": "string",
+          "tags": [
+            "kind"
+          ],
+          "default": "kernel",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "kernel",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "plugin",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "demo",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "tags": [
+            "version"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "sourceFolder",
+          "type": "string",
+          "tags": [
+            "source-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The full path is: (parent ittfsource package) package-base-uri / (this) sourceFolder"
+          ]
+        },
+        {
+          "name": "gitBaseUri",
+          "type": "string",
+          "tags": [
+            "git-base-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "buildCwd",
+          "role": "buildCwds",
+          "tags": [
+            "build-cwd"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "When the package kind is 'ittfsource' the element 'generatedPackage'",
+        "   main contain the description of generated packages."
+      ]
+    },
+    {
+      "name": "example",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "example"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "node",
+          "role": "nodes",
+          "tags": [
+            "node"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "ittfExample",
+          "tags": [
+            "ittf-example"
+          ]
+        },
+        {
+          "name": "artifactExample",
+          "tags": [
+            "artifact-example"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "The base node for examples"
+      ]
+    },
+    {
+      "name": "ittfExample",
+      "super": "example",
+      "isRoot": false,
+      "tags": [
+        "ittf-example"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": "example",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "node",
+          "role": "nodes",
+          "tags": [
+            "node"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "example",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "An IttfDocument example"
+      ]
+    },
+    {
+      "name": "artifactExample",
+      "super": "example",
+      "isRoot": false,
+      "tags": [
+        "artifact-example"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": "example",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "node",
+          "role": "nodes",
+          "tags": [
+            "node"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "example",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "An artifact generation example"
+      ]
+    },
+    {
+      "name": "node",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "node"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "buildCwd",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "build-cwd"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "api",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "api"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "kind",
+          "type": "string",
+          "tags": [
+            "kind"
+          ],
+          "default": "kernel",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "kernel",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "plugin",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "extends",
+          "type": "string",
+          "tags": [
+            "extends"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "implementation",
+          "role": null,
+          "tags": [
+            "implementation"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "interface",
+          "role": null,
+          "tags": [
+            "interface"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "type",
+          "role": null,
+          "tags": [
+            "type"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "implementation",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "implementation"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "module",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "pojo",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "class-instance",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "path",
+          "type": "string",
+          "tags": [
+            "path"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "standardPath",
+          "type": "string",
+          "tags": [
+            "standard-path"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xinterface",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "interface"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "method",
+          "role": "methods",
+          "tags": [
+            "method"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "type",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "type"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "method",
+          "role": "methods",
+          "tags": [
+            "method"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "method",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "method"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "function",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "high-order-function",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "facade-function",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "isAsync",
+          "type": "boolean",
+          "tags": [
+            "is-async"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isInternal",
+          "type": "boolean",
+          "tags": [
+            "is-internal"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "implementedBy",
+          "type": "string",
+          "tags": [
+            "implemented-by"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "when type == facade-function"
+          ]
+        },
+        {
+          "name": "calledBy",
+          "type": "string",
+          "tags": [
+            "called-by"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "throwIf",
+          "type": "string",
+          "tags": [
+            "throw-if"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "param",
+          "role": "params",
+          "tags": [
+            "param"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "return",
+          "role": null,
+          "tags": [
+            "return"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "info",
+          "role": null,
+          "tags": [
+            "info"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "ctor",
+          "tags": [
+            "ctor"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "ctor",
+      "super": "method",
+      "isRoot": false,
+      "tags": [
+        "ctor"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "method",
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "function",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "high-order-function",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "facade-function",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "isAsync",
+          "type": "boolean",
+          "tags": [
+            "is-async"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "method",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isInternal",
+          "type": "boolean",
+          "tags": [
+            "is-internal"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "method",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "implementedBy",
+          "type": "string",
+          "tags": [
+            "implemented-by"
+          ],
+          "flags": "",
+          "inheritedFrom": "method",
+          "restricts": [],
+          "comments": [
+            "when type == facade-function"
+          ]
+        },
+        {
+          "name": "calledBy",
+          "type": "string",
+          "tags": [
+            "called-by"
+          ],
+          "flags": "",
+          "inheritedFrom": "method",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "throwIf",
+          "type": "string",
+          "tags": [
+            "throw-if"
+          ],
+          "flags": "",
+          "inheritedFrom": "method",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "param",
+          "role": "params",
+          "tags": [
+            "param"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "method",
+          "comments": []
+        },
+        {
+          "name": "return",
+          "role": null,
+          "tags": [
+            "return"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": "method",
+          "comments": []
+        },
+        {
+          "name": "info",
+          "role": null,
+          "tags": [
+            "info"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": "method",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "param",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "param"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "string",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "boolean",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "integer",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "float",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "date",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "object",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "any",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "array",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "function",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "alternative",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "callback-function",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "default"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "string",
+          "tags": [
+            "is-required"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isPOJO",
+          "type": "boolean",
+          "tags": [
+            "pojo"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "apiRef",
+          "type": "string",
+          "tags": [
+            "api-ref"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "iface",
+          "type": "string",
+          "tags": [
+            "iface"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "apiRef",
+          "type": "string",
+          "tags": [
+            "api-ref"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == alternative"
+          ]
+        },
+        {
+          "name": "argument",
+          "role": "arguments",
+          "tags": [
+            "argument"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == callback-function"
+          ]
+        },
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == object"
+          ]
+        },
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == array"
+          ]
+        },
+        {
+          "name": "restrict",
+          "role": null,
+          "tags": [
+            "restrict"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "on",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "on"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "error",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "error"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "argument",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "argument"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "string",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "boolean",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "integer",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "float",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "date",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "object",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "any",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "array",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "function",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "alternative",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "switch",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "exception",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "default"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "string",
+          "tags": [
+            "is-required"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isPOJO",
+          "type": "boolean",
+          "tags": [
+            "pojo"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "apiRef",
+          "type": "string",
+          "tags": [
+            "api-ref"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "iface",
+          "type": "string",
+          "tags": [
+            "iface"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "apiRef",
+          "type": "string",
+          "tags": [
+            "api-ref"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == alternative"
+          ]
+        },
+        {
+          "name": "on",
+          "role": "ons",
+          "tags": [
+            "on"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == switch"
+          ]
+        },
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == object"
+          ]
+        },
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == array"
+          ]
+        },
+        {
+          "name": "restrict",
+          "role": null,
+          "tags": [
+            "restrict"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "on",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "on"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "error",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "error"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "value",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "value"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "string",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "boolean",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "integer",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "float",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "date",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "object",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "any",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "array",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "function",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "any",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "null",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "json",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "exception",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "default"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "string",
+          "tags": [
+            "is-required"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isPOJO",
+          "type": "boolean",
+          "tags": [
+            "pojo"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "apiRef",
+          "type": "string",
+          "tags": [
+            "api-ref"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "iface",
+          "type": "string",
+          "tags": [
+            "iface"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "apiRef",
+          "type": "string",
+          "tags": [
+            "api-ref"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == object"
+          ]
+        },
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == array"
+          ]
+        },
+        {
+          "name": "error",
+          "role": "errors",
+          "tags": [
+            "error"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == exception"
+          ]
+        },
+        {
+          "name": "restrict",
+          "role": null,
+          "tags": [
+            "restrict"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "on",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "on"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "error",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "error"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "item",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "item"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "string",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "boolean",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "integer",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "float",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "date",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "object",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "any",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "array",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "function",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "alternative",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "default"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "string",
+          "tags": [
+            "is-required"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isPOJO",
+          "type": "boolean",
+          "tags": [
+            "pojo"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "apiRef",
+          "type": "string",
+          "tags": [
+            "api-ref"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "iface",
+          "type": "string",
+          "tags": [
+            "iface"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "apiRef",
+          "type": "string",
+          "tags": [
+            "api-ref"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == object"
+          ]
+        },
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == array"
+          ]
+        },
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == alternative"
+          ]
+        },
+        {
+          "name": "restrict",
+          "role": null,
+          "tags": [
+            "restrict"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "on",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "on"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "error",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "error"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "property",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "property"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "string",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "boolean",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "integer",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "float",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "date",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "object",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "any",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "array",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "function",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "mergedobject",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "alternative",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "switch",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "default"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "string",
+          "tags": [
+            "is-required"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isPOJO",
+          "type": "boolean",
+          "tags": [
+            "pojo"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "apiRef",
+          "type": "string",
+          "tags": [
+            "api-ref"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "iface",
+          "type": "string",
+          "tags": [
+            "iface"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "apiRef",
+          "type": "string",
+          "tags": [
+            "api-ref"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == object"
+          ]
+        },
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == array"
+          ]
+        },
+        {
+          "name": "param",
+          "role": "params",
+          "tags": [
+            "param"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == function"
+          ]
+        },
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == alternative"
+          ]
+        },
+        {
+          "name": "on",
+          "role": "ons",
+          "tags": [
+            "on"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when type == switch"
+          ]
+        },
+        {
+          "name": "restrict",
+          "role": null,
+          "tags": [
+            "restrict"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "on",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "on"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "error",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "error"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xreturn",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "return"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "alternative",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "infoItem",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "info-item"
+      ],
+      "flags": "is-abstract ",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "apiCall",
+          "tags": [
+            "api-call"
+          ]
+        },
+        {
+          "name": "internalCall",
+          "tags": [
+            "internal-call"
+          ]
+        },
+        {
+          "name": "apiCreate",
+          "tags": [
+            "api-create"
+          ]
+        },
+        {
+          "name": "apiReceive",
+          "tags": [
+            "api-receive"
+          ]
+        },
+        {
+          "name": "apiSend",
+          "tags": [
+            "api-send"
+          ]
+        },
+        {
+          "name": "send",
+          "tags": [
+            "send"
+          ]
+        },
+        {
+          "name": "receive",
+          "tags": [
+            "receive"
+          ]
+        },
+        {
+          "name": "create",
+          "tags": [
+            "create"
+          ]
+        },
+        {
+          "name": "set",
+          "tags": [
+            "set"
+          ]
+        },
+        {
+          "name": "merge",
+          "tags": [
+            "merge"
+          ]
+        },
+        {
+          "name": "dependency",
+          "tags": [
+            "dependency"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "info",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "info"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "apiCall",
+      "super": "infoItem",
+      "isRoot": false,
+      "tags": [
+        "api-call"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "infoItem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "internalCall",
+      "super": "infoItem",
+      "isRoot": false,
+      "tags": [
+        "internal-call"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "infoItem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "apiCreate",
+      "super": "infoItem",
+      "isRoot": false,
+      "tags": [
+        "api-create"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "infoItem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "apiReceive",
+      "super": "infoItem",
+      "isRoot": false,
+      "tags": [
+        "api-receive"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "storeOnThis",
+          "type": "boolean",
+          "tags": [
+            "store-on-this"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "infoItem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "apiSend",
+      "super": "infoItem",
+      "isRoot": false,
+      "tags": [
+        "api-send"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "infoItem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "send",
+      "super": "infoItem",
+      "isRoot": false,
+      "tags": [
+        "send"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "infoItem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "receive",
+      "super": "infoItem",
+      "isRoot": false,
+      "tags": [
+        "receive"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "storeOnThis",
+          "type": "boolean",
+          "tags": [
+            "store-on-this"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "value"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "infoItem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "create",
+      "super": "infoItem",
+      "isRoot": false,
+      "tags": [
+        "create"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "infoItem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "set",
+      "super": "infoItem",
+      "isRoot": false,
+      "tags": [
+        "set"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "infoItem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "merge",
+      "super": "infoItem",
+      "isRoot": false,
+      "tags": [
+        "merge"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "infoItem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "dependency",
+      "super": "infoItem",
+      "isRoot": false,
+      "tags": [
+        "dependency"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "closure",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "apiRef",
+          "type": "string",
+          "tags": [
+            "api-ref"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "infoItem",
+          "role": "infoItems",
+          "tags": [
+            "info-item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "infoItem",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "xswitch",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "switch"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "case",
+          "role": "cases",
+          "tags": [
+            "case"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "Select an alternative group of param or properties or arguments, based",
+        "   on a param or property or argument of type == alternative"
+      ]
+    },
+    {
+      "name": "xcase",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "case"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "param",
+          "role": "params",
+          "tags": [
+            "param"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when is a param that has type  == alternative"
+          ]
+        },
+        {
+          "name": "property",
+          "role": "properties",
+          "tags": [
+            "property"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when is a property that has type  == alternative"
+          ]
+        },
+        {
+          "name": "argument",
+          "role": "arguments",
+          "tags": [
+            "argument"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": [
+            "when is an argument that has type  == alternative"
+          ]
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "params or properties or argument when == alternative option"
+      ]
+    },
+    {
+      "name": "restrict",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "restrict"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "facet",
+          "role": "facets",
+          "tags": [
+            "facet"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "Group of restrictions to the element or attribute values"
+      ]
+    },
+    {
+      "name": "facet",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "facet"
+      ],
+      "flags": "is-abstract ",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "enumFacet",
+          "tags": [
+            "enum"
+          ]
+        },
+        {
+          "name": "maxLengthFacet",
+          "tags": [
+            "max-length"
+          ]
+        },
+        {
+          "name": "minLengthFacet",
+          "tags": [
+            "min-length"
+          ]
+        },
+        {
+          "name": "maxValueFacet",
+          "tags": [
+            "max-value"
+          ]
+        },
+        {
+          "name": "minValueFacet",
+          "tags": [
+            "min-value"
+          ]
+        },
+        {
+          "name": "regexpFacet",
+          "tags": [
+            "regexp"
+          ]
+        },
+        {
+          "name": "elementFacet",
+          "tags": [
+            "element"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "The abstract base class for facet restrictions"
+      ]
+    },
+    {
+      "name": "enumFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "enum"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type enumeration applied to an attribute."
+      ]
+    },
+    {
+      "name": "maxLengthFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "max-length"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type maximum length applied to an attribute."
+      ]
+    },
+    {
+      "name": "minLengthFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "min-length"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type minimum length applied to an attribute."
+      ]
+    },
+    {
+      "name": "maxValueFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "max-value"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type maximum value applied to an attribute."
+      ]
+    },
+    {
+      "name": "minValueFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "min-value"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type minimum value applied to an attribute."
+      ]
+    },
+    {
+      "name": "regexpFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "regexp"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type regexp test applied to an attribute."
+      ]
+    },
+    {
+      "name": "elementFacet",
+      "super": "facet",
+      "isRoot": false,
+      "tags": [
+        "element"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A restriction of type allowed child element applied to an element."
+      ]
+    }
+  ]
+}

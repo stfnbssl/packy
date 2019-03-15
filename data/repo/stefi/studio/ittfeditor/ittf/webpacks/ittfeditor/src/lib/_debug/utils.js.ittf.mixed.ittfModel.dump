@@ -1,0 +1,34 @@
+  module  ids: 1 35
+    kind react ids: 2 36
+    +  ids: 3 37
+    import _ from 'lodash' ids: 4 38
+    +  ids: 5 39
+    wz-function notEmptyString ids: 6 40
+      param text ids: 7 41
+      return _.isString(text) && text.length > 0 ids: 8 42
+    wz-function error ids: 9 43
+      param source ids: 10 44
+      return  ids: 11 45
+        function  ids: 12 46
+          param message ids: 13 47
+          param method ids: 14 48
+          return  ids: 15 49
+            {  ids: 16 50
+              @ __is_error true ids: 17 51
+              @ message message ids: 18 52
+              @ source source + '/' + method ids: 19 53
+    wz-function throwError ids: 20 54
+      param source ids: 21 55
+      var errorBuilder = error(source) ids: 22 56
+      return  ids: 23 57
+        function  ids: 24 58
+          param message ids: 25 59
+          param method ids: 26 60
+          set message ids: 27 61
+            _ errorBuilder ids: 28 62
+              @ message ids: 29 63
+              @ method ids: 30 64
+          log message ids: 31 65
+          throw  ids: 32 66
+            new Error ids: 33 67
+              @ message ids: 34 68

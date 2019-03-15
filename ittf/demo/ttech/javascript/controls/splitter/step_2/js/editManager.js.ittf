@@ -1,0 +1,56 @@
+﻿$group
+
+	#
+	#
+	class EditManager
+		ctor
+			param ctx
+			param options
+			
+			set this.ctx = ctx
+			set this.options = options
+			set this.editorImpl = ctx.editorImpl
+			
+		m initEditor
+			if this.editor
+				return
+			_ this.editorImpl.initialize
+			set this.editor = this.editorImpl
+			var that = this
+			_ this.editor.on
+				@ 'change'
+				function
+					param value
+					_ that.setForUpdate
+						@ value
+
+		m edit
+			param options
+			log 'wz.editManager.edit.options', options
+			_ this.initEditor
+			_ this.editor.setValue
+				@ options.value
+			set this.token = options.token
+			if this.titleElement && options.title
+				_ wz.text(this.titleElement, options.title)
+
+		# require this.ctx only (always set)
+		m setForUpdate
+			param value
+			if !(this.ctx.onChange && this.token)
+				return
+			if this.timer
+				_ clearInterval
+					@ this.timer
+				set this.timer = null
+			var that = this
+			set this.timer
+				_ setInterval
+					function
+						_ that.ctx.onChange
+							@ that.token
+							@ value
+						_ clearInterval
+							@ that.timer
+						set that.timer = null
+					@ 2 * 1000

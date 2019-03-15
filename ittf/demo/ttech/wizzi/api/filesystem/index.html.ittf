@@ -1,0 +1,75 @@
+h/root/empty_layout()
+
+	$
+		var opt = {}
+		opt.useWizzi = true;
+
+	page( &opt
+
+		$append styles
+			@style
+				css
+
+		script
+			module
+				kind es6
+				var wf = wizziStandalone.default
+				var u = wf.wizziUtils
+				log 'wizziUtils', u
+				
+				_ u.vfile
+					{
+						@ storeName 'browserfs'
+						$$ @ storeName 'wizziRepo'
+					f_cb_test( file )
+						log 'created file', file
+						var filePath = '/ixdb/wizzi/default/file.txt'
+						_ file.write
+							@ filePath
+							@ 'alpha\n\tbeta\tgamma'
+							f_cb_test( result )
+								log 'writeFile.result', result
+        						_ file.read
+        							@ filePath
+        							f_cb_test( result )
+        								log 'readFile.result', '\n', result.toString('utf8')
+        								_ list
+        								    @ file
+                
+                function list
+                    param file
+                    var folderPath = '/ixdb'
+                    _ file.getFolders
+                        @ folderPath
+                        {
+                            @ deep true
+						f_cb_test( result )
+							log 'getFolders.result', '\n', JSON.stringify(result, null, 2)
+							foreach item in result
+								_ file.getFiles
+									@ item.fullPath
+									{
+										@ deep true
+										@ documentContent true
+									f_cb_test( result_files )
+										_ WizziBrowser.log
+											@ '----------------------------------------'
+										_ WizziBrowser.log
+											_ JSON.stringify
+												@ item
+												@ null
+												@ 2
+										foreach f in result_files
+											var c = f.content
+											delete f.content
+											_ WizziBrowser.log
+												_ JSON.stringify
+													@ f
+													@ null
+													@ 2
+											_ WizziBrowser.log
+												@ '\n' + c
+                        
+
+
+

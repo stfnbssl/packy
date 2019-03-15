@@ -1,0 +1,8 @@
+﻿html
+	head
+		css https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css
+		css https://fonts.googleapis.com/css?family=Roboto:300,400,500
+	body
+		# app
+		js /webpack/home/bundle.js
+

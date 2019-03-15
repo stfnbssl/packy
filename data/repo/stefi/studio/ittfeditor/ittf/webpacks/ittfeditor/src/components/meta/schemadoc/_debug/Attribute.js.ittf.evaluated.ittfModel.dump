@@ -1,0 +1,38 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { PropTypes } from 'react' ids: undefined undefined
+    import Comments from './Comments' ids: undefined undefined
+    import Flags from './Flags' ids: undefined undefined
+    +  ids: undefined undefined
+    const Attribute ids: undefined undefined
+      =>  ids: undefined undefined
+        param { attr } ids: undefined undefined
+        var xenums = null ids: undefined undefined
+        if attr.enums.length > 0 ids: undefined undefined
+          set xenums ids: undefined undefined
+            div Restrict - Enum ids: undefined undefined
+              table  ids: undefined undefined
+                _ attr.enums.map ids: undefined undefined
+                  =>  ids: undefined undefined
+                    param xenum ids: undefined undefined
+                    tr  ids: undefined undefined
+                      td {xenum.name} ids: undefined undefined
+                      td  ids: undefined undefined
+                        < Comments ids: undefined undefined
+                          @ comments {xenum.comments} ids: undefined undefined
+        return  ids: undefined undefined
+          tr  ids: undefined undefined
+            td {attr.tag} ids: undefined undefined
+            td {attr.name} ids: undefined undefined
+            td {attr.type} ids: undefined undefined
+            td {attr.default} ids: undefined undefined
+            td  ids: undefined undefined
+              < Flags ids: undefined undefined
+                @ flags {attr.flags} ids: undefined undefined
+            td  ids: undefined undefined
+              < Comments ids: undefined undefined
+                @ comments {attr.comments} ids: undefined undefined
+              + {xenums} ids: undefined undefined
+    +  ids: undefined undefined
+    export default Attribute ids: undefined undefined

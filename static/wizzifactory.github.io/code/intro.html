@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="sanitize.css" rel="stylesheet" />
+    <link href="../styles/main.css" rel="stylesheet" />
+    <link href="../styles/code-intro.css" rel="stylesheet" />
+</head>
+<body class="Code-intro">
+    <!-- top navigation markup -->
+    <input type="checkbox" id="tn-input-toggle" />
+    <nav class="tn-bar">
+        <nav class="tn-main">
+            <a href="index.html.ittf"><div class="logo">
+                <img src="../images/logo.svg" />
+            </div>
+            </a>
+            <label for="tn-input-toggle" class="tn-label-toggle"></label>
+            <label for="tn-input-toggle" class="tn-label-toggle-close">&times;</label>
+            <ul>
+                <li><a href="../concepts.html" title="Concepts">Concepts</a>
+                </li>
+                <li><a href="../docs/intro.html" title="Documentation">Documentation</a>
+                </li>
+                <li><a href="../api.html" title="Api">Api</a>
+                </li>
+                <li class="tn-pageSelected"><a href="../code/intro.html" title="Code">Code</a>
+                <nav class="tn-subPages_mobile">
+                    <ul>
+                        <li><a href="../code/intro.html" title="intro">intro</a>
+                        </li>
+                        <li><a href="../code/wizzi.html" title="wizzi">wizzi</a>
+                        </li>
+                        <li><a href="../code/wizzi-mtree.html" title="wizzi-mtree">mtree</a>
+                        </li>
+                        <li><a href="../code/wizzi-repo.html" title="wizzi-repo">repo</a>
+                        </li>
+                        <li><a href="../code/wizzi-utils.html" title="wizzi-utils">utils</a>
+                        </li>
+                        <li><a href="../code/wizzi-core.html" title="wizzi-core">core</a>
+                        </li>
+                        <li><a href="../code/wizzi-js.html" title="wizzi-js">js</a>
+                        </li>
+                        <li><a href="../code/wizzi-web.html" title="wizzi-web">web</a>
+                        </li>
+                        <li><a href="../code/wizzi-demo.html" title="wizzi-demo">demo</a>
+                        </li>
+                    </ul>
+                </nav>
+                </li>
+                <li><a href="../starters.html" title="Starters">Starters</a>
+                </li>
+                <li><a href="../project.html" title="Project">Project</a>
+                </li>
+            </ul>
+        </nav>
+        <nav class="tn-subPages">
+            <ul>
+                <li class="tn-subPageSelected"><a href="../code/intro.html" title="intro">intro</a>
+                </li>
+                <li><a href="../code/wizzi.html" title="wizzi">wizzi</a>
+                </li>
+                <li><a href="../code/wizzi-mtree.html" title="wizzi-mtree">mtree</a>
+                </li>
+                <li><a href="../code/wizzi-repo.html" title="wizzi-repo">repo</a>
+                </li>
+                <li><a href="../code/wizzi-utils.html" title="wizzi-utils">utils</a>
+                </li>
+                <li><a href="../code/wizzi-core.html" title="wizzi-core">core</a>
+                </li>
+                <li><a href="../code/wizzi-js.html" title="wizzi-js">js</a>
+                </li>
+                <li><a href="../code/wizzi-web.html" title="wizzi-web">web</a>
+                </li>
+                <li><a href="../code/wizzi-demo.html" title="wizzi-demo">demo</a>
+                </li>
+            </ul>
+        </nav>
+    </nav>
+    <!-- main content markup -->
+    <main id="mc-wrapper" class="mc-wrapper-layout-sub">
+        <input type="checkbox" id="mc-toggle-toc" />
+        <input type="checkbox" id="mc-toggle-toc-close" onchange="mc_toggle_toc_Close()" />
+        <div class="mc-frame">
+            <div class="mc-frame-bar">
+                <h1 class="mc-sidebar-left-title">Code</h1>
+                <h1>
+                    <label for="mc-toggle-toc-close" class="mc-label-toggle-close">&times;</label>
+                </h1>
+            </div>
+            <nav class="mc-sidebar-left">
+                <ul>
+                    <li><a href="#concept-intro" class="mc-item-link">Introduction</a>
+                    <label for="mc-toggle-concept-intro" class="mc-label-toggle">Introduction</label>
+                    </li>
+                    <li><a href="#concept-1" class="mc-item-link">Kernel packages</a>
+                    <label for="mc-toggle-concept-1" class="mc-label-toggle">&nbsp; Kernel packages</label>
+                    </li>
+                    <li><a href="#concept-2" class="mc-item-link">Default plugin packages</a>
+                    <label for="mc-toggle-concept-2" class="mc-label-toggle">&nbsp; Default plugin packages</label>
+                    </li>
+                    <li><a href="#concept-3" class="mc-item-link">The demo package</a>
+                    <label for="mc-toggle-concept-3" class="mc-label-toggle">&nbsp; The demo package</label>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mc-content">
+                <div>
+                    <input type="checkbox" id="mc-toggle-concept-intro" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-1" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-2" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-concept-3" onchange="m_toggleChanged()" />
+                    <h1 class="mc-content-title" id="concept-intro">Code</h1>
+                    <div class="mc-pane mc-pane-concept-intro">
+                        <div class="summary">
+                            <p>In this section you can browse the ittf source code of kernel modules and default plugins.</p><p>Since version 0.3 the wizzi factory generates itself, so browsing the source can help the understanding of the documentation.</p><h4>Ittf notation legend</h4><pre class="prettyprint"><ol class="linenums"><li class="L1"><span class="pnl"></span><span class="pp-tag">nodename</span><span class="pp-pln"> nodevalue (rest of line)</span></li><li class="L2"><span class="pnl">  </span><span class="pp-kwd">$nodecommand</span><span class="pp-pln"> parameters</span></li><li class="L3"><span class="pnl">  </span><span class="pp-mix">mixinCall(</span><span class="pp-pln"> param-1, param-2, ...</span></li></ol></pre><ul>    <li>'nodename' in green is a semantic node name. The meaning of nodename is given by the wizzi schema, if the ittf document is schemed, otherwise it is a free meaning, given by the document author.    </li><li>The rest of the line in white is the value of 'nodename'.    </li><li>'$nodecommand' is a template command. Node commands are documented        <a href="#TODO.">here        </a>    </li><li>'mixinCall' in red is a fragment inclusion command. In the code browser it is clickable and a modal dialog with the content of the mixin is shown. The closing parenthesis is optional.    </li></ul></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-1">
+                        <h2 id="concept-1">Kernel packages</h2>
+                        <div class="summary">
+                            <table>    <tr>        <td>            <a href="https://wizzifactory.github.io/code/wizzi.html">wizzi</a>        </td><td>The core package of the wizzi factory.        </td>    </tr><tr>        <td>            <a href="https://wizzifactory.github.io/code/wizzi-mtree.html">wizzi-mtree            </a>        </td><td>Loader for wizzi indented text tree format (ittf) documents.        </td>    </tr><tr>        <td>            <a href="https://wizzifactory.github.io/code/wizzi-repo.html">wizzi-repo            </a>        </td><td>Repository manager for the wizzi factory.        </td>    </tr><tr>        <td>            <a href="https://wizzifactory.github.io/code/wizzi-mongodb.html">wizzi-utils            </a>        </td><td>Utility library for the wizzi factory.        </td>    </tr></table></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-2">
+                        <h2 id="concept-2">Default plugin packages</h2>
+                        <div class="summary">
+                            <table>    <tr>        <td>            <a href="https://wizzifactory.github.io/code/wizzi-core.html">wizzi-core</a>        </td><td>A Wizzi Factory plugin with core schemas and artifact generators.        </td>    </tr><tr>        <td>            <a href="https://wizzifactory.github.io/code/wizzi-js.html">wizzi-js            </a>        </td><td>A Wizzi Factory plugin targeting the javascript language.        </td>    </tr><tr>        <td>            <a href="https://wizzifactory.github.io/code/wizzi-web.html">wizzi-web            </a>        </td><td>A Wizzi Factory plugin targeting common web technologies (html, css, scss, markdown, graphql).        </td>    </tr></table></div>
+                    </div>
+                    <div class="mc-pane mc-pane-concept-3">
+                        <h2 id="concept-3">The demo package</h2>
+                        <div class="summary">
+                            <table>    <tr>        <td>            <a href="https://wizzifactory.github.io/code/wizzi-demo.html">wizzi-demo</a>        </td><td>The most complete set of examples of the wizzi factory.        </td>    </tr></table></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function m_toggleChanged() {
+            var el_toc = document.querySelector("input[id='mc-toggle-toc']");
+            var el_contents = document.querySelectorAll("input[id^='mc-toggle-concept-']");
+            var seenTrue = false;
+            var i, i_items=el_contents, i_len=el_contents.length, el;
+            for (i=0; i<i_len; i++) {
+                el = el_contents[i];
+                if (el.checked) {
+                    seenTrue = true;
+                }
+            }
+            el_toc.checked = seenTrue;
+        }
+        function mc_toggle_toc_Close() {
+            var el_toc = document.querySelector("input[id='mc-toggle-toc']");
+            var el_contents = document.querySelectorAll("input[id^='mc-toggle-concept-']");
+            var i, i_items=el_contents, i_len=el_contents.length, el;
+            for (i=0; i<i_len; i++) {
+                el = el_contents[i];
+                el.checked = false;
+            }
+            el_toc.checked = false;
+        }
+    </script>
+    <script src="../wizzifactory.js"></script>
+</body>
+
+</html>

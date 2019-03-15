@@ -1,27 +1,33 @@
 {
-  "compilerOptions": {
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "jsx": "react",
-    "lib": ["webworker", "dom", "esnext", "scripthost"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext",
-    "plugins": [
-      { "name": "typescript-tslint-plugin" }
-    ]
-  }
+	"compilerOptions": {
+		"allowJs": true,
+		// "baseUrl": "./",
+		"checkJs": true,
+		"forceConsistentCasingInFileNames": true,
+		"lib": [
+			"es6", "dom"
+		],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		// "noEmit": true,
+		"noImplicitAny": true,
+		"noImplicitThis": false,
+		"outDir": "./bin",
+		"sourceMap": true,
+		"strict": true,
+		"strictFunctionTypes": false,
+		"strictNullChecks": true,
+		"target": "es2017",
+		"typeRoots": [ "node_modules/@types", "src/typings" ],
+		"types": [
+			"node"
+		], 
+		
+	},
+	"include": [
+		"src/**/*.ts"
+	],
+	"exclude": [
+		"node_modules"
+	]
 }

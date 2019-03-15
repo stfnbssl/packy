@@ -1,0 +1,32 @@
+﻿$group
+
+	var sampleTreeData
+		{
+			@ name 'ttech'
+			@ expanded true
+			@ isFolder true
+			@ path '/ittf/demo/ttech'
+			[ children
+				{
+					@ name 'javascript'
+					@ expanded true
+					@ isFolder true
+					@ path '/ittf/demo/ttech/javascript'
+					[ children
+						{
+							@ name 'splitter.js.ittf'
+							@ expanded true
+							@ isFolder false
+							@ path '/ittf/demo/ttech/javascript/splitter.js.ittf'
+							@ content 'module\n\tjskind'
+						{
+							@ name 'treeview.js.ittf'
+							@ expanded true
+							@ isFolder false
+							@ path '/ittf/demo/ttech/javascript/treeview.js.ittf'
+							@ content 'module\n\tjskind'
+				{
+					@ name 'css'
+					@ expanded true
+					@ isFolder true
+					@ path '/ittf/demo/ttech/css'

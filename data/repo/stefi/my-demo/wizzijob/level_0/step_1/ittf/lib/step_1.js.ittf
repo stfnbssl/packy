@@ -1,0 +1,16 @@
+﻿module
+	kind jsfile
+
+	class Animal
+		m sayHello
+			log this.cry, ', I am ', this.name
+
+	class Horse
+		super Animal
+		ctor
+			param name
+			set this.name = name
+			set this.cry = 'Hiii'
+
+	var horse = new Horse('Varenne')
+	_ horse.sayHello

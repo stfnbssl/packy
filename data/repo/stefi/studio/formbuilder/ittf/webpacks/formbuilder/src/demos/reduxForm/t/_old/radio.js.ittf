@@ -1,0 +1,10 @@
+﻿$group
+	$params name, value, label
+	
+	label
+		< Field
+			@ name ${name}
+			@ component input
+			@ type radio
+			@ value ${value}
+		+ {' '} ${label}

@@ -1,0 +1,18 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'httprequests',
+			label: 'Http request',
+			experimentsWith: 'javascript http request methods',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+			]
+		};
+
+	ttech-frame(&opt)
+
+				

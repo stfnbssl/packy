@@ -1,0 +1,12 @@
+﻿$group
+	$params name
+
+	. {classes.editorHead}
+		button
+			class { window.classNames(classes.button, classes.buttonMedium, classes.miniButton)}  
+			@ onClick { this.handleSettingsClick }
+			< GearIcon
+				class {classes.iconSvg} 
+		span {${name}HeadText}
+			class {classes.editorHeadText}
+		$hook

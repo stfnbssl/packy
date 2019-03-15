@@ -1,0 +1,7 @@
+﻿meta
+	schema html
+	$include base
+	$include css_include
+	$include js_include
+	$include json_include
+	$include svg_include

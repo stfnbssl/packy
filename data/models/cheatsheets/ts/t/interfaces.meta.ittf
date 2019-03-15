@@ -1,0 +1,629 @@
+﻿element interfaces
+	tag 
+	ast 
+	category
+	
+	item
+		title Simple interface
+		expected
+			+ interface LabelledValue {
+				+ label: string;
+			+ }
+		ittf
+			:interface LabelledValue
+				:p label
+					:string 
+			
+	item
+		title Reference to interface
+		expected
+			+ function printLabel(labelledObj: LabelledValue) {
+				+ console.log(labelledObj.label);
+			+ }
+			+ let myObj = { size: 10, label: "Size 10 Object" };
+			+ printLabel(myObj);
+		ittf
+			+
+				function printLabel
+					param labelledObj
+						:ref LabelledValue
+					_ console.log(labelledObj.label)
+				let myObj
+					{ 
+						@ size 10
+						@ label "Size 10 Object"
+				_ printLabel(myObj)
+	
+	item
+		title Optional properties
+		expected
+			+ interface SquareConfig {
+				+ color?: string;
+				+ width?: number;
+			+ }
+
+		ittf
+			:interface SquareConfig
+				:p color
+					:optional 
+					:string 
+				:p width
+					:optional 
+					:number 
+
+	item
+		title Optional properties 2
+		expected
+			+ interface SquareConfig {
+				+ color?: string;
+				+ width?: number;
+			+ }
+			+ function createSquare(config: SquareConfig): { color: string; area: number } {
+				+ let newSquare = { color: "white", area: 100 };
+				+ if (config.clor) {
+					+ // Error: Property 'clor' does not exist on type 'SquareConfig'
+					+ newSquare.color = config.clor;
+				+ }
+				+ if (config.width) {
+					+ newSquare.area = config.width * config.width;
+				+ }
+				+ return newSquare;
+			+ }
+			+ let mySquare = createSquare({ color: "black" });
+
+		ittf
+			+
+				:interface SquareConfig
+					:p color
+						:optional 
+						:string 
+					:p width
+						:optional 
+						:number 
+				function createSquare
+					param config
+						:ref SquareConfig
+					:return
+						:{ 
+							:p color
+								:string 
+							:p area
+								:number 
+					let newSquare
+						{ 
+							@ color "white"
+							@ area 100
+					if config.clor
+						# Error: Property 'clor' does not exist on type 'SquareConfig'
+						set newSquare.color = config.clor
+					if config.width
+						set newSquare.area = config.width * config.width
+					return newSquare
+				let mySquare
+					_ createSquare
+						{ 
+							@ color "black"
+
+	item
+		title Readonly properties
+		expected
+			+ interface Point {
+				+ readonly x: number;
+				+ readonly y: number;
+			+ }
+			+ // You can construct a Point by assigning an object literal.After the assignment, x and y can’t be changed.
+			+ let p1: Point = { x: 10, y: 20 };
+			+ p1.x = 5; // error!
+
+		ittf
+			+
+				:interface Point
+					:p x
+						:number 
+					:p y
+						:number 
+				# You can construct a Point by assigning an object literal.After the assignment, x and y can’t be changed.
+				let p1
+					:ref Point
+					{ 
+						@ x 10
+						@ y 20
+				# error!
+				set p1.x = 5
+
+	item
+		title Readonly vs const
+		expected
+			+ interface SquareConfig {
+				+ color?: string;
+				+ width?: number;
+			+ }
+			+ function createSquare(config: SquareConfig): { color: string; area: number } {
+				+ // ...
+			+ }
+			+ let mySquare = createSquare({ colour: "red", width: 100 });
+
+		ittf
+			+
+				:interface SquareConfig
+					:p color
+						:optional 
+						:string 
+					:p width
+						:optional 
+						:number 
+				function createSquare
+					param config
+						:ref SquareConfig
+					:return
+						:{ 
+							:p color
+								:string 
+							:p area
+								:number 
+				let mySquare
+					_ createSquare
+						{ 
+							@ colour "red"
+							@ width 100
+
+	item
+		title Call signature
+		expected
+			+ interface SearchFunc {
+				+ (source: string, subString: string): boolean;
+			+ }
+			+ let mySearch: SearchFunc;
+			+ mySearch = function (source: string, subString: string) {
+				+ let result = source.search(subString);
+				+ return result > -1;
+			+ }
+
+		ittf
+			+
+				:interface SearchFunc
+					:call 
+						:boolean 
+						param source
+							:string 
+						param subString
+							:string 
+				let mySearch
+					:ref SearchFunc
+				set mySearch =
+					function 
+						param source
+							:string 
+						param subString
+							:string 
+						let result = source.search(subString)
+						return result > -1
+				
+	item
+		title Index signature
+		expected
+			+ interface StringArray {
+				+ [index: number]: string;
+			+ }
+			+ let myArray: StringArray;
+			+ myArray = ["Bob", "Fred"];
+			+ let myStr: string = myArray[0];
+
+		ittf
+			+
+				:interface StringArray
+					:index 
+						:string 
+						param index
+							:number 
+				let myArray
+					:ref StringArray
+				set myArray =
+					[ 
+						@ "Bob"
+						@ "Fred"
+				let myStr
+					:string 
+					:= myArray[0]
+
+	item
+		title Index signature 2
+		expected
+			+ class Animal {
+				+ name: string;
+			+ }
+			+ class Dog extends Animal {
+				+ breed: string;
+			+ }
+			+ // Error: indexing with a numeric string might get you a completely separate type of Animal!
+			+ interface NotOkay {
+				+ [x: number]: Animal;
+				+ [x: string]: Dog;
+			+ }
+
+		ittf
+			+
+				class Animal
+					p name
+						:string 
+				class Dog
+					super Animal
+					p breed
+						:string 
+				:interface NotOkay
+					:index 
+						:ref Animal
+						param x
+							:number 
+					:index 
+						:ref Dog
+						param x
+							:string 
+	item
+		title Index signature 3
+		expected
+			+ interface NumberDictionary {
+				+ [index: string]: number;
+				+ length: number; // ok, length is a number
+				+ name: string; // error, the type of 'name' is not a subtype of the indexer
+			+ }
+		ittf
+			:interface NumberDictionary
+				:index 
+					:number 
+					param index
+						:string 
+				:p length
+					:number 
+				:p name
+					:string 
+	item
+		title Readonly index signature 3
+		expected
+			+ interface ReadonlyStringArray {
+				+ readonly [index: number]: string;
+			+ }
+			+ let myArray: ReadonlyStringArray = ["Alice", "Bob"];
+			+ myArray[2] = "Mallory"; // error!
+		ittf
+			+
+				:interface ReadonlyStringArray
+					:index 
+						:string 
+						:readonly 
+						param index
+							:number 
+				let myArray
+					:ref ReadonlyStringArray
+					[ 
+						@ "Alice"
+						@ "Bob"
+				set myArray[2] = "Mallory"
+
+	item
+		title Class Types
+		expected
+			+ interface ClockInterface {
+				+ currentTime: Date;
+			+ }
+			+ class Clock implements ClockInterface {
+				+ currentTime: Date;
+				+ constructor(h: number, m: number) { }
+			+ }
+			+ interface ClockInterface {
+				+ currentTime: Date;
+				+ setTime(d: Date);
+			+ }
+			+ class Clock implements ClockInterface {
+				+ currentTime: Date;
+				+ setTime(d: Date) {
+					+ this.currentTime = d;
+				+ }
+				+ constructor(h: number, m: number) {}
+			+ }
+
+		ittf
+			+
+				:interface ClockInterface
+					:p currentTime
+						:ref Date
+				class Clock
+					:implements ClockInterface
+					p currentTime
+						:ref Date
+					ctor 
+						param h
+							:number 
+						param m
+							:number 
+				:interface ClockInterface
+					:p currentTime
+						:ref Date
+					:m setTime
+						param d
+							:ref Date
+				class Clock
+					:extends ClockInterface
+					p currentTime
+						:ref Date
+					m setTime
+						param d
+							:ref Date
+						set this.currentTime = d
+					ctor 
+						param h
+							:number 
+						param m
+							:number 
+    
+	item
+		title static and instance sides of classes - fails
+		expected
+			+ interface ClockConstructor {
+				+ new (hour: number, minute: number);
+			+ }
+			+ // Error. Since the constructor sits in the static side, it is not included in this check. 
+			+ class Clock implements ClockConstructor {
+				+ currentTime: Date;
+				+ constructor(h: number, m: number) { }
+			+ }
+		ittf
+			+
+				:interface ClockConstructor
+					:new 
+						param hour
+							:number 
+						param minute
+							:number 
+				class Clock
+					:implements ClockConstructor
+					p currentTime
+						:ref Date
+					ctor 
+						param h
+							:number 
+						param m
+							:number 
+    
+	item
+		title static and instance sides of classes - succeds
+		expected
+			+ interface ClockConstructor {
+				+ new (hour: number, minute: number): ClockInterface;
+			+ }
+			+ interface ClockInterface {
+				+ tick();
+			+ }
+			+ // Because createClock’s first parameter is of type ClockConstructor, in createClock(AnalogClock, 7, 32),
+			+ // it checks that AnalogClock has the correct constructor signature.
+			+ function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
+				+ return new ctor(hour, minute);
+			+ }
+			+ class DigitalClock implements ClockInterface {
+				+ constructor(h: number, m: number) {}
+				+ tick() {
+					+ console.log("beep beep");
+				+ }
+			+ }
+			+ class AnalogClock implements ClockInterface {
+				+ constructor(h: number, m: number) { }
+				+ tick() {
+					+ console.log("tick tock");
+				+ }
+			+ }
+			+ let digital = createClock(DigitalClock, 12, 17);
+			+ let analog = createClock(AnalogClock, 7, 32);
+
+		ittf
+			+
+				:interface ClockConstructor
+					:new 
+						:ref ClockInterface
+						param hour
+							:number 
+						param minute
+							:number 
+    
+				:interface ClockInterface
+					:m tick
+    
+				function createClock
+					param ctor
+						:ref ClockConstructor
+					param hour
+						:number 
+					param minute
+						:number 
+					:return
+						:ref ClockInterface
+					return new ctor(hour, minute)
+    
+				class DigitalClock
+					:implements ClockInterface
+					ctor 
+						param h
+							:number 
+						param m
+							:number 
+					m tick
+						_ console.log("beep beep")
+    
+				class AnalogClock
+					:implements ClockInterface
+					ctor 
+						param h
+							:number 
+						param m
+							:number 
+					m tick
+						_ console.log("tick tock")
+				let digital = createClock(DigitalClock, 12, 17)
+				let analog = createClock(AnalogClock, 7, 32)
+	
+	item
+		title Extending Interfaces 1
+		expected
+			+ interface Shape {
+				+ color: string;
+			+ }
+			+ interface Square extends Shape {
+				+ sideLength: number;
+			+ }
+			+ let square = {} as Square;
+			+ square.color = "blue";
+			+ square.sideLength = 10;
+
+		ittf
+			+
+				:interface Shape
+					:p color
+						:string 
+				:interface Square
+					:extends Shape
+					:p sideLength
+						:number 
+				let square
+					{ 
+					:as 
+						:ref Square
+				set square.color = "blue"
+				set square.sideLength = 10
+				
+	item
+		title Extending Interfaces 2
+		expected
+			+ interface Shape {
+				+ color: string;
+			+ }
+			+ interface PenStroke {
+				+ penWidth: number;
+			+ }
+			+ interface Square extends Shape, PenStroke {
+				+ sideLength: number;
+			+ }
+			+ let square = {} as Square;
+			+ square.color = "blue";
+			+ square.sideLength = 10;
+			+ square.penWidth = 5.0;
+		ittf
+			+
+				:interface Shape
+					:p color
+						:string 
+				:interface PenStroke
+					:p penWidth
+						:number 
+				:interface Square
+					:extends Shape
+					:extends PenStroke
+					:p sideLength
+						:number 
+				let square
+					{ 
+					:as 
+						:ref Square
+				set square.color = "blue"
+				set square.sideLength = 10
+				set square.penWidth = 5
+	
+	item
+		title Hybrid Types
+		expected
+			+ interface Counter {
+				+ (start: number): string;
+				+ interval: number;
+				+ reset(): void;
+			+ }
+			+ function getCounter(): Counter {
+				+ let counter = function (start: number) { } as Counter;
+				+ counter.interval = 123;
+				+ counter.reset = function () { };
+				+ return counter;
+			+ }
+		ittf
+			+
+				:interface Counter
+					:call 
+						:string 
+						param start
+							:number 
+					:p interval
+						:number 
+					:m reset
+						:void 
+				function getCounter
+					:return
+						:ref Counter
+					let counter
+						:as 
+							:ref Counter
+						function 
+							param start
+								:number 
+					set counter.interval = 123
+					set counter.reset =
+						function 
+					return counter
+				let c = getCounter()
+				_ c(10)
+				_ c.reset
+				set c.interval = 5
+	
+	item
+		title Class with private property
+		expected
+			+ class Control {
+				+ private state: any;
+			+ }
+		ittf
+			class Control
+				p state
+					:private 
+					:any 
+			
+	item
+		title Interface extending class
+		expected
+			+ interface SelectableControl extends Control {
+				+ select(): void;
+			+ }
+		ittf
+			:interface SelectableControl
+				:extends Control
+				:m select
+					:void 
+			
+	item
+		title Derived class extending interface
+		expected
+			+ class Button extends Control implements SelectableControl {
+				+ select() {}
+			+ }
+		ittf
+			class Button
+				super Control
+				:implements SelectableControl
+				m select
+			
+	item
+		title Derived class
+		expected
+			+ class TextBox extends Control {
+				+ select() {}
+			+ }
+		ittf
+			class TextBox
+				super Control
+				m select
+			
+	item
+		title Class extending interface
+		expected
+			+ // Error: Property 'state' is missing in type 'Image'.
+			+ class Image implements SelectableControl {
+				+ select() {}
+			+ }
+		ittf
+			class Image
+				:implements SelectableControl
+				m select

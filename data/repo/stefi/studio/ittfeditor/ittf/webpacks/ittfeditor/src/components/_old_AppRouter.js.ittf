@@ -1,0 +1,90 @@
+﻿r-component( AppRouter )
+
+	$append imports
+
+		import {
+			\b applyRouterMiddleware,
+			\b browserHistory,
+			\b Router,
+			\b Route,
+			\b IndexRoute,
+			\b } from 'react-router'
+		import { useScroll } from 'react-router-scroll'
+		import AppFrame from './AppFrame'
+		import Home from '../pages/Home'
+		import AppContent from './muidocs/AppContent'
+		import FactoryContent from './FactoryContent'
+		import MarkdownDocs from './muidocs/MarkdownDocs'
+		import { requireMarkdown } from './files'
+		import DocumentContainer from '../containers/DocumentContainer'
+		import SchemaContainer from '../containers/SchemaContainer'
+
+	style
+
+	render
+		return
+			< Router
+				@ history {browserHistory}
+				@ render {applyRouterMiddleware(useScroll())}
+				< Route
+					@ title "Wizzi Factory"
+					@ path {"/"}
+					@ component {AppFrame}
+					< IndexRoute
+						@ dockDrawer 
+						@ component {Home}
+						@ title {null}
+					< Route
+						@ title "The factory"
+						@ path {"/factory"}
+						@ nav
+						< Route
+							@ title "Document editor"
+							@ path {"/factory/document-editor"}
+							@ nav
+							@ component {DocumentContainer}
+						< Route
+							@ title "Schema browser"
+							@ path {"/factory/schema-browser"}
+							@ nav
+							@ component {SchemaContainer}
+					< Route
+						@ title "Getting Started"
+						@ path {"/getting-started"}
+						@ nav
+						@ component {AppContent}
+						< Route
+							@ title "Installation"
+							@ path {"/getting-started/installation"}
+							@ content {requireMarkdown('./getting-started/installation.md')}
+							@ component {MarkdownDocs}
+							@ nav
+						< Route
+							@ title "Usage"
+							@ path {"/getting-started/usage"}
+							@ content {requireMarkdown('./getting-started/usage.md')}
+							@ component {MarkdownDocs}
+							@ nav
+						< Route
+							@ title "Examples"
+							@ path {"/getting-started/examples"}
+							@ content {requireMarkdown('./getting-started/examples.md')}
+							@ component {MarkdownDocs}
+							@ nav
+						< Route
+							@ title "References"
+							@ path {"/getting-started/references"}
+							@ content {requireMarkdown('./getting-started/references.md')}
+							@ component {MarkdownDocs}
+							@ nav
+					< Route
+						@ title "Project"
+						@ path {"/project"}
+						@ nav
+						@ component {AppContent}
+						route-md( project, todo, TODO )
+						route-md( project, api, API )
+						route-md( project, demo, Demo )
+
+
+

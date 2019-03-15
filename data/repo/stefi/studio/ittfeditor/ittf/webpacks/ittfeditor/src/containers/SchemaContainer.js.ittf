@@ -1,0 +1,80 @@
+﻿r-container( Schema, true )
+
+	$append imports
+		import { 
+			\b getSchemas, 
+			\b getSchema
+			\b } from '../store/actions'
+		import Schema from '../components/Schema'
+
+	did-mount
+		prop loadSchemas
+		_ loadSchemas
+		
+	render
+		
+		prop schemas
+		prop selectedSchemaUri
+		
+		prop ittfDocument
+		prop model
+		prop factory
+		prop jsonDoc
+		
+		prop handleSelectSchema
+		
+		return
+			< Schema
+				@ schemas {schemas}
+				@ selectedSchemaUri {selectedSchemaUri}
+				
+				@ ittfDocument {ittfDocument}
+				@ model {model}
+				@ factory {factory}
+				@ jsonDoc {jsonDoc}
+
+				@ onSelectSchema {handleSelectSchema}
+
+	$append state-to-props
+		
+		@ schemas state.schema.items
+		@ selectedSchemaUri state.schema.selectedSchemaUri
+		@ ittfDocument state.schema.ittfDocument
+		@ model state.schema.model
+		@ factory state.schema.factory
+		@ jsonDoc state.schema.jsonDoc
+
+	$append dispatch-to-props
+		
+		@ loadSchemas
+			=>
+				_ dispatch(getSchemas())
+		
+		@ handleSelectSchema
+			=>
+				param uri
+				_ dispatch
+					_ getSchema
+						@ uri
+
+		@ handleCreateSubmit
+			=>
+				param name
+				param xpackage
+				_ dispatch
+					_ createSchema
+						@ name
+						@ xpackage
+					
+		@ handleChange
+			=>
+				param uri
+				param newValue
+				# log 'SchemaEditor.handleChange', uri, newValue
+				_ dispatch
+					_ changeSchema
+						@ newValue
+				_ dispatch
+					_ updateSchema
+						@ uri
+						@ newValue

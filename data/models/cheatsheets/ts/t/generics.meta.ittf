@@ -1,0 +1,342 @@
+﻿element generics
+	tag 
+	ast 
+	category
+	
+	item
+		title Identity function with any
+		expected
+			+ function identity(arg: any): any {
+				+ return arg;
+			+ }
+		ittf
+			function identity
+				param arg
+					:any 
+				:return
+					:any 
+				return arg
+    
+	item
+		title Identity function with type variable
+		expected
+			+ function identity<T>(arg: T): T {
+				+ return arg;
+			+ }
+		ittf
+			function identity
+				:< T
+				param arg
+					:ref T
+				:return
+					:ref T
+				return arg
+
+	item
+		title Type argument
+		expected
+			+ let output = identity<string>("myString");  // type of output will be 'string'
+		ittf
+			let output
+				_ identity
+					:< string
+					@ "myString"
+
+	item
+		title Length property fails
+		expected
+			+ function loggingIdentity<T>(arg: T): T {
+				+ console.log(arg.length);
+				+ return arg;
+			+ }
+		ittf
+			function loggingIdentity
+				:< T
+				param arg
+					:ref T
+				:return
+					:ref T
+				_ console.log(arg.length)
+				return arg
+
+	item
+		title Length property succeds 1
+		expected
+			+ function loggingIdentity<T>(arg: T[]): T[] {
+				+ console.log(arg.length);
+				+ return arg;
+			+ }
+		ittf
+			+
+				function loggingIdentity
+					:< T
+					param arg
+						:[ 
+							:ref T
+					:return
+						:[ 
+							:ref T
+					_ console.log(arg.length)
+					return arg
+				
+
+	item
+		title Length property succeds 2
+		expected
+			+ function loggingIdentity<T>(arg: Array<T>): Array<T> {
+				+ console.log(arg.length);
+				+ return arg;
+			+ }
+		ittf
+			function loggingIdentity
+				:< T
+				param arg
+					:ref Array
+						:ref T
+				:return
+					:ref Array
+						:ref T
+				_ console.log(arg.length)
+				return arg
+
+	item
+		title Generic function
+		expected
+			+ function identity<T>(arg: T): T {
+				+ return arg;
+			+ }
+			+ let myIdentity: <T>(arg: T) => T = identity;
+		ittf
+			+
+				function identity
+					:< T
+					param arg
+						:ref T
+					:return
+						:ref T
+					return arg
+				let myIdentity
+					:=> 
+						:ref T
+						param arg
+							:ref T
+					:= identity
+	
+	item
+		title Call signature object literal type
+		expected
+			+ function identity<T>(arg: T): T {
+				+ return arg;
+			+ }
+			+ let myIdentity: { <T>(arg: T): T } = identity;
+		ittf
+			+
+				function identity
+					:< T
+					param arg
+						:ref T
+					:return
+						:ref T
+					return arg
+				let myIdentity
+					:{ 
+						:call 
+							:< T
+							:ref T
+							param arg
+								:ref T
+					:= identity
+				
+	item
+		title Generic interface
+		expected
+			+ interface GenericIdentityFn<T> {
+				+ (arg: T): T;
+			+ }
+			+ function identity<T>(arg: T): T {
+				+ return arg;
+			+ }
+			+ let myIdentity: GenericIdentityFn<number> = identity;
+		
+		ittf
+			+
+				:interface GenericIdentityFn
+					:< T
+					:call 
+						:ref T
+						param arg
+							:ref T
+				function identity
+					:< T
+					param arg
+						:ref T
+					:return
+						:ref T
+					return arg
+				let myIdentity
+					:ref GenericIdentityFn
+						:param number
+					:= identity
+
+	item
+		title Generic Classes
+		expected
+			+ class GenericNumber<T> {
+				+ zeroValue: T;
+				+ add: (x: T, y: T) => T;
+			+ }
+		ittf
+			class GenericNumber
+				:< T
+				p zeroValue
+					:ref T
+				p add
+					:=> 
+						:ref T
+						param x
+							:ref T
+						param y
+							:ref T
+
+	item
+		title Generic Constraints - fails
+		expected
+			+ function loggingIdentity<T>(arg: T): T {
+				+ console.log(arg.length);  // Error: T doesn't have .length
+				+ return arg;
+			+ }
+		ittf
+			function loggingIdentity
+				:< T
+				param arg
+					:ref T
+				:return
+					:ref T
+				_ console.log(arg.length)
+				return arg
+	
+	item
+		title Generic Constraints - succeds
+		expected
+			+ interface Lengthwise {
+				+ length: number;
+			+ }
+			+ function loggingIdentity<T extends Lengthwise>(arg: T): T {
+				+ console.log(arg.length);  // Now we know it has a .length property, so no more error
+				+ return arg;
+			+ }
+		ittf
+			+
+				:interface Lengthwise
+					:p length
+						:number 
+				function loggingIdentity
+					:< T
+						:ref Lengthwise
+					param arg
+						:ref T
+					:return
+						:ref T
+					_ console.log(arg.length)
+					return arg
+
+	item
+		title Type Parameters in Generic Constraints
+		expected
+			+ function getProperty<T, K extends keyof T>(obj: T, key: K) {
+				+ return obj[key];
+			+ }
+			+ let x = { a: 1, b: 2, c: 3, d: 4 };
+			+ getProperty(x, "a");
+			+ getProperty(x, "m");
+		ittf
+			+
+				function getProperty
+					:< T
+					:< K
+						:keyof 
+							:ref T
+					param obj
+						:ref T
+					param key
+						:ref K
+					return obj[key]
+				let x
+					{ 
+						@ a 1
+						@ b 2
+						@ c 3
+						@ d 4
+				_ getProperty(x, "a")
+				_ getProperty(x, "m")
+
+	item
+		title Class Types in Generics
+		expected
+			+ function create<T>(c: { new (): T; }): T {
+				+ return new c();
+			+ }
+		ittf
+			function create
+				:< T
+				param c
+					:{ 
+						:new 
+							:ref T
+				:return
+					:ref T
+				return new c()
+
+	item
+		title Prototype property
+		expected
+			+ class BeeKeeper {
+				+ hasMask: boolean;
+			+ }
+			+ class ZooKeeper {
+				+ nametag: string;
+			+ }
+			+ class Animal {
+				+ numLegs: number;
+			+ }
+			+ class Bee extends Animal {
+				+ keeper: BeeKeeper;
+			+ }
+			+ class Lion extends Animal {
+				+ keeper: ZooKeeper;
+			+ }
+			+ function createInstance<A extends Animal>(c: new () => A): A {
+				+ return new c();
+			+ }
+			+ var x = createInstance(Lion).keeper.nametag;
+			+ var y = createInstance(Bee).keeper.hasMask;
+		ittf
+			+
+				class BeeKeeper
+					p hasMask
+						:boolean 
+				class ZooKeeper
+					p nametag
+						:string 
+				class Animal
+					p numLegs
+						:number 
+				class Bee
+					super Animal
+					p keeper
+						:ref BeeKeeper
+				class Lion
+					super Animal
+					p keeper
+						:ref ZooKeeper
+				function createInstance
+					:< A
+						:ref Animal
+					param c
+						:ctor 
+							:ref A
+					:return
+						:ref A
+					return new c()
+				var x = createInstance(Lion).keeper.nametag
+				var y = createInstance(Bee).keeper.hasMask

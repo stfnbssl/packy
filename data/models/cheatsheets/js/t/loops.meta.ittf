@@ -1,0 +1,16 @@
+﻿element loops
+	tag _
+	ast 
+	category arrays
+	
+	item
+		title foreach loop
+		ittf
+			foreach item in myarray
+				set item.a = item.b / 2
+
+	item
+		title while loop
+		ittf
+			while item.parent
+				set item = item.parent

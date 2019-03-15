@@ -1,0 +1,10 @@
+﻿$group
+	$params name, label
+	
+	< Field
+		@ name ${name}
+		@ id ${name}
+		@ label ${label}
+		@ type select
+		@ component {renderField}
+		$hook

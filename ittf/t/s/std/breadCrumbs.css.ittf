@@ -1,0 +1,10 @@
+﻿$group
+
+	. breadcrumbs-1-panel
+        display flex
+		flex-direction row
+		padding 0 0.5rem 0.5rem 0.5rem
+
+	. breadcrumb-1-item
+		padding 0.5rem 1rem
+		font-size 1.5rem

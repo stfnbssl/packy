@@ -1,0 +1,14 @@
+﻿_ router.delete
+	@ '/'
+	function
+		param req
+		param res
+
+		var item = req.body
+
+		_ collectionDb.delete
+			@ item
+			function
+				param err
+				param item
+				send_json( item )

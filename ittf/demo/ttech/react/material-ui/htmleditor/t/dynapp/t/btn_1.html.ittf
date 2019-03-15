@@ -1,0 +1,11 @@
+﻿$group
+	$params id, title, label, delay|1500
+
+	< Tooltip
+		@ title ${title}
+		@ enterDelay { ${delay} }
+		span ${label}
+			class { classes.spanButton }
+			id { '${id}_' + this.uid }
+			@ onClick  { this.handleClick }
+			$hook

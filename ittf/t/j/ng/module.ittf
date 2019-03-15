@@ -1,0 +1,118 @@
+﻿$group
+	$params applicationModule, dependencies|@@null
+
+	$ var deps = dependencies ? dependencies.trim().split(';') : []
+
+	$foreach dep in deps
+
+		
+
+		$if dep === 'underscore'
+
+			# dependency ${dep}, create ${dep} factory
+
+			iife
+
+				function
+
+					var underscore = angular.module('underscore', []);
+
+					_ underscore.factory
+						@ '_'
+						[
+							@ '$window'
+							function
+								param $window
+								return $window._; // assumes underscore has already been loaded on the page
+
+		$if dep === 'jQuery'
+
+			# dependency ${dep}, create ${dep} factory
+
+			iife
+
+				function
+
+					var jQuery = angular.module('jQuery', []);
+
+					_ jQuery.factory
+						@ '$'
+						[
+							@ '$window'
+							function
+								param $window
+								return $window.jQuery; // assumes jQuery has already been loaded on the page
+
+	var ApplicationConfiguration
+		iife ()
+			function 
+				var applicationModuleName = '${applicationModule}'
+
+				# Add a new vertical module
+				var registerModule
+					function 
+						param moduleName
+						param dependencies
+
+						# Create angular module
+						_ angular.module(moduleName, (dependencies || []))
+						
+						# Add the module to the AngularJS configuration file
+						_ angular.module(applicationModuleName)
+							. requires
+							._ push(moduleName)
+				return 
+					{ 
+						@ applicationModuleName applicationModuleName
+						@ registerModule registerModule
+
+
+	iife
+		function
+
+			# https://github.com/johnpapa/angular-styleguide
+			# Recommended Setup
+			# A module for each feature
+			# A module for each reusable component (especially directives and filters)
+			# An application level module which depends on the above modules and contains any initialization code.
+			# Start by defining the main (application level) module and adding the module dependencies
+
+			# Register a new feature module
+			_ angular.module
+				@ '${applicationModule}' 
+				[
+					$foreach dep in deps 
+						@ '${dep}'
+
+			# Setting HTML5 Location Mode
+			# You can only inject Providers (not instances) into config blocks.
+			_ angular.module
+				@ '${applicationModule}'
+				._ config
+					[ 
+						@ '$locationProvider'
+						function 
+							param $locationProvider
+							_ $locationProvider.hashPrefix
+								@ '!'
+
+			# Then define the init function for starting up the application
+			# angular.element wraps a raw DOM element or HTML string as a jQuery (or jQLite) element.
+			# https://docs.angularjs.org/api/ng/function/angular.element
+			_ angular.element(document)
+				._ ready
+					function 
+						if window.location.hash === '#_=_'
+							set window.location.hash = '#!'
+
+
+			# Then manually start up the angular application
+			# https://docs.angularjs.org/api/ng/function/angular.bootstrap
+			_ angular.element(document)
+				._ ready
+					function 
+						_ angular.bootstrap
+							@ document
+							[ 
+								@ '${applicationModule}'
+

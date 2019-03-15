@@ -1,0 +1,9 @@
+﻿h/root/empty_layout()
+
+	$append body-scripts
+		js js/main.webpack.js.ittf
+
+	h1 Hello webpack bundle step_1
+
+	# app
+

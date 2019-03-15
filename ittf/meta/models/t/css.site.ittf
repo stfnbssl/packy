@@ -1,0 +1,82 @@
+$group
+
+	category Css
+
+		lia( Can i use, https://caniuse.com/#home
+		lia( Css cheatsheet, https://htmlcheatsheet.com/css/
+		lia( Font awesome, https://fontawesome.com/
+		lia( Font awesome cheatsheet, https://fontawesome.com/v4.7.0/cheatsheet/
+		lia( Css zen garden, http://www.csszengarden.com/
+		lia( Show case best designs, https://www.awwwards.com/
+		lia( Data URIs,  https://css-tricks.com/data-uris/ )
+		lia( On Mobile, Data URIs are 6x Slower than Source Linking (New Research), http://dev.mobify.com/blog/data-uris-are-slow-on-mobile/ )
+
+		category BoxModel
+			lia( MDN Box model, https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model
+
+			demo playground
+
+		category Grids
+			lia( CSS Grid garden, http://cssgridgarden.com/#it
+				p A game for learning bits of CSS Grid by <a href='http://jensimmons.com/'>Jen Simmons</a>.
+			lia( CSS Grid by example, https://gridbyexample.com/
+			
+			demo step_1
+				label Step 1
+			demo playground
+
+		category Flex
+			demo intro
+			demo tiledpage
+				label Tiled page
+			demo playground
+		
+		category Layouts
+			demo step_1
+				label Step 1
+				context-model mpage
+					type json
+
+		category Animations
+			lia( MDN animations, https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
+			lia( Animate CSS, https://github.com/daneden/animate.css
+			    stars 54,996 | 20181025
+			
+			demo animatecss
+				label Animate CSS
+
+		category Parallax
+			lia( Jarallax, https://github.com/nk-o/jarallax
+			demo step_1
+				label Step 1
+
+		category Transitions
+			lia( MDN Transitions, https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
+			demo misc
+			demo circularmenu
+				label Circular menu
+			demo sidebar
+				label Sidebar
+
+		category Transforms
+			lia( MDN Transforms, https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transforms/Using_CSS_transforms
+		
+		category Backgrounds
+			demo Svg
+
+		category Icons
+			lia( Font Awesome, https://fontawesome.com/
+				p Get vector icons and social logos on your website with Font Awesome, 
+					\b the web’s most popular icon set and toolkit.
+
+		category AdminTemplates
+			lia(Gentelella admin template, https://github.com/puikinsh/gentelella
+				stars 15715 | 20181008
+				p Theme uses several libraries for charts, calendar, form validation, wizard style interface,
+					\b off-canvas navigation menu, text forms, date range, upload area, form autocomplete,
+					\b range slider, progress bars, notifications and much more.
+
+		category Bootstrap
+			demo step_1
+				label Step 1
+			

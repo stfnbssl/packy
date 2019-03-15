@@ -1,0 +1,26 @@
+﻿$group
+
+	$
+		var app = {};
+		app.name = 'Wf';
+		app.version = '0.0.1';
+		app.title = 'Wizzi factory';
+		app.description = 'Wizzi factory jobs and tools';
+		app.keywords = 'wizzi ui react';
+		app.rootContainer = 'MuiThemeContainer';
+		app.initialLoad = false;
+		app.primaryColor = 'orange';
+		app.accentColor = 'red';
+		app.sheetOrder = [];
+		app.useRedux = true;
+		app.useReduxForm = false;
+		app.useApiMiddleware = true;
+		app.useDevTools = false;
+		app.useNormalizr = false;
+		app.githubLink = false;
+		app.useSearch  = false;
+		app.useDrawer = true;
+		app.useMarkdownApi = false;
+		app.useMarkdownDemo = false;
+		app.useRouter = true;
+		app.routeBasepath = '/app/wf';

@@ -1,0 +1,8 @@
+﻿module
+	kind react
+
+	import 'codemirror/mode/javascript/javascript'
+	+
+	export const id = 'js'
+	export const displayName = 'JavaScript'
+	export const fileExtension = 'js.ittf'

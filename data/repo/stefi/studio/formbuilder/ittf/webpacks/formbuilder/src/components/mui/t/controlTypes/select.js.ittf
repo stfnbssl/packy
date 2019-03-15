@@ -1,0 +1,70 @@
+﻿$group
+
+	wz-function Select
+		return
+			=>
+				param { id, value, data, onChange }
+				const { options } = data
+				
+				const nroptions = normalizeOptions(options, value)
+				
+				var optionTags
+					map( nroptions, o )
+						return
+							option {o.text}
+								@ key {o.key}
+								@ value {o.value}
+				
+				# log 'select', id, value, data, options, nroptions, optionTags
+				
+				return
+					select
+						id {id}
+						value {value}
+						@ onChange
+							=>
+								param e
+								_ onChange(e.target.value)
+						+ {optionTags}
+
+
+	function normalizeOptions
+		param options
+		param value
+		var j = 0
+		return
+			map( options, o )
+				isObject( o )
+					return 
+						{
+							@ key 'k' + (++j)
+							@ value getValue(o)
+							@ text getText(o)
+							@ selected getValue(o) === value
+				else
+					return 
+						{
+							@ key 'k' + (++j)
+							@ value o
+							@ text o
+							@ selected o === value
+
+	function getValue
+		param o
+		if o.val
+			return o.val
+		elif o.id
+			return o.id
+		elif o.key
+			return o.key
+		return o.value
+	
+	function getText
+		param o
+		if o.label
+			return o.label
+		elif o.name
+			return o.name
+		elif o.key
+			return o.key
+		return o.text

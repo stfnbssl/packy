@@ -1,0 +1,80 @@
+  module  ids: 1 81
+    kind react ids: 2 82
+    +  ids: 3 83
+    import React, { Component, PropTypes } from 'react' ids: 4 84
+    import { Input, Select, Range } from './controlTypes' ids: 5 85
+    import { Row, Col } from './grid' ids: 6 86
+    class Control ids: 7 87
+      super Component ids: 8 88
+      ctor  ids: 9 89
+        param props ids: 10 90
+        base props ids: 11 91
+        set this.handleChange = this.handleChange.bind(this) ids: 12 92
+      m handleChange ids: 13 93
+        param value ids: 14 94
+        const { id, onChangeValue } = this.props ids: 15 95
+        if onChangeValue ids: 16 96
+          log 'Control.handleChange', id, value ids: 17 97
+          _ onChangeValue(id, value, this.origValue) ids: 18 98
+      m render ids: 19 99
+        const { id, label, type, value, layout, data } = this.props ids: 20 100
+        const { onChange } = this.props ids: 21 101
+        const ControlComponent = createComponent(type) ids: 22 102
+        return  ids: 23 103
+          < Row ids: 24 104
+            < Col ids: 25 105
+              @ span {4} ids: 26 106
+              + {label || id} ids: 27 107
+            < Col ids: 28 108
+              @ span {8} ids: 29 109
+              < ControlComponent ids: 30 110
+                @ id {id} ids: 31 111
+                @ value {value} ids: 32 112
+                @ data {data} ids: 33 113
+                @ onChange {this.handleChange} ids: 34 114
+    function createComponent ids: 35 115
+      param type ids: 36 116
+      const inputTypes ids: 37 117
+        [  ids: 38 118
+          @ 'checkbox' ids: 39 119
+          @ 'color' ids: 40 120
+          @ 'date' ids: 41 121
+          @ 'datetime' ids: 42 122
+          @ 'datetime-local' ids: 43 123
+          @ 'email' ids: 44 124
+          @ 'file' ids: 45 125
+          @ 'hidden' ids: 46 126
+          @ 'month' ids: 47 127
+          @ 'number' ids: 48 128
+          @ 'password' ids: 49 129
+          @ 'radio' ids: 50 130
+          @ 'range' ids: 51 131
+          @ 'search' ids: 52 132
+          @ 'tel' ids: 53 133
+          @ 'text' ids: 54 134
+          @ 'time' ids: 55 135
+          @ 'url' ids: 56 136
+          @ 'week' ids: 57 137
+      const inputButtons ids: 58 138
+        [  ids: 59 139
+          @ 'button' ids: 60 140
+          @ 'reset' ids: 61 141
+          @ 'submit' ids: 62 142
+          @ 'image' ids: 63 143
+      var ret ids: 64 144
+      if inputTypes.indexOf(type) > -1 ids: 65 145
+        set ret = Input(type) ids: 66 146
+      elif type === 'select' ids: 67 147
+        set ret = Select() ids: 68 148
+      elif type === 'range' ids: 69 149
+        set ret = Range() ids: 70 150
+      else  ids: 71 151
+        set ret = Input('text') ids: 72 152
+      # log 'createComponent.ret', ret ids: 73 153
+      return ret ids: 74 154
+    set Control.propTypes ids: 75 155
+      {  ids: 76 156
+        @ id PropTypes.string.isRequired ids: 77 157
+        @ type PropTypes.string.isRequired ids: 78 158
+        @ onChangeValue PropTypes.func.isRequired ids: 79 159
+    export default Control ids: 80 160

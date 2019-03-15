@@ -1,0 +1,34 @@
+﻿$group
+
+	class FlexPanel
+		super React.Component
+
+		m render
+			const { data } = this.props
+			const { id, direction, style: elementStyle } = data
+			return
+				div
+					@ id { id }
+					@style { this.style(direction, elementStyle) }
+					{
+						_ data.panels.map
+							=>
+								param panel
+								var PanelComponent = builder.create(panel)
+								return
+									< PanelComponent
+										@ data { panel }    
+
+
+		m style
+			param direction
+			param elementStyle
+			return
+				_ Object.assign
+					{
+					{
+						@ display 'flex'
+						@ flexDirection direction || 'row'
+						@ flexWrap 'wrap'
+						@ justifyContent 'space-between'	
+					@ elementStyle

@@ -1,0 +1,53 @@
+﻿r-component( Styled )
+
+	$append imports
+		import Typography from 'material-ui/Typography'
+		import { StyledElement } from './html'
+
+	prop classes
+		{
+
+	prop styledMeta
+		{
+	
+	prop styledStyles
+		{
+
+	style
+
+		@ styledPanel
+			{
+				@ border '1px solid green'
+				@ padding '10px'
+
+		@ styled
+			{
+				@ border '1px solid darkred'
+				@ padding '10px'
+				@ margin '10px'
+
+		@ margin10
+			{
+				@ margin '10px'
+
+	render
+
+		prop classes
+		
+		prop styledMeta
+		prop styledStyles
+		
+		return
+			. {classes.styledPanel}
+
+				< Typography
+					@ type "title"
+					@ color 'inherit'
+					@ noWrap
+					+ Styled element
+
+			
+				. {classes.styled}
+					< StyledElement
+						@ meta {styledMeta}
+						@ styles {styledStyles}

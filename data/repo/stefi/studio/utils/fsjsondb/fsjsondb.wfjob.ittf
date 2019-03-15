@@ -1,0 +1,87 @@
+﻿wfjob fsjsondb
+	
+	$
+		var ittf_folder_lib         = path.join(__dirname, 'ittf', 'lib');
+		var ittf_folder_root        = path.join(__dirname, 'ittf', 'root');
+		var ittf_folder_examples    = path.join(__dirname, 'ittf', 'examples');
+		var ittf_folder_tests       = path.join(__dirname, 'ittf', 'tests');
+		var dest_folder_Stop        = "C:/My/wizzi/node_modules/fsjsondb";
+		var dest_folder             = "C:/My/wizzi/dev/studio/node_modules/fsjsondb";
+		var js_ittf_pattern         = '**/*.js.ittf';
+		var json_ittf_pattern       = '**/*.json.ittf';
+		var rdbms_ittf_pattern      = '**/*.rdbms.ittf';
+		var mdx_ittf_pattern        = '**/*.mdx.ittf';
+
+	line lib
+		cwd-folder ${ittf_folder_lib}
+		dest-folder ${dest_folder}/lib
+
+		artifact lib ./${js_ittf_pattern}
+			src ./${js_ittf_pattern}
+			schema js
+			generator js/module
+			extension js
+
+		artifact lib ./${json_ittf_pattern}
+			src ./${json_ittf_pattern}
+			schema ittf
+			generator json/document
+			extension json
+
+	line examples
+		cwd-folder ${ittf_folder_examples}
+		dest-folder ${dest_folder}/examples
+
+		artifact tests ./${js_ittf_pattern}
+			src ./${js_ittf_pattern}
+			schema js
+			generator js/module
+			extension js
+
+	line tests
+		cwd-folder ${ittf_folder_tests}
+		dest-folder ${dest_folder}/tests
+
+		artifact tests ./${js_ittf_pattern}
+			src ./${js_ittf_pattern}
+			schema js
+			generator js/module
+			extension js
+
+	line root
+		cwd-folder ${ittf_folder_root}
+		dest-folder ${dest_folder}
+
+		artifact root ./${js_ittf_pattern}
+			src ./${js_ittf_pattern}
+			schema js
+			generator js/module
+			extension js
+
+		artifact root ./${json_ittf_pattern}
+			src ./${json_ittf_pattern}
+			schema ittf
+			generator json/document
+			extension json
+
+		artifact root ./${mdx_ittf_pattern}
+			src ./${mdx_ittf_pattern}
+			schema mdx
+			generator mdx/document
+			dest-path readme.md
+			extension md
+
+		artifact root .gitignore
+			src ${ittf_folder_root}/.gitignore
+			dest-path .gitignore
+
+		artifact root license.txt
+			src ${ittf_folder_root}/license.txt
+			dest-path license.txt
+
+	production
+		dest-folder ${dest_folder}
+		line-ref lib
+		line-ref examples
+		line-ref tests
+		line-ref root

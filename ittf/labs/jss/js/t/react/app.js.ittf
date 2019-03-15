@@ -1,0 +1,10 @@
+﻿$group
+
+	j/iife-wrapped( BxApp, reactModule, button )
+
+		class App
+			super
+
+			m render
+				< BxButton
+

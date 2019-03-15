@@ -1,0 +1,40 @@
+﻿$group
+	$params prefix|bx, render:boolean|true
+
+	class ${prefix}TabItem
+
+		ctor
+			param props
+			set this.props = props
+
+		$if render
+			m render
+		$else
+			m attach
+				param el
+
+		m eventsOn
+			var that = this
+			_ this.$el.on
+				@ 'click'
+				function
+					param ev
+					_ PubSub.publish
+						@ '${prefix}Tabs.select'
+						{
+							@ selected that.props.tabKey
+			set this.handlePublish = this.handlePublish.bind(this)
+			set this.pubsubToken
+				_ PubSub.subscribe
+					@ '${prefix}Tabs'
+					@ this.handlePublish
+
+		m handlePublish
+			param message
+			param data
+			if message == '${prefix}TabItem.select'
+				if data.selected == this.props.tabKey
+					_ this.$el.addClass('tab-active')
+				else
+					_ this.$el.removeClass('tab-active')
+

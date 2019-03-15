@@ -1,0 +1,68 @@
+/*
+    artifact generator: C:\My\wizzi\v5\apps\node_modules\wizzi-js\lib\artifacts\js\module\gen\main.js
+    primary source IttfDocument: c:/my/wizzi/v5/apps/wizzi-studio/wizzi-studio-express/dist/server/data/jobs/gists/stefi/apptree.js.ittf
+    utc time: Tue, 04 Sep 2018 12:01:26 GMT
+*/
+'use strict';
+var apps = [
+    {
+        appId: 'a1'
+    }, 
+    {
+        appId: 'b/b1'
+    }, 
+    {
+        appId: 'c/c0/c1'
+    }
+];
+var tree = app_flat_to_tree(apps);
+console.log(JSON.stringify(tree, null, 2));
+// returns node
+// { item
+// int kind
+// oneOf 0,1
+// string name
+// string itemPath
+// [ children
+function app_flat_to_tree(flatItems) {
+    var tree = {
+        children: [
+            
+        ]
+    };
+    var ss, cur, itemPath, hash, schema, isFragment;
+    var i, i_items=flatItems, i_len=flatItems.length, f;
+    for (i=0; i<i_len; i++) {
+        f = flatItems[i];
+        itemPath = f.appId;
+        ss = itemPath.split('/');
+        cur = tree;
+        var j, j_items=ss, j_len=ss.length, s;
+        for (j=0; j<j_len; j++) {
+            s = ss[j];
+            cur = app_getCreateChild(cur, s, j < ss.length -1);
+        }
+        cur.itemPath = itemPath;
+        if (cur.kind == 1) {
+        }
+    }
+    return tree;
+}
+function app_getCreateChild(parent, name, isFolder) {
+    var i, i_items=parent.children, i_len=parent.children.length, item;
+    for (i=0; i<i_len; i++) {
+        item = parent.children[i];
+        if (item.name === name) {
+            return item;
+        }
+    }
+    var ret = {
+        kind: isFolder ? 0 : 1, 
+        name: name, 
+        children: [
+            
+        ]
+    };
+    parent.children.push(ret);
+    return ret;
+}

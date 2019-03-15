@@ -1,0 +1,20 @@
+﻿html
+	head
+		meta
+			charset UTF-8
+		meta
+			name viewport
+			content width=device-width, initial-scale=1.0
+		meta
+			http-equiv X-UA-Compatible
+			content ie=edge
+		title Acme Web Solutions
+		link
+			rel stylesheet
+			href style.css.ittf
+	body
+		. wrapper
+			div Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem odio suscipit nobis facilis odit accusantium inventore quis magni non dolorem, minima corporis ullam dolorum quae, culpa quos. Error, et accusamus! Distinctio accusamus minima alias maxime provident reprehenderit atque commodi odio numquam hic obcaecati quam iste aut, ad molestiae voluptatum. Iure recusandae praesentium nobis nemo quisquam maiores veritatis, cum alias autem repudiandae, modi doloremque vitae? Vitae quod dolorem alias atque, saepe mollitia cupiditate nobis odio eos possimus accusantium laudantium architecto voluptatum?
+			div Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos voluptatem optio repudiandae blanditiis ipsa delectus voluptate, ipsam similique iste voluptatum amet neque dicta officiis tenetur necessitatibus voluptas numquam reiciendis maiores aspernatur adipisci iure repellendus animi? Voluptas similique temporibus mollitia hic.
+			div Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem odio suscipit nobis facilis odit accusantium inventore quis magni non dolorem, minima corporis ullam dolorum quae, culpa quos. Error, et accusamus! Distinctio accusamus minima alias maxime provident reprehenderit atque commodi odio numquam hic obcaecati quam iste aut, ad molestiae voluptatum. Iure recusandae praesentium nobis nemo quisquam maiores veritatis, cum alias autem repudiandae, modi doloremque vitae? Vitae quod dolorem alias atque, saepe mollitia cupiditate nobis odio eos possimus accusantium laudantium architecto voluptatum?
+			div Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos voluptatem optio repudiandae blanditiis ipsa delectus voluptate, ipsam similique iste voluptatum amet neque dicta officiis tenetur necessitatibus voluptas numquam reiciendis maiores aspernatur adipisci iure repellendus animi? Voluptas similique temporibus mollitia hic.

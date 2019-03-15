@@ -1,0 +1,71 @@
+﻿$group
+
+	function setStoreKey
+		var storekeyEl = wz.element('storekey')
+		_ wz.value(storekeyEl, db.storeKey)
+		_ wz.keypress
+			@ storekeyEl
+			=>
+				param ev
+				if ev.keyCode === 13
+					_ db.setStoreKey
+						_ wz.value(storekeyEl)
+		_ wz.blur
+			@ storekeyEl
+			=>
+				_ db.setStoreKey
+					_ wz.value(storekeyEl)
+	
+	function setCommandManager
+		var command = wz.element('inputcommand')
+		_ wz.keypress
+			@ command
+			=>
+				param ev
+				if ev.keyCode === 13
+					var value
+						_ wz.value(command)
+					if value.trim().length == 0
+						_ appendLog
+							_ db.jstore
+						return
+					var ix = value.indexOf(' ')
+					if ix < 0
+						_ appendLog
+							_ db.value
+								@ value
+					else
+						var key = value.substr(0, ix)
+						var value = value.substr(ix).trim()
+						if value.length > 0
+							if value.length > 1 && value[0] === ':' && value[1] === ':'
+								_ appendLog
+									_ db.value
+										@ key
+										@ value
+							else
+								set value
+									_ JSON.parse
+										@ value
+								log 'key, value', key, value
+								_ appendLog
+									_ db.value
+										@ key
+										@ value
+						else
+							_ appendLog
+								_ db.value
+									@ key
+
+	function appendLog
+		param text
+		if isObject(text) || isArray(text)
+			set text = JSON.stringify(text, null, 2)
+		var logEl
+			_ wz.element('log')
+		var p = document.createElement("p")
+		var pre = document.createElement("pre")
+		var t = document.createTextNode(text)
+		_ p.appendChild(pre)
+		_ pre.appendChild(t)
+		_ logEl.insertBefore(p, logEl.children[0])

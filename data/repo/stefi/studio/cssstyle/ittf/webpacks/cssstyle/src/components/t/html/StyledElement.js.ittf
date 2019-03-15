@@ -1,0 +1,45 @@
+﻿$group
+
+	wz-const StyledElement
+		=>
+			param { meta, styles }
+
+			# log "meta", meta
+
+			var children = []
+			if meta.text && meta.text.length > 0
+				_ children.push(meta.text)
+
+			if meta.children && meta.children.length > 0
+				foreach metaChild in meta.children
+					_ children.push
+						_ React.createElement
+							@ StyledElement
+							{
+								@ meta metaChild
+								@ styles styles
+								@ key "k" + i
+			
+			var modStyles = {}
+			if styles
+				for var k in styles
+					if k === meta.id
+						for var z in styles[k]
+							set modStyles[z] = styles[k][z]
+			
+			const htmlProps = meta.htmlProps || {}
+			
+			return
+				_ React.createElement
+					@ meta.tag
+					{
+						@ ...htmlProps
+						@ style
+							{
+								@ ...modStyles
+					@ children
+	+
+	set StyledElement.propTypes
+		{
+			@ meta PropTypes.object.isRequired
+			@ styles PropTypes.object.isRequired

@@ -1,0 +1,16 @@
+module
+	kind jsfile
+
+	$
+		var s1 = 'alphaBeta';
+		var s1cap = s1.capitalize();
+		var s2 = 'lady';
+		// var s2plu = _.pluralize(s2);
+		var s3 = 'alpha-beta';
+		var s3cam = _.dashToCamelCase(s3);
+	
+	log '${s1} -> capitalize -> ${s1cap}'
+	$$ log '${s2} -> _.pluralize -> ${s2plu}'
+	log '${s3} -> _.dashToCamelCase -> ${s3cam}'
+
+

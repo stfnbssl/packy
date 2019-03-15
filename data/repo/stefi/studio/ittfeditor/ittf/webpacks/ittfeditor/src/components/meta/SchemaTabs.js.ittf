@@ -1,0 +1,91 @@
+﻿r-component( SchemaTabs )
+	
+	$append imports
+
+		import AppBar from 'material-ui/AppBar'
+		import Tabs, { Tab } from 'material-ui/Tabs'
+		import DocumentEditor from '../DocumentEditor'
+		import SchemaDoc from './SchemaDoc'
+		import TabContainer from '../mui/TabContainer'
+
+	style
+		
+		@ root
+			{
+				@ flexGrow 1
+				@ marginTop theme.spacing.unit * 3
+				@ backgroundColor theme.palette.background.paper
+
+	state
+		@ index 0
+
+	=> handleChange
+		param event
+		param index
+		_ this.setState
+			{
+				@ index
+		if this.props.onTabSelect
+			_ this.props.onTabSelect
+				@ index
+
+	render
+		
+		prop classes
+		prop activeTab
+		prop onTabSelect
+		prop jsonDoc
+		prop model
+		prop factory
+
+		const jsonText
+			iif jsonDoc
+				then
+					_ JSON.stringify
+						@ jsonDoc
+						@ null
+						@ 4
+				else
+					set 'Json'
+		
+		return
+			. {classes.root}
+				< AppBar
+					@ position "static"
+					< Tabs
+						@ index {this.state.index}
+						@ onChange {this.handleChange}
+						< Tab
+							@ label "Doc"
+						< Tab
+							@ label "Model"
+						< Tab
+							@ label "Factory"
+						< Tab
+							@ label "Json"
+				{
+					&&
+						+ this.state.index === 0
+						< TabContainer
+							< SchemaDoc
+								@ jsonDoc {jsonDoc}
+				{
+					&&
+						+ this.state.index === 1
+						< TabContainer
+							< DocumentEditor
+								@ value {model}
+				{
+					&&
+						+ this.state.index === 2
+						< TabContainer
+							< DocumentEditor
+								@ value {factory}
+				{
+					&&
+						+ this.state.index === 3
+						< TabContainer
+							< DocumentEditor
+								@ value {jsonText}
+
+						

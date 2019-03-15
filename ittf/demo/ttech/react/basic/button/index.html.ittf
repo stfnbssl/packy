@@ -1,0 +1,30 @@
+html
+
+	$
+		var opt = {}
+		opt.title = 'Basic react button';
+		opt.useReact = true;
+	
+	h/root/empty_layout_opt(&opt)
+	
+	    # app
+	    
+	    $append body-scripts
+	    
+	        script
+	            type text/babel
+	            module
+	                kind react
+					
+					var Button
+					    =>
+					        param props
+					        return
+					            div
+					                button
+					                    + hello
+	                _ ReactDOM.render
+	                    div
+	                        h1 hello
+	                        < Button
+	                    @ document.querySelector('#app')

@@ -1,0 +1,148 @@
+﻿$group
+
+	async-function gitPush
+		{ 
+			@ filepath
+			@ glEventHub
+            
+		const dir = filepath
+            
+		let host
+			await 
+				_ git.config
+					{ 
+						@ fs
+						@ dir
+						@ path 'remote.origin.host'
+
+		set host = 'https://' + host
+            
+		let helper
+			await 
+				_ git.config
+					{ 
+						@ fs
+						@ dir
+						@ path
+							`lit 
+								+ credential "
+								@ host
+								+ ".helper
+		let authPassword = null
+		let authUsername = null
+            
+		# WIP: Prompt to save push credentials in the browser credential manager
+            
+		if helper === 'navigator.credentials' && navigator.credentials && navigator.credentials.preventSilentAccess
+			# The new Credential Management API is available
+			let cred
+				await 
+					_ navigator.credentials.get
+						{ 
+							@ password true
+							@ mediation 'required'
+			await 
+				_ navigator.credentials.preventSilentAccess
+			
+			if cred
+				set authUsername = cred.id
+				set authPassword = cred.password
+            
+		if authUsername === null
+			set authUsername =
+				await 
+					_ git.config
+						{ 
+							@ fs
+							@ dir
+							@ path
+								`lit 
+									+ credential "
+									@ host
+									+ ".username
+            
+		const offerStorePassword = !!!authPassword && !authUsername
+            
+		if authPassword === null
+			#
+				# 
+				# authUsername = authUsername || await prompt({
+				# text: `Enter username (for ${host})`,
+				# input: 'text'
+				# })
+				# let token = await prompt({
+				# text: `Enter access token`,
+				# input: 'password'
+				# })
+				# 
+			set authPassword = token
+            
+		# WIP: Prompt to save push credentials in the browser credential manager
+            
+		if offerStorePassword && navigator.credentials && navigator.credentials.preventSilentAccess
+			# The new Credential Management API is available
+			let cred
+				await 
+					_ navigator.credentials.create
+						{ 
+							{ password
+								@ id authUsername
+								@ name host
+								@ iconURL host + '/favicon.ico'
+								@ password authPassword
+			try 
+				# TODO: Awaiting a response from the @ChromiumDev team as to how to tell whether the
+				# password was stored successfully or not.
+				let c
+					await 
+						_ navigator.credentials.store(cred)
+				_ console.log('saving to config', c)
+				await 
+					_ git.config
+						{ 
+							@ fs
+							@ dir
+							@ path
+								`lit 
+									+ credential "
+									@ host
+									+ ".helper
+							@ value 'navigator.credentials'
+				await 
+					_ navigator.credentials.preventSilentAccess
+			catch ex
+				let offer
+					await 
+						_ prompt
+							{ 
+								@ title 'Opt out of password manager integration'
+								@ inputPlaceholder
+									`lit 
+										+ Don't offer to remember this again
+								@ input 'checkbox'
+            
+		_ glEventHub.emit
+			@ 'setFolderStateData'
+			{ 
+				@ fullpath filepath
+				@ key 'busy'
+				@ value true
+            
+		try 
+			await 
+				_ git.push
+					{ 
+						@ fs
+						@ dir
+						@ authUsername
+						@ authPassword
+						@ remote 'origin'
+						@ ref 'refs/heads/master'
+		finally
+			_ glEventHub.emit('refreshGitStatusDir', filepath)
+			_ glEventHub.emit
+				@ 'setFolderStateData'
+				{ 
+					@ fullpath filepath
+					@ key 'busy'
+					@ value false

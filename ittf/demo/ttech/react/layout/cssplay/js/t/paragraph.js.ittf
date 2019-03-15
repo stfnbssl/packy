@@ -1,0 +1,24 @@
+﻿$group
+
+	class Paragraph
+		super React.Component
+
+		m render
+			const { data } = this.props
+			const { text, style: elementStyle } = data
+			
+			return
+				p { text }
+					@style { this.style(elementStyle) }
+						
+		m style
+			param elementStyle
+			if elementStyle
+				return elementStyle
+			else
+				return
+					{
+						@ padding '5px 20px'
+						@ margin 0
+						@ font "400 16px/20px 'Open Sans', sans-serif"
+						@ color "#333"

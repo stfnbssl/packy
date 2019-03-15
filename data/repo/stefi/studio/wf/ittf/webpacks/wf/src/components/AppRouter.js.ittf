@@ -1,0 +1,27 @@
+﻿module
+	kind react
+
+	$include app-options
+
+	import Wizzifier from '../containers/WizzifierContainer'
+	import ExecFiles from '../containers/ExecFilesContainer'
+	import Console from '../containers/ConsoleContainer'
+	import NpmJobs from '../containers/NpmJobsContainer'
+	
+	app/components/AppRouter( &app )
+
+		$append routes
+			route-group( getting-started, Getting started )
+				route-md( getting-started, installation, Installation )
+				route-md( getting-started, usage, Usage )
+				route-md( getting-started, tech-reference, Tech reference )
+			route-group( project, Project )
+				route-md( project, todo, TODO )
+				route-md( project, api, API )
+				route-md( project, demo, Demo )
+			route-group( tools, Tools )
+				route-comp( tools, wizzifier, Wizzifier, Wizzifier )
+			route-group( jobs, Jobs )
+				route-comp( jobs, execfiles, ExecFiles, Execute files )
+				route-comp( jobs, console, Console, Execute console scripts )
+				route-comp( jobs, npmjobs, NpmJobs, Npm jobs )

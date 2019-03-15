@@ -1,0 +1,6 @@
+li
+    $params text, href, clazz|list-group-item
+	class ${clazz}
+	tabindex -1
+	a ${text}
+		href ${href}

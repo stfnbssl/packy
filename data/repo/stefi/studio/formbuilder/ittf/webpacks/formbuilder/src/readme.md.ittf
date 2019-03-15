@@ -1,0 +1,18 @@
+﻿mdx
+	
+	h1 Form builder readme
+	h3 Building react forms the wizzi way
+
+	ul
+		li
+			a react-form-redux-rehash
+				href https://github.com/joe-glasgow/react-form-redux-rehash/blob/master/src/components/Text.js
+
+		li
+			a validate js
+				href https://github.com/ansman/validate.js
+
+		li
+			a validate js
+				href https://github.com/rickharrison/validate.js
+

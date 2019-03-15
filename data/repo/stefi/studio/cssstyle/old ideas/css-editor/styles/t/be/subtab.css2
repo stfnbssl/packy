@@ -1,0 +1,67 @@
+﻿$group
+	// wmtuitab jQuery plugin
+	// tabs-container
+	// tabs
+	// tab
+	// tab-anchor
+	// tabs-menu-bar
+	// tabs-title-h3
+	// tabs-done-btn
+	// tabs-panel
+	//
+	. be-subtab.tabs-container
+		width 450px
+		height 450px
+		background-color #111
+		overflow auto
+	. be-subtab .tabs
+		padding 0
+		margin 0
+		background-color #222
+	. be-subtab .tab
+		background-color #545955
+		background-image undefined
+		background-image -moz-linear-gradient(top,  #545955 0, #000000 100)
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0,#545955), color-stop(100,#000000))
+		background-image -webkit-linear-gradient(top,  #545955 0,#000000 100)
+		background-image -o-linear-gradient(top,  #545955 0,#000000 100)
+		background-image -ms-linear-gradient(top,  #545955 0,#000000 100)
+		background-image linear-gradient(to bottom,  #545955 0,#000000 100)
+		border-bottom-width 1px
+		border-bottom-color #b4acac
+		border-bottom-style solid
+		font-family Tahoma, Geneva, sans-serif
+		font-size 24px
+		font-weight bold
+		text-align center
+		line-height 40px
+		/*
+		width 100%
+		height 40px
+		text-align center
+		line-height 50px
+		font-size 16px
+		font-weight bold
+		vertical-align middle
+		border-bottom 1px solid #828282
+		*/
+	. be-subtab .tab-anchor
+		text-decoration none
+		color #aed5d4
+	. be-subtab .tabs-panel
+		background-color #fff
+	. be-subtab .tabs-menu-bar
+		height 30px
+		background-color #222
+		padding 5px
+	. be-subtab .tabs-title-h3
+		float left
+		color yellow
+		font-size 16px
+		font-weight bold
+	. be-subtab .tabs-done-btn
+		float right
+		margin 5px 5px 0 0 
+		background-color #00ffff
+		color #0000ff
+

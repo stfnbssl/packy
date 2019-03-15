@@ -1,0 +1,23 @@
+$group
+
+	$
+		var frag_3_tau = 'frag_3_tau'
+	
+	. frag_3
+		h3 I am frag_3 and i am MIXED. So i cannot see the value declared in primary :
+			\b  typeof(primary_var_alpha) = ${ typeof(primary_var_alpha) }
+
+		p I declare a local var : typeof(frag_3_tau) = ${ typeof(frag_3_tau) }, value = ${frag_3_tau}
+			class frag_3
+
+		code $include frag_4
+		hr
+
+		$include frag_4
+
+		hr
+
+		h3 I am frag_3 again, and i can see the context of the included frag_4 : (frag_4_sigma) = ${ typeof(frag_4_sigma) }
+			\ , value = ${frag_4_sigma}
+
+

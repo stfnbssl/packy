@@ -1,0 +1,22 @@
+﻿module
+	kind react
+	
+	import React from 'react'
+	import PropTypes from 'prop-types'
+
+	export default
+		function LoadingIndicator
+			param props
+			return 
+				iif props.visible
+					then
+						. loadingIndicator cover
+							div
+								i
+									@ className "fa fa-lg fa-spinner fa-pulse"
+					else
+						set null
+	
+	set LoadingIndicator.propTypes
+		{
+			@ visible PropTypes.bool

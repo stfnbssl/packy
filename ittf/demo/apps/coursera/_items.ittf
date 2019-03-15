@@ -1,0 +1,5 @@
+h/bs/list_group()
+	h/bs/li_a( "Machine learning", /ittf/demo/apps/coursera/ml/index.html.ittf )
+	h/bs/li_a( "Calculus", /ittf/demo/apps/coursera/calc/index.html.ittf )
+	h/bs/li_a( "Statistic", /ittf/demo/apps/coursera/stat/index.html.ittf )
+	h/bs/li_a( "Computational neurosciences", /ittf/demo/apps/coursera/nc/index.html.ittf )

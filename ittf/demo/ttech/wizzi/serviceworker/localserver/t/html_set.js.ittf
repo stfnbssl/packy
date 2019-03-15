@@ -1,0 +1,8 @@
+﻿$group
+	$params id, show:boolean|true
+
+	_ wz.html
+		@ '#${id}'
+		_ html.join('\n')
+	$if show
+		_ wz.show('#${id}')

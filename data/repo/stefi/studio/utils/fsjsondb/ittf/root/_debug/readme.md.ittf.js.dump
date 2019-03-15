@@ -1,0 +1,16 @@
+// 31/1/2017:18:4:35
+var $0 = {};
+var $1 = { n: "md", v: "", r: 1, c: 1, s: "f1", u: "f1",  };
+$.a($0, $1, 4);
+var $2 = { n: "h1", v: "fsJsonDb", r: 2, c: 5, s: "f1", u: "f1",  };
+$.a($1, $2, 6);
+var $3 = { n: "p", v: "A filesystem backed JSON database", r: 4, c: 5, s: "f1", u: "f1",  };
+$.a($1, $3, 8);
+var $4 = { n: "h2", v: "Concurrency", r: 6, c: 5, s: "f1", u: "f1",  };
+$.a($1, $4, 10);
+var $5 = { n: "h2", v: "Getting started", r: 8, c: 5, s: "f1", u: "f1",  };
+$.a($1, $5, 12);
+var $6 = { n: "h3", v: "Installation", r: 10, c: 5, s: "f1", u: "f1",  };
+$.a($1, $6, 14);
+var $7 = { n: "code", v: "npm install -g fsJsonDb", r: 12, c: 5, s: "f1", u: "f1",  };
+$.a($1, $7, 16);

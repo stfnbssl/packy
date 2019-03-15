@@ -1,0 +1,12 @@
+$group
+	$params text, name, haserror|false, error|@@null,
+	label
+		class col-lg-2 control-label
+		for ${name}
+		text ${text}
+	. col-lg-10
+		$if haserror
+			div
+				style color:red; font-size:small; text-align:left;
+				text ${error}
+		$hook

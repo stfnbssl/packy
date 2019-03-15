@@ -1,0 +1,29 @@
+﻿$group
+
+	var objUtils
+		{
+			@ extends
+				function
+					param objsink
+					param objsource
+					for var k in objsource
+						set objsink[k] = objsource[k]
+					log 'objsink, objsource', objsink, objsource
+					return objsink
+
+	var posUtils
+		{
+			@ getEventInfo
+				function
+					param event
+					return
+						{
+							@ kind 'event'
+							@ clientX event.clientX
+							@ clientY event.clientY
+							@ offsetX event.offsetX
+							@ offsetY event.offsetY
+							@ pageX event.pageX
+							@ pageY event.pageY
+							@ screenX event.screenX
+							@ screenY event.screenY

@@ -1,0 +1,26 @@
+﻿$group
+	$params &opt
+	
+	head
+		h/page/styles( &opt )
+		$hook styles
+	
+	body
+		# root
+
+		$hook scripts-1
+
+		h/page/scripts( &opt )
+		
+		$if opt.mainJs
+				
+			script
+				src js/main.js.ittf
+				type text/babel
+			
+		$hook
+
+		$hook scripts-2
+		
+
+

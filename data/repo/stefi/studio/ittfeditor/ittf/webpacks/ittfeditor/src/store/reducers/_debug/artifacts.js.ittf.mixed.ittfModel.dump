@@ -1,0 +1,15 @@
+  module  ids: 1 7
+    kind react ids: 2 8
+    +  ids: 3 9
+    import { combineReducers } from 'redux' ids: 4 10
+    +  ids: 5 11
+    $group  ids: 13 24
+      $args: artifacts, {}  $params: name, initialState|[]
+      function ${name} ids: 15 25
+        param state ids: 16 26
+        param action ids: 17 27
+        if typeof state === 'undefined' ids: 18 28
+          return ${initialState} ids: 19 29
+        switch action.type ids: 20 30
+          default  ids: 22 32
+            return state ids: 23 33

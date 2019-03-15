@@ -1,0 +1,53 @@
+h/root/empty_layout()
+
+    $
+        function sp(num) {
+            return new Array(num).join(' ');
+        }
+
+	$append head-styles
+		@style
+			css
+				< body
+					margin 3rem
+				< p
+					font-size 1.2rem
+				< pre
+					background #ddd
+					font-size 1.2rem
+				< code
+					background #eee
+				. primary
+					color #000
+					background #eea
+					padding 1rem
+				. wrong
+					color red
+				. right
+					color darkgreen
+
+    h3 Implement the blamk escape (\b) as first or last character of a node value, 
+        \b to allow the insertion of space sequences at the start and the end of a value string. 
+	div
+		class primary
+		
+		pre This is a paragraph with
+			\ <code>a plain continuation</code>, ( tag = \ )
+		pre This is a paragraph with
+			\b <code>a blank continuation</code>, ( tag = \b )
+		pre This is a paragraph with
+			\n <code>a EOL continuation</code>, ( tag = \n ) 
+		pre           This is a paragraph coded in ITTF with 10 starting blanks but
+		    \b the ittf loader trims all node values.
+		pre
+			code ${ sp(10) }
+				\ This is a paragraph coded in ITTF with 10 starting blank obtained with a jsWizzi function but
+				\b it is clumsy.
+		pre
+			code \b          This is a paragraph coded in ITTF with starting blank escape followed by 10 blanks
+		pre
+			code \b          with starting and ending blank escapes          \b
+		pre
+			code \b\b          with double starting and ending blank escapes          \b\b
+
+			

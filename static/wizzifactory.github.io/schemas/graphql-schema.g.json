@@ -1,0 +1,5625 @@
+{
+  "name": "graphql",
+  "preserveTags": true,
+  "requires": [],
+  "exportTos": [
+    "json"
+  ],
+  "elements": [
+    {
+      "name": "comment",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "#"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "graphql",
+      "super": null,
+      "isRoot": true,
+      "tags": [
+        "graphql"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "typeDef",
+          "role": "typeDefs",
+          "tags": [
+            "typeDef"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "operation",
+          "role": "operations",
+          "tags": [
+            "operation"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "typeDef",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "typeDef"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "scalarTypeDef",
+          "tags": [
+            "scalar"
+          ]
+        },
+        {
+          "name": "objectTypeDef",
+          "tags": [
+            "type"
+          ]
+        },
+        {
+          "name": "interfaceTypeDef",
+          "tags": [
+            "interface"
+          ]
+        },
+        {
+          "name": "unionTypeDef",
+          "tags": [
+            "union"
+          ]
+        },
+        {
+          "name": "unionMemberType",
+          "tags": [
+            "",
+            ""
+          ]
+        },
+        {
+          "name": "enumTypeDef",
+          "tags": [
+            "enum"
+          ]
+        },
+        {
+          "name": "enumValueDef",
+          "tags": [
+            "@"
+          ]
+        },
+        {
+          "name": "inputObjectTypeDef",
+          "tags": [
+            "input"
+          ]
+        },
+        {
+          "name": "directiveDef",
+          "tags": [
+            "directive"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "scalarTypeDef",
+      "super": "typeDef",
+      "isRoot": false,
+      "tags": [
+        "scalar"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "objectTypeDef",
+      "super": "typeDef",
+      "isRoot": false,
+      "tags": [
+        "type"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "implement",
+          "role": "implements",
+          "tags": [
+            "&"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "fieldDef",
+          "role": "fieldDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "implement",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "&"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "interfaceTypeDef",
+      "super": "typeDef",
+      "isRoot": false,
+      "tags": [
+        "interface"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "fieldDef",
+          "role": "fieldDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "unionTypeDef",
+      "super": "typeDef",
+      "isRoot": false,
+      "tags": [
+        "union"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "unionMemberType",
+          "role": "unionMemberTypes",
+          "tags": [
+            "",
+            ""
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "unionMemberType",
+      "super": "typeDef",
+      "isRoot": false,
+      "tags": [
+        "",
+        ""
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "enumTypeDef",
+      "super": "typeDef",
+      "isRoot": false,
+      "tags": [
+        "enum"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "enumValueDef",
+          "role": "enumValueDefs",
+          "tags": [
+            "@"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "enumValueDef",
+      "super": "typeDef",
+      "isRoot": false,
+      "tags": [
+        "@"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "wzName ! ( null || true || false )"
+      ]
+    },
+    {
+      "name": "inputObjectTypeDef",
+      "super": "typeDef",
+      "isRoot": false,
+      "tags": [
+        "input"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "objectValueDef",
+          "role": null,
+          "tags": [
+            "{"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "operation",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "operation"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "variable",
+          "role": "variables",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "selectionSet",
+          "role": null,
+          "tags": [
+            "{"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "query",
+          "tags": [
+            "query"
+          ]
+        },
+        {
+          "name": "mutation",
+          "tags": [
+            "mutation"
+          ]
+        },
+        {
+          "name": "subscription",
+          "tags": [
+            "subscription"
+          ]
+        },
+        {
+          "name": "fragment",
+          "tags": [
+            "fragment"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "query",
+      "super": "operation",
+      "isRoot": false,
+      "tags": [
+        "query"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "variable",
+          "role": "variables",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "selectionSet",
+          "role": null,
+          "tags": [
+            "{"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": "operation",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "mutation",
+      "super": "operation",
+      "isRoot": false,
+      "tags": [
+        "mutation"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "variable",
+          "role": "variables",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "selectionSet",
+          "role": null,
+          "tags": [
+            "{"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": "operation",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "subscription",
+      "super": "operation",
+      "isRoot": false,
+      "tags": [
+        "subscription"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "variable",
+          "role": "variables",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "selectionSet",
+          "role": null,
+          "tags": [
+            "{"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": "operation",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "fragment",
+      "super": "operation",
+      "isRoot": false,
+      "tags": [
+        "fragment"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "typeCondition",
+          "type": "string",
+          "tags": [
+            "on"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "selectionSet",
+          "role": null,
+          "tags": [
+            "{"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "variable",
+          "role": "variables",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "operation",
+          "comments": []
+        },
+        {
+          "name": "selectionSet",
+          "role": null,
+          "tags": [
+            "{"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": "operation",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "argumentDef",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "ref"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "objectArg",
+          "tags": [
+            "{"
+          ]
+        },
+        {
+          "name": "arrayArg",
+          "tags": [
+            "["
+          ]
+        },
+        {
+          "name": "enumArg",
+          "tags": [
+            "enum"
+          ]
+        },
+        {
+          "name": "nullArg",
+          "tags": [
+            "null"
+          ]
+        },
+        {
+          "name": "stringArg",
+          "tags": [
+            "string"
+          ]
+        },
+        {
+          "name": "intArg",
+          "tags": [
+            "int"
+          ]
+        },
+        {
+          "name": "floatArg",
+          "tags": [
+            "float"
+          ]
+        },
+        {
+          "name": "booleanArg",
+          "tags": [
+            "boolean"
+          ]
+        },
+        {
+          "name": "IDArg",
+          "tags": [
+            "ID"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "InputValueDefinition"
+      ]
+    },
+    {
+      "name": "objectArg",
+      "super": "argumentDef",
+      "isRoot": false,
+      "tags": [
+        "{"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'object'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "arrayArg",
+      "super": "argumentDef",
+      "isRoot": false,
+      "tags": [
+        "["
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'array'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "enumArg",
+      "super": "argumentDef",
+      "isRoot": false,
+      "tags": [
+        "enum"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'enum'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "nullArg",
+      "super": "argumentDef",
+      "isRoot": false,
+      "tags": [
+        "null"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'null'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "stringArg",
+      "super": "argumentDef",
+      "isRoot": false,
+      "tags": [
+        "string"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'String'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "intArg",
+      "super": "argumentDef",
+      "isRoot": false,
+      "tags": [
+        "int"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Int'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "floatArg",
+      "super": "argumentDef",
+      "isRoot": false,
+      "tags": [
+        "float"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Float'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "booleanArg",
+      "super": "argumentDef",
+      "isRoot": false,
+      "tags": [
+        "boolean"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Boolean'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "IDArg",
+      "super": "argumentDef",
+      "isRoot": false,
+      "tags": [
+        "ID"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "argumentDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'ID'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "fieldDef",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "ref"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "isRequired"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDeprecated",
+          "type": "boolean",
+          "tags": [
+            "isDeprecated"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "skip",
+          "type": "boolean",
+          "tags": [
+            "skip"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "include",
+          "type": "boolean",
+          "tags": [
+            "include"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "arrayType",
+          "tags": [
+            "["
+          ]
+        },
+        {
+          "name": "enumType",
+          "tags": [
+            "enum"
+          ]
+        },
+        {
+          "name": "nullType",
+          "tags": [
+            "null"
+          ]
+        },
+        {
+          "name": "stringType",
+          "tags": [
+            "string"
+          ]
+        },
+        {
+          "name": "intType",
+          "tags": [
+            "int"
+          ]
+        },
+        {
+          "name": "floatType",
+          "tags": [
+            "float"
+          ]
+        },
+        {
+          "name": "booleanType",
+          "tags": [
+            "boolean"
+          ]
+        },
+        {
+          "name": "IDType",
+          "tags": [
+            "ID"
+          ]
+        },
+        {
+          "name": "itemType",
+          "tags": [
+            "item-type"
+          ]
+        },
+        {
+          "name": "method",
+          "tags": [
+            "m"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "item in this.directives",
+              "statements": [
+                {
+                  "tag": "if",
+                  "name": "xif",
+                  "value": "item.wzElement === 'isList'",
+                  "statements": [
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "this.isList = true",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "elif",
+                  "name": "elif",
+                  "value": "item.wzElement === 'isRequired'",
+                  "statements": [
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "this.isRequired = true",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "elif",
+                  "name": "elif",
+                  "value": "item.wzElement === 'isDeprecated'",
+                  "statements": [
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "this.isDeprecated = true",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "elif",
+                  "name": "elif",
+                  "value": "item.wzElement === 'skip'",
+                  "statements": [
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "this.skip = true",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "elif",
+                  "name": "elif",
+                  "value": "item.wzElement === 'include'",
+                  "statements": [
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "this.include = true",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "arrayType",
+      "super": "fieldDef",
+      "isRoot": false,
+      "tags": [
+        "["
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "isRequired"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDeprecated",
+          "type": "boolean",
+          "tags": [
+            "isDeprecated"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "skip",
+          "type": "boolean",
+          "tags": [
+            "skip"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "include",
+          "type": "boolean",
+          "tags": [
+            "include"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "itemType",
+          "role": null,
+          "tags": [
+            "item-type"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'array'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "enumType",
+      "super": "fieldDef",
+      "isRoot": false,
+      "tags": [
+        "enum"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "isRequired"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDeprecated",
+          "type": "boolean",
+          "tags": [
+            "isDeprecated"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "skip",
+          "type": "boolean",
+          "tags": [
+            "skip"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "include",
+          "type": "boolean",
+          "tags": [
+            "include"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'enum'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "nullType",
+      "super": "fieldDef",
+      "isRoot": false,
+      "tags": [
+        "null"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "isRequired"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDeprecated",
+          "type": "boolean",
+          "tags": [
+            "isDeprecated"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "skip",
+          "type": "boolean",
+          "tags": [
+            "skip"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "include",
+          "type": "boolean",
+          "tags": [
+            "include"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'null'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "stringType",
+      "super": "fieldDef",
+      "isRoot": false,
+      "tags": [
+        "string"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "isRequired"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDeprecated",
+          "type": "boolean",
+          "tags": [
+            "isDeprecated"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "skip",
+          "type": "boolean",
+          "tags": [
+            "skip"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "include",
+          "type": "boolean",
+          "tags": [
+            "include"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'String'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "intType",
+      "super": "fieldDef",
+      "isRoot": false,
+      "tags": [
+        "int"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "isRequired"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDeprecated",
+          "type": "boolean",
+          "tags": [
+            "isDeprecated"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "skip",
+          "type": "boolean",
+          "tags": [
+            "skip"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "include",
+          "type": "boolean",
+          "tags": [
+            "include"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Int'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "floatType",
+      "super": "fieldDef",
+      "isRoot": false,
+      "tags": [
+        "float"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "isRequired"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDeprecated",
+          "type": "boolean",
+          "tags": [
+            "isDeprecated"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "skip",
+          "type": "boolean",
+          "tags": [
+            "skip"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "include",
+          "type": "boolean",
+          "tags": [
+            "include"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Float'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "booleanType",
+      "super": "fieldDef",
+      "isRoot": false,
+      "tags": [
+        "boolean"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "isRequired"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDeprecated",
+          "type": "boolean",
+          "tags": [
+            "isDeprecated"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "skip",
+          "type": "boolean",
+          "tags": [
+            "skip"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "include",
+          "type": "boolean",
+          "tags": [
+            "include"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Boolean'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "IDType",
+      "super": "fieldDef",
+      "isRoot": false,
+      "tags": [
+        "ID"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "isRequired"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDeprecated",
+          "type": "boolean",
+          "tags": [
+            "isDeprecated"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "skip",
+          "type": "boolean",
+          "tags": [
+            "skip"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "include",
+          "type": "boolean",
+          "tags": [
+            "include"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'ID'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "itemType",
+      "super": "fieldDef",
+      "isRoot": false,
+      "tags": [
+        "item-type"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "isRequired"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDeprecated",
+          "type": "boolean",
+          "tags": [
+            "isDeprecated"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "skip",
+          "type": "boolean",
+          "tags": [
+            "skip"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "include",
+          "type": "boolean",
+          "tags": [
+            "include"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "method",
+      "super": "fieldDef",
+      "isRoot": false,
+      "tags": [
+        "m"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "tags": [
+            "isRequired"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isDeprecated",
+          "type": "boolean",
+          "tags": [
+            "isDeprecated"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "skip",
+          "type": "boolean",
+          "tags": [
+            "skip"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "include",
+          "type": "boolean",
+          "tags": [
+            "include"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "fieldDef",
+          "role": "fieldDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "selectionSet",
+          "role": null,
+          "tags": [
+            "{"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "fieldDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "valueDef",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "ref"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "="
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "stringValueDef",
+          "tags": [
+            "string"
+          ]
+        },
+        {
+          "name": "intValueDef",
+          "tags": [
+            "int"
+          ]
+        },
+        {
+          "name": "floatValueDef",
+          "tags": [
+            "float"
+          ]
+        },
+        {
+          "name": "booleanValueDef",
+          "tags": [
+            "boolean"
+          ]
+        },
+        {
+          "name": "IDValueDef",
+          "tags": [
+            "ID"
+          ]
+        },
+        {
+          "name": "enumValueDef",
+          "tags": [
+            "enum"
+          ]
+        },
+        {
+          "name": "objectValueDef",
+          "tags": [
+            "{"
+          ]
+        },
+        {
+          "name": "objectField",
+          "tags": [
+            "@"
+          ]
+        },
+        {
+          "name": "arrayValueDef",
+          "tags": [
+            "["
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "ArgumentDefinition / InputValueDefinition"
+      ]
+    },
+    {
+      "name": "stringValueDef",
+      "super": "valueDef",
+      "isRoot": false,
+      "tags": [
+        "string"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "="
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'String'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "intValueDef",
+      "super": "valueDef",
+      "isRoot": false,
+      "tags": [
+        "int"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "="
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Int'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "floatValueDef",
+      "super": "valueDef",
+      "isRoot": false,
+      "tags": [
+        "float"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "="
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Float'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "booleanValueDef",
+      "super": "valueDef",
+      "isRoot": false,
+      "tags": [
+        "boolean"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "="
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Boolean'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "IDValueDef",
+      "super": "valueDef",
+      "isRoot": false,
+      "tags": [
+        "ID"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "="
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'ID'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "enumValueDef",
+      "super": "valueDef",
+      "isRoot": false,
+      "tags": [
+        "enum"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "="
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "objectField",
+          "role": "objectFields",
+          "tags": [
+            "@"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'enum'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "objectValueDef",
+      "super": "valueDef",
+      "isRoot": false,
+      "tags": [
+        "{"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "="
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "valueDef",
+          "role": "valueDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'object'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "objectField",
+      "super": "valueDef",
+      "isRoot": false,
+      "tags": [
+        "@"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "="
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "valueDef",
+          "role": null,
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "arrayValueDef",
+      "super": "valueDef",
+      "isRoot": false,
+      "tags": [
+        "["
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "="
+          ],
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "valueDef",
+          "role": "valueDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "valueDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'array'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "directiveDef",
+      "super": "typeDef",
+      "isRoot": false,
+      "tags": [
+        "directive"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "argumentDef",
+          "role": "argumentDefs",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "directiveLocation",
+          "role": "directiveLocations",
+          "tags": [
+            "on"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "typeDef",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "directiveLocation",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "on"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "directive",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "%"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "argument",
+          "role": "arguments",
+          "tags": [
+            "@"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "directiveLocation",
+          "role": "directiveLocations",
+          "tags": [
+            "on"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "isList",
+          "tags": [
+            "%list"
+          ]
+        },
+        {
+          "name": "isRequired",
+          "tags": [
+            "%required"
+          ]
+        },
+        {
+          "name": "isDeprecated",
+          "tags": [
+            "%deprecated"
+          ]
+        },
+        {
+          "name": "skip",
+          "tags": [
+            "%skip"
+          ]
+        },
+        {
+          "name": "include",
+          "tags": [
+            "%include"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "isList",
+      "super": "directive",
+      "isRoot": false,
+      "tags": [
+        "%list"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "argument",
+          "role": "arguments",
+          "tags": [
+            "@"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "directive",
+          "comments": []
+        },
+        {
+          "name": "directiveLocation",
+          "role": "directiveLocations",
+          "tags": [
+            "on"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "directive",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "isRequired",
+      "super": "directive",
+      "isRoot": false,
+      "tags": [
+        "%required"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "argument",
+          "role": "arguments",
+          "tags": [
+            "@"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "directive",
+          "comments": []
+        },
+        {
+          "name": "directiveLocation",
+          "role": "directiveLocations",
+          "tags": [
+            "on"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "directive",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "isDeprecated",
+      "super": "directive",
+      "isRoot": false,
+      "tags": [
+        "%deprecated"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "argument",
+          "role": "arguments",
+          "tags": [
+            "@"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "directive",
+          "comments": []
+        },
+        {
+          "name": "directiveLocation",
+          "role": "directiveLocations",
+          "tags": [
+            "on"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "directive",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "skip",
+      "super": "directive",
+      "isRoot": false,
+      "tags": [
+        "%skip"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "argument",
+          "role": "arguments",
+          "tags": [
+            "@"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "directive",
+          "comments": []
+        },
+        {
+          "name": "directiveLocation",
+          "role": "directiveLocations",
+          "tags": [
+            "on"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "directive",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "include",
+      "super": "directive",
+      "isRoot": false,
+      "tags": [
+        "%include"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "argument",
+          "role": "arguments",
+          "tags": [
+            "@"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "directive",
+          "comments": []
+        },
+        {
+          "name": "directiveLocation",
+          "role": "directiveLocations",
+          "tags": [
+            "on"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "directive",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "variable",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "ref"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "stringVar",
+          "tags": [
+            "string"
+          ]
+        },
+        {
+          "name": "intVar",
+          "tags": [
+            "int"
+          ]
+        },
+        {
+          "name": "floatVar",
+          "tags": [
+            "float"
+          ]
+        },
+        {
+          "name": "booleanVar",
+          "tags": [
+            "boolean"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "stringVar",
+      "super": "variable",
+      "isRoot": false,
+      "tags": [
+        "string"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "variable",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "variable",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "variable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'String'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "intVar",
+      "super": "variable",
+      "isRoot": false,
+      "tags": [
+        "int"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "variable",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "variable",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "variable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Int'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "floatVar",
+      "super": "variable",
+      "isRoot": false,
+      "tags": [
+        "float"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "variable",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "variable",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "variable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Float'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "booleanVar",
+      "super": "variable",
+      "isRoot": false,
+      "tags": [
+        "boolean"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "variable",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "variable",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "variable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Boolean'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "selection",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "selection"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "selectionSet",
+          "tags": [
+            "{"
+          ]
+        },
+        {
+          "name": "field",
+          "tags": [
+            "."
+          ]
+        },
+        {
+          "name": "fragmentSpread",
+          "tags": [
+            "..."
+          ]
+        },
+        {
+          "name": "inlineFragment",
+          "tags": [
+            "...on"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "selectionSet",
+      "super": "selection",
+      "isRoot": false,
+      "tags": [
+        "{"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "argument",
+          "role": "arguments",
+          "tags": [
+            "@"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "selection",
+          "role": "selections",
+          "tags": [
+            "selection"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "selection",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "selection",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "field",
+      "super": "selection",
+      "isRoot": false,
+      "tags": [
+        "."
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "alias",
+          "type": "string",
+          "tags": [
+            "as"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "argument",
+          "role": "arguments",
+          "tags": [
+            "@"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "selection",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "selection",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "fragmentSpread",
+      "super": "selection",
+      "isRoot": false,
+      "tags": [
+        "..."
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "selection",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "selection",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "inlineFragment",
+      "super": "selection",
+      "isRoot": false,
+      "tags": [
+        "...on"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "selectionSet",
+          "role": null,
+          "tags": [
+            "{"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "selection",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "selection",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "argument",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "@"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "="
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "value",
+          "role": null,
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "value",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "ref"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "stringValue",
+          "tags": [
+            "string"
+          ]
+        },
+        {
+          "name": "intValue",
+          "tags": [
+            "int"
+          ]
+        },
+        {
+          "name": "floatValue",
+          "tags": [
+            "float"
+          ]
+        },
+        {
+          "name": "booleanValue",
+          "tags": [
+            "boolean"
+          ]
+        },
+        {
+          "name": "IDValue",
+          "tags": [
+            "ID"
+          ]
+        },
+        {
+          "name": "enumValue",
+          "tags": [
+            "enum"
+          ]
+        },
+        {
+          "name": "objectValue",
+          "tags": [
+            "{"
+          ]
+        },
+        {
+          "name": "objectField",
+          "tags": [
+            "@"
+          ]
+        },
+        {
+          "name": "arrayValue",
+          "tags": [
+            "["
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "stringValue",
+      "super": "value",
+      "isRoot": false,
+      "tags": [
+        "string"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "value",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'String'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "intValue",
+      "super": "value",
+      "isRoot": false,
+      "tags": [
+        "int"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "value",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Int'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "floatValue",
+      "super": "value",
+      "isRoot": false,
+      "tags": [
+        "float"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "value",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Float'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "booleanValue",
+      "super": "value",
+      "isRoot": false,
+      "tags": [
+        "boolean"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "value",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'Boolean'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "IDValue",
+      "super": "value",
+      "isRoot": false,
+      "tags": [
+        "ID"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "value",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'ID'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "enumValue",
+      "super": "value",
+      "isRoot": false,
+      "tags": [
+        "enum"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "value",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'enum'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "objectValue",
+      "super": "value",
+      "isRoot": false,
+      "tags": [
+        "{"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "value",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "objectField",
+          "role": "objectFields",
+          "tags": [
+            "@"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'object'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "objectField",
+      "super": "value",
+      "isRoot": false,
+      "tags": [
+        "@"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "value",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "value",
+          "role": null,
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "arrayValue",
+      "super": "value",
+      "isRoot": false,
+      "tags": [
+        "["
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": "value",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "value",
+          "role": "values",
+          "tags": [
+            "ref"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        },
+        {
+          "name": "directive",
+          "role": "directives",
+          "tags": [
+            "%"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "value",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.type = 'array'",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    }
+  ]
+}

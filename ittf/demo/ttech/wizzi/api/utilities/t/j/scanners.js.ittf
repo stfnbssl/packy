@@ -1,0 +1,58 @@
+$group
+
+	function ittfDocumentScanner_1
+		var u = wizziStandalone.default.wizziUtils
+		log 'u', u
+
+		var filePath_1p = '/ixdb/wizzi/default/html/index.html.ittf'
+
+		_ u.ittfDocumentScanner.scan
+			@ filePath_1p
+			{
+				@ rootFolder '/ixdb/wizzi/default'
+			f_cb_test( result )
+				log 'ittfDocumentScanner_1', filePath_1p, 'result\n', result
+				_ folderBrowse_1
+
+
+	function folderBrowse_1
+		var u = wizziStandalone.default.wizziUtils
+		# log 'u', u
+
+		var folderPath_1p = '/ixdb/wizzi'
+
+		_ u.folderBrowse.scan
+			@ folderPath_1p
+			{
+				@ rootFolder '/ixdb'
+			f_cb_test( result )
+				log 'folderBrowse_1', folderPath_1p, 'result\n', result
+				_ textDocumentScanner_1
+
+		
+	function textDocumentScanner_1
+		var u = wizziStandalone.default.wizziUtils
+		# log 'u', u
+
+		var filePath_1p = '/ixdb/wizzi/default/html/index.html.ittf'
+
+		_ u.textDocumentScanner.scan
+			@ filePath_1p
+			{
+				@ rootFolder '/ixdb'
+			f_cb_test( result )
+				log 'textDocumentScanner_1', filePath_1p, 'result\n', result
+				_ folderScanner_1
+
+	function folderScanner_1
+		var u = wizziStandalone.default.wizziUtils
+		# log 'u', u
+
+		var folderPath_1p = '/ixdb/wizzi'
+		_ u.folderScanner.scan
+			@ folderPath_1p
+			{
+				@ name 'wizzi'
+				@ gitPath 'c:/blabla'
+			f_cb_test( result )
+				log 'folderScanner_1', folderPath_1p, 'result\n', result

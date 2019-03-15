@@ -1,0 +1,39 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import { EXEC_JOB_REQUEST, EXEC_JOB_SUCCESS, EXEC_JOB_FAILURE } from '../actions' ids: undefined undefined
+    +  ids: undefined undefined
+    function jobReducer ids: undefined undefined
+      param state ids: undefined undefined
+      param action ids: undefined undefined
+      # log jobReducer, state, action ids: undefined undefined
+      if typeof state === 'undefined' ids: undefined undefined
+        return {} ids: undefined undefined
+      switch action.type ids: undefined undefined
+        case EXEC_JOB_REQUEST ids: undefined undefined
+          # log 'EXEC_JOB_REQUEST', 'initial state:', state ids: undefined undefined
+          var temp ids: undefined undefined
+            {  ids: undefined undefined
+              @ ...state ids: undefined undefined
+              @ isLoading true ids: undefined undefined
+          log 'EXEC_JOB_REQUEST', 'final state:', temp ids: undefined undefined
+          return temp ids: undefined undefined
+        case EXEC_JOB_SUCCESS ids: undefined undefined
+          # log 'EXEC_JOB_SUCCESS', 'initial state:', state ids: undefined undefined
+          var temp ids: undefined undefined
+            {  ids: undefined undefined
+              @ isLoading false ids: undefined undefined
+              @ error null ids: undefined undefined
+          log 'EXEC_JOB_SUCCESS', 'final state:', temp ids: undefined undefined
+          return temp ids: undefined undefined
+        case EXEC_JOB_FAILURE ids: undefined undefined
+          # log 'EXEC_JOB_FAILURE', 'initial state:', state ids: undefined undefined
+          var temp ids: undefined undefined
+            {  ids: undefined undefined
+              @ isLoading false ids: undefined undefined
+              @ error action.failure ids: undefined undefined
+          log 'EXEC_JOB_FAILURE', 'final state:', temp ids: undefined undefined
+          return temp ids: undefined undefined
+        default  ids: undefined undefined
+          return state ids: undefined undefined
+    export default jobReducer ids: undefined undefined

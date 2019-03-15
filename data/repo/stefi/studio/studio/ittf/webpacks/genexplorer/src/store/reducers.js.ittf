@@ -1,0 +1,300 @@
+﻿module
+	kind react
+
+	import * as actions from './actions'
+	import {getSchemaByID, getDefaultGenerator, getGeneratorByID, getTransformerByID} from '../schemas'
+
+	const defaultGenerator = getDefaultGenerator(getSchemaByID('javascript'))
+
+	const initialState
+		{
+			# UI related state
+			@ showSettingsDialog false
+			@ loadingSnippet false
+			@ saving false
+			@ cursor null
+			@ error null
+			
+			# Snippet related state
+			@ selectedRevision null
+			
+			# Workbench settings
+			
+			# Contains local settings of all generators
+			@ generatorSettings {}
+			
+			# Remember selected generator per schema
+			@ generatorPerSchema {}
+
+			@ workbench
+				{
+					@ generator defaultGenerator.id
+					@ generatorSettings {}
+					@ generateError null
+					@ code defaultGenerator.schema.codeExample
+					@ initialCode defaultGenerator.schema.codeExample
+			@ enableFormatting false
+
+	#
+		# Returns the subset of the data that makes sense to persist between visits.
+	export
+		function persist
+			param state
+			return
+				{
+					@ ...pick(state, 'generatorSettings', 'generatorPerSchema')
+					@ workbench
+						{
+							@ ...pick(state.workbench, 'generator', 'code')
+							
+	#
+		# When read from persistent storage, set the last stored code as initial version.
+		# This is necessary because we use CodeMirror as an uncontrolled component
+	export
+		function revive
+			param state=initialState
+			return
+				{
+					@ ...state
+					@ workbench
+						{
+							@ ...state.workbench
+							@ initialCode state.workbench.code
+							@ generatorSettings state.generatorSettings[state.workbench.generator] || {}
+
+	export
+		function astexplorer
+			param state=initialState
+			param action
+			return
+				{
+					# UI related state
+					@ showSettingsDialog showSettingsDialog(state.showSettingsDialog, action)
+					@ loadingSnippet loadSnippet(state.loadingSnippet, action)
+					@ saving saving(state.saving, action)
+					@ cursor cursor(state.cursor, action)
+					@ error error(state.error, action)
+					
+					# Snippet related state
+					@ activeRevision activeRevision(state.activeRevision, action)
+
+					# Workbench settings
+					@ generatorPerSchema generatorPerSchema(state.generatorPerSchema, action)
+					@ generatorSettings generatorSettings(state.generatorSettings, action, state)
+					@ workbench workbench(state.workbench, action, state)
+					@ enableFormatting format(state.enableFormatting, action, state)
+  
+	function format
+		param state=initialState.enableFormatting
+		param action
+		if action.type === actions.TOGGLE_FORMATTING
+			return !state
+		return state
+
+	function workbench
+		@ state=initialState.workbench
+		@ action
+		@ fullState
+
+		function generatorFromSchema
+			param schema
+			const generator = fullState.generatorPerSchema[schema.id] ||
+				\b getDefaultGenerator(schema).id
+			return
+				@ generator
+				@ generatorSettings fullState.generatorSettings[generator] || {}
+				@ code schema.codeExample
+				@ initialCode schema.codeExample
+
+		switch (action.type)
+			
+			case actions.SELECT_SCHEMA
+				return
+					{
+						@ ...state
+						@ ...generatorFromSchema(action.schema)
+			
+			case actions.DROP_TEXT
+				return
+					{
+						@ ...state
+						@ ...generatorFromSchema(getSchemaByID(action.schemaId))
+						@ code:action.text
+						@ initialCode action.text
+			
+			case actions.SET_PARSE_ERROR
+				return
+					{
+						@ ...state
+						@ generateError: action.error
+
+			case actions.SET_GENERATOR_SETTINGS
+				return
+					{
+						@ ...state
+						@ generatorSettings: action.settings
+
+			case actions.SET_GENERATOR
+				const newState
+					{
+						@ ...state
+						@ generator: action.generator.id
+				if action.generator !== state.generator
+					# Update generator settings
+					set newState.generatorSettings = fullState.generatorSettings[action.generator.id] || {}
+				return newState
+			
+			case actions.SET_CODE
+				return
+					{
+						@ ...state
+						@ code: action.code
+
+			case actions.SET_SNIPPET
+				const {revision} = action
+				const generatorID = revision.getGeneratorID();
+
+				return
+					{
+						@ ...state
+						@ generator: generatorID
+						@ generatorSettings revision.getGeneratorSettings() || fullState.generatorSettings[generatorID] || {}
+						@ code revision.getCode()
+						@ initialCode revision.getCode()
+			
+			case actions.CLEAR_SNIPPET
+			case actions.RESET
+				const reset = Boolean(actions.RESET)
+				const newState
+					{
+						@ ...state
+						@ generatorSettings fullState.generatorSettings[state.generator] || {}
+						@ code getGeneratorByID(state.generator).schema.codeExample
+						@ initialCode getGeneratorByID(state.generator).schema.codeExample
+				return newState
+			
+			default
+				return state
+
+	function generatorSettings
+		param state=initialState.generatorSettings
+		param action
+		param fullState
+		switch (action.type)
+			case actions.SET_GENERATOR_SETTINGS
+				if fullState.activeRevision
+					# If a revision is loaded, we are **not** storing changes to the settings in our local copy
+					return state
+				return
+					{
+						@ ...state
+						@ [fullState.workbench.generator] action.settings
+			default
+				return state
+
+	function generatorPerSchema
+		param state=initialState.generatorPerSchema
+		param action
+		switch action.type
+			case actions.SET_GENERATOR
+				return {...state, [action.generator.schema.id]: action.generator.id}
+			default
+				return state
+
+	function showSettingsDialog
+		param state=initialState.showSettingsDialog
+		param action
+		switch action.type
+			case actions.OPEN_SETTINGS_DIALOG
+				return true
+			case actions.CLOSE_SETTINGS_DIALOG
+				return false
+			default
+				return state
+  
+	function showShareDialog
+		param state=initialState.showShareDialog
+		param action
+		switch action.type
+			case actions.OPEN_SHARE_DIALOG
+				return true
+			case actions.CLOSE_SHARE_DIALOG
+				return false
+			default
+				return state
+  
+	function loadSnippet
+		param state=initialState.loadingSnippet
+		param action
+		switch action.type
+			case actions.START_LOADING_SNIPPET
+				return true
+			case actions.DONE_LOADING_SNIPPET
+				return false
+			default
+				return state
+
+	function saving
+		param state=initialState.saving
+		param action
+		switch action.type
+			case actions.START_SAVE
+				return !action.fork
+			case actions.END_SAVE
+				return false
+			default
+				return state
+
+	function cursor
+		param state=initialState.cursor
+		param action
+		switch action.type
+			case actions.SET_CURSOR
+				return action.cursor
+			case actions.SET_CODE
+				# If this action is triggered and the cursor = 0, then the code must be loaded
+				if action.cursor != null && action.cursor !== 0
+					return action.cursor
+				return state
+			case actions.RESET
+			case actions.SET_SNIPPET
+			case actions.CLEAR_SNIPPET
+				return null;
+			default
+				return state
+
+	function error
+		param state=initialState.error
+		param action
+		switch action.type
+			case actions.SET_ERROR
+				return action.error
+			case actions.CLEAR_ERROR
+				return null
+			default
+				return state
+
+	function activeRevision
+		param state=initialState.selectedRevision
+		param action
+		switch (action.type)
+			case actions.SET_SNIPPET
+				return action.revision
+			case actions.SELECT_SCHEMA
+			case actions.CLEAR_SNIPPET
+			case actions.RESET
+				return null
+			default
+				return state
+
+	function pick
+		param obj
+		param ...properties
+		return
+			_ properties.reduce
+				=>
+					param result
+					param prop
+					set result[prop] = obj[prop]
+					return result
+				{

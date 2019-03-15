@@ -1,0 +1,56 @@
+  module  ids: 1 26
+    kind react ids: 2 27
+    +  ids: 3 28
+    import { GET_ARTIFACTS_REQUEST, GET_ARTIFACTS_SUCCESS, GET_ARTIFACTS_FAILURE } from '../actions' ids: 4 29
+    +  ids: 5 30
+    const artifactInitialState ids: 6 31
+      {  ids: 7 32
+        @ items [] ids: 8 33
+    +  ids: 9 34
+    $group  ids: 51 63
+      $args: artifact, artifactInitialState  $params: name, initialState|[]
+      function ${name}Reducer ids: 53 64
+        param state ids: 54 65
+        param action ids: 55 66
+        log ${name}Reducer, state, action ids: 56 67
+        if typeof state === 'undefined' ids: 57 68
+          return ${initialState} ids: 58 69
+        switch action.type ids: 59 70
+          $group  ids: 74 83
+            $args: GET_ARTIFACTS_REQUEST $params: name
+            case ${name} ids: 76 84
+              log '${name}', 'initial state:', state ids: 77 85
+              $hook preprocess ids: 78 86
+              var temp ids: 79 87
+                {  ids: 12 37
+                  @ ...state ids: 13 38
+                  @ isLoading true ids: 14 39
+              log '${name}', 'final state:', temp ids: 81 89
+              return temp ids: 82 90
+          $group  ids: 74 91
+            $args: GET_ARTIFACTS_SUCCESS $params: name
+            case ${name} ids: 76 92
+              log '${name}', 'initial state:', state ids: 77 93
+              $hook preprocess ids: 78 94
+              var temp ids: 79 95
+                {  ids: 16 41
+                  @ items Object.values(action.payload.entities.artifacts) ids: 17 42
+                  @ isLoading false ids: 18 43
+                  @ error null ids: 19 44
+              log '${name}', 'final state:', temp ids: 81 97
+              return temp ids: 82 98
+          $group  ids: 74 99
+            $args: GET_ARTIFACTS_FAILURE $params: name
+            case ${name} ids: 76 100
+              log '${name}', 'initial state:', state ids: 77 101
+              $hook preprocess ids: 78 102
+              var temp ids: 79 103
+                {  ids: 21 46
+                  @ items [] ids: 22 47
+                  @ isLoading false ids: 23 48
+                  @ error action.failure ids: 24 49
+              log '${name}', 'final state:', temp ids: 81 105
+              return temp ids: 82 106
+          default  ids: 61 72
+            return state ids: 62 73
+    export default artifactReducer ids: 25 50

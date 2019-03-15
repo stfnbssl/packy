@@ -1,0 +1,106 @@
+﻿r-component( ProjectDialog )
+
+	$append imports
+
+		import List, { ListItem, ListItemText } from 'material-ui/List'
+		import Dialog, { DialogTitle, DialogActions, DialogContent, DialogContentText } from 'material-ui/Dialog'
+		import Button from 'material-ui/Button'
+		import Input from 'material-ui/Input/Input'
+		import Select from './mui/Select'
+
+	prop open
+		boolean
+		default false
+
+	prop classes
+		{
+		required
+
+	prop projects
+		[
+		required
+
+	prop onRequestClose
+		func
+		required
+
+	prop onCreateProject
+		func
+		required
+
+	prop onSelectProject
+		func
+		required
+
+	style
+		@ container
+			{
+				@ display 'flex'
+				@ flexWrap 'wrap'
+		@ input
+			{
+				@ margin theme.spacing.unit
+
+	ctor
+		set this.formNodes = {}
+
+	render
+			
+		prop classes
+		prop open
+		prop projects
+		prop onRequestClose
+		prop onCreateProject
+		prop onSelectProject
+
+		log 'ProjectDialog.open', open
+
+		return
+			
+			< Dialog
+				@ open {open}
+				@ onRequestClose {onRequestClose}
+				
+				< DialogTitle
+					+ { 'Select project' }
+				< DialogContent
+					{
+						&&
+							+ projects.length > 0
+							< List
+								@ dense {true}
+								{
+									_ projects.map
+										=>
+											param project
+											return
+												< ListItem
+													@ key {project.name}
+													@ onClick
+														=>
+															_ onSelectProject
+																@ project.name
+													< ListItemText
+														@ primary { project.name }
+				< DialogTitle
+					+ { 'Or create a new project' }
+
+				< DialogContent
+					. {classes.container}
+						mui_Input( project, Project )
+				
+				< DialogActions
+					
+					< Button
+						@ onClick
+							=>
+								# log 'this.formNodes.project', this.formNodes.project.value, this.formNodes.project
+								_ onCreateProject
+									@ this.formNodes.project.value
+						+ { 'Create project' }
+					
+					< Button
+						@ onClick
+							=>
+								_ onRequestClose()
+						+ { 'Cancel' }

@@ -1,0 +1,10 @@
+﻿var Relation
+	=>
+		param { relation: r }
+		return
+			tr
+				td {r.name}
+				td {r.role}
+				td {r.flags}
+				td {r.cardinality}
+				td {r.inheritedFrom}

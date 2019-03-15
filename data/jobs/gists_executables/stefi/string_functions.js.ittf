@@ -1,0 +1,8 @@
+/*
+    artifact generator: C:\My\wizzi\v5\apps\node_modules\wizzi-js\lib\artifacts\js\module\gen\main.js
+    primary source IttfDocument: c:/my/wizzi/v5/apps/wizzi-studio/wizzi-studio-express/dist/server/data/jobs/gists/stefi/string_functions.js.ittf
+    utc time: Tue, 04 Sep 2018 08:38:23 GMT
+*/
+'use strict';
+console.log('alphaBeta -> capitalize -> AlphaBeta');
+console.log('alpha-beta -> _.dashToCamelCase -> alphaBeta');

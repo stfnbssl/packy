@@ -1,0 +1,16 @@
+﻿$group
+
+	# Under development 
+	# in /ittf/demo/ttech/javascript/controls/splitter/step_2
+
+	var wzClient = {}
+	
+	set wzClient.gen
+		function
+			param ittfContent
+			param schema
+			param artifact
+
+	set wzClient.mTreeBuildupScript
+		function
+			param ittfContent

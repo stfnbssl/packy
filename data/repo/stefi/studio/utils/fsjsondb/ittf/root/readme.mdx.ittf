@@ -1,0 +1,68 @@
+﻿mdx
+	h1 fsjsondb
+	br
+	p A filesystem backed JSON database
+	br
+	h2 Features
+	br
+	p Concurrency is supported for a single instance of nodejs using a simple queue.
+	p Concurrency is not supported for multi-process instances.
+	br
+	p A dbContext object manages the collections filepath and operations enqueuing.
+	br
+	p A collection object manages insert, update, delete, findOne, find operations.
+	br
+	p All operations are async.
+	br
+	h2 Getting started
+	br
+	h3 Installation
+	br
+	p Add fsjsondb to your existing Node.js project.
+	br
+	code npm install fsjsondb --save
+	br
+	h3 Usage
+	br
+	js
+		p var path = require('path');
+		p var fsjsondb = require('fsjsondb');
+		br
+		p // function fsjsondb.dbContext
+		p // @param folderPath      The filesystem path of the storage folder
+		p // @return                A dbContext object
+		p var db = fsjsondb.dbContext(path.join(__dirname, 'data'));
+		br
+		p // function fsjsondb.collection
+		p // @param dbContext       The dbContext object returned by fsjsondb.dbContext
+		p // @param collectionName  The name of the JSON collection. It will be an array.
+		p // @param keyNames        An array containing the names of the collection key properties.
+		p // @return                A JSON collection object
+		p var authors = fsjsondb.collection(db, 'authors', ['name']);
+		br
+		p authors.insert({
+			p name: 'alex drastic', 
+			p email: 'alex.drastic@gmail.com'
+		p }, function(err, ok) {
+			p console.log(err, ok);
+		p });
+		br
+		p authors.update({ ... }, function(err, ok) {
+			p console.log(err, ok);
+		p });
+		br
+		p authors.delete({ name: ' ... ' }, function(err, ok) {
+			p console.log(err, ok);
+		p });
+		br
+		p authors.findOne({ name: ' ... ' }, function(err, ok) {
+			p console.log(err, ok);
+		p });
+		br
+		p authors.find({ ... }, function(err, ok) {
+			p console.log(err, ok);
+		p });
+	br
+	h3 Examples
+	br
+	p Have a look at the .\examples folder.

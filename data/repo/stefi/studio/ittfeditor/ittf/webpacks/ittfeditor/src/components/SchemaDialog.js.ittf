@@ -1,0 +1,105 @@
+﻿r-component( SchemaDialog )
+
+	$append imports
+
+		import List, { ListItem, ListItemText } from 'material-ui/List'
+		import Dialog, { DialogTitle, DialogActions, DialogContent, DialogContentText } from 'material-ui/Dialog'
+		import Button from 'material-ui/Button'
+		import Input from 'material-ui/Input/Input'
+		import Select from './mui/Select'
+
+	prop open
+		boolean
+		default false
+
+	prop classes
+		{
+		required
+
+	prop schemas
+		[
+		required
+
+	prop onRequestClose
+		func
+		required
+
+	prop onCreateSchema
+		func
+
+	prop onSelectSchema
+		func
+		required
+
+	style
+		@ container
+			{
+				@ display 'flex'
+				@ flexWrap 'wrap'
+		@ input
+			{
+				@ margin theme.spacing.unit
+
+	ctor
+		set this.formNodes = {}
+
+	render
+			
+		prop classes
+		prop open
+		prop schemas
+		prop onRequestClose
+		prop onCreateSchema
+		prop onSelectSchema
+
+		log 'SchemaDialog.open', open
+
+		return
+			
+			< Dialog
+				@ open {open}
+				@ onRequestClose {onRequestClose}
+				
+				< DialogTitle
+					+ { 'Select schema' }
+				< DialogContent
+					{
+						&&
+							+ schemas.length > 0
+							< List
+								@ dense {true}
+								{
+									_ schemas.map
+										=>
+											param schema
+											return
+												< ListItem
+													@ key {schema.uri}
+													@ onClick
+														=>
+															_ onSelectSchema
+																@ schema.uri
+													< ListItemText
+														@ primary { schema.uri }
+				< DialogTitle
+					+ { 'Or create a new schema' }
+
+				< DialogContent
+					. {classes.container}
+						mui_Input( schema, Schema )
+				
+				< DialogActions
+					
+					< Button
+						@ onClick
+							=>
+								# log 'this.formNodes.schema', this.formNodes.schema.value, this.formNodes.schema
+									_ onCreateSchema
+										@ this.formNodes.schema.value
+						+ { 'Create schema' }
+					
+					< Button
+						@ onClick
+							=>
+								_ onRequestClose()
+						+ { 'Cancel' }

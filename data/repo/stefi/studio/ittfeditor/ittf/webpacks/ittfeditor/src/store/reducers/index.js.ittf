@@ -1,0 +1,25 @@
+﻿module
+	kind react
+
+	$include app-options
+	
+	app/store/reducers/index( &app )
+
+		$append imports
+			import themeReducer from './themeReducer'
+			import commonsReducer from './commonsReducer'
+			import documentReducer from './documentReducer'
+			import fragmentReducer from './fragmentReducer'
+			import editorReducer from './editorReducer'
+			import artifactReducer from './artifactReducer'
+			import schemaReducer from './schemaReducer'
+			import jobReducer from './jobReducer'
+
+		@ theme themeReducer
+		@ commons commonsReducer
+		@ document documentReducer
+		@ fragment fragmentReducer
+		@ editor editorReducer
+		@ artifact artifactReducer
+		@ schema schemaReducer
+		@ job jobReducer

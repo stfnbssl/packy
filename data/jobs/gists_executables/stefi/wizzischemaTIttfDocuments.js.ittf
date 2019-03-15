@@ -1,0 +1,67 @@
+/*
+    artifact generator: C:\My\wizzi\v5\apps\node_modules\wizzi-js\lib\artifacts\js\module\gen\main.js
+    primary source IttfDocument: c:/my/wizzi/v5/apps/wizzi-studio/wizzi-studio-express/dist/server/data/jobs/gists/stefi/wizzischematittfdocuments.js.ittf
+    utc time: Mon, 03 Sep 2018 12:44:47 GMT
+*/
+'use strict';
+var schemaRootFiles = [
+    {
+        baseName: 'xx.wfschema.ittf', 
+        relFolder: ''
+    }, 
+    {
+        baseName: 'yy.wfschema.ittf', 
+        relFolder: ''
+    }, 
+    {
+        baseName: 'a1.wfschema.ittf', 
+        relFolder: 't/xx'
+    }, 
+    {
+        baseName: 'a2.wfschema.ittf', 
+        relFolder: 't/xx'
+    }, 
+    {
+        baseName: 'b1.wfschema.ittf', 
+        relFolder: 't/yy'
+    }, 
+    {
+        baseName: 'b2.wfschema.ittf', 
+        relFolder: 't/yy/'
+    }
+];
+var schemas = {};
+var i, i_items=schemaRootFiles, i_len=schemaRootFiles.length, item;
+for (i=0; i<i_len; i++) {
+    item = schemaRootFiles[i];
+    if (item.relFolder.length == 0) {
+        var ss = item.baseName.split('.');
+        if (ss.length == 3 && ss[1] === 'wfschema') {
+            schemas[ss[0]] = {
+                // @ schemaId paths.schemaId(packageName, ss[0])
+                mainDocument: item
+            };
+        }
+    }
+}
+var i, i_items=schemaRootFiles, i_len=schemaRootFiles.length, item;
+for (i=0; i<i_len; i++) {
+    item = schemaRootFiles[i];
+    console.log('item.relFolder.substr(0,2)', item.relFolder.substr(0,2));
+    if (item.relFolder.substr(0,2) == 't/') {
+        var ss = item.relFolder.split('/');
+        console.log('ss', ss.length, ss);
+        if (ss.length > 1 && schemas[ss[1]]) {
+            var tDocuments = schemas[ss[1]].tDocuments;
+            if (!tDocuments) {
+                tDocuments = [];
+            }
+            tDocuments.push(item);
+            schemas[ss[1]].tDocuments = tDocuments;
+        }
+        else {
+            schemasTDocuments.push(item);
+        }
+    }
+}
+console.log(JSON.stringify(schemas, null, 2));

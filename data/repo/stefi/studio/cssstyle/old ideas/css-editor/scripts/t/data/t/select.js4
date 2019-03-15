@@ -1,0 +1,11 @@
+﻿__o
+	$args name label enumobject enumname
+	__p name ${name}
+	__p label ${label}
+	__p type:object Wmteditor.ValueWidget
+	__p editor Select
+	__p schema
+		__o 
+			__p name ${name}
+			__p type string
+			__p enumdef:object ${enumobject}['${enumname}']

@@ -1,0 +1,36 @@
+﻿$group
+	$params name, version
+
+	$
+		var vnum = parseInt(version[1]);
+		vnum++;
+		var nextversion = 'v' + vnum;
+
+	{
+		label '${name} ${version} generate'
+		version '${version}'
+		packageName '${name}'
+		command 'node'
+		argv0 'generate.js'
+		cwd 'c:\my\wizzi\${version}\plugins\${name}\src'
+		[ tags
+			'${version}'
+			'plugin'
+		[ dependencies
+			{
+				name 'generate.wfjob.ittf'
+				kind 'ittfDocument'
+				schema 'wfjob'
+				fullPath 'c:\my\wizzi\${version}\plugins\${name}\src\generate.wfjob.ittf'
+		[ copyPurgeTo
+			'c:\my\wizzi\${nextversion}\test\${name}'
+			'c:\my\wizzi\${nextversion}\node_modules\${name}'
+			'c:\my\wizzi\${version}\apps\node_modules\${name}'
+			'c:\my\wizzi\${version}\github\${name}'
+		{ git
+			commit true
+			push true
+			localPath 'c:\my\wizzi\${version}\github\${name}'
+			visitUrl 'https://github.com/wizzifactory/${name}'
+			
+		$hook

@@ -1,0 +1,7 @@
+$group
+
+	if _.isArray(list) == false
+		return
+			_ callback
+				_ CRUD.missingArrayError()
+

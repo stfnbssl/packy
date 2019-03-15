@@ -1,0 +1,35 @@
+﻿module
+	kind jsfile
+
+	set window.onload
+		function
+		
+			set CodeMirror.commands.autocomplete
+				function
+					param cm
+					_ CodeMirror.showHint(cm, CodeMirror.hint.javascript)
+			
+			set window.editor
+				_ CodeMirror.fromTextArea
+					@ code
+					{
+						@ mode "javascript"
+						@ lineNumbers  true
+						@ lineWrapping true
+						@ extraKeys
+							{
+								@ "F11"
+									function
+										param cm
+										_ cm.setOption
+											@ "fullScreen"
+											@ !cm.getOption("fullScreen")
+								@ "Esc"
+									function
+										param cm
+										if cm.getOption("fullScreen")
+											_ cm.setOption("fullScreen", false)
+						@ gutters
+							[
+								@ "CodeMirror-linenumbers"
+								@ "CodeMirror-foldgutter"

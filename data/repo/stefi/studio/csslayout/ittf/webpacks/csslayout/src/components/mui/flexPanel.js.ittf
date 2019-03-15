@@ -1,0 +1,42 @@
+﻿r-component( FlexPanel )
+
+	$append imports
+		import builder from './MuiBuilder'
+
+	style
+		@ flex
+			{
+				@ display 'flex'
+				@ flexDirection 'row'
+				@ flexWrap 'wrap'
+				@ justifyContent 'space-between'
+		@ flexColumn
+			{
+				@ flexDirection 'column'
+
+	render
+		
+		prop classes
+		prop data
+		
+		const { id, direction, style: styleProp } = data
+		
+		return
+			div
+				@ id { id }
+				@ className
+					_ classNames
+						@ classes.flex
+						{
+							@ [classes.flexColumn] direction === 'column'
+				@style { styleProp }
+				{
+					_ data.panels.map
+						=>
+							param panel
+							param index
+							var PanelComponent = builder.create(panel)
+							return
+								< PanelComponent
+									@ key { index }
+									@ data { panel } 

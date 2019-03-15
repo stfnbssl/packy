@@ -1,0 +1,20 @@
+module
+	kind es6
+
+	$include g/js/wz/core
+	$include g/js/wz/localstorage
+
+	$include js/appManager
+	$include js/dataManager
+
+	let glEventHub = new EventEmitter3()
+	set window.glEventHub = glEventHub
+
+	log 'Template', Template
+
+	var app
+		new AppManager
+			{
+	_ app.start
+
+	

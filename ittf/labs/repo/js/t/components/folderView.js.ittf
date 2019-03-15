@@ -1,0 +1,72 @@
+﻿$group
+
+	react-component( FolderView )
+		
+		m render
+			const { folderData } = this.props
+			const { folderOrFile, userId, projectId, folderId } = folderData.data
+			const { items } = folderOrFile
+
+			function sortFiles
+				param left, right
+				if left.kind != right.kind
+					return left.kind - right.kind
+				return left.basename.localeCompare(right.basename)
+	
+			const itemsSorted = items.sort(sortFiles)
+
+			return
+				div
+					table
+						thead
+							tr
+								th
+								th basename
+								th _id
+						tbody
+							{
+								_ itemsSorted.map
+									=>
+										param item
+										
+										var icon
+										if item.kind == 0
+											set icon
+												svg-folder()
+										else
+											set icon
+												svg-file()
+										
+										var href
+										if folderId
+											set href
+												{
+													@ userId userId
+													@ projectId projectId
+													@ folderId (folderId + '/' + item.basename)
+										elif projectId
+											set href
+												{
+													@ userId userId
+													@ projectId projectId
+													@ folderId item.basename
+										else
+											set href
+												{
+													@ userId userId
+													@ projectId item.basename
+										
+										return
+											tr
+												td
+													+ { icon }
+												td
+													a { item.basename }
+														href { href }
+														on-click-stop()
+															log 'onClick.href', href
+															_ Pub
+																@ K.EVENTS.REPO.FOLDERDATA.SELECTED
+																@ href
+
+												td { item._id }

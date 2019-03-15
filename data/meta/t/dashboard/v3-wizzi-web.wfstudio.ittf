@@ -1,0 +1,39 @@
+﻿$group
+
+	 package v5-plugins/wizzi-web
+
+		kind plugin
+		plugin-name wizzi-web
+		base-folder-uri C:\My\wizzi\v5\plugins\wizzi-web
+		std-folders()
+		plugin-std-ittf-folders()
+
+		schema html
+
+			artifact document
+				language html
+				is-default
+		
+		schema css
+
+			artifact document
+				language css
+				is-default
+
+		schema svg
+
+			artifact document
+				language svg
+				is-default
+
+		schema md
+
+			artifact document
+				language markdown
+				is-default
+
+		schema graphql
+
+			artifact document
+				language graphql
+				is-default

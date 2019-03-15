@@ -1,0 +1,57 @@
+{
+
+	$
+		var l_colors = "#B9D2DE;#919FA6;#3C7590;#D1E5EE;#D9E7EE;#C0C4E3;#9799AA;#3E4893;#D5D9F1;#DDDFF1;#BDE5CE;#95AC9F;#3D9563;#D2F2E0;#DBF2E5;#FFEAD2;#BFB4A6;#A67944;#FFF0DE;#FFF4E7".split(';')
+
+	{ debug
+		showPalette false
+
+	{ theme
+		fontAwesome true
+		[ colors
+			$foreach c in l_colors
+				"${c}"
+					
+	{ html
+		fontSize 14
+	
+	{ body
+		backgroundColor "${l_colors[4]}"
+		fontFamily 'roboto'
+		
+	$include d/std-nav-top
+	$include d/std-nav-sub-top
+	$include d/std-nav-left
+	$include d/std-nav-right
+
+	{ breadCrumbs
+		[ items
+			{
+				label "Studio"
+				href "/ittf/repo/stefi/studio/index.html.ittf"
+			{
+				label "Wizzi"
+
+	{ wrapMain
+		fixed false
+		padding 0
+
+	{ contMain
+		fixed false
+		padding 2
+		[ panels
+			{
+				kind "cards"
+
+				[ cards
+				    d/card-min( Home (github site lab), ./home/index.html.ittf
+					d/card-min( Issues, ./issues.html.ittf
+					d/card-min( Legacy, ./legacy.html.ittf
+					d/card-min( Todo, ./todo.html.ittf
+					d/card-min( Activity log, ./activitylog.html.ittf
+					d/card-min( Css grid, ./cssgrid/index.html.ittf
+					d/card-min( Responsive css grid, ./responsivecssgrid/index.html.ittf
+					d/card-min( Responsive css menu, ./responsivecssmenu/index.html.ittf
+					d/card-min( Responsive css menu 1, ./r_menu_1/index.html.ittf
+					d/card-min( Responsive long page, ./r_long_page/index.html.ittf
+

@@ -1,0 +1,20 @@
+﻿module
+    kind react
+    
+	import React from "react"
+    
+	class HelloWorld
+        super React.Component
+        ctor 
+            param props
+            _ super(props)
+            set this.state =
+                { 
+                    @ message "Hello World!"
+        m render
+            return 
+                div 
+                    h1 
+                        + {this.state.message}
+    
+	export-default HelloWorld

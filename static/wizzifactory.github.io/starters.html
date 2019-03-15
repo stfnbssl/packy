@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="sanitize.css" rel="stylesheet" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/starters.css" rel="stylesheet" />
+</head>
+<body class="Starters">
+    <!-- top navigation markup -->
+    <input type="checkbox" id="tn-input-toggle" />
+    <nav class="tn-bar">
+        <nav class="tn-main">
+            <a href="index.html.ittf"><div class="logo">
+                <img src="images/logo.svg" />
+            </div>
+            </a>
+            <label for="tn-input-toggle" class="tn-label-toggle"></label>
+            <label for="tn-input-toggle" class="tn-label-toggle-close">&times;</label>
+            <ul>
+                <li><a href="concepts.html" title="Concepts">Concepts</a>
+                </li>
+                <li><a href="docs/intro.html" title="Documentation">Documentation</a>
+                </li>
+                <li><a href="api.html" title="Api">Api</a>
+                </li>
+                <li><a href="code/intro.html" title="Code">Code</a>
+                </li>
+                <li class="tn-pageSelected"><a href="starters.html" title="Starters">Starters</a>
+                </li>
+                <li><a href="project.html" title="Project">Project</a>
+                </li>
+            </ul>
+        </nav>
+    </nav>
+    <!-- main content markup -->
+    <main id="mc-wrapper" class="mc-wrapper-layout">
+        <input type="checkbox" id="mc-toggle-toc" />
+        <input type="checkbox" id="mc-toggle-toc-close" onchange="mc_toggle_toc_Close()" />
+        <div class="mc-frame">
+            <div class="mc-frame-bar">
+                <h1 class="mc-sidebar-left-title">Starters</h1>
+                <h1>
+                    <label for="mc-toggle-toc-close" class="mc-label-toggle-close">&times;</label>
+                </h1>
+            </div>
+            <nav class="mc-sidebar-left">
+                <ul>
+                    <li><a href="#object-intro" class="mc-item-link">Introduction</a>
+                    <label for="mc-toggle-object-intro" class="mc-label-toggle">Introduction</label>
+                    </li>
+                    <li><a href="#object-1" class="mc-item-link">Getting started</a>
+                    <label for="mc-toggle-object-1" class="mc-label-toggle">&nbsp; Getting started</label>
+                    </li>
+                    <li><a href="#object-2" class="mc-item-link">Wizzi-demo starter package</a>
+                    <label for="mc-toggle-object-2" class="mc-label-toggle">&nbsp; Wizzi-demo starter package</label>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mc-content">
+                <div>
+                    <input type="checkbox" id="mc-toggle-object-intro" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-object-1" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-object-2" onchange="m_toggleChanged()" />
+                    <h1 class="mc-content-title" id="object-intro">Starters</h1>
+                    <div class="mc-pane mc-pane-object-intro">
+                        <div class="summary"></div>
+                    </div>
+                    <div class="mc-pane mc-pane-object-1">
+                        <h2 id="object-1">Getting started</h2>
+                        <div class="summary">
+                            <p>You have to be motivated for trying to start using the wizzi factory. I will not encourage you saying that one can quickly get started and run.</p><p>At the current time the main problem with the wizzi factory is error detection. You can get an error that does not clearly show where it has occurred. So the only way to get started is to dive into code and help us to implement a better error tracking.</p><p>But i don't want to let the brave without an option on where to start. The     <a href="https://github.com/wizzifactory/wizzi-demo">wizzi-demo    </a><span>&nbsp;package, that can be installed from npm, is the playground where we are concentrating our efforts to make the wizzi factory easy to use.    </span></p><p>If you dare to play with the wizzi-demo we promise to do our best to give help. Create an issue on github describing your problem.</p></div>
+                    </div>
+                    <div class="mc-pane mc-pane-object-2">
+                        <h2 id="object-2">Wizzi-demo starter package</h2>
+                        <div class="summary">
+                            <h3>Overview</h3><p>The wizzi demo package is made of samples and links to the project documentation.</p><p>Have a look at the    <a href="https://github.com/wizzifactory/wizzi-demo">github project    </a><span>.    </span></p><p>The readme file in each folder give you the links to concept, documentation, api and source code, relative to the samples in that folder.</p><h3>Sections</h3><p>Sample folders cover these areas:</p><ul>    <li>mtree: ittf documents and mTrees    </li><li>jswizzi    </li><li>Wizzi Models    </li><li>wizzischema: wizzi schemas and Wizzi Model DOMs    </li><li>schema languages    </li><li>wizzi jobs    </li><li>wizzi plugins: creating and using a local sample plugin    </li></ul><p>The wizzi plugins section contains samples of model transformers and artifact generators.</p><h3>Installation</h3><p>    <br>        <span># Clone the repository        </span><br>            <span>$ git clone https://github.com/wizzifactory/wizzi-demo            </span><br>                <br>                    <span># Go into the repository                    </span><br>                        <span>$ cd wizzi-demo                        </span><br>                            <br>                                <span># Install dependencies                                </span><br>                                    <span>$ npm install                                    </span><br>                                    </br><h3>Running samples                                    </h3><p>                                        <br>                                            <span># Run samples in folders:                                            </span><br>                                                <span>$ node mtree                                                </span><br>                                                    <span>$ node wizzimodel                                                    </span><br>                                                        <span>$ ...                                                        </span>                                                    </br><h3>Build your samples                                                    </h3><p>This is left to you.                                                    </p>                                                </br>                                            </br>                                        </br>                                    </p>                                </br>                            </br>                        </br>                    </br>                </br>            </br>        </br>    </br></p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function m_toggleChanged() {
+            var el_toc = document.querySelector("input[id='mc-toggle-toc']");
+            var el_contents = document.querySelectorAll("input[id^='mc-toggle-object-']");
+            var seenTrue = false;
+            var i, i_items=el_contents, i_len=el_contents.length, el;
+            for (i=0; i<i_len; i++) {
+                el = el_contents[i];
+                if (el.checked) {
+                    seenTrue = true;
+                }
+            }
+            el_toc.checked = seenTrue;
+        }
+        function mc_toggle_toc_Close() {
+            var el_toc = document.querySelector("input[id='mc-toggle-toc']");
+            var el_contents = document.querySelectorAll("input[id^='mc-toggle-object-']");
+            var i, i_items=el_contents, i_len=el_contents.length, el;
+            for (i=0; i<i_len; i++) {
+                el = el_contents[i];
+                el.checked = false;
+            }
+            el_toc.checked = false;
+        }
+    </script>
+    <script src="wizzifactory.js"></script>
+</body>
+
+</html>

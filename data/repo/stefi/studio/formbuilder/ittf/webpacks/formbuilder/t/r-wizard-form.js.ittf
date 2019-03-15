@@ -1,0 +1,72 @@
+﻿module
+	$params name, pages:integer|2
+	# TODO $param-constraint pages 2..4
+	kind react
+
+	import React, { Component } from 'react';
+	import PropTypes from 'prop-types';
+
+	import ${name}1 from './${name}1'
+	import ${name}2 from './${name}2'
+	$if pages > 2
+		import ${name}3 from './${name}3'
+	$if pages > 4
+		import ${name}4 from './${name}4'
+
+	react ${name}
+
+		prop onSubmit
+			func
+			required
+
+		state
+			@ page 1
+		
+		=> nextPage
+			_ this.setState
+				{
+					@ page this.state.page + 1
+
+		=> previousPage
+			_ this.setState
+				{
+					@ page this.state.page - 1
+
+		render
+			prop onSubmit
+			const { page } = this.state
+			return
+				div
+					{
+						&&
+							+ page === 1 
+							< ${name}1
+								@ onSubmit {this.nextPage}
+					{
+						&&
+							+ page === 2 
+							< ${name}2
+								@ previousPage {this.previousPage}
+								$if pages > 2
+									@ onSubmit {this.nextPage}
+								$else
+									@ onSubmit {onSubmit}
+					$if pages > 2
+						{
+							&&
+								+ page === 3 
+								< ${name}3
+									@ previousPage {this.previousPage}
+									$if pages > 3
+										@ onSubmit {this.nextPage}
+									$else
+										@ onSubmit {onSubmit}
+					$if pages > 3
+						{
+							&&
+								+ page === 4 
+								< ${name}4
+									@ previousPage {this.previousPage}
+									@ onSubmit {onSubmit}		
+									
+	export default ${name}														

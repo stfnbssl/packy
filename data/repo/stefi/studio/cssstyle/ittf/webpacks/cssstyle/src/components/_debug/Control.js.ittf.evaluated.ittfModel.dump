@@ -1,0 +1,80 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { Component, PropTypes } from 'react' ids: undefined undefined
+    import { Input, Select, Range } from './controlTypes' ids: undefined undefined
+    import { Row, Col } from './grid' ids: undefined undefined
+    class Control ids: undefined undefined
+      super Component ids: undefined undefined
+      ctor  ids: undefined undefined
+        param props ids: undefined undefined
+        base props ids: undefined undefined
+        set this.handleChange = this.handleChange.bind(this) ids: undefined undefined
+      m handleChange ids: undefined undefined
+        param value ids: undefined undefined
+        const { id, onChangeValue } = this.props ids: undefined undefined
+        if onChangeValue ids: undefined undefined
+          log 'Control.handleChange', id, value ids: undefined undefined
+          _ onChangeValue(id, value, this.origValue) ids: undefined undefined
+      m render ids: undefined undefined
+        const { id, label, type, value, layout, data } = this.props ids: undefined undefined
+        const { onChange } = this.props ids: undefined undefined
+        const ControlComponent = createComponent(type) ids: undefined undefined
+        return  ids: undefined undefined
+          < Row ids: undefined undefined
+            < Col ids: undefined undefined
+              @ span {4} ids: undefined undefined
+              + {label || id} ids: undefined undefined
+            < Col ids: undefined undefined
+              @ span {8} ids: undefined undefined
+              < ControlComponent ids: undefined undefined
+                @ id {id} ids: undefined undefined
+                @ value {value} ids: undefined undefined
+                @ data {data} ids: undefined undefined
+                @ onChange {this.handleChange} ids: undefined undefined
+    function createComponent ids: undefined undefined
+      param type ids: undefined undefined
+      const inputTypes ids: undefined undefined
+        [  ids: undefined undefined
+          @ 'checkbox' ids: undefined undefined
+          @ 'color' ids: undefined undefined
+          @ 'date' ids: undefined undefined
+          @ 'datetime' ids: undefined undefined
+          @ 'datetime-local' ids: undefined undefined
+          @ 'email' ids: undefined undefined
+          @ 'file' ids: undefined undefined
+          @ 'hidden' ids: undefined undefined
+          @ 'month' ids: undefined undefined
+          @ 'number' ids: undefined undefined
+          @ 'password' ids: undefined undefined
+          @ 'radio' ids: undefined undefined
+          @ 'range' ids: undefined undefined
+          @ 'search' ids: undefined undefined
+          @ 'tel' ids: undefined undefined
+          @ 'text' ids: undefined undefined
+          @ 'time' ids: undefined undefined
+          @ 'url' ids: undefined undefined
+          @ 'week' ids: undefined undefined
+      const inputButtons ids: undefined undefined
+        [  ids: undefined undefined
+          @ 'button' ids: undefined undefined
+          @ 'reset' ids: undefined undefined
+          @ 'submit' ids: undefined undefined
+          @ 'image' ids: undefined undefined
+      var ret ids: undefined undefined
+      if inputTypes.indexOf(type) > -1 ids: undefined undefined
+        set ret = Input(type) ids: undefined undefined
+      elif type === 'select' ids: undefined undefined
+        set ret = Select() ids: undefined undefined
+      elif type === 'range' ids: undefined undefined
+        set ret = Range() ids: undefined undefined
+      else  ids: undefined undefined
+        set ret = Input('text') ids: undefined undefined
+      # log 'createComponent.ret', ret ids: undefined undefined
+      return ret ids: undefined undefined
+    set Control.propTypes ids: undefined undefined
+      {  ids: undefined undefined
+        @ id PropTypes.string.isRequired ids: undefined undefined
+        @ type PropTypes.string.isRequired ids: undefined undefined
+        @ onChangeValue PropTypes.func.isRequired ids: undefined undefined
+    export default Control ids: undefined undefined

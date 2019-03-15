@@ -1,0 +1,16 @@
+h/std/index()
+
+	$append body-scripts
+		js script.js.ittf
+		script
+			module
+				_ window.addEventListener
+					@ "load"
+					function
+						log "getValue ['a']", getValue(['a'])
+						log "getValue ['a','b']", getValue(['a','b'])
+						log "getValue [' ', 'a','b']", getValue([' ', 'a','b'])
+						log "getValue [' ', 'a','b',' ', 'c']", '|'+ getValue([' ', 'a','b',' ', 'c']) + '|'
+						log "getValue [' ', 'a','b',' ', 'c',' ',' ']", '|'+ getValue([' ', 'a','b',' ', 'c',' ',' ']) + '|'
+						log "getValue [' ', 'a','b',' ', 'c',' ',' ', '\\', 'b']", '|'+ getValue([' ', 'a','b',' ', 'c',' ',' ', '\\', 'b']) + '|'
+						log "getValue ['\\', 'b', ' ', 'a','b',' ', 'c',' ',' ', '\\', 'b']", '|'+ getValue(['\\', 'b', ' ', 'a','b',' ', 'c',' ',' ', '\\', 'b']) + '|'

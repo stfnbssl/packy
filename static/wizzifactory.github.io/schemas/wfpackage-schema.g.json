@@ -1,0 +1,1923 @@
+{
+  "name": "wfpackage",
+  "preserveTags": true,
+  "requires": [],
+  "exportTos": [
+    "json"
+  ],
+  "elements": [
+    {
+      "name": "comment",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "#"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "commentable",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "commentable"
+      ],
+      "flags": "is-abstract ",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "wfpackage",
+          "tags": [
+            "wfpackage"
+          ]
+        },
+        {
+          "name": "schema",
+          "tags": [
+            "schema"
+          ]
+        },
+        {
+          "name": "transformer",
+          "tags": [
+            "transformer"
+          ]
+        },
+        {
+          "name": "artifact",
+          "tags": [
+            "artifact"
+          ]
+        },
+        {
+          "name": "generatedPackage",
+          "tags": [
+            "generated-package"
+          ]
+        },
+        {
+          "name": "example",
+          "tags": [
+            "example"
+          ]
+        },
+        {
+          "name": "ittfExample",
+          "tags": [
+            "ittf-example"
+          ]
+        },
+        {
+          "name": "artifactExample",
+          "tags": [
+            "artifact-example"
+          ]
+        },
+        {
+          "name": "node",
+          "tags": [
+            "node"
+          ]
+        },
+        {
+          "name": "buildCwd",
+          "tags": [
+            "build-cwd"
+          ]
+        },
+        {
+          "name": "fsInfo",
+          "tags": [
+            "fs-info"
+          ]
+        },
+        {
+          "name": "documentGroup",
+          "tags": [
+            "d-group"
+          ]
+        },
+        {
+          "name": "fsitem",
+          "tags": [
+            "fsitem"
+          ]
+        },
+        {
+          "name": "folder",
+          "tags": [
+            "f"
+          ]
+        },
+        {
+          "name": "document",
+          "tags": [
+            "d"
+          ]
+        },
+        {
+          "name": "ittf",
+          "tags": [
+            "ittf"
+          ]
+        },
+        {
+          "name": "fragmentRef",
+          "tags": [
+            "fragment"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "wfpackage",
+      "super": "commentable",
+      "isRoot": true,
+      "tags": [
+        "wfpackage"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "kind",
+          "type": "string",
+          "tags": [
+            "kind"
+          ],
+          "default": "ittfsource",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "ittfsource",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "kernel",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "plugin",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "demo",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "tags": [
+            "version"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "license",
+          "type": "string",
+          "tags": [
+            "license"
+          ],
+          "default": "MIT",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "fsBaseUri",
+          "type": "string",
+          "tags": [
+            "fs-base-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "packageBaseUri",
+          "type": "string",
+          "tags": [
+            "package-base-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "gitBaseUri",
+          "type": "string",
+          "tags": [
+            "git-base-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "schema",
+          "role": "schemas",
+          "tags": [
+            "schema"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "generatedPackage",
+          "role": "generatedPackages",
+          "tags": [
+            "generated-package"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "fsInfo",
+          "role": null,
+          "tags": [
+            "fs-info"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "folder",
+          "role": "folders",
+          "tags": [
+            "f"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "document",
+          "role": "documents",
+          "tags": [
+            "d"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "getJobs",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "ret",
+              "statements": [
+                {
+                  "tag": "{",
+                  "name": "jsObject",
+                  "value": "",
+                  "statements": [
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "name this.wzName",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "title this.title",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "srcCwd this.srcCwd",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "assetsCwd this.assetsCwd",
+                      "statements": []
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "buildCwds",
+                      "statements": [
+                        {
+                          "tag": "[",
+                          "name": "jsArray",
+                          "value": "",
+                          "statements": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "schemas",
+                      "statements": [
+                        {
+                          "tag": "[",
+                          "name": "jsArray",
+                          "value": "",
+                          "statements": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "@",
+                      "name": "jsPropertyOrValue",
+                      "value": "jobs",
+                      "statements": [
+                        {
+                          "tag": "[",
+                          "name": "jsArray",
+                          "value": "",
+                          "statements": [
+                            {
+                              "tag": "{",
+                              "name": "jsObject",
+                              "value": "",
+                              "statements": [
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "title 'build ' + this.wzName + ' assets'",
+                                  "statements": []
+                                },
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "exe 'node'",
+                                  "statements": []
+                                },
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "cwd this.srcCwd",
+                                  "statements": []
+                                },
+                                {
+                                  "tag": "@",
+                                  "name": "jsPropertyOrValue",
+                                  "value": "args 'index'",
+                                  "statements": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "this.schemas.length > 0",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "ret.jobs.push",
+                  "statements": [
+                    {
+                      "tag": "{",
+                      "name": "jsObject",
+                      "value": "",
+                      "statements": [
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "title 'generate ' + this.wzName + ' wizzi model types in the assets folder'",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "exe 'node'",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "cwd this.assetsCwd",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "args 'schemas'",
+                          "statements": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "foreach",
+                  "name": "foreach",
+                  "value": "item in this.schemas",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "ret.schemas.push",
+                      "statements": [
+                        {
+                          "tag": "{",
+                          "name": "jsObject",
+                          "value": "",
+                          "statements": [
+                            {
+                              "tag": "@",
+                              "name": "jsPropertyOrValue",
+                              "value": "name item.wzName",
+                              "statements": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "item in this.buildCwds",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "ret.buildCwds.push",
+                  "statements": [
+                    {
+                      "tag": "{",
+                      "name": "jsObject",
+                      "value": "",
+                      "statements": [
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "cwd item.wzName",
+                          "statements": []
+                        },
+                        {
+                          "tag": "@",
+                          "name": "jsPropertyOrValue",
+                          "value": "title item.title",
+                          "statements": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "ret",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": [
+        "The root tag of the wfpackage schema."
+      ]
+    },
+    {
+      "name": "schema",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "schema"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "transformer",
+          "role": "transformers",
+          "tags": [
+            "transformer"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "artifact",
+          "role": "artifacts",
+          "tags": [
+            "artifact"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "example",
+          "role": "examples",
+          "tags": [
+            "example"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A wizzi schema defined by this wizzi package of kind plugin"
+      ]
+    },
+    {
+      "name": "transformer",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "transformer"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "A model transformer"
+      ]
+    },
+    {
+      "name": "artifact",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "artifact"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "tags": [
+            "kind"
+          ],
+          "default": "ittf",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "ittf",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "codewrite",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "An artifact generator"
+      ]
+    },
+    {
+      "name": "generatedPackage",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "generated-package"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "kind",
+          "type": "string",
+          "tags": [
+            "kind"
+          ],
+          "default": "kernel",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "kernel",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "plugin",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "demo",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "tags": [
+            "version"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "sourceFolder",
+          "type": "string",
+          "tags": [
+            "source-folder"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The full path is: (parent ittfsource package) package-base-uri / (this) sourceFolder"
+          ]
+        },
+        {
+          "name": "gitBaseUri",
+          "type": "string",
+          "tags": [
+            "git-base-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "buildCwd",
+          "role": "buildCwds",
+          "tags": [
+            "build-cwd"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "When the package kind is 'ittfsource' the element 'generatedPackage'",
+        "   main contain the description of generated packages."
+      ]
+    },
+    {
+      "name": "example",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "example"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "node",
+          "role": "nodes",
+          "tags": [
+            "node"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "ittfExample",
+          "tags": [
+            "ittf-example"
+          ]
+        },
+        {
+          "name": "artifactExample",
+          "tags": [
+            "artifact-example"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "The base node for examples"
+      ]
+    },
+    {
+      "name": "ittfExample",
+      "super": "example",
+      "isRoot": false,
+      "tags": [
+        "ittf-example"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": "example",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "node",
+          "role": "nodes",
+          "tags": [
+            "node"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "example",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "An IttfDocument example"
+      ]
+    },
+    {
+      "name": "artifactExample",
+      "super": "example",
+      "isRoot": false,
+      "tags": [
+        "artifact-example"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": "example",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "node",
+          "role": "nodes",
+          "tags": [
+            "node"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "example",
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "An artifact generation example"
+      ]
+    },
+    {
+      "name": "node",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "node"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "buildCwd",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "build-cwd"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "title",
+          "type": "string",
+          "tags": [
+            "title"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "fsInfo",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "fs-info"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "documentGroup",
+          "role": "documentGroups",
+          "tags": [
+            "d-group"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "documentGroup",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "d-group"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "schema",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "folder",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "document",
+          "role": "documents",
+          "tags": [
+            "d"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "fsitem",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "fsitem"
+      ],
+      "flags": "is-abstract ",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "dirname",
+          "type": "string",
+          "tags": [
+            "dirname"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "path",
+          "type": "string",
+          "tags": [
+            "path"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "relDirname",
+          "type": "string",
+          "tags": [
+            "rel-dirname"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "relative to package.fsBaseUri"
+          ]
+        },
+        {
+          "name": "relUri",
+          "type": "string",
+          "tags": [
+            "rel-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "relative to package.fsBaseUri"
+          ]
+        },
+        {
+          "name": "isPackageRoot",
+          "type": "boolean",
+          "tags": [
+            "is-package-root"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isTFolder",
+          "type": "boolean",
+          "tags": [
+            "is-t-folder"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isInsideTFolder",
+          "type": "boolean",
+          "tags": [
+            "is-inside-t-folder"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isExample",
+          "type": "boolean",
+          "tags": [
+            "is-example"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isTest",
+          "type": "boolean",
+          "tags": [
+            "is-test"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isUtil",
+          "type": "boolean",
+          "tags": [
+            "is-util"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "folder",
+          "tags": [
+            "f"
+          ]
+        },
+        {
+          "name": "document",
+          "tags": [
+            "d"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "folder",
+      "super": "fsitem",
+      "isRoot": false,
+      "tags": [
+        "f"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "dirname",
+          "type": "string",
+          "tags": [
+            "dirname"
+          ],
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "path",
+          "type": "string",
+          "tags": [
+            "path"
+          ],
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "relDirname",
+          "type": "string",
+          "tags": [
+            "rel-dirname"
+          ],
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": [
+            "relative to package.fsBaseUri"
+          ]
+        },
+        {
+          "name": "relUri",
+          "type": "string",
+          "tags": [
+            "rel-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": [
+            "relative to package.fsBaseUri"
+          ]
+        },
+        {
+          "name": "isPackageRoot",
+          "type": "boolean",
+          "tags": [
+            "is-package-root"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isTFolder",
+          "type": "boolean",
+          "tags": [
+            "is-t-folder"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isInsideTFolder",
+          "type": "boolean",
+          "tags": [
+            "is-inside-t-folder"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isExample",
+          "type": "boolean",
+          "tags": [
+            "is-example"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isTest",
+          "type": "boolean",
+          "tags": [
+            "is-test"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isUtil",
+          "type": "boolean",
+          "tags": [
+            "is-util"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "folder",
+          "role": "folders",
+          "tags": [
+            "f"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "document",
+          "role": "documents",
+          "tags": [
+            "d"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "document",
+      "super": "fsitem",
+      "isRoot": false,
+      "tags": [
+        "d"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "schema",
+          "type": "string",
+          "tags": [
+            "schema"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "jsCode",
+          "type": "string",
+          "tags": [
+            "js"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isFragment",
+          "type": "boolean",
+          "tags": [
+            "is-fragment"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isExternal",
+          "type": "boolean",
+          "tags": [
+            "is-external"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "dirname",
+          "type": "string",
+          "tags": [
+            "dirname"
+          ],
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "path",
+          "type": "string",
+          "tags": [
+            "path"
+          ],
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "relDirname",
+          "type": "string",
+          "tags": [
+            "rel-dirname"
+          ],
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": [
+            "relative to package.fsBaseUri"
+          ]
+        },
+        {
+          "name": "relUri",
+          "type": "string",
+          "tags": [
+            "rel-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": [
+            "relative to package.fsBaseUri"
+          ]
+        },
+        {
+          "name": "isPackageRoot",
+          "type": "boolean",
+          "tags": [
+            "is-package-root"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isTFolder",
+          "type": "boolean",
+          "tags": [
+            "is-t-folder"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isInsideTFolder",
+          "type": "boolean",
+          "tags": [
+            "is-inside-t-folder"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isExample",
+          "type": "boolean",
+          "tags": [
+            "is-example"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isTest",
+          "type": "boolean",
+          "tags": [
+            "is-test"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "isUtil",
+          "type": "boolean",
+          "tags": [
+            "is-util"
+          ],
+          "default": "false",
+          "defaultWhenDeclared": "true",
+          "flags": "",
+          "inheritedFrom": "fsitem",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "ittf",
+          "role": null,
+          "tags": [
+            "ittf"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "ittf",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "ittf"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "fragmentRef",
+          "role": "fragmentRefs",
+          "tags": [
+            "fragment"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "fragmentRef",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "fragment"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "documentId",
+          "type": "string",
+          "tags": [
+            "d-id"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "The id of the fragment document"
+          ]
+        },
+        {
+          "name": "uri",
+          "type": "string",
+          "tags": [
+            "uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "relUri",
+          "type": "string",
+          "tags": [
+            "rel-uri"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": [
+            "relative to package.fsBaseUri"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "name": "comment",
+          "role": "comments",
+          "tags": [
+            "#"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    }
+  ]
+}

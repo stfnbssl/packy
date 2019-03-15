@@ -1,0 +1,1116 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    var builder ids: undefined undefined
+      {  ids: undefined undefined
+        @ create ids: undefined undefined
+          function  ids: undefined undefined
+            param component ids: undefined undefined
+            const { kind } = component ids: undefined undefined
+            if kind === 'wrapper' ids: undefined undefined
+              return WrapperPanel ids: undefined undefined
+            elif kind === 'section' ids: undefined undefined
+              return SectionPanel ids: undefined undefined
+            elif kind === 'flex' ids: undefined undefined
+              return FlexPanel ids: undefined undefined
+            elif kind === 'side' ids: undefined undefined
+              return SidePanel ids: undefined undefined
+            elif kind === 'slide' ids: undefined undefined
+              return SlidePanel ids: undefined undefined
+            elif kind === 'info' ids: undefined undefined
+              return InfoPanel ids: undefined undefined
+            elif kind === 'infoLinks' ids: undefined undefined
+              return InfoLinks ids: undefined undefined
+            elif kind === 'menu' ids: undefined undefined
+              return MenuBar ids: undefined undefined
+            elif kind === 'toggler' ids: undefined undefined
+              return Toggler ids: undefined undefined
+            elif kind === 'link' ids: undefined undefined
+              return Link ids: undefined undefined
+            elif kind === 'p' ids: undefined undefined
+              return Paragraph ids: undefined undefined
+            elif kind === 'heading' ids: undefined undefined
+              return Heading ids: undefined undefined
+            else  ids: undefined undefined
+              throw Error('Builder.create error, unknown component kind: ' + kind) ids: undefined undefined
+        @ setFlex ids: undefined undefined
+          function  ids: undefined undefined
+            param style ids: undefined undefined
+            param direction ids: undefined undefined
+            return  ids: undefined undefined
+              _ Object.assign ids: undefined undefined
+                @ style ids: undefined undefined
+                {  ids: undefined undefined
+                  @ display 'flex' ids: undefined undefined
+                  @ flexDirection direction ids: undefined undefined
+                  @ flexWrap 'wrap' ids: undefined undefined
+                  @ justifyContent 'space-between' ids: undefined undefined
+        @ events ids: undefined undefined
+          iife () ids: undefined undefined
+            function  ids: undefined undefined
+              var topics ids: undefined undefined
+                {  ids: undefined undefined
+              var hOP = topics.hasOwnProperty ids: undefined undefined
+              return  ids: undefined undefined
+                {  ids: undefined undefined
+                  @ subscribe ids: undefined undefined
+                    function  ids: undefined undefined
+                      param topic ids: undefined undefined
+                      param listener ids: undefined undefined
+                      if ! (hOP.call(topics, topic)) ids: undefined undefined
+                        set topics[topic] = [] ids: undefined undefined
+                      var index = (topics[topic].push(listener) - 1) ids: undefined undefined
+                      return  ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ remove ids: undefined undefined
+                            function  ids: undefined undefined
+                              set delete (topics[topic][index]) ids: undefined undefined
+                  @ publish ids: undefined undefined
+                    function  ids: undefined undefined
+                      param topic ids: undefined undefined
+                      param info ids: undefined undefined
+                      if ! (hOP.call(topics, topic)) ids: undefined undefined
+                        return  ids: undefined undefined
+                      _ topics[topic].forEach ids: undefined undefined
+                        function  ids: undefined undefined
+                          param item ids: undefined undefined
+                          _ item ids: undefined undefined
+                            iif info != undefined ids: undefined undefined
+                              then info ids: undefined undefined
+                              else  ids: undefined undefined
+                                {  ids: undefined undefined
+    function hoverable ids: undefined undefined
+      param Component ids: undefined undefined
+      class hoverableComponent ids: undefined undefined
+        super React.Component ids: undefined undefined
+        ctor  ids: undefined undefined
+          set this.state = ids: undefined undefined
+            {  ids: undefined undefined
+              @ hovered false ids: undefined undefined
+          set this.onMouseOverHandler = this.onMouseOverHandler.bind(this) ids: undefined undefined
+          set this.onMouseOutHandler = this.onMouseOutHandler.bind(this) ids: undefined undefined
+        m componentDidMount ids: undefined undefined
+          _ ReactDOM.findDOMNode(this) ids: undefined undefined
+            ._ addEventListener ids: undefined undefined
+              @ "mouseover" ids: undefined undefined
+              @ this.onMouseOverHandler ids: undefined undefined
+          _ ReactDOM.findDOMNode(this) ids: undefined undefined
+            ._ addEventListener ids: undefined undefined
+              @ "mouseout" ids: undefined undefined
+              @ this.onMouseOutHandler ids: undefined undefined
+        m componentWillUnmount ids: undefined undefined
+          _ ReactDOM.findDOMNode(this) ids: undefined undefined
+            ._ removeEventListener ids: undefined undefined
+              @ "mouseover" ids: undefined undefined
+              @ this.onMouseOverHandler ids: undefined undefined
+          _ ReactDOM.findDOMNode(this) ids: undefined undefined
+            ._ removeEventListener ids: undefined undefined
+              @ "mouseout" ids: undefined undefined
+              @ this.onMouseOutHandler ids: undefined undefined
+        m onMouseOverHandler ids: undefined undefined
+          _ this.setState ids: undefined undefined
+            {  ids: undefined undefined
+              @ hovered true ids: undefined undefined
+        m onMouseOutHandler ids: undefined undefined
+          _ this.setState ids: undefined undefined
+            {  ids: undefined undefined
+              @ hovered false ids: undefined undefined
+        m render ids: undefined undefined
+          return  ids: undefined undefined
+            < Component ids: undefined undefined
+              @ {...this.props} ids: undefined undefined
+              @ {...this.state} ids: undefined undefined
+      return hoverableComponent ids: undefined undefined
+    class Paragraph ids: undefined undefined
+      super React.Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { text, style: elementStyle } = data ids: undefined undefined
+        return  ids: undefined undefined
+          p { text } ids: undefined undefined
+            @style { this.style(elementStyle) } ids: undefined undefined
+      m style ids: undefined undefined
+        param elementStyle ids: undefined undefined
+        if elementStyle ids: undefined undefined
+          return elementStyle ids: undefined undefined
+        else  ids: undefined undefined
+          return  ids: undefined undefined
+            {  ids: undefined undefined
+              @ padding '5px 20px' ids: undefined undefined
+              @ margin 0 ids: undefined undefined
+              @ font "400 16px/20px 'Open Sans', sans-serif" ids: undefined undefined
+              @ color "#333" ids: undefined undefined
+    class Heading ids: undefined undefined
+      super React.Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { format, text, span } = data ids: undefined undefined
+        if format === 'h1.span' ids: undefined undefined
+          return  ids: undefined undefined
+            h1 { text } ids: undefined undefined
+              @style { this.h1_style() } ids: undefined undefined
+              span { span } ids: undefined undefined
+                @style { this.span_style() } ids: undefined undefined
+        elif format === 'h1' ids: undefined undefined
+          return  ids: undefined undefined
+            h1 { text } ids: undefined undefined
+              @style { this.h1_style() } ids: undefined undefined
+        else  ids: undefined undefined
+          return  ids: undefined undefined
+            div { 'Unknown Heading format ' + format } ids: undefined undefined
+      m h1_style ids: undefined undefined
+        return this.props.data.style.h1 ids: undefined undefined
+      m span_style ids: undefined undefined
+        return this.props.data.style.span ids: undefined undefined
+    class Link ids: undefined undefined
+      super React.Component ids: undefined undefined
+      m render ids: undefined undefined
+        var  ids: undefined undefined
+          decl item ids: undefined undefined
+          decl format ids: undefined undefined
+        if this.props.item ids: undefined undefined
+          set item = this.props.item ids: undefined undefined
+          set format = this.props.format ids: undefined undefined
+        else  ids: undefined undefined
+          set item = this.props.data ids: undefined undefined
+          set format = this.props.data.format ids: undefined undefined
+        const { text, href, src, class: xclass, img_style } = item ids: undefined undefined
+        if format === 'ul.li.a' ids: undefined undefined
+          return  ids: undefined undefined
+            li  ids: undefined undefined
+              @style { this.ul_li_style() } ids: undefined undefined
+              a { text } ids: undefined undefined
+                href { href } ids: undefined undefined
+                @style { this.style() } ids: undefined undefined
+        elif format === 'div.a.i' ids: undefined undefined
+          return  ids: undefined undefined
+            a  ids: undefined undefined
+              @style { this.style() } ids: undefined undefined
+              href { href } ids: undefined undefined
+              i  ids: undefined undefined
+                class { xclass } ids: undefined undefined
+        elif format === 'a.img' ids: undefined undefined
+          return  ids: undefined undefined
+            a  ids: undefined undefined
+              @style { this.style() } ids: undefined undefined
+              href { href } ids: undefined undefined
+              img  ids: undefined undefined
+                src { src } ids: undefined undefined
+                @style { this.img_style(img_style) } ids: undefined undefined
+        else  ids: undefined undefined
+          return  ids: undefined undefined
+            div { 'Unknown Link format ' + format } ids: undefined undefined
+      m ul_li_style ids: undefined undefined
+        return  ids: undefined undefined
+          {  ids: undefined undefined
+            @ font "700 25px/55px 'Open Sans', sans-serif" ids: undefined undefined
+      m img_style ids: undefined undefined
+        param elementStyle ids: undefined undefined
+        return  ids: undefined undefined
+          _ Object.assign ids: undefined undefined
+            {  ids: undefined undefined
+            {  ids: undefined undefined
+            @ elementStyle ids: undefined undefined
+      m style ids: undefined undefined
+        var { format } = this.props ids: undefined undefined
+        if format === 'ul.li.a' ids: undefined undefined
+          var color = this.props.hovered ? '#2ab' : '#333' ids: undefined undefined
+          return  ids: undefined undefined
+            {  ids: undefined undefined
+              @ transition '0.3s' ids: undefined undefined
+              @ position 'relative' ids: undefined undefined
+              @ marginLeft 30 ids: undefined undefined
+              @ color color ids: undefined undefined
+              @ textDecoration 'none' ids: undefined undefined
+        elif format === 'a.img' ids: undefined undefined
+          return {} ids: undefined undefined
+        elif format === 'div.a.i' ids: undefined undefined
+          var color = this.props.hovered ? '#666' : '#888' ids: undefined undefined
+          return  ids: undefined undefined
+            {  ids: undefined undefined
+              @ transition '0.2s' ids: undefined undefined
+              @ margin '5px' ids: undefined undefined
+              @ color color ids: undefined undefined
+              @ fontSize '20px' ids: undefined undefined
+              @ display 'inline-block' ids: undefined undefined
+        else  ids: undefined undefined
+          return {} ids: undefined undefined
+    set Link = hoverable(Link) ids: undefined undefined
+    class Toggler ids: undefined undefined
+      super React.Component ids: undefined undefined
+      ctor  ids: undefined undefined
+        set this.state ids: undefined undefined
+          {  ids: undefined undefined
+            @ toggled false ids: undefined undefined
+        set this.onClick = this.onClick.bind(this) ids: undefined undefined
+      m componentDidMount ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { event } = data ids: undefined undefined
+        set this.event = event ids: undefined undefined
+      m onClick ids: undefined undefined
+        _ this.setState ids: undefined undefined
+          {  ids: undefined undefined
+            @ toggled !this.state.toggled ids: undefined undefined
+        _ builder.events.publish ids: undefined undefined
+          @ this.event ids: undefined undefined
+          @ this.state.toggled ids: undefined undefined
+      m render ids: undefined undefined
+        return  ids: undefined undefined
+          span  ids: undefined undefined
+            @style { this.style() } ids: undefined undefined
+            onClick { this.onClick } ids: undefined undefined
+            span { ' ' } ids: undefined undefined
+              @style { this.span_before_style() } ids: undefined undefined
+            span { ' ' } ids: undefined undefined
+              @style { this.span_style() } ids: undefined undefined
+            span { ' ' } ids: undefined undefined
+              @style { this.span_after_style() } ids: undefined undefined
+      m _span_style_base ids: undefined undefined
+        return  ids: undefined undefined
+          {  ids: undefined undefined
+            @ display 'block' ids: undefined undefined
+            @ width '17px' ids: undefined undefined
+            @ height '3px' ids: undefined undefined
+            @ background '#fff' ids: undefined undefined
+            @ position 'absolute' ids: undefined undefined
+            @ transition '0.3s' ids: undefined undefined
+      m span_style ids: undefined undefined
+        const background = this.state.toggled ? 'transparent' : '#fff' ids: undefined undefined
+        return  ids: undefined undefined
+          _ Object.assign ids: undefined undefined
+            {  ids: undefined undefined
+            _ this._span_style_base() ids: undefined undefined
+            {  ids: undefined undefined
+              @ left '12px' ids: undefined undefined
+              @ top '19px' ids: undefined undefined
+              @ background background ids: undefined undefined
+              @ transition 'background 0.3s' ids: undefined undefined
+      m span_before_style ids: undefined undefined
+        const ret ids: undefined undefined
+          _ Object.assign ids: undefined undefined
+            {  ids: undefined undefined
+            _ this._span_style_base() ids: undefined undefined
+            {  ids: undefined undefined
+              @ left '12px' ids: undefined undefined
+              @ top '13px' ids: undefined undefined
+              @ transformOrigin 'left top' ids: undefined undefined
+        if this.state.toggled ids: undefined undefined
+          set ret.transform = 'rotate(45deg)' ids: undefined undefined
+          set ret.width = '18px' ids: undefined undefined
+          set ret.left = '14px' ids: undefined undefined
+        return ret ids: undefined undefined
+      m span_after_style ids: undefined undefined
+        const ret ids: undefined undefined
+          _ Object.assign ids: undefined undefined
+            {  ids: undefined undefined
+            _ this._span_style_base() ids: undefined undefined
+            {  ids: undefined undefined
+              @ left '12px' ids: undefined undefined
+              @ top '25px' ids: undefined undefined
+              @ transformOrigin 'left bottom' ids: undefined undefined
+        if this.state.toggled ids: undefined undefined
+          set ret.transform = 'rotate(-45deg)' ids: undefined undefined
+          set ret.width = '18px' ids: undefined undefined
+          set ret.left = '14px' ids: undefined undefined
+        return ret ids: undefined undefined
+      m style ids: undefined undefined
+        return  ids: undefined undefined
+          {  ids: undefined undefined
+            @ display 'block' ids: undefined undefined
+            @ width '41px' ids: undefined undefined
+            @ height '41px' ids: undefined undefined
+            @ background '#333' ids: undefined undefined
+            @ position 'absolute' ids: undefined undefined
+            @ right '20px' ids: undefined undefined
+            @ top '20px' ids: undefined undefined
+            @ cursor 'pointer' ids: undefined undefined
+            @ zIndex 20 ids: undefined undefined
+    class MenuBar ids: undefined undefined
+      super React.Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { items, format } = data ids: undefined undefined
+        var menuItems ids: undefined undefined
+          _ items.map ids: undefined undefined
+            =>  ids: undefined undefined
+              param item ids: undefined undefined
+              return  ids: undefined undefined
+                < Link ids: undefined undefined
+                  @ format { format } ids: undefined undefined
+                  @ item { item } ids: undefined undefined
+        if format === 'ul.li.a' ids: undefined undefined
+          return  ids: undefined undefined
+            div  ids: undefined undefined
+              ul  ids: undefined undefined
+                @style {this.get_ul_Style()} ids: undefined undefined
+                + { menuItems } ids: undefined undefined
+        elif format === 'div.a.i' ids: undefined undefined
+          return  ids: undefined undefined
+            div  ids: undefined undefined
+              @style {this.get_ul_Style()} ids: undefined undefined
+              + { menuItems } ids: undefined undefined
+        else  ids: undefined undefined
+          return  ids: undefined undefined
+            < div unknown menu format: { format } ids: undefined undefined
+      m get_ul_Style ids: undefined undefined
+        return  ids: undefined undefined
+          {  ids: undefined undefined
+            @ width '200px' ids: undefined undefined
+            @ padding '0' ids: undefined undefined
+            @ listStyle 'none' ids: undefined undefined
+            @ margin '0 auto' ids: undefined undefined
+      m get_li_Style ids: undefined undefined
+        return  ids: undefined undefined
+          {  ids: undefined undefined
+            @ font "700 25px/55px 'Open Sans', sans-serif" ids: undefined undefined
+    class SidePanel ids: undefined undefined
+      super React.Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { id, style: elementStyle, panels } = data ids: undefined undefined
+        return  ids: undefined undefined
+          div  ids: undefined undefined
+            @ id { id } ids: undefined undefined
+            @style { this.style(elementStyle) } ids: undefined undefined
+            {  ids: undefined undefined
+              _ panels.map ids: undefined undefined
+                =>  ids: undefined undefined
+                  param panel ids: undefined undefined
+                  var PanelComponent = builder.create(panel) ids: undefined undefined
+                  return  ids: undefined undefined
+                    < PanelComponent ids: undefined undefined
+                      @ data { panel } ids: undefined undefined
+      m style ids: undefined undefined
+        param elementStyle ids: undefined undefined
+        return  ids: undefined undefined
+          _ Object.assign ids: undefined undefined
+            {  ids: undefined undefined
+            {  ids: undefined undefined
+            @ elementStyle ids: undefined undefined
+    class InfoPanel ids: undefined undefined
+      super React.Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { id, format, text, href, src, heading, flex, style: elementStyle, p_style } = data ids: undefined undefined
+        const childPanels ids: undefined undefined
+          _ data.panels.map ids: undefined undefined
+            =>  ids: undefined undefined
+              param panel ids: undefined undefined
+              set panel.p_style = panel.p_style || p_style ids: undefined undefined
+              var PanelComponent = builder.create(panel) ids: undefined undefined
+              return  ids: undefined undefined
+                < PanelComponent ids: undefined undefined
+                  @ data { panel } ids: undefined undefined
+        if format === 'a.img' ids: undefined undefined
+          return  ids: undefined undefined
+            div  ids: undefined undefined
+              @ id { id } ids: undefined undefined
+              @style { this.style(flex, elementStyle) } ids: undefined undefined
+              a  ids: undefined undefined
+                @style { this.a_style() } ids: undefined undefined
+                href { href } ids: undefined undefined
+                img  ids: undefined undefined
+                  src { src } ids: undefined undefined
+                  @style { this.img_style() } ids: undefined undefined
+              p { text } ids: undefined undefined
+                @style { this.p_style() } ids: undefined undefined
+              + { childPanels } ids: undefined undefined
+        elif format === 'h2.p+' ids: undefined undefined
+          return  ids: undefined undefined
+            div  ids: undefined undefined
+              @ id { id } ids: undefined undefined
+              @style { this.style(flex, elementStyle) } ids: undefined undefined
+              h2 { heading } ids: undefined undefined
+                @style { this.h2_style() } ids: undefined undefined
+              + { childPanels } ids: undefined undefined
+        else  ids: undefined undefined
+          return  ids: undefined undefined
+            div { 'Unknown InfoPanel format ' + format } ids: undefined undefined
+      m a_style ids: undefined undefined
+        return  ids: undefined undefined
+          {  ids: undefined undefined
+      m img_style ids: undefined undefined
+        return  ids: undefined undefined
+          {  ids: undefined undefined
+            @ display 'block' ids: undefined undefined
+            @ width '100%' ids: undefined undefined
+      m p_style ids: undefined undefined
+        return this.props.data.p_style || {} ids: undefined undefined
+      m h2_style ids: undefined undefined
+        return  ids: undefined undefined
+          {  ids: undefined undefined
+            @ font "700 25px/40px 'Open Sans', sans-serif" ids: undefined undefined
+            @ color '#2ab' ids: undefined undefined
+            @ padding '0 20px' ids: undefined undefined
+            @ margin '0' ids: undefined undefined
+      m style ids: undefined undefined
+        param flex ids: undefined undefined
+        param elementStyle ids: undefined undefined
+        const ret ids: undefined undefined
+          _ Object.assign ids: undefined undefined
+            {  ids: undefined undefined
+            {  ids: undefined undefined
+              @ width '32%' ids: undefined undefined
+              @ backgroundColor '#fff' ids: undefined undefined
+              @ marginBottom '20px' ids: undefined undefined
+              @ paddingBottom '60px' ids: undefined undefined
+              @ border '1px solid #ccc' ids: undefined undefined
+              @ position 'relative' ids: undefined undefined
+            @ elementStyle ids: undefined undefined
+        if flex === 'row' || flex === 'column' ids: undefined undefined
+          _ builder.setFlex(ret, flex) ids: undefined undefined
+        return ret ids: undefined undefined
+    class InfoLinks ids: undefined undefined
+      super React.Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { id, format, links, style: elementStyle } = data ids: undefined undefined
+        const childLinks ids: undefined undefined
+          _ links.map ids: undefined undefined
+            =>  ids: undefined undefined
+              param link ids: undefined undefined
+              const { label, href, text } = link ids: undefined undefined
+              return  ids: undefined undefined
+                span { label } ids: undefined undefined
+                  a { text } ids: undefined undefined
+                    href { href } ids: undefined undefined
+                  br  ids: undefined undefined
+        if format === 'p.[text.a]+' ids: undefined undefined
+          return  ids: undefined undefined
+            p  ids: undefined undefined
+              @style { this.style(elementStyle) } ids: undefined undefined
+              + {childLinks} ids: undefined undefined
+        else  ids: undefined undefined
+          return  ids: undefined undefined
+            div { 'Unknown InfoLinks format ' + format } ids: undefined undefined
+      m style ids: undefined undefined
+        param elementStyle ids: undefined undefined
+        log 'elementStyle', elementStyle ids: undefined undefined
+        return  ids: undefined undefined
+          _ Object.assign ids: undefined undefined
+            {  ids: undefined undefined
+            {  ids: undefined undefined
+              @ padding '0 0 0 30px' ids: undefined undefined
+              @ margin '0 5%' ids: undefined undefined
+              @ font "400 16px/20px 'Open Sans', sans-serif" ids: undefined undefined
+              @ color '#333' ids: undefined undefined
+              @ position 'absolute' ids: undefined undefined
+              @ left '0' ids: undefined undefined
+              @ bottom '20px' ids: undefined undefined
+            @ elementStyle ids: undefined undefined
+    class FlexPanel ids: undefined undefined
+      super React.Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { id, direction, style: elementStyle } = data ids: undefined undefined
+        return  ids: undefined undefined
+          div  ids: undefined undefined
+            @ id { id } ids: undefined undefined
+            @style { this.style(direction, elementStyle) } ids: undefined undefined
+            {  ids: undefined undefined
+              _ data.panels.map ids: undefined undefined
+                =>  ids: undefined undefined
+                  param panel ids: undefined undefined
+                  var PanelComponent = builder.create(panel) ids: undefined undefined
+                  return  ids: undefined undefined
+                    < PanelComponent ids: undefined undefined
+                      @ data { panel } ids: undefined undefined
+      m style ids: undefined undefined
+        param direction ids: undefined undefined
+        param elementStyle ids: undefined undefined
+        return  ids: undefined undefined
+          _ Object.assign ids: undefined undefined
+            {  ids: undefined undefined
+            {  ids: undefined undefined
+              @ display 'flex' ids: undefined undefined
+              @ flexDirection direction || 'row' ids: undefined undefined
+              @ flexWrap 'wrap' ids: undefined undefined
+              @ justifyContent 'space-between' ids: undefined undefined
+            @ elementStyle ids: undefined undefined
+    class SlidePanel ids: undefined undefined
+      super React.Component ids: undefined undefined
+      ctor  ids: undefined undefined
+        set this.state ids: undefined undefined
+          {  ids: undefined undefined
+            @ visible false ids: undefined undefined
+      m componentDidMount ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { toggleEvent, visibleOnStart } = data ids: undefined undefined
+        _ this.setState ids: undefined undefined
+          {  ids: undefined undefined
+            @ visible visibleOnStart ids: undefined undefined
+        if toggleEvent ids: undefined undefined
+          var that = this ids: undefined undefined
+          set this.toggleEventHandler ids: undefined undefined
+            _ builder.events.subscribe ids: undefined undefined
+              @ toggleEvent ids: undefined undefined
+              function  ids: undefined undefined
+                log 'WrapperPanel received event ' + toggleEvent ids: undefined undefined
+                _ that.setState ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ visible !that.state.visible ids: undefined undefined
+      m componentWillUnmount ids: undefined undefined
+        if this.toggleEventHandler ids: undefined undefined
+          _ this.toggleEventHandler.remove() ids: undefined undefined
+      m render ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { id, percWidth, flex, style: elementStyle } = data ids: undefined undefined
+        return  ids: undefined undefined
+          div  ids: undefined undefined
+            @ id { id } ids: undefined undefined
+            @style { this.style(percWidth, flex, elementStyle) } ids: undefined undefined
+            {  ids: undefined undefined
+              _ data.panels.map ids: undefined undefined
+                =>  ids: undefined undefined
+                  param panel ids: undefined undefined
+                  var PanelComponent = builder.create(panel) ids: undefined undefined
+                  return  ids: undefined undefined
+                    < PanelComponent ids: undefined undefined
+                      @ data { panel } ids: undefined undefined
+      m style ids: undefined undefined
+        param percWidth ids: undefined undefined
+        param flex ids: undefined undefined
+        param elementStyle ids: undefined undefined
+        const ret ids: undefined undefined
+          _ Object.assign ids: undefined undefined
+            {  ids: undefined undefined
+            {  ids: undefined undefined
+              @ width (percWidth + '%') ids: undefined undefined
+              @ height '100%' ids: undefined undefined
+              @ top 0 ids: undefined undefined
+              @ left ('-' + percWidth + '%') ids: undefined undefined
+              @ position 'fixed' ids: undefined undefined
+              @ zIndex '10' ids: undefined undefined
+              @ background '#fff' ids: undefined undefined
+              @ transition '0.3s' ids: undefined undefined
+            @ elementStyle ids: undefined undefined
+        if flex === 'row' || flex === 'column' ids: undefined undefined
+          _ builder.setFlex(ret, flex) ids: undefined undefined
+        if this.state.visible ids: undefined undefined
+          set ret.left = 0 ids: undefined undefined
+        return ret ids: undefined undefined
+    class SectionPanel ids: undefined undefined
+      super React.Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { id, style: elementStyle } = data ids: undefined undefined
+        return  ids: undefined undefined
+          div  ids: undefined undefined
+            @ id { id } ids: undefined undefined
+            @style { this.style(elementStyle) } ids: undefined undefined
+            {  ids: undefined undefined
+              _ data.panels.map ids: undefined undefined
+                =>  ids: undefined undefined
+                  param panel ids: undefined undefined
+                  var PanelComponent = builder.create(panel) ids: undefined undefined
+                  return  ids: undefined undefined
+                    < PanelComponent ids: undefined undefined
+                      @ data { panel } ids: undefined undefined
+      m style ids: undefined undefined
+        param elementStyle ids: undefined undefined
+        return  ids: undefined undefined
+          _ Object.assign ids: undefined undefined
+            {  ids: undefined undefined
+            {  ids: undefined undefined
+            @ elementStyle ids: undefined undefined
+    class WrapperPanel ids: undefined undefined
+      super React.Component ids: undefined undefined
+      ctor  ids: undefined undefined
+        set this.state ids: undefined undefined
+          {  ids: undefined undefined
+            @ fixed false ids: undefined undefined
+      m componentDidMount ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { fixEvent } = data ids: undefined undefined
+        if fixEvent ids: undefined undefined
+          var that = this ids: undefined undefined
+          set this.fixEventHandler ids: undefined undefined
+            _ builder.events.subscribe ids: undefined undefined
+              @ fixEvent ids: undefined undefined
+              function  ids: undefined undefined
+                log 'WrapperPanel received event ' + fixEvent ids: undefined undefined
+                _ that.setState ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ fixed !that.state.fixed ids: undefined undefined
+      m componentWillUnmount ids: undefined undefined
+        if this.fixEventHandler ids: undefined undefined
+          _ this.fixEventHandler.remove() ids: undefined undefined
+      m render ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        const { id, flex, style: elementStyle } = data ids: undefined undefined
+        return  ids: undefined undefined
+          div  ids: undefined undefined
+            @ id { id } ids: undefined undefined
+            @style { this.style(flex, elementStyle) } ids: undefined undefined
+            {  ids: undefined undefined
+              _ data.panels.map ids: undefined undefined
+                =>  ids: undefined undefined
+                  param panel ids: undefined undefined
+                  var PanelComponent = builder.create(panel) ids: undefined undefined
+                  return  ids: undefined undefined
+                    < PanelComponent ids: undefined undefined
+                      @ data { panel } ids: undefined undefined
+      m style ids: undefined undefined
+        param flex ids: undefined undefined
+        param elementStyle ids: undefined undefined
+        const ret ids: undefined undefined
+          _ Object.assign ids: undefined undefined
+            {  ids: undefined undefined
+            {  ids: undefined undefined
+              @ width '100%' ids: undefined undefined
+              @ minWidth '320px' ids: undefined undefined
+            @ elementStyle ids: undefined undefined
+        if flex === 'row' || flex === 'column' ids: undefined undefined
+          _ builder.setFlex(ret, flex) ids: undefined undefined
+        if this.state.fixed ids: undefined undefined
+          set ret.height = '100%' ids: undefined undefined
+          set ret.overflow = 'hidden' ids: undefined undefined
+        return ret ids: undefined undefined
+    class LayoutPanel ids: undefined undefined
+      super React.Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { data } = this.props ids: undefined undefined
+        return  ids: undefined undefined
+          div  ids: undefined undefined
+            @ id { data.id } ids: undefined undefined
+            {  ids: undefined undefined
+              _ data.panels.map ids: undefined undefined
+                =>  ids: undefined undefined
+                  param panel ids: undefined undefined
+                  if panel.kind === 'flex' ids: undefined undefined
+                    return  ids: undefined undefined
+                      < FlexPanel ids: undefined undefined
+                        @ data { panel } ids: undefined undefined
+    const p_style ids: undefined undefined
+      {  ids: undefined undefined
+        @ padding 0 ids: undefined undefined
+        @ margin '20px 5%' ids: undefined undefined
+        @ font "300 16px/22px 'Open Sans', sans-serif" ids: undefined undefined
+        @ color '#333' ids: undefined undefined
+    var layoutData ids: undefined undefined
+      {  ids: undefined undefined
+        @ kind 'wrapper' ids: undefined undefined
+        @ id 'wrapper' ids: undefined undefined
+        @ fixEvent 'toggle-mainmenu' ids: undefined undefined
+        @ flex 'row' ids: undefined undefined
+        @ panels ids: undefined undefined
+          [  ids: undefined undefined
+            {  ids: undefined undefined
+              @ kind 'section' ids: undefined undefined
+              @ id 'header' ids: undefined undefined
+              @ style ids: undefined undefined
+                {  ids: undefined undefined
+                  @ order 1 ids: undefined undefined
+                  @ width '100%' ids: undefined undefined
+                  @ backgroundColor '#fff' ids: undefined undefined
+                  @ marginBottom '20px' ids: undefined undefined
+                  @ borderBottom '1px solid #ccc' ids: undefined undefined
+                  @ position 'relative' ids: undefined undefined
+              @ panels ids: undefined undefined
+                [  ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'link' ids: undefined undefined
+                    @ format 'a.img' ids: undefined undefined
+                    @ href 'https://search.google.com/search-console/mobile-friendly?id=-qDOe1JWk0myCaSmUtHC9A' ids: undefined undefined
+                    @ src "/static/images/react/mobile-friendly.jpg" ids: undefined undefined
+                    @ title "Google Mobile-Friendly Tested" ids: undefined undefined
+                    @ img_style ids: undefined undefined
+                      {  ids: undefined undefined
+                        @ display 'block' ids: undefined undefined
+                        @ height '110px' ids: undefined undefined
+                        @ position 'absolute' ids: undefined undefined
+                        @ left '10px' ids: undefined undefined
+                        @ top '4px' ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'heading' ids: undefined undefined
+                    @ format 'h1.span' ids: undefined undefined
+                    @ text 'Legoland ' ids: undefined undefined
+                    @ span "Photographs" ids: undefined undefined
+                    @ style ids: undefined undefined
+                      {  ids: undefined undefined
+                        @ h1 ids: undefined undefined
+                          {  ids: undefined undefined
+                            @ textAlign 'center' ids: undefined undefined
+                            @ font "700 45px/60px 'Open Sans', sans-serif" ids: undefined undefined
+                            @ color '#2ab' ids: undefined undefined
+                        @ span ids: undefined undefined
+                          {  ids: undefined undefined
+                            @ color '#333' ids: undefined undefined
+                            @ font "300 45px/60px 'Open Sans', sans-serif" ids: undefined undefined
+                            @ textAlign 'center' ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'toggler' ids: undefined undefined
+                    @ id 'menuPanel' ids: undefined undefined
+                    @ event 'toggle-mainmenu' ids: undefined undefined
+                    @ panels ids: undefined undefined
+                      [  ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'slide' ids: undefined undefined
+                    @ id 'menuBox' ids: undefined undefined
+                    @ flex 'row' ids: undefined undefined
+                    @ percWidth 100 ids: undefined undefined
+                    @ toggleEvent 'toggle-mainmenu' ids: undefined undefined
+                    @ visibleOnStart false ids: undefined undefined
+                    @ style ids: undefined undefined
+                      {  ids: undefined undefined
+                        @ width '100%' ids: undefined undefined
+                        @ height '100%' ids: undefined undefined
+                        @ backgroundCololr '#fff' ids: undefined undefined
+                        @ position 'fixed' ids: undefined undefined
+                        @ top '0' ids: undefined undefined
+                        # zIndex '10' ids: undefined undefined
+                        @ transition '0.3s' ids: undefined undefined
+                    @ panels ids: undefined undefined
+                      [  ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'side' ids: undefined undefined
+                          @ id 'menuLeft' ids: undefined undefined
+                          @ panels ids: undefined undefined
+                            [  ids: undefined undefined
+                              {  ids: undefined undefined
+                                @ kind 'menu' ids: undefined undefined
+                                @ format 'div.a.i' ids: undefined undefined
+                                @ items ids: undefined undefined
+                                  [  ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ class 'fa fa-facebook social' ids: undefined undefined
+                                      @ href '#url1' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ class 'fa fa-twitter social' ids: undefined undefined
+                                      @ href '#url2' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ class 'fa fa-linkedin social' ids: undefined undefined
+                                      @ href '#url3' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ class 'fa fa-google-plus social' ids: undefined undefined
+                                      @ href '#url4' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'side' ids: undefined undefined
+                          @ id 'menuRight' ids: undefined undefined
+                          @ panels ids: undefined undefined
+                            [  ids: undefined undefined
+                              {  ids: undefined undefined
+                                @ kind 'menu' ids: undefined undefined
+                                @ format 'ul.li.a' ids: undefined undefined
+                                @ items ids: undefined undefined
+                                  [  ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ text 'link 1' ids: undefined undefined
+                                      @ href '#url1' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ text 'link 2' ids: undefined undefined
+                                      @ href '#url2' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ text 'link 3' ids: undefined undefined
+                                      @ href '#url3' ids: undefined undefined
+            {  ids: undefined undefined
+              @ kind 'info' ids: undefined undefined
+              @ format 'h2.p+' ids: undefined undefined
+              @ id 'infoPanel' ids: undefined undefined
+              @ flex 'column' ids: undefined undefined
+              @ heading 'Flexbox Layout' ids: undefined undefined
+              @ style ids: undefined undefined
+                {  ids: undefined undefined
+                  @ order 2 ids: undefined undefined
+                  @ width 'calc(66% * 0.98)' ids: undefined undefined
+                  @ margin '0 auto 20px auto' ids: undefined undefined
+                  @ border '1px solid #ccc' ids: undefined undefined
+                  @ backgroundColor '#fff' ids: undefined undefined
+                  @ paddingBottom '20px' ids: undefined undefined
+              @ p_style ids: undefined undefined
+                {  ids: undefined undefined
+                  @ padding '5px 20px' ids: undefined undefined
+                  @ margin '0' ids: undefined undefined
+                  @ font "400 16px/20px 'Open Sans', sans-serif" ids: undefined undefined
+                  @ color '#333' ids: undefined undefined
+              @ panels ids: undefined undefined
+                [  ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'p' ids: undefined undefined
+                    @ text '19th January 2017 - for all the latest browsers and OS' ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'p' ids: undefined undefined
+                    @ text 'A simple CSS only layout using flexbox to organise and position the various panels.' ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'p' ids: undefined undefined
+                    @ text 'No javascript or jQuery has been used in this layout' ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'p' ids: undefined undefined
+                    @ text 'If you are viewing on a PC then you can see the panels resize and reflow as the browser window size changes.' ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'p' ids: undefined undefined
+                    @ text 'The layout can be viewed on tablets and mobiles and the navigation resizes to suit.' ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'p' ids: undefined undefined
+                    @ text 'The photograph panels with will always be the same height in each row' ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'p' ids: undefined undefined
+                    @ text 'If you are using Firefox then the "Top of Page" arrow in the footer will give a smooth scroll back to the top of the page' ids: undefined undefined
+            {  ids: undefined undefined
+              @ kind 'flex' ids: undefined undefined
+              @ direction 'row' ids: undefined undefined
+              @ id 'content' ids: undefined undefined
+              @ style ids: undefined undefined
+                {  ids: undefined undefined
+                  @ order 2 ids: undefined undefined
+                  @ width '98%' ids: undefined undefined
+                  @ maxWidth '1900px' ids: undefined undefined
+                  @ margin '0 auto' ids: undefined undefined
+              @ panels ids: undefined undefined
+                [  ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'flex' ids: undefined undefined
+                    @ direction 'row' ids: undefined undefined
+                    @ id 'centerPanel' ids: undefined undefined
+                    @ style ids: undefined undefined
+                      {  ids: undefined undefined
+                        @ order 3 ids: undefined undefined
+                        @ width '66%' ids: undefined undefined
+                    @ panels ids: undefined undefined
+                      [  ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'info' ids: undefined undefined
+                          @ format 'a.img' ids: undefined undefined
+                          @ src '/static/images/react/layout/z1.jpg' ids: undefined undefined
+                          @ href '#url' ids: undefined undefined
+                          @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: undefined undefined
+                          @ p_style p_style ids: undefined undefined
+                          @ panels ids: undefined undefined
+                            [  ids: undefined undefined
+                              {  ids: undefined undefined
+                                @ kind 'infoLinks' ids: undefined undefined
+                                @ format 'p.[text.a]+' ids: undefined undefined
+                                @ links ids: undefined undefined
+                                  [  ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Photo ' ids: undefined undefined
+                                      @ text 'Stu Nicholls' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Date 16/01/2017 | ' ids: undefined undefined
+                                      @ text 'Set 1' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'info' ids: undefined undefined
+                          @ format 'a.img' ids: undefined undefined
+                          @ src '/static/images/react/layout/z2.jpg' ids: undefined undefined
+                          @ href '#url' ids: undefined undefined
+                          @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: undefined undefined
+                          @ p_style p_style ids: undefined undefined
+                          @ panels ids: undefined undefined
+                            [  ids: undefined undefined
+                              {  ids: undefined undefined
+                                @ kind 'infoLinks' ids: undefined undefined
+                                @ format 'p.[text.a]+' ids: undefined undefined
+                                @ links ids: undefined undefined
+                                  [  ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Photo ' ids: undefined undefined
+                                      @ text 'Stu Nicholls' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Date 16/01/2017 | ' ids: undefined undefined
+                                      @ text 'Set 1' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'info' ids: undefined undefined
+                          @ format 'a.img' ids: undefined undefined
+                          @ src '/static/images/react/layout/z3.jpg' ids: undefined undefined
+                          @ href '#url' ids: undefined undefined
+                          @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: undefined undefined
+                          @ p_style p_style ids: undefined undefined
+                          @ panels ids: undefined undefined
+                            [  ids: undefined undefined
+                              {  ids: undefined undefined
+                                @ kind 'infoLinks' ids: undefined undefined
+                                @ format 'p.[text.a]+' ids: undefined undefined
+                                @ links ids: undefined undefined
+                                  [  ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Photo ' ids: undefined undefined
+                                      @ text 'Stu Nicholls' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Date 16/01/2017 | ' ids: undefined undefined
+                                      @ text 'Set 1' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'info' ids: undefined undefined
+                          @ format 'a.img' ids: undefined undefined
+                          @ src '/static/images/react/layout/z4.jpg' ids: undefined undefined
+                          @ href '#url' ids: undefined undefined
+                          @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: undefined undefined
+                          @ p_style p_style ids: undefined undefined
+                          @ panels ids: undefined undefined
+                            [  ids: undefined undefined
+                              {  ids: undefined undefined
+                                @ kind 'infoLinks' ids: undefined undefined
+                                @ format 'p.[text.a]+' ids: undefined undefined
+                                @ links ids: undefined undefined
+                                  [  ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Photo ' ids: undefined undefined
+                                      @ text 'Stu Nicholls' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Date 16/01/2017 | ' ids: undefined undefined
+                                      @ text 'Set 1' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'info' ids: undefined undefined
+                          @ format 'a.img' ids: undefined undefined
+                          @ src '/static/images/react/layout/z5.jpg' ids: undefined undefined
+                          @ href '#url' ids: undefined undefined
+                          @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: undefined undefined
+                          @ p_style p_style ids: undefined undefined
+                          @ panels ids: undefined undefined
+                            [  ids: undefined undefined
+                              {  ids: undefined undefined
+                                @ kind 'infoLinks' ids: undefined undefined
+                                @ format 'p.[text.a]+' ids: undefined undefined
+                                @ links ids: undefined undefined
+                                  [  ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Photo ' ids: undefined undefined
+                                      @ text 'Stu Nicholls' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Date 16/01/2017 | ' ids: undefined undefined
+                                      @ text 'Set 1' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'info' ids: undefined undefined
+                          @ format 'a.img' ids: undefined undefined
+                          @ src '/static/images/react/layout/z6.jpg' ids: undefined undefined
+                          @ href '#url' ids: undefined undefined
+                          @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: undefined undefined
+                          @ p_style p_style ids: undefined undefined
+                          @ panels ids: undefined undefined
+                            [  ids: undefined undefined
+                              {  ids: undefined undefined
+                                @ kind 'infoLinks' ids: undefined undefined
+                                @ format 'p.[text.a]+' ids: undefined undefined
+                                @ links ids: undefined undefined
+                                  [  ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Photo ' ids: undefined undefined
+                                      @ text 'Stu Nicholls' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Date 16/01/2017 | ' ids: undefined undefined
+                                      @ text 'Set 1' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'info' ids: undefined undefined
+                          @ format 'a.img' ids: undefined undefined
+                          @ src '/static/images/react/layout/z7.jpg' ids: undefined undefined
+                          @ href '#url' ids: undefined undefined
+                          @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: undefined undefined
+                          @ p_style p_style ids: undefined undefined
+                          @ panels ids: undefined undefined
+                            [  ids: undefined undefined
+                              {  ids: undefined undefined
+                                @ kind 'infoLinks' ids: undefined undefined
+                                @ format 'p.[text.a]+' ids: undefined undefined
+                                @ links ids: undefined undefined
+                                  [  ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Photo ' ids: undefined undefined
+                                      @ text 'Stu Nicholls' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Date 16/01/2017 | ' ids: undefined undefined
+                                      @ text 'Set 1' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'info' ids: undefined undefined
+                          @ format 'a.img' ids: undefined undefined
+                          @ src '/static/images/react/layout/z8.jpg' ids: undefined undefined
+                          @ href '#url' ids: undefined undefined
+                          @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: undefined undefined
+                          @ p_style p_style ids: undefined undefined
+                          @ panels ids: undefined undefined
+                            [  ids: undefined undefined
+                              {  ids: undefined undefined
+                                @ kind 'infoLinks' ids: undefined undefined
+                                @ format 'p.[text.a]+' ids: undefined undefined
+                                @ links ids: undefined undefined
+                                  [  ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Photo ' ids: undefined undefined
+                                      @ text 'Stu Nicholls' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Date 16/01/2017 | ' ids: undefined undefined
+                                      @ text 'Set 1' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'info' ids: undefined undefined
+                          @ format 'a.img' ids: undefined undefined
+                          @ src '/static/images/react/layout/z9.jpg' ids: undefined undefined
+                          @ href '#url' ids: undefined undefined
+                          @ text "Legoland model of St. Pauls Cathedral with 'Big Ben' in the background." ids: undefined undefined
+                          @ p_style p_style ids: undefined undefined
+                          @ panels ids: undefined undefined
+                            [  ids: undefined undefined
+                              {  ids: undefined undefined
+                                @ kind 'infoLinks' ids: undefined undefined
+                                @ format 'p.[text.a]+' ids: undefined undefined
+                                @ links ids: undefined undefined
+                                  [  ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Photo ' ids: undefined undefined
+                                      @ text 'Stu Nicholls' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                                    {  ids: undefined undefined
+                                      @ label 'Date 16/01/2017 | ' ids: undefined undefined
+                                      @ text 'Set 1' ids: undefined undefined
+                                      @ href '#url' ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'info' ids: undefined undefined
+                    @ format 'h2.p+' ids: undefined undefined
+                    @ id 'leftPanel' ids: undefined undefined
+                    @ heading 'Legoland' ids: undefined undefined
+                    @ style ids: undefined undefined
+                      {  ids: undefined undefined
+                        @ order 1 ids: undefined undefined
+                        @ width '16%' ids: undefined undefined
+                        @ background '#fff' ids: undefined undefined
+                        @ marginBottom '20px' ids: undefined undefined
+                        @ border '1px solid #ccc' ids: undefined undefined
+                    @ panels ids: undefined undefined
+                      [  ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'p' ids: undefined undefined
+                          @ text 'Legoland (trademark in uppercase as LEGOLAND&reg;) is a chain of Lego-themed children"s/family theme parks.' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'p' ids: undefined undefined
+                          @ text 'They are not fully owned by Lego Group itself; rather they are owned and operated by the British theme park company Merlin Entertainments.' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'p' ids: undefined undefined
+                          @ text 'It has over 55 interactive rides' ids: undefined undefined
+                  {  ids: undefined undefined
+                    @ kind 'info' ids: undefined undefined
+                    @ format 'h2.p+' ids: undefined undefined
+                    @ id 'rightPanel' ids: undefined undefined
+                    @ heading 'Attractions' ids: undefined undefined
+                    @ style ids: undefined undefined
+                      {  ids: undefined undefined
+                        @ order 3 ids: undefined undefined
+                        @ width '16%' ids: undefined undefined
+                        @ background '#fff' ids: undefined undefined
+                        @ marginBottom '20px' ids: undefined undefined
+                        @ border '1px solid #ccc' ids: undefined undefined
+                    @ panels ids: undefined undefined
+                      [  ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'p' ids: undefined undefined
+                          @ text 'The parks are marketed to families with younger children (11 and under)' ids: undefined undefined
+                        {  ids: undefined undefined
+                          @ kind 'p' ids: undefined undefined
+                          @ text 'Legoland parks are split into various areas' ids: undefined undefined
+    ready  ids: undefined undefined
+      var MainComponent = builder.create(layoutData) ids: undefined undefined
+      _ ReactDOM.render ids: undefined undefined
+        < MainComponent ids: undefined undefined
+          @ data { layoutData } ids: undefined undefined
+        @ document.getElementById('container') ids: undefined undefined

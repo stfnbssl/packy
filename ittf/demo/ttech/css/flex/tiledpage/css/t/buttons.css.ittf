@@ -1,0 +1,61 @@
+﻿$group
+
+	. wizzi-title-area
+		padding 10px 15px 0 15px
+		flex-shrink 1
+		flex-grow 1
+		min-width 0
+		display flex
+
+	. primary-actions
+		display flex
+		justify-content flex-end
+		flex-shrink 0
+		flex-grow 0
+		margin 8px 0 8px 0
+
+	. button
+		font-family "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif
+		-webkit-appearance none
+		font-size 1rem
+		text-shadow none
+		line-height 1
+		display inline-block
+		outline 0
+		padding 8px 12px
+		margin 0 10px 0 0
+		position relative
+		border-radius 3px
+		border 3px solid transparent
+		color white
+		cursor pointer
+		white-space nowrap
+		text-overflow ellipsis
+		text-decoration none !important
+		text-align center
+		font-weight normal !important
+
+	. button-medium, .button-small
+		background #343436
+		color white
+
+	. mini-button
+		font-family "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif
+		font-size 0.8rem
+		padding 2px 7px
+		margin 0 1px 0 0
+		border-width 1px
+
+	. button-editor-solid
+		border 3px solid #343436
+		background #343436
+		& :hover
+			background #454547
+
+	< button>svg
+		width 10px
+		height 10px
+		vertical-align middle
+		position relative
+		top -1px
+		

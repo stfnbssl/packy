@@ -1,0 +1,11 @@
+. form-group
+	$params id, label, rows|5, value|@@null, haserror:boolean|false, error|@@null
+	id ${id}_group
+	f_group( ${id}, ${label}, ${haserror}, ${error} )
+	textarea
+		id ${id}
+		class form-control animated
+		name ${id}
+		rows ${rows}
+		$if value
+			+ ${value}

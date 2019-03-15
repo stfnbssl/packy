@@ -1,0 +1,10 @@
+tr
+	$params title
+	td ${title}
+		@ align left
+		style font-family: sans-serif; width: 250px;
+	td
+		@ align left
+		style font-size: 1.2em; padding: 10px;
+		$hook
+

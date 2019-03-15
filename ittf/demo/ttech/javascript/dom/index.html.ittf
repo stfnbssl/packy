@@ -1,0 +1,59 @@
+﻿html
+	head
+		css /static/lib/normalize.css
+		css ./style.css.ittf
+	body
+
+		# header
+			style height: 150px; background-color: #33CCDD; padding:10px
+			p header
+			p make sure left/right margins or left/right padding are 0px here
+				\b it'll mess with the width otherwise
+		
+		# container
+			style width: 100%;
+			
+			# left-sidebar
+				style float:left; width: 20%; background-color: #33DDEE; height: 300px;
+					\b overflow: auto;
+				p left sidebar
+					style padding:10px;
+				ul 
+					style padding:10px;
+					li Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.
+					li Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
+					li Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+					li Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.
+
+			
+			# main-content
+				style float:left; width: 60%; background-color: #33BBCC; height: 300px;
+					\b overflow: auto;
+				p main content
+					style padding:10px;
+				p Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
+					style padding:10px;
+			
+			# right-sidebar
+				style float:left; width: 20%; background-color: #33AABB; height: 300px;
+					\b overflow: auto;
+				p right sidebar
+					style padding:10px;
+			
+			div 
+				style clear:both;
+		
+		# footer
+			style height: 150px; background-color: #3399AA; padding:10px
+			p footer
+
+		# mainContentPopLayoutInfo
+			style display:none
+				\b overflow: auto;
+		
+		# headerPopLayoutInfo
+			style display:none
+				\b overflow: auto;
+
+		js //cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js
+		js js/main.js.ittf

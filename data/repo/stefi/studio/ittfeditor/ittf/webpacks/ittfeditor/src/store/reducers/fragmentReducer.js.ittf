@@ -1,0 +1,78 @@
+﻿module 
+    kind react
+	+
+	import {
+		\b GET_FRAGMENTS_REQUEST,
+		\b GET_FRAGMENTS_SUCCESS,
+		\b GET_FRAGMENTS_FAILURE,
+		\b CREATE_FRAGMENT_SUCCESS,
+		\b SELECT_FRAGMENT,
+		\b SELECT_FRAGMENT_SUCCESS,
+		\b SELECT_FRAGMENT_FAILURE,
+		\b FRAGMENT_CHANGED,
+		\b UPDATE_FRAGMENT_SUCCESS,
+		\b } from '../actions'
+	+
+	const fragmentInitialState
+		{
+			@ userItems []
+			@ projectItems []
+	+
+	r( fragment, fragmentInitialState )
+	
+		c( GET_FRAGMENTS_REQUEST
+			{
+				@ ...state
+				@ isLoading true
+		
+		c( GET_FRAGMENTS_SUCCESS
+			{
+				@ userItems Object.values(action.payload.fragments.user)
+				@ projectItems Object.values(action.payload.fragments.project)
+				@ isLoading false
+				@ error null
+
+		c( GET_FRAGMENTS_FAILURE
+			{
+				@ userItems []
+				@ projectItems []
+				@ isLoading false
+				@ error action.payload.error
+
+		c( CREATE_FRAGMENT_SUCCESS
+			{
+				@ items
+					[
+						@ ...state.items
+						@ action.payload
+				@ isLoading false
+				@ error null
+
+		c( SELECT_FRAGMENT
+			{
+				@ ...state
+				@ selectedFragment
+					_ state.items.map
+						=>
+							param item
+							if item.uri = action.uri
+								return item
+
+		c( SELECT_FRAGMENT_SUCCESS
+			{
+				@ ...state
+				@ selectedFragmentIttfContent action.payload
+				@ selectedFragmentUri action.uri
+				@ selectedFragmentSchema action.schema
+		
+		c( UPDATE_FRAGMENT_SUCCESS
+			{
+				@ ...state
+				@ generatedArtifact null
+
+		c( FRAGMENT_CHANGED
+			{
+				@ ...state
+				@ selectedFragmentIttfContent action.newContent
+
+	export default fragmentReducer

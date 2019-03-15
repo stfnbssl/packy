@@ -1,0 +1,86 @@
+h/root/empty_layout()
+
+	$append head-styles
+		$if mpage.body.fontFamily === 'roboto'
+			css https://fonts.googleapis.com/css?family=Roboto
+		css ./styles.css.ittf?_context=mpage&_mpage=json
+
+	$include h/std/navTop
+	
+	ul
+		class nav-sub-top
+		$foreach item in mpage.navSubTop.items
+			li
+				class nav-sub-top-text-1
+				a ${item.label}
+					href ${item.href}
+
+	. nav-left
+		ul
+			$foreach item in mpage.navLeft.items
+				li
+					a
+						href ${item.href}
+						i
+							class nav-left-fa fa-${item.icon} fa-2x
+						span ${item.label}
+							class nav-left-text-1
+
+	. wrap-main
+		. cont-main
+			$if mpage.showCase 
+				header
+					id showcase
+					class grid
+					. bg-image
+					. content-wrap
+						h1 ${mpage.showCase.title}
+						p ${mpage.showCase.subTitle}
+						a Read more
+							href #section-b
+							class showcase-btn-1
+			$if mpage.debug.showPalette
+				div
+					style display:flex; flex-wrap: wrap;
+					$foreach c in mpage.theme.colors
+						div ${c}
+							style margin: 10px; font-weight: 900;
+							div
+								style height: 50px; width: 50px; background: ${c};
+
+			$if mpage.contMain.panels.length > 0
+				
+				$foreach panel in mpage.contMain.panels
+					
+					$if panel.kind === 'cards'
+						
+						. card-1-grid
+							$foreach card in panel.cards
+								. card-1 card-1-${card.key}
+									a
+										href ${card.href}
+										. card-1-teaser 
+											+ ${card.teaser}
+										. card-1-title
+											+ ${card.title}
+										. card-1-sub-title
+											+ ${card.subtitle}
+			
+			$else
+				
+				$ var i = 0
+				$while i < 10
+					p
+						lorem 150
+					$ i++
+
+	. nav-right
+		$foreach group in mpage.navRight.groups
+			h4 ${group.title}
+			ul
+				$foreach item in group.items
+					li
+						a
+							href ${item.href}
+							span ${item.label}
+								class nav-right-text-1

@@ -1,0 +1,58 @@
+﻿r-component( DocumentList2 )
+
+	$append imports
+		import List, { ListItem, ListItemText } from 'material-ui/List'
+		import AppDrawerNavItem from './muidocs/AppDrawerNavItem'
+		import {makeFolderList} from '../lib/document'
+
+	style
+		@ selected
+			{
+				@ color 'red'
+	
+	render
+		
+		prop classes
+		prop documents
+		prop selectedUri
+		prop onSelectDocument
+
+		const folders = makeFolderList(documents)
+		log 'DocumentList2.folders', folders
+		
+		return
+
+			div
+				{
+					&&
+						+ folders.length === 0
+						h5 none.
+				{
+					&&
+						+ folders.length > 0
+						< List
+							@ dense {true}
+							{
+								_ folders.map
+									=>
+										param folder
+										return
+											< AppDrawerNavItem
+												@ title {folder.name} 
+												{
+													_ folder.documents.map
+														=>
+															param document
+															return
+																< AppDrawerNavItem
+																	@ title {document.folder + '/' + document.name + '.' + document.schema + '.ittf' }
+																	@ key {document.uri}
+																	@ className {selectedUri === document.uri ? classes.selected : ''}
+																	@ to {document.uri}
+																	@ onClick
+																		=>
+																			_ onSelectDocument
+																				@ document.uri
+																				@ document.schema
+
+

@@ -1,0 +1,98 @@
+$group
+
+	$
+		var c = "$";
+		var cc = "$$";
+
+	table
+		class table
+		
+		f(Mean of the sampling distribution of the sample mean)
+			p ${cc} \mu_{\bar{x}} = population \space \mu ${cc}
+		
+		f(Standard deviation of the sampling distribution of the sample mean)
+			p ${cc} \sigma_{\bar{x}} = {\sigma \over \sqrt{n}} ${cc}
+		
+		f(Mean of the sampling distribution of the sample proportion)
+			p ${cc} \mu_{\bar{x}} = population \space proportion ${cc}
+
+		f(Standard deviation of the sampling distribution of the sample proportion)
+			p ${cc} \sigma_p = \sqrt{\pi ( 1 - \pi ) \over n} ${cc}
+
+		f(z-score for confidence level $ cl $)
+			p ${cc} Z_{cl} ${cc} 
+			fnote()
+				dd $ cl $ : confidence level in % to be converted to decimal from $ 0 $ to $ 1 $
+				dd and divided by $ 2 $ before looking up the score in the z-table.
+		
+		f(Margin of error)
+			dd ${cc} E_m \approx { Z_{cl} \sigma_{\bar{x}} } ${cc}
+			fnote()
+
+
+		f(Confidence interval at confidence level $ cl $ with known $ \sigma $)
+			dd ${cc} CI \approx { \bar{x} \pm Z_{cl} \sigma_{\bar{x}} } ${cc}
+			fnote()
+				dd $ \bar{x} $ : sample mean (point estimate)
+				dd Most common confidence levels
+				dd ${cc} Z99\% = 2.58 ${cc}
+				dd ${cc} Z95\% = 1.96 ${cc}
+				dd ${cc} Z90\% = 1.65 ${cc}
+
+		f(Degree of freedom of t-distribution)
+			dd ${cc} df =  n - 1 ${cc}
+			fnote()
+
+		f(t-score for confidence level $ cl\% $ when $ \sigma $ is unknown; to be looked up in T-table)
+			p ${cc} t_{df,cl} ${cc} 
+			fnote()
+				dd $ df $ : degree of freedom $ = n - 1 $
+				dd $ cl $ : confidence level in %
+
+		f(Confidence interval at confidence level $ cl $ when $ \sigma $ is unknown)
+			dd ${cc} CI \approx { \bar{x} \pm t_{df,cl} (se) } ${cc}
+			fnote()
+				dd where the standard error $ se = { s \over \sqrt{n} } $
+			dd <center>that is</center>
+			dd ${cc} CI \approx { \bar{x} \pm t_{df,cl} { s \over \sqrt{n} } } ${cc}
+
+
+		f(Proportion p when population $ \pi $ is unknown)
+			dd ${cc} p = \approx { p \pm Z_{cl} \sigma_p } ${cc}
+
+		f(Confidence interval for a proportion $ p $ at confidence level $ cl $)
+			dd ${cc} CI \approx { p \pm Z_{cl} \sigma_p } ${cc}
+			dd <center>that is</center>
+			dd ${cc} CI \approx { p \pm Z_{cl} \sqrt{\pi(1-\pi) \over n } } ${cc}
+
+		f(Confidence interval for a proportion $ p $ at confidence level $ cl $ when $ \pi $ is unknown)
+			dd ${cc} CI \approx { p \pm Z_{cl} (se) } ${cc}
+			fnote()
+				dd where the standard error $ se = { \sqrt{p(1-p) \over n } } $
+			dd <center>that is</center>
+			dd ${cc} CI \approx { p \pm Z_{cl} \sqrt{p(1-p) \over n } } ${cc}
+			fnote()
+				dd given at least 15 successes and 15 failures: $ np \ge 15 $ and $ n(1-p) \ge 15 $
+
+		$*
+		
+		f(Margin of error at confidence level 95% with known $ \sigma $)
+			dd ${cc} E_m \approx { \bar{x} \pm 1.96 \sigma_{\bar{x}} } ${cc}
+			dd <center>or</center>
+			dd ${cc} E_m \approx { \bar{x} \pm 1.96 { \sigma \over \sqrt{n} } } ${cc}
+
+		f(Margin of error at confidence level 99%)
+			p ${cc} E_m \approx { 1.29 \over \sqrt{n} } ${cc}
+
+		f(Margin of error at confidence level 95%)
+			p ${cc} E_m \approx { 0.98 \over \sqrt{n} } ${cc}
+
+		f(Margin of error at confidence level 90%)
+			p ${cc} E_m \approx { 0.82 \over \sqrt{n} } ${cc}
+
+
+		f(Margin of error at confidence level X 
+			\b (see <a href=https://en.wikipedia.org/wiki/Error_function#Inverse_functions>Inverse function</a>) )
+			p ${cc} E_m \approx { erf^{-1}(X) \over \sqrt{2n} } ${cc}
+		
+		*$

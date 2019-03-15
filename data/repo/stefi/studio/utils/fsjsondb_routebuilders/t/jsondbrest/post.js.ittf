@@ -1,0 +1,17 @@
+﻿_ router.post
+	@ '/'
+	function
+		param req
+		param res
+
+		log 'rest post body', req.body
+		log 'rest post method', req.method
+		
+		var item = req.body
+		
+		_ collectionDb.insert
+			@ item
+			function
+				param err
+				param item
+				send_json( item )

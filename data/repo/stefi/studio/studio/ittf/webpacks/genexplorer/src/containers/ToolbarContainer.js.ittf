@@ -1,0 +1,73 @@
+﻿module
+	kind react
+	
+	import {connect} from 'react-redux'
+	import {
+		\b save,
+		\b selectSchema,
+		\b openSettingsDialog,
+		\b setGenerator,
+		\b reset,
+		\b } from '../store/actions'
+	import Toolbar from '../components/Toolbar'
+	import * as selectors from '../store/selectors'
+	import {logEvent} from '../utils/logger'
+
+	function mapStateToProps
+		param state
+		const generator = selectors.getGenerator(state)
+		return
+			{
+				@ saving selectors.isSaving(state)
+				@ canSave selectors.canSave(state)
+				@ schema generator.schema
+				@ generator
+				@ snippet selectors.getRevision(state)
+
+	function mapDispatchToProps
+		param dispatch
+		return
+			{
+				@ onGeneratorChange
+					=>
+						param generator
+						_ dispatch
+							_ setGenerator(generator)
+						_ logEvent
+							@ 'generator'
+							@ 'select'
+							@ generator.id
+				@ onSchemaChange
+					=>
+						param schema
+						_ dispatch
+							_ selectSchema(schema)
+						_ logEvent
+							@ 'schema'
+							@ 'select'
+							@ schema.id
+				
+				@ onGeneratorSettingsButtonClick
+					=>
+						_ dispatch(openSettingsDialog())
+						_ logEvent
+							@ 'generator'
+							@ 'open_settings'
+				
+				@ onSave
+					=>
+						_ dispatch(save(false))
+				
+				@ onNew
+					=>
+						if global.location.hash
+							set global.location.hash = ''
+						else
+							_ dispatch(reset())
+	
+	export default
+		_ connect
+			@ mapStateToProps
+			@ mapDispatchToProps
+			(
+				@ Toolbar

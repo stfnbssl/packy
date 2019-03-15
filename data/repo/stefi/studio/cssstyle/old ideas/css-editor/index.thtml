@@ -1,0 +1,25 @@
+﻿_layout "Stylesheet editor" styles/style.css
+	$appendto head
+		css https://netdna.bootstrapcdn.com/font-awesome/4.0.3/styles/font-awesome.css
+		css ../styles/bootstrap/bootstrap.css
+		css ../styles/bootstrap-modal.css
+		css https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css
+		css ../styles/farbtastic/farbtastic.css
+		_style
+			id dynamicstyle
+	# content
+	# modal
+	js https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
+	js https://code.jquery.com/ui/1.10.4/jquery-ui.min.js
+	js ../scripts/underscore.js
+	js ../scripts/backbone.js
+	js ../scripts/backbone.localStorage.js
+	js ../scripts/backbone.marionette.js
+	js ../scripts/bootstrap-modal.js
+	js ../scripts/farbtastic.js
+	js ../scripts/wmt.js
+	js ../jquery/scripts/wmtui.js
+	js ../wmt-form/scripts/wmtform.js
+	js ../wmt-editor/scripts/wmteditor.js
+	js scripts/app.js
+	js scripts/start.js

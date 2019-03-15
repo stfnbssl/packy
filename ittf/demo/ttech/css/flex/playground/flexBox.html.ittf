@@ -1,0 +1,35 @@
+﻿$group
+	
+	section
+		class controls
+		id flexBox
+                   
+		h/select( display, display, none,
+			\b flex;inline-flex
+
+		h/control( flex )
+				h/input( flex-grow, small, flex-grow, 1 )
+				h/input( flex-shrink, small, flex-shrink, 0 )
+				h/input( flex-basis, mid, flex-basis (try 300px or 20%)|flex-basis-tip, auto ) 
+                    
+		h/control( # of flex items )
+				h/span( +, count-increase, count-control small )
+				h/span( -, count-decrease, count-control small )
+                    
+		h/select( flex-direction, flex-direction, none , 
+			\b row;row-reverse;column;column-reverse )
+					
+		h/select( flex-wrap, flex-wrap, none,
+			\b wrap;wrap-reverse;nowrap
+
+		h/select( justify-content, justify-content, 
+			\b To see a change set 'flex' property to something like 'flex: 0 1 auto'|justify-content-tip,
+			\b flex-start;flex-end;center;space-between;space-around
+
+		h/select( align-items, align-items, 
+			\b none,
+			\b flex-start;flex-end;center;baseline;stretch
+
+		h/select( align-content, align-content, 
+			\b none,
+			\b flex-start;flex-end;center;space-between;space-around;stretch

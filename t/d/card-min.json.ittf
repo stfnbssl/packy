@@ -1,0 +1,8 @@
+﻿{
+	$params label, href
+	key ""
+	teaser "${label}"
+	title ""
+	href "${href}"
+	subtitle ""
+	backgroundColor ""

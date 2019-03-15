@@ -1,0 +1,7 @@
+﻿$group
+
+	var initialSnippets
+		{
+			@ js 'function hello(name) { console.log("hello"); }'
+			@ html '<html><head></head><body></body></html>'
+			@ css 'body { margin:0 }'

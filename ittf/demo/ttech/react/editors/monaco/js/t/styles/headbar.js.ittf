@@ -1,0 +1,101 @@
+﻿$group
+	$params &opt
+
+	@ toolbar
+		{
+			@ borderBottom '5px solid #343436'
+			@ boxShadow '0 1px 1px black'
+			@ backgroundColor '${opt.gray_1_tb}'
+			@ height '60px'
+			@ minHeight '60px'
+			@ display 'flex'
+		
+	@ logoImg
+		{
+			@ position 'relative'
+			@ top '50%'
+			@ left '10px'
+			@ height '20px'
+			@ marginTop '-10px'
+
+	@ wizziTitleArea
+		{
+			@ padding '10px 15px 0 15px'
+			@ display 'flex'
+			@ flexShrink '1'
+			@ flexGrow '1'
+			@ minWidth '0'
+
+	@ selectActions
+		{
+			@ display 'flex'
+			@ justifyContent 'flex-start'
+			@ flexShrink '0'
+			@ flexGrow '0'
+			@ margin '8px 0 8px 0'
+			@ paddingRight '30px'
+
+	@ primaryActions
+		{
+			@ display 'flex'
+			@ justifyContent 'flex-end'
+			@ flexShrink '0'
+			@ flexGrow '0'
+			@ margin '8px 0 8px 0'
+
+	@ button
+		{
+			@ fontFamily '"Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif'
+			@ '-webkit-appearance' 'none'
+			@ fontSize '1rem'
+			@ textShadow 'none'
+			@ lineHeight '1'
+			@ display 'inline-block'
+			@ outline '0'
+			@ padding '8px 12px'
+			@ margin '0 10px 0 0'
+			@ position 'relative'
+			@ borderRadius '3px'
+			@ border '3px solid transparent'
+			@ color 'white'
+			@ cursor 'pointer'
+			@ whiteSpace 'nowrap'
+			@ textOverflow 'ellipsis'
+			@ textDecoration 'none !important'
+			@ textAlign 'center'
+			@ fontWeight 'normal !important'
+
+	@ buttonMedium
+		{
+			@ background '#343436'
+			@ color 'white'
+
+	@ buttonSmall
+		{
+			@ background '#343436'
+			@ color 'white'
+
+	@ miniButton
+		{
+			@ fontFamily '"Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif'
+			@ fontSize '0.8rem'
+			@ padding '2px 7px'
+			@ margin '4px'
+			@ borderWidth '1px'
+
+	@ buttonEditorSolid
+		{
+			@ border '3px solid #343436'
+			@ background '#343436'
+			@ '&:hover'
+				{
+					@ background '#454547'
+
+	@ iconSvg
+		{
+			@ width '16px'
+			@ height '16px'
+			@ verticalAlign 'middle'
+			@ position 'relative'
+			@ top '-1px'
+			@ marginRight '10px'

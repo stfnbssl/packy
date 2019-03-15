@@ -1,0 +1,5 @@
+﻿$
+	var opt = {}
+	opt.local = false;
+	opt.production = false;
+	opt.useMaterialUi = false;

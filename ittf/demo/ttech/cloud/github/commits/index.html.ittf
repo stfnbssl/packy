@@ -1,0 +1,33 @@
+h/root/empty_layout()
+
+	$
+		var opt = {}
+		opt.useWizzi = true;
+
+	page( &opt
+
+		$append styles
+			@style
+				css
+
+		script
+			module
+				kind es6
+
+				var method = 'PUT'
+				var folder = 'f1/f2'
+				var document = 'file.txt'
+				var userid = 'wizzi-factory'
+				var projectid = 'wizzi-utils'
+
+				var headers
+					{
+						@ "Content-Type" "application/vnd.github.v3+json"
+						@ Authorization "token 123a321"
+
+				var body
+					@ message "my commit message"
+					{ committer
+						@ name "My name"
+						@ email "my email"
+					@ content "base64encoded"

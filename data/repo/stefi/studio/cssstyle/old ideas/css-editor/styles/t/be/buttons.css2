@@ -1,0 +1,18 @@
+﻿$group
+	. btn
+		background #34696f
+		background linear-gradient(top, #34696f, #2f5f63)
+		padding 3px
+		border 1px solid rgba(33, 68, 72, 0.59)
+		color rgba(0, 0, 0, 0.55)
+		text-align center
+		font bold 1.2em/20px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif
+		border-radius 10px
+		box-shadow 0 8px 0 #1b383b
+		text-shadow 0 2px 2px rgba(255, 255, 255, 0.2)
+	e a.btn
+		text-decoration none
+	e a.btn:hover
+		background #3d7a80
+		background: linear-gradient(top, #3d7a80, #2f5f63);
+

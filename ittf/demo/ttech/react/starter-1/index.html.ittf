@@ -1,0 +1,18 @@
+﻿h/root/empty_layout()
+
+	$include options-init
+
+	page(&opt)
+
+		$append components
+			react MyButton
+				render
+					return
+						div
+							button Hello button
+
+		render
+			return
+				div
+					h1 Hello world
+					< MyButton

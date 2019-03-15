@@ -1,0 +1,242 @@
+﻿$group
+
+	$
+		var debug_css = false;
+		var isIttf = true;
+		var ittfSuffix = isIttf ? '.ittf' : '';
+
+		var l_hasSubPages = false;
+		var l_mc_top = 80;
+		var l_mc_sub_top = 125;
+		var l_mc_top_mobile = 60;
+		var l_mc_sub_top_mobile = 60;
+
+		var c_bg_0 = "#fff";
+		var c_0 = "#000";
+
+		var c_tn_bg_0 = "#333";
+		var c_tn_bg_sub = "#666";
+		var c_tn_bg_li_mobile = "#999";
+		$$ var c_tn_bg_bar = "#ded";
+		var c_tn_bg_bar = "#fff";
+		var c_tn_1 = "#fff";
+		var c_tn_2 = "#f44";
+		var c_tn_bg_f_0 = "#000";
+
+		var c_mc_bg_frame_bar = c_tn_bg_sub;
+		var c_mc_frame_bar = c_tn_bg_bar;
+
+		var docs = {
+			summaryLines: [
+				{
+					units: 'sentences',
+					count: 10,
+				}
+			],
+			concepts: [
+				{
+					name : 'Hello',
+					id : 'c-1',
+					summaryLines: [
+						{
+							units: 'sentences',
+							count: 30,
+						}
+					]
+				},
+				{
+					name : 'Bye',
+					id : 'c-2',
+					summaryLines: [
+						{
+							units: 'paragraphs',
+							count: 13,
+						}
+					]
+				},
+				{
+					name : 'Aio',
+					id : 'c-3',
+					summaryLines: [
+						{
+							units: 'paragraphs',
+							count: 23,
+						}
+					]
+				},
+				{
+					name : 'Aio',
+					id : 'c-4',
+					summaryLines: [
+						{
+							units: 'paragraphs',
+							count: 23,
+						}
+					]
+				},
+				{
+					name : 'Aio',
+					id : 'c-5',
+					summaryLines: [
+						{
+							units: 'paragraphs',
+							count: 23,
+						}
+					]
+				},
+				{
+					name : 'Aio',
+					id : 'c-6',
+					summaryLines: [
+						{
+							units: 'paragraphs',
+							count: 23,
+						}
+					]
+				},
+				{
+					name : 'Aio',
+					id : 'c-7',
+					summaryLines: [
+						{
+							units: 'paragraphs',
+							count: 23,
+						}
+					]
+				},
+				{
+					name : 'Aio',
+					id : 'c-8',
+					summaryLines: [
+						{
+							units: 'paragraphs',
+							count: 23,
+						}
+					]
+				},
+				{
+					name : 'Aio',
+					id : 'c-9',
+					summaryLines: [
+						{
+							units: 'paragraphs',
+							count: 23,
+						}
+					]
+				},
+				{
+					name : 'Aio',
+					id : 'c-10',
+					summaryLines: [
+						{
+							units: 'paragraphs',
+							count: 23,
+						}
+					]
+				},
+				{
+					name : 'Aio',
+					id : 'c-11',
+					summaryLines: [
+						{
+							units: 'paragraphs',
+							count: 23,
+						}
+					]
+				},
+
+			]};
+
+		var nav_menu = [
+				{
+					title: 'Concepts',
+					href: 'concepts.html',
+				},
+				{
+					title:  'Documentation',
+					href: 'docs/intro.html',
+					sub: [
+						{
+							title: 'intro',
+							href: 'docs/intro.html',
+						},
+						{
+							title: 'ittf',
+							href: 'docs/ittf.html',
+						},
+						{
+							title: 'jswizzi',
+							href: 'docs/jswizzi.html',
+						},
+						{
+							title: 'models',
+							href: 'docs/models.html',
+						},
+						{
+							title: 'artifacts',
+							href: 'docs/artifacts.html',
+						},
+						{
+							title: 'jobs',
+							href: 'docs/jobs.html',
+						},
+						{
+							title: 'plugins',
+							href: 'docs/plugins.html',
+						},
+					]
+				},
+				{
+					title: 'Api',
+					href: 'api.html',
+				},
+				{
+					title:  'Code',
+					href: 'code/intro.html',
+					sub: [
+						{
+							title: 'intro',
+							href: 'code/intro.html',
+						},
+						{
+							title: 'wizzi',
+							href: 'code/wizzi.html',
+						},
+						{
+							title: 'wizzi-mtree',
+							href: 'code/wizzi-mtree.html',
+						},
+						{
+							title: 'wizzi-repo',
+							href: 'code/wizzi-repo.html',
+						},
+						{
+							title: 'wizzi-utils',
+							href: 'code/wizzi-utils.html',
+						},
+						{
+							title: 'wizzi-core',
+							href: 'code/wizzi-core.html',
+						},
+						{
+							title: 'wizzi-js',
+							href: 'code/wizzi-js.html',
+						},
+						{
+							title: 'wizzi-web',
+							href: 'code/wizzi-web.html',
+						},
+						{
+							title: 'wizzi-demo',
+							href: 'code/wizzi-demo.html',
+						},
+					]
+				},
+				{
+					title:  'Starters',
+					href: 'starters.html',
+				},
+				{
+					title:  'Project',
+					href: 'project.html',
+				}];

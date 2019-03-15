@@ -1,0 +1,68 @@
+﻿$group
+	$params &opt
+	
+	$if opt.mainJs
+			
+		script
+			src js/main.js.ittf
+			type text/babel
+
+	$else
+
+		script
+			type text/babel
+			module
+				kind react
+
+				$if opt.useMaterialUi
+					const {
+						\b colors,
+						\b createMuiTheme,
+						\b CssBaseline,
+						\b MuiThemeProvider,
+						\b withStyles,
+						\b } = window['material-ui']
+
+				$hook imports
+
+				$if opt.useMaterialUi
+					const theme
+						_ createMuiTheme
+							{
+								{ palette
+									{ primary
+										@ light colors.purple[300]
+										@ main colors.purple[500]
+										@ dark colors.purple[700]
+									{ secondary
+										@ light colors.green[300]
+										@ main colors.green[500]
+										@ dark colors.green[700]
+
+				$hook components
+
+				react App
+					style
+					$hook
+
+				$if opt.useMaterialUi
+					const StyledApp
+						_ withStyles
+							@ styles
+							(
+								@ App
+
+					_ ReactDOM.render
+						< StyledApp
+						_ document.getElementById
+							@ 'root'
+					
+				$else
+
+					_ ReactDOM.render
+						< App
+						_ document.getElementById
+							@ 'root'
+
+
+			

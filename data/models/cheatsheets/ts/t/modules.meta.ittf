@@ -1,0 +1,1149 @@
+﻿element modules
+	tag 
+	ast 
+	category
+	
+	item
+		title Exporting a declaration
+		expected
+			+ /* Validation.ts */
+			+ export interface StringValidator {
+				+ isAcceptable(s: string): boolean;
+			+ }
+			+ /* ZipCodeValidator.ts */
+			+ export const numberRegexp = /^[0-9]+$/;
+			+ export class ZipCodeValidator implements StringValidator {
+				+ isAcceptable(s: string) {
+					+ return s.length === 5 && numberRegexp.test(s);
+				+ }
+			+ }
+		ittf
+			+
+				#
+					# Validation.ts
+				export 
+					:interface StringValidator
+						:m isAcceptable
+							:boolean 
+							param s
+								:string 
+				#
+					# ZipCodeValidator.ts
+				export 
+					const numberRegexp = /^[0-9]+$/
+				export 
+					class ZipCodeValidator
+						:implements StringValidator
+						m isAcceptable
+							param s
+								:string 
+							return s.length === 5 && numberRegexp.test(s)
+	item
+		title Export statements
+		expected
+			+ class ZipCodeValidator implements StringValidator {
+				+ isAcceptable(s: string) {
+					+ return s.length === 5 && numberRegexp.test(s);
+				+ }
+			+ }
+			+ export { ZipCodeValidator };
+			+ export { ZipCodeValidator as mainValidator };
+		ittf
+			+
+				class ZipCodeValidator
+					:implements StringValidator
+					m isAcceptable
+						param s
+							:string 
+						return s.length === 5 && numberRegexp.test(s)
+				export 
+					@ ZipCodeValidator
+				export 
+					@ ZipCodeValidator
+						as mainValidator
+	item
+		title Re - exports
+		expected
+			+ /* ParseIntBasedZipCodeValidator.ts */
+			+ export class ParseIntBasedZipCodeValidator {
+				+ isAcceptable(s: string) {
+					+ return s.length === 5 && parseInt(s).toString() === s;
+				+ }
+			+ }
+			+ // Export original validator but rename it
+			+ export { ZipCodeValidator as RegExpBasedZipCodeValidator } from "./ZipCodeValidator";
+			+ // Optionally, a module can wrap one or more modules and combine all their exports using export * from "module" syntax.
+			+ /* AllValidators.ts */
+			+ export * from "./StringValidator"; // exports interface 'StringValidator'
+			+ export * from "./LettersOnlyValidator"; // exports class 'LettersOnlyValidator'
+			+ export * from "./ZipCodeValidator";  // exports class 'ZipCodeValidator'
+		ittf
+			+
+				#
+					# ParseIntBasedZipCodeValidator.ts
+				export 
+					class ParseIntBasedZipCodeValidator
+						m isAcceptable
+							param s
+								:string 
+							return s.length === 5 && parseInt(s).toString() === s
+				export 
+					@ ZipCodeValidator
+						as RegExpBasedZipCodeValidator
+					from "./ZipCodeValidator"
+				#
+					# AllValidators.ts
+				export *
+					from "./StringValidator"
+				export *
+					from "./LettersOnlyValidator"
+				export *
+					from "./ZipCodeValidator"
+	item
+		title Import a single export from a module
+		expected
+			+ import { ZipCodeValidator } from "./ZipCodeValidator";
+			+ let myValidator = new ZipCodeValidator();
+			+ /* imports can also be renamed */
+			+ import { ZipCodeValidator as ZCV } from "./ZipCodeValidator";
+			+ let myValidator = new ZCV();
+			+ /* Import the entire module into a single variable, and use it to access the module exports */
+			+ import * as validator from "./ZipCodeValidator";
+			+ let myValidator = new validator.ZipCodeValidator();
+			+ /* Import a module for side- effects only */
+			+ import "./my-module.js";
+
+		ittf
+			+
+				import 
+					@ ZipCodeValidator
+					from "./ZipCodeValidator"
+				let myValidator = new ZipCodeValidator()
+				#
+					# imports can also be renamed
+				import 
+					@ ZipCodeValidator
+						as ZCV
+					from "./ZipCodeValidator"
+				let myValidator = new ZCV()
+				#
+					# Import the entire module into a single variable, and use it to access the module exports
+				import 
+					as validator
+					from "./ZipCodeValidator"
+				let myValidator = new validator.ZipCodeValidator()
+				#
+					# Import a module for side- effects only
+				import "./my-module.js"
+	item
+		title Default exports
+		expected
+			+ /* JQuery.d.ts */
+			+ declare let $: JQuery;
+			+ export default $;
+			+ /* App.ts */
+			+ import $ from "JQuery";
+			+ $("button.continue").html("Next Step...");
+		ittf
+			+
+				#
+					# JQuery.d.ts
+				:declare
+					let $
+						:ref JQuery
+				export-default $
+				#
+					# App.ts
+				import $ from "JQuery"
+				_ $("button.continue").html("Next Step...")
+
+	item
+		title Default exports of classes and functions
+		expected
+			+ /* ZipCodeValidator.ts */
+			+ export default class ZipCodeValidator {
+				+ static numberRegexp = /^[0-9]+$/;
+				+ isAcceptable(s: string) {
+					+ return s.length === 5 && ZipCodeValidator.numberRegexp.test(s);
+				+ }
+			+ }
+			+ /* Test.ts */
+			+ import validator from "./ZipCodeValidator";
+			+ let myValidator = new validator();
+			+ /* or StaticZipCodeValidator.ts */
+			+ const numberRegexp = /^[0-9]+$/;
+			+ export default function (s: string) {
+				+ return s.length === 5 && numberRegexp.test(s);
+			+ }
+			+ /* Test.ts */
+			+ import validate from "./StaticZipCodeValidator";
+			+ let strings = ["Hello", "98052", "101"];
+			+ // Use function validate
+			+ strings.forEach(s => {
+				+ console.log(`"${s}" ${validate(s) ? " matches" : " does not match"}`);
+			+ });
+
+		ittf
+			+
+				#
+					# ZipCodeValidator.ts
+				export-default 
+					class ZipCodeValidator
+						p numberRegexp
+							static
+							:= /^[0-9]+$/
+						m isAcceptable
+							param s
+								:string 
+							return s.length === 5 && ZipCodeValidator.numberRegexp.test(s)
+				#
+					# Test.ts
+				import validator from "./ZipCodeValidator"
+				let myValidator = new validator()
+				#
+					# or
+					# StaticZipCodeValidator.ts
+				const numberRegexp = /^[0-9]+$/
+				export-default 
+					function 
+						param s
+							:string 
+						return s.length === 5 && numberRegexp.test(s)
+				#
+					# Test.ts
+				import validate from "./StaticZipCodeValidator"
+				let strings
+					[ 
+						@ "Hello"
+						@ "98052"
+						@ "101"
+				_ strings.forEach
+					=> 
+						param s
+						_ console.log
+							`lit 
+								+ "
+								@ s
+								+ "\b
+								iif validate(s)
+									then " matches"
+									else " does not match"
+								+ 
+	item
+		title Default exports can also be just values:
+		expected
+			+ /* default exports can also be just values: */
+			+ /* OneTwoThree.ts */
+			+ export default "123";
+			+ /* Log.ts */
+			+ import num from "./OneTwoThree";
+			+ console.log(num); // "123"
+		ittf
+			+
+				#
+					# OneTwoThree.ts
+				export-default "123"
+				#
+					# Log.ts
+				import num from "./OneTwoThree"
+				_ console.log(num)
+	
+	item
+		title export = and import = require()
+		expected
+			+ /* ZipCodeValidator.ts */
+			+ let numberRegexp = /^[0-9]+$/;
+			+ class ZipCodeValidator {
+				+ isAcceptable(s: string) {
+					+ return s.length === 5 && numberRegexp.test(s);
+				+ }
+			+ }
+			+ export = ZipCodeValidator;
+			+ /* Test.ts */
+			+ import zip = require("./ZipCodeValidator");
+			+ // Some samples to try
+			+ let strings = ["Hello", "98052", "101"];
+			+ // Validators to use
+			+ let validator = new zip();
+			+ // Show whether each string passed each validator
+			+ strings.forEach(s => {
+				+ console.log(`"${s}" - ${validator.isAcceptable(s) ? "matches" : "does not match"}`);
+			+ });
+
+		ittf
+			+
+				#
+					# ZipCodeValidator.ts
+				let numberRegexp = /^[0-9]+$/
+				class ZipCodeValidator
+					m isAcceptable
+						param s
+							:string 
+						return s.length === 5 && numberRegexp.test(s)
+				:export ZipCodeValidator
+				#
+					# Test.ts
+				:import zip
+					:require "./ZipCodeValidator"
+				let strings
+					[ 
+						@ "Hello"
+						@ "98052"
+						@ "101"
+				let validator = new zip()
+				_ strings.forEach
+					=> 
+						param s
+						_ console.log
+							`lit 
+								+ "
+								@ s
+								+ " -\b
+								iif validator.isAcceptable(s)
+									then "matches"
+									else "does not match"
+								+ 
+	
+	item
+		title Code Generation for Modules
+		expected
+			+ import m = require("mod");
+			+ export let t = m.something + 1;
+			+ /* AMD / RequireJS SimpleModule.js */
+			+ define(["require", "exports", "./mod"], function (require, exports, mod_1) {
+				+ exports.t = mod_1.something + 1;
+			+ });
+			+ /* CommonJS / Node SimpleModule.js */
+			+ var mod_1 = require("./mod");
+			+ exports.t = mod_1.something + 1;
+			+ /* UMD SimpleModule.js */
+			+ (function (factory) {
+				+ if (typeof module === "object" && typeof module.exports === "object") {
+					+ var v = factory(require, exports); if (v !== undefined) module.exports = v;
+				+ } else if (typeof define === "function" && define.amd) {
+					+ define(["require", "exports", "./mod"], factory);
+				+ }
+			+ })(function (require, exports) {
+				+ var mod_1 = require("./mod");
+				+ exports.t = mod_1.something + 1;
+			+ });
+			+ /* System SimpleModule.js */
+			+ System.register(["./mod"], function (exports_1) {
+				+ var mod_1;
+				+ var t;
+				+ return {
+					+ setters: [
+						+ function (mod_1_1) {
+							+ mod_1 = mod_1_1;
+						+ }],
+						+ execute: function () {
+							+ exports_1("t", t = mod_1.something + 1);
+						+ }
+					+ }
+				+ });
+			+ /* Native ECMAScript 2015 modules SimpleModule.js */
+			+ import { something } from "./mod";
+			+ export var t = something + 1;
+
+		ittf
+			+
+				:import m
+					:require "mod"
+				export 
+					let t = m.something + 1
+				#
+					# AMD / RequireJS SimpleModule.js
+				_ define
+					[ 
+						@ "require"
+						@ "exports"
+						@ "./mod"
+					function 
+						param require
+						param exports
+						param mod_1
+						set exports.t = mod_1.something + 1
+				#
+					# CommonJS / Node SimpleModule.js
+				var mod_1 = require("./mod")
+				set exports.t = mod_1.something + 1
+				#
+					# UMD SimpleModule.js
+				iife 
+					param factory
+					if typeof module === "object" && typeof module.exports === "object"
+						var v = factory(require, exports)
+						if v !== undefined
+							set module.exports = v
+					else
+						if typeof define === "function" && define.amd
+							_ define
+								[ 
+									@ "require"
+									@ "exports"
+									@ "./mod"
+								@ factory
+					(
+						function 
+							param require
+							param exports
+							var mod_1 = require("./mod")
+							set exports.t = mod_1.something + 1
+				#
+					# System SimpleModule.js
+				_ System.register
+					[ 
+						@ "./mod"
+					function 
+						param exports_1
+						var mod_1
+						var t
+						return 
+							{ 
+								[ setters
+									function 
+										param mod_1_1
+										set mod_1 = mod_1_1
+								@ execute
+									function 
+										_ exports_1
+											@ "t"
+											set t = mod_1.something + 1
+				#
+					# Native ECMAScript 2015 modules SimpleModule.js
+				import 
+					@ something
+					from "./mod"
+				export 
+					var t = something + 1
+
+	item
+		title Simple Example
+		expected
+			+ /* Validation.ts */
+			+ export interface StringValidator {
+				+ isAcceptable(s: string): boolean;
+			+ }
+			+ /* LettersOnlyValidator.ts */
+			+ import { StringValidator } from "./Validation";
+			+ const lettersRegexp = /^[A-Za-z]+$/;
+			+ export class LettersOnlyValidator implements StringValidator {
+				+ isAcceptable(s: string) {
+					+ return lettersRegexp.test(s);
+				+ }
+			+ }
+			+ /* ZipCodeValidator.ts */
+			+ import { StringValidator } from "./Validation";
+			+ const numberRegexp = /^[0-9]+$/;
+			+ export class ZipCodeValidator implements StringValidator {
+				+ isAcceptable(s: string) {
+					+ return s.length === 5 && numberRegexp.test(s);
+				+ }
+			+ }
+			+ /* Test.ts */
+			+ import { StringValidator } from "./Validation";
+			+ import { ZipCodeValidator } from "./ZipCodeValidator";
+			+ import { LettersOnlyValidator } from "./LettersOnlyValidator";
+			+ // Some samples to try
+			+ let strings = ["Hello", "98052", "101"];
+			+ // Validators to use
+			+ let validators: { [s: string]: StringValidator; } = {};
+			+ validators["ZIP code"] = new ZipCodeValidator();
+			+ validators["Letters only"] = new LettersOnlyValidator();
+			+ // Show whether each string passed each validator
+			+ strings.forEach(s => {
+				+ for (let name in validators) {
+					+ console.log(`"${s}" - ${validators[name].isAcceptable(s) ? "matches" : "does not match"} ${name}`);
+				+ }
+			+ });
+
+		ittf
+			+
+				#
+					# Validation.ts
+				export 
+					:interface StringValidator
+						:m isAcceptable
+							:boolean 
+							param s
+								:string 
+				#
+					# LettersOnlyValidator.ts
+				import 
+					@ StringValidator
+					from "./Validation"
+				const lettersRegexp = /^[A-Za-z]+$/
+				export 
+					class LettersOnlyValidator
+						:implements StringValidator
+						m isAcceptable
+							param s
+								:string 
+							return lettersRegexp.test(s)
+				#
+					# ZipCodeValidator.ts
+				import 
+					@ StringValidator
+					from "./Validation"
+				const numberRegexp = /^[0-9]+$/
+				export 
+					class ZipCodeValidator
+						:implements StringValidator
+						m isAcceptable
+							param s
+								:string 
+							return s.length === 5 && numberRegexp.test(s)
+				#
+					# Test.ts
+				import 
+					@ StringValidator
+					from "./Validation"
+				import 
+					@ ZipCodeValidator
+					from "./ZipCodeValidator"
+				import 
+					@ LettersOnlyValidator
+					from "./LettersOnlyValidator"
+				let strings
+					[ 
+						@ "Hello"
+						@ "98052"
+						@ "101"
+				let validators
+					:{ 
+						:index 
+							:ref StringValidator
+							param s
+								:string 
+					{ 
+				set validators["ZIP code"] = new ZipCodeValidator()
+				set validators["Letters only"] = new LettersOnlyValidator()
+				_ strings.forEach
+					=> 
+						param s
+						for let name in validators
+							_ console.log
+								`lit 
+									+ "
+									@ s
+									+ " -\b
+									iif validators[name].isAcceptable(s)
+										then "matches"
+										else "does not match"
+									+ \b
+									@ name
+									+ 
+	item
+		title Optional Module Loading
+		expected
+			+ /* Dynamic Module Loading in Node.js */
+			+ declare function require(moduleName: string): any;
+			+ import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
+			+ if (needZipValidation) {
+				+ let ZipCodeValidator: typeof Zip = require("./ZipCodeValidator");
+				+ let validator = new ZipCodeValidator();
+				+ if (validator.isAcceptable("...")) { /* ... */ }
+			+ }
+			+ /* Sample: Dynamic Module Loading in require.js */
+			+ declare function require(moduleNames: string[], onLoad: (...args: any[]) => void): void;
+			+ import * as Zip from "./ZipCodeValidator";
+			+ if (needZipValidation) {
+				+ require(["./ZipCodeValidator"], (ZipCodeValidator: typeof Zip) => {
+					+ let validator = new ZipCodeValidator.ZipCodeValidator();
+					+ if (validator.isAcceptable("...")) { /* ... */ }
+				+ });
+			+ }
+			+ /* Sample: Dynamic Module Loading in System.js */
+			+ declare const System: any;
+			+ import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
+			+ if (needZipValidation) {
+				+ System.import("./ZipCodeValidator").then((ZipCodeValidator: typeof Zip) => {
+					+ var x = new ZipCodeValidator();
+					+ if (x.isAcceptable("...")) { /* ... */ }
+				+ });
+			+ }
+
+		ittf
+			+
+				#
+					# Dynamic Module Loading in Node.js
+				:declare
+					:function require
+						param moduleName
+							:string 
+						:return
+							:any 
+				import 
+					@ ZipCodeValidator
+						as Zip
+					from "./ZipCodeValidator"
+				if needZipValidation
+					let ZipCodeValidator
+						:typeof Zip
+						_ require("./ZipCodeValidator")
+					let validator = new ZipCodeValidator()
+					if validator.isAcceptable("...")
+				#
+					# Sample: Dynamic Module Loading in require.js
+				:declare
+					:function require
+						param moduleNames
+							:[ 
+								:string 
+						param onLoad
+							:=> 
+								:void 
+								param ...args
+									:[ 
+										:any 
+						:return
+							:void 
+				import 
+					as Zip
+					from "./ZipCodeValidator"
+				if needZipValidation
+					_ require
+						[ 
+							@ "./ZipCodeValidator"
+						=> 
+							param ZipCodeValidator
+								:typeof Zip
+							let validator = new ZipCodeValidator.ZipCodeValidator()
+							if validator.isAcceptable("...")
+				#
+					# Sample: Dynamic Module Loading in System.js
+				:declare
+					const System
+						:any 
+				import 
+					@ ZipCodeValidator
+						as Zip
+					from "./ZipCodeValidator"
+				if needZipValidation
+					_ System.import("./ZipCodeValidator").then
+						=> 
+							param ZipCodeValidator
+								:typeof Zip
+							var x = new ZipCodeValidator()
+							if x.isAcceptable("...")
+
+	item
+		title Ambient Modules
+		expected
+			+ /* node.d.ts(simplified excerpt) */
+			+ declare module "url" {
+				+ export interface Url {
+					+ protocol?: string;
+					+ hostname?: string;
+					+ pathname?: string;
+				+ }
+				+ export function parse(urlStr: string, parseQueryString?, slashesDenoteHost?): Url;
+			+ }
+			+ declare module "path" {
+				+ export function normalize(p: string): string;
+				+ export function join(...paths: any[]): string;
+				+ export var sep: string;
+			+ }
+			+ /* Now we can /// <reference> node.d.ts and then load the modules using import url = require("url"); or import * as URL from "url". */
+			+ /// <reference path="node.d.ts"/>
+			+ import * as URL from "url";
+			+ let myUrl = URL.parse("http://www.typescriptlang.org");
+
+		ittf
+			+
+				#
+					# node.d.ts(simplified excerpt)
+				:declare
+					:module "url"
+						export 
+							:interface Url
+								:p protocol
+									:optional 
+									:string 
+								:p hostname
+									:optional 
+									:string 
+								:p pathname
+									:optional 
+									:string 
+						export 
+							:function parse
+								param urlStr
+									:string 
+								param parseQueryString
+									:optional 
+								param slashesDenoteHost
+									:optional 
+								:return
+									:ref Url
+					:module "path"
+						export 
+							:function normalize
+								param p
+									:string 
+								:return
+									:string 
+						export 
+							:function join
+								param ...paths
+									:[ 
+										:any 
+								:return
+									:string 
+						export 
+							var sep
+								:string 
+				#
+					# Now we can /// <reference> node.d.ts and then load the modules using import url = require("url"); or import * as URL from "url".
+				import 
+					as URL
+					from "url"
+				let myUrl = URL.parse("http://www.typescriptlang.org")
+    
+	item
+		title Shorthand ambient modules
+		expected
+			+ /*declarations.d.ts */
+			+ declare module "hot-new-module";
+			+ /* All imports from a shorthand module will have the any type. */
+			+ import x, { y } from "hot-new-module";
+			+ x(y);
+		ittf
+			+
+				#
+					# declarations.d.ts
+				:declare
+					:module "hot-new-module"
+				#
+					# All imports from a shorthand module will have the any type.
+				import x
+					@ y
+					from "hot-new-module"
+				_ x(y)
+
+	item
+		title Wildcard module declarations
+		expected
+			+ declare module "*!text" {
+				+ const content: string;
+				+ export default content;
+			+ }
+			+ // Some do it the other way around.
+			+ declare module "json!*" {
+				+ const value: any;
+				+ export default value;
+			+ }
+			+ /* Now you can import things that match "*!text" or "json!*". */
+			+ import fileContent from "./xyz.txt!text";
+			+ import data from "json!http://example.com/data.json";
+			+ console.log(data, fileContent);
+		ittf
+			+
+				:declare
+					:module "*!text"
+						const content
+							:string 
+						export-default content
+					:module "json!*"
+						const value
+							:any 
+						export-default value
+				#
+					# Now you can import things that match "*!text" or "json!*".
+				import fileContent from "./xyz.txt!text"
+				import data from "json!http://example.com/data.json"
+				_ console.log(data, fileContent)
+
+	item
+		title UMD modules
+		expected
+			+ /* math-lib.d.ts */
+			+ export function isPrime(x: number): boolean;
+			+ export as namespace mathLib;
+			+ /* The library can then be used as an import within modules: */
+			+ import { isPrime } from "math-lib";
+			+ isPrime(2);
+			+ mathLib.isPrime(2); // ERROR: can't use the global definition from inside a module
+			+ /* It can also be used as a global variable, but only inside of a script. (A script is a file with no imports or exports.) */
+			+ mathLib.isPrime(2);
+
+		ittf
+			+
+				#
+					# math-lib.d.ts
+				export 
+					:function isPrime
+						param x
+							:number 
+						:return
+							:boolean 
+				:export-ns mathLib
+				#
+					# The library can then be used as an import within modules:
+				import 
+					@ isPrime
+					from "math-lib"
+				_ isPrime(2)
+				_ mathLib.isPrime(2)
+				#
+					# It can also be used as a global variable, but only inside of a script. (A script is a file with no imports or exports.)
+				_ mathLib.isPrime(2)
+
+	item
+		title Export as close to top-level as possible
+		expected
+			+ MyClass.ts */
+			+ export default class SomeType {
+				+ constructor() {}
+			+ }
+			+ /* MyFunc.ts */
+			+ export default function getThing() { return "thing"; }
+			+ /* Consumer.ts */
+			+ import t from "./MyClass";
+			+ import f from "./MyFunc";
+			+ let x = new t();
+			+ console.log(f());
+			+ /* MyThings.ts */
+			+ export class SomeType { /* ... */ }
+			+ export function someFunc() { /* ... */ }
+			+ /* Consumer.ts */
+			+ import { SomeType, someFunc } from "./MyThings";
+			+ let x = new SomeType();
+			+ let y = someFunc();
+			+ /* MyLargeModule.ts */
+			+ export class Dog { }
+			+ export class Cat { }
+			+ export class Tree { }
+			+ export class Flower { }
+			+ /* Consumer.ts */
+			+ import * as myLargeModule from "./MyLargeModule.ts";
+			+ let x = new myLargeModule.Dog();
+
+		ittf
+			+
+				export-default 
+					class SomeType
+						ctor 
+				#
+					# MyFunc.ts
+				export-default 
+					function getThing
+						return "thing"
+				#
+					# Consumer.ts
+				import t from "./MyClass"
+				import f from "./MyFunc"
+				let x = new t()
+				_ console.log(f())
+				#
+					# This is optimal for consumers.
+					# They can name your type whatever they want (t in this case) and don’t have to do any excessive dotting to find your objects.
+					# If you’re exporting multiple objects, put them all at top- level
+					# MyThings.ts
+				export 
+					class SomeType
+				export 
+					function someFunc
+				#
+					# Conversely when importing:
+					# Explicitly list imported names
+					# Consumer.ts
+				import 
+					@ SomeType
+					@ someFunc
+					from "./MyThings"
+				let x = new SomeType()
+				let y = someFunc()
+				#
+					# Use the namespace import pattern if you’re importing a large number of things
+					# MyLargeModule.ts
+				export 
+					class Dog
+				export 
+					class Cat
+				export 
+					class Tree
+				export 
+					class Flower
+				#
+					# Consumer.ts
+				import 
+					as myLargeModule
+					from "./MyLargeModule.ts"
+				let x = new myLargeModule.Dog()
+
+
+	item
+		title Re -export to extend
+		expected
+			+ export class Calculator {
+				+ private current = 0;
+				+ private memory = 0;
+				+ private operator: string;
+				+ protected processDigit(digit: string, currentValue: number) {
+					+ if (digit >= "0" && digit <= "9") {
+						+ return currentValue * 10 + (digit.charCodeAt(0) - "0".charCodeAt(0));
+					+ }
+				+ }
+				+ protected processOperator(operator: string) {
+					+ if (["+", "-", "*", "/"].indexOf(operator) >= 0) {
+						+ return operator;
+					+ }
+				+ }
+				+ protected evaluateOperator(operator: string, left: number, right: number): number {
+					+ switch (this.operator) {
+						+ case "+": return left + right;
+						+ case "-": return left - right;
+						+ case "*": return left * right;
+						+ case "/": return left / right;
+					+ }
+				+ }
+				+ private evaluate() {
+					+ if (this.operator) {
+						+ this.memory = this.evaluateOperator(this.operator, this.memory, this.current);
+					+ } else {
+						+ this.memory = this.current;
+					+ }
+					+ this.current = 0;
+				+ }
+				+ public handleChar(char: string) {
+					+ if (char === "=") {
+						+ this.evaluate();
+						+ return;
+					+ } else {
+						+ let value = this.processDigit(char, this.current);
+						+ if (value !== undefined) {
+							+ this.current = value;
+							+ return;
+						+ } else {
+							+ let value = this.processOperator(char);
+								+ if (value !== undefined) {
+									+ this.evaluate();
+									+ this.operator = value;
+									+ return;
+								+ }
+							+ }
+						+ }
+						+ throw new Error(`Unsupported input: '${char}'`);
+					+ }
+					+ public getResult() {
+						+ return this.memory;
+					+ }
+				+ }
+				+ export function test(c: Calculator, input: string) {
+					+ for (let i = 0; i < input.length; i++) {
+						+ c.handleChar(input[i]);
+					+ }
+					+ console.log(`result of '${input}' is '${c.getResult()}'`);
+				+ }
+				+ /* Here is a simple test for the calculator using the exposed test function. */
+				+ /* TestCalculator.ts */
+				+ import { Calculator, test } from "./Calculator";
+				+ let c = new Calculator();
+				+ test(c, "1+2*33/11="); // prints 9
+				+ /* Now to extend this to add support for input with numbers in bases other than 10, let’s create ProgrammerCalculator.ts
+				+ /* ProgrammerCalculator.ts */
+				+ import { Calculator } from "./Calculator";
+				+ class ProgrammerCalculator extends Calculator {
+					+ static digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
+					+ constructor(public base: number) {
+						+ super();
+						+ const maxBase = ProgrammerCalculator.digits.length;
+						+ if (base <= 0 || base > maxBase) {
+							+ throw new Error(`base has to be within 0 to ${maxBase} inclusive.`);
+						+ }
+					+ }
+					+ protected processDigit(digit: string, currentValue: number) {
+						+ if (ProgrammerCalculator.digits.indexOf(digit) >= 0) {
+							+ return currentValue * this.base + ProgrammerCalculator.digits.indexOf(digit);
+						+ }
+					+ }
+				+ }
+				+ // Export the new extended calculator as Calculator
+				+ export { ProgrammerCalculator as Calculator };
+				+ // Also, export the helper function
+				+ export { test } from "./Calculator";
+				+ /* TestProgrammerCalculator.ts */
+				+ import { Calculator, test } from "./ProgrammerCalculator";
+				+ let c = new Calculator(2);
+				+ test(c, "001+010="); // prints 3
+
+		ittf
+			+
+				export 
+					class Calculator
+						p current
+							:private 
+							:= 0
+						p memory
+							:private 
+							:= 0
+						p operator
+							:private 
+							:string 
+						m processDigit
+							:protected 
+							param digit
+								:string 
+							param currentValue
+								:number 
+							if digit >= "0" && digit <= "9"
+								return currentValue * 10 + (digit.charCodeAt(0) - "0".charCodeAt(0))
+						m processOperator
+							:protected 
+							param operator
+								:string 
+							if 
+								test
+									>= 
+										[ 
+											@ "+"
+											@ "-"
+											@ "*"
+											@ "/"
+											._ indexOf
+												@ operator
+										+ 0
+								return operator
+						m evaluateOperator
+							:protected 
+							param operator
+								:string 
+							param left
+								:number 
+							param right
+								:number 
+							:return
+								:number 
+							switch this.operator
+								case "+"
+									return left + right
+								case "-"
+									return left - right
+								case "*"
+									return left * right
+								case "/"
+									return left / right
+						m evaluate
+							:private 
+							if this.operator
+								set this.memory = this.evaluateOperator(this.operator, this.memory, this.current)
+							else
+								set this.memory = this.current
+							set this.current = 0
+						m handleChar
+							:public 
+							param char
+								:string 
+							if char === "="
+								_ this.evaluate
+								return 
+							else
+								let value = this.processDigit(char, this.current)
+								if value !== undefined
+									set this.current = value
+									return 
+								else
+									let value = this.processOperator(char)
+									if value !== undefined
+										_ this.evaluate
+										set this.operator = value
+										return 
+							throw 
+								new Error
+									`lit 
+										+ Unsupported input: '
+										@ char
+										+ '
+						m getResult
+							:public 
+							return this.memory
+				export 
+					function test
+						param c
+							:ref Calculator
+						param input
+							:string 
+						for let i = 0; i < input.length; i++
+							_ c.handleChar(input[i])
+						_ console.log
+							`lit 
+								+ result of '
+								@ input
+								+ ' is '
+								_ c.getResult
+								+ '
+				#
+					# Here is a simple test for the calculator using the exposed test function.
+				#
+					# TestCalculator.ts
+				import 
+					@ Calculator
+					@ test
+					from "./Calculator"
+				let c = new Calculator()
+				_ test(c, "1+2*33/11=")
+				#
+					# Now to extend this to add support for input with numbers in bases other than 10, let’s create ProgrammerCalculator.ts
+					# ProgrammerCalculator.ts
+				import 
+					@ Calculator
+					from "./Calculator"
+				class ProgrammerCalculator
+					super Calculator
+					p digits
+						static
+						[ 
+							@ "0"
+							@ "1"
+							@ "2"
+							@ "3"
+							@ "4"
+							@ "5"
+							@ "6"
+							@ "7"
+							@ "8"
+							@ "9"
+							@ "A"
+							@ "B"
+							@ "C"
+							@ "D"
+							@ "E"
+							@ "F"
+					ctor 
+						param base
+							:public 
+							:number 
+						_ super
+						const maxBase = ProgrammerCalculator.digits.length
+						if base <= 0 || base > maxBase
+							throw 
+								new Error
+									`lit 
+										+ base has to be within 0 to\b
+										@ maxBase
+										+ \binclusive.
+					m processDigit
+						:protected 
+						param digit
+							:string 
+						param currentValue
+							:number 
+						if ProgrammerCalculator.digits.indexOf(digit) >= 0
+							return currentValue * this.base + ProgrammerCalculator.digits.indexOf(digit)
+				export 
+					@ ProgrammerCalculator
+						as Calculator
+				export 
+					@ test
+					from "./Calculator"
+				#
+					# The new module ProgrammerCalculator exports an API shape similar to that of the original Calculator module,
+					# but does not augment any objects in the original module. Here is a test for our ProgrammerCalculator class:
+					# TestProgrammerCalculator.ts
+				import 
+					@ Calculator
+					@ test
+					from "./ProgrammerCalculator"
+				let c = new Calculator(2)
+				_ test(c, "001+010=")

@@ -1,0 +1,15 @@
+﻿module
+	kind react
+	+
+	import React, { Component, PropTypes } from 'react'
+	import ReactDOM from 'react-dom'
+	import PropTypes from 'prop-types'
+	import Prefixer from 'inline-style-prefixer'
+	import stylePropType from 'react-style-proptype'
+
+	var USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Safari/537.2'
+
+	$include panels/SplitPanel
+	$include panels/Tabs
+	$include panels/TabItem
+	$include panels/TabPanel

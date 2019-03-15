@@ -1,0 +1,15 @@
+﻿module
+	kind es6
+
+	function sum
+		param a
+		param b
+		return a + b
+
+	function times
+		param a
+		param b
+		return a * b
+
+	export default times
+	export { sum }

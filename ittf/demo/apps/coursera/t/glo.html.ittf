@@ -1,0 +1,8 @@
+div
+	$params item, alias|@@null
+	h4 ${item}
+	dl
+		$if alias
+			p alias ${alias}
+		style margin-left: 1.6em; font-family: sans-serif; font-size: 0.9em;
+		$hook

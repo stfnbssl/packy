@@ -1,0 +1,143 @@
+﻿$group
+    
+	$include ./color-conversions
+
+	# Copyright 
+	# https://github.com/qix-/color-convert
+	
+	j/iife-wrapped( BxColorConvert, colorConversions )
+
+		var conversionModels = Object.keys(colorConversions)
+		
+		function buildGraph
+			var graph
+				{ 
+			for var len = conversionModels.length, i = 0; i < len; i++
+				set graph[conversionModels[i]] =
+					{ 
+						@ distance -1
+						@ parent null
+			return graph
+		
+		function deriveBFS
+			param fromModel
+			var graph = buildGraph()
+			var queue
+				[ 
+					@ fromModel
+			set graph[fromModel].distance = 0
+			while queue.length
+				var current = queue.pop()
+				var adjacents
+					_ Object.keys
+						@ colorConversions[current]
+				for var len = adjacents.length, i = 0; i < len; i++
+					var adjacent = adjacents[i]
+					var node = graph[adjacent]
+					if node.distance === - (1)
+						set node.distance = (graph[current].distance + 1)
+						set node.parent = current
+						_ queue.unshift(adjacent)
+			return graph
+		
+		function link
+			param from
+			param to
+			return 
+				function 
+					param args
+					return 
+						_ to
+							_ from(args)
+		
+		function wrapConversion
+			param toModel
+			param graph
+			var path
+				[ 
+					@ graph[toModel].parent
+					@ toModel
+			var fn = colorConversions[graph[toModel].parent][toModel]
+			var cur = graph[toModel].parent
+			while graph[cur].parent
+				_ path.unshift
+					@ graph[cur].parent
+				set fn = link(colorConversions[graph[cur].parent][cur], fn)
+				set cur = graph[cur].parent
+			set fn.conversion = path
+			return fn
+		
+		function route
+			param fromModel
+			var graph = deriveBFS(fromModel)
+			var conversion
+				{ 
+			var models = Object.keys(graph)
+			for var len = models.length, i = 0; i < len; i++
+				var toModel = models[i]
+				var node = graph[toModel]
+				if node.parent === null
+					continue 
+				set conversion[toModel] = wrapConversion(toModel, graph)
+			return conversion
+
+		var colorConvert
+			{ 
+		
+		function wrapRaw
+			param fn
+			var wrappedFn
+				function 
+					param args
+					if ((args === undefined) || (args === null))
+						return args
+					if arguments.length > 1
+						set args = Array.prototype.slice.call(arguments)
+					return fn(args)
+			if 'conversion' in fn
+				set wrappedFn.conversion = fn.conversion
+			return wrappedFn
+		
+		function wrapRounded
+			param fn
+			var wrappedFn
+				function 
+					param args
+					if ((args === undefined) || (args === null))
+						return args
+					if arguments.length > 1
+						set args = Array.prototype.slice.call(arguments)
+					var result = fn(args)
+					if typeof (result) === 'object'
+						for var len = result.length, i = 0; i < len; i++
+							set result[i] = Math.round(result[i])
+					return result
+			if 'conversion' in fn
+				set wrappedFn.conversion = fn.conversion
+			return wrappedFn
+		
+		_ conversionModels.forEach
+			function 
+				param fromModel
+				set colorConvert[fromModel] =
+					{ 
+				_ Object.defineProperty
+					@ colorConvert[fromModel]
+					@ 'channels'
+					{ 
+						@ value colorConversions[fromModel].channels
+				_ Object.defineProperty
+					@ colorConvert[fromModel]
+					@ 'labels'
+					{ 
+						@ value colorConversions[fromModel].labels
+				var routes = route(fromModel)
+				var routeModels = Object.keys(routes)
+				_ routeModels.forEach
+					function 
+						param toModel
+						var fn = routes[toModel]
+						set colorConvert[fromModel][toModel] = wrapRounded(fn)
+						set colorConvert[fromModel][toModel].raw = wrapRaw(fn)
+
+		return colorConvert

@@ -1,0 +1,31 @@
+﻿module
+	$params name, title|@@null
+
+	r-g-component( ${name}Controller )
+
+		$append imports
+			import ${name} from './${name}'
+
+		style
+
+		=> showResults
+			param values
+			_ window.alert
+				@ `You submitted:\n\n${JSON.stringify(values, null, 2)}`
+
+		render
+
+			return
+
+				div
+					@style
+						{
+							@ padding 15
+					$if title == null
+						h2 ${name}
+					$else
+						h2 ${title}
+					$hook pre
+					< ${name}
+						@ onSubmit {this.showResults}
+					$hook post

@@ -1,0 +1,43 @@
+﻿module
+	kind react
+	+
+	wz-function makeFolderList
+		param documents
+
+		_ documents.sort
+			function
+				param a
+				param b
+				if a.uri < b.uri
+					return -1
+				if a.uri > b.uri
+					return 1
+				return 0
+
+		var foldersObj = {}, folder
+		foreach d in documents
+			set folder = foldersObj[d.folder]
+			if folder
+				_ folder.documents.push(d)
+			else
+				set foldersObj[d.folder]
+					{
+						@ name d.folder
+						@ documents [d]
+
+		var folderNames = Object.keys(foldersObj)
+		_ folderNames.sort
+			function
+				param a
+				param b
+				if a < b
+					return -1
+				if a > b
+					return 1
+				return 0
+		
+		var folders = []
+		foreach n in folderNames
+			_ folders.push(foldersObj[n])
+		
+		return folders

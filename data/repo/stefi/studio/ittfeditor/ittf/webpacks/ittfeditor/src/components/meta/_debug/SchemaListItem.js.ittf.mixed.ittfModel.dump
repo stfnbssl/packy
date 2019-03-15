@@ -1,0 +1,21 @@
+  module  ids: 1 22
+    kind react ids: 2 23
+    +  ids: 3 24
+    import React, { PropTypes } from 'react' ids: 4 25
+    import { ListGroupItem } from 'react-bootstrap' ids: 5 26
+    +  ids: 6 27
+    const SchemaListItem ids: 7 28
+      =>  ids: 8 29
+        param { onClick, selectedSchemaUri, name } ids: 9 30
+        return  ids: 10 31
+          < ListGroupItem ids: 11 32
+            onClick {onClick} ids: 12 33
+            @ bsStyle { selectedSchemaUri === name ? 'danger' : 'info' } ids: 13 34
+            + {name} ids: 14 35
+    +  ids: 15 36
+    set SchemaListItem.propTypes ids: 16 37
+      {  ids: 17 38
+        @ onClick PropTypes.func.isRequired ids: 18 39
+        @ selectedSchemaUri PropTypes.string ids: 19 40
+        @ name PropTypes.string.isRequired ids: 20 41
+    export default SchemaListItem ids: 21 42

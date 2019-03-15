@@ -1,0 +1,7 @@
+﻿button
+	$params cssName, title
+    type button
+	id btn${cssName}
+    class btn ${cssName}
+	$if title
+		title ${title}

@@ -1,0 +1,10 @@
+h/root/empty_layout()
+
+	# app
+
+	script
+		type module
+		module
+			kind es6
+			import times, { sum } from "./opers.js.ittf"
+			set document.querySelector('#app').innerHTML = times(sum(3, 5),2)

@@ -1,0 +1,8 @@
+﻿$group
+	$params id, label, value
+	label ${label}
+		for ${id}
+	input
+		id ${id}
+		value ${value}
+		class form-control

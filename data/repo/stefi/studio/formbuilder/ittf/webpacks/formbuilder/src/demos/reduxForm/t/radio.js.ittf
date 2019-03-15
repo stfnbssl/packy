@@ -1,0 +1,9 @@
+﻿$group
+	$params name, value, label
+
+	< Field
+		@ name ${name}
+		@ label ${label}
+		@ value ${value}
+		@ type radio
+		@ component {renderField}

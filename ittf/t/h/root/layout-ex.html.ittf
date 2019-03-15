@@ -1,0 +1,57 @@
+$group
+	$params &opt
+
+    head
+		@title ${opt.title}
+        meta 
+            charset utf-8
+        meta 
+            name viewport
+			content width=device-width, initial-scale=1
+
+		$hook head-styles-0
+		
+		$include layout-head
+		css /ittf/styles/layout.css.ittf
+		
+		$hook head-styles
+		
+    body 
+        nav 
+            class main-menu
+            ul 
+				$include layout-sidebar
+            ul 
+                class logout
+                li 
+                    a 
+                        href #
+                        i 
+                            class fa fa-power-off fa-2x
+                        span Logout
+                            class nav-text
+        . area
+			div
+				style display: flex; margin: 1rem;
+				. logo
+					img
+						src /ittf/images/logo.svg.ittf
+						width 120
+						height 50px
+				span ${opt.title}
+					class main-head-span
+				
+			$hook breadcrumb
+			$hook left-sidebar
+			$hook
+
+	
+		$include h/script_meta
+
+		$hook body-scripts-0
+		
+		$include layout-body
+		
+		$hook body-scripts
+
+

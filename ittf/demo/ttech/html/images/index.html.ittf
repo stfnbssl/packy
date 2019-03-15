@@ -1,0 +1,16 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'images',
+			label: 'Images',
+			experimentsWith: 'html images',
+			path: [
+				{
+					name: 'html',
+					label: 'Html',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

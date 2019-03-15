@@ -1,0 +1,37 @@
+﻿$group
+	
+	class BxComponent
+		ctor
+			set this.children = []
+
+		m create
+			param parentDOMNode
+			set this.children
+				_ this.render()
+
+		m render
+
+	$if render
+		tabitem(${prefix}, true)
+		tabpane(${prefix}, true)
+	$else
+		tabitem(${prefix}, false)
+		tabpane(${prefix}, false)
+
+	class ${prefix}Tabs
+		ctor
+			set this.tabItems = []
+			set this.tabPanes = []
+
+		$if render
+			m render
+		$else
+			m attach
+				param el
+
+		m addTab
+			param props
+			var tabItem = new ${prefix}TabItem(props)
+			var tabPane = new ${prefix}TabPane(props)
+
+

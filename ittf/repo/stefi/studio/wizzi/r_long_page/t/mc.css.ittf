@@ -1,0 +1,141 @@
+﻿$group
+
+	# mc-wrapper
+		position fixed
+		width 100%
+		$if debug_css
+			border 1px solid blue
+
+	. mc-wrapper-layout
+		top ${l_mc_top}px
+		height calc(100% - ${l_mc_top + 10}px)
+
+	. mc-wrapper-layout-sub
+		top ${l_mc_sub_top}px
+		height calc(100% - ${l_mc_sub_top + 10}px)
+
+	. mc-frame
+		display flex
+		flex-direction row
+		height 100%
+		$if debug_css
+			border 1px solid red
+
+	. mc-sidebar-left
+		padding 20px 30px
+		$$ height 100%
+		$$ still i can't find why i need to subtract these 40 pixels
+		height calc(100% - 40px)
+		min-width 300px
+		overflow auto
+		< ul
+			display flex
+			justify-content space-between
+			flex-direction column
+			list-style-type none
+			transition all 1s ease
+			< li
+				border-bottom 1px solid ${c_0}
+				color ${c_0}
+				display block
+				font-size 1.2em
+				padding 0.5em 0
+				< a
+					color ${c_0}
+
+	. mc-sidebar-left-title
+		display none
+		padding-left 30px
+
+	. mc-content
+		$$padding 50px 30px
+		$$ Do the same as mc-sidebar-left
+		padding 20px 20px
+		$$ height 100%
+		$$ still i can't find why i need to subtract these 40 pixels
+		$$ It seems to be the padding. Why? Isn t it internal to height
+		height calc(100% - 40px)
+		overflow auto
+
+	. mc-pane
+		width 100%
+
+	< input[id^='mc-toggle-']
+		display none
+
+	. mc-label-toggle
+		display none
+		cursor pointer
+
+	. mc-label-toggle-close
+		display none
+
+	media screen and (max-width: 768px)
+		# mc-wrapper
+			. mc-frame 
+				display block
+				. mc-sidebar-left
+					$$ TODO explain exactly why 160px (that is mc-frame-bar height)
+					height calc(100% - 140px)
+					margin 10px
+					< ul li
+						font-size 1.5em
+						border-bottom 2px solid ${c_0}
+						padding 2em 0
+
+		. mc-wrapper-layout
+			top ${l_mc_top_mobile}px
+			height calc(100% - ${l_mc_top_mobile + 10}px)
+
+		. mc-wrapper-layout-sub
+			top ${l_mc_sub_top_mobile}px
+			height calc(100% - ${l_mc_sub_top_mobile + 10}px)
+
+		. mc-frame-bar
+			display flex
+			flex-direction row
+			justify-content space-between
+			background-color ${c_mc_bg_frame_bar}
+			color ${c_mc_frame_bar}
+			margin 0 10px
+			padding 0 10px
+
+		. mc-sidebar-left-title
+			display block
+			padding-left 0
+
+		. mc-label-toggle
+			display block
+
+		. mc-item-link
+			display none
+
+		. mc-pane
+			display none
+
+		. mc-content
+			$$ TODO explain exactly why 160px (that is mc-frame-bar height)
+			height calc(100% - 140px)
+			margin 10px
+		
+		. mc-content-title
+			display none
+
+		# mc-toggle-toc:checked ~ .mc-frame .mc-sidebar-left
+			display none
+
+		# mc-toggle-toc:checked ~ .mc-frame .mc-label-toggle-close
+			font-size 70px
+			cursor pointer
+			display block
+			$$ float right
+			height 35px
+			$$ margin-top -0.7em
+			width 35px
+
+		# mc-toggle-c-intro:checked ~ .mc-pane-c-intro
+			display block
+
+		$foreach concept in docs.concepts
+			# mc-toggle-${concept.id}:checked ~ .mc-pane-${concept.id}
+				display block

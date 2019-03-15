@@ -1,0 +1,11 @@
+﻿[
+	plugin_generate( wizzi-core, v5 )
+	plugin_generate( wizzi-meta, v5 )
+	plugin_generate( wizzi-js, v5 )
+	plugin_generate( wizzi-web, v5 )
+	plugin_generate( wizzi-lab, v5 )
+	plugin_generate( wizzi-codegen, v4 )
+	plugin_generate( wizzi-core, v4 )
+	plugin_generate( wizzi-js, v4 )
+	plugin_generate( wizzi-html, v4 )
+

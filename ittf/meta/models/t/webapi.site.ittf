@@ -1,0 +1,58 @@
+$group
+
+	category WebApi
+
+		category WebSpeech
+		    lia( MDN examples on GitHub, https://github.com/mdn/web-speech-api
+		    
+		    demo phrasematcher
+		    demo speak-easy-synthesis
+		    demo speech-color-changer
+		
+		category WebSocket
+			
+			p The WebSocket API is an advanced technology that makes it possible to open a two-way 
+				\b interactive communication session between the user's browser and a server. 
+				\b With this API, you can send messages to a server and receive event-driven responses 
+				\b without having to poll the server for a reply.
+			
+			lia( MDN WebSocket, https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+			lia( Specification, https://www.w3.org/TR/websockets/
+			lia( Socket.IO library, https://github.com/socketio/socket.io
+				stars 43833 | 2018-10-11
+		
+		category IndexedDB
+			lia( MDN IndexdDB, https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+			lia( Specification, https://www.w3.org/TR/IndexedDB/
+			lia( minimongo, https://github.com/mWater/minimongo
+
+			demo browserfs
+
+		category WebGL
+			lia( MDN WebGL, https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API
+			
+			demo step_1
+			demo step_2
+			demo step_3
+		
+		category WebAudio
+			lia( MDN WebAudio, https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
+			lia( Jake Archibald sounds fun, https://jakearchibald.com/2016/sounds-fun/
+			lia( Sound.js, https://createjs.com/soundjs
+				stars 3468 | 2018-10-08
+				p A JavaScript library that provides a simple API, and powerful features
+					\b to make working with audio a breeze.
+					\b Easily ties in audio file loading to PreloadJS.
+					\b It provides a consistent API for loading and playing audio on different
+						\b browsers and devices. Currently supports WebAudio, HTML5 Audio, 
+							\b Cordova / PhoneGap, and a Flash fallback.
+		
+		category WebRtc
+			lia( WebRtc open source project, https://webrtc.org/
+			lia( w3c specification, http://w3c.github.io/webrtc-pc/
+			
+		category ServiceWorker
+		    lia( Github isserviceworkerready, https://github.com/jakearchibald/isserviceworkerready/tree/master/src/demos
+			demo step_1
+			demo step_2
+		

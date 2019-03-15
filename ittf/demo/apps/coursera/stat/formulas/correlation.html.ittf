@@ -1,0 +1,33 @@
+$group
+
+	$
+		var c = "$";
+		var cc = "$$";
+
+	table
+		
+		f(Regression line)
+			p ${cc} \hat{y} = { a + bx } ${cc}
+			dl
+				style font-size: 0.9em;
+				dd $ \hat{y} $ : predicted value of $ x $
+				dd $ a $ : regression intercept
+				dd $ b $ : regression coefficient (slope)
+		
+		f(Regression coefficient (slope) calculation)
+			p ${cc} b = r ( { s_y \over s_x }) ${cc}
+			dl
+				style font-size: 0.9em;
+				dd $ r $ : = Pearson R
+				dd $ s_y $ : standard deviation of y
+				dd $ s_x $ : standard deviation of x
+
+		f(Regression intercept calculation)
+			p ${cc} a = { \bar{y} - b(\bar{x}) } ${cc}
+			dl
+				style font-size: 0.9em;
+				dd $ \bar{y} $ : mean of y
+				dd $ \bar{x} $ : mean of x
+
+		f(Pearson R)
+			p ${cc} r = { \sum_{i=1}^n { Z_{xi} Z_{yi} } \over n - 1 } ${cc}

@@ -1,0 +1,35 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import { createStore, applyMiddleware } from 'redux' ids: undefined undefined
+    import thunk from 'redux-thunk' ids: undefined undefined
+    import { createLogger } from 'redux-logger' ids: undefined undefined
+    import api from '../middleware/api' ids: undefined undefined
+    import rootReducer from '../reducers' ids: undefined undefined
+    # import DevTools from '../containers/DevTools' ids: undefined undefined
+    +  ids: undefined undefined
+    log 'rootReducer', rootReducer ids: undefined undefined
+    var configureStore ids: undefined undefined
+      =>  ids: undefined undefined
+        param preloadedState ids: undefined undefined
+        +  ids: undefined undefined
+        var store ids: undefined undefined
+          _ createStore ids: undefined undefined
+            @ rootReducer ids: undefined undefined
+            @ preloadedState ids: undefined undefined
+            _ applyMiddleware ids: undefined undefined
+              @ thunk ids: undefined undefined
+              @ api ids: undefined undefined
+              _ createLogger() ids: undefined undefined
+        +  ids: undefined undefined
+        if module.hot ids: undefined undefined
+          _ module.hot.accept ids: undefined undefined
+            @ '../reducers' ids: undefined undefined
+            =>  ids: undefined undefined
+              var nextRootReducer ids: undefined undefined
+                _ require('../reducers') ids: undefined undefined
+                  . default ids: undefined undefined
+              _ store.replaceReducer(nextRootReducer) ids: undefined undefined
+        return store ids: undefined undefined
+    +  ids: undefined undefined
+    export default configureStore ids: undefined undefined

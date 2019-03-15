@@ -1,0 +1,93 @@
+// 13/5/2017:11:21:52  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "module", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //46
+$.a($0, $1, 5);
+var $2 = { n: "kind", v: "react", r: 2, c: 5, s: "f1", u: "f1",  }; //47
+$.a($1, $2, 7);
+var $3 = { n: "+", v: "", r: 3, c: 5, s: "f1", u: "f1",  }; //48
+$.a($1, $3, 9);
+var $4 = { n: "import", v: "React from 'react'", r: 4, c: 5, s: "f1", u: "f1",  }; //49
+$.a($1, $4, 11);
+var $5 = { n: "import", v: "{ Tabs, Tab } from 'react-bootstrap'", r: 5, c: 5, s: "f1", u: "f1",  }; //50
+$.a($1, $5, 13);
+var $6 = { n: "import", v: "ArtifactBrowser from '../ArtifactBrowser'", r: 6, c: 5, s: "f1", u: "f1",  }; //51
+$.a($1, $6, 15);
+var $7 = { n: "import", v: "SchemaDoc from './SchemaDoc'", r: 7, c: 5, s: "f1", u: "f1",  }; //52
+$.a($1, $7, 17);
+var $8 = { n: "let", v: "SchemaTabs", r: 9, c: 5, s: "f1", u: "f1",  }; //53
+$.a($1, $8, 19);
+var $9 = { n: "=>", v: "", r: 10, c: 9, s: "f1", u: "f1",  }; //54
+$.a($8, $9, 21);
+var $10 = { n: "param", v: "{ activeTab, onTabSelect, jsonDoc, model, factory }", r: 11, c: 13, s: "f1", u: "f1",  }; //55
+$.a($9, $10, 23);
+var $11 = { n: "const", v: "jsonText", r: 12, c: 13, s: "f1", u: "f1",  }; //56
+$.a($9, $11, 25);
+var $12 = { n: "iif", v: "jsonDoc", r: 13, c: 17, s: "f1", u: "f1",  }; //57
+$.a($11, $12, 27);
+var $13 = { n: "then", v: "", r: 14, c: 21, s: "f1", u: "f1",  }; //58
+$.a($12, $13, 29);
+var $14 = { n: "_", v: "JSON.stringify", r: 15, c: 25, s: "f1", u: "f1",  }; //59
+$.a($13, $14, 31);
+var $15 = { n: "@", v: "jsonDoc", r: 16, c: 29, s: "f1", u: "f1",  }; //60
+$.a($14, $15, 33);
+var $16 = { n: "@", v: "null", r: 17, c: 29, s: "f1", u: "f1",  }; //61
+$.a($14, $16, 35);
+var $17 = { n: "@", v: "4", r: 18, c: 29, s: "f1", u: "f1",  }; //62
+$.a($14, $17, 37);
+var $18 = { n: "else", v: "", r: 19, c: 21, s: "f1", u: "f1",  }; //63
+$.a($12, $18, 39);
+var $19 = { n: "set", v: "'Json'", r: 20, c: 25, s: "f1", u: "f1",  }; //64
+$.a($18, $19, 41);
+var $20 = { n: "return", v: "", r: 21, c: 13, s: "f1", u: "f1",  }; //65
+$.a($9, $20, 43);
+var $21 = { n: "<", v: "Tabs", r: 22, c: 17, s: "f1", u: "f1",  }; //66
+$.a($20, $21, 45);
+var $22 = { n: "@", v: "id schemaTabs", r: 23, c: 21, s: "f1", u: "f1",  }; //67
+$.a($21, $22, 47);
+var $23 = { n: "@", v: "activeKey={activeTab}", r: 24, c: 21, s: "f1", u: "f1",  }; //68
+$.a($21, $23, 49);
+var $24 = { n: "@", v: "onSelect={onTabSelect}", r: 25, c: 21, s: "f1", u: "f1",  }; //69
+$.a($21, $24, 51);
+var $25 = { n: "<", v: "Tab", r: 26, c: 21, s: "f1", u: "f1",  }; //70
+$.a($21, $25, 53);
+var $26 = { n: "@", v: "eventKey doc", r: 27, c: 25, s: "f1", u: "f1",  }; //71
+$.a($25, $26, 55);
+var $27 = { n: "@", v: "title \"Doc\"", r: 28, c: 25, s: "f1", u: "f1",  }; //72
+$.a($25, $27, 57);
+var $28 = { n: "<", v: "SchemaDoc", r: 29, c: 25, s: "f1", u: "f1",  }; //73
+$.a($25, $28, 59);
+var $29 = { n: "@", v: "jsonDoc {jsonDoc}", r: 30, c: 29, s: "f1", u: "f1",  }; //74
+$.a($28, $29, 61);
+var $30 = { n: "<", v: "Tab", r: 31, c: 21, s: "f1", u: "f1",  }; //75
+$.a($21, $30, 63);
+var $31 = { n: "@", v: "eventKey model", r: 32, c: 25, s: "f1", u: "f1",  }; //76
+$.a($30, $31, 65);
+var $32 = { n: "@", v: "title \"Model\"", r: 33, c: 25, s: "f1", u: "f1",  }; //77
+$.a($30, $32, 67);
+var $33 = { n: "<", v: "ArtifactBrowser", r: 34, c: 25, s: "f1", u: "f1",  }; //78
+$.a($30, $33, 69);
+var $34 = { n: "@", v: "content {model}", r: 35, c: 29, s: "f1", u: "f1",  }; //79
+$.a($33, $34, 71);
+var $35 = { n: "<", v: "Tab", r: 36, c: 21, s: "f1", u: "f1",  }; //80
+$.a($21, $35, 73);
+var $36 = { n: "@", v: "eventKey factory", r: 37, c: 25, s: "f1", u: "f1",  }; //81
+$.a($35, $36, 75);
+var $37 = { n: "@", v: "title \"Factory\"", r: 38, c: 25, s: "f1", u: "f1",  }; //82
+$.a($35, $37, 77);
+var $38 = { n: "<", v: "ArtifactBrowser", r: 39, c: 25, s: "f1", u: "f1",  }; //83
+$.a($35, $38, 79);
+var $39 = { n: "@", v: "content {factory}", r: 40, c: 29, s: "f1", u: "f1",  }; //84
+$.a($38, $39, 81);
+var $40 = { n: "<", v: "Tab", r: 41, c: 21, s: "f1", u: "f1",  }; //85
+$.a($21, $40, 83);
+var $41 = { n: "@", v: "eventKey json", r: 42, c: 25, s: "f1", u: "f1",  }; //86
+$.a($40, $41, 85);
+var $42 = { n: "@", v: "title \"Json\"", r: 43, c: 25, s: "f1", u: "f1",  }; //87
+$.a($40, $42, 87);
+var $43 = { n: "<", v: "ArtifactBrowser", r: 44, c: 25, s: "f1", u: "f1",  }; //88
+$.a($40, $43, 89);
+var $44 = { n: "@", v: "content {jsonText}", r: 45, c: 29, s: "f1", u: "f1",  }; //89
+$.a($43, $44, 91);
+var $45 = { n: "export", v: "default SchemaTabs", r: 47, c: 5, s: "f1", u: "f1",  }; //90
+$.a($1, $45, 93);

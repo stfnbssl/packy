@@ -1,0 +1,19 @@
+{
+    "title": "Schema cheat sheet",
+    "language": "xml",
+    "elements": [
+        {
+            "name": "xml base",
+            "tag": "",
+            "ast": "",
+            "category": "",
+            "items": [
+                {
+                    "title": "",
+                    "ittfWrapped": "xml \\n    person \\n        @ name Judy\\n        @ age 45\\n        friends \\n            friend \\n                @ name Mary\\n            friend \\n                @ name Edward",
+                    "generated": "\\n{\\n  \\\"name\\\": \\\"InvalidArgument\\\",\\n  \\\"inner\\\": null,\\n  \\\"shortmessage\\\": \\\"The artifactName parameter must be a string. Received: undefined\\\",\\n  \\\"message\\\": \\\"The artifactName parameter must be a string. Received: undefined\\\",\\n  \\\"info\\\": {\\n    \\\"method\\\": \\\"wizzi.wizziFactory.loadModelAndGenerateArtifactFromText\\\",\\n    \\\"parameter\\\": \\\"artifactName\\\",\\n    \\\"sourcePath\\\": \\\"C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi\\\\lib\\\\services\\\\wizziFactory.js\\\"\\n  },\\n  \\\"__is_error\\\": true\\n}"
+                }
+            ]
+        }
+    ]
+}

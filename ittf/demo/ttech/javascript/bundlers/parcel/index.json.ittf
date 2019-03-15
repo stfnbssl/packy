@@ -1,0 +1,22 @@
+{
+
+	$
+
+		var opt = {
+			name: 'parcel',
+			label: 'Parcel',
+			experimentsWith: 'javascript parcel bundler',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'bundlers',
+					label: 'Bundlers',
+				},
+			]
+		};
+
+
+	ttech-frame(&opt)

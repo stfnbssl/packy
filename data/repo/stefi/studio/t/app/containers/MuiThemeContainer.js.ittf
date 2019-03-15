@@ -1,0 +1,87 @@
+﻿$group
+	$params &app
+
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	$if app.useRedux
+		import { connect } from 'react-redux'
+	import MuiThemeProvider, { MUI_SHEET_ORDER } from 'material-ui/styles/MuiThemeProvider'
+	import { createMuiTheme } from 'material-ui/styles'
+	import createPalette from 'material-ui/styles/palette'
+	import { ${app.primaryColor}, ${app.accentColor} } from 'material-ui/colors'
+	import { lightTheme, darkTheme, setPrismTheme } from '../utils/prism'
+		
+	$if app.useRedux
+		$if app.useRouter
+			import AppContainer from '../components/AppRouter'
+		$else
+			import AppContainer from './AppContainer'
+	$else
+		$if app.useRouter
+			import AppContainer from '../components/AppRouter'
+		$else
+			import AppContainer from '../components/App'
+
+	let styleManager
+
+	react MuiThemeContainer
+
+		render
+			
+			$if app.useRedux
+				prop dark
+			$else
+				const dark = false
+			
+			const palette
+				_ createPalette
+					{
+						@ primary ${app.primaryColor}
+						@ accent ${app.accentColor}
+						@ type (dark ? 'dark' : 'light')
+			
+			const theme
+				_ createMuiTheme
+					{
+						@ palette
+
+			if !styleManager
+				const themeContext
+					_ MuiThemeProvider.createDefaultContext
+						{
+							@ theme
+				set styleManager = themeContext.styleManager
+			else
+				set styleManager.updateTheme(theme)
+
+			_ styleManager.setSheetOrder
+				_ MUI_SHEET_ORDER.concat
+					[
+						$foreach item in app.sheetOrder
+							@ '${item}'
+
+			if dark
+				_ setPrismTheme(darkTheme)
+			else
+				_ setPrismTheme(lightTheme)
+
+			return
+				< MuiThemeProvider
+					@ theme {theme}
+					@ styleManager {styleManager}
+					div
+						< AppContainer
+
+	
+	$if app.useRedux
+		export default
+			_ connect
+				=>
+					param state
+					return
+						{
+							@ dark state.dark
+				(
+					@ MuiThemeContainer
+	$else
+		export default MuiThemeContainer

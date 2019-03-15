@@ -1,0 +1,17 @@
+﻿_ router.get
+	@ '/one/:' + keyNames[0]
+	function
+		param req
+		param res
+
+		log 'req.params', req.params
+		var params = req.params;
+		var key = {}
+		set key[keyNames[0]] = req.params[keyNames[0]]
+		_ collectionDb.findOne
+			@ key
+			function
+				param err
+				param item
+				send_json( item )
+							

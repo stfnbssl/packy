@@ -1,0 +1,13 @@
+module
+    kind react
+    wz-var i = 0
+    wz-var x = 0
+    function alfa
+        param a
+        param b
+        param c
+        foreach a in items
+            _ alpha
+                @ elios
+                @ parasta
+                ._ algo

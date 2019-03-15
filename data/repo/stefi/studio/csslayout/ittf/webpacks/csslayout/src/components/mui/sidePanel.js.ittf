@@ -1,0 +1,25 @@
+﻿r-component( SidePanel )
+
+	$append imports
+		import builder from './MuiBuilder'
+
+	style
+
+	render
+		prop data
+		const { id, style: styleProp, panels } = data
+		return
+			div
+				@ id { id }
+				@style { styleProp }
+				{
+					_ panels.map
+						=>
+							param panel
+							param index
+							var PanelComponent = builder.create(panel)
+							return
+								< PanelComponent
+									@ key { index }
+									@ data { panel }  	
+

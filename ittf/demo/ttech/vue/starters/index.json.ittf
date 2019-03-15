@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'starters',
+			label: 'Starters',
+			experimentsWith: 'the javascript Vue progressive framework. Starters',
+			path: [
+				{
+					name: 'vue',
+					label: 'Vue',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

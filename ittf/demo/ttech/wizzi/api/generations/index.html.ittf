@@ -1,0 +1,131 @@
+h/root/empty_layout()
+
+	$
+		var d = '$';
+		var opt = {}
+		opt.useWizzi = true;
+
+	page( &opt
+
+		$append styles
+			@style
+				css
+
+		script
+			module
+				kind es6
+				var wf = wizziStandalone.default
+				_ wf.initialize
+				log wf
+				_ wf.wizzi.genFromText
+					[
+						@ 'module'
+						@ '    kind react'
+						@ '    react Hello'
+						@ '        state'
+						@ '            @ name "stefi"'
+						@ '        $foreach item in items'
+						@ '            m ${d}{item}'
+						._ join
+							@ '\n'
+					{
+						[ items
+							@ 'alfa'
+							@ 'beta'
+					{
+						@ artifactName 'js/module'
+					f_cb_test( result )
+						log 'result', result
+						_ createFS
+							@ step_2
+
+				function createFS
+					param callback
+					var wf = wizziStandalone.default
+					var u = wf.wizziUtils
+					log 'wizziUtils', u
+					_ u.vfile
+						f_cb_test( file )
+							log 'created file', file
+							_ callback
+								@ file
+
+				function step_2
+					param file
+
+					var filePath = '/ixdb/wizzi/default/test1.js.ittf'
+					_ file.write
+						@ filePath
+						[
+							@ 'module'
+							@ '    kind react'
+							@ '    react Hello'
+							@ '        state'
+							@ '            @ name "stefi"'
+							._ join
+								@ '\n'
+						f_cb_test( result )
+							_ wf.gen
+								@ filePath
+								f_cb_test( artifactText )
+									log 'artifactText', artifactText
+									_ step_3
+										@ file
+									
+				function step_3
+					param file
+					var filePath_1t = '/ixdb/wizzi/default/html/t/lia.html.ittf'
+					var filePath_1p = '/ixdb/wizzi/default/html/index.html.ittf'
+					_ writeFile
+					    @ file
+					    @ filePath_1t
+					    @ '1t'
+					    f_cb_test()
+					        _ writeFile
+					            @ file
+					            @ filePath_1p
+					            @ '1p'
+					            f_cb_test()
+        							_ wf.gen
+        								@ filePath_1p
+        								f_cb_test( artifactText )
+        									log 'artifactText', artifactText
+
+				function writeFile
+					param file
+					param filePath
+					param type
+					param callback
+
+					_ file.write
+						@ filePath
+						_ getContent
+						    @ type
+						f_cb_test( result )
+						    log 'write', filePath, 'result', result
+						    _ callback
+						        @ null
+						        
+				function getContent
+				    param type
+				    
+				    if type === '1t'
+					    return
+    						[
+    							@ 'li'
+    							@ '    $params text, href'
+    							@ '    a ${d}{text}'
+    							@ '        href ${d}{href}'
+    							._ join
+    								@ '\n'
+				    
+				    elif type === '1p'
+					    return
+    						[
+    							@ 'html'
+    							@ '    body'
+    							@ '        ul'
+    							@ '            lia( alfa, #alfa'
+    							@ '            lia( beta, #beta'
+    							._ join
+    								@ '\n'

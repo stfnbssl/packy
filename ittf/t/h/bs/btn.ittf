@@ -1,0 +1,6 @@
+button ${label}
+	$params label, kind|default, id|@@null
+	type submit
+	class btn btn-${kind}
+	$if id !== null
+		id ${id}

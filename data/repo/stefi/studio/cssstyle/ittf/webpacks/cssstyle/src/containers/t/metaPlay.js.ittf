@@ -1,0 +1,28 @@
+﻿$group
+
+	var metaPlay
+		{
+			@ controls
+				[
+					{
+						@ id "style"
+						@ type "text"
+						@ defaultValue "hello"
+					{
+						@ id "backgroundColor"
+						@ type "color"
+						@ defaultValue "#ffffff"
+					{
+						@ id "color"
+						@ type "color"
+						@ defaultValue "#000000"
+					{
+						@ id "float"
+						@ type "select"
+						@ defaultValue "right"
+						@ data
+							{
+								@ options
+									[
+										@ 'left'
+										@ 'right'

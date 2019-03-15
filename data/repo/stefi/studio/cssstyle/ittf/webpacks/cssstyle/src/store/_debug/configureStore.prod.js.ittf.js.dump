@@ -1,0 +1,41 @@
+// 13/5/2017:11:21:52  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "module", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //20
+$.a($0, $1, 5);
+var $2 = { n: "kind", v: "react", r: 2, c: 5, s: "f1", u: "f1",  }; //21
+$.a($1, $2, 7);
+var $3 = { n: "+", v: "", r: 3, c: 5, s: "f1", u: "f1",  }; //22
+$.a($1, $3, 9);
+var $4 = { n: "import", v: "{ createStore, applyMiddleware } from 'redux'", r: 4, c: 5, s: "f1", u: "f1",  }; //23
+$.a($1, $4, 11);
+var $5 = { n: "import", v: "thunk from 'redux-thunk'", r: 5, c: 5, s: "f1", u: "f1",  }; //24
+$.a($1, $5, 13);
+var $6 = { n: "import", v: "api from '../middleware/api'", r: 6, c: 5, s: "f1", u: "f1",  }; //25
+$.a($1, $6, 15);
+var $7 = { n: "import", v: "rootReducer from '../reducers'", r: 7, c: 5, s: "f1", u: "f1",  }; //26
+$.a($1, $7, 17);
+var $8 = { n: "+", v: "", r: 8, c: 5, s: "f1", u: "f1",  }; //27
+$.a($1, $8, 19);
+var $9 = { n: "const", v: "configureStore", r: 9, c: 5, s: "f1", u: "f1",  }; //28
+$.a($1, $9, 21);
+var $10 = { n: "=>", v: "", r: 10, c: 9, s: "f1", u: "f1",  }; //29
+$.a($9, $10, 23);
+var $11 = { n: "param", v: "preloadedState", r: 11, c: 13, s: "f1", u: "f1",  }; //30
+$.a($10, $11, 25);
+var $12 = { n: "_", v: "createStore", r: 12, c: 13, s: "f1", u: "f1",  }; //31
+$.a($10, $12, 27);
+var $13 = { n: "@", v: "rootReducer", r: 13, c: 17, s: "f1", u: "f1",  }; //32
+$.a($12, $13, 29);
+var $14 = { n: "@", v: "preloadedState", r: 14, c: 17, s: "f1", u: "f1",  }; //33
+$.a($12, $14, 31);
+var $15 = { n: "_", v: "applyMiddleware", r: 15, c: 17, s: "f1", u: "f1",  }; //34
+$.a($12, $15, 33);
+var $16 = { n: "@", v: "thunk", r: 16, c: 21, s: "f1", u: "f1",  }; //35
+$.a($15, $16, 35);
+var $17 = { n: "@", v: "api", r: 17, c: 21, s: "f1", u: "f1",  }; //36
+$.a($15, $17, 37);
+var $18 = { n: "+", v: "", r: 18, c: 5, s: "f1", u: "f1",  }; //37
+$.a($1, $18, 39);
+var $19 = { n: "export", v: "default configureStore", r: 19, c: 5, s: "f1", u: "f1",  }; //38
+$.a($1, $19, 41);

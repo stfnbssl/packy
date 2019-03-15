@@ -1,0 +1,47 @@
+﻿r-component( SchemaDoc )
+	
+	$append imports
+		import ElementList from './schemadoc/ElementList'
+		import Element from './schemadoc/Element'
+
+	style
+
+	state
+		@ selectedElement null
+
+	=> handleElementSelected
+		param element
+		_ this.setState
+			{
+				@ selectedElement element
+		
+	render
+		
+		prop jsonDoc
+
+		if !jsonDoc || !jsonDoc.elements || jsonDoc.elements.length < 1
+			return
+				h1 No data
+		
+		var { selectedElement } = this.state
+		if !selectedElement
+			set selectedElement = jsonDoc.elements[0]
+		
+		return
+			. container
+				. row
+					h1 Schema {jsonDoc.name}
+					. col-md-2
+						ui/list_title()
+							+ Elements
+						ui/list_content()
+							< ElementList
+								@ elements {jsonDoc.elements}
+								@ selectedElementName {selectedElement.name}
+								@ onElementSelected {this.handleElementSelected}
+					. col-md-10
+						ui/div_overflow()
+							< Element
+								@ element {selectedElement}
+
+

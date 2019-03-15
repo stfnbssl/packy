@@ -1,0 +1,33 @@
+$group
+
+	$
+		var c = "$";
+		var cc = "$$";
+
+	table
+
+		f(Test statistic for a proportion)
+			dd ${cc} z = { {p - \pi_0} \over se_0 } ${cc}
+			fnote()
+				dd $ p $ : sample proportion
+				dd $ \pi_0 $ : null hypothesis proportion
+				dd where the standard error $ se_0 = { \sqrt{ {\pi_0 (1-\pi_0)} \over n } } $
+			dd <center>that is</center>
+			dd ${cc} z = { {p - \pi_0} \over { \sqrt{ {\pi_0 (1-\pi_0)} \over n } } } ${cc}
+
+		f(Test statistic for a mean)
+			dd ${cc} t = { {\bar{x} - \mu_0} \over se_0 } ${cc}
+			fnote()
+				dd $ \bar{x} $ : sample mean
+				dd $ \mu_0 $ : null hypothesis mean
+				dd where the standard error $ se_0 = { s \over \sqrt{n} } $
+			dd <center>that is</center>
+			dd ${cc} t = { {\bar{x} - \mu_0} \over { s \over \sqrt{n} } } ${cc}
+
+		f(p-value)
+			dd p-value = Z-table($ z $) 
+			fnote()
+				dd $ z $ : test statistic
+				dd Z-table() : lookup in the Z-table to get the probability of $ z $
+			fnote()
+

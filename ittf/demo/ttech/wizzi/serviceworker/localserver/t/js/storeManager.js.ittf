@@ -1,0 +1,40 @@
+﻿$group
+    
+	class StoreManager
+		ctor
+			param ctx
+			set this.ctx = ctx
+			set this.currentFolder = '/wizzi/default'
+			set this.ittfDocument = '/ixdb/wizzi/default/html/index.html.ittf'
+			set this.textDocument = null
+		
+		m setCurrentFolder
+			param path
+			set this.currentFolder = path
+
+		m getCurrentFolder
+			return this.currentFolder
+
+		m setIttfDocument
+			param path
+			set this.ittfDocument = path
+
+		m getIttfDocument
+			return this.ittfDocument
+
+		m setTextDocument
+			param path
+			set this.textDocument = path
+
+		m getTextDocument
+			return this.textDocument
+
+		m setClipboard
+			param data
+			set this.clipBoard = data
+
+		m getClipboard
+			return this.clipBoard
+
+		m isPastePending
+			return this.clipBoard && (this.clipBoard.command === 'copy' || this.clipBoard.command === 'cut')

@@ -1,0 +1,34 @@
+﻿$group
+
+	var bxRest
+		iife
+			function
+				param K
+				param State
+				param Pub
+				param Sub
+
+				fetch( Repo, FolderData )
+
+				function handleFolderRequest
+					param message
+					param data
+					log 'bxRest.handleFolderRequest', message, data
+					_ fetchRepoFolderData(data)
+				
+				_ Sub
+					@ K.EVENTS.APP.START
+					@ handleFolderRequest
+				_ Sub
+					@ K.EVENTS.REPO.FOLDERDATA.SELECTED
+					@ handleFolderRequest
+
+
+				return
+					{
+						@ fetchRepoFolderData fetchRepoFolderData
+			@ bxKodes
+			@ bxState
+			@ PubSub.publish
+			@ PubSub.subscribe
+

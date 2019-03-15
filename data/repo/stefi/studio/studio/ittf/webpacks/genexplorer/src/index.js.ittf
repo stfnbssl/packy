@@ -1,0 +1,63 @@
+﻿module
+	kind react
+
+	import { AppContainer } from 'react-hot-loader'
+	import { createStore } from 'redux'
+	import { Provider } from 'react-redux'
+	import React from 'react'
+	import ReactPerf from 'react-addons-perf'
+	import { render } from 'react-dom'
+	import App from './components/App'
+
+	# Warns about potential accessibility issues with your React elements.
+		import a11y from 'react-a11y'
+		if process.env.NODE_ENV !== 'production'
+			_ a11y
+				@ React
+				{
+					@ includeSrcNode true
+					@ ReactDOM
+
+	set window.Perf = ReactPerf
+
+	const genexplorer
+		=>
+			param state = { dark: false }
+			param action
+			if action.type === 'TOGGLE_THEME_SHADE'
+				return
+					{
+						@ ...state
+						@ dark !state.dark
+			return state
+
+	export const store = createStore(genexplorer)
+
+	const rootEl = document.querySelector('#root')
+
+	_ render
+		< AppContainer
+			@ errorReporter
+				=>
+					param { error }
+					throw error
+			< Provider
+				@ store {store}
+				< App
+		@ rootEl
+
+	if process.env.NODE_ENV !== 'production' && module.hot
+		_ module.hot.accept
+			@ './components/App'
+			=>
+				const NextApp = require('./components/App').default
+				_ render
+					< AppContainer
+						@ errorReporter
+							=>
+								param { error }
+								throw error
+						< Provider
+							@ store {store}
+							< NextApp
+					@ rootEl

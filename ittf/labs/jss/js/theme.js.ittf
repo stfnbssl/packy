@@ -1,0 +1,43 @@
+﻿module
+	kind react
+
+	$include j/3dparty/colors
+	$include j/3dparty/classnames
+	$include j/3dparty/reactjss
+
+	j/iife-wrapped( BxApp, jssModule, jssPresetModule, jssThemeReactor )
+
+		const { create: createJss } = jssModule
+		const { createStyleManager, createStyleSheet } = jssThemeReactor
+
+		const themeObj
+			{
+				@ fontFamily 'Roboto'
+				@ fontSize 12
+				@ color 'red'
+
+		const styleManager
+			_ createStyleManager
+				{
+					@ jss 
+						_ createJss
+							_ jssPresetModule.default
+					@ theme themeObj
+
+		const styleSheet
+			_ createStyleSheet
+				@ 'button'
+				=>
+					param theme
+					return 
+						{
+							@ root
+								{
+									@ color theme.color
+									@ fontSize theme.fontSize
+									@ fontFamily theme.fontFamily
+
+		const classes = styleManager.render(styleSheet)
+
+		log 'classes', classes
+		log 'styleSheet', styleSheet, styleSheet.createRules(themeObj), styleSheet.createRules(themeObj).toString()

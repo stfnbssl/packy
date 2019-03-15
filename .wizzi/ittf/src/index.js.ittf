@@ -1,0 +1,3 @@
+module
+    kind es6
+    log 'Hello'

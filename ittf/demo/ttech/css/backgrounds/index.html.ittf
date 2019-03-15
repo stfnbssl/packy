@@ -1,0 +1,16 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'backgrounds',
+			label: 'Backgrounds',
+			experimentsWith: 'css backgrouns',
+			path: [
+				{
+					name: 'css',
+					label: 'Css',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

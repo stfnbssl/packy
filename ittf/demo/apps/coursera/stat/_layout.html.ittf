@@ -1,0 +1,20 @@
+h/root/layout()
+	$params title|Title
+
+	_breadcrumbs()
+	
+	h1 ${title}
+
+	$append left-sidebar
+		_items()
+
+	$append body-scripts
+		js https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML
+
+		js
+			_ MathJax.Hub.Config
+				{
+					@ tex2jax
+						{
+							@ inlineMath [['$','$'], ['\\(','\\)']]
+							@ processEscapes true

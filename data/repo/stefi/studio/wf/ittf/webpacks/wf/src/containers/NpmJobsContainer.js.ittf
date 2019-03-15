@@ -1,0 +1,13 @@
+﻿r-container( NpmJobs )
+	
+	$append  imports
+		import NpmJobs from '../components/NpmJobs'
+
+	state
+		@ executing false
+	
+	render
+		log 'render.state', this.state
+		
+		return
+			< NpmJobs

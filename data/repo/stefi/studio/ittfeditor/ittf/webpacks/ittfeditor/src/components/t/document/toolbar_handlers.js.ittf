@@ -1,0 +1,25 @@
+﻿$group
+
+	=> handleOpenCreateDocumentDialog
+		_ this.setState
+			{
+				@ ...this.state
+				@ openCreateDocumentDialog true
+
+	=> handleCloseCreateDocumentDialog
+		_ this.setState
+			{
+				@ ...this.state
+				@ openCreateDocumentDialog false
+
+	=> handleOpenCreateProjectDialog
+		_ this.setState
+			{
+				@ ...this.state
+				@ openCreateProjectDialog true
+
+	=> handleCloseCreateProjectDialog
+		_ this.setState
+			{
+				@ ...this.state
+				@ openCreateProjectDialog false

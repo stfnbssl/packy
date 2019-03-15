@@ -1,0 +1,13 @@
+﻿$group
+	
+	wz-class TabPanel
+		super Component
+
+		m render
+			return
+				div
+					+ {this.props.children}
+	
+	set TabPanel.propTypes
+		{
+

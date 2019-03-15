@@ -1,0 +1,11 @@
+$group
+	
+	glo(Educated guess)
+		dd The best estimate of a parameter that you can draw,
+			\b by your reasoning.
+
+	glo(Safe approach in educated guess of p)
+		dd The sample size depends on the value of p multiplied with 1 minus p. 
+		dd The largest possible value this multiplication could take is 0.25. 
+		dd That only happens if p, and therefore also 1 minus p, equals 0.5. 
+		dd So estimate $ p = 0.5 $.

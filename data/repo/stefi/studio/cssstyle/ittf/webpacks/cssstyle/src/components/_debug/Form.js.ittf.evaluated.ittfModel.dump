@@ -1,0 +1,50 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { Component, PropTypes } from 'react' ids: undefined undefined
+    import Control from './Control' ids: undefined undefined
+    class Form ids: undefined undefined
+      super Component ids: undefined undefined
+      ctor  ids: undefined undefined
+        param props ids: undefined undefined
+        base props ids: undefined undefined
+        set this.values = {} ids: undefined undefined
+        set this.handleChangeValue = this.handleChangeValue.bind(this) ids: undefined undefined
+      m handleChangeValue ids: undefined undefined
+        param controlId ids: undefined undefined
+        param value ids: undefined undefined
+        param origValue ids: undefined undefined
+        set this.values[controlId] = value ids: undefined undefined
+        log 'Form.handleChange', controlId, this.values ids: undefined undefined
+        const { id, onChangeValues } = this.props ids: undefined undefined
+        if onChangeValues ids: undefined undefined
+          _ onChangeValues(id, this.values) ids: undefined undefined
+      m createControls ids: undefined undefined
+        param meta ids: undefined undefined
+        param onChangeValue ids: undefined undefined
+        set this.values = {} ids: undefined undefined
+        return  ids: undefined undefined
+          _ meta.controls.map ids: undefined undefined
+            =>  ids: undefined undefined
+              param c ids: undefined undefined
+              const { id, type, data, value } = c ids: undefined undefined
+              log 'createControl', id, type, value ids: undefined undefined
+              set this.values[id] = value ids: undefined undefined
+              return  ids: undefined undefined
+                < Control ids: undefined undefined
+                  @ id {id} ids: undefined undefined
+                  @ key {id} ids: undefined undefined
+                  @ type {type} ids: undefined undefined
+                  @ value {value} ids: undefined undefined
+                  @ data {data} ids: undefined undefined
+                  @ onChangeValue {onChangeValue} ids: undefined undefined
+      m render ids: undefined undefined
+        const { id, type, caption, values, layout, meta } = this.props ids: undefined undefined
+        const controls = this.createControls(meta, this.handleChangeValue) ids: undefined undefined
+        return  ids: undefined undefined
+          . form-vertical ids: undefined undefined
+            h3 {caption} ids: undefined undefined
+            + {controls} ids: undefined undefined
+    set Form.propTypes ids: undefined undefined
+      {  ids: undefined undefined
+    export default Form ids: undefined undefined

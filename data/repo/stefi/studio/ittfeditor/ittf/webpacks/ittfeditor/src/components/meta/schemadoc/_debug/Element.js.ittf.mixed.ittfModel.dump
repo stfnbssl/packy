@@ -1,0 +1,54 @@
+  module  ids: 1 55
+    kind react ids: 2 56
+    +  ids: 3 57
+    import React, { PropTypes } from 'react' ids: 4 58
+    import Comments from './Comments' ids: 5 59
+    import Flags from './Flags' ids: 6 60
+    import Attribute from './Attribute' ids: 7 61
+    +  ids: 8 62
+    const Element ids: 9 63
+      =>  ids: 10 64
+        param { element } ids: 11 65
+        const attributes ids: 12 66
+          _ element.attributes.map ids: 13 67
+            =>  ids: 14 68
+              param attr ids: 15 69
+              < Attribute ids: 16 70
+                @ attr {attr} ids: 17 71
+        return  ids: 18 72
+          div  ids: 19 73
+            h4 Element {element.name} ids: 20 74
+            < Comments ids: 21 75
+              @ data {element.comments} ids: 22 76
+            table  ids: 23 77
+              class table ids: 24 78
+              thead  ids: 25 79
+                tr  ids: 26 80
+                  th Tag ids: 27 81
+                  th Super ids: 28 82
+                  th Is root ids: 29 83
+                  th Flags ids: 30 84
+              tbody  ids: 31 85
+                tr  ids: 32 86
+                  td {element.tags.join(' | ' )} ids: 33 87
+                  td {element.super} ids: 34 88
+                  td {element.isRoot} ids: 35 89
+                  td  ids: 36 90
+                    < Flags ids: 37 91
+                      @ flags {element.flags} ids: 38 92
+            section  ids: 39 93
+              h5 Attributes ids: 40 94
+              table  ids: 41 95
+                class table ids: 42 96
+                thead  ids: 43 97
+                  tr  ids: 44 98
+                    th Tag ids: 45 99
+                    th Name ids: 46 100
+                    th Type ids: 47 101
+                    th Default ids: 48 102
+                    th Flags ids: 49 103
+                    th Description ids: 50 104
+                tbody  ids: 51 105
+                  + {attributes} ids: 52 106
+    +  ids: 53 107
+    export default Element ids: 54 108

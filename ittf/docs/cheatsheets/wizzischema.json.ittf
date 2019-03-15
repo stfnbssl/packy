@@ -1,0 +1,31 @@
+﻿{
+	title "Schema cheat sheet"
+	$if cs.schema === 'js'
+		language "javascript"
+	$else
+		language "${cs.schema}"
+	[ elements		
+		$foreach e in cs.elements
+			{
+				name "${e.name}"
+				tag "${e.tag}"
+				ast "${e.ast}"
+				category "${e.category}"
+				[ items
+					$foreach item in e.items
+						{ 
+							title "${item.title}"
+							ittfWrapped "${
+								\b _.replace(
+								\b   _.replace(
+								\b     item.ittfWrapped,'\n', '\\n'
+								\b   ),
+								\b   '"', '\\"')
+								\b }"
+							generated "${
+								\b _.replace(
+								\b   _.replace(
+								\b     item.generated,'\n', '\\n'
+								\b   ),
+								\b   '"', '\\"')
+								\b }"

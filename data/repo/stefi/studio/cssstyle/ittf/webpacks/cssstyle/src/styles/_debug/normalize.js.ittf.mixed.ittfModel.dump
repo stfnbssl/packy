@@ -1,0 +1,148 @@
+  module  ids: 1 149
+    kind jsfile ids: 2 150
+    set module.exports = ids: 3 151
+      {  ids: 4 152
+        @ "html" ids: 5 153
+          {  ids: 6 154
+            @ "fontFamily" "sans-serif" ids: 7 155
+            @ "lineHeight" 1.15 ids: 8 156
+            @ "msTextSizeAdjust" "100%" ids: 9 157
+            @ "WebkitTextSizeAdjust" "100%" ids: 10 158
+        @ "body" ids: 11 159
+          {  ids: 12 160
+            @ "margin" 0 ids: 13 161
+        @ "article, aside, details,  figcaption, figure, footer, header, main,  menu, nav, section, summary" ids: 14 162
+          {  ids: 15 163
+            @ "display" "block" ids: 16 164
+        @ "audio, canvas, progress, video" ids: 17 165
+          {  ids: 18 166
+            @ "display" "inline-block" ids: 19 167
+        @ "audio:not([controls])" ids: 20 168
+          {  ids: 21 169
+            @ "display" "none" ids: 22 170
+            @ "height" 0 ids: 23 171
+        @ "progress" ids: 24 172
+          {  ids: 25 173
+            @ "verticalAlign" "baseline" ids: 26 174
+        @ "template,  [hidden]" ids: 27 175
+          {  ids: 28 176
+            @ "display" "none" ids: 29 177
+        @ "a" ids: 30 178
+          {  ids: 31 179
+            @ "backgroundColor" "transparent" ids: 32 180
+            @ "WebkitTextDecorationSkip" "objects" ids: 33 181
+        @ "a:active, a:hover" ids: 34 182
+          {  ids: 35 183
+            @ "outlineWidth" 0 ids: 36 184
+        @ "abbr[title]" ids: 37 185
+          {  ids: 38 186
+            @ "borderBottom" "none" ids: 39 187
+            @ "textDecoration" "underline dotted" ids: 40 188
+        @ "b, strong" ids: 41 189
+          {  ids: 42 190
+            @ "fontWeight" "bolder" ids: 43 191
+        @ "dfn" ids: 44 192
+          {  ids: 45 193
+            @ "fontStyle" "italic" ids: 46 194
+        @ "h1" ids: 47 195
+          {  ids: 48 196
+            @ "fontSize" "2em" ids: 49 197
+            @ "margin" "0.67em 0" ids: 50 198
+        @ "mark" ids: 51 199
+          {  ids: 52 200
+            @ "backgroundColor" "#ff0" ids: 53 201
+            @ "color" "#000" ids: 54 202
+        @ "small" ids: 55 203
+          {  ids: 56 204
+            @ "fontSize" "80%" ids: 57 205
+        @ "sub, sup" ids: 58 206
+          {  ids: 59 207
+            @ "fontSize" "75%" ids: 60 208
+            @ "lineHeight" 0 ids: 61 209
+            @ "position" "relative" ids: 62 210
+            @ "verticalAlign" "baseline" ids: 63 211
+        @ "sub" ids: 64 212
+          {  ids: 65 213
+            @ "bottom" "-0.25em" ids: 66 214
+        @ "sup" ids: 67 215
+          {  ids: 68 216
+            @ "top" "-0.5em" ids: 69 217
+        @ "img" ids: 70 218
+          {  ids: 71 219
+            @ "borderStyle" "none" ids: 72 220
+        @ "svg:not(:root)" ids: 73 221
+          {  ids: 74 222
+            @ "overflow" "hidden" ids: 75 223
+        @ "code, kbd, pre, samp" ids: 76 224
+          {  ids: 77 225
+            @ "fontFamily" "monospace, monospace" ids: 78 226
+            @ "fontSize" "1em" ids: 79 227
+        @ "figure" ids: 80 228
+          {  ids: 81 229
+            @ "margin" "1em 40px" ids: 82 230
+        @ "hr" ids: 83 231
+          {  ids: 84 232
+            @ "boxSizing" "content-box" ids: 85 233
+            @ "height" 0 ids: 86 234
+            @ "overflow" "visible" ids: 87 235
+        @ "button, input, optgroup, select, textarea" ids: 88 236
+          {  ids: 89 237
+            @ "font" "inherit" ids: 90 238
+            @ "margin" 0 ids: 91 239
+        @ "optgroup" ids: 92 240
+          {  ids: 93 241
+            @ "fontWeight" "bold" ids: 94 242
+        @ "button, input" ids: 95 243
+          {  ids: 96 244
+            @ "overflow" "visible" ids: 97 245
+        @ "button, select" ids: 98 246
+          {  ids: 99 247
+            @ "textTransform" "none" ids: 100 248
+        @ "button, html [type=\"button\"],  [type=\"reset\"], [type=\"submit\"]" ids: 101 249
+          {  ids: 102 250
+            @ "WebkitAppearance" "button" ids: 103 251
+        @ "button::-moz-focus-inner, [type=\"button\"]::-moz-focus-inner, [type=\"reset\"]::-moz-focus-inner, [type=\"submit\"]::-moz-focus-inner" ids: 104 252
+          {  ids: 105 253
+            @ "borderStyle" "none" ids: 106 254
+            @ "padding" 0 ids: 107 255
+        @ "button:-moz-focusring, [type=\"button\"]:-moz-focusring, [type=\"reset\"]:-moz-focusring, [type=\"submit\"]:-moz-focusring" ids: 108 256
+          {  ids: 109 257
+            @ "outline" "1px dotted ButtonText" ids: 110 258
+        @ "fieldset" ids: 111 259
+          {  ids: 112 260
+            @ "border" "1px solid #c0c0c0" ids: 113 261
+            @ "margin" "0 2px" ids: 114 262
+            @ "padding" "0.35em 0.625em 0.75em" ids: 115 263
+        @ "legend" ids: 116 264
+          {  ids: 117 265
+            @ "boxSizing" "border-box" ids: 118 266
+            @ "color" "inherit" ids: 119 267
+            @ "display" "table" ids: 120 268
+            @ "maxWidth" "100%" ids: 121 269
+            @ "padding" 0 ids: 122 270
+            @ "whiteSpace" "normal" ids: 123 271
+        @ "textarea" ids: 124 272
+          {  ids: 125 273
+            @ "overflow" "auto" ids: 126 274
+        @ "[type=\"checkbox\"], [type=\"radio\"]" ids: 127 275
+          {  ids: 128 276
+            @ "boxSizing" "border-box" ids: 129 277
+            @ "padding" 0 ids: 130 278
+        @ "[type=\"number\"]::-webkit-inner-spin-button, [type=\"number\"]::-webkit-outer-spin-button" ids: 131 279
+          {  ids: 132 280
+            @ "height" "auto" ids: 133 281
+        @ "[type=\"search\"]" ids: 134 282
+          {  ids: 135 283
+            @ "WebkitAppearance" "textfield" ids: 136 284
+            @ "outlineOffset" - (2) ids: 137 285
+        @ "[type=\"search\"]::-webkit-search-cancel-button, [type=\"search\"]::-webkit-search-decoration" ids: 138 286
+          {  ids: 139 287
+            @ "WebkitAppearance" "none" ids: 140 288
+        @ "::-webkit-input-placeholder" ids: 141 289
+          {  ids: 142 290
+            @ "color" "inherit" ids: 143 291
+            @ "opacity" 0.54 ids: 144 292
+        @ "::-webkit-file-upload-button" ids: 145 293
+          {  ids: 146 294
+            @ "WebkitAppearance" "button" ids: 147 295
+            @ "font" "inherit" ids: 148 296

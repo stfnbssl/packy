@@ -1,0 +1,22 @@
+﻿module
+	kind react
+
+	const validate
+		=>
+			param values
+			const errors = {}
+			if !values.firstName
+				set errors.firstName = 'Required'
+			if !values.lastName
+				set errors.lastName = 'Required'
+			if !values.email
+				set errors.email = 'Required'
+			elif !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+				set errors.email = 'Invalid email address'
+			if !values.sex
+				set errors.sex = 'Required'
+			if !values.favoriteColor
+				set errors.favoriteColor = 'Required'
+			return errors
+	
+	export default validate;

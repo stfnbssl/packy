@@ -1,0 +1,68 @@
+﻿$group
+
+   
+	var USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Safari/537.2'
+    
+	wz-class Pane
+        super React.Component
+        ctor 
+            param props
+            base props
+            set this.state =
+                { 
+                    @ size this.props.size
+        m render
+            var {children, className, prefixer, split, style: styleProps} = this.props
+            var {size} = this.state
+            var classes
+                [ 
+                    @ 'Pane'
+                    @ split
+                    @ className
+            var style
+                _ Object.assign
+                    { 
+                    @ (styleProps || {})
+                    { 
+                        @ flex 1
+                        @ position 'relative'
+                        @ outline 'none'
+            if size !== undefined
+                if split === 'vertical'
+                    set style.width = size
+                else 
+                    set style.height = size
+                    set style.display = 'flex'
+                set style.flex = 'none'
+
+			return
+				div
+					class {classes.join(' ')}
+					@style {prefixer.prefix(style)}
+					+ {children}
+    
+	set Pane.propTypes =
+        { 
+            @ className PropTypes.string.isRequired
+            @ children PropTypes.node.isRequired
+            @ prefixer
+                _ PropTypes.instanceOf(Prefixer)
+                    . isRequired
+            @ size
+                _ PropTypes.oneOfType
+                    [ 
+                        @ PropTypes.string
+                        @ PropTypes.number
+            @ split
+                _ PropTypes.oneOf
+                    [ 
+                        @ 'vertical'
+                        @ 'horizontal'
+            @ style stylePropType
+    
+	set Pane.defaultProps
+        { 
+            @ prefixer
+                new Prefixer
+                    { 
+                        @ userAgent USER_AGENT

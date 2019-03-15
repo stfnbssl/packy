@@ -1,0 +1,13 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import { combineReducers } from 'redux' ids: undefined undefined
+    +  ids: undefined undefined
+    function artifacts ids: undefined undefined
+      param state ids: undefined undefined
+      param action ids: undefined undefined
+      if typeof state === 'undefined' ids: undefined undefined
+        return {} ids: undefined undefined
+      switch action.type ids: undefined undefined
+        default  ids: undefined undefined
+          return state ids: undefined undefined

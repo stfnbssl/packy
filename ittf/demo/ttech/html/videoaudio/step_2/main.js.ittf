@@ -1,0 +1,88 @@
+﻿module 
+    kind jsfile
+
+	$include g/js/wz/core
+	$include j/html-builder
+
+	$include options
+
+	var demo
+
+	function createHtml
+		set demo = new HtmlBuilder('demo')
+		_ demo.prettyResult('demo-html')
+		_ demo.add('iframe')
+		_ demo.set('width', ${opt.iframeW} )
+		_ demo.set('height', ${opt.iframeH} )
+		_ demo.set
+			@ 'src'
+			@ 'https://www.youtube.com/embed/1KQmFjNBKjg'
+		_ demo.set
+			@ 'allow'
+			@ "autoplay; encrypted-media"
+		_ demo.set('allowfullscreen')
+
+		_ demo.addTop('video', 'player1')
+		_ demo.set('width', ${opt.videoW} )
+		_ demo.set('height', ${opt.videoH} )
+		_ demo.set('preload', 'none')
+		_ demo.add('source', 'source1')
+		_ demo.set('type', 'video/youtube')
+		_ demo.set
+			@ 'src'
+			@ 'https://www.youtube.com/watch?v=1KQmFjNBKjg'
+
+	_ wz.loaded
+		function
+			
+			_ createHtml
+			
+			_ wz.addClass
+				@ 'body'
+				@ "go"
+
+			var player = new MediaElementPlayer('#player1')
+			log 'player', player
+			
+			_ wz.click
+				@ '#toggle-controls'
+				function
+					_ wz.toggleClass
+						@ '#sidebar'
+						@ "minimized"
+
+			_ wz.blur
+				@ '#image-width-control'
+				function
+					_ demo.select('img')
+					_ demo.set
+						@ 'width'
+						_ wz.val
+							@ '#image-width-control'
+    
+			_ wz.blur
+				@ '#image-height-control'
+				function
+					_ demo.select('img')
+					_ demo.set
+						@ 'height'
+						_ wz.val
+							@ '#image-height-control'
+
+			_ wz.blur
+				@ '#figcaption-control'
+				function
+					var value = wz.val('#figcaption-control')
+					if value && value.length > 0
+						if demo.select('figure')
+							_ demo.select('figcaption')
+							_ demo.textReplace
+								@ value
+						else
+							_ demo.wrap('img', 'figure')
+							_ demo.add('figcaption')
+							_ demo.text
+								@ value
+					else
+						if demo.select('figure')
+							_ demo.unwrap('img', 'figure')

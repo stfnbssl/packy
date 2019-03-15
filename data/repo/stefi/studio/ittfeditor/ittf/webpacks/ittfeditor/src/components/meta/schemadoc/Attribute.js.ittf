@@ -1,0 +1,36 @@
+﻿r-function( Attribute )
+	
+	$append imports
+		import Comments from './Comments'
+		import Flags from './Flags'
+	
+	prop attr
+		{
+
+	var xenums = null
+	if attr.enums.length > 0
+		set xenums
+			div Restrict - Enum
+				table
+					_ attr.enums.map
+						=>
+							param xenum
+							tr
+								td {xenum.name}
+								td 
+									< Comments
+										@ comments {xenum.comments}
+	
+	return
+		tr
+			td {attr.tag}
+			td {attr.name}
+			td {attr.type}
+			td {attr.default}
+			td
+				< Flags
+					@ flags {attr.flags}
+			td 
+				< Comments
+					@ comments {attr.comments}
+				+ {xenums}							

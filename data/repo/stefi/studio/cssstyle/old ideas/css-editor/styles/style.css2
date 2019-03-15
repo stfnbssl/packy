@@ -1,0 +1,10 @@
+﻿css
+	$wizzi best/clearfix
+	$wizzi global
+	// $wizzi buttons
+	$wizzi be/global
+	$wizzi be/widgets
+	$wizzi be/maintab
+	$wizzi be/subtab
+	// $wizzi be/buttons
+	$wizzi edited

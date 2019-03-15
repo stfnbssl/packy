@@ -1,0 +1,62 @@
+﻿css
+	$
+		//Color Variables
+		var color1 = 'red';
+		var color2 = 'green';
+		var color3 = 'yellow';
+    
+	import url(https://fonts.googleapis.com/css?family=Oswald:400,700)
+    
+	- Base Styles
+	< body
+		margin 0
+        font-family 'Oswald', sans-serif
+    
+	. wrapper
+		position relative
+
+	. page_prev
+		padding 10px
+		background-color ${color2}
+		position relative
+		width 80%
+		height 500px
+		background-image
+			svg
+				preserve-aspect-ratio none
+				view-box 0 0 1024 800
+				circle
+					cx 0
+					cy 0
+					r 250
+					stroke ${color3}
+					fill ${color1}
+
+	. page
+		width 100%
+		height 3000px
+		position relative
+		background-color #00bfc5
+		background-image
+			svg
+				width 100%
+				height 100%
+				view-box 0 0 1600 900
+				path
+					fill #A0E2DB
+					d M0 504 0 899 1600 899 1600 120z
+				path
+					fill #CBF2F3
+					d M1600 567 1600 899 0 899 0 165z
+				path
+					fill #719D71
+					d M0 680 0 899 1600 899 1600 300z
+				path
+					fill # 37EB67E
+					d M1600 719 1600 899 0 899 0 353z
+				path
+					fill #004D66
+					d M0 788 0 899 1600 899 1600 625z
+		background-attachment fixed
+		background-size cover
+		background-position center

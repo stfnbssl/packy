@@ -1,0 +1,120 @@
+text default
+
+    &lt;#
+        Scripts to prepare github pushes of wizzi factory packages.
+    #&gt;
+
+    $
+        var verBase = 'v5';
+        var ver = 'v5';
+        var s_root = 'c:/my/wizzi/' + ver;
+        var s_kernel = s_root + '/kernel';
+        var s_plugin = s_root + '/plugins';
+        var s_legacy = s_root + '/legacy';
+        var s_scripts = s_root + '/scripts';
+        var s_app = s_root + '/apps';
+        var s_tutorial = s_app + '/js-tutorials'
+        var s_studio = s_app + '/wizzi-studio'
+        var d_github = 'c:/my/wizzi/' + verBase + '/github/' + ver;
+        var d_github_src = d_github + '/wizzi-ittf-sources';
+        var d_github_src_kernel = d_github + '/wizzi-ittf-sources/kernel';
+        var d_github_src_plugins = d_github + '/wizzi-ittf-sources/plugins';
+        var d_github_src_apps = d_github + '/wizzi-ittf-sources/apps';
+
+        var kernels = [
+            'wizzi',
+            'wizzi-utils',
+            'wizzi-mtree',
+            'wizzi-repo'
+        ];
+    
+        var plugins = [
+            'wizzi-core',
+            'wizzi-meta',
+            'wizzi-js',
+            'wizzi-web',
+            'wizzi-docs'
+        ];
+
+        var legacy = [
+            'wizzi-legacy-v4',
+            'wizzi-legacy-v4-codegen'
+        ];
+
+        var apps = [
+            'wizzi-demo',
+            'wizzi-tools',
+            'wizzi-tools-next',
+        ];
+
+        var tutorials = [
+            { group: 'nodejs-es6', items: ['es6-simple', 'es6-express', 'es6-firebase'] },
+            { group: 'webpack', items: ['react-codemirror', 'react-monaco', 'react-static', 'react-static-schema-doc', 'redux-material-ui-wizzi', 'router-redux-firestore'] },
+            { group: 'nextjs', items: ['starter', 'hello-next', 'redux-material-ui-wizzi', 'with-redux', 'wizzi', 'wizzifier'] },
+            { group: 'cdn', items: ['react-editor'] }
+        ];
+
+        var studio = [
+            'wizzi-studio-express',
+            'wizzi-play',
+            'wizzi-play2',
+            'wizzi-play3'
+        ];
+       
+
+    robocopy ${s_root}\t ${d_github_src}/t /MIR /XD .git, node_modules
+    robocopy ${s_app}\t ${d_github_src}/apps/t /MIR /XD .git, node_modules
+    &lt;#
+        Kernel packages, source: ${s_kernel} , dest: ${d_github_src}
+    #&gt;
+    $foreach item in kernels
+        robocopy ${s_kernel}/${item}/src ${d_github_src_kernel}/${item}/src /MIR /XD .git, node_modules
+        robocopy ${s_kernel}/${item}/t ${d_github_src_kernel}/${item}/t /MIR /XD .git, node_modules
+        
+    &lt;#
+        Plugin packages, source: ${s_plugin} , dest: ${d_github_src}
+    #&gt;
+    $foreach item in plugins
+        robocopy ${s_plugin}/${item}/src ${d_github_src_plugins}/${item}/src /MIR /XD .git, node_modules
+        robocopy ${s_plugin}/${item}/t ${d_github_src_plugins}/${item}/t /MIR /XD .git, node_modules
+        
+    &lt;#
+        Legacy packages, source: ${s_legacy} , dest: ${d_github_src}
+    #&gt;
+    $foreach item in legacy
+        robocopy ${s_legacy}/${item} ${d_github_src}/${item} /MIR /XD .git, node_modules
+
+    &lt;#
+        App packages, source: ${s_app} , dest: ${d_github_src}
+    #&gt;
+    $foreach item in apps
+        robocopy ${s_app}/${item}/src ${d_github_src_apps}/${item}/src /MIR /XD .git, node_modules
+        robocopy ${s_app}/${item}/t ${d_github_src_apps}/${item}/t /MIR /XD .git, node_modules
+
+    &lt;#
+        Tutorial packages, source: ${s_tutorial} , dest: ${d_github_src} 
+    #&gt;
+    $foreach t in tutorials
+        &lt;# ${t.group} #&gt;
+        $foreach item in t.items
+            robocopy ${s_tutorial}/${t.group}/${item}\wizzi ${d_github_src_apps}/js-tutorials/${t.group}/${item}/wizzi /MIR /XD .git, node_modules
+
+    &lt;#
+        Wizzi studio packages, source: ${s_studio} , dest: ${d_github_src}
+    #&gt;
+    $foreach item in studio
+        robocopy ${s_studio}/${item}/wizzi ${d_github_src_apps}/${item}/wizzi /MIR /XD .git, node_modules
+        robocopy ${s_studio}/${item}/t ${d_github_src_apps}/${item}/t /MIR /XD .git, node_modules
+
+    &lt;#
+        Static ittf documents in the /server folder of wizzi-studio-express
+    #&gt;
+    robocopy ${s_studio}/wizzi-studio-express/dist/server/ittf ${d_github_src_apps}/wizzi-studio-express/dist/server/ittf /MIR /XD .git, node_modules
+    robocopy ${s_studio}/wizzi-studio-express/dist/server/data ${d_github_src_apps}/wizzi-studio-express/dist/server/data /MIR /XD .git, node_modules
+
+    &lt;#
+        Scripts
+    #&gt;
+    robocopy ${s_scripts} ${d_github_src}/scripts /MIR /XD .git, node_modules
+        
+            

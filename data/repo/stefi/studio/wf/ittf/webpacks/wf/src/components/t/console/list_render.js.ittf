@@ -1,0 +1,38 @@
+﻿$group
+
+	if view === 'list'
+		return
+			. {classes.content}
+				$include ./dialog_render
+				+ {toolbar}
+				< List
+					@ dense {true}
+					{
+						_ jsmodels.map
+							=>
+								param jsmodel
+								return
+									< ListItem
+										@ key {jsmodel.name} 
+										< ListItemIcon
+											< InboxIcon
+										< ListItemText
+											@ primary {jsmodel.name} 
+										< Button
+											@ title edit script
+											@ raised
+											@ className {classes.marginLeft_10}
+											@ onClick
+												=>
+													_ this.handleScriptEdit
+														@ jsmodel.name
+											+ { 'edit ' }
+										< Button
+											@ title run script
+											@ raised
+											@ className {classes.marginLeft_10}
+											@ onClick
+												=>
+													_ this.handleScriptRun
+														@ jsmodel.name
+											+ { 'run' }

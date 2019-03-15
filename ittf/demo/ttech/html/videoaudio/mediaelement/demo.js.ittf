@@ -1,0 +1,131 @@
+﻿module
+    kind react
+    
+	function getQueryStringValue
+        param key
+        return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"))
+    
+	# borrowed from https://gist.github.com/niyazpk/f8ac616f181f6042d1e0
+    function updateUrlParameter
+        param uri
+        param key
+        param value
+		var saveParams = [uri, key, value]
+        # remove the hash part before operating on the uri
+        var 
+            decl i = uri.indexOf('#')
+            decl hash
+                iif i === -1
+                    then ''
+                    else uri.substr(i)
+        set uri =
+            iif i === -1
+                then uri
+                else uri.substr(0, i)
+        var 
+            decl re = new RegExp("([?&])" + key + "=.*?(&|$)", "i")
+            decl separator
+                iif uri.indexOf('?') !== -1
+                    then "&"
+                    else "?"
+        if !value
+            # remove key-value pair if value is empty
+            set uri = uri.replace(new RegExp("([?&]?)" + key + "=[^&]*", "i"), '')
+            if uri.slice(-1) === '?'
+                set uri = uri.slice(0, -1)
+            # replace first occurrence of & by ? if no ? is present
+            if uri.indexOf('?') === -1
+                set uri = uri.replace(/&/, '?')
+        else
+            if uri.match(re)
+                set uri = uri.replace(re, '$1' + key + "=" + value + '$2')
+            else
+                set uri = uri + separator + key + "=" + value
+		log 'updateUrlParameter params', saveParams.join(), 'result', uri + hash
+        return uri + hash
+    
+	var 
+        decl lang = getQueryStringValue('lang') || 'en'
+        decl stretching = getQueryStringValue('stretching') || 'none'
+        decl languageSelector = document.querySelector('select[name=lang]')
+        decl stretchingSelector = document.querySelector('select[name=stretching]')
+        decl sourcesSelector = document.querySelectorAll('select[name=sources]')
+        decl sourcesTotal = sourcesSelector.length
+    
+	set languageSelector.value = lang
+    
+	_ languageSelector.addEventListener
+        @ 'change'
+        function 
+            set window.location.href = updateUrlParameter(window.location.href, 'lang', languageSelector.value)
+    
+	set stretchingSelector.value = stretching
+    
+	_ stretchingSelector.addEventListener
+        @ 'change'
+        function 
+            set window.location.href = updateUrlParameter(window.location.href, 'stretching', stretchingSelector.value)
+    for var i = 0; i < sourcesTotal; i++
+        _ sourcesSelector[i].addEventListener
+            @ 'change'
+            function 
+                var 
+                    decl media = this.closest('.players').querySelector('.mejs__container').id
+                    decl player = mejs.players[media]
+                _ player.setSrc(this.value.replace('&amp;', '&'))
+                _ player.load
+                if !mejs.Features.isiOS && !mejs.Features.isAndroid
+                    _ player.play
+                var renderer = document.getElementById(player.media.id + '-rendername')
+                set renderer.querySelector('.src').innerHTML = '<a href="' + this.value + '" target="_blank">' + this.value + '</a>'
+                set renderer.querySelector('.renderer').innerHTML = player.media.rendererName
+                set renderer.querySelector('.error').innerHTML = ''
+        # These media types cannot play at all on iOS, so disabling them
+        if mejs.Features.isiOS
+            set sourcesSelector[i].querySelector('option[value^="rtmp"]').disabled = true
+            if sourcesSelector[i].querySelector('option[value$="webm"]')
+                set sourcesSelector[i].querySelector('option[value$="webm"]').disabled = true
+            if sourcesSelector[i].querySelector('option[value$=".mpd"]')
+                set sourcesSelector[i].querySelector('option[value$=".mpd"]').disabled = true
+            if sourcesSelector[i].querySelector('option[value$=".ogg"]')
+                set sourcesSelector[i].querySelector('option[value$=".ogg"]').disabled = true
+            if sourcesSelector[i].querySelector('option[value$=".flv"]')
+                set sourcesSelector[i].querySelector('option[value*=".flv"]').disabled = true
+    
+	_ document.addEventListener
+        @ 'DOMContentLoaded'
+        function 
+			
+            _ mejs.i18n.language(lang)
+            var 
+                decl mediaElements = document.querySelectorAll('video, audio')
+            log 'DOMContentLoaded.'
+			foreach me in mediaElements
+                new MediaElementPlayer
+                    @ me
+                    { 
+                        @ stretching stretching
+                        @ pluginPath '/static/lib/mejs/'
+                        @ success
+                            function 
+                                param media
+								log 'success.media', media.id
+                                var renderer = document.getElementById(media.id + '-rendername')
+                                _ media.addEventListener
+                                    @ 'loadedmetadata'
+                                    function 
+                                        var src = media.originalNode.getAttribute('src').replace('&amp;', '&')
+                                        if src !== null && src !== undefined
+                                            set renderer.querySelector('.src').innerHTML = '<a href="' + src + '" target="_blank">' + src + '</a>'
+                                            set renderer.querySelector('.renderer').innerHTML = media.rendererName
+                                            set renderer.querySelector('.error').innerHTML = ''
+                                _ media.addEventListener
+                                    @ 'error'
+                                    function 
+                                        param e
+                                        set renderer.querySelector('.error').innerHTML = '<strong>Error</strong>: ' + e.message
+                        @ error
+                            function 
+                                param err
+								log 'new MediaElementPlayer. err', err
+

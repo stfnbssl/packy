@@ -1,0 +1,105 @@
+﻿$group
+
+	$
+		var c_bg_0 = "#333";
+		var c_bg_1 = "#666";
+		var c_bg_2 = "#999";
+		var c_0 = "#ded";
+		var c_1 = "#fff";
+		var c_2 = "#f44";
+		var c_bg_f_0 = "#000";
+
+		//Color Variables
+		var color1 = '#E84545'; //Red
+		var color2 = '#53354A'; //Plum
+		var color3 = '#903749'; //Maroon
+
+		var nav_menu = [
+				{
+					title: 'Concepts',
+					href: 'concepts.html.ittf',
+				},
+				{
+					title:  'Documentation',
+					href: 'documentation.html.ittf',
+					sub: [
+						{
+							title: 'Intro',
+							href: 'docs/intro.html.ittf',
+						},
+						{
+							title: 'Ittf',
+							href: 'docs/ittf.html.ittf',
+						},
+						{
+							title: 'JsWizzi',
+							href: 'docs/jswizzi.html.ittf',
+						},
+						{
+							title: 'Models',
+							href: 'docs/models.html.ittf',
+						},
+						{
+							title: 'Artifacts',
+							href: 'docs/artifacts.html.ittf',
+						},
+						{
+							title: 'Jobs',
+							href: 'docs/jobs.html.ittf',
+						},
+						{
+							title: 'Plugins',
+							href: 'docs/plugins.html.ittf',
+						},
+					]
+				},
+				{
+					title:  'Code',
+					href: 'code.html.ittf',
+					sub: [
+						{
+							title: 'intro',
+							href: 'code/intro.html.ittf',
+						},
+						{
+							title: 'wizzi',
+							href: 'code/wizzi.html.ittf',
+						},
+						{
+							title: 'mTree',
+							href: 'code/mtree.html.ittf',
+						},
+						{
+							title: 'repo',
+							href: 'code/repo.html.ittf',
+						},
+						{
+							title: 'utils',
+							href: 'code/utils.html.ittf',
+						},
+						{
+							title: 'core',
+							href: 'code/core.html.ittf',
+						},
+						{
+							title: 'js',
+							href: 'code/js.html.ittf',
+						},
+						{
+							title: 'web',
+							href: 'code/web.html.ittf',
+						},
+						{
+							title: 'demo',
+							href: 'code/demo.html.ittf',
+						},
+					]
+				},
+				{
+					title:  'Starters',
+					href: 'starters.html.ittf',
+				},
+				{
+					title:  'Project',
+					href: 'project.html.ittf',
+				}];

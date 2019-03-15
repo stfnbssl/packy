@@ -1,0 +1,148 @@
+  module  ids: undefined undefined
+    kind jsfile ids: undefined undefined
+    set module.exports = ids: undefined undefined
+      {  ids: undefined undefined
+        @ "html" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "fontFamily" "sans-serif" ids: undefined undefined
+            @ "lineHeight" 1.15 ids: undefined undefined
+            @ "msTextSizeAdjust" "100%" ids: undefined undefined
+            @ "WebkitTextSizeAdjust" "100%" ids: undefined undefined
+        @ "body" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "margin" 0 ids: undefined undefined
+        @ "article, aside, details,  figcaption, figure, footer, header, main,  menu, nav, section, summary" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "display" "block" ids: undefined undefined
+        @ "audio, canvas, progress, video" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "display" "inline-block" ids: undefined undefined
+        @ "audio:not([controls])" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "display" "none" ids: undefined undefined
+            @ "height" 0 ids: undefined undefined
+        @ "progress" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "verticalAlign" "baseline" ids: undefined undefined
+        @ "template,  [hidden]" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "display" "none" ids: undefined undefined
+        @ "a" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "backgroundColor" "transparent" ids: undefined undefined
+            @ "WebkitTextDecorationSkip" "objects" ids: undefined undefined
+        @ "a:active, a:hover" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "outlineWidth" 0 ids: undefined undefined
+        @ "abbr[title]" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "borderBottom" "none" ids: undefined undefined
+            @ "textDecoration" "underline dotted" ids: undefined undefined
+        @ "b, strong" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "fontWeight" "bolder" ids: undefined undefined
+        @ "dfn" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "fontStyle" "italic" ids: undefined undefined
+        @ "h1" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "fontSize" "2em" ids: undefined undefined
+            @ "margin" "0.67em 0" ids: undefined undefined
+        @ "mark" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "backgroundColor" "#ff0" ids: undefined undefined
+            @ "color" "#000" ids: undefined undefined
+        @ "small" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "fontSize" "80%" ids: undefined undefined
+        @ "sub, sup" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "fontSize" "75%" ids: undefined undefined
+            @ "lineHeight" 0 ids: undefined undefined
+            @ "position" "relative" ids: undefined undefined
+            @ "verticalAlign" "baseline" ids: undefined undefined
+        @ "sub" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "bottom" "-0.25em" ids: undefined undefined
+        @ "sup" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "top" "-0.5em" ids: undefined undefined
+        @ "img" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "borderStyle" "none" ids: undefined undefined
+        @ "svg:not(:root)" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "overflow" "hidden" ids: undefined undefined
+        @ "code, kbd, pre, samp" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "fontFamily" "monospace, monospace" ids: undefined undefined
+            @ "fontSize" "1em" ids: undefined undefined
+        @ "figure" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "margin" "1em 40px" ids: undefined undefined
+        @ "hr" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "boxSizing" "content-box" ids: undefined undefined
+            @ "height" 0 ids: undefined undefined
+            @ "overflow" "visible" ids: undefined undefined
+        @ "button, input, optgroup, select, textarea" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "font" "inherit" ids: undefined undefined
+            @ "margin" 0 ids: undefined undefined
+        @ "optgroup" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "fontWeight" "bold" ids: undefined undefined
+        @ "button, input" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "overflow" "visible" ids: undefined undefined
+        @ "button, select" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "textTransform" "none" ids: undefined undefined
+        @ "button, html [type=\"button\"],  [type=\"reset\"], [type=\"submit\"]" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "WebkitAppearance" "button" ids: undefined undefined
+        @ "button::-moz-focus-inner, [type=\"button\"]::-moz-focus-inner, [type=\"reset\"]::-moz-focus-inner, [type=\"submit\"]::-moz-focus-inner" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "borderStyle" "none" ids: undefined undefined
+            @ "padding" 0 ids: undefined undefined
+        @ "button:-moz-focusring, [type=\"button\"]:-moz-focusring, [type=\"reset\"]:-moz-focusring, [type=\"submit\"]:-moz-focusring" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "outline" "1px dotted ButtonText" ids: undefined undefined
+        @ "fieldset" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "border" "1px solid #c0c0c0" ids: undefined undefined
+            @ "margin" "0 2px" ids: undefined undefined
+            @ "padding" "0.35em 0.625em 0.75em" ids: undefined undefined
+        @ "legend" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "boxSizing" "border-box" ids: undefined undefined
+            @ "color" "inherit" ids: undefined undefined
+            @ "display" "table" ids: undefined undefined
+            @ "maxWidth" "100%" ids: undefined undefined
+            @ "padding" 0 ids: undefined undefined
+            @ "whiteSpace" "normal" ids: undefined undefined
+        @ "textarea" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "overflow" "auto" ids: undefined undefined
+        @ "[type=\"checkbox\"], [type=\"radio\"]" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "boxSizing" "border-box" ids: undefined undefined
+            @ "padding" 0 ids: undefined undefined
+        @ "[type=\"number\"]::-webkit-inner-spin-button, [type=\"number\"]::-webkit-outer-spin-button" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "height" "auto" ids: undefined undefined
+        @ "[type=\"search\"]" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "WebkitAppearance" "textfield" ids: undefined undefined
+            @ "outlineOffset" - (2) ids: undefined undefined
+        @ "[type=\"search\"]::-webkit-search-cancel-button, [type=\"search\"]::-webkit-search-decoration" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "WebkitAppearance" "none" ids: undefined undefined
+        @ "::-webkit-input-placeholder" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "color" "inherit" ids: undefined undefined
+            @ "opacity" 0.54 ids: undefined undefined
+        @ "::-webkit-file-upload-button" ids: undefined undefined
+          {  ids: undefined undefined
+            @ "WebkitAppearance" "button" ids: undefined undefined
+            @ "font" "inherit" ids: undefined undefined

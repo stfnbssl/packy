@@ -1,0 +1,10 @@
+﻿$group
+
+	# default local jss instance, with default preset
+	# can be overridden by applications when calling createInjectSheet(jss)
+	j/iife-wrapped( BxJss, jssModule, jssPresetModule )
+
+		const {create} = jssModule
+		return 
+			_ create
+				_ jssPresetModule.default()

@@ -1,0 +1,121 @@
+﻿module
+    kind jsfile
+
+	var natural = require('natural')
+	var _ = require('./utils')
+	
+	var stem = natural.PorterStemmer.stem
+
+	var EXPORT = {}
+
+	set EXPORT.words
+		function
+			param str
+			var ret = String(str).match(/[+|-]*\w+/g)
+			if ret && ret.length
+				foreach word in ret
+					set ret[i] = ret[i].trim()
+				return ret
+			else
+				return []
+
+	set EXPORT.stems
+		function
+			param words
+			var ret = []
+			if !words
+				return ret
+			foreach word in words
+				_ ret.push
+					_ stem
+						@ word
+			return ret
+
+	set EXPORT.parse
+		function
+			param str
+			var ret 
+				{
+					@ ands []
+					@ ors []
+					@ nots []
+			var words = EXPORT.words(str)
+			log 'parse.str,words', str, words
+			foreach word in words
+				if word[0] == '-'
+					_ ret.nots.push(word.substring(1))
+					set i++;
+				elif word[0] == '|'
+					_ ret.ors.push(word.substring(1))
+					set i++;
+				elif word[0] == '+'
+					_ ret.ands.push(word.substring(1))
+					set i++;
+				else
+					_ ret.ands.push(word)
+			log 'parse.ret', ret
+			return ret
+
+	function objectToString
+		param obj
+		var ret = []
+		var names = _.keys(obj)
+		foreach name in names
+			var fd = obj[name]
+			if _.isString(fd) || _.isNumber(fd) || _.isDate(fd)
+				_ ret.push(fd)
+		return ret.join(' ')
+
+	function testString
+		param str
+		param q
+		foreach not in q.nots
+			if str.indexOf(not) > -1
+				return false
+		var ret = true
+		foreach and in q.ands
+			if str.indexOf(and) < 0
+				set ret = false
+		if !ret
+			foreach or in q.ors
+				if str.indexOf(or) > -1
+					set ret = true
+		return ret
+
+	set EXPORT.search
+		function
+			param query
+			param items
+			var ret = []
+			var q = EXPORT.parse(query)
+			foreach item in items
+				if testString(objectToString(item), q)
+					_ ret.push(item)
+			return ret
+	
+	set EXPORT.pagedSearch
+		function
+			param query
+			param items
+			param paging
+			param callback
+			
+			var foundList = []
+			var foundCount = 0
+			var q = EXPORT.parse(query)
+			foreach item in items
+				if testString(objectToString(item), q)
+					set foundCount++
+					if !paging.on || ( foundCount >= paging.firstItem && foundCount <= paging.lastItem )
+						_ foundList.push(item)
+			_ callback
+				@ null
+				{
+					@ items foundList
+					@ paging
+						{
+							@ totalItems foundCount
+							@ pageSize paging.pageSize || foundCount
+							@ pageCurrent paging.pageCurrent || 1
+
+	set module.exports = EXPORT

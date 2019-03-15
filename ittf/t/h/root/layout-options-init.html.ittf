@@ -1,0 +1,10 @@
+﻿$group
+
+	$
+		var opt = {
+			title: 'Wizzi page'
+			useAce: false,
+			usePrism: false,
+			useSplit: false,
+			useUnderscore: false,
+		}

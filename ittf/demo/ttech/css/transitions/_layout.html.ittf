@@ -1,0 +1,27 @@
+h/root/layout( )
+	$params title|Title
+
+	$
+		var opt = {
+			name: 'transitions',
+			label: 'Transitions',
+			experimentsWith: 'css transitions',
+			path: [
+				{
+					name: 'css',
+					label: 'Css',
+				},
+			]
+		};
+
+	ttech-frame(&opt)
+
+		. panel
+			. panel-header
+				h3 ${title}
+			. panel-body
+
+				div 
+					id container
+
+					$hook

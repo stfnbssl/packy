@@ -1,0 +1,79 @@
+﻿r-component( App )
+	
+	$append  imports
+		import AppBar from 'material-ui/AppBar'
+		import Toolbar from 'material-ui/Toolbar'
+		import Typography from 'material-ui/Typography'
+		import Button from 'material-ui/Button'
+		import Collapse from 'material-ui/transitions/Collapse'
+		var readme = require('../readme.md')
+		import MarkdownElement from './muidocs/MarkdownElement'
+
+	style
+		
+		@ '@global'
+			{ 
+				@ html
+					{ 
+						@ boxSizing 'border-box'
+				@ '*, *:before, *:after'
+					{ 
+						@ boxSizing 'inherit'
+				@ body
+					{ 
+						@ margin 0
+						@ background theme.palette.background.default
+						@ color theme.palette.text.primary
+						@ lineHeight '1.2'
+						@ overflowX 'hidden'
+						@ WebkitFontSmoothing 'antialiased'
+						@ MozOsxFontSmoothing 'grayscale'
+				@ img
+					{ 
+						@ maxWidth '100%'
+						@ height 'auto'
+						@ width 'auto'
+
+		@ appFrame
+			{ 
+				@ display 'flex'
+				@ alignItems 'stretch'
+				@ minHeight '100vh'
+				@ width '100%'
+
+		@ container
+			{
+				@ paddingTop '80px'
+
+	state
+		@ showReadme false
+	
+	render
+		log 'render.state', this.state
+		
+		prop classes
+		
+		return
+			. {classes.appFrame}
+				< AppBar
+					< Toolbar
+						< Typography
+							@ type "title" 
+							@ color 'inherit'
+							@ noWrap
+							+ Form builder
+				. {classes.container}
+					< Button
+						+ Readme
+						@ onClick
+							=>
+								_ this.setState
+									{
+										@ ...this.state
+										@ showReadme !this.state.showReadme
+					< Collapse
+						@ in {this.state.showReadme}
+						@ transitionDuration auto
+						@ unmountOnExit
+						< MarkdownElement
+							@ text {readme}

@@ -1,0 +1,22 @@
+h/root/layout()
+
+    $append head-styles
+        @style
+            css
+                < h3
+                    
+                    background #343434
+                    color #dede00
+                < p
+                    border-bottom 1px solid #a9a9a9
+                . high-p
+                    color red
+                    font-size 500
+
+	h/bs/breadcrumb()
+		h/bs/li_a_divider( Studio, /ittf/repo/stefi/studio/index.html.ittf )
+		h/bs/li_a_divider( Wizzi, /ittf/repo/stefi/studio/wizzi/index.html.ittf )
+		h/bs/li_active( Legacy )
+
+	h1 Legacy
+	

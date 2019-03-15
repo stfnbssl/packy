@@ -1,0 +1,127 @@
+﻿r-form( FieldArrayForm, validate )
+
+	$append imports
+		import { FieldArray } from 'redux-form'
+
+		const validate
+			=>
+				param values
+				const errors = {}
+				if !values.clubName
+					set errors.clubName = 'Required'
+				if !values.members || !values.members.length
+					set errors.members = { _error: 'At least one member must be entered' }
+				else
+					const membersArrayErrors = []
+					_ values.members.forEach
+						=>
+							param member, memberIndex
+							const memberErrors = {}
+							if !member || !member.firstName
+								set memberErrors.firstName = 'Required'
+								set membersArrayErrors[memberIndex] = memberErrors
+							if !member || !member.lastName
+								set memberErrors.lastName = 'Required'
+								set membersArrayErrors[memberIndex] = memberErrors
+							if member && member.hobbies && member.hobbies.length
+								const hobbyArrayErrors = []
+								_ member.hobbies.forEach
+									=>
+										param hobby, hobbyIndex
+										if !hobby || !hobby.length
+											set hobbyArrayErrors[hobbyIndex] = 'Required'
+								if hobbyArrayErrors.length
+									set memberErrors.hobbies = hobbyArrayErrors
+									set membersArrayErrors[memberIndex] = memberErrors
+								if member.hobbies.length > 5
+									if !memberErrors.hobbies
+										set memberErrors.hobbies = []
+									set memberErrors.hobbies._error = 'No more than five hobbies allowed'
+									set membersArrayErrors[memberIndex] = memberErrors
+					if membersArrayErrors.length
+						set errors.members = membersArrayErrors
+				return errors
+
+		const renderHobbies
+			=>
+				param { fields, meta: { error } }
+				return
+					ul
+						li
+							button
+								type button
+								@ onClick
+									=>
+										_ fields.push
+								+ Add Hobby
+						{
+							_ fields.map
+								=>
+									param hobby, index
+									return
+										li
+											@ key {index}
+											button
+												type button
+												@ title Remove Hobby
+												@ onClick
+													=>
+														_ fields.remove(index)
+											text( {hobby}, {`Hobby #${index + 1}`} )
+						{
+							&&
+								+ error
+								li
+									@ className error
+									+ {error}
+
+		const renderMembers
+			=>
+				param { fields, meta: { touched, error, submitFailed } }
+				return
+					ul
+						li
+							button
+								type button
+								@ onClick
+									=>
+										_ fields.push
+											{
+								+ Add Member
+							{
+								&&
+									+ (touched || submitFailed) && error
+									span
+										+ {error}
+						{
+							_ fields.map
+								=>
+									param member, index
+									return
+										li
+											@ key {index}
+											button
+												type button
+												@ title Remove Member
+												@ onClick
+													=>
+														_ fields.remove(index)
+											h4 Member #{index + 1}
+											text( {`${member}.firstName`}, First Name )
+											text( {`${member}.lastName`}, Last Name )
+											< FieldArray
+												@ name {`${member}.hobbies`}
+												@ component {renderHobbies}
+
+	return
+		form
+			@ onSubmit {handleSubmit}
+
+			text( clubName, Club Name)
+			< FieldArray
+				@ name members
+				@ component {renderMembers}
+			
+			div
+				button-submit()
+				button-clear()

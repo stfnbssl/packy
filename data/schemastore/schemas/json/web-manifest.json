@@ -1,0 +1,88 @@
+{
+	"title": "JSON schema for Web Application manifest files",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+
+	"type": "object",
+
+	"properties": {
+		"name": {
+			"description": "The name of the web application.",
+			"type": "string"
+		},
+		"short_name": {
+			"description": "A string that represents a short version of the name of the web application.",
+			"type": "string"
+		},
+		"scope": {
+			"description": "A string that represents the navigation scope of this web application's application context.",
+			"type": "string",
+			"format": "uri"
+		},
+		"icons": {
+			"description": "The icons member is an array of icon objects that can serve as iconic representations of the web application in various contexts.",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/image"
+			}
+		},
+		"display": {
+			"description": "The item represents the developer's preferred display mode for the web application.",
+			"enum": [ "fullscreen", "standalone", "minimal-ui", "browser" ],
+			"default": "browser"
+		},
+		"orientation": {
+			"description": "The orientation member is a string that serves as the default orientation for all  top-level browsing contexts of the web application.",
+			"enum": [ "any", "natural", "landscape", "portrait", "portrait-primary", "portrait-secondary", "landscape-primary", "landscape-secondary" ]
+		},
+		"start_url": {
+			"description": "Represents the URL that the developer would prefer the user agent load when the user launches the web application.",
+			"type": "string",
+			"format": "uri"
+		},
+		"theme_color": {
+			"description": "The theme_color member serves as the default theme color for an application context.",
+			"type": "string"
+		},
+		"background_color": {
+			"description": "The background_color member describes the expected background color of the web application.",
+			"type": "string"
+		},
+		"screenshots": {
+			"description": "The screenshots member is an array of image objects represent the web application in common usage scenarios.",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/image"
+			}
+		}
+	},
+
+	"definitions": {
+	    "image": {
+			"type": "object",
+			"properties": {
+				"sizes": {
+					"description": "The sizes member is a string consisting of an unordered set of unique space-separated tokens which are ASCII case-insensitive that represents the dimensions of an image for visual media.",
+					"oneOf": [
+						{
+							"type": "string",
+							"pattern": "^[0-9 x]+$"
+						},
+						{
+							"enum": [ "any" ]
+						}
+					]
+				},
+				"src": {
+					"description": "The src member of an image is a URL from which a user agent can fetch the icon's data.",
+					"type": "string",
+					"format": "uri"
+				},
+				"type": {
+					"description": "The type member of an image is a hint as to the media type of the image.",
+					"type": "string",
+					"pattern": "^[\\sa-z0-9\\-+;\\.=\\/]+$"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+. form-group
+	$params id, label, model|@@null, value|@@null
+	id ${id}_group
+	f_group( ${id}, ${label} )
+	input
+		type text
+		class form-control input-sm
+		id ${id}
+		name ${id}
+		$if model
+			data-ng-model ${model}
+		placeholder ${label}
+		$hook

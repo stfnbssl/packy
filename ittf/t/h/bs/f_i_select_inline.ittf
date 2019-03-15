@@ -1,0 +1,10 @@
+. form-group
+	$params id, label, value|@@null, haserror:boolean|false, error|@@null
+	id ${id}_group
+	f_group( ${id}, ${label}, ${haserror}, ${error} )
+	. controls
+		select
+			class form-control
+			id ${id}
+			name ${id}
+			$hook

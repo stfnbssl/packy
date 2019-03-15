@@ -1,0 +1,313 @@
+h/root/empty_layout( )
+
+	$append head-styles
+        link 
+            rel stylesheet
+            type text/css
+            href //maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css
+
+	$append body-scripts
+		js /webpack/studio/bundle.js
+		js js/axios.min.js
+	
+	. container
+        h1 wizzi studio check
+        form 
+            role form
+            class form
+            onsubmit return false;
+			table
+				tbody
+					tr
+						td
+							style  vertical-align:top; padding:20px;
+							. form-group
+								text( userId, USER, stefi
+								text( projectName, PROJECT, wizzi
+								text( schemaUri, SCHEMA URI, v5-plugins/wizzi-core/wfjob
+								text( folderName, FOLDER, folder1
+								text( documentUri, DOCUMENT URI, /stefi/aa/bb/begus.undefined.ittf
+								text( documentName, DOCUMENT NAME, pippo
+								text( fragmentUri, FRAGMENT URI, /stefi/aa/bb/t/sum.js.ittf
+								text( fragmentName, FRAGMENT NAME, ciccio
+						td
+							style vertical-align:top; padding:20px;
+							. form-group
+								label SCHEMA
+									for schemaName
+								select
+									id schemaName
+									class form-control
+									opt( js
+									opt( html
+									opt( css
+								label CONTENT
+									for content
+								textarea 
+									id content
+									class form-control
+									rows 5
+								label ARTIFACT
+									for artifactName
+								select
+									id artifactName
+									class form-control
+									opt( js/module
+									opt( html/document
+									opt( css/document
+						td
+							style vertical-align:top; padding:20px;
+							. form-group
+								text( kernelPackageName, KERNEL PACKAGE NAME, wizzi-mtree
+								text( pluginsPackageName, PLUGIN PACKAGE NAME, wizzi-js
+								text( packageId, PACKAGE ID, v5-plugins/wizzi-js
+								text( storeKind, STORE KIND, filesystem
+								text( plugins, PLUGINS, wizzi-lab
+								text( globalContext, GLOBAL CONTE£XT, name=wizzi studio;version=0.1.1
+								text( hash, DOCUMENT HASH, yRkyD16o8Kf9Q6xGKW6pH575nGmg9QTvdG8b7weGFBqalRp9X4u6zbk50JyoHkL3BJNPkLHdmQaByQkBC0YP19VyGRsqeYN59XWVh9bVBpXVxvFZeLB9Zg95CaydGLxGKgcdPmkM
+								text( schemaHash, SCHEMA HASH, 5xQqoDDK6QInzgboy0KvfY9YwpgynztVGaDPkZlGsLl7DyPlddCZaWQnYDxbUdQqQxEKBbTgBRWG8Xxmilee7ERbxktGEedKDKMdIqppyo99mNHkylXpbGoqC3l0Vz9awntvBlBR3RAKc45MVWDRzZt8JbmADVMWcW5Y61EZ3gcABKkRz7dZI89vbW0L7kte97Lbm3oZfzqdkNM
+								text( jobHash, JOB HASH, 079Bo665w9iMaWYk9QeVh090Rz1gd6cBEWZMymXEFAzd5mnzRRUx4DGVQdLehxXPXEB7QKslLX60gykbt344dzeWxphlxpqKVKmqtgWWodNNeJTB6GQW4M1kCQmbpk8JYXFbNmN3R3WBfGvd8KDK39CbPBE67QBgcYGbR6GQaoFebL415Q4eh3dMPZmmaJIVakXoQx50UA4x7onNK3TDdGz9Zm0
+								text( jobExecHash, JOB EXEC HASH, xRNGZvXlwKfG30Pvo70zCyMyPxWwXeHgB6NDaZnkhlA6PQNkkVHl7PWmo679S1AyWbPy4Vspd197gJX9UdY
+								text( gistHash, GIST HASH, wvmQl6l34ah1n5K8yW4pSNYNDz7K8yFYm4zwbPKmC6qoDdnqPPiPkZdDz5ReSke8e57A60SpbAKoE9M4sPGGK1eZ7wtNdD4BzBw4TzWW7E55lJheBnKPpg6GH7wk1Rg1YzfW9DdXazvnfxyXyzaBd6IDgoqmJewBuZDy0b77A8
+								text( snippetHash, SNIPPET HASH, 3YPmqvqlpRUwgLaA7P9Rhbdbo6Q3pqc0B17LzJaBIyXQbW9XPPHaG14d8QA0iYWkWGqb4JC0NKWg7QRMT4RRwm95KVUmox45Y5e4heddEAaamXtW8PQd7xvAH76bokNP1wSQwlgG003XSqZJGNvNnacL95MLegQbiVggbZqYaMCD3nml8880UWnRqqoeAvi3b
+								text( gistKind, GIST KIND, gist
+					tr
+						td
+							style vertical-align:top; padding:20px;
+							. form-group
+								label GET APIS
+									for getApiId
+								select
+									id getApiId
+									class form-control
+									opt( /api/studio/check
+									opt( /api/studio/commons
+									opt( /api/studio/commons/defaultartifacts
+									opt( /api/studio/user
+									opt( /api/studio/schemas
+									opt( /api/studio/schema
+									opt( /api/studio/packages
+									opt( /api/studio/package
+									opt( /api/studio/projects
+									opt( /api/studio/documents
+									opt( /api/studio/document
+									opt( /api/studio/fragments
+									opt( /api/studio/fragment
+									opt( /api/studio/artifact
+									opt( /api/wizzi/check
+									opt( /api/wizzi/system/packages
+									opt( /api/wizzi/kernel/info
+									opt( /api/wizzi/kernel/packages
+									opt( /api/wizzi/kernel/package
+									opt( /api/wizzi/plugins/info
+									opt( /api/wizzi/plugins/packages
+									opt( /api/wizzi/plugin/package
+									opt( /api/wizzi/plugin/schemas
+									opt( /api/wizzi/plugin/artifacts
+									opt( /api/wizzi/ittf/wizzifactory
+									opt( /api/wizzi/ittf/mtree
+									opt( /api/wizzi/ittf/mtreedebug
+									opt( /api/wizzi/ittf/defaultartifact 
+									opt( /api/wizzi/wfjob
+									opt( /api/wizzi/wfschema
+									opt( /api/jobs/batches
+									opt( /api/jobs/batch
+									opt( /api/jobs/gists
+									opt( /api/jobs/gist
+									opt( /api/jobs/gistexec
+									opt( /api/jobs/wizzify
+									
+
+								button GET
+									id get
+									type button
+									class btn btn-primary
+						td
+							style  vertical-align:top; padding:20px;
+							. form-group
+								label POST APIS
+									for postApiId
+								select
+									class form-control
+									opt( /api/studio/user
+									opt( /api/studio/user/create
+									opt( /api/studio/project
+									opt( /api/studio/document
+									opt( /api/studio/fragment
+									opt( /repo/stefi/studio/_temp/index.js.ittf
+									opt( /api/wf/gen
+									id postApiId
+								button POST
+									id post
+									type button
+									class btn btn-primary
+						td
+							style  vertical-align:top; padding:20px;
+							. form-group
+								label PUT APIS
+									for putApiId
+								select
+									class form-control
+									opt( /api/wizzi/ittf
+									id putApiId
+								button PUT
+									id put
+									type button
+									class btn btn-primary
+
+		br
+		br
+		. container
+			pre
+				id output
+        
+    script
+        module
+			
+			var output = document.getElementById('output')
+            set document.getElementById('get').onclick =
+                function 
+					var userId = document.getElementById('userId').value
+					var projectName = document.getElementById('projectName').value
+					var folderName = document.getElementById('folderName').value
+					var schemaUri = document.getElementById('schemaUri').value
+					var documentUri = document.getElementById('documentUri').value
+					var fragmentUri = document.getElementById('fragmentUri').value
+					var content = document.getElementById('content').value
+					var artifactName = document.getElementById('artifactName').value
+					var kernelPackageName = document.getElementById('kernelPackageName').value
+					var pluginsPackageName = document.getElementById('pluginsPackageName').value
+					var packageId = document.getElementById('packageId').value
+					var storeKind = document.getElementById('storeKind').value
+					var plugins = document.getElementById('plugins').value
+					var globalContext = document.getElementById('globalContext').value
+					var hash = document.getElementById('hash').value
+					var schemaHash = document.getElementById('schemaHash').value
+					var jobHash = document.getElementById('jobHash').value
+					var jobExecHash = document.getElementById('jobExecHash').value
+					var gistHash = document.getElementById('gistHash').value
+					var gistKind = document.getElementById('gistKind').value
+					var snippetHash = document.getElementById('snippetHash').value
+					var getApiId = document.getElementById('getApiId').value
+					
+					#
+						_ alert
+							@ userId + '/' + projectName + '/' + folderName + '/' + documentUri + '/' + getApiId
+
+					var url = getApiId
+					if getApiId === "/api/studio/schema"
+						set url += '?uri=' + schemaUri
+					elif getApiId === "/api/studio/package"
+						set url += '?id=' + packageId
+					elif getApiId === "/api/studio/document"
+						set url += '?uri=' + documentUri
+					elif getApiId === "/api/studio/fragment"
+						set url += '?uri=' + fragmentUri
+					elif getApiId === "/api/studio/documents" || getApiId === "/api/studio/fragments"
+						set url += '?project=' + projectName
+					elif getApiId === "/api/studio/artifact"
+						set url += '?uri=' + documentUri + '&artifact=' + artifactName
+					elif getApiId === "/api/wizzi/kernel/package"
+						set url += '?xpackage=' + kernelPackageName
+					elif getApiId === "/api/wizzi/plugin/package"
+						set url += '?xpackage=' + pluginsPackageName
+						set url += '&schema=' + schemaName
+					elif getApiId === "/api/wizzi/plugin/artifacts" || getApiId === "/api/wizzi/plugin/schemas"
+						set url += '?xpackage=' + pluginsPackageName
+					elif getApiId === "/api/wizzi/ittf/wizzifactory"
+						set url += '?storeKind=' + storeKind
+						set url += '&plugins=' + plugins
+						set url += '&globalContext=' + globalContext
+					elif getApiId === "/api/wizzi/ittf/mtreedebug" || getApiId === "/api/wizzi/ittf/defaultartifact" 
+						set url += '?hash=' + hash
+					elif getApiId === "/api/wizzi/wfjob"
+						set url += '?hash=' + jobHash
+					elif getApiId === "/api/wizzi/wfschema"
+						set url += '?hash=' + schemaHash
+					elif getApiId === "/api/jobs/batch"
+						set url += '?hash=' + jobExecHash
+					elif getApiId === "/api/jobs/gist" || getApiId === "/api/jobs/gistexec"
+						set url += '?hash=' + gistHash
+					elif getApiId === "/api/jobs/gists"
+						set url += '?kind=' + gistKind
+					elif getApiId === "/api/jobs/wizzify"
+						set url += '?hash=' + snippetHash
+                    
+					log 'url', url
+					_ axios.get(url).then
+                        function 
+                            param res
+                            set output.className = 'container'
+                            set output.innerHTML = JSON.stringify(res.data, null, 2)
+							if getApiId === "/api/studio/document" || getApiId === "/api/studio/fragment"
+								set document.getElementById('content').value = res.data.data
+                        ._ catch
+                            function 
+                                param err
+                                set output.className = 'container text-danger'
+                                set output.innerHTML = err.message
+            
+			set document.getElementById('post').onclick =
+                function 
+					var options
+						{
+							@ userId document.getElementById('userId').value
+							@ projectName document.getElementById('projectName').value
+							@ project document.getElementById('projectName').value
+							@ folderName document.getElementById('folderName').value
+							@ documentUri document.getElementById('documentUri').value
+							@ fragmentUri document.getElementById('fragmentUri').value
+							@ content document.getElementById('content').value
+							@ artifactName document.getElementById('artifactName').value
+							@ newcontent document.getElementById('content').value
+							@ getApiId document.getElementById('getApiId').value
+					var postApiId = document.getElementById('postApiId').value
+
+					if postApiId === "/api/studio/document"
+						set options.uri = options.documentUri
+					elif postApiId === "/api/studio/fragment"
+						set options.uri = options.fragmentUri
+					elif postApiId === "/repo/stefi/studio/_temp/index.js.ittf"
+						set options.kind = 1
+						set options.content = 'module index\n\tkind react'
+					
+					_ alert
+						@ JSON.stringify(options, null, 2)
+                    
+					_ axios.post(postApiId, options).then
+                        function 
+                            param res
+                            set output.className = 'container'
+                            set output.innerHTML = JSON.stringify(res.data, null, 2)
+                        ._ catch
+                            function 
+                                param err
+                                set output.className = 'container text-danger'
+                                set output.innerHTML = err.message            
+                                
+			set document.getElementById('put').onclick =
+                function 
+					var options
+						{
+							@ userId document.getElementById('userId').value
+							@ projectName document.getElementById('projectName').value
+							@ project document.getElementById('projectName').value
+							@ folderName document.getElementById('folderName').value
+					var putApiId = document.getElementById('putApiId').value
+
+					if putApiId === "/api/xxx"
+						set options.uri = options.documentUri
+
+					_ alert
+						@ JSON.stringify(options, null, 2)
+                    
+					_ axios.put(putApiId, options).then
+                        function 
+                            param res
+                            set output.className = 'container'
+                            set output.innerHTML = JSON.stringify(res.data, null, 2)
+                        ._ catch
+                            function 
+                                param err
+                                set output.className = 'container text-danger'
+                                set output.innerHTML = err.message                                

@@ -1,0 +1,116 @@
+﻿$group
+
+	#
+	# implements clickHandler
+	# params
+	# { ctx
+	#    { editorImpl
+	#    { modalManager
+	#    string editorKey
+	#
+	class EditManager
+		ctor
+			param ctx
+			param options
+			set this.ctx = ctx
+			set this.options = options
+			set this.dataIttfPath = options.dataIttfPath
+			set this.dataPrettyElementId = options.dataPrettyElementId
+			set this.dataTextPath = options.dataTextPath
+			set this.contentOriginal = null
+
+		m initEditor
+			if this.editor
+				return
+			_ this.ctx.editorImpl.initialize
+			set this.editor = this.ctx.editorImpl
+			var saveEl = wz.element('#' + this.editor.key + '-save')
+			var saveRefreshEl = wz.element('#' + this.editor.key + '-save-refresh')
+			var cancelEl = wz.element('#' + this.editor.key + '-cancel')
+			set this.titleElement = wz.element('#' + this.editor.key + '-title')
+			var that = this
+			_ wz.click
+				@ cancelEl
+				function
+					_ that.ctx.modalManager.hide
+						@ that.editor.key
+			_ wz.click
+				@ saveEl
+				function
+					if that.editor.getValue() !== that.contentOriginal
+						var filePath = that.ittfPath || that.textPath
+						_ that.ctx.dataManager.editSave
+							@ filePath
+							_ that.editor.getValue
+							f_cb_no_err( result )
+								if err
+									_ alert
+										@ 'Error saving ' + filePath + ' : ' + err.message
+								else
+									_ that.ctx.modalManager.hide
+										@ that.editor.key
+			_ wz.click
+				@ saveRefreshEl
+				function
+					if that.editor.getValue() !== that.contentOriginal
+						_ that.ctx.dataManager.editSave
+							@ that.contentHash
+							_ that.editor.getValue
+					_ that.ctx.modalManager.hide
+						@ that.editor.key
+					set location.href= location.pathname
+
+		m onSave
+			param data
+			_ wz.html
+				@ this.prettyElementId
+				@ data.prettified
+
+		m setEditor
+			param options
+			if this.editor
+				_ this.editor.setValue
+					@ options.value
+				if this.titleElement
+					_ wz.text(this.titleElement, options.title)
+
+		m edit
+			param options
+			# log 'wz.editManager.edit.options', options
+			_ this.initEditor
+			_ this.setEditor
+				@ options
+
+		m handleClick
+			param target
+			param dataValue
+			log 'wz.editManager.handleClick.dataValue', dataValue
+			set this.ittfPath = dataValue[this.dataIttfPath]
+			set this.textPath = dataValue[this.dataTextPath]
+			set this.prettyElementId = dataValue[this.dataPrettyElementId]
+			var filePath = this.ittfPath || this.textPath
+			var that = this
+			_ this.ctx.dataManager.getEditContent
+				@ filePath
+				f_cb_no_err( content )
+					if err
+						_ alert
+							@ 'Error retrieving ' + filePath + ' : ' + err.message
+					else
+						set that.contentOriginal = content
+						_ that.edit
+							{
+								@ value content
+								@ title filePath
+						_ that.ctx.modalManager.show
+							@ that.editor.key
+							@ that.editor.key + '-form'
+
+		m checkClick
+			param target
+			if this.editor
+				return
+					_ this.ctx.modalManager.checkClick
+						@ this.editor.key + '-form'
+						@ target
+			return false

@@ -1,0 +1,46 @@
+﻿r-component( SchemaList )
+
+	$append imports
+		import List, { ListItem, ListItemText } from 'material-ui/List'
+	
+	style
+		@ selected
+			{
+				@ color 'red'
+	
+	prop schemas
+		[
+		required
+	
+	prop selectedSchemaUri
+		string
+	
+	prop onSelectSchema
+		func
+		required
+	
+	render
+
+		prop classes
+		prop schemas
+		prop selectedSchemaUri
+		prop onSelectSchema
+
+		return
+		
+			< List
+				@ dense {true}
+				{
+					_ schemas.map
+						=>
+							param schema
+							return
+								< ListItem
+									@ key {schema.uri}
+									@ className {selectedSchemaUri === schema.uri ? classes.selected : ''}
+									@ onClick
+										=>
+											_ onSelectSchema
+												@ schema.uri
+									< ListItemText
+										@ primary {schema.uri }

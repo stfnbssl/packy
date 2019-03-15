@@ -1,0 +1,20 @@
+{
+
+	$
+		var opt = {
+			name: 'popper',
+			label: 'Popper',
+			experimentsWith: 'the popper framework',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'tooltips',
+					label: 'Tooltips',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

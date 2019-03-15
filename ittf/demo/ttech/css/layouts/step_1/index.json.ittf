@@ -1,0 +1,170 @@
+﻿{
+
+	$
+		var l_colors = "#B9D2DE;#919FA6;#3C7590;#D1E5EE;#D9E7EE;#C0C4E3;#9799AA;#3E4893;#D5D9F1;#DDDFF1;#BDE5CE;#95AC9F;#3D9563;#D2F2E0;#DBF2E5;#FFEAD2;#BFB4A6;#A67944;#FFF0DE;#FFF4E7".split(';')
+
+	{ debug
+		showPalette true
+
+	{ theme
+		fontAwesome true
+		[ colors
+			$foreach c in l_colors
+				"${c}"
+					
+	{ html
+		fontSize 14
+	
+	{ body
+		backgroundColor "${l_colors[4]}"
+		fontFamily 'roboto'
+	
+	{ navTop
+		fixed true
+		height 48
+		backgroundColor "#fefefe"
+		[ panels
+			{
+				kind "img-logo"
+				src "/ittf/images/logo.svg.ittf"
+				href '/ittf/html/index.html.ittf'
+				height 36
+				width 116
+			{
+				kind "flex"
+				[ items
+					{
+						label "Home"
+						href "#"
+					{
+						label "Concepts"
+						href "#"
+					{
+						label "Docs"
+						href "#"
+					{
+						label "Project"
+						href "#"
+
+	{ navSubTop
+		fixed true
+		height 116
+		backgroundColor "${l_colors[15]}"
+		[ items
+			{
+				label "Core"
+				href "#"
+			{
+				label "Meta"
+				href "#"
+			{
+				label "Js"
+				href "#"
+			{
+				label "Web"
+				href "#"
+
+	{ navLeft
+		$$ fixed true
+		drawer true
+		fullHeight true
+		width 250
+		drawerClosedWidth 50
+		[ items
+			{
+				label "Home"
+				icon "laptop"
+				href "#"
+			{
+				label "Target technologies"
+				icon "laptop"
+				href "#"
+			{
+				label "Wizzi playground"
+				icon "laptop"
+				href "#"
+			{
+				label "Wizzi cheat sheets"
+				icon "laptop"
+				href "#"
+
+	{ wrapMain
+		fixed false
+		padding 0
+
+	{ contMain
+		fixed false
+		padding 2
+		[ panels
+			{
+				kind "cards"
+				[ cards
+					{
+						key "ittf"
+						teaser "Start here"
+						title "ittf & jsWizzi"
+						href "/ittf/docs/cheatsheets/wizzischema.html.ittf?_context=cs&_cs=cheatsheet;ittf"
+						subtitle "Familiarize with the indented tree text format and its script engine"
+						backgroundColor "${l_colors[0]}"
+					{
+						key "mtree"
+						teaser "Powerful"
+						title "mTree composition"
+						href "/ittf/docs/cheatsheets/wizzischema.html.ittf?_context=cs&_cs=cheatsheet;mtree"
+						subtitle "Building complex tree models composing ittf documents"
+						backgroundColor "${l_colors[1]}"
+					{
+						key "html"
+						teaser "Intuitive"
+						title "html schema"
+						href "/ittf/docs/cheatsheets/wizzischema.html.ittf?_context=cs&_cs=cheatsheet;html"
+						subtitle "Simple to start with"
+						backgroundColor "${l_colors[2]}"
+					{
+						key "css"
+						teaser "Html companion"
+						title "css schema"
+						href "/ittf/docs/cheatsheets/wizzischema.html.ittf?_context=cs&_cs=cheatsheet;css"
+						backgroundColor "${l_colors[3]}"
+					{
+						key "scss"
+						teaser "More than CSS"
+						title "scss schema"
+						href "/ittf/docs/cheatsheets/wizzischema.html.ittf?_context=cs&_cs=cheatsheet;scss"
+						backgroundColor "${l_colors[4]}"
+					{
+						key "js"
+						teaser "Geecky"
+						title "js schema"
+						href "/ittf/docs/cheatsheets/wizzischema.html.ittf?_context=cs&_cs=cheatsheet;js"
+						subtitle "Templating javascript modules"
+						backgroundColor "${l_colors[5]}"
+					{
+						key "svg"
+						teaser "Funny"
+						title "svg schema"
+						href "/ittf/docs/cheatsheets/wizzischema.html.ittf?_context=cs&_cs=cheatsheet;svg"
+						subtitle "Model driven 2D graphics"
+						backgroundColor "${l_colors[6]}"
+					{
+						key "md"
+						teaser "Doc me"
+						title "md (markdown) schema"
+						href "/ittf/docs/cheatsheets/wizzischema.html.ittf?_context=cs&_cs=cheatsheet;md"
+						subtitle "An html like markdown"
+						backgroundColor "${l_colors[7]}"
+					{
+						key "vtt"
+						teaser "For video fans"
+						title "vtt schema"
+						href "/ittf/docs/cheatsheets/wizzischema.html.ittf?_context=cs&_cs=cheatsheet;vtt"
+						subtitle "Simple video text formatter"
+						backgroundColor "${l_colors[8]}"
+					{
+						key "json"
+						teaser "Easy"
+						title "json (pseudo) schema"
+						href "/ittf/docs/cheatsheets/wizzischema.html.ittf?_context=cs&_cs=cheatsheet;json"
+						subtitle "The ubiquitous data model"
+						backgroundColor "${l_colors[9]}"
+

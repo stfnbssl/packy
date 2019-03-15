@@ -1,0 +1,79 @@
+﻿_ router.get
+	@ '/info'
+	function
+		param req
+		param res
+
+		var info
+			{
+				@ collection
+					[
+						{
+							@ description 'get collection list'
+							@ request
+								{
+									@ url  '/' + collectionName
+									@ method  'GET'
+							@ response
+								{
+									@ jsonObject
+										{
+											@ items collectionName + ' collection'
+											@ pagination ' response pagination'
+						{
+							@ description 'get one collection item'
+							@ request
+								{
+									@ url  '/<collName>/one/<itemKeyValue>'
+									@ method  'GET'
+						{
+							@ description 'insert collection item'
+							@ request
+								{
+									@ url  '/<collName>'
+									@ method  'POST'
+									@ body 'json object to be inserted'
+							@ response
+								{
+									@ jsonObject 'inserted object'
+						{
+							@ description 'delete collection item'
+							@ request
+								{
+									@ url  '/<collName>'
+									@ method  'POST'
+									@ body
+										{
+											@ fixedProperty
+												{
+													@ name '_method'
+													@ value 'delete'
+											@ keyProperties
+												{
+													@ name 'keyName'
+													@ value 'keyValue'
+							@ response
+								{
+									@ jsonObject 'deleted object'
+						{
+							@ description 'update collection item'
+							@ request
+								{
+									@ url  '/<collName>'
+									@ method  'POST'
+									@ body
+										{
+											@ fixedProperty
+												{
+													@ name '_method'
+													@ value 'put'
+													@ required true
+											@ properties 'item properties'
+							@ response
+								{
+									@ jsonObject 'updated object'
+
+		var err = null
+
+		send_json( info, yes )
+							

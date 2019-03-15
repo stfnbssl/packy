@@ -1,0 +1,172 @@
+﻿module
+	kind react
+
+	$include options
+
+	const {
+		\b colors,
+		\b createMuiTheme,
+		\b CssBaseline,
+		\b MuiThemeProvider,
+		\b withStyles,
+		\b SvgIcon,
+		\b } = window['material-ui']
+
+	const theme
+		_ createMuiTheme
+			{
+				{ palette
+					{ primary
+						@ light colors.purple[300]
+						@ main colors.purple[500]
+						@ dark colors.purple[700]
+					{ secondary
+						@ light colors.green[300]
+						@ main colors.green[500]
+						@ dark colors.green[700]
+
+	
+	$include CssBase
+	$include icons/gearIcon
+	$include monaco
+	mui/Splitter( &opt )
+	
+	react App
+
+		state 
+			@ splitter1Sizes
+				{
+					@ primary 500
+					@ secondary 500
+			@ splitter2Sizes
+				{
+					@ primary 500
+					@ secondary 500
+		
+		style
+			@ root
+				{
+					@ color 'red'
+					@ backgroundColor '#1d1f20'
+
+			@ editor
+				{
+					@ overflow 'hidden'
+					@ border '2px solid #888888'
+			$include styles/headbar
+			$include styles/editaside
+			$include styles/editbox
+			$include styles/footbar
+
+		=> handleSplitter1Resize
+			param sizes
+			log 'handleSplitter1Resize', sizes
+			_ this.setState
+				{
+					@ splitter1Sizes sizes
+		
+		=> handleSplitter2Resize
+			param sizes
+			# log 'handleSplitter2Resize', sizes
+			_ this.setState
+				{
+					@ splitter2Sizes sizes
+
+		render
+			prop classes
+			const { splitter1Sizes, splitter2Sizes } = this.state
+
+			const ittfHeadText = ' Ittf '
+			const generatedHeadText = 'schema ...'
+			const helpHeadText = 'Help board'
+
+			return
+				. {classes.root}
+					. main-header
+					< Splitter
+						@ split vertical
+						@ secondaryInitialSize { 1000 }
+						@ primaryMinSize {100}
+						@ secondaryMinSize {100}
+						@ onResize { this.handleSplitter1Resize }
+						. {classes.editor}
+							render/editorHead( ittf )
+							< MonacoEditor
+								@ language 'yaml'
+								@ theme 'vs-dark'
+								@ width { splitter1Sizes.primary }
+								@ height { splitter1Sizes.third }
+								@ defaultValue { "var a = 0;" }
+						< Splitter
+							@ split vertical
+							@ secondaryInitialSize { 500 }
+							@ primaryMinSize {100}
+							@ secondaryMinSize {100}
+							@ totalSize { splitter1Sizes.secondary } 
+							@ onResize { this.handleSplitter2Resize }
+							. {classes.editor}
+								render/editorHead( generated )
+								< MonacoEditor
+									@ language 'javascript'
+									@ theme 'vs-dark'
+									@ width { splitter2Sizes.primary }
+									@ height { splitter2Sizes.third }
+									@ defaultValue { "var b = 0;" }
+							. {classes.editor}
+								render/editorHead( help )
+								< MonacoEditor
+									@ language 'javascript'
+									@ theme 'vs-dark'
+									@ width { splitter2Sizes.secondary }
+									@ height { splitter2Sizes.third }
+									@ defaultValue { "var c = 0;" }
+					. footer
+						. {classes.footbarCommands}
+
+	const StyledApp
+		_ withStyles
+			@ styles
+			(
+				@ App
+
+
+	var x
+		iife
+			_ window.addEventListener("resize", resizeThrottler, false)
+			var resizeTimeout
+			function resizeThrottler
+				param e
+				# ignore resize events as long as an actualResizeHandler execution is in the queue
+				if !resizeTimeout
+					set resizeTimeout
+						_ setTimeout
+							function
+								set resizeTimeout = null
+								_ actualResizeHandler();
+								# The actualResizeHandler will execute at a rate of 15fps
+							@ 66
+				function actualResizeHandler
+					# handle the resize event 
+					log 'resize', e
+     		(
+
+	ready
+		kind window
+		
+		_ require.config
+			{
+				@ paths
+					{
+						@ vs '/static/lib/monaco-editor/package/min/vs'
+		_ require
+			[
+				@ 'vs/editor/editor.main'
+			=>
+				var dummy
+					_ ReactDOM.render
+						< MuiThemeProvider
+							@ theme {theme}
+							< CssBase
+							< StyledApp
+						_ document.getElementById
+							@ 'root'

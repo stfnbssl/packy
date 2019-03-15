@@ -1,0 +1,7 @@
+  module  ids: 1 8
+    kind react ids: 2 9
+    +  ids: 3 10
+    if process.env.NODE_ENV === 'production' ids: 4 11
+      set module.exports = require('./configureStore.prod') ids: 5 12
+    else  ids: 6 13
+      set module.exports = require('./configureStore.dev') ids: 7 14

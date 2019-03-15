@@ -1,0 +1,696 @@
+{
+	[ apis
+		{
+			title 'Studio - summary of main infos'
+			method 'get'
+			url '/api/studio/check'
+			[ parameters
+		{
+			title 'Studio - common data'
+			method 'get'
+			url '/api/studio/commons'
+			[ parameters
+		{
+			title 'Studio - default artifacts'
+			method 'get'
+			url '/api/studio/commons/defaultartifacts'
+			[ parameters
+		{
+			title 'Studio - user'
+			method 'get'
+			url '/api/studio/user'
+			[ parameters
+		{
+			title 'Studio - schemas'
+			method 'get'
+			url '/api/studio/schemas'
+			[ parameters
+		{
+			title 'Studio - schema'
+			method 'get'
+			url '/api/studio/schema'
+			[ parameters
+				{
+					type "text"
+					name "uri"
+					label "Schema uri"
+					demoValue "v5-plugins/wizzi-core/wfjob"
+		{
+			title 'Studio - packages'
+			method 'get'
+			url '/api/studio/packages'
+			[ parameters
+		{
+			title 'Studio - package'
+			method 'get'
+			url '/api/studio/package'
+			[ parameters
+				{
+					type "text"
+					name "id"
+					label "Package Id"
+					demoValue "v5-plugins/wizzi-js"
+		{
+			title 'Studio - projects'
+			method 'get'
+			url '/api/studio/projects'
+			[ parameters
+		{
+			title 'Studio - documents'
+			method 'get'
+			url '/api/studio/documents'
+			[ parameters
+				{
+					type "text"
+					name "project"
+					label "Project Id"
+					demoValue "wizzi"
+		{
+			title 'Studio - document'
+			method 'get'
+			url '/api/studio/document'
+			[ parameters
+				{
+					type "text"
+					name "uri"
+					label "Document uri"
+					demoValue "/stefi/aa/bb/begus.undefined.ittf"
+		{
+			title 'Studio - document'
+			method 'post'
+			url '/api/studio/document'
+			[ parameters
+				{
+					type "text"
+					name "uri"
+					label "Document uri"
+					demoValue "/stefi/aa/bb/begus.undefined.ittf"
+		{
+			title 'Studio - fragments'
+			method 'get'
+			url '/api/studio/fragments'
+			[ parameters
+				{
+					type "text"
+					name "project"
+					label "Project Id"
+					demoValue "wizzi"
+		{
+			title 'Studio - fragment'
+			method 'get'
+			url '/api/studio/fragment'
+			[ parameters
+				{
+					type "text"
+					name "uri"
+					label "Fragment uri"
+					demoValue "/stefi/aa/bb/t/sum.js.ittf"
+		{
+			title 'Studio - artifact'
+			method 'get'
+			url '/api/studio/artifact'
+			[ parameters
+				{
+					type "text"
+					name "uri"
+					label "Document uri"
+					demoValue "/stefi/aa/bb/begus.undefined.ittf"
+				{
+					type "text"
+					name "artifact"
+					label "Artifact name"
+					demoValue "js/module"
+		{
+			title 'Wizzi - summary of main infos'
+			method 'get'
+			url '/api/wizzi/check'
+			[ parameters
+		{
+			title 'Wizzi - system packages'
+			method 'get'
+			url '/api/wizzi/system/packages'
+			[ parameters
+		{
+			title 'Wizzi - kernel info'
+			method 'get'
+			url '/api/wizzi/kernel/info'
+			[ parameters
+		{
+			title 'Wizzi - kernel packages'
+			method 'get'
+			url '/api/wizzi/kernel/packages'
+			[ parameters
+		{
+			title 'Wizzi - kernel package'
+			method 'get'
+			url '/api/wizzi/kernel/package'
+			[ parameters
+				{
+					type "text"
+					name "xpackage"
+					label "Package name"
+					demoValue "wizzi-mtree"
+		{
+			title 'Wizzi - plugin info'
+			method 'get'
+			url '/api/wizzi/plugin/info'
+			[ parameters
+		{
+			title 'Wizzi - plugin packages'
+			method 'get'
+			url '/api/wizzi/plugin/packages'
+			[ parameters
+		{
+			title 'Wizzi - plugin package'
+			method 'get'
+			[ parameters
+				{
+					type "text"
+					name "xpackage"
+					label "Package name"
+					demoValue "wizzi-js"
+				{
+					type "text"
+					name "schema"
+					label "Schema name"
+					demoValue "js"
+		{
+			title 'Wizzi - plugin schemas'
+			method 'get'
+			url '/api/wizzi/plugin/schemas'
+			[ parameters
+				{
+					type "text"
+					name "xpackage"
+					label "Package name"
+					demoValue "wizzi-web"
+		{
+			title 'Wizzi - plugin artifacts'
+			method 'get'
+			url '/api/wizzi/plugin/artifacts'
+			[ parameters
+				{
+					type "text"
+					name "xpackage"
+					label "Package name"
+					demoValue "wizzi-web"
+		{
+			title 'Wizzi - ittf - wizzi factory'
+			method 'get'
+			url '/api/wizzi/ittf/wizzifactory'
+			[ parameters
+				{
+					type "text"
+					name "storeKind"
+					label "Store kind"
+					demoValue "filesystem"
+				{
+					type "text"
+					name "plugins"
+					label "Plugins"
+					demoValue "wizzi-lab"
+				{
+					type "text"
+					name "globalContext"
+					label "Global context"
+					demoValue "name=wizzi studio;version=0.1.1"
+		{
+			title 'Wizzi - ittf - mtree'
+			method 'get'
+			url '/api/wizzi/ittf/mtree'
+			[ parameters
+				{
+					type "text"
+					name "hash"
+					label "Ittf hash"
+					demoValue "yRkyD16o8Kf9Q6xGKW6pH575nGmg9QTvdG8b7weGFBqalRp9X4u6zbk50JyoHkL3BJNPkLHdmQaByQkBC0YP19VyGRsqeYN59XWVh9bVBpXVxvFZeLB9Zg95CaydGLxGKgcdPmkM"
+					description "The hash is returned by ... "
+		{
+			title 'Wizzi - ittf - mtree debug'
+			method 'get'
+			url '/api/wizzi/ittf/mtreedebug'
+			[ parameters
+				{
+					type "text"
+					name "hash"
+					label "Ittf hash"
+					demoValue "yRkyD16o8Kf9Q6xGKW6pH575nGmg9QTvdG8b7weGFBqalRp9X4u6zbk50JyoHkL3BJNPkLHdmQaByQkBC0YP19VyGRsqeYN59XWVh9bVBpXVxvFZeLB9Zg95CaydGLxGKgcdPmkM"
+					description "The hash is returned by ... "
+		{
+			title 'Wizzi - ittf - default artifact'
+			method 'get'
+			url '/api/wizzi/ittf/defaultartifact'
+			[ parameters
+				{
+					type "text"
+					name "hash"
+					label "Ittf hash"
+					demoValue ""
+					description "The hash is returned by ... "
+		{
+			title 'Wizzi - wfjob'
+			method 'get'
+			url '/api/wizzi/wfjob'
+			[ parameters
+				{
+					type "text"
+					name "hash"
+					label "Job hash"
+					demoValue "079Bo665w9iMaWYk9QeVh090Rz1gd6cBEWZMymXEFAzd5mnzRRUx4DGVQdLehxXPXEB7QKslLX60gykbt344dzeWxphlxpqKVKmqtgWWodNNeJTB6GQW4M1kCQmbpk8JYXFbNmN3R3WBfGvd8KDK39CbPBE67QBgcYGbR6GQaoFebL415Q4eh3dMPZmmaJIVakXoQx50UA4x7onNK3TDdGz9Zm0"
+					description "The hash is returned by ... "
+		{
+			title 'Wizzi - wfschema'
+			method 'get'
+			url '/api/wizzi/wfschema'
+			[ parameters
+				{
+					type "text"
+					name "hash"
+					label "Schema hash"
+					demoValue "5xQqoDDK6QInzgboy0KvfY9YwpgynztVGaDPkZlGsLl7DyPlddCZaWQnYDxbUdQqQxEKBbTgBRWG8Xxmilee7ERbxktGEedKDKMdIqppyo99mNHkylXpbGoqC3l0Vz9awntvBlBR3RAKc45MVWDRzZt8JbmADVMWcW5Y61EZ3gcABKkRz7dZI89vbW0L7kte97Lbm3oZfzqdkNM"
+					description "The hash is returned by ... "
+		{
+			title 'Jobs - batches'
+			method 'get'
+			url '/api/jobs/batches'
+			[ parameters
+		{
+			title 'Jobs - batch'
+			method 'get'
+			url '/api/jobs/batch'
+			[ parameters
+				{
+					type "text"
+					name "hash"
+					label "Job batch hash"
+					demoValue "xRNGZvXlwKfG30Pvo70zCyMyPxWwXeHgB6NDaZnkhlA6PQNkkVHl7PWmo679S1AyWbPy4Vspd197gJX9UdY"
+					description "The hash is returned by ... "
+		{
+			title 'Jobs - gists'
+			method 'get'
+			url '/api/jobs/gists'
+			[ parameters
+			[ parameters
+				{
+					type "text"
+					name "kind"
+					label "Gist kind"
+					demoValue "gist"
+		{
+			title 'Jobs - gist'
+			method 'get'
+			url '/api/jobs/gist'
+			[ parameters
+				{
+					type "text"
+					name "hash"
+					label "Gist hash"
+					demoValue "wvmQl6l34ah1n5K8yW4pSNYNDz7K8yFYm4zwbPKmC6qoDdnqPPiPkZdDz5ReSke8e57A60SpbAKoE9M4sPGGK1eZ7wtNdD4BzBw4TzWW7E55lJheBnKPpg6GH7wk1Rg1YzfW9DdXazvnfxyXyzaBd6IDgoqmJewBuZDy0b77A8"
+					description "The hash is returned by ... "
+		{
+			title 'Jobs - execute gist'
+			method 'get'
+			url '/api/jobs/gistexec'
+			[ parameters
+				{
+					type "text"
+					name "hash"
+					label "Gist hash"
+					demoValue "wvmQl6l34ah1n5K8yW4pSNYNDz7K8yFYm4zwbPKmC6qoDdnqPPiPkZdDz5ReSke8e57A60SpbAKoE9M4sPGGK1eZ7wtNdD4BzBw4TzWW7E55lJheBnKPpg6GH7wk1Rg1YzfW9DdXazvnfxyXyzaBd6IDgoqmJewBuZDy0b77A8"
+					description "The hash is returned by ... "
+		{
+			title 'Jobs - wizzify snippet'
+			method 'get'
+			url '/api/jobs/wizzify'
+			[ parameters
+				{
+					type "text"
+					name "hash"
+					label "Snippet hash"
+					demoValue "3YPmqvqlpRUwgLaA7P9Rhbdbo6Q3pqc0B17LzJaBIyXQbW9XPPHaG14d8QA0iYWkWGqb4JC0NKWg7QRMT4RRwm95KVUmox45Y5e4heddEAaamXtW8PQd7xvAH76bokNP1wSQwlgG003XSqZJGNvNnacL95MLegQbiVggbZqYaMCD3nml8880UWnRqqoeAvi3b"
+					description "The hash is returned by ... "	
+		{
+			title 'Studio - user'
+			method 'post'
+			url '/api/studio/user'
+			[ parameters
+				{
+		{
+			title 'Studio - create user'
+			method 'post'
+			url '/api/studio/user/create'
+			[ parameters
+				{
+		{
+			title 'Studio - project'
+			method 'post'
+			url '/api/studio/project'
+			[ parameters
+				{
+		{
+			title 'Studio - document'
+			method 'post'
+			url '/api/studio/document'
+			[ parameters
+				{
+		{
+			title 'Studio - fragment'
+			method 'post'
+			url '/api/studio/fragment'
+			[ parameters
+				{
+		{
+			title 'Repo - get user'
+			method 'get'
+			url '/repo/:user'
+			[ parameters
+				{
+					type "text"
+					paramType "url"
+					name "user"
+					label "User id"
+					demoValue "stefi"
+		{
+			title 'Repo - get project'
+			method 'get'
+			url '/repo/:user/:project'
+			[ parameters
+				{
+					type "text"
+					paramType "url"
+					name "user"
+					label "User id"
+					demoValue "stefi"
+				{
+					type "text"
+					paramType "url"
+					name "project"
+					label "Project id"
+					demoValue "studio"
+		{
+			title 'Repo - get folder or document'
+			method 'get'
+			url '/repo/:user/:project/:path'
+			[ parameters
+				{
+					type "text"
+					paramType "url"
+					name "user"
+					label "User id"
+					demoValue "stefi"
+				{
+					type "text"
+					paramType "url"
+					name "project"
+					label "Project id"
+					demoValue "studio"
+				{
+					type "text"
+					paramType "url"
+					name "path"
+					label "Folder or document path"
+					demoValue "wizzi"
+		{
+			title 'Repo - create folder'
+			method 'post'
+			url '/repo/:user/:project/:path'
+			[ parameters
+				{
+					type "text"
+					paramType "url"
+					name "user"
+					label "User id"
+					demoValue "stefi"
+				{
+					type "text"
+					paramType "url"
+					name "project"
+					label "Project id"
+					demoValue "studio"
+				{
+					type "text"
+					paramType "url"
+					name "path"
+					label "Folder path"
+					demoValue "temp/1"
+				{
+					type "static"
+					name "kind"
+					label "0 = folder 1 = document"
+					demoValue "0"
+				{
+					type "static"
+					name "action"
+					label "Action"
+					demoValue "create"
+		{
+			title 'Repo - create document'
+			method 'post'
+			url '/repo/:user/:project/:path'
+			[ parameters
+				{
+					type "text"
+					paramType "url"
+					name "user"
+					label "User id"
+					demoValue "stefi"
+				{
+					type "text"
+					paramType "url"
+					name "project"
+					label "Project id"
+					demoValue "studio"
+				{
+					type "text"
+					paramType "url"
+					name "path"
+					label "Folder path"
+					demoValue "temp/1/happy.html.ittf"
+				{
+					type "static"
+					name "kind"
+					label "0 = folder 1 = document"
+					demoValue "1"
+				{
+					type "static"
+					name "action"
+					label "Action"
+					demoValue "create"
+		{
+			title 'Repo - rename folder'
+			method 'post'
+			url '/repo/:user/:project/:path'
+			[ parameters
+				{
+					type "text"
+					paramType "url"
+					name "user"
+					label "User id"
+					demoValue "stefi"
+				{
+					type "text"
+					paramType "url"
+					name "project"
+					label "Project id"
+					demoValue "studio"
+				{
+					type "text"
+					paramType "url"
+					name "path"
+					label "Folder path"
+					demoValue "temp/1"
+				{
+					type "text"
+					name "newname"
+					label "New name"
+					demoValue "temp/2"
+				{
+					type "static"
+					name "kind"
+					label "0 = folder 1 = document"
+					demoValue "0"
+				{
+					type "static"
+					name "action"
+					label "Action"
+					demoValue "rename"
+		{
+			title 'Repo - rename document'
+			method 'post'
+			url '/repo/:user/:project/:path'
+			[ parameters
+				{
+					type "text"
+					paramType "url"
+					name "user"
+					label "User id"
+					demoValue "stefi"
+				{
+					type "text"
+					paramType "url"
+					name "project"
+					label "Project id"
+					demoValue "studio"
+				{
+					type "text"
+					paramType "url"
+					name "path"
+					label "Folder path"
+					demoValue "temp/1/happy.html.ittf"
+				{
+					type "text"
+					name "newname"
+					label "New name"
+					demoValue "temp/1/happy_new.html.ittf"
+				{
+					type "static"
+					name "kind"
+					label "0 = folder 1 = document"
+					demoValue "1"
+				{
+					type "static"
+					name "action"
+					label "Action"
+					demoValue "rename"
+		{
+			title 'Repo - delete folder'
+			method 'post'
+			url '/repo/:user/:project/:path'
+			[ parameters
+				{
+					type "text"
+					paramType "url"
+					name "user"
+					label "User id"
+					demoValue "stefi"
+				{
+					type "text"
+					paramType "url"
+					name "project"
+					label "Project id"
+					demoValue "studio"
+				{
+					type "text"
+					paramType "url"
+					name "path"
+					label "Folder path"
+					demoValue "temp/2"
+				{
+					type "static"
+					name "kind"
+					label "0 = folder 1 = document"
+					demoValue "0"
+				{
+					type "static"
+					name "action"
+					label "Action"
+					demoValue "delete"
+		{
+			title 'Repo - delete document'
+			method 'post'
+			url '/repo/:user/:project/:path'
+			[ parameters
+				{
+					type "text"
+					paramType "url"
+					name "user"
+					label "User id"
+					demoValue "stefi"
+				{
+					type "text"
+					paramType "url"
+					name "project"
+					label "Project id"
+					demoValue "studio"
+				{
+					type "text"
+					paramType "url"
+					name "path"
+					label "Folder path"
+					demoValue "temp/1/happy_new.html.ittf"
+				{
+					type "static"
+					name "kind"
+					label "0 = folder 1 = document"
+					demoValue "1"
+				{
+					type "static"
+					name "action"
+					label "Action"
+					demoValue "delete"
+		{
+			title 'Wizzi factory - generation'
+			method 'post'
+			url '/api/wf/gen'
+			[ parameters
+				{
+		{
+			title 'Crawl - create snippet'
+			method 'put'
+			url '/api/crawl/snippet'
+			[ parameters
+				{
+					type "text"
+					paramType "body"
+					name "name"
+					label "Name"
+					demoValue "myfirstsnippet.js"
+				{
+					type "text"
+					paramType "body"
+					name "code"
+					label "Code"
+					demoValue "function not(value) { return !value; }"
+				
+		{
+			title 'Crawl - wizzify snippet'
+			method 'post'
+			url '/api/crawl/wizzify'
+			[ parameters
+				{
+					type "text"
+					paramType "body"
+					name "code"
+					label "Code"
+					demoValue "function not(value) { return !value; }"
+				{
+					type "text"
+					paramType "body"
+					name "mime"
+					label "Mime"
+					demoValue "js"
+		{
+			title 'Github - clone repository'
+			method 'get'
+			url '/api/github/clone'
+			[ parameters
+				{
+					type "text"
+					paramType "query"
+					name "url"
+					label "Url"
+					demoValue "https://github.com/vuejs-templates/webpack.git"
+				{
+					type "text"
+					paramType "query"
+					name "name"
+					label "Name"
+					demoValue "vue-webpack"
+
+		{
+			title 'Github - wizzify cloned repository'
+			method 'get'
+			url '/api/github/wizzify'
+			[ parameters
+				{
+					type "text"
+					paramType "query"
+					name "name"
+					label "name"
+					demoValue "vue-webpack"
+				{
+					type "text"
+					paramType "query"
+					name "folder"
+					label "Folder"
+					demoValue ""

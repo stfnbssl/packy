@@ -1,0 +1,10 @@
+﻿{
+	$params id|@@null
+	@ kind 'flex'
+	@ direction 'row'
+	$if id != null
+		@ id '${id}'
+	$hook props
+	@ panels
+		[
+			$hook

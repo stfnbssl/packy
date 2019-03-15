@@ -1,0 +1,17 @@
+﻿../_layout( Logos )
+
+	div
+		img
+			width 150px
+			height 100px
+			src images/wizziFactory.svg.ittf
+
+	div
+		img
+			src images/gear.svg.ittf
+			width 30px
+			height 20px
+
+
+
+

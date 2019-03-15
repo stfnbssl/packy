@@ -1,0 +1,65 @@
+﻿r-container( ExecFiles )
+	
+	$append  imports
+		import { 
+			\b listExecFile,
+			\b runExecFile,
+			\b } from '../store/actions'
+		import ExecFiles from '../components/ExecFiles'
+
+	state
+		@ executing false
+
+	did-mount
+		prop handleListExecFiles
+		_ handleListExecFiles()
+	
+	render
+		log 'render.state', this.state
+
+		prop isRequestingList
+		prop isRequestingRun
+		prop jobmodels
+		prop jobfiles
+		prop listerror
+		prop selectedExecFile
+		prop stdout
+		prop stderr
+		prop handleRunRequest
+		
+		return
+			< ExecFiles
+				@ isRequestingList {isRequestingList}
+				@ isRequestingRun {isRequestingRun}
+				@ jobmodels {jobmodels}
+				@ jobfiles {jobfiles}
+				@ listerror {listerror}
+				@ selectedExecFile {selectedExecFile}
+				@ stdout {stdout}
+				@ stderr {stderr}
+				@ onRunRequest {handleRunRequest}
+
+	$append state-to-props
+		@ isRequestingList state.execfile.isRequestingList
+		@ isRequestingRun state.execfile.isRequestingRun
+		@ jobmodels state.execfile.jobmodels
+		@ jobfiles state.execfile.jobfiles
+		@ selectedExecFile state.execfile.selectedExecFile
+		@ stdout state.execfile.stdout
+		@ stderr state.execfile.stderr
+		@ listerror state.execfile.listerror
+
+	$append dispatch-to-props
+		
+		@ handleListExecFiles
+			=>
+				_ dispatch
+					_ listExecFile
+
+		@ handleRunRequest
+			=>
+				param name
+				_ dispatch
+					_ runExecFile
+						@ name
+

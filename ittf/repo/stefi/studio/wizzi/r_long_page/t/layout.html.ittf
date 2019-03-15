@@ -1,0 +1,12 @@
+﻿html
+	$params title
+
+	$include meta
+
+	head
+		@title ${title}
+		css https://fonts.googleapis.com/css?family=Roboto:300,400,500
+		css ./main.css.ittf
+	
+	body
+		$hook

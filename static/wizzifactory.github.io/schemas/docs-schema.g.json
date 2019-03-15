@@ -1,0 +1,3338 @@
+{
+  "name": "docs",
+  "preserveTags": true,
+  "requires": [],
+  "exportTos": [
+    "json",
+    "prettify"
+  ],
+  "elements": [
+    {
+      "name": "docs",
+      "super": null,
+      "isRoot": true,
+      "tags": [
+        "docs"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "item",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "item"
+      ],
+      "flags": "is-abstract ",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "project",
+          "tags": [
+            "project"
+          ]
+        },
+        {
+          "name": "todo",
+          "tags": [
+            "todo"
+          ]
+        },
+        {
+          "name": "issue",
+          "tags": [
+            "issue"
+          ]
+        },
+        {
+          "name": "roadmap",
+          "tags": [
+            "roadmap"
+          ]
+        },
+        {
+          "name": "milestone",
+          "tags": [
+            "milestone"
+          ]
+        },
+        {
+          "name": "intro",
+          "tags": [
+            "intro"
+          ]
+        },
+        {
+          "name": "section",
+          "tags": [
+            "section"
+          ]
+        },
+        {
+          "name": "summary",
+          "tags": [
+            "summary"
+          ]
+        },
+        {
+          "name": "object",
+          "tags": [
+            "object"
+          ]
+        },
+        {
+          "name": "concept",
+          "tags": [
+            "concept"
+          ]
+        },
+        {
+          "name": "categories",
+          "tags": [
+            "categories"
+          ]
+        },
+        {
+          "name": "tags",
+          "tags": [
+            "tags"
+          ]
+        },
+        {
+          "name": "element",
+          "tags": [
+            "<"
+          ]
+        },
+        {
+          "name": "attribute",
+          "tags": [
+            "@"
+          ]
+        },
+        {
+          "name": "div",
+          "tags": [
+            "div"
+          ]
+        },
+        {
+          "name": "p",
+          "tags": [
+            "p"
+          ]
+        },
+        {
+          "name": "span",
+          "tags": [
+            "span"
+          ]
+        },
+        {
+          "name": "hr",
+          "tags": [
+            "hr"
+          ]
+        },
+        {
+          "name": "ul",
+          "tags": [
+            "ul"
+          ]
+        },
+        {
+          "name": "li",
+          "tags": [
+            "li"
+          ]
+        },
+        {
+          "name": "a",
+          "tags": [
+            "a"
+          ]
+        },
+        {
+          "name": "see",
+          "tags": [
+            "see"
+          ]
+        },
+        {
+          "name": "h1",
+          "tags": [
+            "h1"
+          ]
+        },
+        {
+          "name": "h2",
+          "tags": [
+            "h2"
+          ]
+        },
+        {
+          "name": "h3",
+          "tags": [
+            "h3"
+          ]
+        },
+        {
+          "name": "h4",
+          "tags": [
+            "h4"
+          ]
+        },
+        {
+          "name": "h5",
+          "tags": [
+            "h5"
+          ]
+        },
+        {
+          "name": "h6",
+          "tags": [
+            "h6"
+          ]
+        },
+        {
+          "name": "table",
+          "tags": [
+            "table"
+          ]
+        },
+        {
+          "name": "tbody",
+          "tags": [
+            "tbody"
+          ]
+        },
+        {
+          "name": "th",
+          "tags": [
+            "th"
+          ]
+        },
+        {
+          "name": "tr",
+          "tags": [
+            "tr"
+          ]
+        },
+        {
+          "name": "td",
+          "tags": [
+            "td"
+          ]
+        },
+        {
+          "name": "br",
+          "tags": [
+            "br"
+          ]
+        },
+        {
+          "name": "plus",
+          "tags": [
+            "+"
+          ]
+        },
+        {
+          "name": "apiObject",
+          "tags": [
+            "api-object"
+          ]
+        },
+        {
+          "name": "apiMethod",
+          "tags": [
+            "api-m"
+          ]
+        },
+        {
+          "name": "apiParam",
+          "tags": [
+            "api-param"
+          ]
+        },
+        {
+          "name": "sampleGroup",
+          "tags": [
+            "sample-group"
+          ]
+        },
+        {
+          "name": "sample",
+          "tags": [
+            "sample"
+          ]
+        },
+        {
+          "name": "ittf",
+          "tags": [
+            "ittf"
+          ]
+        },
+        {
+          "name": "js",
+          "tags": [
+            "js"
+          ]
+        },
+        {
+          "name": "ittfnode",
+          "tags": [
+            "-"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.summary = _.find(this.items, { wzElement: 'summary' })",
+              "statements": []
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.attributes = _.filter(this.items, { wzElement: 'attribute' })",
+              "statements": []
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.items = _.reject(this.items, { wzElement: 'attribute' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "project",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "project"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "getTodos",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "_.filter(this.items, { wzElement: 'todo' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "getRoadMaps",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "_.filter(this.items, { wzElement: 'roadmap' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "getIssues",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "_.filter(this.items, { wzElement: 'issue' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "todo",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "todo"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "priority",
+          "type": "string",
+          "tags": [
+            "priority"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "done",
+          "type": "boolean",
+          "tags": [
+            "done"
+          ],
+          "default": "false",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "issue",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "issue"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "roadmap",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "roadmap"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "getMilestones",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "_.filter(this.items, { wzElement: 'milestone' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "milestone",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "milestone"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "intro",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "intro"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.summary = _.find(this.items, { wzElement: 'summary' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "section",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "section"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.summary = _.find(this.items, { wzElement: 'summary' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "summary",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "summary"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "object",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "object"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.summary = _.find(this.items, { wzElement: 'summary' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "concept",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "concept"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.summary = _.find(this.items, { wzElement: 'summary' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "categories",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "categories"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "tags",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "tags"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "element",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "<"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "attribute",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "@"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "div",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "div"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "p",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "p"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "span",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "span"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "hr",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "hr"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "ul",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "ul"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "li",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "li"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "a",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "a"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "href",
+          "type": "string",
+          "tags": [
+            "href"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "see",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "see"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "href",
+          "type": "string",
+          "tags": [
+            "href"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "h1",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "h1"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "h2",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "h2"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "h3",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "h3"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "h4",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "h4"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "h5",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "h5"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "h6",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "h6"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "table",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "table"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "tbody",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "tbody"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "th",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "th"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "tr",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "tr"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "td",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "td"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "br",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "br"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "plus",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "+"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "apiObject",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "api-object"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "package",
+          "type": "string",
+          "tags": [
+            "package"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "apiMethod",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "api-m"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "apiParam",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "api-param"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "type",
+          "type": "string",
+          "tags": [
+            "type"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "tags": [
+            "default"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "optional",
+          "type": "boolean",
+          "tags": [
+            "optional"
+          ],
+          "default": "false",
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "sampleGroup",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "sample-group"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "sample",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "sample"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzInitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.summary = _.find(this.items, { wzElement: 'summary' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "getPrimaryIttf",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "_.find(this.items, { kind: 'primary' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "getMixins",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "_.filter(this.items, { kind: 'mixin' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "getIncludes",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "_.filter(this.items, { kind: 'include' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "getSchema",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "_.find(this.items, { kind: 'schema' })",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "ittf",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "ittf"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "kind",
+          "type": "string",
+          "tags": [
+            "kind"
+          ],
+          "flags": "",
+          "inheritedFrom": null,
+          "restricts": [
+            {
+              "facets": [
+                {
+                  "type": "enumFacet",
+                  "value": "primary",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "mixin",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "include",
+                  "comments": []
+                },
+                {
+                  "type": "enumFacet",
+                  "value": "schema",
+                  "comments": []
+                }
+              ],
+              "comments": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "js",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "js"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "ittfnode",
+      "super": "item",
+      "isRoot": false,
+      "tags": [
+        "-"
+      ],
+      "flags": "",
+      "attributes": [
+        {
+          "name": "id",
+          "type": "string",
+          "tags": [
+            "id"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "class",
+          "type": "string",
+          "tags": [
+            "class"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        },
+        {
+          "name": "style",
+          "type": "string",
+          "tags": [
+            "style"
+          ],
+          "flags": "",
+          "inheritedFrom": "item",
+          "restricts": [],
+          "comments": []
+        }
+      ],
+      "relations": [
+        {
+          "name": "item",
+          "role": "items",
+          "tags": [
+            "item"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "item",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    }
+  ]
+}

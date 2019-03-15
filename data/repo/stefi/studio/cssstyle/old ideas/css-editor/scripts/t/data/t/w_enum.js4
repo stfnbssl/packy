@@ -1,0 +1,8 @@
+﻿__p ${id}
+	$args id selected
+	__o
+		__p selected ${selected}
+		__p items
+			__a
+				$hook
+

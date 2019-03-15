@@ -1,0 +1,6 @@
+﻿< Route
+	$params url, title
+	@ title "${title}"
+	@ path /privacy-policy
+	@ component {() => window.location = '${url}'}
+	@ nav

@@ -1,0 +1,11 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'webapi',
+			label: 'WebApi',
+			experimentsWith: 'WebApi technologies',
+			path: []
+		};
+
+	ttech-frame(&opt)

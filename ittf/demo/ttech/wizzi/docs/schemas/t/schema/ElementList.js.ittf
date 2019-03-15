@@ -1,0 +1,18 @@
+﻿var ElementList
+	=>
+		param { elements: es }
+
+		return
+			div
+				div Elements
+					@ style { { fontWeight: 'bold' } }
+				{
+					_ es.map
+						=>
+							param element
+							return
+								span
+									class schema-elements-list-item
+									@ key {element.name}
+									a {element.name}
+										href { '#e-' + element.name}

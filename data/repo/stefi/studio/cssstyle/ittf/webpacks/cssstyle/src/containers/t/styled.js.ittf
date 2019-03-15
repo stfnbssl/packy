@@ -1,0 +1,30 @@
+﻿$group
+
+	const styledMeta
+		{
+			@ id "menu"
+			@ tag "div"
+			@ children
+				[
+					{
+						@ id "menu_item_1"
+						@ tag "div"
+						@ text 'File'
+					{
+						@ id "menu_item_2"
+						@ tag "div"
+						@ text 'Edit'
+
+	const styledStyles
+		{
+			@ menu
+				{
+					@ backgroundColor '#00ff00'
+			@ menu_item_1
+				{
+					@ color '#ff0000'
+			@ menu_item_2
+				{
+					@ color '#0000ff'
+
+		

@@ -1,0 +1,152 @@
+﻿$group
+
+	. schema-container
+		font-family -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif
+		font-size 0.9rem
+	
+	. schema-box
+		background-color #657d88
+		padding 1rem
+	
+	. schema-label-title-1
+		text-rendering optimizeLegibility
+		background-color #dee8ed
+
+	. schema-label-1
+		text-rendering optimizeLegibility
+		font-size 1rem
+
+	. schema-title-1
+		text-rendering optimizeLegibility
+		font-weight bold
+		font-size 2.5rem
+		line-height 1.5
+
+	. schema-label-2
+		text-rendering optimizeLegibility
+		font-size 0.9rem
+		color #eeeeee
+
+	. schema-title-2
+		text-rendering optimizeLegibility
+		font-weight bold
+		font-size 1.6rem
+		color #eeeeee
+
+	. schema-title-2b
+		text-rendering optimizeLegibility
+		font-weight bold
+		font-size 1.2rem
+		color #eeeeee
+
+	. schema-label-3
+		text-rendering optimizeLegibility
+		font-size 0.7rem
+		line-height 0.9
+
+	. schema-title-3
+		text-rendering optimizeLegibility
+		font-weight bold
+		font-size 0.7rem
+
+	. schema-element-box
+		background-color #c8d9e1
+		padding 1rem
+		margin-bottom 1rem
+
+	. schema-attributes-box
+		background-color #f3ece9
+		padding 0.5rem
+
+	. schema-relations-box
+		background-color #f3ece9
+		padding 0.5rem
+
+	. schema-method-box
+		background-color #f3ece9
+		margin-top 0.4rem
+
+	. schema-restricts-box
+		background-color #e7d9d3
+		padding 0.5rem
+
+	. schema-e-subtitle
+		font-family -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif
+		font-weight bold
+		text-rendering optimizeLegibility
+		font-size 0.7rem
+		line-height 1
+
+	. schema-e-subtitle-2
+		font-family -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif
+		font-weight bold
+		text-rendering optimizeLegibility
+		font-size 0.6rem
+		line-height 0.8
+
+	. schema-table
+		border-collapse collapse
+		margin 0
+	. schema-table th
+		+ .schema-table td
+		vertical-align top
+		padding 0.1rem
+
+	$
+		var linkBlue = '#0000ee';
+
+	. schema-elements-list-item
+		< a
+			color ${linkBlue}
+			display inline-block
+			position relative
+			text-decoration none
+			padding 5px
+			& :before
+				background-color ${linkBlue}
+				content ''
+				height 2px
+				position absolute
+				bottom -1px
+				left 50%
+				transform translateX(-50%)
+				transition width 0.3s ease-in-out
+				width 0
+			& :hover
+				& :before
+					width 90%
+
+	. pp-ln
+        background-color #333
+    . pp-pln
+        color #BBB
+    . pp-str
+        color #EC7600
+    . pp-kwd
+        color #f79256
+    . pp-com
+        color #66747B
+    . pp-typ
+        color #678CB1
+    . pp-lit
+        color #FACD22
+    . pp-mix
+        color #ff0040
+        cursor pointer
+    . pp-tag
+        color #8AC763
+    . pp-atn
+        color #E0E2E4
+    . pp-atv
+        color #EC7600
+    . pp-expr
+        color #f3e877
+    . pp-fun
+        color red
+    . pp-arg
+        color yellow
+
+	. sticky
+		position fixed
+		top 10%
+		left 2%

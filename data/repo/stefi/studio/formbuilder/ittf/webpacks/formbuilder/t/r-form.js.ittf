@@ -1,0 +1,38 @@
+﻿module
+	$params name, validate|@@null, asyncValidate|@@null, asyncBlur1|@@null, asyncBlur2|@@null
+	kind react
+
+	import React from 'react'
+	import { Field, reduxForm } from 'redux-form'
+	import PropTypes from 'prop-types'
+	import renderField from './renderField'
+
+	$hook imports
+
+	react-f ${name}
+		prop handleSubmit
+			func
+		prop pristine
+			boolean
+		prop reset
+			func
+		prop submitting
+			boolean
+		$hook
+	+
+	export default
+		_ reduxForm
+			{
+				@ form '${name}'
+				$if validate != null
+					@ validate ${validate}
+				$if asyncValidate != null
+					@ asyncValidate ${asyncValidate}
+					@ asyncBlurFields
+						[
+							$if asyncBlur1 != null
+								@ '${asyncBlur1}'
+							$if asyncBlur2 != null
+								@ '${asyncBlur2}'
+			(
+				@ ${name}

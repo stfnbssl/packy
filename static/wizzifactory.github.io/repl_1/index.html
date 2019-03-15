@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<!doctype html>
+<html>
+<head>
+    <title>Wizzi repl 1</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@7.31.1/dist/sweetalert2.min.css" rel="stylesheet" />
+    <link href="./index.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="root">
+        <div class="sh">
+            <div class="sh-he">
+                <div class="logo">
+                    <a href="/"><img src="/images/logo.svg" width="100px" height="40px" />
+                    </a>
+                </div>
+            </div>
+            <div class="sh-bo">
+                <div class="sh-bo-lsb">
+                    <div style="display: flex; flex-direction: column;" class="control-panel">
+                        <div class="control">
+                            <label>schema</label>
+                            <select id="selectedSchema" style="display: none;">
+                                <option>css</option>
+                                <option>html</option>
+                                <option>graphql</option>
+                                <option>js</option>
+                                <option>json</option>
+                                <option>md</option>
+                                <option>scss</option>
+                                <option>svg</option>
+                                <option>ts</option>
+                                <option>vtt</option>
+                                <option>vue</option>
+                                <option>xml</option>
+                            </select>
+                        </div>
+                        <div class="control">
+                            <div id="items-tree-view"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sh-bo-co">
+                    <div class="sh-bo-co-ge">
+                        <div class="sh-bo-co-ge-ittf">
+                            <div id="gen-ittf-editor"></div>
+                        </div>
+                        <div class="sh-bo-co-ge-result">
+                            <div id="gen-result-editor"></div>
+                        </div>
+                    </div>
+                    <div class="sh-bo-co-wi">
+                        <div class="sh-bo-co-wi-snippet">
+                            <div id="snippet-source-editor"></div>
+                        </div>
+                        <div class="sh-bo-co-wi-result">
+                            <div id="snippet-result-editor"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sh-fo"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js" crossorigin="anonymous">
+    </script>
+    <script src="https://unpkg.com/eventemitter3@latest/umd/eventemitter3.min.js" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.31.1/dist/sweetalert2.all.min.js" crossorigin="anonymous">
+    </script>
+    <script src="/scripts/wizzi.standalone.js" crossorigin="anonymous">
+    </script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
+
+</html>

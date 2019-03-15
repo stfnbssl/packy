@@ -1,0 +1,22 @@
+module
+    kind react
+    import tpl from './templates/tpl.html'
+    _ assert.equal(typeof tpl, 'string')
+    _ assert.notEqual(tpl.indexOf('section'), -1)
+    _ assert.notEqual(tpl.indexOf('article'), -1)
+    _ assert.equal
+        @ tpl
+        `lit 
+            + <h1>This is the Title</h1>\n
+            + \n
+            + <section class="section">\n
+            + <article class="article">Article 1</article>\n
+            + <article class="article">Article 2</article>\n
+            + </section>\n
+            + \n
+            + <script>\n
+            + (function() {\n
+            + console.log('init');\n
+            + }());\n
+            + </script>\n
+            + 

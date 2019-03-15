@@ -1,0 +1,137 @@
+﻿module
+	kind react
+	
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import classNames from 'classnames'
+	import { withStyles, createStyleSheet } from 'material-ui/styles'
+
+	react SettingsDialog
+
+		prop onSave
+			func
+		
+		prop onWantToClose
+			func
+		
+		prop visible
+			boolean
+		
+		prop parser
+			{
+			required
+		
+		prop parserSettings
+			{
+
+		style
+
+			@ dialog
+				{
+					@ alignItems 'center'
+					@ backgroundColor 'rgba(255, 255, 255, 0.7)'
+					@ bottom 0
+					@ color '#333'
+					@ display 'flex'
+					@ justifyContent 'center'
+					@ left 0
+					@ position 'absolute'
+					@ right 0
+					@ top 0
+					@ zIndex 1000
+					@ '& .inner'
+						{
+							@ maxHeight '90vh'
+							@ backgroundColor white
+							@ boxShadow '0px 0px 10px #555'
+							@ borderRadius '3px'
+							@ minWidth '400px'
+							@ display 'flex'
+							@ flexDirection 'column'
+							@ '& h3'
+								{
+									@ margin '0 0 10px 0'
+									@ padding 0
+					@ '& .header'
+						{
+							@ flexShrink 0
+							@ padding '10px 10px 0px 10px'
+					@ '& .body'
+						{
+							@ overflow 'auto'
+							@ padding '10px'
+					@ '& .footer'
+						{
+							@ flexShrink 0
+							@ padding '0 10px 10px 10px'
+							@ textAlign 'right'
+					@ '& ul.settings'
+						{
+							@ margin 0
+							@ padding 0
+							@ listStyle none
+					@ '& ul.settings li'
+						{
+							@ padding '3px 0'
+
+		ctor
+			set this.state
+				{
+					@ parserSettings this.props.parserSettings
+
+		will-receive-props
+			_ this.setState
+				{
+					@ parserSettings nextProps.parserSettings
+
+		=> _outerClick
+			param event
+			if event.target === document.getElementById('SettingsDialog')
+				_ this._saveAndClose()
+
+		=> _onChange
+			param newSettings
+			_ this.setState
+				{
+					@ parserSettings newSettings
+
+		=> _saveAndClose
+			_ this.props.onSave
+				@ this.props.parser
+				@ this.state.parserSettings
+			_ this.props.onWantToClose()
+
+		=> _reset
+			_ this.setState
+				{
+					@ parserSettings {}
+
+		render
+			const { classes } = this.props
+			if this.props.visible && this.props.parser.renderSettings
+				return
+					. { classes.dialog }
+						@ id SettingsDialog
+						@ onClick {this._outerClick}
+						. inner
+							. header
+								h3 {this.props.parser.displayName} Settings
+							. body
+								{
+									_ this.props.parser.renderSettings
+										@ this.state.parserSettings
+										@ this._onChange
+							. footer
+								button Reset
+									@ style {{marginRight: 10}}
+									@ onClick {this._reset}
+								button Close
+									@ onClick {this._saveAndClose}
+			return null
+
+	+
+	export default
+		_ withStyles
+			@ styleSheet
+			(
+				@ SettingsDialog

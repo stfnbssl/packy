@@ -1,0 +1,9 @@
+﻿mdx
+	
+	h1 Demo
+
+	ul
+		lia( Style builder, /app/cssstyle/ )
+		lia( Layout builder, /app/csslayout/ )
+		lia( Form builder, /app/formbuilder/ )
+		lia( Wizzi factory jobs, /app/wf/ )

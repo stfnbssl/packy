@@ -1,0 +1,69 @@
+﻿r-component( SampleForm )
+
+	$append imports
+		import Typography from 'material-ui/Typography'
+		import Form from '../components/mui/Form'
+		import Control from '../components/mui/Control'
+
+		const metaForm
+			{
+				@ controls
+					[
+						{
+							@ id "float"
+							@ type "select"
+							@ defaultValue "right"
+							@ data
+								{
+									@ options
+										[
+											@ 'left'
+											@ 'right'
+						c( checkbox, checkbox, false )
+						c( color, color, red )
+						c( data, date, 10/3/1957 )
+						c( datetime, datetime, 10/3/1957 )
+						c( datetimeLocal, datetime-local, 10/3/1957 )
+						c( email, email, sb@gmail.com )
+						c( file, file )
+						c( hidden, hidden, 30 )
+						c( month, month, 1 )
+						c( number, number, 22 )
+						c( password, password )
+						c( radio, radio )
+						c( range, range )
+						c( search, search )
+						c( tel, tel )
+						c( text, text )
+						c( time, time )
+						c( url, url )
+						c( week, week )
+				
+	style
+		@ styles
+			{
+				@ border '1px solid green'
+				@ padding '30px'
+
+	=> handleChangeValue
+		log arguments
+
+	render
+
+		prop classes
+
+		return
+			. {classes.styles}
+				< Typography
+					@ type "title"
+					@ color 'inherit'
+					@ noWrap
+					+ Sample form with all control types
+
+				. {classes.margin10}
+
+					< Form
+						@ id test
+						@ caption Edit controls
+						@ meta {metaForm}
+						@ onChangeValues {this.handleChangeValue}

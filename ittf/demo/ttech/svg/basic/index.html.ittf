@@ -1,0 +1,7 @@
+﻿../_layout( Basic shapes)
+
+	div
+		img
+			src images/shapes.svg.ittf
+
+

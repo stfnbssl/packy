@@ -1,0 +1,81 @@
+﻿r-component( SlidePanel )
+
+	$append imports
+		import builder from './MuiBuilder'
+		const percWidth = 100
+
+	style
+		@ panel
+			{
+				@ width (percWidth + '%')
+				@ height '100%'
+				@ top 0
+				@ left ('-' + percWidth + '%')
+				@ position 'fixed'
+				@ zIndex '10' 
+				@ background '#fff'
+				@ transition '0.3s'
+		@ flex
+			{
+				@ display 'flex'
+				@ flexDirection 'row'
+				@ flexWrap 'wrap'
+				@ justifyContent 'space-between'
+		@ flexColumn
+			{
+				@ flexDirection 'column'
+		@ visible
+			{
+				@ left 0
+
+	state
+		@ visible false
+
+	did-mount
+		prop data
+		const { toggleEvent, visibleOnStart } = data
+		_ this.setState
+			{
+				@ visible visibleOnStart
+		if toggleEvent
+			var that = this
+			set this.toggleEventHandler
+				_ builder.events.subscribe
+					@ toggleEvent
+					function
+						log 'WrapperPanel received event ' + toggleEvent
+						_ that.setState
+							{
+								@ visible !that.state.visible
+            
+	will-unmount
+		if this.toggleEventHandler
+			_ this.toggleEventHandler.remove()
+
+	render
+		prop classes
+		prop data
+		const { id, percWidth, flex, style: styleProp } = data
+		
+		return
+			div
+				@ id { id }
+				@ className
+					_ classNames
+						@ classes.panel
+						{
+							@ [classes.flex] flex
+							@ [classes.flexColumn] flex === 'column'
+							@ [classes.visible] this.state.visible
+				@style { styleProp }
+				{
+					_ data.panels.map
+						=>
+							param panel
+							param index
+							var PanelComponent = builder.create(panel)
+							return
+								< PanelComponent
+									@ key { index }
+									@ data { panel }    
+

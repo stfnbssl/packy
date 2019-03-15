@@ -1,0 +1,81 @@
+﻿$group
+
+    async-function gitClone
+        { 
+            @ filepath
+            @ glEventHub
+            
+		let url
+            await 
+                _ prompt
+                    { 
+                        @ text 'Git URL to clone'
+                        @ input 'text'
+                        @ placeholder 'https://github.com/'
+                        @ confirmButtonText 'Clone Now'
+            
+		_ glEventHub.emit
+            @ 'setFolderStateData'
+            { 
+                @ fullpath filepath
+                @ key 'busy'
+                @ value true
+            
+		let dir = path.join(filepath, path.basename(url))
+            
+		let proxyurl = url.replace(/^https?:\/\//, '')
+            
+		_ glEventHub.emit
+            @ 'setFolderStateData'
+            { 
+                @ fullpath dir
+                @ key 'busy'
+                @ value true
+            
+		const updateProgressBar
+            => 
+                param e
+				let value = e.loaded === e.total ? undefined : e.loaded / e.total
+                _ glEventHub.emit
+                    @ 'setFolderStateData'
+                    { 
+                        @ fullpath dir
+                        @ key 'progress'
+                        @ value
+            
+		try 
+            await 
+                _ git.clone
+                    { 
+                        @ fs
+                        @ dir
+                        @ depth 1
+                        @ onprogress updateProgressBar
+                        @ url
+                            `lit 
+                                + https://cors-buster-jfpactjnem.now.sh/
+                                @ proxyurl
+                                + 
+            await 
+                _ git.config
+                    { 
+                        @ fs
+                        @ dir
+                        @ path 'remote.origin.host'
+                        @ value new URL('https://' + proxyurl).hostname
+            
+		finally
+                
+			_ glEventHub.emit
+                @ 'setFolderStateData'
+                { 
+                    @ fullpath dir
+                    @ key 'busy'
+                    @ value false
+                
+			_ glEventHub.emit
+                @ 'setFolderStateData'
+                { 
+                    @ fullpath filepath
+                    @ key 'busy'
+                    @ value false

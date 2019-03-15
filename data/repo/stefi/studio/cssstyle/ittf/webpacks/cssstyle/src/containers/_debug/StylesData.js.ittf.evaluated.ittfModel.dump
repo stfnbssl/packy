@@ -1,0 +1,105 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    class StylesData ids: undefined undefined
+      ctor  ids: undefined undefined
+        _ this.loadMetaPlay ids: undefined undefined
+        _ this.loadStyled ids: undefined undefined
+        _ this.applyStylesToMetaPlay(this.styledMeta.id) ids: undefined undefined
+        set this.selectedStyledId = this.styledMeta.id ids: undefined undefined
+      m loadMetaPlay ids: undefined undefined
+        var metaPlay ids: undefined undefined
+          {  ids: undefined undefined
+            @ controls ids: undefined undefined
+              [  ids: undefined undefined
+                {  ids: undefined undefined
+                  @ id "style" ids: undefined undefined
+                  @ type "text" ids: undefined undefined
+                  @ defaultValue "hello" ids: undefined undefined
+                {  ids: undefined undefined
+                  @ id "backgroundColor" ids: undefined undefined
+                  @ type "color" ids: undefined undefined
+                  @ defaultValue "#ffffff" ids: undefined undefined
+                {  ids: undefined undefined
+                  @ id "color" ids: undefined undefined
+                  @ type "color" ids: undefined undefined
+                  @ defaultValue "#000000" ids: undefined undefined
+                {  ids: undefined undefined
+                  @ id "float" ids: undefined undefined
+                  @ type "select" ids: undefined undefined
+                  @ defaultValue "right" ids: undefined undefined
+                  @ data ids: undefined undefined
+                    {  ids: undefined undefined
+                      @ options ids: undefined undefined
+                        [  ids: undefined undefined
+                          @ 'left' ids: undefined undefined
+                          @ 'right' ids: undefined undefined
+        set this.metaPlay = metaPlay ids: undefined undefined
+      m loadStyled ids: undefined undefined
+        const styledMeta ids: undefined undefined
+          {  ids: undefined undefined
+            @ id "menu" ids: undefined undefined
+            @ tag "div" ids: undefined undefined
+            @ children ids: undefined undefined
+              [  ids: undefined undefined
+                {  ids: undefined undefined
+                  @ id "menu_item_1" ids: undefined undefined
+                  @ tag "div" ids: undefined undefined
+                  @ text 'File' ids: undefined undefined
+                {  ids: undefined undefined
+                  @ id "menu_item_2" ids: undefined undefined
+                  @ tag "div" ids: undefined undefined
+                  @ text 'Edit' ids: undefined undefined
+        const styledStyles ids: undefined undefined
+          {  ids: undefined undefined
+            @ menu ids: undefined undefined
+              {  ids: undefined undefined
+                @ backgroundColor '#00ff00' ids: undefined undefined
+            @ menu_item_1 ids: undefined undefined
+              {  ids: undefined undefined
+                @ color '#ff0000' ids: undefined undefined
+            @ menu_item_2 ids: undefined undefined
+              {  ids: undefined undefined
+                @ color '#0000ff' ids: undefined undefined
+        set this.styledMeta = styledMeta ids: undefined undefined
+        set this.styledStyles = styledStyles ids: undefined undefined
+        set this.maps ids: undefined undefined
+          {  ids: undefined undefined
+            @ styleds [] ids: undefined undefined
+            @ styledIds [] ids: undefined undefined
+        _ this.analizeStyledMeta(this.styledMeta) ids: undefined undefined
+        foreach styleId in this.maps.styledIds ids: undefined undefined
+          _ this.applyStylesToMetaPlay ids: undefined undefined
+            @ styleId ids: undefined undefined
+      m analizeStyledMeta ids: undefined undefined
+        param styled ids: undefined undefined
+        if styled && styled.id ids: undefined undefined
+          _ this.maps.styledIds.push(styled.id) ids: undefined undefined
+          _ this.maps.styleds.push(styled) ids: undefined undefined
+        if styled.children ids: undefined undefined
+          foreach child in styled.children ids: undefined undefined
+            _ this.analizeStyledMeta(child) ids: undefined undefined
+      m selectStyled ids: undefined undefined
+        param styledId ids: undefined undefined
+        _ this.applyStylesToMetaPlay(styledId) ids: undefined undefined
+        set this.selectedStyledId = styledId ids: undefined undefined
+      m updateStyles ids: undefined undefined
+        param values ids: undefined undefined
+        const styledId = this.selectedStyledId ids: undefined undefined
+        log 'StylesData.updateStyles.before', styledId, this.styledStyles[styledId] ids: undefined undefined
+        set this.styledStyles[styledId] ids: undefined undefined
+          {  ids: undefined undefined
+            @ ...this.styledStyles[styledId] ids: undefined undefined
+            @ ...values ids: undefined undefined
+        log 'StylesData.updateStyles.after', styledId, this.styledStyles[styledId] ids: undefined undefined
+        _ this.applyStylesToMetaPlay(styledId) ids: undefined undefined
+      m applyStylesToMetaPlay ids: undefined undefined
+        param styledId ids: undefined undefined
+        const styles = this.styledStyles[styledId] ids: undefined undefined
+        log 'applyStylesToMetaPlay.styledId.styles', styledId, styles ids: undefined undefined
+        foreach item in this.metaPlay.controls ids: undefined undefined
+          if typeof(styles[item.id]) != "undefined" ids: undefined undefined
+            set item.value = styles[item.id] ids: undefined undefined
+          else  ids: undefined undefined
+            set item.value = item.defaultValue ids: undefined undefined
+    export default StylesData ids: undefined undefined

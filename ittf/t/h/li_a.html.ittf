@@ -1,0 +1,6 @@
+li
+    $params text, href, clazz|@@null
+	class ${clazz}
+	tabindex -1
+	a ${text}
+		href ${href}

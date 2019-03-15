@@ -1,0 +1,9 @@
+﻿{
+	$params kind, id|@@null
+	@ kind '${kind}'
+	$if id != null
+		@ id '${id}'
+	$hook props
+	@ panels
+		[
+			$hook

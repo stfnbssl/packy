@@ -1,0 +1,20 @@
+{
+
+	$
+		var opt = {
+			name: 'es2017',
+			label: 'ES-2017',
+			experimentsWith: 'the ES 2017 spec',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'es6',
+					label: 'ES6',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

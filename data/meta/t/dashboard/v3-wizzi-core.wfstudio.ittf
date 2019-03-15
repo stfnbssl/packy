@@ -1,0 +1,52 @@
+﻿$group
+
+	package v5-plugins/wizzi-core
+
+		kind plugin
+		plugin-name wizzi-core
+		base-folder-uri C:\My\wizzi\v5\plugins\wizzi-core
+		std-folders()
+		plugin-std-ittf-folders()
+
+		schema wfjob
+
+		schema wfschema
+
+			$*
+			artifact factory
+				language javascript
+			
+			artifact model
+				language javascript
+				is-default
+			
+			artifact html_docs
+				language html
+			
+			artifact json_docs
+				language json
+			*$
+
+		schema json
+			is-pseudo
+			artifact document
+				language json
+				is-default
+
+		schema xml
+			is-pseudo
+			artifact document
+				language xml
+				is-default
+
+		schema text
+			is-pseudo
+			artifact document
+				language text
+				is-default
+
+		schema ittf
+			is-pseudo
+			artifact document
+				language ittf
+				is-default

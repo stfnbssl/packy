@@ -1,0 +1,15 @@
+﻿r-container( App, false, true )
+	
+	$append  imports
+		import App from '../components/App'
+
+	state
+		@ code 1
+
+	did-mount
+
+	render
+		log 'render.state', this.state
+		
+		return
+			< App

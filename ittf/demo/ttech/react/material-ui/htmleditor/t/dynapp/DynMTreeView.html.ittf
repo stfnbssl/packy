@@ -1,0 +1,112 @@
+﻿$group
+
+	withStyles( DynMTreeView )
+		
+		style
+			@ root
+				{
+					@ backgroundColor '#312934'
+		state
+			@ openDialog false
+			@ copycutState 0
+			@ copycutMTreeNode null
+
+		=> handleOpenDialog
+			param mTreeNode_uid
+			param mTreeNode_elementType
+			param mTreeNode_name
+			_ this.setState
+				{
+					@ openDialog true
+					@ mTreeNode_uid mTreeNode_uid
+					@ mTreeNode_elementType mTreeNode_elementType
+					@ mTreeNode_name mTreeNode_name
+
+		=> handleCancelDialog
+			_ this.setState
+				{
+					@ openDialog false
+
+		=> handleConfirmDialog
+			_ this.setState
+				{
+					@ openDialog false
+
+		=> handleCopyCut
+			param copycutState
+			param copycutMTreeNode
+			log 'DynMTreeView.handleCopyCut', copycutState, copycutMTreeNode.elementType, copycutMTreeNode.name
+			_ this.setState
+				{
+					@ copycutState copycutState
+					@ copycutMTreeNode copycutMTreeNode
+
+		=> handlePaste
+			param targetMTreeNode
+			param pasteKind
+			log 'DynMTreeView.handlePaste', pasteKind, targetMTreeNode.elementType, targetMTreeNode.name
+			if this.state.copycutState == 1
+				# log 100
+				_ targetMTreeNode.copy(this.state.copycutMTreeNode, pasteKind)
+			else
+				# log 101, this.state.copycutMTreeNode.elementType, targetMTreeNode.move
+				_ targetMTreeNode.move(this.state.copycutMTreeNode, pasteKind)
+			log 102
+			_ this.setState
+				{
+					@ copycutState 0
+					@ copycutMTreeNode null
+
+		m getNode
+			param mTreeNode
+			param level
+			# const PropEditor = mTreeNode.createPropertyEditor(level)
+			# const children = [ PropEditor ]
+			const children = [ ]
+			foreach item in mTreeNode.wzChildren
+				_ children.push
+					_ this.getNode(item, level+1)
+			return
+				div
+					@ key {'meta_mTreeNode_' + mTreeNode.uid}
+					< DynNode
+						@ uid {mTreeNode.uid}
+						@ elementType {mTreeNode.elementType}
+						@ name {mTreeNode.name}
+						@ level {level}
+						@ onOpenDialog { this.handleOpenDialog }
+						@ copycutState { this.state.copycutState }
+						@ onCopyCut { this.handleCopyCut }
+						@ onPaste { this.handlePaste }
+					+ { children }
+
+		render
+			prop classes
+			const { openDialog, mTreeNode_uid, mTreeNode_elementType, mTreeNode_name } = this.state
+			
+			# log 'DynMTreeView.global.mTreeNodes', global.dynApp.rootMTreeNode
+			const children = this.getNode( global.dynApp.rootMTreeNode, 0 )
+
+			return
+				. { classes.root }
+					div
+						+ { children }
+					< Dialog
+						@ open {openDialog}
+						@ onClose {this.handleCancelDialog}
+						@ maxWidth md
+						@ overlayStyle { {backgroundColor: 'transparent'} }
+						< DialogTitle
+							+ Edit node
+						< DialogContent
+							< DynNodeDialog
+								@ uid { mTreeNode_uid }
+								@ elementType { mTreeNode_elementType }
+								@ name { mTreeNode_name }
+						< DialogActions
+							< Button
+								@ color primary
+								@ onClick {this.handleConfirmDialog}
+								+ OK
+
+

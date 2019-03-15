@@ -1,0 +1,23 @@
+﻿r-component( SyncValidationFormController )
+
+	$append imports
+		import SyncValidationForm from './SyncValidationForm'
+
+	style
+
+	=> showResults
+		param values
+		_ window.alert
+			@ `You submitted:\n\n${JSON.stringify(values, null, 2)}`
+
+	render
+
+		return
+
+			div
+				@style
+					{
+						@ padding 15
+				h2 Sync Validation Form
+				< SyncValidationForm
+					@ onSubmit {this.showResults}

@@ -1,0 +1,90 @@
+﻿module
+    kind es6
+
+	log "SW startup"
+
+	var window = self
+
+	_ importScripts
+		@ '/static/wizzi-play/scripts/wizzi.standalone.js'
+
+	var wf = wizziStandalone.default
+
+	log "SW startup - Imported wizzi.standalone.js and got wf object", wf
+
+	$include wizziWorkerServer
+
+	var wzWorkerServer
+		new WizziWorkerServer
+			{
+				@ wf wf
+
+	log "SW startup - created WizziWorkerServer", wzWorkerServer
+
+	_ self.addEventListener
+		@ 'install'
+		function
+			param event
+			log "install event", event
+			# _ self.skipWaiting
+	
+	_ self.addEventListener
+		@ "activate"
+		function
+			param event
+			log "activate event", event
+			# _ self.skipWaiting
+
+	_ self.addEventListener
+		@ "fetch"
+		function
+			param event
+			log "Fetch event", event
+			const url = new URL(event.request.url)
+			log "Fetch event - url", url
+
+			var ixdbIndex = url.pathname.indexOf('/__ixdb__/')
+			if ixdbIndex > -1
+				var ixdbPath = url.pathname.substr(ixdbIndex + 10)
+				if event.respondWith
+					_ event.respondWith
+						_ wzWorkerServer.genResponse
+							@ '/ixdb/' + ixdbPath
+			if url.pathname === "/ittf/demo/ttech/wizzi/serviceworker/localserver/index"
+				if event.respondWith
+					_ event.respondWith
+						_ wzWorkerServer.genResponse
+							@ '/ixdb/wizzi/default/html/index.html.ittf'
+
+			if url.pathname === "/ittf/demo/ttech/wizzi/serviceworker/localserver/folderBrowseScan"
+				if event.respondWith
+					_ event.respondWith
+						_ wzWorkerServer.folderBrowseScanResponse
+							@ '/ixdb/wizzi/default'
+
+			if url.pathname === "/ittf/demo/ttech/wizzi/serviceworker/localserver/files"
+				if event.respondWith
+					_ event.respondWith
+						_ wzWorkerServer.filesResponse
+							@ '/ixdb/wizzi/default'
+
+			if url.pathname === "/ittf/demo/ttech/wizzi/serviceworker/localserver/ittfDocumentScan"
+				if event.respondWith
+					_ event.respondWith
+						_ wzWorkerServer.ittfDocumentScanResponse
+							@ '/ixdb/wizzi/default/html/index.html.ittf'
+
+			if url.pathname === "/ittf/demo/ttech/wizzi/serviceworker/localserver/url"
+				if event.respondWith
+					_ event.respondWith
+						_ jsonFullResponse
+							@ url.toString()
+
+	_ self.addEventListener
+		@ "message"
+		function
+			param event
+			log "Message event", event
+			var ok
+				_ wzWorkerServer.handleMessage
+					@ event

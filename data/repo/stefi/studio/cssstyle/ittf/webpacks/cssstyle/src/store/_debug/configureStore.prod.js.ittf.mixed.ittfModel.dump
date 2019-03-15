@@ -1,0 +1,19 @@
+  module  ids: 1 20
+    kind react ids: 2 21
+    +  ids: 3 22
+    import { createStore, applyMiddleware } from 'redux' ids: 4 23
+    import thunk from 'redux-thunk' ids: 5 24
+    import api from '../middleware/api' ids: 6 25
+    import rootReducer from '../reducers' ids: 7 26
+    +  ids: 8 27
+    const configureStore ids: 9 28
+      =>  ids: 10 29
+        param preloadedState ids: 11 30
+        _ createStore ids: 12 31
+          @ rootReducer ids: 13 32
+          @ preloadedState ids: 14 33
+          _ applyMiddleware ids: 15 34
+            @ thunk ids: 16 35
+            @ api ids: 17 36
+    +  ids: 18 37
+    export default configureStore ids: 19 38

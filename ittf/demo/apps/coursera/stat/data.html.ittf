@@ -1,0 +1,9 @@
+_layout( Exploring data )
+
+	h2 Formulas
+		
+	formulas/data()
+
+	h2 Glossary
+		
+	glossary/data()

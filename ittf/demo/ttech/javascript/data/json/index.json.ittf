@@ -1,0 +1,22 @@
+{
+
+	$
+
+		var opt = {
+			name: 'json',
+			label: 'JSON',
+			experimentsWith: 'javascript json data',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'data',
+					label: 'Data',
+				},
+			]
+		};
+
+
+	ttech-frame(&opt)

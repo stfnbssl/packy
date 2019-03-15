@@ -1,0 +1,162 @@
+$group
+
+	category Javascript
+
+		lia( Can i use, https://caniuse.com/#home
+		lia( MDN Javascript reference, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/About
+		lia( MDN Javascript guide, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide
+		
+		lia( Plain JS, https://plainjs.com/
+			p Vanilla JavaScript for building powerful web applications
+		
+		lia( Js Cheatsheet, https://htmlcheatsheet.com/js/
+		lia( Useful js coding links, https://html-css-js.com/js/links/
+		
+		lia( Babel standalone, https://github.com/babel/babel-standalone )
+		lia( freeCodeCamp, https://medium.freecodecamp.org/ )
+		lia( JavaScript — from callbacks to async/await,  https://medium.freecodecamp.org/javascript-from-callbacks-to-async-await-1cc090ddad99 )
+		lia( ajv - json validator, https://github.com/epoberezkin/ajv )
+		lia( schema-utils - webpack ajv, https://github.com/webpack-contrib/schema-utils )
+		lia( Frameworks - Riot, https://riot.js.org/compare/)
+		lia( Frameworks - Vue, https://vuejs.org/)
+
+		category Pure
+
+			category Events
+				
+				lia( MDN events, https://developer.mozilla.org/en-US/docs/Web/Events )
+
+				demo keyboard
+		
+		category ES6
+		    lia( ES6 compatibility table, http://kangax.github.io/compat-table/es6/
+		    category ES2017
+		        demo core-features
+		        demo async-await
+
+		category Modules
+
+		    category Amd
+		        demo requirejs
+		    
+			category ES6
+		        demo browser
+				
+		category Babel
+		
+		category Bundlers
+			
+			lia( Rollup docs, https://rollupjs.org/guide/en#introduction )
+			
+			category Rollup
+				demo step_1
+					label Step 1
+				demo step_2
+					label Step 2
+		
+			category Webpack
+				demo step_1
+					label Step 1
+				demo step_2
+					label Step 2
+
+			category Parcel
+				demo step_1
+					label Step 1
+				demo step_2
+					label Step 2
+
+		category Data
+
+		    category Json
+		        demo keyvalue
+
+		category Loaders
+			
+			category Getlibs 
+				demo react
+					label React
+
+		category Dom
+		
+		category Scroll
+		    category ScrollReveal
+				demo step_1
+					label Step 1
+				demo step_2
+					label Step 2
+
+		category Dragdrop
+
+			category interactjs
+				
+				demo step_1
+					label Step 1
+				demo step_2
+					label Step 2
+				demo step_3
+					label Step 3
+		
+		category Tooltips
+
+			category Popper
+				
+				demo step_1
+					label Step 1
+				
+				demo step_2
+					label Step 2
+
+		category Controls
+			
+			lia( loading images, https://github.com/nathancahill/ImageJS
+			lia( Uikit, https://getuikit.com/
+			
+			category Alerts
+				demo sweetalert
+					label Sweetalert2
+
+			category Splitter
+				demo step_1
+					label Step 1
+
+				demo step_2
+					label Step 2
+
+			category Treeview
+				demo step_1
+					label Step 1
+
+			category Uikit
+				demo step_1
+					label Step 1
+		
+		category Editors
+
+			category Ace
+
+			category Codemirror
+
+			category Monaco
+		
+		category HttpRequests
+			label Http requests
+			
+			lia( MDN fetch, https://developer.mozilla.org/it/docs/Web/API/Fetch_API/Using_Fetch )
+
+			demo fetch
+
+		category Preload
+			lia( PreLoad.js, https://github.com/CreateJS/PreloadJS)
+				stars 2355 | 2018-10-08
+				p PreloadJS makes preloading assets & getting aggregate progress events easier
+					\b in JavaScript. It uses XHR2 when available, and falls back to
+					\b tag-based loading when not. 
+
+		category RxJs
+
+			demo starter
+				label Starter
+
+		category Tests
+

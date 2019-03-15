@@ -1,0 +1,74 @@
+﻿r-component( Link )
+
+	style
+
+		@ ul_li
+			{
+				@ font "700 25px/55px 'Open Sans', sans-serif"
+		
+		@ ul_li_a
+			{
+				@ transition '0.3s'
+				@ position 'relative'
+				@ marginLeft 30
+				@ color '#333'
+				@ textDecoration 'none'
+				@ '&:hover'
+					{
+						@ color '#2ab'
+		
+		@ div_a_i
+			{
+				@ transition '0.2s'
+				@ margin '5px'
+				@ color '#888'
+				@ fontSize '20px'
+				@ display 'inline-block'
+				@ '&:hover'
+					{
+						@ color '#666'
+
+	render
+		
+		prop classes
+		prop item
+		prop format
+		prop data
+
+		var xitem, xformat
+		if !item
+			set xitem = data
+			set xformat = data.format
+		else
+			set xitem = item
+			set xformat = format
+			
+		const { text, href, src, class: classProp, img_style } = xitem
+			
+		if xformat === 'ul.li.a'
+			return
+				li
+					@ className { classes.ul_li }
+					a { text }
+						href { href }
+						class { classes.ul_li_a }
+			
+		elif xformat === 'div.a.i'
+			return
+				a 
+					@ className { classes.div_a_i }
+					href { href }
+					i
+						@ className { classProp }
+			
+		elif xformat === 'a.img'
+			return
+				a 
+					href { href }
+					img
+						src { src }
+						@style { img_style }
+		else
+			return
+				div { 'Unknown Link format ' + xformat }
+						

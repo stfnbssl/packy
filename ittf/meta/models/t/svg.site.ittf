@@ -1,0 +1,45 @@
+$group
+
+	category Svg
+		lia( Mozilla MDN reference, https://developer.mozilla.org/en-US/docs/Web/SVG )
+		lia( Building SVG Icons with React, http://jxnblk.com/react-icons/#live-demo )
+		lia( SVG Backgrounds, https://www.svgbackgrounds.com/ )
+		lia( Adding vector graphics to the Web, https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Adding_vector_graphics_to_the_Web )
+		lia( Svg cheat sheet with examples, http://www.cheat-sheets.org/own/svg/index.xhtml
+		lia( Svg tutorial, http://tutorials.jenkov.com/svg/clip-path.html
+		lia( Svg Pocket guide, http://svgpocketguide.com/book/#section-6
+		lia( Lots of Creative Commons Svgs, https://thenounproject.com
+
+		demo background
+		demo basic
+		demo log
+
+	category Canvas
+		lia( MDN Canvas API, https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
+		lia( Pixi.js, https://github.com/pixijs/pixi.js
+			stars 20337 | 2018-10-08
+			p The aim of this project is to provide a fast lightweight 2D library that works across all devices.
+				\b The PixiJS renderer allows everyone to enjoy the power of hardware acceleration
+				\b without prior knowledge of WebGL. Also, it's fast. Really fast.
+				\b Pixi.js has full WebGL support and seamlessly falls back to HTML5's canvas if needed.
+
+		lia( Fabric.js, https://github.com/fabricjs/fabric.js
+			stars 11079 | 2018-10-08
+			p Fabric.js is a framework that makes it easy to work with HTML5 canvas element. 
+				\b It is an interactive object model on top of canvas element.
+				\b It is also an SVG-to-canvas parser.
+
+		lia( Easel.js, https://github.com/CreateJS/EaselJS
+			stars 6972 2018-10-08
+			p The Easel Javascript library provides a full, hierarchical display list, 
+				\b a core interaction model, and helper classes to make working with the HTML5 Canvas
+				\b element much easier. 
+		
+		lia( Node-canvas, https://github.com/Automattic/node-canvas)
+			stars 5375 2018-10-08
+			p Node canvas is a Cairo backed Canvas implementation for NodeJS.
+
+		lia( Chart.js, https://github.com/chartjs/Chart.js
+			stars 39714 2018-10-08
+			p Simple HTML5 Charts using the canvas element
+

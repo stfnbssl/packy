@@ -1,0 +1,9 @@
+﻿$group
+	$params id, label, haserror:bool|false, error|@@null
+	label ${label}
+		class control-label
+		for ${id}
+	$if haserror
+		div
+			style color:red; font-size:small; text-align:left;
+			+ ${error}

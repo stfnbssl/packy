@@ -1,0 +1,214 @@
+﻿r-component( Document )
+
+	$append imports
+		import Typography from 'material-ui/Typography'
+		import Toolbar from 'material-ui/Toolbar'
+		import Button from 'material-ui/Button'
+		import IconButton from 'material-ui/IconButton'
+		import NoteAddIcon from 'material-ui-icons/NoteAdd'
+		import AddBoxIcon from 'material-ui-icons/AddBox'
+		import ProjectDialog from './ProjectDialog'
+		import DocumentDialog from './DocumentDialog'
+		import DocumentList from './DocumentList2'
+		import DocumentEditor from './DocumentEditor'
+		import Splitter from './mui/Splitter'
+		import Select from './mui/Select'
+
+	style
+		@ document
+			{
+				# @ border '1px solid red'
+				# @ padding '2px'
+				@ width '100%'
+		@ dialog
+			{
+				# @ border '1px solid orange'
+				# @ padding '2px'
+		@ list
+			{
+				# @ border '1px solid green'
+				# @ padding '2px'
+		@ generated
+			{
+				# @ border '1px solid gray'
+				# @ padding '2px'
+		@ toolbar
+			{
+				# @ border '1px solid green'
+				# @ padding '2px'
+		@ editor
+			{
+				# @ border '1px solid blue'
+				# @ padding '2px'
+		@ generated
+			{
+				# @ border '1px solid violet'
+				# @ padding '2px'
+
+		@ marginLeft_10
+			{ 
+				@ marginLeft 10
+
+	state
+		@ openCreateDocumentDialog false
+		@ openCreateProjectDialog false
+
+	$include document/handlers
+	$include document/toolbar_handlers
+
+	render
+		prop classes
+		
+		prop projects
+		prop schemas
+
+		prop documents
+		prop userFragments
+		prop projectFragments
+		
+		prop currentProject
+
+		prop onSelectProject
+		prop onCreateProjectSubmit
+
+		prop selectedUri
+		prop selectedContent
+		prop onSaveDocument
+		
+		prop onSelectDocument
+		prop onSelectFragment
+
+		prop onCreateDocumentSubmit
+		prop onCreateFragmentSubmit 
+			
+		prop onEditorRef
+			
+		prop artifacts
+		prop onSelectArtifactRef
+		prop onGenerateArtifact
+		prop generatedArtifactContent
+		prop generatedArtifactError
+			
+		const generatedContent = generatedArtifactContent || generatedArtifactError 
+
+		return
+			. {classes.document}
+				$include document/toolbar_render
+				. {classes.dialog}
+					< DocumentDialog
+						@ schemas {schemas}
+						@ open {this.state.openCreateDocumentDialog}
+						@ onRequestClose {this.handleCloseCreateDocumentDialog}
+						@ onCreateDocument {onCreateDocumentSubmit}
+						@ onCreateFragment {onCreateFragmentSubmit}
+				. {classes.dialog}
+					< ProjectDialog
+						@ projects {projects}
+						@ open {this.state.openCreateProjectDialog}
+						@ onRequestClose {this.handleCloseCreateProjectDialog}
+						@ onCreateProject {this.handleCreateProjectSubmit}
+						@ onSelectProject {this.handleSelectProject}
+				table
+					class table condensed
+					tbody
+						tr
+							td
+								@ style
+									{
+										@ width '20%'
+								. {classes.list}
+									< Typography
+										@ color 'inherit'
+										@ type subheading
+										@ noWrap
+										@ gutterBottom {true}
+										+ Documents
+									< DocumentList
+										@ documents {documents}
+										@ onSelectDocument {onSelectDocument}
+										@ selectedUri {selectedUri}
+								{
+									&&
+										+ userFragments.length > 0
+										. {classes.list}
+											< Typography
+												@ color 'inherit'
+												@ type subheading
+												@ noWrap
+												@ gutterBottom {true}
+												+ User fragments
+											< DocumentList
+												@ documents {userFragments}
+												@ onSelectDocument {onSelectFragment}
+												@ selectedUri {selectedUri}
+								{
+									&&
+										+ projectFragments.length > 0
+										. {classes.list}
+											< Typography
+												@ color 'inherit'
+												@ type subheading
+												@ noWrap
+												@ gutterBottom {true}
+												+ Project fragments
+											< DocumentList
+												@ documents {projectFragments}
+												@ onSelectDocument {onSelectFragment}
+												@ selectedUri {selectedUri}
+							td
+								@ style
+									{
+										@ width '80%'
+								< Splitter
+									. {classes.ittf}
+										. {classes.toolbar}
+											< Toolbar
+												{
+													&&
+														+ selectedUri !== null
+														< Typography
+															@ type "title"
+															@ color 'inherit'
+															@ noWrap
+															+ {selectedUri}
+												< Button
+													@ raised
+													@ className {classes.marginLeft_10}
+													@ title Save the document or fragment
+													@ onClick { onSaveDocument }
+													+ Save
+												< Button
+													@ raised
+													@ className {classes.marginLeft_10}
+													@ title Create a new document or fragment
+													@ onClick {this.handleOpenCreateDocumentDialog}
+													+ New
+										. {classes.editor}
+												< DocumentEditor
+													@ value {selectedContent}
+													@ onEditorRef {onEditorRef}
+									. {classes.generated}
+										{
+											&&
+												+ artifacts && artifacts.length > 0
+												div
+													< Toolbar
+														< Typography
+															@ type "title"
+															@ color 'inherit'
+															@ noWrap
+															+ Artifact
+														< Select
+															@ items {artifacts}
+															@ selected {artifacts[0]}
+															@ ref {onSelectArtifactRef}
+														< Button
+															@ raised
+															@ title Generate artifact
+															@ onClick { onGenerateArtifact }
+															+ go
+													{
+														&&
+															+ generatedContent
+															< DocumentEditor
+																@ value {generatedContent}

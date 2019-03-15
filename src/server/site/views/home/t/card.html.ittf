@@ -1,0 +1,7 @@
+﻿li
+	$params title
+	. card
+		. card-content
+			h3 ${title}
+				class card-title
+			$hook

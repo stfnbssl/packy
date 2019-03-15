@@ -1,0 +1,20 @@
+html
+
+	$
+		var opt = {}
+		opt.title = 'Basic react app';
+		opt.useReact = true;
+	
+	h/root/empty_layout_opt(&opt)
+	
+	    # root
+	    
+	    $append body-scripts
+
+			react_app(&opt)
+
+				render
+					return
+						div
+							H1 Hello simple app
+	    

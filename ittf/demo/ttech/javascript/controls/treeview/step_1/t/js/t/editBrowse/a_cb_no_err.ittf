@@ -1,0 +1,15 @@
+﻿$group
+	$params result|notUsed
+
+	=>
+		param err
+		param ${result}
+		if err
+			_ glEventHub.emit
+				@ 'json-result'
+				{ 
+					@ key this.key
+					@ err err
+					@ item item
+		else
+			$hook

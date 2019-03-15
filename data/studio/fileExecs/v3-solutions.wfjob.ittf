@@ -1,0 +1,36 @@
+﻿wfjob
+
+	$
+		var folder = 'c:/my/wizzi/v3/solutions';
+	
+	title v3-wizzi solutions
+	
+	exec-file csslayout
+		title csslayout solution
+		exe-path node
+		cwd ${folder}/csslayout
+		arg generate
+	
+	exec-file cssplay
+		title cssplay solution
+		exe-path node
+		cwd ${folder}/cssplay
+		arg generate
+	
+	exec-file formbuilder
+		title formbuilder solution
+		exe-path node
+		cwd ${folder}/formbuilder
+		arg generate
+	
+	exec-file ittfeditor
+		title ittfeditor solution
+		exe-path node
+		cwd ${folder}/ittfeditor
+		arg generate
+	
+	exec-file wf
+		title wizzi factory solution
+		exe-path node 
+		cwd ${folder}/wf
+		arg generate

@@ -1,0 +1,44 @@
+﻿r-component( DocumentList )
+
+	$append imports
+		import List, { ListItem, ListItemText } from 'material-ui/List'
+
+	style
+		@ selected
+			{
+				@ color 'red'
+	
+	render
+		
+		prop classes
+		prop documents
+		prop selectedUri
+		prop onSelectDocument
+		
+		return
+
+			div
+				{
+					&&
+						+ documents.length === 0
+						h5 none.
+				{
+					&&
+						+ documents.length > 0
+						< List
+							@ dense {true}
+							{
+								_ documents.map
+									=>
+										param document
+										return
+											< ListItem
+												@ key {document.uri}
+												@ className {selectedUri === document.uri ? classes.selected : ''}
+												@ onClick
+													=>
+														_ onSelectDocument
+															@ document.uri
+															@ document.schema
+												< ListItemText
+													@ primary {document.folder + '/' + document.name + '.' + document.schema + '.ittf' }

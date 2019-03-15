@@ -1,0 +1,69 @@
+﻿html
+	$
+		var header_H = 90;
+	head
+		@style
+			css
+				< html
+					height 100%
+				< body
+					height 100%
+					margin 0
+				. wrapper
+					height 100%
+					background-color #888
+				. header
+					position fixed
+					background-color #999
+					height ${header_H}px
+					width 100%
+				. middle
+					position fixed
+					background-color #ccc
+					display flex
+					flex-direction row
+					top ${header_H}px
+					height calc(100% - ${header_H + 50}px)
+					width 100%
+					border 2px #099 solid
+				. left-sidebar
+					$$ flex 1 0 auto
+					height 100%
+					width 250px
+					background-color #aaa
+					border 2px #0aa solid
+					padding 20px
+					overflow auto
+				. main-content
+					flex 1 0 auto
+					height 100%
+					background-color #bbb
+					border 2px #0bb solid
+					padding 20px
+					overflow auto
+				
+	body
+
+
+	. wrapper
+
+		. header
+			div
+				img
+					width 250
+					height 90px
+					src images/logo.svg.ittf
+
+		. middle
+			. left-sidebar
+				ul
+					$ var i = 0;
+					$while i < 50
+						li ecce ${i}
+						$ i++;
+	
+			. main-content
+				$ var i = 0;
+				$while i < 50
+					p Elas ${i} sicut bibendi
+					$ i++;

@@ -1,0 +1,141 @@
+﻿$group
+
+	#
+		# dependencies
+		# . g/js/wz/core.js.ittf
+		# . g/js/wz/standalone.js.ittf
+		#   - canGen
+		#   - canWizzify
+	class ResultBar : wz.EventTarget
+		ctor
+			param props
+			set props = props || {}
+			set this.key = props.key || 'default'
+			set this.state = {}
+			set this.commandEls = {}
+			
+		m setState
+			param state
+			foreach k in Object.keys(state)
+				set this.state[k] = state[k]
+			_ this.refresh
+
+		m refresh
+			log 'ResultBar.refresh', this.state
+			var toactivate = []
+			if this.state.isIttf == true
+				if ['wfjob', 'wfschema'].indexOf(this.state.schema) > -1
+					_ toactivate.push('exec')
+					_ toactivate.push('mtree')
+					_ toactivate.push('debug')
+				else
+					_ wz.canGen
+						@ this.state.schema
+						a_cb_throw( ok )
+							if ok
+								_ toactivate.push('gen')
+								_ toactivate.push('mtree')
+								_ toactivate.push('debug')
+								if ['html', 'svg', 'md'].indexOf(this.state.schema) > -1
+									_ toactivate.push('view')
+							else
+								_ toactivate.push('mtree')
+								_ toactivate.push('debug')
+			elif wz.canWizzify(this.state.mime)
+				if ['js', 'css'].indexOf(this.state.mime) > -1
+					_ toactivate.push('wizzify')
+					_ toactivate.push('ast')
+					_ toactivate.push('diff')
+				else
+					_ toactivate.push('wizzify')
+					_ toactivate.push('diff')
+			_ this.setActives(toactivate)
+
+		m setActives
+			param commands
+			foreach k in Object.keys(this.commandEls)
+				_ wz.hide
+					@ this.commandEls[k]
+			foreach k in commands
+				_ wz.show
+					@ this.commandEls[k]
+
+		m render
+
+			var barEl = document.createElement('div')
+			_ barEl.setAttribute('class', 'result-bar')
+			
+			_ barEl.appendChild
+				_ this.createCommand
+					{
+						@ name 'gen'
+						@ label 'gen'
+			_ barEl.appendChild
+				_ this.createCommand
+					{
+						@ name 'mtree'
+						@ label 'mTree'
+			_ barEl.appendChild
+				_ this.createCommand
+					{
+						@ name 'debug'
+						@ label 'debug'
+			_ barEl.appendChild
+				_ this.createCommand
+					{
+						@ name 'view'
+						@ label 'view'
+			_ barEl.appendChild
+				_ this.createCommand
+					{
+						@ name 'wizzify'
+						@ label 'wizzify'
+			_ barEl.appendChild
+				_ this.createCommand
+					{
+						@ name 'ast'
+						@ label 'AST'
+			_ barEl.appendChild
+				_ this.createCommand
+					{
+						@ name 'diff'
+						@ label 'diff'
+			_ barEl.appendChild
+				_ this.createCommand
+					{
+						@ name 'exec'
+						@ label 'exec'
+			return barEl
+
+		m createCommand
+			param options
+			
+			var cmdEl = document.createElement('div')
+			_ cmdEl.setAttribute('class', 'result-cmd')
+			
+			var cmdButton = document.createElement('button')
+			_ cmdButton.setAttribute('class', 'result-cmd-btn')
+			
+			if options.label
+				set cmdButton.textContent = options.label
+			
+			_ wz.click
+				@ cmdButton
+				=>
+					_ this.emit
+						@ 'command'
+						@ options.name
+					_ glEventHub.emit
+						@ 'command'
+						{ 
+							@ key this.key
+							@ name options.name
+			
+			set cmdEl.style.display = 'none'
+
+			_ cmdEl.appendChild(cmdButton)
+			
+			set this.commandEls[options.name] = cmdEl
+			
+			return cmdEl
+

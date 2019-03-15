@@ -1,0 +1,28 @@
+﻿h/root/layout()
+
+	h/bs/list_group()
+		h/bs/li_a( "Latin", /ittf/labs/latin/index.html.ittf )
+		h/bs/li_a( "Router", /ittf/labs/router/index.html.ittf )
+
+	ul
+		li
+			a splitter
+				href router/index.html.ittf
+		li
+			a splitter
+				href splitter/index.html.ittf
+		li
+			a repo
+				href repo/index.html.ittf
+		li 
+			a jss basic
+				href jss/basic.html.ittf
+		li 
+			a jss render
+				href jss/render.html.ittf
+		li 
+			a jss react
+				href jss/react.html.ittf
+		li 
+			a jss theme
+				href jss/theme.html.ittf

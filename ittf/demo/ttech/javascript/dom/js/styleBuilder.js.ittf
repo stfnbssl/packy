@@ -1,0 +1,207 @@
+﻿$group
+    
+	class StyleBuilder
+		ctor
+			param styleObject
+			set this.styleObject = styleObject
+
+		m getWidth
+			var ret = 0
+			for var k in this.styleObject
+				if k === 'margin' || k === 'padding'
+					set ret += this.getLeftWidth(this.styleObject[k])
+					set ret += this.getRightWidth(this.styleObject[k])
+				elif k === 'width'
+					set ret += this.styleObject[k]
+				elif k === 'border'
+					set ret += (this._getSize(this.styleObject[k]) * 2)
+				elif k === 'borderLeft' || k === 'borderRight'
+					set ret += this._getSize(this.styleObject[k])
+			return ret
+
+		m getHeight
+			var ret = 0
+			for var k in this.styleObject
+				if k === 'margin' || k === 'padding'
+					set ret += this.getTopWidth(this.styleObject[k])
+					set ret += this.getBottomWidth(this.styleObject[k])
+				elif k === 'height'
+					set ret += this.styleObject[k]
+				elif k === 'border'
+					set ret += (this._getSize(this.styleObject[k]) * 2)
+				elif k === 'borderTop' || k === 'borderBottom'
+					set ret += this._getSize(this.styleObject[k])
+			return ret
+
+		m getPadMarginBorderWidth
+			var ret = 0
+			var seenBorder = 0
+			for var k in this.styleObject
+				if k === 'margin' || k === 'padding'
+					set ret += this.getLeftWidth(this.styleObject[k])
+					set ret += this.getRightWidth(this.styleObject[k])
+				elif k === 'border' && seenBorder == 0
+					set ret += (this._getSize(this.styleObject[k]) * 2)
+					set seenBorder = 1
+				elif (k === 'borderLeft' || k === 'borderRight') && seenBorder != 1
+					set ret += this._getSize(this.styleObject[k])
+					set seenBorder = 2
+			return ret
+
+		m getPadMarginBorderHeight
+			var ret = 0
+			for var k in this.styleObject
+				if k === 'margin' || k === 'padding'
+					set ret += this.getTopWidth(this.styleObject[k])
+					set ret += this.getBottomWidth(this.styleObject[k])
+				elif k === 'border' && seenBorder == 0
+					set ret += (this._getSize(this.styleObject[k]) * 2)
+					set seenBorder = 1
+				elif (k === 'borderTop' || k === 'borderBottom') && seenBorder != 1
+					set ret += this._getSize(this.styleObject[k])
+					set seenBorder = 2
+			return ret
+
+		m getLeftWidth
+			param value
+			if isNumeric(value.left)
+				return value.left
+			elif isNumeric(value.horizontal)
+				return value.horizontal
+			elif isNumeric(value)
+				return value
+			else
+				return 0
+		
+		m getTopWidth
+			param value
+			if isNumeric(value.top)
+				return value.top
+			elif isNumeric(value.vertical)
+				return value.vertical
+			elif isNumeric(value)
+				return value
+			else
+				return 0
+
+		m getRightWidth
+			param value
+			if isNumeric(value.right)
+				return value.right
+			elif isNumeric(value.horizontal)
+				return value.horizontal
+			elif isNumeric(value)
+				return value
+			else
+				return 0
+
+		m getBottomWidth
+			param value
+			if isNumeric(value.bottom)
+				return value.bottom
+			elif isNumeric(value.vertical)
+				return value.vertical
+			elif isNumeric(value)
+				return value
+			else
+				return 0
+
+		m _getSize
+			param value
+			if isNumeric(value.size)
+				return value.size
+			else
+				return 0
+
+		m toStyle
+			var ret = []
+			for var k in this.styleObject
+				if k === 'margin'
+					_ ret.push('margin: ' + this.toLength14(this.styleObject[k]))
+				elif k === 'padding'
+					_ ret.push('padding: ' + this.toLength14(this.styleObject[k]))
+				elif k === 'width'
+					_ ret.push('width: ' + this.toLength(this.styleObject[k]))
+				elif k === 'border'
+					_ ret.push('border: ' + this.toBorder(this.styleObject[k]))
+				elif k === 'borderTop'
+					_ ret.push('border-top: ' + this.toBorder(this.styleObject[k]))
+				elif k === 'borderLeft'
+					_ ret.push('border-left: ' + this.toBorder(this.styleObject[k]))
+				elif k === 'borderBottom'
+					_ ret.push('border-bottom: ' + this.toBorder(this.styleObject[k]))
+				elif k === 'borderRight'
+					_ ret.push('border-right: ' + this.toBorder(this.styleObject[k]))
+				elif k === 'color'
+					_ ret.push('color: ' + this.toColor(this.styleObject[k]))
+				elif k === 'backgroundColor'
+					_ ret.push('background-color: ' + this.toColor(this.styleObject[k]))
+				else
+					_ ret.push(k + ': ' + this.styleObject[k])
+			return ret.join('')
+
+		m toStyleObject
+			var ret = {}
+			for var k in this.styleObject
+				if k === 'margin'
+					set ret.margin = this.toLength14(this.styleObject[k])
+				elif k === 'padding'
+					set ret.padding = this.toLength14(this.styleObject[k])
+				elif k === 'width'
+					set ret.width = this.toLength(this.styleObject[k])
+				elif k === 'border'
+					set ret.border = this.toBorder(this.styleObject[k])
+				elif k === 'borderTop' || k === 'borderLeft' || k === 'borderRight' || k === 'borderBottom'
+					set ret[k] = this.toBorder(this.styleObject[k])
+				elif k === 'color'
+					set ret.color = this.toColor(this.styleObject[k])
+				elif k === 'backgroundColor'
+					set ret.backgroundColor = this.toColor(this.styleObject[k])
+				else
+					set ret[k] = this.styleObject[k]
+			return ret
+
+		m toLength
+			param value
+			if isNumeric(value)
+				return value + 'px'
+			return '0'
+
+		m toLength14
+			param value
+			if isNumeric(value)
+				return value + 'px'
+			elif isNumeric(value.top)
+				return value.left + 'px 0 0 0'
+			elif isNumeric(value.right)
+				return '0 ' + value.right + 'px 0 0' 
+			elif isNumeric(value.bottom)
+				return '0 0 ' + value.bottom + 'px 0' 
+			elif isNumeric(value.left)
+				return '0 0 0 ' + value.left + 'px' 
+			elif isNumeric(value.horizontal)
+				return '0 ' + value.left + 'px'
+			elif isNumeric(value.vertical)
+				return value.left + 'px 0'
+			return 0
+
+		m toBorder
+			param value
+			var ret = []
+			if isNumeric(value)
+				return value + 'px'
+			if isNumeric(value.size)
+				_ ret.push(value.size + 'px')
+			if value.style
+				_ ret.push(value.style)
+			if value.color
+				_ ret.push(this.toColor(value.color))
+			return ret.join(' ')
+
+		m toColor
+			param value
+			return value
+
+	function isNumeric
+		param n
+		return !isNaN(parseFloat(n)) && isFinite(n)

@@ -1,0 +1,8 @@
+﻿li 
+	$params href, icon, text
+    a 
+        href ${href}
+        i 
+            class fa fa-${icon} fa-2x
+        span ${text}
+            class nav-text

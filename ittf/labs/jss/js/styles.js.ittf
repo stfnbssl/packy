@@ -1,0 +1,22 @@
+﻿$group
+
+	j/iife-wrapped( styles, colors )
+		return
+			{
+				@ red
+					{
+						@ backgroundColor 'red'
+				@ blue
+					{
+						@ backgroundColor colors('blue').darken(0.3).hex()
+				@ hover
+					{
+						@ '&:hover'
+							{
+								@ backgroundColor colors('red').darken(0.4).hex()
+				@ '@media (max-width: 600px)'
+					{
+						@ small
+							{
+								@ backgroundColor 'red'
+

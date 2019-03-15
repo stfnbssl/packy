@@ -1,0 +1,65 @@
+﻿h/root/empty_layout()
+    
+	$append head-styles
+        @title Cssexplorer
+        link 
+            rel stylesheet
+            type text/css
+            href ./gridPlay.css.ittf
+            media screen
+
+    section 
+        class flex
+        aside 
+            id sidebar
+            class sidebar flex
+            hgroup 
+                class hgroup flex
+                a css grid playground
+                    href https://wizzifactory.github.io/cssexplorer
+                span &lsaquo;
+                    class toggle-controls
+                    id toggle-controls
+            menu 
+                class controls flex
+
+				$include ./gridBox
+
+            
+		figure 
+            id demo
+            class grid-container demo
+				
+			$ var items = 'Lorem ipsum;dolor;sit;amet;consectetur;adipiscing elit;nunc:enim;nunc;volutpat eget;aliquam;nec;accumsan rutrum;bacon;maecenas;nunc;voldermere;it;las;quid;tostidos;gray';
+				
+			$foreach item in items.split(';')
+				. grid-item
+					span ${item}
+						contenteditable true
+				
+    section 
+        class results flex
+        @style 
+            data-noprefix 
+            class demo-styles
+            id demo_styles
+            contenteditable true
+            $. 
+                .grid-container {
+					display: grid;
+					grid-template-columns: 100px 100px;
+					grid-gap: 20px;
+                }
+                .grid-item {
+                }
+        . resources
+            h1 New features support
+            h2 
+                a CSS Flexible Box
+                    href  https://caniuse.com/#feat=flexbox
+            h2 
+                a CSS Grid
+                    href https://caniuse.com/#search=css%20grid
+        
+	js https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
+	js ./gridPlay.js.ittf

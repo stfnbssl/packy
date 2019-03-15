@@ -1,0 +1,113 @@
+﻿$group
+
+	react DynHtmlView
+
+		render
+			prop mTreeNode
+			prop classes
+			log 'DynHtmlView', mTreeNode, classes
+			return
+				_ React.createElement
+					@ 'div'
+					@ null
+					_ createFrom
+						@ null
+						@ mTreeNode
+						{
+							@ classes classes
+
+	function createFrom
+		param parent
+		param mTreeNode
+		param options
+		param nodeOptions
+
+		var props = null
+		var children = []
+
+		var nodeOptions = nodeOptions || {}
+
+		if nodeOptions.isItem
+			set props = {}
+			set props.key = global.counter++
+		
+		if mTreeNode.name && mTreeNode.name.length > 0 && componentTypeCanHaveTextChildren(mTreeNode.elementType)
+			# log 'DynHtmlView.createFrom. Can have text children', mTreeNode.elementType, mTreeNode.name
+			_ children.push(mTreeNode.name)
+
+		foreach p in mTreeNode.props.getAll()
+			# log 'createFrom.p', p
+			var v = p.value
+			if p.name === 'children' && p.type === 'element' && p.options.required && mTreeNode.wzChildren.length == 0
+				set v = p.value || p.options.default
+				if v != null && typeof v !== 'undefined'
+					# log 'DynHtmlView.createFrom', i, mTreeNode.elementType, p.name, p.value, p.options, 'v', v, 'children.length', children.length
+					_ children.push(toReactProp(p.type, v))
+			else
+				if typeof v === 'undefined' && p.options.required
+					log 'p.options.required', mTreeNode.elementType, p.name, p.options.required
+					if verify.isObject(p.options.required) &&
+						\b mTreeNode.checkCondition(p.options.required.where)
+						set v = p.options.required.default
+						set props = props || {}
+						set props[p.name] = p.type === 'number' ? parseFloat(v) : v
+				else
+					set props = props || {}
+					if p.name === 'className'
+						set v = options.classes[v] || v
+					set props[p.name] = p.type === 'number' ? parseFloat(v) : v
+		
+		var isColl = mTreeNode.wzChildren.length > 1
+		foreach item in mTreeNode.wzChildren
+			if item.elementType === 'style' && verify.isEmpty(item.name)
+				const style = {}
+				foreach p in item.props.getAll()
+					set style[p.name] = p.value
+				set props = props || {}
+				set props['style'] = style
+				log 'DynHtmlView.style', style
+			else
+				_ createFrom
+					@ children
+					@ item
+					@ options
+					{
+						@ isItem isColl
+		
+		if mTreeNode.elementType === 'Tooltip'
+			log 'DynHtmlView.createFrom', 'Tooltip', 'children.length', children.length
+			if children.length > 1
+				set children = [children[0]]
+
+		if mTreeNode.isVoid
+			set children = null
+		else
+			if children.length == 0
+				set children = null
+			elif children.length == 1
+				set children = children[0]
+		
+		if parent
+			_ parent.push
+				_ React.createElement
+					@ global.componentTypes[mTreeNode.elementType] || mTreeNode.elementType
+					@ props
+					@ children
+		else
+			return
+				_ React.createElement
+					@ global.componentTypes[mTreeNode.elementType] || mTreeNode.elementType
+					@ props
+					@ children
+
+	function toReactProp
+		param type
+		param value
+		# log 'DynHtmlView.toReactProp', type, value
+		if type === 'element' 
+			return 
+				_ React.createElement
+					@ 'span'
+					@ null
+					@ value
+		return value

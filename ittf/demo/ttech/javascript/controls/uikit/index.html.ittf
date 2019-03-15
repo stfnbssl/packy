@@ -1,0 +1,20 @@
+﻿h/root/layout()
+
+	$
+		var opt = {
+			name: 'uikit',
+			label: 'Uikit',
+			experimentsWith: 'javascript/css Uikit framework',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'controls',
+					label: 'Controls',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

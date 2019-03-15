@@ -1,0 +1,46 @@
+﻿$group
+
+	@ splitter
+		{
+			@ position 'absolute'
+			@ display 'flex'
+			@ flexDirection 'row'
+			@ width '100%'
+			@ height '100%'
+			@ overflow 'hidden'
+			@ '&.resizing'
+				{
+					@ cursor 'col-resize'
+					@ '& > $splitbar'
+						{
+							@ backgroundColor '#aaa'
+			@ '&.vertical'
+				{
+					@ flexDirection 'column'
+					@ '&.resizing'
+						{
+							@ cursor 'row-resize'
+					@ '& > $splitbar'
+						{
+							@ width '100%'
+							@ height '4px'
+							@ cursor 'row-resize'
+	@ splitpane
+		{
+			@ position 'relative'
+			@ flex '0 0 auto'
+			@ overflow 'auto'
+			@ '&.primary'
+				{
+					@ flex '1 1 auto'
+	@ splitbar
+		{
+			@ flex '0 0 auto'
+			@ width '6px'
+			@ height '100%'
+			@ cursor 'col-resize'
+			@ backgroundColor '#ccc'
+			@ '&:hover'
+				{
+					@ backgroundColor '#bbb'
+

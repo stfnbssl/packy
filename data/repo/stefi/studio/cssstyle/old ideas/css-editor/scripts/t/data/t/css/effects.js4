@@ -1,0 +1,19 @@
+﻿stack effectspane Effects
+	widgets_4
+		panel tx-basic
+			widgets_5
+				valuepanel box-shadow "Box shadow"
+					widgets_6
+						select shadowinset "Inset" css_enums shadowinset
+						pixelvalue shadowX "X offset" 0 100
+						pixelvalue shadowY "Y offset" 0 100
+						pixelvalue shadowBlur "Blur distance" 0 100
+						pixelvalue shadowSpread "Spread distance" 0 100
+						color shadow-color "Color"
+				valuepanel text-shadow "Text shadow"
+					widgets_6
+						pixelvalue textshadowX "X offset" 0 100
+						pixelvalue textshadowY "Y offset" 0 100
+						pixelvalue textshadowBlur "Blur distance" 0 100
+						color textshadow-color "Color"
+

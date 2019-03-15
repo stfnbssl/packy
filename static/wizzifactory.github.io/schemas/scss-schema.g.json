@@ -1,0 +1,1692 @@
+{
+  "name": "scss",
+  "preserveTags": true,
+  "requires": [],
+  "exportTos": [],
+  "elements": [
+    {
+      "name": "commentable",
+      "super": null,
+      "isRoot": false,
+      "tags": [
+        "/*"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "scss",
+          "tags": [
+            "scss"
+          ]
+        },
+        {
+          "name": "rule",
+          "tags": [
+            "rule"
+          ]
+        },
+        {
+          "name": "typeRule",
+          "tags": [
+            "<"
+          ]
+        },
+        {
+          "name": "classRule",
+          "tags": [
+            "."
+          ]
+        },
+        {
+          "name": "idRule",
+          "tags": [
+            "#"
+          ]
+        },
+        {
+          "name": "propertyRule",
+          "tags": [
+            "@"
+          ]
+        },
+        {
+          "name": "combinator",
+          "tags": [
+            ">"
+          ]
+        },
+        {
+          "name": "parentRule",
+          "tags": [
+            "&"
+          ]
+        },
+        {
+          "name": "pseudoClass",
+          "tags": [
+            ":"
+          ]
+        },
+        {
+          "name": "mixinRule",
+          "tags": [
+            "@mixin"
+          ]
+        },
+        {
+          "name": "includeRule",
+          "tags": [
+            "@include"
+          ]
+        },
+        {
+          "name": "extendRule",
+          "tags": [
+            "@extend"
+          ]
+        },
+        {
+          "name": "importRule",
+          "tags": [
+            "@import"
+          ]
+        },
+        {
+          "name": "forRule",
+          "tags": [
+            "@for"
+          ]
+        },
+        {
+          "name": "eachRule",
+          "tags": [
+            "@each"
+          ]
+        },
+        {
+          "name": "whileRule",
+          "tags": [
+            "@while"
+          ]
+        },
+        {
+          "name": "callRule",
+          "tags": [
+            "_"
+          ]
+        },
+        {
+          "name": "functionRule",
+          "tags": [
+            "@function"
+          ]
+        },
+        {
+          "name": "returnRule",
+          "tags": [
+            "@return"
+          ]
+        },
+        {
+          "name": "setRule",
+          "tags": [
+            "set"
+          ]
+        },
+        {
+          "name": "param",
+          "tags": [
+            "param"
+          ]
+        },
+        {
+          "name": "block",
+          "tags": [
+            "{"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "scss",
+      "super": "commentable",
+      "isRoot": true,
+      "tags": [
+        "scss"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": [
+        "The root element"
+      ]
+    },
+    {
+      "name": "rule",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "rule"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [
+        {
+          "name": "typeRule",
+          "tags": [
+            "<"
+          ]
+        },
+        {
+          "name": "classRule",
+          "tags": [
+            "."
+          ]
+        },
+        {
+          "name": "idRule",
+          "tags": [
+            "#"
+          ]
+        },
+        {
+          "name": "propertyRule",
+          "tags": [
+            "@"
+          ]
+        },
+        {
+          "name": "combinator",
+          "tags": [
+            ">"
+          ]
+        },
+        {
+          "name": "parentRule",
+          "tags": [
+            "&"
+          ]
+        },
+        {
+          "name": "pseudoClass",
+          "tags": [
+            ":"
+          ]
+        },
+        {
+          "name": "mixinRule",
+          "tags": [
+            "@mixin"
+          ]
+        },
+        {
+          "name": "includeRule",
+          "tags": [
+            "@include"
+          ]
+        },
+        {
+          "name": "extendRule",
+          "tags": [
+            "@extend"
+          ]
+        },
+        {
+          "name": "importRule",
+          "tags": [
+            "@import"
+          ]
+        },
+        {
+          "name": "forRule",
+          "tags": [
+            "@for"
+          ]
+        },
+        {
+          "name": "eachRule",
+          "tags": [
+            "@each"
+          ]
+        },
+        {
+          "name": "whileRule",
+          "tags": [
+            "@while"
+          ]
+        },
+        {
+          "name": "callRule",
+          "tags": [
+            "_"
+          ]
+        },
+        {
+          "name": "functionRule",
+          "tags": [
+            "@function"
+          ]
+        },
+        {
+          "name": "returnRule",
+          "tags": [
+            "@return"
+          ]
+        },
+        {
+          "name": "setRule",
+          "tags": [
+            "set"
+          ]
+        }
+      ],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "isRuleSelector(this.wzElement)",
+              "statements": [
+                {
+                  "tag": "var",
+                  "name": "xvar",
+                  "value": "acc = []",
+                  "statements": []
+                },
+                {
+                  "tag": "var",
+                  "name": "xvar",
+                  "value": "selectors = []",
+                  "statements": []
+                },
+                {
+                  "tag": "var",
+                  "name": "xvar",
+                  "value": "selectorNames = []",
+                  "statements": []
+                },
+                {
+                  "tag": "var",
+                  "name": "xvar",
+                  "value": "seenProp = false",
+                  "statements": []
+                },
+                {
+                  "tag": "foreach",
+                  "name": "foreach",
+                  "value": "item in this.rules",
+                  "statements": [
+                    {
+                      "tag": "if",
+                      "name": "xif",
+                      "value": "seenProp == false && isRuleSelector(item.wzElement)",
+                      "statements": [
+                        {
+                          "tag": "_",
+                          "name": "call",
+                          "value": "selectors.push(item)",
+                          "statements": []
+                        },
+                        {
+                          "tag": "_",
+                          "name": "call",
+                          "value": "selectorNames.push(getSelectorName(item))",
+                          "statements": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "else",
+                      "name": "xelse",
+                      "value": "",
+                      "statements": [
+                        {
+                          "tag": "_",
+                          "name": "call",
+                          "value": "acc.push(item)",
+                          "statements": []
+                        },
+                        {
+                          "tag": "set",
+                          "name": "set",
+                          "value": "seenProp = true",
+                          "statements": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "this.rules = acc",
+                  "statements": []
+                },
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "this.addedSelectors = selectors",
+                  "statements": []
+                },
+                {
+                  "tag": "set",
+                  "name": "set",
+                  "value": "this.addedSelectorNames = selectorNames",
+                  "statements": []
+                }
+              ]
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "typeRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "<"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "classRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "."
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "idRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "#"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "propertyRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "@"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "combinator",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        ">"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "_",
+              "name": "call",
+              "value": "_md.rule.prototype.wzInitialize.call(this, ctx);",
+              "statements": []
+            },
+            {
+              "tag": "log",
+              "name": "log",
+              "value": "'wzinitialize.combinator', this.wzName",
+              "statements": []
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "acc = []",
+              "statements": []
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "pseudoClasses = []",
+              "statements": []
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "seenProp = false",
+              "statements": []
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "item in this.rules",
+              "statements": [
+                {
+                  "tag": "if",
+                  "name": "xif",
+                  "value": "seenProp == false && item.wzElement === 'pseudoClass'",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "pseudoClasses.push(item)",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "else",
+                  "name": "xelse",
+                  "value": "",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "acc.push(item)",
+                      "statements": []
+                    },
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "seenProp = true",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.rules = acc",
+              "statements": []
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.pseudoClasses = pseudoClasses",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "parentRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "&"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "log",
+              "name": "log",
+              "value": "'wzinitialize.parentRule', this.wzName",
+              "statements": []
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "acc = []",
+              "statements": []
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "selectorNames = []",
+              "statements": []
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "seenProp = false",
+              "statements": []
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "item in this.rules",
+              "statements": [
+                {
+                  "tag": "if",
+                  "name": "xif",
+                  "value": "seenProp",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "acc.push(item)",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "elif",
+                  "name": "elif",
+                  "value": "item.wzElement === 'pseudoClass'",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "item.wzInitialize(ctx)",
+                      "statements": []
+                    },
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "selectorNames.push(item)",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "elif",
+                  "name": "elif",
+                  "value": "item.wzElement === 'parentRule'",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "acc.push(item)",
+                      "statements": []
+                    },
+                    {
+                      "tag": "set",
+                      "name": "set",
+                      "value": "seenProp = true",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "else",
+                  "name": "xelse",
+                  "value": "",
+                  "statements": [
+                    {
+                      "tag": "var",
+                      "name": "xvar",
+                      "value": "temp = getSelectorName(item)",
+                      "statements": []
+                    },
+                    {
+                      "tag": "if",
+                      "name": "xif",
+                      "value": "temp",
+                      "statements": [
+                        {
+                          "tag": "_",
+                          "name": "call",
+                          "value": "selectorNames.push(temp)",
+                          "statements": []
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "else",
+                      "name": "xelse",
+                      "value": "",
+                      "statements": [
+                        {
+                          "tag": "_",
+                          "name": "call",
+                          "value": "acc.push(item)",
+                          "statements": []
+                        },
+                        {
+                          "tag": "set",
+                          "name": "set",
+                          "value": "seenProp = true",
+                          "statements": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.selectorNames = selectorNames",
+              "statements": []
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.rules = acc",
+              "statements": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "getValue",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "acc = [ '&' ]",
+              "statements": []
+            },
+            {
+              "tag": "_",
+              "name": "call",
+              "value": "acc.push( this.wzName || '' )",
+              "statements": []
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "item in this.selectorNames",
+              "statements": [
+                {
+                  "tag": "if",
+                  "name": "xif",
+                  "value": "item.getValue",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "acc.push(item.getValue())",
+                      "statements": []
+                    }
+                  ]
+                },
+                {
+                  "tag": "else",
+                  "name": "xelse",
+                  "value": "",
+                  "statements": [
+                    {
+                      "tag": "_",
+                      "name": "call",
+                      "value": "acc.push(item)",
+                      "statements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "acc.join('')",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "pseudoClass",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        ":"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "log",
+              "name": "log",
+              "value": "'wzinitialize.pseudoClass', this.wzName",
+              "statements": []
+            },
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "paramSelectorNames = []",
+              "statements": []
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "item in this.rules",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "paramSelectorNames.push(getSelectorName(item))",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.paramSelectorNames = paramSelectorNames",
+              "statements": []
+            }
+          ],
+          "comments": []
+        },
+        {
+          "name": "getValue",
+          "isStatic": false,
+          "isKnownMethod": false,
+          "params": [],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "acc = [ ':' ]",
+              "statements": []
+            },
+            {
+              "tag": "_",
+              "name": "call",
+              "value": "acc.push( this.wzName )",
+              "statements": []
+            },
+            {
+              "tag": "if",
+              "name": "xif",
+              "value": "this.paramSelectorNames.length > 0",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "acc.push( '(' + this.paramSelectorNames.join(', ') + ')' )",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "return",
+              "name": "xreturn",
+              "value": "acc.join('')",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "mixinRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "@mixin"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "param",
+          "role": "params",
+          "tags": [
+            "param"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "paramNames = []",
+              "statements": []
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "item in this.params",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "paramNames.push(item.wzName)",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.paramNames = paramNames",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "includeRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "@include"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "block",
+          "role": null,
+          "tags": [
+            "{"
+          ],
+          "cardinality": "one-to-one",
+          "flags": "is-one-to-one ",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "extendRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "@extend"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "importRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "@import"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "forRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "@for"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "eachRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "@each"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "whileRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "@while"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "callRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "_"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "functionRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "@function"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "param",
+          "role": "params",
+          "tags": [
+            "param"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [
+        {
+          "name": "wzinitialize",
+          "isStatic": false,
+          "isKnownMethod": true,
+          "params": [],
+          "statements": [
+            {
+              "tag": "var",
+              "name": "xvar",
+              "value": "paramNames = []",
+              "statements": []
+            },
+            {
+              "tag": "foreach",
+              "name": "foreach",
+              "value": "item in this.params",
+              "statements": [
+                {
+                  "tag": "_",
+                  "name": "call",
+                  "value": "paramNames.push(item.wzName)",
+                  "statements": []
+                }
+              ]
+            },
+            {
+              "tag": "set",
+              "name": "set",
+              "value": "this.paramNames = paramNames",
+              "statements": []
+            }
+          ],
+          "comments": []
+        }
+      ],
+      "comments": []
+    },
+    {
+      "name": "returnRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "@return"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "setRule",
+      "super": "rule",
+      "isRoot": false,
+      "tags": [
+        "set"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "rule",
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "param",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "param"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    },
+    {
+      "name": "block",
+      "super": "commentable",
+      "isRoot": false,
+      "tags": [
+        "{"
+      ],
+      "flags": "",
+      "attributes": [],
+      "relations": [
+        {
+          "name": "rule",
+          "role": "rules",
+          "tags": [
+            "rule"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": null,
+          "comments": []
+        },
+        {
+          "name": "commentable",
+          "role": "commentables",
+          "tags": [
+            "/*"
+          ],
+          "cardinality": "one-to-many",
+          "flags": "",
+          "inheritedFrom": "commentable",
+          "comments": []
+        }
+      ],
+      "derived": [],
+      "restricts": [],
+      "methods": [],
+      "comments": []
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+﻿$group
+
+	. wz-context-menu
+		position absolute
+		display none
+
+	. wz-context-menu ul, .wz-context-menu li
+		list-style none
+		margin 0
+		padding 0
+		background #FFF
+
+	. wz-context-menu
+		border solid 1px #CCC
+
+	. wz-context-menu li
+		border-bottom solid 1px #CCC
+
+	. wz-context-menu li:last-child
+		border none
+
+	. wz-context-menu li a
+		display block
+		padding 5px 10px
+		text-decoration none
+		color #00F
+
+	. wz-context-menu li a:hover
+		background #000080
+		color #FFF

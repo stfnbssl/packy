@@ -1,0 +1,185 @@
+﻿h/root/empty_layout()
+
+	$append head-styles
+		css /ittf/meta/folder/styles.css.ittf
+		css ./styles.css.ittf
+		@style
+			css
+				< body
+					font-family monospace
+					font-size 14px
+				. test-section
+					margin 10px 0px
+					padding 20px
+					border 1px solid #00f
+				. bar
+					display flex
+					margin 10px 0px
+				. bar-item
+					margin 0px 10px
+				. json-item
+					display none
+				. show-json .json-item
+					display block
+
+	ul
+		li
+			a isomorphic.git
+				href ./isomorphic.git.html.ittf
+
+	# commands
+		class bar
+		style display:none;
+		button
+			+ Read
+			class bar-item
+			id btnRead
+		button
+			+ Links
+			class bar-item
+			id btnLinks
+		button
+			+ Browse folder
+			class bar-item
+			id btnFolderBrowse
+		button
+			+ Ittf document
+			class bar-item
+			id btnIttfDocument
+
+		button
+			+ Show json
+			class bar-item
+			id btnShowJson
+
+	# test-links
+		class test-section
+		style display:none;
+		h2 Test links
+		ul
+			li
+				a This page is served by the service worker
+					href index
+			li
+				a This folderBrowseScan page is served by the service worker
+					href folderBrowseScan
+			li
+				a This files page is served by the service worker
+					href files
+			li
+				a This ittfDocumentScan page is served by the service worker
+					href ittfDocumentScan
+			li
+				a This url page is served by the service worker
+					href url
+
+	# mc-wrapper
+		# test-browse-folder
+			class test-section
+			style display:none;
+			h2 Browse folder
+
+			# bf-container
+				# breadcrumbs-json
+					class json-item
+
+				# breadcrumbs
+					style display:none;
+
+				# currentFolder
+					style display:none;
+
+				. mc-frame
+					. mc-sidebar-left
+						# foldercontent-json
+							class json-item
+						. bar
+							id fs-commands
+							. bar-item
+								img
+									src /ittf/images/addFolder.svg.ittf
+									title Create folder
+									class edit-fs-button
+									data-formid create-folder
+							. bar-item
+								img
+									src /ittf/images/addFile.svg.ittf
+									title Create file
+									class edit-fs-button
+									data-formid create-file
+							. bar-item
+								id bf-paste-img-container
+								style display:none;
+								img
+									src /ittf/images/paste.svg.ittf
+									title Paste
+									class edit-fs-button
+									data-formid paste
+						# foldercontent
+							style display:none
+
+		# test-ittfdocument
+			class test-section
+			style display:none;
+
+			# ittfdocument-json
+				class json-item
+
+			# ittfdocument
+				style display:none;
+
+			$include html/ittfDocument
+
+		# ittf-editor-form
+			style display:none;
+			class editor-form
+			# ittf-editor-title
+				class editor-title
+			. editor-content
+				. editor-panel
+					# editorContainer
+				. editor-buttons
+					# ittf-editor-save
+						class editor-button
+						+ Save
+					# ittf-editor-save-refresh
+						class editor-button
+						+ Save & Refresh
+					# ittf-editor-cancel
+						class editor-button
+						+ Cancel
+	
+	$append body-scripts
+		js /static/lib/ace/src-noconflict/ace.js
+		js ./main.js.ittf
+		script
+			module
+				function log
+					_ document.body.appendChild(document.createTextNode(Array.prototype.join.call(arguments, ", ") + '\n'))
+					_ console.log.apply(console, arguments)
+
+				set window.onerror
+					function
+						param err
+						_ log("Error", err)
+
+				if 'serviceWorker' in navigator
+					_ window.addEventListener
+						@ 'load'
+						function
+							_ navigator.serviceWorker.register
+								@ 'sw.js.ittf'
+								{
+									@ scope './'
+								._ then
+									function
+										param sw
+										_ log("Registered!", sw)
+										_ showCommands
+								._ catch
+									function
+										param err
+										_ log("Error", err)
+										log err
+
+				

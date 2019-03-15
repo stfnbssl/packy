@@ -1,0 +1,58 @@
+﻿module
+	kind react
+	
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import classNames from 'classnames'
+	import { withStyles, createStyleSheet } from 'material-ui/styles'
+	+
+	import SchemaButton from './buttons/SchemaButton'
+	import GeneratorButton from './buttons/GeneratorButton'
+	import SnippetButton from './buttons/SnippetButton'
+	+
+	export default
+		function Toolbar
+			param props
+			let {generator} = props;
+			let generatorInfo = generator.id;
+			let transformerInfo = '';
+			if generator
+				if generator.version
+					set generatorInfo += '-' + generator.version
+				if generator.homepage
+					set generatorInfo
+						a
+							@ href {generator.homepage}
+							@ target _blank
+							+ {generatorInfo}
+
+			return
+				div
+					@ id Toolbar
+					h1 Generation Explorer
+					< SnippetButton
+						@ {...props}
+					< SchemaButton
+						@ {...props}
+					< GeneratorButton
+						@ {...props} 
+					a
+						@ style {{minWidth: 0}}
+						@ target _blank
+						@ title Help
+						@ href https://github.com/fkling/esprima_ast_explorer#features"
+						i
+							@ className "fa fa-lg fa-question fa-fw"
+					div
+						@ id "info"
+						@ className {transformerInfo ? 'small' : ''}
+						@ Generator {generatorInfo}
+
+	set Toolbar.propTypes
+		{
+			@ saving React.PropTypes.bool
+			@ onSave React.PropTypes.func
+			@ onGeneratorChange React.PropTypes.func
+			@ onGeneratorSettingsButtonClick React.PropTypes.func
+			@ generator React.PropTypes.object
+			@ canSave React.PropTypes.bool

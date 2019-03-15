@@ -1,0 +1,15 @@
+﻿. panel panel-default
+	$params id, label, accordionid|accordion
+	. panel-heading
+		h4
+			class panel-title
+			a ${label}
+				data-toggle collapse
+				data-parent ${accordionid}
+				href #${id}
+				aria-controls ${id}
+				aria-expanded false
+	. panel-collapse collapse // in
+		id ${id}
+		. panel-body
+			$hook

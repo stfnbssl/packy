@@ -1,0 +1,7 @@
+﻿module
+	kind react
+
+	$include app-options
+	
+	app/containers/MuiThemeContainer( &app )
+

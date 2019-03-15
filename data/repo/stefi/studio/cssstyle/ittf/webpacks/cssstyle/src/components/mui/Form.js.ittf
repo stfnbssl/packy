@@ -1,0 +1,58 @@
+﻿module
+	kind react
+	+
+	import React, { Component, PropTypes } from 'react'
+	import Control from './Control'
+	
+	class Form
+		super Component
+		ctor
+			param props
+			base props
+
+			set this.values = {}
+			set this.handleChangeValue = this.handleChangeValue.bind(this)
+
+		m handleChangeValue
+			param controlId
+			param value
+			param origValue
+			
+			set this.values[controlId] = value
+			log 'Form.handleChange', controlId, this.values
+			
+			const { id, onChangeValues } = this.props
+			if onChangeValues
+				_ onChangeValues(id, this.values)
+
+		m createControls
+			param meta
+			param onChangeValue
+			set this.values = {}
+			return
+				map( meta.controls, c )
+					const { id, type, data, value } = c
+					log 'createControl', id, type, value
+					set this.values[id] = value
+					return
+						< Control
+							@ id {id}
+							@ key {id}
+							@ type {type}
+							@ value {value}
+							@ data {data}
+							@ onChangeValue {onChangeValue}
+			
+		m render
+			const { id, type, caption, values, layout, meta } = this.props
+			const controls = this.createControls(meta, this.handleChangeValue)
+			return
+				. form-vertical
+					h3 {caption}
+					+ {controls}
+							
+
+	set Form.propTypes
+		{
+
+	export default Form

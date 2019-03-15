@@ -1,0 +1,16 @@
+﻿r-component( FactoryContent )
+
+	prop route
+		{
+		required
+
+	style
+
+	render
+		
+		prop route
+
+		let Component = route.component
+
+		return
+			< Component

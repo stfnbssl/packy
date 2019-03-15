@@ -1,0 +1,70 @@
+﻿module
+	kind react
+	+
+	class StylesData
+		ctor
+			_ this.loadMetaPlay
+			_ this.loadStyled
+			_ this.applyStylesToMetaPlay(this.styledMeta.id)
+			set this.selectedStyledId = this.styledMeta.id
+
+		m loadMetaPlay
+			$include metaPlay
+			set this.metaPlay = metaPlay
+		
+		m loadStyled
+			$include styled 
+			set this.styledMeta = styledMeta
+			set this.styledStyles = styledStyles
+			set this.maps
+				{
+					@ styleds []
+					@ styledIds []
+			_ this.analizeStyledMeta(this.styledMeta)
+			foreach styleId in this.maps.styledIds
+				_ this.applyStylesToMetaPlay
+					@ styleId
+			
+		m analizeStyledMeta
+			param styled
+		
+			if styled && styled.id
+				_ this.maps.styledIds.push(styled.id)
+				_ this.maps.styleds.push(styled)
+		
+			if styled.children
+				foreach child in styled.children
+					_ this.analizeStyledMeta(child)
+
+		m selectStyled
+			param styledId
+			_ this.applyStylesToMetaPlay(styledId)
+			set this.selectedStyledId = styledId
+
+		m updateStyles
+			param values
+			
+			const styledId = this.selectedStyledId
+
+			log 'StylesData.updateStyles.before', styledId, this.styledStyles[styledId]
+			set this.styledStyles[styledId]
+				{
+					@ ...this.styledStyles[styledId]
+					@ ...values
+			log 'StylesData.updateStyles.after', styledId, this.styledStyles[styledId]
+			
+			_ this.applyStylesToMetaPlay(styledId)
+
+		m applyStylesToMetaPlay
+			param styledId
+			
+			const styles = this.styledStyles[styledId]
+			log 'applyStylesToMetaPlay.styledId.styles', styledId, styles
+		
+			foreach item in this.metaPlay.controls
+				if typeof(styles[item.id]) != "undefined"
+					set item.value = styles[item.id]
+				else
+					set item.value = item.defaultValue
+
+	export default StylesData

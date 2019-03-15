@@ -1,0 +1,22 @@
+{
+
+	$
+
+		var opt = {
+			name: 'getlibs',
+			label: 'Getlibs',
+			experimentsWith: 'javascript getlibs loader',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+				{
+					name: 'loaders',
+					label: 'Loaders',
+				},
+			]
+		};
+
+
+	ttech-frame(&opt)

@@ -1,0 +1,83 @@
+﻿module
+	kind react
+
+	const localRequire
+		_ require.context
+			@ './'
+			@ true
+			@ /^\.\/(?!utils)[^/]+\/(transformers\/([^/]+)\/)?(codeExample\.txt|[^/]+?\.js)$/
+
+	const files
+		_ localRequire.keys()
+		._ map
+			=>
+				param name
+				return name.split('/').slice(1)
+
+	log 'schemas.files', files
+
+	const schemasByID = {}
+	const generatorsByID = {}
+
+	const restrictedGeneratorsNames
+		new Set
+			[
+				@ 'index.js'
+				@ 'codeExample.txt'
+				@ 'transformers'
+				@ 'utils'
+
+	export const schemas
+		_ files.filter
+			=>
+				param name
+				return name[1] === 'index.js'
+			._ map
+				=>
+					param [catName]
+					let schema = localRequire(`./${catName}/index.js`)
+					set schemasByID[schema.id] = schema
+					set schema.codeExample = localRequire(`./${catName}/codeExample.txt`)
+					let schemaFiles
+						_ files.filter
+							=>
+								param [curCatName]
+								return curCatName === catName
+							._ map
+								=>
+									param name
+									return name.slice(1)
+					set schema.generators
+						_ schemaFiles.filter
+							=>
+								param [generatorName]
+								return !restrictedGeneratorsNames.has(generatorName))
+							._ map
+								=>
+									param [generatorName]
+									let generator = localRequire(`./${catName}/${generatorName}`)
+									set generator = generator.__esModule ? generator.default : generator
+									set generatorByID[generator.id] = generator
+									set generator.schema = schema
+									return generator
+					log 'schema', schema
+					return schema
+
+	export 
+		function getDefaultSchema
+			return schemasByID.js
+
+	export
+		function getDefaultGenerator
+			param schema = getDefaultSchema()
+			return schema.generators[0];
+
+	export
+		function getSchemaByID
+			param id
+			return schemasByID[id]
+
+	export
+		function getGeneratorByID
+			param id
+			return generatorByID[id]

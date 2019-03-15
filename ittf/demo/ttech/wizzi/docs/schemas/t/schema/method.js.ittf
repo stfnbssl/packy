@@ -1,0 +1,54 @@
+﻿var Method
+	=>
+		param { method: m }
+
+		var Statement
+			=>
+				param { statement: s, level }
+				const sStyle
+					{
+						@ paddingLeft level * 5 + 'px' 
+				return
+					div 
+						@ className pp-ln
+						@ style { sStyle }
+						span {s.tag + ' '}
+							@ className pp-tag
+						span {s.value}
+							@ className pp-pln
+						{
+							&&
+								+ s.statements && s.statements.length > 0
+								_ s.statements.map
+									=>
+										param statement
+										param index
+										return
+											< Statement
+												@ statement {statement}
+												@ level { level + 1 }
+												@ key {index}
+		return
+			div
+				div
+					span { 'method ' }
+						@ className schema-label-3
+					span {m.name} 
+						@ className schema-title-3
+					span { m.isStatic ? 'static ' : '' } 
+						@ className schema-title-3
+					span { m.isKnownMethod ? ' (known method) ' : '' }
+						@ className schema-label-3
+				div
+					@ 
+					pre
+						{
+							_ m.statements.map
+								=>
+									param statement
+									param index
+									return
+										< Statement
+											@ statement {statement}
+											@ level { 2 }
+											@ key {index}

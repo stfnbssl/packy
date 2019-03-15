@@ -1,0 +1,19 @@
+﻿wfjob model_types
+
+	$
+		var ittf_wfschema_folder  = path.join(__dirname, 'ittf', 'lib', 'wizzi', 'schemas');
+		var dest_folder           = path.join(__dirname, 'outputs');
+
+	line one
+		cwd-folder ${ittf_wfschema_folder}
+
+		# Generates the artifacts for a new wizzi model type, 'model1',
+		# implemented by the plugin 'plugin1'.
+		artifact artifacts for model type 'model1'
+			is-wf-model-type
+			src model1.wfschema.ittf
+			dest-path plugin1
+
+	production
+		dest-folder ${dest_folder}
+		line-ref one

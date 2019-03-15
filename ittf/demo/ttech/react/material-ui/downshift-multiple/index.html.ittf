@@ -1,0 +1,252 @@
+﻿html
+	
+	$
+		var opt = {
+			local: false,
+			production: false,
+			title: 'Downshift component',
+			useRouter: true,
+			useMaterialUi: true,
+			useDownshift: true,
+			useKeycode: true,
+		}
+
+	h/root/empty_layout_opt(&opt)
+	
+	    # root
+	    
+	    $append body-scripts
+	
+			react_app( &opt )
+
+				$append imports
+
+					const {
+						\b MenuItem,
+						\b Chip,
+						\b Paper,
+						\b TextField,
+						\b } = window['material-ui']
+
+					const Downshift = Downshift.default
+					const keycode = keyCode.default
+
+					# log 'Downshift', Downshift
+
+					const suggestion_items
+						[
+							@ 'alpha'
+							@ 'beta'
+							@ 'gamma'
+
+					const suggestions = []
+					foreach item in suggestion_items
+						_ suggestions.push({ label: item })
+
+				$append components
+
+					function renderInput
+						param inputProps
+						const { InputProps, classes, ref, ...other } = inputProps
+						log 'renderInput'
+						return
+							< TextField
+								@ InputProps
+									{
+										@ inputRef ref
+										@ classes
+											{
+												@ root classes.inputRoot
+										@ ...InputProps
+								@ {...other}
+
+					function renderSuggestion
+						param { suggestion, index, itemProps, highlightedIndex, selectedItem }
+						const isHighlighted = highlightedIndex === index
+						const isSelected = (selectedItem || '').indexOf(suggestion.label) > -1
+						return
+							< MenuItem
+								@ {...itemProps}
+								@ key {suggestion.label}
+								@ selected {isHighlighted}
+								@ component div
+								@ style
+									{
+										@ fontWeight isSelected ? 500 : 400
+								+ {suggestion.label}
+						#
+							# prop highlightedIndex
+								# number
+							# index
+								# number
+							# itemProps
+								# {
+							# selectedItem
+								# string
+							# suggestion
+								# shape
+									# {
+										# prop label
+											# string
+											# required
+
+					function getSuggestions
+						param inputValue
+						let count = 0
+						return
+							_ suggestions.filter
+								=>
+									param suggestion
+									const keep = (!inputValue || suggestion.label.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1) 
+										\b && count < 5
+									if keep
+										set count += 1
+									return keep
+
+					react DownshiftMultiple
+
+						prop classes
+							{
+							required
+
+						state
+							@ inputValue ''
+							@ selectedItem []
+
+						=> handleKeyDown
+							param e
+							const { inputValue, selectedItem } = this.state
+							if selectedItem.length && !inputValue.length && keycode(e) === 'backspace'
+								_ this.setState
+									{
+										@ selectedItem selectedItem.slice(0, selectedItem.length - 1)
+
+						=> handleInputChange
+							param e
+							_ this.setState
+								{
+									@ inputValue e.target.value
+
+						=> handleChange
+							param item
+							let { selectedItem } = this.state
+							if selectedItem.indexOf(item) === -1
+								set selectedItem
+									[
+										@ ...selectedItem
+										@ item
+							_ this.setState
+								{
+									@ inputValue ''
+									@ selectedItem
+
+						=> handleDelete
+							param item
+							const selectedItem = [...this.state.selectedItem]
+							_ selectedItem.splice(selectedItem.indexOf(item), 1)
+							_ this.setState
+								{
+									@ selectedItem
+
+						render
+							prop classes
+							const { inputValue, selectedItem } = this.state
+
+							return
+								< Downshift
+									@ inputValue {inputValue}
+									@ onChange {this.handleChange}
+									@ selectedItem {selectedItem}
+									{
+										=>
+											param { getInputProps,
+												\b getItemProps, 
+												\b isOpen, 
+												\b inputValue: inputValue2, 
+												\b selectedItem: selectedItem2, 
+												\b highlightedIndex }
+											return 
+												. {classes.container}
+													{
+														_ renderInput
+															{
+																@ fullWidth true
+																@ classes
+																@ InputProps
+																	_  getInputProps
+																		{
+																			@ startAdornment 
+																				_ selectedItem.map
+																					=> 
+																						param item
+																						log 'return chip'
+																						return
+																							< Chip
+																								@ key {item}
+																								@ tabIndex {-1}
+																								@ label {item}
+																								@ className {classes.chip}
+																								@ onDelete {this.handleDelete(item)}
+																			@ onChange this.handleInputChange
+																			@ onKeyDown this.handleKeyDown
+																			@ placeholder 'Select multiple countries'
+																			@ id 'integration-downshift-multiple'
+													{
+														&&
+															+ isOpen
+															< Paper
+																@ className {classes.paper}
+																@ square
+																{
+																	_ getSuggestions
+																		@ inputValue2
+																		._ map
+																			=>
+																				param suggestion
+																				param index
+																				return
+																					_ renderSuggestion
+																						{
+																							@ suggestion
+																							@ index
+																							@ itemProps
+																								_ getItemProps
+																									{
+																										@ item suggestion.label
+																							@ highlightedIndex
+																							@ selectedItem selectedItem2
+
+				prop classes
+					{
+					required
+
+				style
+					@ root
+						{
+							@ flexGrow 1
+							@ height 250
+					@ container
+						{
+							@ flexGrow 1
+							@ position 'relative'
+					@ paper
+						{
+							@ position 'absolute'
+							@ zIndex 1
+							@ marginTop theme.spacing.unit
+							@ left 0
+							@ right 0
+					@ chip
+						{
+							@ margin `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`
+					@ inputRoot
+						{
+							@ flexWrap 'wrap'
+	
+				render
+					prop classes
+			
+					return
+						. {classes.root}
+							< DownshiftMultiple
+				 				@ classes {classes}	

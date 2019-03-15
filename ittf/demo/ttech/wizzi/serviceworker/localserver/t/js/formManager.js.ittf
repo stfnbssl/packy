@@ -1,0 +1,464 @@
+﻿$group
+
+	#
+	# implements clickHandler
+	# params
+	# { ctx
+	#    { modalManager
+	#
+	class FormManager
+		ctor
+			param ctx
+			param options
+			set this.ctx = ctx
+			set this.options = options
+			set this.dataFormId = options.dataFormId
+			set this.dataPath = options.dataPath
+
+		m checkClick
+			param target
+			# TODO
+			return false
+
+		m handleClick
+			param target
+			param dataValue
+			log 'wz.formManager.handleClick.dataValue', dataValue
+			
+			var formId = dataValue[this.dataFormId]
+			var path = dataValue[this.dataPath]
+			
+			var that = this
+
+			if formId === 'create-folder'
+				_ this.getCreateFolderDialog
+				_ this.ctx.modalManager.show
+					@ 'dlgCreateFolder'
+					@ 'dlgCreateFolder'
+
+			if formId === 'create-file'
+				_ this.getCreateFileDialog
+				_ this.ctx.modalManager.show
+					@ 'dlgCreateFile'
+					@ 'dlgCreateFile'
+
+			if formId === 'paste'
+				# _ alert('paste')
+				_ this.ctx.dataManager.paste
+					f_cb_no_err()
+						if err
+							_ that.ctx.notifyManager.error
+								@ 'Error pasting data'
+								@ err
+						else
+							_ that.ctx.folderBrowseManager.activate
+							_ that.ctx.notifyManager.info
+								@ 'Paste data executed'
+
+		m getCreateFolderDialog
+			if this.createFolderDialogElement
+				return this.createFolderDialogElement
+
+			var formsContainer = wz.element('#' + this.ctx.formsContainerId)
+			if !formsContainer
+				set formsContainer = document.createElement('div')
+				_ formsContainer.setAttribute('id', this.ctx.formsContainerId)
+				_ document.body.appendChild(formsContainer)
+
+			html_start(
+				@ '<div id="dlgCreateFolder" class="wz-dialog">'
+				@ '    <h2>Create folder</h2>'
+				@ '    <div class="wz-dialog-control-h">'
+				@ '        <label>Folder name</label>'
+				@ '        <input type="text" id="fdCreateFolderName" class="wz-dialog-text" />'
+				@ '    </div>' 
+				@ '    <div class="wz-dialog-buttons">'
+				@ '        <button id="btnCreateFolderCancel" class="wz-dialog-button">Cancel</button>'
+				@ '        <button id="btnCreateFolderConfirm" class="wz-dialog-button">Confirm</button>'
+				@ '    </div>'
+				@ '</div>' 
+
+			var formDiv
+				_ document.createElement("div")
+			_ formsContainer.appendChild
+				@ formDiv
+			_ wz.html
+				@ formDiv
+				_ html.join('\n')
+			
+			var that = this
+
+			function dlgCancel
+				_ that.ctx.modalManager.hide
+					@ 'dlgCreateFolder'
+			
+			function dlgConfirm
+				var folderPath
+					_ wz.val
+						@ '#fdCreateFolderName'
+				_ that.ctx.dataManager.createFolder
+					@ folderPath
+					f_cb_no_err( result )
+						if err
+							_ that.ctx.notifyManager.error
+								@ 'Error creating folder ' + folderPath
+								@ err
+						else
+							_ that.ctx.folderBrowseManager.activate
+							_ that.ctx.notifyManager.info
+								@ 'Folder ' + folderPath + ' created'
+						_ that.ctx.modalManager.hide
+							@ 'dlgCreateFolder'
+
+			_ wz.click
+				@ '#btnCreateFolderCancel' 
+				@ dlgCancel
+
+			_ wz.click
+				@ '#btnCreateFolderConfirm' 
+				@ dlgConfirm
+
+			set this.createFolderDialogElement = formDiv
+
+		m getCreateFileDialog
+			if this.createFileDialogElement
+				return this.createFileDialogElement
+
+			var formsContainer = wz.element('#' + this.ctx.formsContainerId)
+			if !formsContainer
+				set formsContainer = document.createElement('div')
+				_ formsContainer.setAttribute('id', this.ctx.formsContainerId)
+				_ document.body.appendChild(formsContainer)
+
+			html_start(
+				@ '<div id="dlgCreateFile" class="wz-dialog">'
+				@ '    <h2>Create file</h2>'
+				@ '    <div class="wz-dialog-control-h">'
+				@ '        <label>File name</label>'
+				@ '        <input type="text" id="fdCreateFileName" class="wz-dialog-text" />'
+				@ '    </div>'
+				@ '    <div class="wz-dialog-buttons">'
+				@ '        <button id="btnCreateFileCancel" class="wz-dialog-button">Cancel</button>'
+				@ '        <button id="btnCreateFileConfirm" class="wz-dialog-button">Confirm</button>'
+				@ '    </div>'
+				@ '</div>'
+
+			var formDiv
+				_ document.createElement("div")
+			_ formsContainer.appendChild
+				@ formDiv
+			_ wz.html
+				@ formDiv
+				_ html.join('\n')
+			
+			var that = this
+
+			function dlgCancel
+				_ that.ctx.modalManager.hide
+					@ 'dlgCreateFile'
+			
+			function dlgConfirm
+				var filePath
+					_ wz.val
+						@ '#fdCreateFileName'
+				_ that.ctx.dataManager.createFile
+					@ filePath
+					f_cb_no_err( result )
+						if err
+							_ that.ctx.notifyManager.error
+								@ 'Error creating file ' + filePath
+								@ err
+						else
+							_ that.ctx.folderBrowseManager.activate
+							_ that.ctx.notifyManager.info
+								@ 'File ' + filePath + ' created'
+						_ that.ctx.modalManager.hide
+							@ 'dlgCreateFile'
+			_ wz.click
+				@ '#btnCreateFileCancel' 
+				@ dlgCancel
+
+			_ wz.click
+				@ '#btnCreateFileConfirm' 
+				@ dlgConfirm
+
+			set this.createFileDialogElement = formDiv
+
+		m getDeleteFileDialog
+			param filePath
+			if this.deleteFileDialogElement
+				return this.deleteFileDialogElement
+
+			var formsContainer = wz.element('#' + this.ctx.formsContainerId)
+			if !formsContainer
+				set formsContainer = document.createElement('div')
+				_ formsContainer.setAttribute('id', this.ctx.formsContainerId)
+				_ document.body.appendChild(formsContainer)
+
+			html_start(
+				@ '<div id="dlgDeleteFile" class="wz-dialog">'
+				@ '    <h2>Delete file</h2>'
+				@ '    <div class="wz-dialog-control-h">'
+				@ '        <label>File name</label>'
+				@ '        <input type="text" id="fdDeleteFileName" class="wz-dialog-text" value="' + filePath + '" disabled />'
+				@ '    </div>'
+				@ '    <div class="wz-dialog-buttons">'
+				@ '        <button id="btnDeleteFileCancel" class="wz-dialog-button">Cancel</button>'
+				@ '        <button id="btnDeleteFileConfirm" class="wz-dialog-button">Confirm</button>'
+				@ '    </div>'
+				@ '</div>'
+
+			var formDiv
+				_ document.createElement("div")
+			_ formsContainer.appendChild
+				@ formDiv
+			_ wz.html
+				@ formDiv
+				_ html.join('\n')
+			
+			var that = this
+
+			function dlgCancel
+				_ that.ctx.modalManager.hide
+					@ 'dlgDeleteFile'
+			
+			function dlgConfirm
+				var filePath
+					_ wz.val
+						@ '#fdDeleteFileName'
+				_ that.ctx.dataManager.deleteFile
+					@ filePath
+					f_cb_no_err( result )
+						if err
+							_ that.ctx.notifyManager.error
+								@ 'Error deleting file ' + filePath
+								@ err
+						else
+							_ that.ctx.folderBrowseManager.activate
+							_ that.ctx.notifyManager.info
+								@ 'File ' + filePath + ' deleted'
+						_ that.ctx.modalManager.hide
+							@ 'dlgDeleteFile'
+			_ wz.click
+				@ '#btnDeleteFileCancel' 
+				@ dlgCancel
+
+			_ wz.click
+				@ '#btnDeleteFileConfirm' 
+				@ dlgConfirm
+
+			set this.deleteFileDialogElement = formDiv
+
+		m getDuplicateFileDialog
+			param formId
+			param filePath
+			
+			if this.duplicateFileDialogElement
+				return this.duplicateFileDialogElement
+
+			var pinfo = ittfPathInfo(filePath)
+
+			var f
+				new wzForm
+					{
+						@ formsContainerId this.ctx.formsContainerId
+
+			set this.duplicateFileDialogElement
+				_ f.create
+					{
+						{ form
+							@ id formId
+							@ title 'Duplicate file'
+							[ controls
+								{
+									@ id 'oldName'
+									@ label 'Old name'
+									@ value pinfo.basename
+									@ disabled true
+								{
+									@ id 'newName'
+									@ label 'New name'
+									@ value pinfo.basename
+						@ onCancel
+							=>
+								_ this.ctx.modalManager.hide
+									@ formId
+						@ onConfirm
+							=>
+								param result
+								var newFilePath = pinfo.dirname + '/' + result.newName 
+								_ this.ctx.dataManager.duplicateFile
+									@ filePath
+									@ newFilePath
+									f_cb_no_err( result )
+										if err
+											_ this.ctx.notifyManager.error
+												@ 'Error duplicating file ' + filePath
+												@ err
+										else
+											_ this.ctx.folderBrowseManager.activate
+											_ this.ctx.notifyManager.info
+												@ 'File ' + filePath + ' duplicated'
+										_ this.ctx.modalManager.hide
+											@ formId
+			
+			return this.duplicateFileDialogElement
+
+		m getRenameFileDialog
+			param formId
+			param filePath
+			
+			if this.renameFileDialogElement
+				return this.renameFileDialogElement
+
+			var pinfo = ittfPathInfo(filePath)
+
+			var f
+				new wzForm
+					{
+						@ formsContainerId this.ctx.formsContainerId
+
+			set this.renameFileDialogElement
+				_ f.create
+					{
+						{ form
+							@ id formId
+							@ title 'Rename file'
+							[ controls
+								{
+									@ id 'oldName'
+									@ label 'Old name'
+									@ value pinfo.basename
+									@ disabled true
+								{
+									@ id 'newName'
+									@ label 'New name'
+									@ value pinfo.basename
+						@ onCancel
+							=>
+								_ this.ctx.modalManager.hide
+									@ formId
+						@ onConfirm
+							=>
+								param result
+								var newFilePath = pinfo.dirname + '/' + result.newName 
+								_ this.ctx.dataManager.renameFile
+									@ filePath
+									@ newFilePath
+									f_cb_no_err( result )
+										if err
+											_ this.ctx.notifyManager.error
+												@ 'Error renaming file ' + filePath
+												@ err
+										else
+											_ this.ctx.folderBrowseManager.activate
+											_ this.ctx.notifyManager.info
+												@ 'File ' + filePath + ' renamed'
+										_ this.ctx.modalManager.hide
+											@ formId
+			
+			return this.renameFileDialogElement
+
+		m getRenameFolderDialog
+			param formId
+			param folderPath
+			
+			if this.renameFolderDialogElement
+				return this.renameFolderDialogElement
+
+			var pinfo = ittfPathInfo(folderPath)
+
+			var f
+				new wzForm
+					{
+						@ formsContainerId this.ctx.formsContainerId
+
+			set this.renameFolderDialogElement
+				_ f.create
+					{
+						{ form
+							@ id formId
+							@ title 'Rename folder'
+							[ controls
+								{
+									@ id 'oldName'
+									@ label 'Old name'
+									@ value pinfo.basename
+									@ disabled true
+								{
+									@ id 'newName'
+									@ label 'New name'
+									@ value pinfo.basename
+						@ onCancel
+							=>
+								_ this.ctx.modalManager.hide
+									@ formId
+						@ onConfirm
+							=>
+								param result
+								var newFolderPath = pinfo.dirname + '/' + result.newName 
+								_ this.ctx.dataManager.renameFolder
+									@ folderPath
+									@ newFolderPath
+									f_cb_no_err( result )
+										if err
+											_ this.ctx.notifyManager.error
+												@ 'Error renaming folder ' + folderPath
+												@ err
+										else
+											_ this.ctx.folderBrowseManager.activate
+											_ this.ctx.notifyManager.info
+												@ 'Folder ' + folderPath + ' renamed'
+										_ this.ctx.modalManager.hide
+											@ formId
+			
+			return this.renameFolderDialogElement
+
+		m getDeleteFolderDialog
+			param formId
+			param folderPath
+			
+			if this.deleteFolderDialogElement
+				return this.deleteFolderDialogElement
+
+			var pinfo = ittfPathInfo(folderPath)
+
+			var f
+				new wzForm
+					{
+						@ formsContainerId this.ctx.formsContainerId
+
+			set this.deleteFolderDialogElement
+				_ f.create
+					{
+						{ form
+							@ id formId
+							@ title 'Delete folder'
+							[ controls
+								{
+									@ id 'name'
+									@ label 'Name'
+									@ value pinfo.basename
+									@ disabled true
+						@ onCancel
+							=>
+								_ this.ctx.modalManager.hide
+									@ formId
+						@ onConfirm
+							=>
+								param result
+								_ this.ctx.dataManager.deleteFolder
+									@ folderPath
+									f_cb_no_err( result )
+										if err
+											_ this.ctx.notifyManager.error
+												@ 'Error deleting folder ' + folderPath
+												@ err
+										else
+											_ this.ctx.folderBrowseManager.activate
+											_ this.ctx.notifyManager.info
+												@ 'Folder ' + folderPath + ' deleted'
+										_ this.ctx.modalManager.hide
+											@ formId
+			
+			return this.deleteFolderDialogElement

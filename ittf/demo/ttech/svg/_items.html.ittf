@@ -1,0 +1,5 @@
+h/bs/list_group()
+	
+	h/bs/li_a( Basic, /ittf/demo/ttech/svg/basic/index.html.ittf )
+	h/bs/li_a( Logos, /ittf/demo/ttech/svg/logos/index.html.ittf )
+	

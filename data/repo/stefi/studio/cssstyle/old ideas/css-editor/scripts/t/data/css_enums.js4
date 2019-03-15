@@ -1,0 +1,173 @@
+﻿__o css_enums
+	w_enum background-attachment scroll
+		w_opt scroll
+		w_opt fixed
+		w_opt inherit
+	w_enum background-repeat repeat
+		w_opt repeat
+		w_opt repeat-x
+		w_opt repeat-y
+		w_opt no-repeat
+		w_opt inherit
+	w_enum border-style none
+		w_opt none
+		w_opt solid
+		w_opt dotted
+		w_opt dashed
+		w_opt double
+		w_opt groove
+		w_opt ridge
+		w_opt inset
+		w_opt outset
+	w_enum clear none
+		w_opt none
+		w_opt left
+		w_opt right
+		w_opt both
+		w_opt inherit
+	w_enum cursor auto
+		w_opt auto
+		w_opt crosshair
+		w_opt default
+		w_opt pointer
+		w_opt move
+		w_opt e-resize
+		w_opt ne-resize
+		w_opt nw-resize
+		w_opt n-resize
+		w_opt se-resize
+		w_opt sw-resize
+		w_opt s-resize
+		w_opt w-resize
+		w_opt text
+		w_opt wait
+		w_opt help
+		w_opt progress
+		w_opt inherit
+	w_enum display inline
+		w_opt inline
+		w_opt block
+		w_opt list-item
+		w_opt inline-block
+		w_opt table
+		w_opt inline-table
+		w_opt table-row-group
+		w_opt table-header-group
+		w_opt table-footer-group
+		w_opt table-row
+		w_opt table-column-group
+		w_opt table-column
+		w_opt table-cell
+		w_opt table-caption
+		w_opt none
+		w_opt inherit
+	w_enum float none
+		w_opt left
+		w_opt right
+		w_opt none
+		w_opt inherit
+	w_enum font-style normal
+		w_opt normal
+		w_opt italic
+		w_opt oblique
+		w_opt inherit
+	w_enum font-variant normal
+		w_opt normal
+		w_opt small-caps
+		w_opt inherit
+	w_enum font-weight normal
+		w_opt normal
+		w_opt bold
+		w_opt bolder
+		w_opt lighter
+		w_opt 100
+		w_opt 200
+		w_opt 300
+		w_opt 400
+		w_opt 500
+		w_opt 600
+		w_opt 700
+		w_opt 800
+		w_opt 900
+		w_opt inherit
+	w_enum font-family "Arial, Helvetica, sans-serif"
+		w_opt_r selectedinherit inherit
+		w_opt_r "Arial, Helvetica" "Arial, Helvetica, sans-serif"
+		w_opt_r "Bookman Old Style" "'Bookman Old Style', serif"
+		w_opt_r "Comic Sans MS" "'Comic Sans MS', cursive"
+		w_opt_r "Courier" "Courier, monospace"
+		w_opt_r "Courier New" "'Courier New', Courier, monospace"
+		w_opt_r "Garamond" "Garamond, serif"
+		w_opt_r Georgia "Georgia, serif"
+		w_opt_r Impact "Impact, Charcoal, sans-serif"
+		w_opt_r "Lucida Console, Monaco" "'Lucida Console', Monaco, monospace"
+		w_opt_r "Lucida Sans Unicode" "'Lucida Sans Unicode', 'Lucida Grande', sans-serif"
+		w_opt_r "Sans Serif, Geneva" "'MS Sans Serif', Geneva, sans-serif"
+		w_opt_r "MS Serif,'New York'" "'MS Serif', 'New York', sans-serif"
+		w_opt_r "Palatino Linotype" "'Palatino Linotype', 'Book Antiqua', Palatino, serif"
+		w_opt_r "Tahoma" "Tahoma, Geneva, sans-serif"
+		w_opt_r "Times New Roman" "'Times New Roman', Times, serif"
+		w_opt_r "Trebuchet MS" "'Trebuchet MS', Helvetica, sans-serif"
+		w_opt_r "Verdana" "Verdana, Geneva, sans-serif"
+	w_enum gradient-orientation vertical
+		w_opt vertical
+		w_opt horizontal
+		w_opt diagonal
+		w_opt diagonal-bottom
+		w_opt radial
+	w_enum position static
+		w_opt static
+		w_opt relative
+		w_opt absolute
+		w_opt fixed
+		w_opt inherit
+	w_enum shadowinset none
+		w_opt none
+		w_opt inset
+	w_enum text-align left
+		w_opt left
+		w_opt right
+		w_opt center
+		w_opt justify
+		w_opt inherit
+	w_enum text-decoration none
+		w_opt none
+		w_opt underline
+		w_opt overline
+		w_opt line-through
+		w_opt blink
+		w_opt inherit
+	w_enum text-transform none
+		w_opt capitalize
+		w_opt uppercase
+		w_opt lowercase
+		w_opt none
+	w_enum timing-function ease
+		w_opt ease
+		w_opt linear
+		w_opt ease-in
+		w_opt ease-out
+		w_opt ease-in-out
+	w_enum vertical-align baseline
+		w_opt baseline
+		w_opt sub
+		w_opt super
+		w_opt top
+		w_opt text-top
+		w_opt middle
+		w_opt bottom
+		w_opt text-bottom
+		w_opt inherit
+	w_enum overflow visible
+		w_opt visible
+		w_opt hidden
+		w_opt scroll
+		w_opt auto
+		w_opt inherit
+	w_enum white-space normal
+		w_opt normal
+		w_opt pre
+		w_opt nowrap
+		w_opt pre-wrap
+		w_opt pre-line
+		w_opt inherit

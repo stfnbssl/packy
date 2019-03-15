@@ -1,0 +1,92 @@
+html
+
+	$
+		var opt = {}
+		opt.title = 'Wizzi file editor';
+		opt.useWizzi = true;
+		opt.useAce = true;
+		opt.useDeepDiff = true;
+		// opt.useJsonFormatter = true;
+		opt.useSweetalert = true;
+		opt.useEventEmitter = true;
+		opt.useMarkdown = true;
+		opt.useHighlight = true;
+	
+	h/root/empty_layout_opt(&opt)
+
+		$append head-styles
+		    $if isWizziStudio
+			    css ./index.css.ittf
+            $else			
+                css ./index.css
+	
+		$append body-scripts
+		    js ./json-formatter.js
+			$if isWizziStudio
+			    js ./index.js.ittf
+            $else			  
+                js ./index.js
+
+		# root
+
+			. sh
+
+				. sh-he
+					. logo
+						img
+						    $if isWizziStudio
+							    src /ittf/images/logo.svg.ittf
+							$else
+							    src /images/logo.svg
+							width 100px
+							height 40px
+				
+				. sh-bo
+
+					. sh-bo-ed
+						
+						. sh-bo-ed-1
+
+							. sh-bo-ed-1-sb
+
+								. fl
+									. fl-nodes
+										# tree-view
+
+							. sh-bo-ed-1-ed
+
+								# editor-container
+									. ittf-editor
+										# ittf-editor-title
+										. ittf-editor-panel
+											# editorContainer
+
+					. sh-bo-re
+
+						. sh-bo-re-1
+						
+							. sh-bo-re-1-br
+
+								# result-container
+									. result-browser
+										# result-browser-title
+										. result-browser-panel
+											# result-text-container
+												class result-browser-container
+												# result-text-control
+													class result-browser-control
+											# result-json-container
+												class result-browser-container
+												# result-json-control
+													class result-browser-control
+											# result-diff-container
+												class result-browser-container
+												# result-diff-control
+											# result-html-container
+												class result-browser-container
+												# result-html-control
+													class result-browser-control
+							. sh-bo-re-1-sb
+								# result-bar
+			
+				. sh-fo

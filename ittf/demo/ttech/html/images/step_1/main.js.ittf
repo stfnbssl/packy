@@ -1,0 +1,75 @@
+﻿module 
+    kind jsfile
+
+	$include g/js/wz/core
+	$include j/html-builder
+
+	var demo
+
+	function createHtml
+		set demo = new HtmlBuilder('demo')
+		_ demo.prettyResult('demo-html')
+		_ demo.add('h1')
+		_ demo.text('Hello world')
+		_ demo.addTop('img')
+		_ demo.set('src', '/static/images/gallery/dyno.png')
+		_ demo.set
+			@ 'alt'
+			@ 'The head and torso of a dinosaur skeleton; it has a large head with long sharp teeth'
+		_ demo.set
+			@ 'title'
+			@ "A T-Rex on display in the Manchester University Museum"
+		_ demo.set('width', 400)
+		_ demo.set('height', 400)
+
+	_ wz.loaded
+		function
+			
+			_ createHtml
+			
+			_ wz.addClass
+				@ 'body'
+				@ "go"
+			
+			_ wz.click
+				@ '#toggle-controls'
+				function
+					_ wz.toggleClass
+						@ '#sidebar'
+						@ "minimized"
+
+			_ wz.blur
+				@ '#image-width-control'
+				function
+					_ demo.select('img')
+					_ demo.set
+						@ 'width'
+						_ wz.val
+							@ '#image-width-control'
+    
+			_ wz.blur
+				@ '#image-height-control'
+				function
+					_ demo.select('img')
+					_ demo.set
+						@ 'height'
+						_ wz.val
+							@ '#image-height-control'
+
+			_ wz.blur
+				@ '#figcaption-control'
+				function
+					var value = wz.val('#figcaption-control')
+					if value && value.length > 0
+						if demo.select('figure')
+							_ demo.select('figcaption')
+							_ demo.textReplace
+								@ value
+						else
+							_ demo.wrap('img', 'figure')
+							_ demo.add('figcaption')
+							_ demo.text
+								@ value
+					else
+						if demo.select('figure')
+							_ demo.unwrap('img', 'figure')

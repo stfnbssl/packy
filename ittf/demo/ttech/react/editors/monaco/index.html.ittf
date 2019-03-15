@@ -1,0 +1,22 @@
+﻿html
+
+	$
+
+		var opt = {}
+		opt.title = "React editors Monaco example";
+		opt.useReact = true;
+		opt.useClassNames = true;
+		opt.useMonaco = true;
+		opt.useMaterialUi = true;
+		opt.mainJs = true
+
+	h/root/empty_layout_opt(&opt)
+	
+	    # root
+	    
+	    $append head-styles
+			css ./styles.css.ittf
+
+		$append body-scripts
+
+			react_app(&opt)	

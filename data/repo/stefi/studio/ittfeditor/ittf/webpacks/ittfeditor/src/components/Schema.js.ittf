@@ -1,0 +1,110 @@
+﻿r-component( Schema )
+
+	$append imports
+		import Typography from 'material-ui/Typography'
+		import Toolbar from 'material-ui/Toolbar'
+		import Button from 'material-ui/Button'
+		import Splitter from './mui/Splitter'
+		import Select from './mui/Select'
+		import SchemaDialog from './SchemaDialog'
+		import SchemaList from './meta/SchemaList'
+		import SchemaTabs from './meta/SchemaTabs'
+		import DocumentEditor from './DocumentEditor'
+
+	style 
+		@ schema
+			{
+				# @ border '1px solid red'
+				# @ padding '2px'
+				@ width '100%'
+		@ dialog
+			{
+				# @ border '1px solid orange'
+				# @ padding '2px'
+
+	state
+		@ openSelectSchemaDialog false
+		@ showCreateForm false
+		@ schemaActiveTab 'doc'
+
+	=> openCreateForm
+		_ this.setState
+			{
+				@ ...this.state
+				@ showCreateForm true
+		
+	=> closeCreateForm
+		_ this.setState
+			{
+				@ ...this.state
+				@ showCreateForm false
+
+	=> activateSchemaTab
+		param key
+		_ this.setState
+			{
+				@ ...this.state
+				@ schemaActiveTab key
+
+	$include schema/toolbar_handlers
+
+	render
+		
+		prop classes
+		prop schemas
+		
+		prop ittfDocument
+		prop selectedSchemaUri
+		
+		prop model
+		prop factory
+		prop jsonDoc
+
+		prop onSelectSchema
+		
+		const { showCreateForm, schemaActiveTab } = this.state
+		
+		return
+			. {classes.schema}
+				$include schema/toolbar_render
+				. {classes.dialog}
+					< SchemaDialog
+						@ schemas {schemas}
+						@ open {this.state.openSelectSchemaDialog}
+						@ onRequestClose {this.handleCloseSelectSchemaDialog}
+						@ onSelectSchema {onSelectSchema}
+				table
+					class table condensed
+					tbody
+						tr
+							td
+								@ style
+									{
+										@ width '20%'
+								< SchemaList
+									@ schemas {schemas}
+									@ onSelectSchema {onSelectSchema}
+									@ selectedSchemaUri {selectedSchemaUri}
+							td
+								@ style
+									{
+										@ width '80%'
+
+								div
+
+									< Splitter
+										div
+											div Schema: {selectedSchemaUri}
+											< DocumentEditor
+												@ value {ittfDocument}
+										div
+											< SchemaTabs
+												@ activeTab {schemaActiveTab}
+												@ jsonDoc {jsonDoc}
+												@ factory {factory}
+												@ model {model}
+												@ onTabSelect
+													=>
+														param key
+														_ this.activateSchemaTab(key)
+

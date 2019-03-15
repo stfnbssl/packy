@@ -1,0 +1,13 @@
+﻿$group
+    function updateResult
+        var flex_container_code = 
+			\b '.flex-container {\n' + 
+			\b '\tdisplay: -webkit-flex;\n' + 
+			\b '\tdisplay: flex;\n' + 
+			\b flex_properties + 
+			\b justify_content +
+			\b '}\n'
+        var flex_item_code = '.flex-item {\n' + flex + '}'
+        var style = flex_container_code + '\n' + flex_item_code
+        _ $("#demo_styles")
+            ._ html(style)

@@ -1,0 +1,16 @@
+  module  ids: 1 17
+    kind react ids: 2 18
+    +  ids: 3 19
+    import { combineReducers } from 'redux' ids: 4 20
+    import commonsReducer from './commonsReducer' ids: 5 21
+    import documentReducer from './documentReducer' ids: 6 22
+    import schemaReducer from './schemaReducer' ids: 7 23
+    import jobReducer from './jobReducer' ids: 8 24
+    +  ids: 9 25
+    export default ids: 10 26
+      _ combineReducers ids: 11 27
+        {  ids: 12 28
+          @ commons commonsReducer ids: 13 29
+          @ document documentReducer ids: 14 30
+          @ schema schemaReducer ids: 15 31
+          @ job jobReducer ids: 16 32

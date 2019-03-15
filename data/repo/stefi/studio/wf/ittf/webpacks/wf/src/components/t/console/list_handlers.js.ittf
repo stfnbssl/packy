@@ -1,0 +1,27 @@
+﻿$group
+
+	=> handleScriptEdit
+		param name
+
+		prop onGetConsole
+		prop onChangeView
+
+		_ onGetConsole
+			@ name
+
+		_ onChangeView
+			@ 'edit'
+		
+	
+	=> handleScriptRun
+		param name
+
+		prop onRunRequest
+		prop onChangeView
+
+		_ onRunRequest
+			@ name
+
+		_ onChangeView
+			@ 'run'
+

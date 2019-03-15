@@ -1,0 +1,229 @@
+﻿$group
+
+	#
+	# params
+	# { ctx
+	#
+	class IttfDocumentManager
+		ctor
+			param ctx
+			param options
+			set this.ctx = ctx
+			set this.options = options
+			set this.dataFolderPath = options.dataFolderPath
+			set this.dataDocumentPath = options.dataDocumentPath
+
+		m handleClick
+			param target
+			param dataValue
+			log 'wz.ittfDocumentManager.handleClick.dataValue', dataValue
+			
+			var folderPath = dataValue[this.dataFolderPath]
+			var ittfDocument = dataValue[this.dataDocumentPath]
+
+			if folderPath && folderPath.length > 0
+				#
+					_ alert
+						@ 'folderPath ' + folderPath
+
+				_ this.ctx.storeManager.setCurrentFolder
+					@ folderPath
+
+				_ this.hide
+
+				_ this.ctx.folderBrowseManager.activate
+				
+
+			if ittfDocument && ittfDocument.length > 0
+				#
+					_ alert
+						@ ittfDocument
+
+				_ this.ctx.storeManager.setIttfDocument
+					@ ittfDocument
+
+				_ this.activate
+
+		m hide
+			_ wz.hide
+				@ '#test-ittfdocument'
+
+		m show
+			_ wz.show
+				@ '#test-ittfdocument'
+
+		m toggle
+			var style = document.querySelector('#test-ittfdocument').style
+			set style.display = style.display === 'none' ? 'block' : 'none'
+			log 'IttfDocumentManager.toggle', style.display
+			if style.display === 'block'
+				_ this.activate
+
+		m activate
+			_ this.show
+			var ittfDocument
+				_ this.ctx.storeManager.getIttfDocument
+			log 'IttfDocumentManager.activate', ittfDocument
+			var that = this
+			_ this.ctx.fileManager.getIttfDocumentData
+				@ ittfDocument
+				f_cb_no_err( data )
+					log 'IttfDocumentManager.err', err
+					log 'IttfDocumentManager.data', data
+					if err
+						_ that.setHtmlError
+							@ err
+					else
+						_ that.setHtml
+							@ data
+
+		m resetHtml
+			html_start(
+				@ '<div></div>'
+			html_set( ittfdocument-json, false )
+			html_set( mc-sidebar-left-ittfdocument )
+			html_set( mc-content-ittfdocument )
+		
+		m setHtmlError
+			param err
+			_ this.resetHtml
+			html_start(
+				@ '<h2>Ittf document error</h2>'
+				@ '<pre>'
+				@ JSON.stringify(err, null, 2)
+				@ '</pre>'
+			html_set( ittfdocument-json, false )
+
+		m setHtml
+			param data
+
+			_ setJson
+				@ data
+			_ fragmentListBar
+				@ data
+			_ breadcrumbs
+				@ data.breadCrumbs
+			_ fragmentListEdit
+				@ data
+
+			function setJson
+				param data
+			
+				html_start(
+					@ '<h2>Ittf document</h2>'
+					@ '<pre>'
+					@ JSON.stringify(data, null, 2)
+					@ '</pre>'
+			
+				html_set( ittfdocument-json, false )
+
+			function fragmentListBar
+				param data
+
+				html_start(
+					@ '<ul>'
+					@ '  <li>'
+					@ '    <a href="#' + data.primaryUri + '" class="mc-item-link">'
+					@ data.primaryUri
+					@ '    </a>'
+					@ '  </li>'
+
+				foreach f in data.fragments
+					html_add(
+						@ '  <li>'
+						@ '    <a href="#' + f.uri + '" class="mc-item-link">'
+						@ f.relUri
+						@ '    </a>'
+						@ '  </li>'
+
+				foreach r in data.ittfReferences
+					html_add(
+						@ '  <li>'
+						@ '    <a href="#' + r.documentState.primaryPath + '" class="mc-item-link">'
+						@ r.relUri
+						@ '    </a>'
+						@ '  </li>'
+
+					foreach f in r.documentState.fragments
+						html_add(
+							@ '  <li>'
+							@ '    <a href="#' + f.uri + '" class="mc-item-link">'
+							@ f.relUri
+							@ '    </a>'
+							@ '  </li>'
+			
+				html_set( mc-sidebar-left-ittfdocument )
+
+			function breadcrumbs
+				param data
+
+				html_start(
+					@ '<nav class="tn-breadcrumbs">'
+					@ '    <div class="breadcrumbs-panel">'
+			
+				foreach bc in data
+					if bc.isLast
+						html_add(
+							@ '        <div class="breadcrumb-item">'
+							@ '            <span>' + bc.name + '</span>'
+							@ '        </div>'
+					else
+						html_add(
+							@ '        <div class="breadcrumb-item">'
+							@ '            <a href="#" class="ittfdocument-select" data-folderpath="' + bc.uri + '">' + bc.name + '</a>'
+							@ '        </div>'
+				html_add(
+					@ '    </div>'
+					@ '</nav>'
+
+				html_set( ittfdocument-breadcrumbs )
+
+			function fragmentListEdit
+				param data
+
+				html_start(
+					@ '<div class="mc-pane">'
+					@ '  <div class="code-panel" id="' + data.primaryUri + '">'
+					@ '    <div class="modal-view-container">'
+					@ '      <h4 class="d-h2">' + data.primaryUri + ' (primary)</h4>'
+					@ '      <div class="code-edit-button">'
+					@ '        <span class="edit-ittf-content-button"' +
+						\b ' data-ittfpath="'+ data.primaryUri + '"' + 
+						\b ' data-ittfpretty="'+ data.id + '_pretty">edit' 
+					@ '        </span>'
+					@ '        <textarea style="display:none;" id="' + data.id + '">'
+					@ data.primaryIttf.content
+					@ '        </textarea>'
+					@ '      </div>'
+					@ '      <pre class="prettyprint" id="' + data.id + '_pretty">'
+					@ data.primaryIttf.pretty
+					@ '      </pre>'
+					@ '    </div>'
+					@ '  </div>'
+					@ '</div>'
+
+				foreach f in data.fragments
+					html_add(
+						@ '<div class="mc-pane">'
+						@ '  <div class="code-panel" id="' + f.uri + '">'
+						@ '    <div class="modal-view-container">'
+						@ '      <h4 class="d-h2">' + f.relUri + '</h4>'
+						@ '      <div class="code-edit-button">'
+						@ '        <span class="edit-ittf-content-button"' +
+							\b ' data-ittfpath="'+ f.uri + '"' + 
+							\b ' data-ittfpretty="'+ f.id + '_pretty">edit' 
+						@ '        </span>'
+						@ '        <textarea style="display:none;" id="' + f.id + '">'
+						@ f.ittfContent
+						@ '        </textarea>'
+						@ '      </div>'
+						@ '      <pre class="prettyprint" id="' + f.id + '_pretty">'
+						@ f.ittfPretty
+						@ '      </pre>'
+						@ '    </div>'
+						@ '  </div>'
+						@ '</div>'
+
+				html_set( ittfdocument-fragment-list )
+
+

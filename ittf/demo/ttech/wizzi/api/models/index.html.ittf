@@ -1,0 +1,41 @@
+h/root/empty_layout()
+
+	$
+		var d = '$';
+		var opt = {}
+		opt.useWizzi = true;
+
+	page( &opt
+
+		$append styles
+			@style
+				css
+
+		script
+			module
+				kind es6
+				var wf = wizziStandalone.default
+				_ wf.initialize
+				log wf
+				_ wf.wizzi.loadModelFromText
+					[
+						@ 'module'
+						@ '    kind react'
+						@ '    react Hello'
+						@ '        state'
+						@ '            @ name "stefi"'
+						@ '        $foreach item in items'
+						@ '            m ${d}{item}'
+						._ join
+							@ '\n'
+					{
+						[ items
+							@ 'alfa'
+							@ 'beta'
+					{
+						@ schema 'js'
+					f_cb_test( result )
+						log 'result', result
+
+
+

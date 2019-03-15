@@ -1,0 +1,12 @@
+$group
+
+	$
+		var frag_2_beta = 'frag_2_gamma'
+		primary_var_alpha = 'primary_var_alpha_mod_1'
+	
+	div
+		class frag_2
+		h3 I am frag_2 and i am INCLUDED too. So i can modify the value declared in primary :
+			\b  typeof(primary_var_alpha) = ${ typeof(primary_var_alpha) }, value = ${primary_var_alpha}
+		
+

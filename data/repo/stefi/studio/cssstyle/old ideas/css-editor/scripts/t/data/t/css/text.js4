@@ -1,0 +1,17 @@
+﻿stack text Text
+	widgets_4
+		panel tx-basic
+			widgets_5
+				color color "Text color"
+				select font-family "Font family" css_enums font-family
+				pixelvalue font-size "Font size" 0 100
+				select font-weight "Font Weight" css_enums font-weight
+				select font-style "Font Style" css_enums font-style
+				select font-variant "Font Variant" css_enums font-variant
+				select text-align "Text align" css_enums text-align
+				select text-decoration "Text decoration" css_enums text-decoration
+				select text-transform "Text transform" css_enums text-transform
+				pixelvalue text-indent "Text indent" 0 100
+				pixelvalue letter-spacing "Letter spacing" 0 100
+				pixelvalue word-spacing "Word spacing" 0 100
+				pixelvalue line-height "Line height" 0 100

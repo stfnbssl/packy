@@ -1,0 +1,28 @@
+﻿$group
+
+	. wrap-main
+		background-color ${l_colors[2]}
+		
+		$if mpage.navTop.fixed
+			$if mpage.navSubTop.fixed
+				top ${mpage.navTop.height + mpage.navSubTop.height}px
+			$else
+				top ${mpage.navTop.height}px
+			$if mpage.wrapMain.fixed
+				position fixed
+			$else
+				position relative
+		
+		$if mpage.navLeft.fixed
+			left ${mpage.navLeft.width}px
+			$$ width calc(100% - (${mpage.navLeft.width}px + (${mpage.wrapMain.padding}rem * 2)))
+			width calc(100% - ${mpage.navLeft.width}px)
+
+		$if mpage.navLeft.drawer
+			left ${mpage.navLeft.drawerClosedWidth}px
+			width calc(100% - ${mpage.navLeft.drawerClosedWidth}px)
+		
+		$if mpage.wrapMain.padding
+			padding ${mpage.wrapMain.padding}rem
+
+		overflow auto

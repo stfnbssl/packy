@@ -1,0 +1,36 @@
+  module  ids: 1 20
+    kind react ids: 2 21
+    +  ids: 3 22
+    import { GET_COMMONS_SUCCESS } from '../actions' ids: 4 23
+    +  ids: 5 24
+    const commonsInitialState ids: 6 25
+      {  ids: 7 26
+        @ projects [] ids: 8 27
+        @ packages [] ids: 9 28
+        @ schemas [] ids: 10 29
+    +  ids: 11 30
+    $group  ids: 39 51
+      $args: commons, commonsInitialState  $params: name, initialState|[]
+      function ${name}Reducer ids: 41 52
+        param state ids: 42 53
+        param action ids: 43 54
+        # log ${name}Reducer, state, action ids: 44 55
+        if typeof state === 'undefined' ids: 45 56
+          return ${initialState} ids: 46 57
+        switch action.type ids: 47 58
+          $group  ids: 62 71
+            $args: GET_COMMONS_SUCCESS $params: name
+            case ${name} ids: 64 72
+              # log '${name}', 'initial state:', state ids: 65 73
+              $hook preprocess ids: 66 74
+              var temp ids: 67 75
+                {  ids: 14 33
+                  @ ...state ids: 15 34
+                  @ packages Object.values(action.payload.packages) ids: 16 35
+                  @ projects Object.values(action.payload.projects) ids: 17 36
+                  @ schemas Object.values(action.payload.schemas) ids: 18 37
+              log '${name}', 'final state:', temp ids: 69 77
+              return temp ids: 70 78
+          default  ids: 49 60
+            return state ids: 50 61
+    export default commonsReducer ids: 19 38

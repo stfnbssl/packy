@@ -1,0 +1,31 @@
+﻿module
+	kind react
+	
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import classNames from 'classnames'
+
+	export default
+		function SaveButton
+			param {canSave, saving, onSave}
+			return
+				button
+					@ type button
+					@ disabled { !canSave || saving }
+					@ onClick {onSave}
+					i
+						@ className
+							_ classNames
+								{
+									@ fa true
+									@ 'fa-spinner' saving
+									@ 'fa-pulse' saving
+									@ 'fa-floppy-o' !saving
+									@ 'fa-fw' true
+					+ &nbsp;Save
+
+	set SaveButton.propTypes
+		{
+			@ canSave React.PropTypes.bool
+			@ saving React.PropTypes.bool
+			@ onSave React.PropTypes.func

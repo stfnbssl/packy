@@ -1,0 +1,17 @@
+﻿wfjob wizzi-studio
+	
+	$
+		var ittf_src     = path.join(__dirname, 'ittf');
+		var dest_folder  = "C:/My/wizzi/v4/apps/wizzi-studio/server";
+
+	line src
+		cwd-folder ${ittf_src}
+		dest-folder ${dest_folder}
+
+		$include wfjob/any_js
+		$include wfjob/any_json
+		$include wfjob/any_css
+
+	production
+		dest-folder ${dest_folder}
+		line-ref src

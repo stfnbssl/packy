@@ -1,0 +1,36 @@
+﻿module
+	kind react
+
+	$include app-options
+
+	import SampleForm from '../demos/SampleForm'
+	import ReduxSimpleForm from '../demos/reduxForm/SimpleFormController'
+	import ReduxSyncValidationForm from '../demos/reduxForm/SyncValidationFormController'
+	import ReduxFieldLevelValidationForm from '../demos/reduxForm/FieldLevelValidationFormController'
+	import ReduxSubmitValidationForm from '../demos/reduxForm/SubmitValidationFormController'
+	import ReduxAsyncValidationForm from '../demos/reduxForm/AsyncValidationFormController'
+	import ReduxFieldArrayForm from '../demos/reduxForm/FieldArrayFormController'
+	import ReduxWizardForm from '../demos/reduxForm/WizardFormController'
+	
+	app/components/AppRouter( &app )
+
+		$append routes
+			route-group( getting-started, Getting started )
+				route-md( getting-started, installation, Installation )
+				route-md( getting-started, usage, Usage )
+				route-md( getting-started, tech-reference, Tech reference )
+			route-group( project, Project )
+				route-md( project, todo, TODO )
+				route-md( project, api, API )
+				route-md( project, demo, Demo )
+			route-group( demos, Demos )
+				route-comp( demos, sampleform, SampleForm, Sample form )
+				route-comp( demos, reduxSimpleform, ReduxSimpleForm, Redux simple form )
+				route-comp( demos, reduxSyncValidationForm, ReduxSyncValidationForm, Redux sync validation )
+				route-comp( demos, reduxFieldLevelValidationForm, ReduxFieldLevelValidationForm, Redux field level validation )
+				route-comp( demos, reduxSubmitValidationForm, ReduxSubmitValidationForm, Redux submit validation )
+				route-comp( demos, reduxAsyncValidationForm, ReduxAsyncValidationForm, Redux async validation )
+				route-comp( demos, reduxFieldArrayForm, ReduxFieldArrayForm, Redux field array form )
+				route-comp( demos, reduxWizardForm, ReduxWizardForm, Redux wizard form )
+
+

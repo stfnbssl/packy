@@ -1,0 +1,223 @@
+module
+	kind jsfile
+	import path
+	var file = require('wizzi-utils').file
+	var wizziPath = 'c:/my/wizzi'
+	var result
+		{
+			[ versions
+			{ packages
+	var folders
+		_ getFolders
+			@ wizziPath
+	foreach f in folders
+		if f[0] === 'v'
+			var folders_1
+				_ getFolders
+					@ wizziPath
+					@ f
+			if folders_1.indexOf('kernel') > -1 && folders_1.indexOf('plugins')
+				# log f, folders_1
+				var version
+					{
+						@ name f
+				var versionPackages
+					{
+						@ version f
+						[ kernel
+						[ plugins
+						[ apps
+				
+				var folders_2
+					_ getFolders
+						@ wizziPath + '/' + f
+						@ 'kernel'
+				foreach f2 in folders_2
+					var ok
+						_ file.isDirectory
+							_ path.join
+								@ wizziPath
+								@ f
+								@ 'kernel'
+								@ f2
+								@ 'src'
+								@ 'ittf'
+								@ 'meta'
+					if ok
+						var kernel
+							{
+								@ name f2
+                                @ uri f + '/kernel/' + f2
+						_ versionPackages.kernel.push
+							@ kernel
+				set folders_2
+					_ getFolders
+						@ wizziPath + '/' + f
+						@ 'plugins'
+				foreach f2 in folders_2
+					var ok
+						_ file.isDirectory
+							_ path.join
+								@ wizziPath
+								@ f
+								@ 'plugins'
+								@ f2
+								@ 'src'
+								@ 'ittf'
+								@ 'meta'
+					if ok
+						var plugin
+							{
+								@ name f2
+                                @ uri f + '/plugin/' + f2
+						_ versionPackages.plugins.push
+							@ plugin
+
+				set folders_2
+					_ getFolders
+						@ wizziPath + '/' + f
+						@ 'apps'
+				foreach f2 in folders_2
+					var ok
+						_ file.isDirectory
+							_ path.join
+								@ wizziPath
+								@ f
+								@ 'apps'
+								@ f2
+								@ 'wizzi'
+								@ 'ittf'
+					if !ok
+						set ok
+							_ file.isDirectory
+								_ path.join
+									@ wizziPath
+									@ f
+									@ 'apps'
+									@ f2
+									@ 'src'
+									@ 'ittf'
+					if ok
+						var app
+							{
+								@ name f2
+								@ appId f2
+                                @ uri f + '/app/' + f2
+								@ appPath
+									_ path.join
+										@ wizziPath
+										@ f
+										@ 'apps'
+										@ f2
+								
+						_ versionPackages.apps.push
+							@ app
+					else
+						var folders_3
+							_ getFolders
+								@ wizziPath + '/' + f + '/' + 'apps'
+								@ f2
+						foreach f3 in folders_3
+							var ok
+								_ file.isDirectory
+									_ path.join
+										@ wizziPath
+										@ f
+										@ 'apps'
+										@ f2
+										@ f3
+										@ 'wizzi'
+										@ 'ittf'
+							if ok
+								var app
+									{
+										@ name f3
+										@ appId f2 + '/' + f3
+                                        @ uri f + '/app/' + f2 + '/' + f3
+										@ appPath
+											_ path.join
+												@ wizziPath
+												@ f
+												@ 'apps'
+												@ f2
+												@ f3
+
+								_ versionPackages.apps.push
+									@ app
+							else
+								var folders_4
+									_ getFolders
+										@ wizziPath + '/' + f + '/' + 'apps' + '/' + f2
+										@ f3
+								foreach f4 in folders_4
+									var ok
+										_ file.isDirectory
+											_ path.join
+												@ wizziPath
+												@ f
+												@ 'apps'
+												@ f2
+												@ f3
+												@ f4
+												@ 'wizzi'
+												@ 'ittf'
+									if ok
+										var app
+											{
+												@ name f4
+												@ appId f2 + '/' + f3 + '/' + f4
+                                                @ uri f + '/app/' + f2 + '/' + f3 + '/' + f4
+												@ appPath
+													_ path.join
+														@ wizziPath
+														@ f
+														@ 'apps'
+														@ f2
+														@ f3
+														@ f4
+
+										_ versionPackages.apps.push
+											@ app
+							
+
+				if versionPackages.kernel.length > 0 && versionPackages.plugins.length > 0
+					_ result.versions.push(version)
+					set result.packages[version.name] = versionPackages
+				
+	log JSON.stringify(result, null, 2)
+	# log JSON.stringify(getPackageTree('v5', result.packages), null, 2)
+
+	function getFolders
+		param p1
+		param p2
+		var p = p2 ? p1 + '/' + p2 : p1
+		return 
+			_ file.getFolders
+				@ p
+				{
+					@ deep false
+
+	function getPackageTree
+		param version
+		param packages
+		var v = packages[version]
+		#
+			var kernels = []
+			foreach item in v.kernel
+				_ kernels.push
+		return
+			{
+				@ name version
+				[ children
+					{
+						@ name 'kernel'
+						@ children v.kernel
+					{
+						@ name 'plugins'
+						@ children v.plugins
+					{
+						@ name 'apps'
+						@ children v.apps
+						
+					
+		

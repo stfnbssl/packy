@@ -1,0 +1,245 @@
+﻿$group
+
+	# MTreeNodeProps are immutable
+	# get and getAll return a copy
+
+	class MTreeNodeProps
+		ctor
+			param mTreeNode
+			set this.mTreeNode = mTreeNode
+			set this.props = []
+			set this.savedProps = []
+			set this.discarded = []
+			# log 'Created Metaprops', mTreeNode.uid
+		
+		m add
+			param name
+			param type
+			param value
+			param options
+
+			set options = options || {}
+
+			# log 'MTreeNodeProps.add', name, type, value, options
+			
+			if this.get(name)
+				return
+					{
+						@ code 'error_duplicated_item'
+						@ inserted 0
+			else
+				const newProp
+					{
+						@ _id 'p' + global.counter++
+						@ name name
+						@ type type
+						@ value value
+						@ options options
+				_ this.props.push(newProp)
+				_ this.mTreeNode.hasChanged()
+				return
+					{
+						@ code 'ok'
+						@ inserted 1
+						@ item
+							_ Object.assign
+								{
+								@ newProp
+		
+		m rename
+			param oldName
+			param newName
+			
+			# log 'MTreeNodeProps.rename', oldName, newName
+			
+			if this.get(newName)
+				return false
+			else
+				const oldProp = this.get(oldName)
+				if !oldProp
+					return false
+				else
+					_ this.props.push
+						{
+							@ name newName
+							@ type oldProp.type
+							@ value oldProp.value
+					_ this.delete(oldName)
+					_ this.mTreeNode.hasChanged()
+					return true
+
+		m put
+			param name
+			param type
+			param value
+			param options
+
+			set options = options || {}
+
+			# log 'MTreeNodeProps.put', name, type, value
+			
+			foreach item in this.props
+				if item.name === name
+					set item.type = type
+					set item.value = value
+					set item.options = options
+					_ this.mTreeNode.hasChanged()
+					return
+			_ this.add
+				{
+					@ name
+					@ type
+					@ value
+					@ options
+			_ this.mTreeNode.hasChanged()
+		
+		m getAll
+			const ret = []
+			foreach item in this.props
+				_ ret.push
+					_ Object.assign
+						{
+						@ item
+			return ret
+		
+		m get
+			param name
+			foreach item in this.props
+				if item.name === name
+					return
+						_ Object.assign
+							{
+							@ item
+			return null
+
+		m getValue
+			param name
+			const p = this.get(name)
+			return p ? p.value : null
+
+		m delete
+			param name
+			const remains = []
+			foreach item in this.props
+				if item.name !== name
+					_ remains.push(item)
+			set this.props = remains
+
+		m clearSave
+			param nextElementType
+			# Must be called when mTreeNode.elementType has been changed
+			# and props must be invalidated. Properties are saved and
+			# retrieved if the old elementType is restored.
+			set this.savedProps[this.mTreeNode.elementType] = this.props
+			if this.savedProps[nextElementType]
+				set this.props = this.savedProps[nextElementType]
+			else
+				set this.props = []
+
+		m verify
+			param discard
+
+			set this.discarded = []
+			foreach p in this.props
+				if p.type === 'enum'
+					if verify.isArray(p.options.enumItems) == false
+						_ eventuallyDiscard(p, discard, 'enum type require enumItems array')
+					if verify.isUndefined(p.value)
+						_ eventuallyDiscard(p, discard, 'enum type require a property value')
+			if this.discarded.length > 0
+				foreach item in discard
+					log 'MTreeNode.verify.discarded', this.elementType, this.name, item
+
+		m eventuallyDiscard
+			param p
+			param discard
+			if discard
+				_ this.delete(p.name)
+				_ this.discarded.push(p)
+		
+		m setToElement
+			param el
+			foreach item in this.props
+				set el[item.name] = item.value
+
+		m clone
+			param mTreeNode
+			const ret = new MTreeNodeProps(mTreeNode)
+			var p
+			foreach item in this.props
+				set p = {}
+				set p._id = 'p' + global.counter++
+				set p.name = item.name
+				set p.type = item.type
+				set p.value = item.value
+				set p.options = item.options
+				_ ret.props.push(p)
+			return ret
+
+		m syncGlobalMeta
+			# log 'MTreeNodeProps.syncGlobalMeta', this.mTreeNode.elementType
+			const elementType = this.mTreeNode.elementType
+			var asset
+			if this.mTreeNode.isComponentType
+				set asset = global.assets['cmp_' + elementType]
+			else
+				set asset = global.assets['html_' + elementType]
+				if !asset
+					set asset = global.assets['html_' + '__generic']
+			if !asset
+				_ this.syncGlobalMeta_base
+			else
+				var myp
+				foreach p in asset.props
+					set myp = this.get(p.name)
+					if myp
+						_ this.put
+							@ p.name
+							@ p.type
+							@ myp.value
+							{
+								@ comment p.comment
+								@ enumItems p.enumItems
+								@ default p.default
+								@ required p.required
+					else
+						_ this.add
+							@ p.name
+							@ p.type
+							@ p.default
+							{
+								@ comment p.comment
+								@ enumItems p.enumItems
+								@ default p.default
+								@ required p.required
+			_ this.verify(true)
+			# log 'MTreeNodeProps.syncGlobalMeta', this.mTreeNode.elementType, this.props.length
+		
+		m syncGlobalMeta_base
+			
+			const elementType = this.mTreeNode.elementType
+			
+			var group = global.propMetaGroups[elementType]
+			if !group
+				set group = {}
+				set global.propMetaGroups[elementType] = group
+			
+			foreach p in this.props
+				if !group[p.name]
+					set group[p.name]
+						{
+							@ name p.name
+							@ type p.type
+							@ value p.value
+				elif (group[p.name] && group[p.name].type) && !p.type 
+					set p.type = group[p.name].type
+				elif !(group[p.name].type) && p.type 
+					set group[p.name].type = p.type 
+			
+			foreach pk in Object.keys(group)
+				if this.get(pk) == false
+					_ this.add
+						@ group[pk].name
+						@ group[pk].type
+						@ group[pk].value
+

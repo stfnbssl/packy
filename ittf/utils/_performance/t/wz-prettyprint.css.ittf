@@ -1,0 +1,128 @@
+﻿$group
+
+	. pln
+		color #F1F2F3
+
+	. tag
+		color #8AC763
+
+	. str
+		color #EC7600  $$ string content
+	. kwd
+		color #f79256  $$ a keyword
+	. com
+		color #66747B  $$ a comment
+	. typ
+		color #678CB1  $$ a type name
+	. lit
+		color #FACD22  $$ a literal value
+	. mix               
+		color #ff0040  $$  mixin call
+		cursor pointer
+	. tag
+		color #8AC763  $$ a markup tag name
+	. atn
+		color #E0E2E4  $$ a markup attribute name
+	. atv
+		color #EC7600  $$ a markup attribute value
+	. expr
+		color #f3e877  $$ a declaration; a variable name
+	. fun
+		color red  $$ a function name
+	. arg
+		color yellow  $$ a mixin arg
+
+	. pp-ln
+		color #999
+	. pp-pln
+		color #CCC
+	. pp-str
+		color #EC7600  $$ string content
+	. pp-kwd
+		color #f79256  $$ a keyword
+	. pp-com
+		color #66747B  $$ a comment
+	. pp-typ
+		color #678CB1  $$ a type name
+	. pp-lit
+		color #FACD22  $$ a literal value
+	. pp-mix               
+		color #ff0040  $$  mixin call
+		cursor pointer
+	. pp-tag
+		color #8AC763  $$ a markup tag name
+	. pp-atn
+		color #E0E2E4  $$ a markup attribute name
+	. pp-atv
+		color #EC7600  $$ a markup attribute value
+	. pp-expr
+		color #f3e877  $$ a declaration; a variable name
+	. pp-fun
+		color red  $$ a function name
+	. pp-arg
+		color yellow  $$ a mixin arg
+
+	< pre
+		margin 0
+	
+	< pre.prettyprint
+		padding 0.8rem
+		border-left 5px solid #999
+		font-size 1rem
+		line-height 1.4em
+		overflow auto
+		background #2B3A42
+		margin-bottom 1rem
+		< ol
+			padding-left 2rem
+	
+	
+	. L0
+		+ .L1
+		+ .L2
+		+ .L3
+		+ .L4
+		+ .L5
+		+ .L6
+		+ .L7
+		+ .L8
+		+ .L9
+		color #777
+		margin-left 1rem
+		padding-left 1rem
+		list-style-type decimal
+
+	# Alternate shading for lines
+	. L1
+		+ .L3
+		+ .L5
+		+ .L7
+		+ .L9
+		background #555
+
+	. prettyprint-js
+		background #fff
+
+	# Alternate shading for lines
+	. J1
+		+ .J3
+		+ .J5
+		+ .J7
+		+ .J9
+		background #ddd
+
+	. linenums
+		color #fff
+
+	media screen and (max-width: 1028px)
+
+		. pp-pln
+			color #FFF
+
+		< pre.prettyprint
+				padding 1.2rem
+				border-left 5px solid #999
+				font-size 2rem
+				line-height 3rem
+				overflow auto
+	

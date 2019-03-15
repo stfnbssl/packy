@@ -1,0 +1,13 @@
+﻿__o css_editor
+	__p type:object Wmteditor.StackWidget
+	widgets
+		tab maintab be-maintab
+			widgets_2
+				$wizzi css/layout
+				$wizzi css/background
+				$wizzi css/border
+				$wizzi css/text
+				$wizzi css/list
+				$wizzi css/effects
+				$wizzi css/transition
+				$wizzi css/misc

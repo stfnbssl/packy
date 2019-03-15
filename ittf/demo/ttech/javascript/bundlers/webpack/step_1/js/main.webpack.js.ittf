@@ -1,0 +1,8 @@
+﻿module
+	kind es6
+
+	import dom from "./dom"
+
+	var el = document.querySelector('#app')
+	_ el.appendChild
+		_ dom('Stefi')

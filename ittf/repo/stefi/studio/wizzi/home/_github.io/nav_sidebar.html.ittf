@@ -1,0 +1,13 @@
+﻿$group
+
+	nav
+		
+		$if gcurrentSubPage == null
+			class main-sidebar-left
+			img
+				src workinprogress.jpg
+		$else
+			class main-sidebar-left main-sidebar-left-sub
+			img
+				src ../workinprogress.jpg
+		$hook

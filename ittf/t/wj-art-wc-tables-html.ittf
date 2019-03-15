@@ -1,0 +1,18 @@
+﻿artifact ${name}
+	$params name
+	src ${name}
+	g html/document
+	schema html
+	extension html
+	model-ref webapp
+	model-ref rdbms
+		model-coll tables
+			item-name table
+			path-template-value
+				attribute nameLower
+				token table
+			path-template-value
+				attribute namePluralLower
+				token tables
+
+			

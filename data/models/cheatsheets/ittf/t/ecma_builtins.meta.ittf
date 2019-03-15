@@ -1,0 +1,152 @@
+﻿$group
+
+	element Ecma builtin objects
+		tag
+		ast 
+		category
+
+		item
+			title Ecma builtin functions
+			ittf
+				root
+					node parseInt('43.5') = ${d}{ parseInt(43.5) }
+					node parseFloat('43.5') = ${d}{ parseFloat(43.5) }
+					node isFinite(Infinity) = ${d}{ isFinite(Infinity) }
+					node isFinite(NaN) = ${d}{ isFinite(NaN) }
+					node isFinite(null) = ${d}{ isFinite(null) }
+					node isFinite(0) = ${d}{ isFinite(0) }
+					node Number.isFinite(null) = ${d}{ Number.isFinite(null) }
+					node Number.isFinite(0) = ${d}{ Number.isFinite(0) }
+					node isNaN(NaN) = ${d}{ isNaN(NaN) }
+					node isNaN(undefined) = ${d}{ isNaN(undefined) }
+					node isNaN({}) = ${d}{ isNaN({})}
+					node isNaN(true) = ${d}{ isNaN(true) }
+					node isNaN(null) = ${d}{ isNaN(null) }
+					node isNaN(37) = ${d}{ isNaN(37) }
+					node isNaN('37') = ${d}{ isNaN('37') }
+					node isNaN('37.37') = ${d}{ isNaN('37.37') }
+					node isNaN('123ABC') = ${d}{ isNaN('123ABC') }
+					node parseInt('123ABC') = ${d}{ parseInt('123ABC') }
+					node Number('123ABC') = ${d}{ Number('123ABC') }
+					node isNaN('') = ${d}{ isNaN('') }
+					node Number('') = ${d}{ Number('') }
+					node isNaN(' ') = ${d}{ isNaN(' ') }
+					node Number(' ') = ${d}{ Number(' ') }
+					node isNaN(new Date()) = ${d}{ isNaN(new Date()) }
+					node isNaN(new Date().toString()) = ${d}{ isNaN(new Date().toString()) }
+					node isNaN('blabla') = ${d}{ isNaN('blabla') } 
+					node Number('blabla') = ${d}{ Number('blabla') } 
+					node parseFloat(3.14) = ${d}{ parseFloat(3.14) }
+					node parseFloat('3.14') = ${d}{ parseFloat('3.14') }
+					node parseFloat('314e-2') = ${d}{ parseFloat('314e-2') }
+					node parseFloat('0.0314E+2') = ${d}{ parseFloat('0.0314E+2') }
+					node parseFloat('3.14more non-digit characters') = ${d}{parseFloat('3.14more non-digit characters') }
+					node parseInt(' 0xF', 16) = ${d}{ parseInt(' 0xF', 16) }
+					node parseInt(' F', 16) = ${d}{ parseInt(' F', 16) }
+					node parseInt('17', 8) = ${d}{ parseInt('17', 8) }
+					$$ not allowed in strict mode : parseInt(021, 8) = parseInt(021, 8) }
+					node parseInt('015', 10) = ${d}{ parseInt('015', 10) }
+					node parseInt(15.99, 10) = ${d}{ parseInt(15.99, 10) }
+					node parseInt('15,123', 10) = ${d}{ parseInt('15,123', 10) }
+					node parseInt('FXX123', 16) = ${d}{ parseInt('FXX123', 16) }
+					node parseInt('1111', 2) = ${d}{ parseInt('1111', 2) }
+					node parseInt('15 * 3', 10) = ${d}{ parseInt('15 * 3', 10) }
+					node parseInt('15e2', 10) = ${d}{ parseInt('15e2', 10) }
+					node parseInt('15px', 10) = ${d}{ parseInt('15px', 10) }
+					node parseInt('12', 13) = ${d}{ parseInt('12', 13) }
+					node set1 // Reserved Characters', set1 }
+					node set2 // Unescaped Characters', set2 }
+					node set3 // Number Sign', set3 }
+					node set4 // Alphanumeric Characters + Space', set4 }
+					node reserved chars : encodeURI(";,/?:@&=+$") = ${d}{ encodeURI(";,/?:@&=+$") }
+					node unescaped chars : encodeURI("-_.!~*'()") = ${d}{ encodeURI("-_.!~*'()") }
+					node number sign: encodeURI("#") = ${d}{ encodeURI("#") }
+					node alphanumeric chars + space : encodeURI("ABC abc 123") = ${d}{ encodeURI("ABC abc 123") }
+
+					node encodeURIComponent(";,/?:@&=+$") = ${d}{ encodeURIComponent(";,/?:@&=+$") }
+					node encodeURIComponent("-_.!~*'()") = ${d}{ encodeURIComponent("-_.!~*'()") }
+					node encodeURIComponent("#") = ${d}{ encodeURIComponent("#") }
+					node encodeURIComponent("ABC abc 123") = ${d}{ encodeURIComponent("ABC abc 123") }
+
+		item 
+			title Ecma builtin String functions
+			ittf
+				root
+					node ${d}{'a'.toUpperCase()}
+					node ${d}{'A'.toLowerCase()}
+					node ${d}{'a' + '  b  ' + 'c'}
+					node ${d}{'a' + '  b  '.trim() + 'c'}
+					node ${d}{'a,b,c,d'.split(',').join('-')}
+		
+		item 
+			title Operations on String objects passed as parameters
+			ittf
+				root
+					${d}params commandParam|alpha;beta;gamma
+					${d}
+						var commands = [];
+						var actions = commandParam.split(';')
+						for (var i=0; i<actions.length; i++) {
+							var tokens = actions[i].trim().split(' ');
+							var command = { name: tokens[0] };
+							commands.push (command);
+						}
+					node Commands: ${d}{ _.inspect(commands) }
+
+		item
+			title Ecma builtin Date object
+			ittf
+				root
+					node <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"></a>
+					node today: new Date() = ${d}{ new Date() }
+					node new Date('December 17, 1995 03:24:00') = ${d}{ new Date('December 17, 1995 03:24:00') }
+					node new Date('1995-12-17T03:24:00') = ${d}{ new Date('1995-12-17T03:24:00') }
+					node new Date(1995, 11, 17) = ${d}{ new Date(1995, 11, 17) }
+					node new Date(1995, 11, 17, 3, 24, 0) = ${d}{ new Date(1995, 11, 17, 3, 24, 0) }
+
+		item
+			title Ecma builtin Number object
+			ittf
+				root
+					node Number.MAX_VALUE  = ${d}{ Number.MAX_VALUE }
+					node Number.MIN_VALUE = ${d}{ Number.MIN_VALUE }
+					node Number.POSITIVE_INFINITY = ${d}{ Number.POSITIVE_INFINITY }
+					node Number.NEGATIVE_INFINITY = ${d}{ Number.NEGATIVE_INFINITY }
+					node Number.NaN = ${d}{ Number.NaN }
+					node Number('123') = ${d}{ Number('123') }
+					node Number('12.3') = ${d}{ Number('12.3') }
+					node Number('') = ${d}{ Number('') }
+					node Number('0x11') = ${d}{ Number('0x11') }
+					node Number('0b11') = ${d}{ Number('0b11') }
+					node Number('0o11') = ${d}{ Number('0o11') }
+					node Number('foo') = ${d}{ Number('foo') }
+					node Number('100a') = ${d}{ Number('100a') }
+
+		item
+			title Ecma builtin RegExp object
+			ittf
+				root
+					node <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp"></a>
+					node new RegExp('\\w+') = ${d}{ new RegExp('\\w+') }
+					node 'John Smith'.replace(new RegExp('(\\w+)\\s(\\w+)'), '$2, $1') = 
+						${contb} ${d}{ 'John Smith'.replace(new RegExp('(\\w+)\\s(\\w+)'), '$2, $1') } 
+					${d}
+						var str = 'John Smith';
+						var reValue = '(\\w+)\\s(\\w+)';
+						var re = new RegExp(reValue);
+					node str.replace(re, '$2, $1') = ${d}{ str.replace(re, '$2, $1') } 
+
+		item
+			title Ecma builtin Array object
+			ittf
+				root
+					node <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"></a>
+					node new Array(4) = ${d}{ new Array(4) }
+					node new Array(4).join('0') = ${d}{ new Array(4).join('0') }
+
+		item
+			title Ecma builtin Object object
+			ittf
+				root
+					node <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"></a>
+					node new Object(true) = ${d}{ new Object(true).toString() }

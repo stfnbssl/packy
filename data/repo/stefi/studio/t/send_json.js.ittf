@@ -1,0 +1,6 @@
+﻿$group
+	$params payload
+	_ res.set('Content-Type', 'application/json');
+	_ res.send
+		_ JSON.stringify
+			@ ${payload}

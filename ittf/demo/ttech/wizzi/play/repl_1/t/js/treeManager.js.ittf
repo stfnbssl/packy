@@ -1,0 +1,78 @@
+﻿$group
+
+	class TreeManager
+		
+		ctor
+			param props
+			set this.props = props
+			set this.schemaTreeViews = {}
+			_ this.initialize
+
+		m initialize
+			
+			on( schema-selected-ready
+				_ this.getSchemaTreeView
+					@ data.name
+					@ data.json
+
+		m getSchemaTreeView
+			param name
+			param json
+
+			if this.schemaTreeViews[name]
+
+				_ wz.replaceChildren
+					@ 'items-tree-view'
+					@ this.schemaTreeViews[name]
+			
+			else
+
+				var treeView
+					new TreeView
+						{
+							@ app this
+							@ filesystem null
+							@ formsContainerId null
+
+				_ treeView.render
+					_ jsonToItemTree
+						@ name
+						@ json
+					a_cb_throw( element )
+						log 'treeView.render', element
+						set this.schemaTreeViews[name] = element
+						_ wz.replaceChildren
+							@ 'items-tree-view'
+							@ element
+
+	function jsonToItemTree
+		param schemaName
+		param json
+		
+		var root
+			{
+				@ name schemaName
+				@ isFolder true
+				@ expanded true
+				[ children
+		
+		foreach e in json.elements
+			var item
+				{
+					@ name e.name
+					@ isFolder true
+					@ expanded true
+					[ children
+			_ root.children.push
+				@ item
+			foreach e2 in e.items
+				var item2
+					{
+						@ name e2.title
+						@ id e2.id
+						@ isFolder false
+						[ children
+				_ item.children.push
+					@ item2
+
+		return root

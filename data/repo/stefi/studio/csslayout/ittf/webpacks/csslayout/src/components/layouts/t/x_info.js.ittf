@@ -1,0 +1,6 @@
+﻿{
+	$params format, id|@@null
+	@ kind 'info'
+	@ format '${format}'
+	$if id != null
+		@ id '${id}'

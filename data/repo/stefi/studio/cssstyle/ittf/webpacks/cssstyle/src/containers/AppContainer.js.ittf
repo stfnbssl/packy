@@ -1,0 +1,88 @@
+﻿r-container( App, false, true )
+	
+	$append  imports
+		import dhQuery from 'dom-helpers/query'
+		import App from '../components/App'
+		import StylesData from './StylesData'
+
+	state
+		@ selectedStyledId null
+		@ styledStyles null
+		@ metaPlay null
+
+	will-mount
+		set this.stylesData = new StylesData()
+		log 'componentDidMount.this.stylesData', this.stylesData
+		_ this.refreshStylesState
+			=>
+				_ this.updateDimensions()
+	
+	did-mount
+		_ window.addEventListener
+			@ "resize"
+			@ this.updateDimensions
+
+	=> updateDimensions
+		_ this.setState
+			{
+				@ ...this.state
+				@ width dhQuery.width(window)
+				@ height dhQuery.height(window)
+        
+	=> handleStyledChange
+		param id
+		param value
+
+		log 'handleStyledChange', arguments
+
+		_ this.stylesData.selectStyled(value)
+		_ this.refreshStylesState()
+			
+	=> handleStyleChange
+		param id
+		param values
+			
+		_ this.stylesData.updateStyles(values)
+		_ this.refreshStylesState()
+			
+	will-unmount
+		_ window.removeEventListener
+			@ "resize"
+			@ this.updateDimensions
+
+	m refreshStylesState
+		param callback
+		log 'refreshStylesState.stylesData', this.stylesData
+		_ this.setState
+			{
+				@ ...this.state
+				@ selectedStyledId this.stylesData.selectedStyledId
+				@ styledStyles this.stylesData.styledStyles
+				@ metaPlay this.stylesData.metaPlay
+			=>
+				log 'refreshStylesState', this.state
+				if callback
+					_ callback()
+		
+	render
+		log 'render.state', this.state
+		
+		prop width
+		prop height
+		
+		const { metaPlay, styledStyles } = this.state
+		const { styledMeta } = this.stylesData
+		const styledIds = this.stylesData.maps.styledIds || []
+		
+		return
+			div
+				< App
+					@ selectedStyledId {this.state.selectedStyledId}
+					@ styledIds {styledIds}
+					@ onStyledChange {this.handleStyledChange}
+					@ metaForm {metaPlay}
+					@ onStyleChange {this.handleStyleChange}
+					@ styledMeta {styledMeta}
+					@ styledStyles {styledStyles}
+				div App size: {width}px x {height}px
+				div Window size: {this.state.width}px x {this.state.height}px

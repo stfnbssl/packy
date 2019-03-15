@@ -1,0 +1,8 @@
+﻿button ${text}
+	$params text, title, placement|top
+    type button
+    class btn btn-default
+    data-toggle tooltip
+    data-placement ${placement}
+	$if title
+		title ${title}

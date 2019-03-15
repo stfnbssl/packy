@@ -1,0 +1,10 @@
+  module  ids: 1 11
+    kind react ids: 2 12
+    +  ids: 3 13
+    import { combineReducers } from 'redux' ids: 4 14
+    import commonsReducer from './commonsReducer' ids: 5 15
+    +  ids: 6 16
+    export default ids: 7 17
+      _ combineReducers ids: 8 18
+        {  ids: 9 19
+          @ commons commonsReducer ids: 10 20

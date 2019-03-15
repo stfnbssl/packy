@@ -1,0 +1,29 @@
+$group
+
+	{ navTop
+		fixed true
+		height 48
+		backgroundColor "#fefefe"
+		[ panels
+			{
+				kind "img-logo"
+				src "/ittf/images/logo.svg.ittf"
+				href '/ittf/home/index.html.ittf'
+				height 36
+				width 116
+			{
+				kind "flex"
+				[ items
+					{
+						label "Home"
+						href "/"
+					{
+						label "Concepts"
+						href "/static/wizzifactory.github.io/concepts.html"
+					{
+						label "Docs"
+						href "/static/wizzifactory.github.io/docs/intro.html"
+					{
+						label "Project"
+						href "/static/wizzifactory.github.io/project.html"
+

@@ -1,0 +1,27 @@
+module
+    kind react
+    _ Swal.mixin
+        { 
+            @ input 'text'
+            @ confirmButtonText 'Next &rarr;'
+            @ showCancelButton true
+            [ progressSteps
+                @ '1'
+                @ '2'
+                @ '3'
+        ._ queue
+            [ 
+                { 
+                    @ title 'Question 1'
+                    @ text 'Chaining swal2 modals is easy'
+                @ 'Question 2'
+                @ 'Question 3'
+        ._ then
+            => 
+                param result
+                if result.value
+                    _ Swal
+                        { 
+                            @ title 'All done!'
+                            @ html 'Your answers: <pre><code>' + JSON.stringify(result.value) + '</code></pre>'
+                            @ confirmButtonText 'Lovely!'

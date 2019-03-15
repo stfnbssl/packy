@@ -1,0 +1,10 @@
+﻿wfstudio
+
+	$include dashboard/v3-wizzi
+	$include dashboard/v3-wizzi-core
+	$include dashboard/v3-wizzi-meta
+	$include dashboard/v3-wizzi-js
+	$include dashboard/v3-wizzi-web
+	$*
+	$include dashboard/v3-wizzi-docs
+	*$

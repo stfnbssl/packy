@@ -1,0 +1,27 @@
+$group
+	$params &opt
+
+	$if typeof(mpage.aspect) !== 'undefined'
+		$if mpage.aspect.AnimateCss
+		    $if mpage.aspect.production
+		        s( /static/lib/animatecss/animate.min.css
+		    $else
+		        s( /static/lib/animatecss/animate.css
+		$if mpage.aspect.Codemirror
+			s( /static/lib/codemirror/lib/codemirror.css
+			s( /static/lib/codemirror/theme/monokai.css
+			s( /static/lib/codemirror/theme/twilight.css
+
+		$if mpage.aspect.Jarallax
+			s( /static/lib/jarallax/jarallax.css
+
+		$if mpage.aspect.Monaco
+			$$ j( /static/lib/monaco-editor/package/min/vs/editor/editor.main.css
+			
+		$if mpage.aspect.Popper
+		    s( /static/lib/popper/main.css
+
+		$if mpage.aspect.Social
+		    s( /static/lib/social/social-icons.css
+
+		

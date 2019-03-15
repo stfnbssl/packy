@@ -1,0 +1,28 @@
+﻿$group
+
+	. logo
+		span W
+			class logo-w
+		span i
+			class logo-i1
+		span z
+			class logo-z1
+		span z
+			class logo-z2
+		span i
+			class logo-i2
+		span &nbsp;
+		span f
+			class logo-f
+		span a
+			class logo-a
+		span c
+			class logo-c
+		span t
+			class logo-t
+		span o
+			class logo-o
+		span r
+			class logo-r
+		span y
+			class logo-y

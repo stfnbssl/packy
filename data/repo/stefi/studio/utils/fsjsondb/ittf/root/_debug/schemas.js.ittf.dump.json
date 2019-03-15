@@ -1,0 +1,265 @@
+{
+  "WmtTag": "module",
+  "WmtName": "",
+  "no_iife": false,
+  "use_strict": false,
+  "kind": "jsfile",
+  "exportKind": "var",
+  "includes": [],
+  "statements": [
+    {
+      "WmtTag": "+",
+      "WmtName": "",
+      "statements": []
+    },
+    {
+      "WmtTag": "#",
+      "WmtName": "",
+      "statements": [
+        {
+          "WmtTag": "#",
+          "WmtName": "WizziModelProduction",
+          "statements": []
+        },
+        {
+          "WmtTag": "#",
+          "WmtName": "script for generating WizziModelTypes and WizziModelFactories",
+          "statements": []
+        },
+        {
+          "WmtTag": "#",
+          "WmtName": "of this WizziFactoryPackage.",
+          "statements": []
+        }
+      ]
+    },
+    {
+      "WmtTag": "+",
+      "WmtName": "",
+      "statements": []
+    },
+    {
+      "WmtTag": "var",
+      "WmtName": "util = require('util')",
+      "statements": []
+    },
+    {
+      "WmtTag": "var",
+      "WmtName": "path = require('path')",
+      "statements": []
+    },
+    {
+      "WmtTag": "var",
+      "WmtName": "schema = require('wizzi-schema')",
+      "statements": []
+    },
+    {
+      "WmtTag": "+",
+      "WmtName": "",
+      "statements": []
+    },
+    {
+      "WmtTag": "var",
+      "WmtName": "packageName = 'wizzi-factory'",
+      "statements": []
+    },
+    {
+      "WmtTag": "+",
+      "WmtName": "",
+      "statements": []
+    },
+    {
+      "WmtTag": "var",
+      "WmtName": "wizziSchemaFolder = path.join(__dirname, 'lib', 'wizzi', 'schemas')",
+      "statements": []
+    },
+    {
+      "WmtTag": "var",
+      "WmtName": "wizziSchemaLabFolder = path.join(__dirname, 'lib', 'wizzi', 'schemas', 'lab')",
+      "statements": []
+    },
+    {
+      "WmtTag": "var",
+      "WmtName": "wizziModelFolder = path.join(__dirname, 'lib', 'wizzi', 'models')",
+      "statements": []
+    },
+    {
+      "WmtTag": "+",
+      "WmtName": "",
+      "statements": []
+    },
+    {
+      "WmtTag": "function",
+      "WmtName": "generate",
+      "statements": [
+        {
+          "WmtTag": "var",
+          "WmtName": "schemaIttfDocumentPath = path.join(wizziSchemaFolder, name + '.wizzischema.ittf')",
+          "statements": []
+        },
+        {
+          "WmtTag": "var",
+          "WmtName": "modelPath = path.join(wizziModelFolder, name + '-model.g.js')",
+          "statements": []
+        },
+        {
+          "WmtTag": "var",
+          "WmtName": "factoryPath = path.join(wizziModelFolder, name + '-factory.g.js')",
+          "statements": []
+        },
+        {
+          "WmtTag": "var",
+          "WmtName": "labPath = path.join(wizziSchemaLabFolder, name + '-test.g.js')",
+          "statements": []
+        },
+        {
+          "WmtTag": "var",
+          "WmtName": "jsondocsPath = path.join(wizziModelFolder, name + '-schema.g.json')",
+          "statements": []
+        },
+        {
+          "WmtTag": "var",
+          "WmtName": "htmldocsPath = path.join(wizziModelFolder, name + '-schema.g.html')",
+          "statements": []
+        },
+        {
+          "WmtTag": "_",
+          "WmtName": "schema.executeSchemaGenerationProcess",
+          "statements": [
+            {
+              "WmtTag": "@",
+              "WmtName": "schemaIttfDocumentPath",
+              "statements": []
+            },
+            {
+              "WmtTag": "@",
+              "WmtName": "modelPath",
+              "statements": []
+            },
+            {
+              "WmtTag": "@",
+              "WmtName": "factoryPath",
+              "statements": []
+            },
+            {
+              "WmtTag": "@",
+              "WmtName": "labPath",
+              "statements": []
+            },
+            {
+              "WmtTag": "@",
+              "WmtName": "jsondocsPath",
+              "statements": []
+            },
+            {
+              "WmtTag": "@",
+              "WmtName": "htmldocsPath",
+              "statements": []
+            },
+            {
+              "WmtTag": "{",
+              "WmtName": "",
+              "statements": []
+            },
+            {
+              "WmtTag": "function",
+              "WmtName": "",
+              "statements": [
+                {
+                  "WmtTag": "if",
+                  "WmtName": "err",
+                  "statements": [
+                    {
+                      "WmtTag": "throw",
+                      "WmtName": "new Error('Package: ' + packageName + '.WizziModelProduction error: ' + util.inspect(err, { depth: null }))",
+                      "statements": []
+                    }
+                  ]
+                }
+              ],
+              "args": [
+                {
+                  "WmtTag": "arg",
+                  "WmtName": "err"
+                },
+                {
+                  "WmtTag": "arg",
+                  "WmtName": "result"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "args": [
+        {
+          "WmtTag": "arg",
+          "WmtName": "name"
+        }
+      ]
+    },
+    {
+      "WmtTag": "+",
+      "WmtName": "",
+      "statements": []
+    },
+    {
+      "WmtTag": "#",
+      "WmtName": "Expose the execute (WizziModelProductions) function",
+      "statements": []
+    },
+    {
+      "WmtTag": "var",
+      "WmtName": "md = module.exports = {}",
+      "statements": []
+    },
+    {
+      "WmtTag": "set",
+      "WmtName": "md.execute",
+      "statements": [
+        {
+          "WmtTag": "function",
+          "WmtName": "",
+          "statements": [
+            {
+              "WmtTag": "_",
+              "WmtName": "generate('wfjob')",
+              "statements": []
+            },
+            {
+              "WmtTag": "_",
+              "WmtName": "generate('npmpackage')",
+              "statements": []
+            },
+            {
+              "WmtTag": "_",
+              "WmtName": "generate('nools')",
+              "statements": []
+            },
+            {
+              "WmtTag": "_",
+              "WmtName": "generate('wfpackage')",
+              "statements": []
+            }
+          ],
+          "args": []
+        }
+      ]
+    },
+    {
+      "WmtTag": "+",
+      "WmtName": "",
+      "statements": []
+    },
+    {
+      "WmtTag": "#",
+      "WmtName": "CLI execution",
+      "statements": []
+    },
+    {
+      "WmtTag": "_",
+      "WmtName": "md.execute()",
+      "statements": []
+    }
+  ]
+}

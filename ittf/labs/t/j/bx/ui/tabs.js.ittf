@@ -1,0 +1,29 @@
+﻿$group
+	$params prefix|bx, render:boolean|true
+
+	$if render
+		tabitem(${prefix}, true)
+		tabpane(${prefix}, true)
+	$else
+		tabitem(${prefix}, false)
+		tabpane(${prefix}, false)
+
+	class ${prefix}Tabs
+		ctor
+			set this.tabItems = []
+			set this.tabPanes = []
+
+		$if render
+			m render
+		$else
+			m attach
+				param el
+
+		m addTab
+			param props
+			var tabItem = new ${prefix}TabItem(props)
+			_ this.tabItems.push(tabItem)
+			var tabPane = new ${prefix}TabPane(props)
+			_ this.tabPanes.push(tabPane)
+
+

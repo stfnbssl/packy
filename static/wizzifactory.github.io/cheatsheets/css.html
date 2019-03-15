@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+    <title>Schema cheat sheet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wz-content-1">
+        <nav class="tn-bar" style="display: flex; margin: 0.5rem;">
+            <div class="logo">
+                <img src="/images/logo.svg" width="70px" height="30px" />
+            </div>
+        </nav>
+        <div class="mc-wrapper-layout" id="mc-wrapper">
+            <div class="mc-frame-bar">
+                <div class="mc-frame-bar-item">Schema cheat sheet</div>
+            </div>
+            <div class="mc-frame">
+                <div class="mc-sidebar-left">
+                    <ul>
+                        <li><a href="#selectorr">selectorr</a>
+                        <ul>
+                            <li><a href="#Css element selector">Css element selector</a>
+                            </li>
+                            <li><a href="#Css class selector">Css class selector</a>
+                            </li>
+                            <li><a href="#Css id selector">Css id selector</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#include svg">include svg</a>
+                        <ul>
+                            <li><a href="#script tag with inclusion of a svg model">script tag with inclusion of a svg model</a>
+                            </li>
+                        </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mc-content">
+                    <div style="display: flex;" id="selectorr">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">selectorr</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">. | # | <</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Css element selector">Css element selector</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">css</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag"><</span><span class="pp-pln"> body</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">background-color</span><span class="pp-pln"> #dedede</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">color</span><span class="pp-pln"> 000</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-css">
+    
+body {
+    background-color: #dedede;
+    color: 000;
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Css class selector">Css class selector</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">css</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">.</span><span class="pp-pln"> page</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">background-color</span><span class="pp-pln"> #dedede</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">color</span><span class="pp-pln"> 000</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-css">
+    
+.page {
+    background-color: #dedede;
+    color: 000;
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Css id selector">Css id selector</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">css</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">#</span><span class="pp-pln"> page</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">background-color</span><span class="pp-pln"> #dedede</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">color</span><span class="pp-pln"> 000</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-css">
+    
+#page {
+    background-color: #dedede;
+    color: 000;
+}
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="include svg">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">include svg</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">background-image + svg</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="script tag with inclusion of a svg model">script tag with inclusion of a svg model</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">css</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag"><</span><span class="pp-pln"> body</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">background-image</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">svg</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">                </span><span class="pp-tag">width</span><span class="pp-pln"> 100%</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">                </span><span class="pp-tag">height</span><span class="pp-pln"> 100%</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">                </span><span class="pp-tag">view-box</span><span class="pp-pln"> 0 0 1600 900</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">                </span><span class="pp-tag">path</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">                    </span><span class="pp-tag">fill</span><span class="pp-pln"> #A0E2DB</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">                    </span><span class="pp-tag">d</span><span class="pp-pln"> M0 504 0 899 1600 899 1600 120z</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">                </span><span class="pp-tag">path</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">                    </span><span class="pp-tag">fill</span><span class="pp-pln"> #CBF2F3</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">                    </span><span class="pp-tag">d</span><span class="pp-pln"> M1600 567 1600 899 0 899 0 165z</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">                </span><span class="pp-tag">path</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">                    </span><span class="pp-tag">fill</span><span class="pp-pln"> #719D71</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">                    </span><span class="pp-tag">d</span><span class="pp-pln"> M0 680 0 899 1600 899 1600 300z</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">                </span><span class="pp-tag">path</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">                    </span><span class="pp-tag">fill</span><span class="pp-pln"> # 37EB67E</span></div><div class="L9"><span class="pp-ln">  19 </span><span class="pp-pln">                    </span><span class="pp-tag">d</span><span class="pp-pln"> M1600 719 1600 899 0 899 0 353z</span></div><div class="L0"><span class="pp-ln">  20 </span><span class="pp-pln">                </span><span class="pp-tag">path</span></div><div class="L1"><span class="pp-ln">  21 </span><span class="pp-pln">                    </span><span class="pp-tag">fill</span><span class="pp-pln"> #004D66</span></div><div class="L2"><span class="pp-ln">  22 </span><span class="pp-pln">                    </span><span class="pp-tag">d</span><span class="pp-pln"> M0 788 0 899 1600 899 1600 625z</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-css">
+    
+body {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 900'%3E%3Cpath d='M0 504 0 899 1600 899 1600 120z' style='fill:%23A0E2DB;'%3E%3C/path%3E%3Cpath d='M1600 567 1600 899 0 899 0 165z' style='fill:%23CBF2F3;'%3E%3C/path%3E%3Cpath d='M0 680 0 899 1600 899 1600 300z' style='fill:%23719D71;'%3E%3C/path%3E%3Cpath d='M1600 719 1600 899 0 899 0 353z' style='fill:%23 37EB67E;'%3E%3C/path%3E%3Cpath d='M0 788 0 899 1600 899 1600 625z' style='fill:%23004D66;'%3E%3C/path%3E%3C/svg%3E");
+}
+</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+</body>
+
+</html>

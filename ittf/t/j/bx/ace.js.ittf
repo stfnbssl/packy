@@ -1,0 +1,33 @@
+﻿$group
+
+	var AceEditor_defaults
+		{
+			@ editorElement 'aceEditor'
+			@ theme 'ace/theme/monokai'
+			@ mode 'ace/mode/javascript'
+			@ width 400
+			@ height 300
+			
+	class AceEditor
+		ctor
+			param options
+			set this.options = $.extend({}, AceEditor_defaults, options)
+
+		m get
+			if this.editor
+				return this.editor.getValue()
+
+		m set
+			param value
+			if !this.editor
+				_ this.initialize()
+			_ this.editor.setValue(value, 1)
+			
+		m initialize
+
+			set this.$element = $('#' + this.options.editorElement)
+			_ this.$element.width(this.options.width)
+			_ this.$element.height(this.options.height)
+			set this.editor = ace.edit(this.options.editorElement)
+			set this.editor.setTheme(this.options.theme)
+			_ this.editor.getSession().setMode(this.options.mode)

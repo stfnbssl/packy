@@ -1,0 +1,8 @@
+f_group( ${id}, ${label}, ${haserror}, ${error} )
+	$params id, label, value|@@null, haserror|false, error|@@null
+	input
+		id ${id}
+		class form-control
+		name ${id}
+		type slider
+		value ${value}

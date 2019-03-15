@@ -1,0 +1,87 @@
+// 2/5/2017:22:21:17  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "html", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //49
+$.a($0, $1, 5);
+var $2 = { n: "head", v: "", r: 2, c: 5, s: "f1", u: "f1",  }; //50
+$.a($1, $2, 7);
+var $3 = { n: "css", v: "/static/lib/normalize.css", r: 3, c: 9, s: "f1", u: "f1",  }; //51
+$.a($2, $3, 9);
+var $4 = { n: "css", v: "./style.css.ittf", r: 4, c: 9, s: "f1", u: "f1",  }; //52
+$.a($2, $4, 11);
+var $5 = { n: "body", v: "", r: 5, c: 5, s: "f1", u: "f1",  }; //53
+$.a($1, $5, 13);
+var $6 = { n: "#", v: "header", r: 7, c: 9, s: "f1", u: "f1",  }; //54
+$.a($5, $6, 15);
+var $7 = { n: "style", v: "height: 150px; background-color: #33CCDD; padding:10px", r: 8, c: 13, s: "f1", u: "f1",  }; //55
+$.a($6, $7, 17);
+var $8 = { n: "p", v: "header", r: 9, c: 13, s: "f1", u: "f1",  }; //56
+$.a($6, $8, 19);
+var $9 = { n: "p", v: "make sure left/right margins or left/right padding are 0px here it'll mess with the width otherwise", r: 10, c: 13, s: "f1", u: "f1",  }; //57
+$.a($6, $9, 21);
+var $10 = { n: "#", v: "container", r: 13, c: 9, s: "f1", u: "f1",  }; //58
+$.a($5, $10, 23);
+var $11 = { n: "style", v: "width: 100%;", r: 14, c: 13, s: "f1", u: "f1",  }; //59
+$.a($10, $11, 25);
+var $12 = { n: "#", v: "left-sidebar", r: 16, c: 13, s: "f1", u: "f1",  }; //60
+$.a($10, $12, 27);
+var $13 = { n: "style", v: "float:left; width: 20%; background-color: #33DDEE; height: 300px; overflow: auto;", r: 17, c: 17, s: "f1", u: "f1",  }; //61
+$.a($12, $13, 29);
+var $14 = { n: "p", v: "left sidebar", r: 19, c: 17, s: "f1", u: "f1",  }; //62
+$.a($12, $14, 31);
+var $15 = { n: "style", v: "padding:10px;", r: 20, c: 21, s: "f1", u: "f1",  }; //63
+$.a($14, $15, 33);
+var $16 = { n: "ul", v: "", r: 21, c: 17, s: "f1", u: "f1",  }; //64
+$.a($12, $16, 35);
+var $17 = { n: "style", v: "padding:10px;", r: 22, c: 21, s: "f1", u: "f1",  }; //65
+$.a($16, $17, 37);
+var $18 = { n: "li", v: "Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.", r: 23, c: 21, s: "f1", u: "f1",  }; //66
+$.a($16, $18, 39);
+var $19 = { n: "li", v: "Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.", r: 24, c: 21, s: "f1", u: "f1",  }; //67
+$.a($16, $19, 41);
+var $20 = { n: "li", v: "Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.", r: 25, c: 21, s: "f1", u: "f1",  }; //68
+$.a($16, $20, 43);
+var $21 = { n: "li", v: "Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.", r: 26, c: 21, s: "f1", u: "f1",  }; //69
+$.a($16, $21, 45);
+var $22 = { n: "#", v: "main-content", r: 29, c: 13, s: "f1", u: "f1",  }; //70
+$.a($10, $22, 47);
+var $23 = { n: "style", v: "float:left; width: 60%; background-color: #33BBCC; height: 300px; overflow: auto;", r: 30, c: 17, s: "f1", u: "f1",  }; //71
+$.a($22, $23, 49);
+var $24 = { n: "p", v: "main content", r: 32, c: 17, s: "f1", u: "f1",  }; //72
+$.a($22, $24, 51);
+var $25 = { n: "style", v: "padding:10px;", r: 33, c: 21, s: "f1", u: "f1",  }; //73
+$.a($24, $25, 53);
+var $26 = { n: "p", v: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus", r: 34, c: 17, s: "f1", u: "f1",  }; //74
+$.a($22, $26, 55);
+var $27 = { n: "style", v: "padding:10px;", r: 35, c: 21, s: "f1", u: "f1",  }; //75
+$.a($26, $27, 57);
+var $28 = { n: "#", v: "right-sidebar", r: 37, c: 13, s: "f1", u: "f1",  }; //76
+$.a($10, $28, 59);
+var $29 = { n: "style", v: "float:left; width: 20%; background-color: #33AABB; height: 300px; overflow: auto;", r: 38, c: 17, s: "f1", u: "f1",  }; //77
+$.a($28, $29, 61);
+var $30 = { n: "p", v: "right sidebar", r: 40, c: 17, s: "f1", u: "f1",  }; //78
+$.a($28, $30, 63);
+var $31 = { n: "style", v: "padding:10px;", r: 41, c: 21, s: "f1", u: "f1",  }; //79
+$.a($30, $31, 65);
+var $32 = { n: "div", v: "", r: 43, c: 13, s: "f1", u: "f1",  }; //80
+$.a($10, $32, 67);
+var $33 = { n: "style", v: "clear:both;", r: 44, c: 17, s: "f1", u: "f1",  }; //81
+$.a($32, $33, 69);
+var $34 = { n: "#", v: "footer", r: 46, c: 9, s: "f1", u: "f1",  }; //82
+$.a($5, $34, 71);
+var $35 = { n: "style", v: "height: 150px; background-color: #3399AA; padding:10px", r: 47, c: 13, s: "f1", u: "f1",  }; //83
+$.a($34, $35, 73);
+var $36 = { n: "p", v: "footer", r: 48, c: 13, s: "f1", u: "f1",  }; //84
+$.a($34, $36, 75);
+var $37 = { n: "#", v: "mainContentPopLayoutInfo", r: 50, c: 9, s: "f1", u: "f1",  }; //85
+$.a($5, $37, 77);
+var $38 = { n: "style", v: "display:none overflow: auto;", r: 51, c: 13, s: "f1", u: "f1",  }; //86
+$.a($37, $38, 79);
+var $39 = { n: "#", v: "headerPopLayoutInfo", r: 54, c: 9, s: "f1", u: "f1",  }; //87
+$.a($5, $39, 81);
+var $40 = { n: "style", v: "display:none overflow: auto;", r: 55, c: 13, s: "f1", u: "f1",  }; //88
+$.a($39, $40, 83);
+var $41 = { n: "js", v: "//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js", r: 58, c: 9, s: "f1", u: "f1",  }; //89
+$.a($5, $41, 85);
+var $42 = { n: "js", v: "js/main.js.ittf", r: 59, c: 9, s: "f1", u: "f1",  }; //90
+$.a($5, $42, 87);

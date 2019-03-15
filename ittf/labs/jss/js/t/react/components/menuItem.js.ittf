@@ -1,0 +1,58 @@
+﻿$group
+
+	import React, {PureComponent, PropTypes} from 'react'
+	import MenuItem from '../MenuItem'
+	import {tree} from '../../utils/navigation'
+	import injectSheet from '../../utils/jss'
+	import styles from './styles'
+
+	j/iife-wrapped( BxMenuItem, reactModule, propTypesModule, menuItem, navigationTree, localJss, menuStyles )
+		const {PureComponent} = reactModule
+		const {PropTypes} = propTypesModule
+		const {injectSheet} = localJss
+	
+		class Menu
+			super PureComponent
+		
+			p propTypes
+				static
+				@ sheet PropTypes.object.isRequired
+
+			m renderMenu
+				param root
+				param level = 0
+			
+				const menu = []
+				let index = 0
+
+				for const name in root
+					const page = root[name]
+					if page.hidden
+						continue
+					_ menu.push
+						< MenuItem
+							@ {...page}
+							@ name {name}
+							@ key {index}
+							@ level {level}
+				if page.children
+					_ menu.push
+						_ this.renderMenu
+							@ page.children
+							@ level + 1
+				index++
+				return menu
+
+			m render
+				const {classes} = this.props.sheet
+				return
+					< nav
+						@ className {classes.menu}
+						{
+							this.renderMenu(navigationTree)
+
+		return 
+			_ injectSheet
+				@ styles
+				(
+					@ Menu

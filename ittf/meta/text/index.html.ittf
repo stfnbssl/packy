@@ -1,0 +1,44 @@
+﻿html
+	head
+		css /ittf/meta/text/styles.css.ittf
+
+	body
+
+		nav
+			class tn-bar
+			nav
+				class tn-main
+				a
+					href index.html.ittf
+					. logo
+						img
+							src /ittf/images/logo.svg.ittf
+				ul
+					li
+						h6 ${ts.uri}
+
+		# mc-wrapper
+			class mc-wrapper-layout
+
+			. mc-frame
+
+
+				. mc-content
+
+					# ittf-editor-form
+						class editor-form
+						# ittf-editor-title
+							class editor-title
+						. editor-content
+							. editor-panel
+								# editorContainer
+							. editor-buttons
+								# ittf-editor-save
+									class editor-button
+									+ Save
+								# ittf-editor-cancel
+									class editor-button
+									+ Cancel
+		
+		js /static/lib/ace/src-noconflict/ace.js
+		js /ittf/meta/text/main.js.ittf

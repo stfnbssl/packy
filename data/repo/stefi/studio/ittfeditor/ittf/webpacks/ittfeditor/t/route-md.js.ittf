@@ -1,0 +1,7 @@
+﻿< Route
+	$params group, name, title
+	@ title "${title}"
+	@ path {basepath + "/${group}/${name}"}
+	@ component {MarkdownDocs}
+	@ content {requireMarkdown('./${group}/${name}.md')}
+	@ nav

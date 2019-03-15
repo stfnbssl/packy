@@ -1,0 +1,77 @@
+﻿$group
+
+	class SlidePanel
+		super React.Component
+		ctor
+			set this.state
+				{
+					@ visible false
+
+		m componentDidMount
+			const { data } = this.props
+			const { toggleEvent, visibleOnStart } = data
+			_ this.setState
+				{
+					@ visible visibleOnStart
+			if toggleEvent
+				var that = this
+				set this.toggleEventHandler
+					_ builder.events.subscribe
+						@ toggleEvent
+						function
+							log 'WrapperPanel received event ' + toggleEvent
+							_ that.setState
+								{
+									@ visible !that.state.visible
+            
+		m componentWillUnmount
+			if this.toggleEventHandler
+				_ this.toggleEventHandler.remove()
+
+		m render
+			const { data } = this.props
+			const { id, percWidth, flex, style: elementStyle } = data
+			return
+				div
+					@ id { id }
+					@style { this.style(percWidth, flex, elementStyle) }
+					{
+						_ data.panels.map
+							=>
+								param panel
+								var PanelComponent = builder.create(panel)
+								return
+									< PanelComponent
+										@ data { panel }    
+
+		m style
+			param percWidth
+			param flex
+			param elementStyle
+
+			const ret
+					_ Object.assign
+						{
+						{
+							@ width (percWidth + '%')
+							@ height '100%'
+							@ top 0
+							@ left ('-' + percWidth + '%')
+							@ position 'fixed'
+							@ zIndex '10' 
+							@ background '#fff'
+							@ transition '0.3s'
+						@ elementStyle
+			
+			if flex === 'row' || flex === 'column'
+				_ builder.setFlex(ret, flex)
+			
+			if this.state.visible
+				set ret.left = 0
+			
+			return ret
+
+	
+	
+	
+	

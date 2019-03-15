@@ -1,0 +1,22 @@
+module
+	kind jsfile
+
+	var gulp = require('gulp')
+	var mocha = require('gulp-mocha')
+	$$ var nodemon = require('gulp-nodemon');
+
+	_ gulp.task
+		@ 'test'
+		function
+			_ gulp.src
+				@ 'tests/**/*.js'
+				._ pipe
+					_ mocha
+						{
+							@ reporter 'spec'
+							@ clearRequireCache true
+							@ ignoreLeaks true
+	_ gulp.task
+		@ 'default'
+		[
+			@ 'test'

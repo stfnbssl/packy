@@ -1,0 +1,83 @@
+  module  ids: 1 48
+    kind react ids: 2 49
+    +  ids: 3 50
+    import React from 'react' ids: 4 51
+    import { Modal, Button, Form, FormGroup, FormControl, ControlLabel, Col } from 'react-bootstrap' ids: 5 52
+    let CreateSchemaForm ids: 6 53
+      =>  ids: 7 54
+        param { packages, showModal, onCancel, onCreateSubmit } ids: 8 55
+        let name ids: 9 56
+        let xpackage ids: 10 57
+        let options ids: 11 58
+          _ packages.map ids: 12 59
+            =>  ids: 13 60
+              param item ids: 14 61
+              return  ids: 15 62
+                < option ids: 16 63
+                  @ value {item.name} ids: 17 64
+                  @ key {item.name} ids: 18 65
+                  + {item.name} ids: 19 66
+        return  ids: 20 67
+          div  ids: 21 68
+            < Modal ids: 22 69
+              @ show {showModal} ids: 23 70
+              @ onHide {onCancel} ids: 24 71
+              < Modal.Header ids: 25 72
+                @ closeButton ids: 26 73
+                < Modal.Title Create a new schema ids: 27 74
+                < Modal.Body ids: 28 75
+                  < Form ids: 29 76
+                    @ horizontal ids: 30 77
+                    $group  ids: 95 114
+                      $args: name, schema name $params: name, label
+                      < FormGroup ids: 97 115
+                        @ controlId ${name} ids: 98 116
+                        < Col ids: 99 117
+                          @ componentClass {ControlLabel} ids: 100 118
+                          @ sm {2} ids: 101 119
+                          + ${label} ids: 102 120
+                        < Col ids: 103 121
+                          @ sm {10} ids: 104 122
+                          < FormControl ids: 105 123
+                            type text ids: 106 124
+                            placeholder ${label} ids: 107 125
+                            @ key ${name} ids: 108 126
+                            @ name ${name} ids: 109 127
+                            @ ref ids: 110 128
+                              =>  ids: 111 129
+                                param node ids: 112 130
+                                set ${name} = node ids: 113 131
+                    $group  ids: 132 152
+                      $args: xpackage, package $params: name, label
+                      < FormGroup ids: 134 153
+                        @ controlId ${name} ids: 135 154
+                        < Col ids: 136 155
+                          @ componentClass {ControlLabel} ids: 137 156
+                          @ sm {2} ids: 138 157
+                          + ${label} ids: 139 158
+                        < Col ids: 140 159
+                          @ sm {10} ids: 141 160
+                          < FormControl ids: 142 161
+                            @ componentClass select ids: 143 162
+                            placeholder ${label} ids: 144 163
+                            @ key ${name} ids: 145 164
+                            @ name ${name} ids: 146 165
+                            @ ref ids: 147 166
+                              =>  ids: 148 167
+                                param node ids: 149 168
+                                set ${name} = node ids: 150 169
+                            + {options} ids: 33 80
+                < Modal.Footer ids: 34 81
+                  < Button Cancel ids: 35 82
+                    onClick {onCancel} ids: 36 83
+                  < Button Create Schema ids: 37 84
+                    onClick  ids: 38 85
+                      =>  ids: 39 86
+                        param e ids: 40 87
+                        _ e.preventDefault() ids: 41 88
+                        _ onCreateSubmit ids: 42 89
+                          @ name.value ids: 43 90
+                          @ xpackage.value ids: 44 91
+                        set name.value = '' ids: 45 92
+                        set xpackage.value = '' ids: 46 93
+    export default CreateSchemaForm ids: 47 94

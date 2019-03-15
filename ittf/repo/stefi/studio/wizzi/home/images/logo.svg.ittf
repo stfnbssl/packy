@@ -1,0 +1,58 @@
+﻿svg
+	$
+		var opt = {};
+		opt.y0 = 10;
+		opt.y1 = 10;
+		opt.y1a = 90;
+		opt.y2 = 210;
+		opt.ybottom = 250;
+	
+	width 660
+	height 260
+	preserve-aspect-ratio xMidYMid meet
+	rect
+		x 0
+		y 0
+		width 660
+		height 280
+		fill black
+		stroke none
+	
+	polyline
+		stroke white
+		fill white
+		stroke-width 2
+		points 10 ${opt.ybottom}
+			\b 45 ${opt.y0} 60 ${opt.y0} 75 ${opt.y1a + 40} 
+			\b 120 ${opt.y2} 120 ${opt.y1a + 40} 
+			\b 175 ${opt.y2} 175 ${opt.y1a + 20} 
+			\b 230 ${opt.y2} 230 ${opt.ybottom}
+
+	i( 250, &opt )
+	zeta( 320, &opt )
+	zeta( 450, &opt )
+	i( 590, &opt )
+	
+
+	$*
+	polyline
+		stroke black
+		fill white
+		stroke-width 2
+		points 62 60 62 56 78 ${opt.y1+4} 70 ${opt.y1+2} 70 ${opt.y1} 84 ${opt.y1} 84 60
+
+	text Wizzi
+		fill white
+		font-family Georgia
+		font-size ${y2}px
+		font-weight bold
+		x 20
+		y 30
+	text Factory
+		fill white
+		font-family Arial
+		font-size 16px
+		font-weight bold
+		x 74
+		y 46
+	*$

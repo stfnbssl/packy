@@ -1,0 +1,34 @@
+﻿html 
+    body 
+		h1 Processes
+		h3
+			a stackoverflow example of how to stream stdout instantly to the client
+				href https://stackoverflow.com/questions/21934831/nodejs-express-stream-stdout-instantly-to-the-client
+        ul 
+            id eventlist
+		script
+			module
+                var eventList = document.getElementById("eventlist")
+                var evtSource = new EventSource("/api/test/processes/stdiostream")
+                var newElement = document.createElement("li")
+                set newElement.innerHTML = "Messages:"
+                _ eventList.appendChild(newElement)
+                set evtSource.onmessage
+					=>
+						param e
+						log "received event"
+						log e
+						var newElement = document.createElement("li")
+						set newElement.innerHTML = "message: " + e.data
+						_ eventList.appendChild(newElement)
+						if e.data === "***___CLOSE___***"
+							_ evtSource.close()
+                set evtSource.onopen
+					=>
+						param e
+						log "EventSource opened.", e
+                set evtSource.onerror
+					=>
+						param e
+						log "EventSource failed.", e
+                log evtSource

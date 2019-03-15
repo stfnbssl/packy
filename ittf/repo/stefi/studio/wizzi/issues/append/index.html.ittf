@@ -1,0 +1,43 @@
+h/root/empty_layout()
+
+	$
+		var primary_var_alpha = 'primary_var_alpha '
+
+	$append head-styles
+		@style
+			css
+				< body
+					margin 3rem
+				< p
+					font-size 1.2rem
+				< code
+					background #ddd
+					font-size 1.2rem
+					padding 0 1rem
+				. primary
+					color red
+					background #ee0
+					padding 1rem
+				. frag_1
+					color darkgreen
+					background #0ee
+					padding 1rem
+
+	div
+		class primary
+		
+		h3 I am in primary and declare a var: typeof(primary_var_alpha) = ${ typeof(primary_var_alpha) }, value = ${primary_var_alpha}
+			class primary
+		
+		code frag_1()
+		
+		hr
+
+		frag_1()
+			$append hook_1
+				. primary
+					p I am declared in primary and appended to hook_1 in frag_1
+					p I should see vars declared in primary: typeof(primary_var_alpha) = ${ typeof(primary_var_alpha) }
+					p and not those declared in frag_1:  typeof(frag_1_beta) = ${ typeof(frag_1_beta) }
+
+		hr

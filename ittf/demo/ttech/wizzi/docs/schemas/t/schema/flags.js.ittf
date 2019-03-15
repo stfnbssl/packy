@@ -1,0 +1,8 @@
+﻿var Flags
+	=>
+		param { flags }
+		if !flags || !flags.length
+			return null
+		else
+			return
+				span {flags}

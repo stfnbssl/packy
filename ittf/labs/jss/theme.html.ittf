@@ -1,0 +1,7 @@
+﻿h/react-page( theme )
+
+	$append body-scripts
+		js /static/lib/jss/jss.js
+		js /static/lib/jss/jss-preset-default.js
+		js /static/lib/jss/jss-isolate.js
+		js /static/lib/jss/jss-theme-reactor.js

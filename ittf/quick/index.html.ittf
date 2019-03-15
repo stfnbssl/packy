@@ -1,0 +1,16 @@
+html
+
+	$
+		var opt = {}
+		opt.title = 'Quick';
+
+	h/root/empty_layout_opt(&opt)
+
+		$append head-styles
+			css ./index.css.ittf
+	
+		$append body-scripts
+			js ./index.js.ittf
+
+		# app
+		    h1 Quick html,js,css test

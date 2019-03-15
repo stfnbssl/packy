@@ -1,0 +1,100 @@
+﻿h/root/empty_layout()
+
+	$append head-styles
+		$$ css ./styles.css.ittf
+		@style
+			css
+				< body
+					font-family monospace
+					font-size 14px
+				. test-section
+					margin 10px 0px
+					padding 20px
+					border 1px solid #00f
+				. bar
+					display flex
+					margin 10px 0px
+				. bar-item
+					margin 0px 10px
+				. json-item
+					display none
+				. show-json .json-item
+					display block
+
+	button
+		id display
+		+ Display ixdb content
+	
+	$append body-scripts
+		script
+			module
+				$$ var addButton = document.querySelector('#add')
+				var displayButton = document.querySelector('#display')
+				$$ var DB_NAME = 'wizziRepo'
+				var DB_NAME = 'browserfs'
+				var DB_VERSION = 1
+				$$ var STORE_NAME = 'wizziRepo'
+				var STORE_NAME = 'browserfs'
+				var db
+				var request = indexedDB.open(DB_NAME, DB_VERSION)
+				$*
+				set request.onupgradeneeded =
+					function 
+						# Create a new object store if this is the first time we're using
+						# this DB_NAME/DB_VERSION combo.
+						_ request.result.createObjectStore
+							@ STORE_NAME
+							{ 
+								@ autoIncrement true
+				*$
+				set request.onsuccess =
+					function 
+						set db = request.result
+						# Enable our buttons once the IndexedDB instance is available.
+						$$ set addButton.disabled = false
+						set displayButton.disabled = false
+				$*
+				_ addButton.addEventListener
+					@ 'click'
+					function 
+						var transaction = db.transaction(STORE_NAME, 'readwrite')
+						var objectStore = transaction.objectStore(STORE_NAME)
+						# Add the current timestamp to IndexedDB.
+						set objectStore.put(Date.now()).onsuccess =
+							function 
+								_ WizziBrowser.setStatus('Added timestamp to IndexedDB.')
+				*$
+				function logTimestamps
+					param timestamps
+					_ WizziBrowser.setStatus('There are ' + timestamps.length + ' timestamp(s) saved in IndexedDB: ')
+					var enc = new TextDecoder("utf-8")
+					foreach item in timestamps
+						_ WizziBrowser.log(enc.decode(item))
+						_ WizziBrowser.log('----------------------------------------')
+				_ displayButton.addEventListener
+					@ 'click'
+					function 
+						var transaction = db.transaction(STORE_NAME, 'readonly')
+						var objectStore = transaction.objectStore(STORE_NAME)
+						if 'getAll' in objectStore
+							# IDBObjectStore.getAll() will return the full set of items in our store.
+							set objectStore.getAll().onsuccess =
+								function 
+									param event
+									log event.target
+									_ logTimestamps(event.target.result)
+						else
+							# Fallback to the traditional cursor approach if getAll isn't supported.
+							var timestamps = []
+							set objectStore.openCursor().onsuccess =
+								function 
+									param event
+									var cursor = event.target.result
+									if cursor
+										log cursor.value
+										_ timestamps.push(cursor.value)
+										_ cursor.continue
+									else
+										_ logTimestamps(timestamps)
+
+

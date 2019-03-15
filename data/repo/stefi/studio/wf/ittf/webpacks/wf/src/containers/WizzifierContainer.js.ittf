@@ -1,0 +1,53 @@
+﻿r-container( Wizzifier )
+	
+	$append  imports
+		import { 
+			\b jsWizzify,
+			\b htmlWizzify,
+			\b cssWizzify,
+			\b xmlWizzify
+			\b } from '../store/actions'
+		import Wizzifier from '../components/Wizzifier'
+
+	render
+		prop isRequesting
+		prop lastSourceArray
+		prop wizzifiedArray
+		prop handleWizzify
+		
+		return
+			< Wizzifier
+				@ isRequesting {isRequesting}
+				@ lastSourceArray {lastSourceArray}
+				@ wizzifiedArray {wizzifiedArray}
+				@ onWizzify {handleWizzify}
+
+	$append state-to-props
+		@ isRequesting state.wizzifier.isRequesting
+		@ lastSourceArray state.wizzifier.lastSource
+		@ wizzifiedArray state.wizzifier.wizzified
+
+	$append dispatch-to-props
+		
+		@ handleWizzify
+			=>
+				param index
+				param source
+				param checked
+				if index == 0
+					_ dispatch
+						_ jsWizzify
+							@ source
+							@ checked
+				elif index == 1
+					_ dispatch
+						_ htmlWizzify
+							@ source
+				elif index == 2
+					_ dispatch
+						_ cssWizzify
+							@ source
+				elif index == 3
+					_ dispatch
+						_ xmlWizzify
+							@ source

@@ -1,0 +1,22 @@
+﻿r-component( SimpleFormController )
+
+	$append imports
+		import SimpleForm from './SimpleForm'
+
+	style
+
+	=> showResults
+		param values
+		_ window.alert
+			@ `You submitted:\n\n${JSON.stringify(values, null, 2)}`
+
+	render
+
+		return
+			div
+				@style
+					{
+						@ padding 15
+				h2 Simple Form
+				< SimpleForm
+					@ onSubmit {this.showResults}

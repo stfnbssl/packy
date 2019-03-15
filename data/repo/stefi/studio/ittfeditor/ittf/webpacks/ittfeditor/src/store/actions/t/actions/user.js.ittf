@@ -1,0 +1,26 @@
+﻿$group
+	+
+	# User accounts are not created neither managed by the Ittf editor.
+	# User actions retrieve and modify user state only.
+	+
+	http( project, select )
+	+
+	wz-const selectProject
+		=>
+			param project
+			return
+				{
+					@ type SELECT_PROJECT
+					@ project project
+					@ [HTTP_REQUEST]
+						{
+							@ types
+								[
+									@ SELECT_PROJECT_REQUEST
+									@ SELECT_PROJECT_SUCCESS
+									@ SELECT_PROJECT_FAILURE
+							@ url '/api/studio/user'
+							@ method 'post'
+							@ payload
+								{
+									@ project project

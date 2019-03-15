@@ -1,0 +1,17 @@
+$group
+	$params &options
+
+	div
+		class frag_1
+		h2 Frag 1 Here
+		ul I received
+			li options.alpha : ${options.alpha}
+			li options.beta: ${options.beta}
+
+		h3 I mix frag_2
+		frag_2(&options)
+
+		h2 OK mix calls are not on the root node and everything is ok
+			. right
+
+

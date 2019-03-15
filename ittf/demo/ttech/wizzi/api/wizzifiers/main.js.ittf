@@ -1,0 +1,184 @@
+module
+	kind es6
+
+	$include g/js/wz/core
+	$include g/js/wz/ace
+	$include g/js/wz/localstorage
+
+	var store = null
+	var currentSchema = null
+	var currentView = null
+	var currentEditContent = null
+	var editor = null
+	var wztools = null
+	log 'JSONFormatter', JSONFormatter
+
+	_ wz.contentLoaded
+		function
+			log '*** content loaded'
+			var wf = wizziStandalone.default
+			_ wf.initialize
+			log 'wf', wf
+			log 'wf.wizziTools', wf.wizziTools
+			log 'wf.wizziTools.jswizzifier', wf.wizziTools.jswizzifier
+			log 'wf.wizziTools.tswizzifier', wf.wizziTools.tswizzifier
+			set wztools = wf.wizziTools
+
+			var editorImpl
+				new AceEditor
+					{
+						@ key 'ittf-editor'
+						@ editorElementId 'editorContainer'
+						@ width '900px'
+						@ height '600px'
+			
+			set editor
+				new EditManager
+					{
+						@ editorImpl editorImpl
+			set editor.onChange
+				=>
+					param value
+					set currentEditContent = value
+					_ store.set
+						@ currentSchema + '_content'
+						@ value
+					_ wizzify
+
+			_ editor.initEditor
+			_ initStore
+			_ initHandlers
+
+	function initStore
+		set store = new LocalStorage('wizzify')
+		if !store.get('lastSchema')
+			_ store.set('lastSchema', 'js')
+		if !store.get('lastView')
+			_ store.set('lastView', 'ittf')
+
+	function initHandlers
+		set currentSchema = store.get('lastSchema')
+		set currentView = store.get('lastView')
+		_ wz.value('selectedSchema', currentSchema)
+		_ wz.value('selectedView', currentView)
+		set currentEditContent
+			_ store.get
+				@ currentSchema + '_content'
+				@ currentSchema
+				@ true
+		_ editor.value
+			@ currentEditContent
+		_ wizzify
+		_ wz.change
+			@ 'selectedSchema'
+			@ onChangeSchema
+		_ wz.change
+			@ 'selectedView'
+			@ onChangeView
+
+	function onChangeSchema
+		param event
+		log 'onChangeSchema', event.target.value
+		set currentSchema = event.target.value
+		_ store.set('lastSchema', currentSchema)
+		set currentEditContent
+			_ store.get
+				@ currentSchema + '_content'
+				@ currentSchema
+				@ true
+		_ editor.value
+			@ currentEditContent
+		_ wizzify
+
+	function onChangeView
+		param event
+		log 'onChangeView', event.target.value
+		set currentView = event.target.value
+		_ store.set('lastView', currentView)
+		_ wizzify
+
+	function wizzify
+		if currentView === 'ittf'
+			_ wztools[currentSchema + 'wizzifier'].getWizziIttf
+				@ currentEditContent
+				{
+				=>
+					param err
+					param ittf
+					var wizzified = wz.element('#wizzifiedContent')
+					if err
+						_ wz.text
+							@ wizzified
+							@ err.message
+					else
+						_ wz.text
+							@ wizzified
+							@ ittf
+		else
+			var wizzified = wz.element('#wizzifiedContent')
+			if wztools[currentSchema + 'wizzifier'].getCodeAST
+				_ wztools[currentSchema + 'wizzifier'].getCodeAST
+					@ currentEditContent
+					{
+					=>
+						param err
+						param ast
+						if err
+							_ wz.text
+								@ wizzified
+								@ err.message
+						else
+							$*
+							_ wz.text
+								@ wizzified
+								@ JSON.stringify(ast, null, 2)
+							*$
+
+							var jsonFormatter
+								new JSONFormatter.default
+									@ ast
+									@ 2
+									{
+										@ hoverPreviewEnabled true
+							_ wz.replaceChildren
+								@ wizzified
+								_ jsonFormatter.render
+			else
+				_ wz.text
+					@ wizzified
+					@ 'AST not available for schema ' + currentSchema
+
+	class EditManager
+		ctor
+			param options
+			set this.options = options
+			set this.editorImpl = options.editorImpl
+
+		m onChange
+			param handler
+			set this.onChange = handler
+
+		m initEditor
+			if this.editor
+				return
+			_ this.editorImpl.initialize
+			set this.editor = this.editorImpl
+			var that = this
+
+			_ this.editor.on
+				@ 'change'
+				=>
+					param value
+					if this.onChange
+						_ this.onChange
+							@ value
+
+		m value
+			param value
+			if this.editor
+				if typeof value === 'undefined'
+					return
+						_ this.editor.getValue
+				else
+					_ this.editor.setValue
+						@ value

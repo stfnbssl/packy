@@ -1,0 +1,6 @@
+input
+	$params id, value|@@null
+	type hidden
+	id ${id}
+	name ${id}
+	value ${value}

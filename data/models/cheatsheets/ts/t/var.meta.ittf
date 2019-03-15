@@ -1,0 +1,245 @@
+﻿element variables
+	tag 
+	ast 
+	category
+	
+	item
+		title Boolean
+		expected
+			+ let isDone: boolean = false;
+		ittf
+			let isDone
+				:boolean 
+				:= false
+	item
+		title Number
+		expected
+			+ let decimal: number = 6;
+		ittf
+			let decimal
+				:number 
+				:= 6
+	item
+		title String
+		expected
+			+ let color: string = "blue";
+		ittf
+			let color
+				:string 
+				:= "blue"
+	item
+		title String literal 1
+		expected
+			+ let fullName: string = `Bob Bobbington`;
+		ittf
+			let fullName
+				:string 
+				`lit 
+					+ Bob Bobbington
+	item
+		title String literal 2
+		expected
+			+ let sentence: string = `Hello, my name is ${fullName}`;
+		ittf
+			let sentence
+				:string 
+				`lit 
+					+ Hello, my name is\b
+					@ fullName
+					+ 
+	item
+		title String literal 3
+		expected
+			+ let sentence: string = "Hello, my name is " + fullName + ".\n\n" + "I'll be " + (age + 1) + " years old next month.";
+		ittf
+			let sentence
+				:string 
+				set "Hello, my name is " + fullName + ".\n\n" + "I'll be " + (age + 1) + " years old next month."
+	
+	item
+		title Array 1
+		expected
+			+ let list: number[] = [1, 2, 3];
+		ittf
+			let list
+				:[ 
+					:number 
+				[ 
+					@ 1
+					@ 2
+					@ 3
+	
+	item
+		title Array 2
+		expected
+			+ let list: Array&lt;number&gt; = [1, 2, 3];
+		ittf
+			let list
+				:ref Array
+					:param number
+				[ 
+					@ 1
+					@ 2
+					@ 3
+	
+	item
+		title Tuple
+		expected
+			+ let x: [string, number];
+		ittf
+			let x
+				:tuple 
+					:string 
+					:number 
+
+	item
+		title Enum
+		expected
+			+ enum Color { Red, Green, Blue }
+			+ let c: Color = Color.Green;
+			+ enum Color { Red = 1, Green, Blue }
+			+ let c: Color = Color.Green;
+			+ enum Color { Red = 1, Green = 2, Blue = 4 }
+			+ let c: Color = Color.Green;
+			+ enum Color { Red = 1, Green, Blue }
+			+ let colorName: string = Color[2];
+		ittf
+			+
+				:enum Color
+					@ Red
+					@ Green
+					@ Blue
+				let c
+					:ref Color
+					:= Color.Green
+				:enum Color
+					@ Red 1
+					@ Green
+					@ Blue
+				let c
+					:ref Color
+					:= Color.Green
+				:enum Color
+					@ Red 1
+					@ Green 2
+					@ Blue 4
+				let c
+					:ref Color
+					:= Color.Green
+				:enum Color
+					@ Red 1
+					@ Green
+					@ Blue
+				let colorName
+					:string 
+					:= Color[2]
+
+	item
+		title Any, Void, Null, Undefined
+		expected
+			+ let notSure: any = 4;
+			+ notSure = "maybe a string instead";
+			+ notSure = false; // okay, definitely a boolean
+			+ let notSure: any = 4;
+			+ notSure.ifItExists(); // okay, ifItExists might exist at runtime
+			+ notSure.toFixed(); // okay, toFixed exists (but the compiler doesn't check)
+			+ let prettySure: Object = 4;
+			+ prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
+			+ let list: any[] = [1, true, "free"];
+			+ list[1] = 100;
+			+ function warnUser(): void {
+				+ console.log("This is my warning message");
+			+ }
+			+ let unusable: void = undefined;
+			+ let u: undefined = undefined;
+			+ let n: null = null;
+
+		ittf
+			+
+				let notSure
+					:any 
+					:= 4
+				set notSure = "maybe a string instead"
+				set notSure = false
+				let notSure
+					:any 
+					:= 4
+				_ notSure.ifItExists
+				_ notSure.toFixed
+				let prettySure
+					:ref Object
+					:= 4
+				_ prettySure.toFixed
+				let list
+					:[ 
+						:any 
+					[ 
+						@ 1
+						@ true
+						@ "free"
+				set list[1] = 100
+				function warnUser
+					:return
+						:void 
+					_ console.log("This is my warning message")
+				let unusable
+					:void 
+					:= undefined
+				let u
+					:void 
+					:= undefined
+				let n
+					:null 
+					:= null
+	
+	item
+		title Never
+		expected
+			+ function error(message: string): never {
+				+ throw new Error(message);
+			+ }
+			+ function fail() {
+				+ return error("Something failed");
+			+ }
+			+ function infiniteLoop(): never {
+				+ while (true) {
+				+ }
+			+ }
+
+		ittf
+			+
+				function error
+					param message
+						:string 
+					:return
+						:never 
+					throw new Error(message)
+				function fail
+					return error("Something failed")
+				function infiniteLoop
+					:return
+						:never 
+					while true
+    
+	item
+		title Object
+		expected
+			+ declare function create(o: object | null): void;
+			+ let strLength: number = (someValue as string).length;
+		ittf
+			+
+				:function create
+					param o
+						:union 
+							:object 
+							:null 
+					:return
+						:void 
+				let strLength
+					:number 
+					:= 
+						( 
+							@id someValue
+								:as 
+									:string 
+						. length

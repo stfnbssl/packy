@@ -1,0 +1,52 @@
+  module  ids: 1 49
+    kind react ids: 2 50
+    +  ids: 3 51
+    import React, { Component, PropTypes } from 'react' ids: 4 52
+    import Control from './Control' ids: 5 53
+    class Form ids: 6 54
+      super Component ids: 7 55
+      ctor  ids: 8 56
+        param props ids: 9 57
+        base props ids: 10 58
+        set this.values = {} ids: 11 59
+        set this.handleChangeValue = this.handleChangeValue.bind(this) ids: 12 60
+      m handleChangeValue ids: 13 61
+        param controlId ids: 14 62
+        param value ids: 15 63
+        param origValue ids: 16 64
+        set this.values[controlId] = value ids: 17 65
+        log 'Form.handleChange', controlId, this.values ids: 18 66
+        const { id, onChangeValues } = this.props ids: 19 67
+        if onChangeValues ids: 20 68
+          _ onChangeValues(id, this.values) ids: 21 69
+      m createControls ids: 22 70
+        param meta ids: 23 71
+        param onChangeValue ids: 24 72
+        set this.values = {} ids: 25 73
+        return  ids: 26 74
+          $group  ids: 97 103
+            $args: meta.controls, c  $params: coll, item
+            _ ${coll}.map ids: 99 104
+              =>  ids: 100 105
+                param ${item} ids: 101 106
+                const { id, type, data, value } = c ids: 28 76
+                log 'createControl', id, type, value ids: 29 77
+                set this.values[id] = value ids: 30 78
+                return  ids: 31 79
+                  < Control ids: 32 80
+                    @ id {id} ids: 33 81
+                    @ key {id} ids: 34 82
+                    @ type {type} ids: 35 83
+                    @ value {value} ids: 36 84
+                    @ data {data} ids: 37 85
+                    @ onChangeValue {onChangeValue} ids: 38 86
+      m render ids: 39 87
+        const { id, type, caption, values, layout, meta } = this.props ids: 40 88
+        const controls = this.createControls(meta, this.handleChangeValue) ids: 41 89
+        return  ids: 42 90
+          . form-vertical ids: 43 91
+            h3 {caption} ids: 44 92
+            + {controls} ids: 45 93
+    set Form.propTypes ids: 46 94
+      {  ids: 47 95
+    export default Form ids: 48 96

@@ -1,0 +1,29 @@
+﻿html
+
+	$
+		var opt = {}
+		opt.useCodemirror = true;
+
+	page( &opt
+		
+		textarea
+			id myTextarea
+			name myTextarea
+			+ var i = 0;
+		
+		$append styles
+			@style
+				css
+					< body
+						background-color #322132
+
+		$append scripts-2
+		
+			script
+				module
+					var editor
+						_ CodeMirror.fromTextArea
+							_ document.getElementById
+								@ 'myTextarea'
+							{
+								@ lineNumbers true

@@ -1,0 +1,4 @@
+﻿script
+	$params url
+	src ${url}
+	crossorigin anonymous

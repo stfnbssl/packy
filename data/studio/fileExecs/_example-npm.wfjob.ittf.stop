@@ -1,0 +1,20 @@
+wfjob
+	title example execFile jobs list
+	exec-file wizzi-mtree
+		exe-path c:/my/wizzi/next/npm/v3-wizzi-mtree\generate.js
+		arg times 2
+			type number
+		arg yesno false
+			type boolean
+		env NODE_ENV development
+			type string
+		timeout 5000
+	
+	exec-file wizzi-codegen
+		exe-path c:/my/wizzi/next/npm/v3-wizzi-codegen\generate.js
+		arg times 3
+			type number
+		arg yesno true
+			type boolean
+		env NODE_ENV development
+			type string

@@ -1,0 +1,17 @@
+  css  ids: undefined undefined
+    < body ids: undefined undefined
+      margin 0 ids: undefined undefined
+      padding 0 ids: undefined undefined
+    < ::-webkit-scrollbar ids: undefined undefined
+      width 15px ids: undefined undefined
+    < ::-webkit-scrollbar-track ids: undefined undefined
+      -webkit-box-shadow inset 0 0 6px rgba(0,0,0,0.3) ids: undefined undefined
+      -webkit-border-radius 10px ids: undefined undefined
+      border-radius 10px ids: undefined undefined
+    < ::-webkit-scrollbar-thumb ids: undefined undefined
+      -webkit-border-radius 10px ids: undefined undefined
+      border-radius 10px ids: undefined undefined
+      background rgba(50,200,220,0.8) ids: undefined undefined
+      -webkit-box-shadow inset 0 0 6px rgba(0,0,0,0.5) ids: undefined undefined
+    < ::-webkit-scrollbar-thumb:window-inactive ids: undefined undefined
+      background rgba(255,0,0,0.4) ids: undefined undefined

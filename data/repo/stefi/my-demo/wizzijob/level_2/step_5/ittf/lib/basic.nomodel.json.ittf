@@ -1,0 +1,6 @@
+﻿{
+	item 'The wizzi factory'
+	kind 'Software factory'
+	{ github
+		url 'https://github.com/wizzifactory'
+	$include copy

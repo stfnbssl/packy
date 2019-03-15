@@ -1,0 +1,6 @@
+﻿h/react-page( basic, nocss )
+
+	$append body-scripts
+		js /static/lib/jss/jss.js
+		js /static/lib/jss/jss-preset-default.js
+		js /static/lib/classnames/classnames@2.2.5.js

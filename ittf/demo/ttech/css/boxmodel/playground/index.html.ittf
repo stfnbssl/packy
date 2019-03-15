@@ -1,0 +1,49 @@
+﻿h/root/empty_layout()
+    
+	$append head-styles
+        @title Box model playground
+        css ./play.css.ittf
+
+    section 
+        class flex
+        aside 
+            id sidebar
+            class sidebar flex
+            hgroup 
+                class hgroup flex
+                a Box model playground
+                    href #
+                span &lsaquo;
+                    class toggle-controls
+                    id toggle-controls
+            menu 
+                class controls flex
+
+				$include ./propsBox
+            
+		figure 
+            id demo
+            class main-container demo
+				
+			. box
+				p Hello
+				
+	section 
+        class results flex
+        @style 
+            data-noprefix 
+            class demo-styles
+            id demo_styles
+            contenteditable true
+            $. 
+                .main-container {
+					display: bloc;
+                }
+                .box {
+					margin: 10px 5px;
+					border: 1px solid red;
+					padding: 1rem 0.5rem;
+                }
+        
+	js https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js
+	js ./play.js.ittf

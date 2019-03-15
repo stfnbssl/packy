@@ -1,0 +1,18 @@
+﻿wfjob FormBuilder
+	
+	$
+		var ittf_src     = path.join(__dirname, 'ittf');
+		var dest_folder  = "c:/my/wizzi/v3/apps/wizzi-studio/server";
+
+	line src
+		cwd-folder ${ittf_src}
+		dest-folder ${dest_folder}
+
+		$include wfjob/any_js
+		$include wfjob/any_json
+		$include wfjob/any_css
+		$include wfjob/any_md
+
+	production
+		dest-folder ${dest_folder}
+		line-ref src

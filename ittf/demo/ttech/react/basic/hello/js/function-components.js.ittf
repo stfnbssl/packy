@@ -1,0 +1,33 @@
+﻿module
+	kind react
+
+	var myui
+		{
+			@ Template
+				function
+					param { data }
+					log 'template', data
+					if data.small
+						return
+							div
+								h4 Template
+								p { data.text }
+					else
+						return
+							div
+								h2 Template
+								p { data.text }
+
+			@ UseTemplate
+				function
+					param { text }
+					log 'text', text
+					var data
+						{
+							@ text text
+							@ small true
+					return
+						div
+							h2 Use Template (small)
+							< myui.Template
+								@ data { data }

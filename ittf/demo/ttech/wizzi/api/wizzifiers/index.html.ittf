@@ -1,0 +1,56 @@
+h/root/empty_layout()
+
+	$
+		var d = '$';
+		var opt = {};
+		opt.useWizzi = true;
+		opt.useAce = true;
+		opt.useJsonFormatter = true;
+
+	page( &opt
+
+		$append styles
+			css ./styles.css.ittf
+
+		. control-panel
+			style display: flex;
+
+			. control
+				label schema
+				select
+					id selectedSchema
+					option js
+					option ts
+					option html
+					option css
+					option svg
+					option graphql
+					option json
+					option xml
+					option md
+			
+			. control
+				label view
+				select
+					id selectedView
+					option ittf
+					option ast
+
+		div
+			style display: flex;
+
+			# ittf-editor-form
+				class editor-form
+				# ittf-editor-title
+					class editor-title
+				. editor-content
+					. editor-panel
+						# editorContainer
+
+			. wizzified-panel
+				pre
+					code
+						id wizzifiedContent
+
+		$append scripts-2
+			js ./main.js.ittf

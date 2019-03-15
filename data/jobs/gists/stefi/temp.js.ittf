@@ -1,0 +1,8 @@
+module
+	kind react
+	
+	react A
+	
+		did-mount
+			set-state
+				@ a 1

@@ -1,0 +1,34 @@
+﻿r-component( ApiMenu )
+	
+	$append imports
+		import find from 'lodash/find'
+		import ApiMenuComponents from './ApiMenuComponents'
+		import { demoComponentsTree } from '../files'
+
+	prop routes
+		[
+		required
+
+	style
+
+	render
+		
+		prop routes
+		
+		const currentRoute = routes[routes.length - 1]
+		if !currentRoute.demo
+			return null
+		
+		const item
+			_ find
+				@ demoComponentsTree
+				=>
+					param node
+					return node.demo.name === currentRoute.demo.name
+		
+		if !item
+			return null
+		
+		return
+			< ApiMenuComponents
+				@ components {item.components}

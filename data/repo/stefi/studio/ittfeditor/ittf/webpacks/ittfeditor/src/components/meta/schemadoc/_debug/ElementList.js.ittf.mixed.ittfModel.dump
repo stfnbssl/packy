@@ -1,0 +1,25 @@
+  module  ids: 1 26
+    kind react ids: 2 27
+    +  ids: 3 28
+    import React, { Component, PropTypes } from 'react' ids: 4 29
+    import ElementListItem from './ElementListItem' ids: 5 30
+    class ElementList ids: 6 31
+      super Component ids: 7 32
+      m render ids: 8 33
+        const { elements, selectedName, onElementSelected } = this.props ids: 9 34
+        return  ids: 10 35
+          . list-group ids: 11 36
+            {  ids: 12 37
+              _ elements.map ids: 13 38
+                =>  ids: 14 39
+                  param element ids: 15 40
+                  return  ids: 16 41
+                    < ElementListItem ids: 17 42
+                      @ key {element.name} ids: 18 43
+                      @ name {element.name} ids: 19 44
+                      @ selectedName {selectedName} ids: 20 45
+                      onClick  ids: 21 46
+                        =>  ids: 22 47
+                          _ onElementSelected ids: 23 48
+                            @ element ids: 24 49
+    export default ElementList ids: 25 50

@@ -1,0 +1,23 @@
+$group
+
+	$if opt.useJQuery || opt.useBootstrap
+		js /static/lib/jquery/dist/jquery.js
+
+	$if opt.useBootstrap
+		js /static/lib/bootstrap/dist/js/bootstrap.min.js
+
+	$if opt.useUnderscore
+		js /static/lib/underscore/underscore.js
+	
+	$if opt.usePrism
+		$if isWizziStudio
+		    js /static/lib/prism/prism.js
+		$else
+            js https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js		
+	
+	$if opt.useSplit
+		js /static/lib/controls/split.js
+	
+	$if opt.useAce
+		js /static/lib/ace/src-noconflict/ace.js
+

@@ -1,0 +1,5 @@
+module
+    kind jsfile
+    var x = "ab  \\b"
+    log 'x.length', x.length
+    log x.substr(-2)

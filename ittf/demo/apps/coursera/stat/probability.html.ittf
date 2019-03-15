@@ -1,0 +1,9 @@
+_layout( Probability )
+
+	h2 Formulas
+		
+	formulas/probability()
+
+	h2 Glossary
+		
+	glossary/probability()

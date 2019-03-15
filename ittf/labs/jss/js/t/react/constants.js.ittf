@@ -1,0 +1,8 @@
+﻿$group
+
+	const BxConstants
+		{
+			@ animations
+				{
+					@ scrollDuration 200
+					@ transitionDuration 200

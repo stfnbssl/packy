@@ -1,0 +1,33 @@
+﻿wfschema model1
+
+	#
+	# The 'model1' schema defines a simple tree structure.
+	# It has 2 elements: 
+	# . 'model1', the root.
+	# . 'item', the node.
+	# Both may contain children 'item' elements.
+	# Every element has a name (the ittf node value).
+	# 'item' elements have an 'order' attribute of type integer.
+	#
+	# In the generated javascript classes each element will have the properties:
+	# . wzParent
+	# . wzElement (the name of the schema element: 'model1' or 'item')
+	# . wzTag (the ittf node name, in this case it will be equal to the wzElement property)
+	# . wzName (the ittf node value)
+	# . wzSourceLine (the file, row, col position of the element in the source ittf document)
+	#
+	# The 'item' element will have also the property
+	# . order
+	#
+	
+	e model1
+		is-root
+		r item/s
+	
+	e item
+		a order
+			type integer
+		r item/s
+
+	e dummy : item
+		# ${wfjobGlobalContextCheck}

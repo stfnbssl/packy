@@ -1,0 +1,107 @@
+﻿r-component( DocumentDialog )
+
+	$append imports
+		import Dialog, { DialogTitle, DialogActions, DialogContent, DialogContentText } from 'material-ui/Dialog'
+		import Button from 'material-ui/Button'
+		import Input from 'material-ui/Input/Input'
+		import Select from './mui/Select'
+
+	prop open
+		boolean
+		default false
+
+	prop classes
+		{
+		required
+
+	prop schemas
+		[
+		required
+
+	prop onRequestClose
+		func
+		required
+
+	prop onCreateDocument
+		func
+		required
+
+	prop onCreateFragment
+		func
+		required
+
+	style
+		@ container
+			{
+				@ display 'flex'
+				@ flexWrap 'wrap'
+		@ input
+			{
+				@ margin theme.spacing.unit
+
+	ctor
+		set this.formNodes = {}
+
+	render
+			
+		prop classes
+		prop open
+		prop schemas
+		prop onRequestClose
+		prop onCreateDocument
+		prop onCreateFragment
+
+		log 'DocumentDialog.open', open
+
+		return
+			
+			< Dialog
+				@ open {open}
+				@ onRequestClose {onRequestClose}
+				
+				< DialogTitle
+					+ { 'Create document or fragment' }
+				
+				< DialogContent
+					. {classes.container}
+						mui_Input( project, Project )
+						mui_Input( folder, Folder )
+						mui_Input( document, Name )
+						< Select
+							@ items {schemas}
+							@ selected {schemas[0]}
+							@ className {classes.input}
+							@ ref
+								=>
+									param node
+									set this.formNodes.schema = node
+									# log 'this.formNodes.schema', this.formNodes.schema
+				
+				< DialogActions
+					< Button
+						@ onClick
+							=>
+								# log 'this.formNodes.schema', this.formNodes.schema.value, this.formNodes.schema
+								# log 'this.formNodes.document', this.formNodes.document.value, this.formNodes.document
+								_ onCreateDocument
+									@ this.formNodes.document.value
+									@ this.formNodes.schema.value
+									@ this.formNodes.folder.value
+									@ this.formNodes.project.value
+						+ { 'Create document' }
+					< Button
+						@ onClick
+							=>
+								# log 'this.formNodes.schema', this.formNodes.schema.value, this.formNodes.schema
+								# log 'this.formNodes.document', this.formNodes.document.value, this.formNodes.document
+								_ onCreateFragment
+									@ this.formNodes.document.value
+									@ this.formNodes.schema.value
+									@ this.formNodes.folder.value
+									@ this.formNodes.project.value
+						+ { 'Create fragment' }
+					< Button
+						@ onClick
+							=>
+								_ onRequestClose()
+						+ { 'Cancel' }

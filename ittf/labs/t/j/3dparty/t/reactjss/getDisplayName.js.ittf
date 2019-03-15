@@ -1,0 +1,5 @@
+﻿$group
+
+	function BxGetDisplayName
+		param Component
+		return Component.displayName || Component.name || 'Component'

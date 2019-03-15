@@ -1,0 +1,7 @@
+li
+	$params text, href
+	tabindex -1
+	a ${text}
+		href ${href}
+	span
+		class divider

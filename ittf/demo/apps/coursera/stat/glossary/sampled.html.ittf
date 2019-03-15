@@ -1,0 +1,92 @@
+$group
+	
+	glo(Bivariate analyses)
+		dd Compute Pearson's r correlation coefficients or do regression analyses
+
+	glo(Descriptive statistics)
+		dd Refers to methods for analyzing sample data
+
+	glo(Central limit theorem)
+		dd Says that, provided that the sample size is sufficiently large, 
+			\b the sampling distribution of the sample mean has an approximately normal distribution. 
+			\b The <b>mean of the sampling distribution</b> equals the <b>population mean</b>, and 
+			\b the <b>standard deviation of the sampling distribution</b> equals 
+			\b the <b>standard deviation in the population</b> divided by the square root of the sample size.
+	
+	glo(Data distribution, Sample distribution)
+		dd Just the distribution of scores in one sample that was actually drawn, 
+			\b and for which data were actually collected. 
+
+	glo(Inferential statistics)
+		dd Refers to methods used to draw conclusions about a population, 
+			\b based on data coming from a sample. 
+	
+	glo(Random multi-stage cluster sampling)
+
+	glo(Parameter statistical or population)
+		dd Is a quantity that indexes a family of probability distributions.
+		dd Parameter types
+		ul 
+			li location parameters
+				ul
+					li mean
+					li median
+					li mode
+			li dispersion parameters
+				ul
+					li standard deviation
+					li interquartile range (IQR)
+					li range
+					li mean absolute difference (Gini mean absolute difference)
+					li median absolute deviation (MAD)
+					li average absolute deviation (or simply called average deviation)
+					li distance standard deviation
+			li shape parameters
+
+	glo(Population distribution)
+		dd Is a function of the mean and standard deviation in the entire population.
+
+	glo(Population parameter)
+		dd Describe an entire population.
+		dd Are displayed by Greek letters. $ \mu $ stands for the mean in a population and $ \sigma $ for the standard deviation in a population. 
+	
+	glo(Population proportion)
+		dd The random values of the cases you are interested in 
+			\b can be only negative or positive.
+
+	glo(Sampling distribution)
+		dd Is the link that helps researchers to draw conclusions about a population
+			\b on the basis of only one sample.
+		dd The cases in this distribution are not individuals, but an indefinite number of samples.
+		dd Because of the central limit theorem, 
+			\b provided that the sample size is large enough ($ \ge 30 $), 
+			\b it is normally distributed.
+		dd Is a theoretical distribution. 
+			\b We don't actually collect an infinite number of samples. 
+		dd Because it has an approximately normal distribution, 
+			\b we can describe its shape by just two parameters,
+			\b population $ \mu $ and $ \sigma $. 
+			\b So it's sufficient to estimate these two parameters.
+	
+	glo(Sampling distribution of the sample mean)
+		dd Is the distribution that you get if you draw an infinite number of samples 
+			\b from your population and compute the mean of all the collected sample means.
+
+	glo(Sampling distribution of a population proportion)
+		dd Is the distribution that you get if you draw an infinite number of samples 
+			\b from your population and compute the mean
+			\b of all the collected sample proportions.
+		dd It is a normal distribution if you have at least 
+			\b 15 positive cases and 15 negative cases
+	
+	glo(Simple random sampling)
+
+	glo(Statistics)
+		dd Describe a sample.
+		dd All numerical summaries resulting from computations fully based on sample data.
+		dd Are displayed by Roman letters. For instance $ \bar{x} $ is the mean and $ s $ is the standard deviation in a sample.
+
+	glo(Stratified random sampling)
+
+	glo(Univariate analyses)
+		dd Compute modes, means, and standard deviations.

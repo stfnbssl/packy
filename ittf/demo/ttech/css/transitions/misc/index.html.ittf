@@ -1,0 +1,97 @@
+﻿../_layout( Miscellanea )
+
+	$append head-styles
+		css css/styles.css.ittf
+		css https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+	
+	H1 Sample 1
+	p This div will take half a second when the mouse is over it to turn from red to green. 
+	. s1-box
+
+	H1 Sample 2
+	div 
+		. s2-container
+			input
+				type checkbox
+				id s2-toggle-button
+			. s2-section
+				p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					class s2-p
+			. s2-section s2-collapsible
+				p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					class s2-p
+			. s2-section
+				p Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					class s2-p
+			label Collapse
+				for s2-toggle-button
+				class s2-label-button
+
+	H1 Sample 3 - circular menu
+	form 
+		id s3-navigation
+		input 
+			type radio
+			id pX
+			name circular
+			class pX
+		input 
+			type radio
+			id p0
+			name circular
+			class p0
+
+		. s3-circular
+			style border: 1px #debcde solid;
+			$*
+			label 
+				for pX
+				i 
+					class fa fa-bars
+			label 
+				for p0
+				i 
+					class fa fa-bars
+			*$
+			div 
+				style border: 1px #debcde solid;
+				p 
+					label 
+						for p0
+						i 
+							class fa fa-cab
+					label 
+						for p1
+						i 
+							class fa fa-cab
+			div 
+				style border: 1px #debcde solid;
+				p 
+					style border: 1px #9e9c9e solid;
+					label 
+						for p0
+						i 
+							class fa fa-sign-language
+					label 
+						for p2
+						i 
+							class fa fa-sign-language
+			div 
+				style border: 1px #debcde solid;
+				p 
+					label 
+						for p0
+						i 
+							class fa fa-money
+					label 
+						for p3
+						i 
+							class fa fa-money
+
+
+
+
+
+
+			
+

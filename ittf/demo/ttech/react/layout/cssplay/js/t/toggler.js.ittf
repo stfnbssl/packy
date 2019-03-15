@@ -1,0 +1,101 @@
+﻿$group
+
+	class Toggler
+		super React.Component
+
+		ctor
+			set this.state
+				{ 
+					@ toggled false
+			set this.onClick = this.onClick.bind(this)
+
+		m componentDidMount
+			const { data } = this.props
+			const { event } = data
+			set this.event = event
+
+		m onClick
+			_ this.setState
+				{ 
+					@ toggled !this.state.toggled
+			_ builder.events.publish
+				@ this.event
+				@ this.state.toggled
+		
+		m render
+
+			return
+				span
+					@style { this.style() }
+					@ onClick { this.onClick }
+					span { ' ' }
+						@style { this.span_before_style() }
+					span { ' ' }
+						@style { this.span_style() }
+					span { ' ' }
+						@style { this.span_after_style() }
+						
+		m _span_style_base
+			return 
+				{
+					@ display 'block'
+					@ width '17px'
+					@ height '3px'
+					@ background '#fff'
+					@ position 'absolute'
+					@ transition '0.3s'
+
+		m span_style
+			const background = this.state.toggled ? 'transparent' : '#fff'
+			return
+				_ Object.assign
+					{
+					_ this._span_style_base()
+					{
+						@ left '12px'
+						@ top '19px'
+						@ background background
+						@ transition 'background 0.3s'
+
+		m span_before_style
+			const ret
+				_ Object.assign
+					{
+					_ this._span_style_base()
+					{
+						@ left '12px'
+						@ top '13px'
+						@ transformOrigin 'left top'
+			if this.state.toggled
+				set ret.transform = 'rotate(45deg)'
+				set ret.width = '18px'
+				set ret.left = '14px'
+			return ret
+
+		m span_after_style
+			const ret
+				_ Object.assign
+					{
+					_ this._span_style_base()
+					{
+						@ left '12px'
+						@ top '25px'
+						@ transformOrigin 'left bottom'
+			if this.state.toggled
+				set ret.transform = 'rotate(-45deg)'
+				set ret.width = '18px'
+				set ret.left = '14px'
+			return ret
+
+		m style
+			return
+				{
+					@ display 'block'
+					@ width '41px'
+					@ height '41px'
+					@ background '#333'
+					@ position 'absolute'
+					@ right '20px'
+					@ top '20px'
+					@ cursor 'pointer'
+					@ zIndex 20

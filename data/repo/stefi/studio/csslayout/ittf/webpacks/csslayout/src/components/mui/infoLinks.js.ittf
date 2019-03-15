@@ -1,0 +1,41 @@
+﻿r-component( InfoLinks )
+
+	style
+		@ panel_p_text_a
+			{
+				@ padding '0 0 0 30px'
+				@ margin '0 5%'
+				@ font "400 16px/20px 'Open Sans', sans-serif"
+				@ color '#333'
+				@ position 'absolute'
+				@ left '0'
+				@ bottom '20px'
+
+	render
+		prop classes
+		prop data
+		const { id, format, links, style: styleProp } = data
+
+		const childLinks
+			_ links.map
+				=>
+					param link
+					param index
+					const { label, href, text } = link
+					return
+						span { label }
+							@ key { index }
+							a { text }
+								href { href }
+							br
+
+		if format === 'p.[text.a]+'
+			return
+				p
+					@ className {classes.panel_p_text_a}
+					@style { styleProp }
+					+ {childLinks}
+		else
+			return
+				div { 'Unknown InfoLinks format ' + format }
+						

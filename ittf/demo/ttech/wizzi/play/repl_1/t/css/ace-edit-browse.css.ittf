@@ -1,0 +1,47 @@
+﻿$group
+
+	. ittf-editor
+		display flex
+		flex-direction column !important
+		height 100% !important
+		width 100% !important
+
+	# ittf-editor-title
+		height 20px !important
+		width 100% !important
+		padding 2px 8px
+
+	. ittf-editor-panel
+		height 100% !important
+		width 100% !important
+
+	# editorContainer
+		height 100% !important
+		width 100% !important
+
+	. result-browser
+		display flex
+		flex-direction column !important
+		height 100% !important
+		width 100% !important
+
+	# result-browser-title
+		height 20px !important
+		width 100% !important
+		padding 2px 8px
+
+	. result-browser-panel
+		height 100% !important
+		width 100% !important
+
+	. result-browser-container
+		height 100% !important
+		width 100% !important
+
+	. result-browser-control
+		height 100% !important
+		width 100% !important
+
+	. result-iframe
+		height 100% !important
+		width 100% !important

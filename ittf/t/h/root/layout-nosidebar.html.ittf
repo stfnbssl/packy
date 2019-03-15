@@ -1,0 +1,59 @@
+html
+	$params commands|@@null
+
+	$
+		var std_js = true;
+		var std_css = true;
+		var cmds = commands ? commands.trim().split(';') : []
+
+	$foreach cmd in cmds
+		$if cmd.trim() == 'nojs'
+			$ std_js = false;
+		$if cmd.trim() == 'nocss'
+			$ std_css = false;
+
+    head
+
+		$if std_css
+			css /static/lib/bootstrap/dist/css/bootstrap.min.css
+        
+		@style
+
+			$.
+				body {
+					min-height: 2000px;
+					padding-top: 101px;
+				}
+				.navbar { 
+					border-radius: 0; 
+				}
+				.form-control { color: #000; font-weight:bold}
+				textarea { font-family:  Verdana, Lucida Console, monospace; }
+				input { font-family: Verdana, Lucida Console, monospace; }
+				.wz-row { margin-top: 30px; }
+
+		$hook head-styles-0
+
+		$hook head-styles
+
+		$hook head-styles-2
+
+    body
+		main_navbar( false )
+        . container no-margin
+            . row no-margin
+				. col-md-12 no-margin
+					$hook
+		
+		$if std_js
+			js /static/lib/jquery/dist/jquery.js
+			js /static/lib/bootstrap/dist/js/bootstrap.js
+		
+		$hook body-scripts-0
+		
+		$hook body-scripts
+
+		$hook body-scripts-2
+
+		$include h/script_meta
+

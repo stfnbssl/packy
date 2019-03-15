@@ -1,0 +1,53 @@
+$group
+
+	- top navigation markup
+
+	input
+		type checkbox
+		id tn-input-toggle
+
+	nav 
+		class tn-bar
+		nav 
+			class tn-main
+			a
+				href index.html.ittf
+				. logo
+					img
+						width 100
+						height 45px
+						src ${gLinkPrefix}images/logo.svg${ittfSuffix}
+			label
+				for tn-input-toggle
+				class tn-label-toggle
+			label &times;
+				for tn-input-toggle
+				class tn-label-toggle-close
+			ul 
+				$foreach item in nav_menu
+					li 
+						$if item.title === currentPage
+							class tn-pageSelected
+						a ${item.title}
+							href ${gLinkPrefix}${item.href}
+						$if item.title === currentPage && typeof(item.sub) !== 'undefined' && item.sub.length > 0
+							nav
+								class tn-subPages_mobile
+								ul
+									$foreach sub_item in item.sub
+										li 
+											a ${sub_item.title}
+												href ${gLinkPrefix}${sub_item.href}
+
+		$foreach item in nav_menu
+			$if item.title === currentPage && typeof(item.sub) !== 'undefined' && item.sub.length > 0
+				nav
+					class tn-subPages
+					ul
+						$foreach sub_item in item.sub
+							li 
+								$if sub_item.title === currentSubPage
+									class tn-subPageSelected
+								a ${sub_item.title}
+									href ${gLinkPrefix}${sub_item.href}
+		

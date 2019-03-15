@@ -1,0 +1,12 @@
+﻿module
+	kind jsfile
+
+	var Animal = require('base').Animal
+
+	wz-class Horse
+		super Animal
+		ctor
+			param name
+			set this.name = name
+			set this.cry = 'Hiii'
+

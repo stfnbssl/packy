@@ -1,0 +1,10 @@
+label
+	$params id, label, value|@@null
+	class checkbox-inline
+	input
+		type checkbox
+		id ${id}
+		value ${value}
+	+ ${label}
+
+

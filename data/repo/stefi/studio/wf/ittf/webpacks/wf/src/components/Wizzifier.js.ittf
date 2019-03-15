@@ -1,0 +1,134 @@
+﻿r-component( Wizzifier )
+	
+	$append imports
+		import AppBar from 'material-ui/AppBar'
+		import Tabs, { Tab } from 'material-ui/Tabs'
+		import Typography from 'material-ui/Typography'
+		import Toolbar from 'material-ui/Toolbar'
+		import Button from 'material-ui/Button'
+		import IconButton from 'material-ui/IconButton'
+		import Splitter from './mui/Splitter'
+		import DocumentEditor from './DocumentEditor'
+
+		const wizzifyTypes
+			[
+				@ 'Js'
+				@ 'Html'
+				@ 'Css'
+				@ 'Xml'
+
+	style
+		@ source
+			{
+				@ border '1px solid red'
+				@ padding '3px'
+				@ margin '3px'
+		@ toolbar
+			{
+				@ border '1px solid green'
+				@ padding '3px'
+				@ margin '3px'
+
+		@ editor
+			{
+				@ border '1px solid magenta'
+				@ padding '3px'
+				@ margin '3px'
+
+		@ wizzified
+			{
+				@ border '1px solid violet'
+				@ padding '3px'
+				@ margin '3px'
+
+		@ marginLeft_10
+			{ 
+				@ marginLeft 10
+
+	state
+		@ wizzifyIndex 0
+		@ sources []
+		@ checked []
+
+	=> handleChangeWizzifyType
+		param event
+		param index
+		log 'handleChangeWizzifyType', index, wizzifyTypes[index]
+		_ this.setState
+			{
+				@ ...this.state
+				@ wizzifyIndex index
+
+	=> handleSourceChange
+		param value
+		log 'handleSourceChange', value, this.state
+		const i = this.state.wizzifyIndex
+		var newsources = this.state.sources
+		set newsources[i] = value
+		_ this.setState
+			{
+				@ ...this.state
+				@ sources newsources
+
+	=> handleExecuteWizzify
+		const i = this.state.wizzifyIndex
+		log 'handleExecuteWizzify', wizzifyTypes[i], this.props.onWizzify
+		_ this.props.onWizzify
+			@ i
+			@ this.state.sources[i]
+			@ this.state.checked[i]
+	
+	=> handleCopyWizzified
+	
+	render
+		
+		prop classes
+		prop isRequesting
+		prop lastSourceArray
+		prop wizzifiedArray
+
+		log 'render', isRequesting, lastSourceArray, wizzifiedArray, this.props
+
+		const i = this.state.wizzifyIndex
+		const requesting = isRequesting == i
+		const sourceContent = this.state.sources[i] || lastSourceArray[i] || ''
+		const wizzifiedContent =  wizzifiedArray[i] || ''
+		
+		return
+			div
+				h2 Hello from wizzifier
+				< Splitter
+					. {classes.source}
+						. {classes.toolbar}
+							< AppBar
+								@ position "static"
+								< Tabs
+									@ index {this.state.wizzifyIndex}
+									@ onChange {this.handleChangeWizzifyType}
+									< Tab
+										@ label {wizzifyTypes[0]}
+									< Tab
+										@ label {wizzifyTypes[1]}
+									< Tab
+										@ label {wizzifyTypes[2]}
+									< Tab
+										@ label {wizzifyTypes[3]}
+						. {classes.editor}
+								< DocumentEditor
+									@ value {sourceContent}
+									@ onChange {this.handleSourceChange}
+					. {classes.wizzified}
+						div
+							< Toolbar
+								< Button
+									@ raised
+									@ title execute wizzify
+									@ onClick { this.handleExecuteWizzify }
+									+ { 'Wizzify ' + wizzifyTypes[this.state.wizzifyIndex] }
+								< Button
+									@ raised
+									@ title copy wizzified
+									@ onClick { this.handleCopyWizzified }
+									+ Copy
+							< DocumentEditor
+								@ value {wizzifiedContent}

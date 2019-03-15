@@ -1,0 +1,139 @@
+﻿css
+	
+	$include webfonts
+	
+	$include reset
+    
+    < body
+        + html
+        position relative
+        min-height 100%
+        background whitesmoke
+    
+	< body
+        font 100%/1 'Lato', 'Trebuchet MS', Helvetica, Arial, sans-serif
+        color #222
+    
+	< a
+        text-decoration none
+    
+	< a:hover
+        text-decoration underline
+    
+	. flex
+        display flex
+
+    . demo
+        opacity 0
+        transition opacity 0 .5s
+        height 100%
+    
+	. go .demo
+        opacity 1
+        transition .3s
+    
+	$include sidebar
+
+	. demo
+        flex 1
+        padding .5rem
+    . flex-item
+        background #ddd
+        border-radius .25rem
+    . flex-container
+        overflow auto
+    . hgroup
+        width 100%
+        border-right 1px solid #e1e1e1
+    . hgroup a
+        + .toggle-controls
+        display inline-block
+        font-size 1.5em
+        font-weight 400
+        padding 1rem
+    . hgroup a
+        flex 1
+        color #222
+        border-right 1px solid #e1e1e1
+
+	$include toggle-control
+	$include controls
+
+    . twitter
+        justify-content flex-start
+   
+	$include tips
+    
+    < figure > div
+        display inline-flex
+        position relative
+        justify-content center
+        margin .25rem
+        font-size 1.5em
+        overflow hidden
+    < figure div span
+        display inline-block
+        padding 1rem 1.5rem
+        align-self center
+    < span:focus
+        outline 0
+        color rgba(0,0,0,.4)
+        animation shake .25s infinite
+    keyframes shake
+        vendor
+        keyframe 25%
+            transform rotate(-1deg)
+        keyframe 50%
+            transform translateY(-1px)
+        keyframe 75%
+            transform rotate(2deg)
+    < figure div header
+        font .9rem/1 monospace
+        position absolute
+        top 0
+        left 0
+        width 100%
+        padding 1rem
+        height 2rem
+    < div:hover .toggle-indiv-edit
+        opacity .3
+    < div:hover .toggle-indiv-edit:hover
+        + .editing .toggle-indiv-edit
+        animation spin-gear 6s linear infinite
+        opacity .8
+        top -1rem
+        right -1rem
+    
+	. editing .toggle-indiv-edit
+        animation spin-gear 6s linear infinite
+    
+	keyframes spin-gear
+        vendor
+        keyframe 100%
+            transform rotate(1turn)
+    
+	$include results
+	
+    . no-flexbox .demo
+        + .no-flexbox .results
+        + .no-flexbox .toggle-controls
+        display none
+    . no-flexbox .sidebar
+        display none
+    . no-flexbox .controls
+        pointer-events none
+        user-select none
+        cursor not-allowed
+    . no-flexbox .controls code
+        opacity .25
+    . no-flexbox hgroup a
+        border-right 0
+    . no-flexbox .your-browser-sucks
+        display block
+        padding 2rem
+        font-size 1.1rem
+        line-height 1.6
+    . your-browser-sucks label
+        display block
+        padding-top 2rem
+        font-size 1rem

@@ -1,0 +1,6 @@
+﻿module
+	kind react
+
+	export const artifactGenerator = 'css/document'
+	export const displayName = 'stylesheet'
+	export const showInMenu = true

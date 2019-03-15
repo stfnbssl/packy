@@ -1,0 +1,50 @@
+﻿$group
+
+	package v3-wizzi-data
+
+		plugin-name wizzi-data
+
+		src-folder C:\My\wizzi\next\npm\v3-wizzi-data
+		dest-folder C:\My\wizzi\v3\node_modules\wizzi-data
+
+		schema rdbms
+
+			artifact html_docs
+				language html
+				is-default
+
+			artifact jsoncrud
+				language js.ittf
+
+			artifact jsonmodel
+				language js.ittf
+
+		schema graphdb
+
+			transform docu_db_structure
+
+			artifact html_docs
+				language html
+				is-default
+
+			artifact jsonmodel
+				language js.ittf
+
+			artifact jsonmodel_persister
+				language js.ittf
+
+			artifact jsonmodel_tests
+				language js.ittf
+
+		schema raml
+
+			artifact document
+				language html
+				is-default
+
+			artifact js_client
+				language js
+
+			artifact nodejs_server
+				language js
+		

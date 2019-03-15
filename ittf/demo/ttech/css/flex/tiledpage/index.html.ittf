@@ -1,0 +1,82 @@
+﻿h/root/empty_layout()
+
+	$append head-styles
+		css css/styles.css.ittf
+
+	. pageWrapper
+		. toolbar
+			. wizzi-title-area
+				logoIcon()
+				$*
+				img
+					class logoImg
+					src /static/images/logo.png
+					width 60
+					height 30
+				*$
+			. header-chunk primary-actions secondary-nav
+				$*
+				button
+					id loves_QxWVPv"
+					data-item pen
+					data-hashid QxWVPv
+					data-owned false
+					class button button-editor-outline loves heart-button
+					$$ <svg class="icon-heart"
+				button
+					id run
+					class button button-editor-outline button run
+					title Com/Ctrl - Shift - 5 to Run
+					$$ <svg class="icon-run" width="16" height="16">
+				*$
+				button
+					id edit-settings
+					class button button-editor-solid
+					gearIcon()
+					+ Settings
+
+		. workarea
+			. editaside
+			. editbox
+				. editorbox
+					. editorHead
+						button
+							class button button-medium mini-button editor-dropdown-button editor-dropdown-button-css
+							data-dropdown #editor-dropdown-css
+							aria-haspopup true
+							aria-expanded false
+							gearIcon()
+						span HTML ITTF
+							class editorHeadText
+					. editor
+				. editorbox
+					. editorHead
+						button
+							class button button-medium mini-button editor-dropdown-button editor-dropdown-button-css
+							data-dropdown #editor-dropdown-css
+							aria-haspopup true
+							aria-expanded false
+							gearIcon()
+						span HTML
+							class editorHeadText
+					. editor
+				. editorbox
+					. editorHead
+						button
+							class button button-medium mini-button editor-dropdown-button editor-dropdown-button-css
+							data-dropdown #editor-dropdown-css
+							aria-haspopup true
+							aria-expanded false
+							gearIcon()
+						span RESULT
+							class editorHeadText
+					. editor
+		. footbar
+			. footbarCommands
+
+	$*
+	< use
+		@ href #myCircle
+		x 10
+		fill blue
+	*$

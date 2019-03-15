@@ -1,0 +1,40 @@
+﻿module
+	kind react
+
+	import {connect} from 'react-redux'
+	import {setCode, setCursor} from '../store/actions'
+	import IttfEditor from '../components/IttfEditor';
+	import {getCode, getGenerator, getGenerateError} from '../store/selectors';
+
+	function mapStateToProps
+		param state
+		return
+			{
+				@ value getCode(state)
+				@ mode getGenerator(state).schema.id
+				@ error getGenerateError(state)
+
+	function mapDispatchToProps
+		param dispatch
+		return
+			{
+				@ onContentChange
+					=>
+						param {value, cursor}
+						_ dispatch
+							_ setCode
+								{
+									@ code value
+									@ cursor
+				@ onActivity
+					=>
+						param cursor
+						_ dispatch
+							_ setCursor(cursor)
+
+	export default
+		_ connect
+			@ mapStateToProps
+			@ mapDispatchToProps
+			(
+				@ Editor

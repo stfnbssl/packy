@@ -1,0 +1,15 @@
+$group
+
+	sb-item( /ittf/home/index.html.ittf, home, Dashboard
+	sb-item( /ittf/demo/ttech/index.html.ittf, laptop, Target technologies
+	sb-item( /ittf/demo/apps/index.html.ittf, laptop, Demo apps
+	sb-item( /ittf/labs/index.html.ittf, laptop, Labs
+	sb-item( /ittf/quick/index.html.ittf, laptop, Quick html test
+	sb-item( /static/wizzi-play/index.html, laptop, Wizzi playground
+	sb-item( /ittf/utils/performance/index.html.ittf, laptop, Js performance
+	sb-item( /ittf/docs/cheatsheets/index.html.ittf, laptop, Wizzi cheat sheets
+	sb-item( /ittf/repo/stefi/studio/wizzi/index.html.ittf, laptop, Wizzi
+	sb-item( /ittf/repo/stefi/studio/wizzi/issues.html.ittf, laptop, Wizzi issues
+	sb-item( /ittf/repo/stefi/studio/wizzi/todo.html.ittf, laptop, Wizzi TODO
+	sb-item( /ittf/repo/stefi/studio/wizzi/activitylog.html.ittf, laptop, Wizzi activity log
+	sb-item( /ittf/utils/jobs/index.html.ittf, laptop, Wizzi jobs

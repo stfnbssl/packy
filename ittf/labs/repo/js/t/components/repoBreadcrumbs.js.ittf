@@ -1,0 +1,101 @@
+﻿$group
+
+	react-component( RepoBreadcrumbs )
+
+		m render
+			const { folderData } = this.props
+
+			if !folderData || folderData.state === K.STATE.LOADING 
+				\b || folderData.state === K.STATE.FAILURE
+				return
+					h3 ... loading ...
+
+			const { userId, projectId, folderId } = folderData.data
+
+			var folderUrl = [], parts = []
+			if folderId
+				set parts = folderId.split('/')
+
+			const link_1_a
+				h2
+					span
+						a { userId }
+							href #
+							on-click-stop()
+								_ Pub
+									@ K.EVENTS.REPO.FOLDERDATA.SELECTED
+									{
+										@ userId userId
+					{
+						&&
+							+ projectId
+							&&
+								+ folderId
+								span
+									span { ' / ' }
+									span
+										a { projectId }
+											href #
+											on-click-stop()
+												_ Pub
+													@ K.EVENTS.REPO.FOLDERDATA.SELECTED
+													{
+														@ userId userId
+														@ projectId projectId
+					{
+						&&
+							+ projectId
+							&&
+								+ !folderId
+								span
+									span { ' / ' + projectId  }
+
+			const link_1_b
+				&&
+					+ folderId
+					h3
+						span
+							a { projectId }
+								href #
+								on-click-stop()
+									_ Pub
+										@ K.EVENTS.REPO.FOLDERDATA.SELECTED
+										{
+											@ userId userId
+											@ projectId projectId
+						{
+							&&
+								+ folderId
+								_ parts.map
+									=>
+										param part
+										param index
+										_ folderUrl.push(part)
+										const url = folderUrl.join('/')
+										return
+											span
+												span { ' / ' }
+												{
+													&&
+														+ (index < parts.length-1)
+														span
+															a { part }
+																href { url }
+																on-click-stop()
+																	_ Pub
+																		@ K.EVENTS.REPO.FOLDERDATA.SELECTED
+																		{
+																			@ userId userId
+																			@ projectId projectId
+																			@ folderId url
+												{
+													&&
+														+ (index == parts.length -1)
+														span { part }
+
+			return
+				div
+					+ {link_1_a}
+					+ {link_1_b}
+
+

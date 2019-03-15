@@ -1,0 +1,4 @@
+﻿module
+	kind es6
+
+	$include map

@@ -1,0 +1,223 @@
+﻿$group
+
+	#
+	# params
+	# { ctx
+	#
+	class FileManager
+		ctor
+			param ctx
+			set this.ctx = ctx
+
+		m createFolder
+			param name
+			_ this.send
+                { 
+                    @ command 'createFolder'
+                    @ folderPath this.currentFolderPath + '/' + name
+				@ callback
+
+		m createFile
+			param name
+			_ this.send
+                {
+                    @ command 'createFile'
+                    @ filePath this.currentFolderPath + '/' + name
+				@ callback
+
+		m deleteFile
+			param name
+			_ this.send
+                {
+                    @ command 'deleteFile'
+                    @ filePath this.currentFolderPath + '/' + name
+				@ callback
+
+		m readFile
+			param filePath
+			param callback
+			_ this.send
+                { 
+                    @ command 'read'
+                    @ filePath IxdbPath(filePath)
+				@ callback
+
+		m writeFile
+			param filePath
+			param content
+			param callback
+			_ this.send
+                { 
+                    @ command 'write'
+					@ filePath IxdbPath(filePath)
+					@ content content
+				@ callback
+
+		m createFolder
+			param folderPath
+			param callback
+			_ this.send
+                { 
+                    @ command 'createFolder'
+					@ folderPath IxdbPath(folderPath)
+				@ callback
+
+		m deleteFolder
+			param folderPath
+			param callback
+			_ this.send
+                { 
+                    @ command 'deleteFolder'
+					@ folderPath IxdbPath(folderPath)
+				@ callback
+
+		m renameFolder
+			param oldFolderPath
+			param newFolderPath
+			param callback
+			_ this.send
+                { 
+                    @ command 'renameFolder'
+					@ oldFolderPath IxdbPath(oldFolderPath)
+					@ newFolderPath IxdbPath(newFolderPath)
+				@ callback
+
+		m copyFolder
+			param srcFolderPath
+			param destFolderPath
+			param callback
+			_ this.send
+                { 
+                    @ command 'copyFolder'
+					@ srcFolderPath IxdbPath(srcFolderPath)
+					@ destFolderPath IxdbPath(destFolderPath)
+				@ callback
+
+		m moveFolder
+			param srcFolderPath
+			param destFolderPath
+			param callback
+			_ this.send
+                { 
+                    @ command 'moveFolder'
+					@ srcFolderPath IxdbPath(srcFolderPath)
+					@ destFolderPath IxdbPath(destFolderPath)
+				@ callback
+
+		m createFile
+			param filePath
+			param content
+			param callback
+			_ this.send
+                { 
+                    @ command 'createFile'
+					@ filePath IxdbPath(filePath)
+					@ content content
+				@ callback
+
+		m deleteFile
+			param filePath
+			param callback
+			_ this.send
+                { 
+                    @ command 'deleteFile'
+					@ filePath IxdbPath(filePath)
+				@ callback
+
+		m renameFile
+			param oldFilePath
+			param newFilePath
+			param callback
+			_ this.send
+                { 
+                    @ command 'renameFile'
+					@ oldFilePath IxdbPath(oldFilePath)
+					@ newFilePath IxdbPath(newFilePath)
+				@ callback
+
+		m duplicateFile
+			param oldFilePath
+			param newFilePath
+			param callback
+			_ this.send
+                { 
+                    @ command 'duplicateFile'
+					@ oldFilePath IxdbPath(oldFilePath)
+					@ newFilePath IxdbPath(newFilePath)
+				@ callback
+
+		m copyFile
+			param srcFilePath
+			param destFilePath
+			param callback
+			_ this.send
+                { 
+                    @ command 'copyFile'
+					@ srcFilePath IxdbPath(srcFilePath)
+					@ destFilePath IxdbPath(destFilePath)
+				@ callback
+
+		m moveFile
+			param srcFilePath
+			param destFilePath
+			param callback
+			_ this.send
+                { 
+                    @ command 'moveFile'
+					@ srcFilePath IxdbPath(srcFilePath)
+					@ destFilePath IxdbPath(destFilePath)
+				@ callback
+
+		m getFolderBrowseData
+			param folderPath
+			param callback
+			_ this.send
+                { 
+					@ command 'folderBrowse'
+					@ folderPath IxdbPath(folderPath)
+				@ callback
+
+		m getIttfDocumentData
+			param filePath
+			param callback
+			_ this.send
+                { 
+					@ command 'ittfDocument'
+					@ filePath IxdbPath(filePath)
+				@ callback
+
+		m prettifyContent
+			param content
+			param callback
+			_ this.send
+                { 
+					@ command 'prettifyContent'
+					@ content content
+				@ callback
+
+		m send
+			param message
+			param callback
+			_ this.ctx.sendWorkerMessage
+				@ message
+                ._ then
+                    function
+						param result
+						if result.err
+							_ callback
+								@ result.data
+						else
+							_ callback
+								@ null
+								@ result.data
+                ._ catch
+                    function
+						param err
+						_ callback
+							@ err
+
+	function IxdbPath
+		param folderPath
+		if folderPath.substr(0, 5) === '/ixdb'
+			return folderPath
+		return '/ixdb' + (folderPath[0] === '/' ? folderPath : '/' + folderPath)

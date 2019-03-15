@@ -1,0 +1,18 @@
+﻿module
+	kind react
+
+	$include app-options
+	
+	app/store/reducers/index( &app )
+
+		$append imports
+			import commonsReducer from './commonsReducer'
+			import execfileReducer from './execfileReducer'
+			import consoleReducer from './consoleReducer'
+			import wizzifierReducer from './wizzifierReducer'
+
+		@ commons commonsReducer
+		@ execfile execfileReducer
+		@ console consoleReducer
+		@ wizzifier wizzifierReducer
+  

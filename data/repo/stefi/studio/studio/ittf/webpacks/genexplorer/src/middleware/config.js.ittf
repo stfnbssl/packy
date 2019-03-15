@@ -1,0 +1,13 @@
+﻿module
+    kind react
+
+	wz-const HTTP_REQUEST = 'HTTP_REQUEST'
+	wz-const defaultTimeout = 20000
+	wz-const defaultResponseType = 'json'
+
+	import { documents } from './schemas'
+	log 'documents', documents
+	wz-const Schemas
+		{
+			@ documents documents
+

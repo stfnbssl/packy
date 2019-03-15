@@ -1,0 +1,22 @@
+h/root/empty_layout( )
+	$params title|Title, usebabel|false
+	head
+		@style
+			+ a {
+				+ text-decoration: none;
+			+ }
+		@style
+			css
+				< body
+					margin 0
+				# container
+					margin 0 auto
+					maxWidth 1000
+					padding 20px
+		
+		css css/reset.css.ittf
+		css css/styles.css.ittf
+
+	body
+		# container
+			$hook

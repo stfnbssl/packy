@@ -1,0 +1,12 @@
+h/root/layout()
+
+	$
+		var opt = {
+			name: 'javascript',
+			label: 'Javascript',
+			experimentsWith: 'the javascript language in the browser',
+			path: []
+		};
+
+	ttech-frame(&opt)
+ 

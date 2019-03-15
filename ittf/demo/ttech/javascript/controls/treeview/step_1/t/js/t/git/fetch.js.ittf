@@ -1,0 +1,45 @@
+﻿$group
+
+	async-function gitFetch
+		{ 
+			@ filepath
+			@ glEventHub
+            
+		const dir = filepath
+            
+		let ref
+			await 
+				_ prompt
+					{ 
+						@ title 'Fetch branch'
+						@ text 'Name of remote branch'
+						@ input 'text'
+						@ confirmButtonText 'Fetch'
+						@ showCancelButton true
+            
+		_ glEventHub.emit
+			@ 'setFolderStateData'
+			{ 
+				@ fullpath filepath
+				@ key 'busy'
+				@ value true
+            
+		try 
+			await 
+				_ git.fetch
+					{ 
+						@ fs
+						@ dir
+						@ remote 'origin'
+						@ ref
+		
+		catch err
+			log 'err =', err
+           
+		finally
+			_ glEventHub.emit
+				@ 'setFolderStateData'
+				{ 
+					@ fullpath filepath
+					@ key 'busy'
+					@ value false

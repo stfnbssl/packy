@@ -1,0 +1,9 @@
+_layout( Confidence intervals )
+
+	h2 Formulas
+		
+	formulas/ci()
+
+	h2 Glossary
+		
+	glossary/ci()

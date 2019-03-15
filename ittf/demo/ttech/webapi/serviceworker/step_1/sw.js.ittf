@@ -1,0 +1,56 @@
+﻿module
+    kind es6
+
+	log "SW startup"
+	_ self.addEventListener
+		@ 'install'
+		function
+			param event
+			log "Install event", event
+			log ".replace", event.replace
+			log "self.skipWaiting", self.skipWaiting
+			
+			if event.waitUntil
+				log "Testing waitUntil:"
+				_ event.waitUntil
+					new Promise
+						function
+							param resolve
+							_ setTimeout
+								function
+									log "This should appear before activate"
+									_ resolve()
+								@ 3000
+	_ self.addEventListener
+		@ "activate"
+		function
+			param event
+			log "Activate event", event
+			log ".waitUntil", event.waitUntil
+
+	_ self.addEventListener
+		@ "fetch"
+		function
+			param event
+			const url = new URL(event.request.url)
+
+			#
+				if url.origin == location.origin && url.pathname.endsWith('/template-stream/')
+					_ event.respondWith(streamingTemplateResponse())
+
+
+			if url.pathname === "/ittf/demo/ttech/webapi/serviceworker/step_1/bye"
+				if event.respondWith
+					_ event.respondWith
+						new Response
+							new Blob
+								[
+									@ '<h1>Hello</h1>'
+									@ "<p>Url origin: <b>" + url.origin + "</b></p>"
+									@ "<p>Url pathname <b>" + url.pathname + "</b></p>"
+								{
+									@ type 'text/html'
+							{ 
+								@ headers
+									{
+										@ "Content-Type" "text/html"

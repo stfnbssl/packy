@@ -1,0 +1,34 @@
+css
+
+	< :root
+		@ --font-normal 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif
+		@ --font-monospace 'Fira Code', 'Fira Mono', Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace
+
+    < *
+        + *:before
+        + *:after
+        box-sizing inherit
+  
+	< html
+        + body
+        height 100%
+        width 100%
+
+	< html
+		box-sizing border-box
+	
+	< body
+		font-family var(--font-normal)
+		font-size 14px
+		line-height 1.428
+		margin 0
+
+	< *:focus
+        outline none
+    
+	< *:focus-visible
+        outline auto
+
+	# app
+		height 100vh
+		padding 2rem

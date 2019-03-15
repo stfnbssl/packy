@@ -1,0 +1,279 @@
+﻿$group
+
+	iife
+		
+		if !window.wz
+			set window.wz = {}
+	
+		if !wizziStandalone || !wizziStandalone.default
+			throw new Error('Missing component: wizziStandalone.default')
+
+		log 'standalone', wizziStandalone.default
+		set wz.wf = wizziStandalone.default
+		set wz.tools = wizziStandalone.default.wizziTools
+		set wz.utils = wizziStandalone.default.wizziUtils
+		set wz.git = wizziStandalone.default.wizziGit
+
+		set wz.canGen
+			function
+				param schemaName
+				param callback
+				return 
+					_ wz.wf.canGen
+						@ schemaName
+						@ callback
+
+		#
+			# param
+			#   { options
+			#     { modelContext
+			#       optional
+			#     { artifactContext
+			#       optional
+			#     string artifactName
+			#       optional
+		set wz.gen
+			function
+				param filePath
+				param options
+				param callback
+
+				if typeof callback === 'undefined'
+					set callback = options
+					set options = {}
+				
+				_ wz.wf.gen
+					@ filePath
+					@ options
+					f_cb( artifactText )
+						# log 'wz.gen', artifactText
+						r_cb( artifactText )
+							
+		set wz.genFromText
+			function
+				param ittfContent
+				param options
+				param callback
+
+				if typeof callback === 'undefined'
+					set callback = options
+					set options = {}
+				
+				_ wz.wf.genFromText
+					@ ittfContent
+					@ options
+					f_cb( artifactText )
+						# log 'wz.gen', artifactText
+						r_cb( artifactText )
+		
+		set wz.canWizzify
+			function
+				param schemaName
+				return 
+					_ wz.tools.canBeWizzified
+						@ schemaName
+
+		set wz.wizzify
+			function
+				param schemaName
+				param snippet
+				param callback
+				_ wz.tools.wizzify
+					@ schemaName
+					@ snippet
+					@ callback
+
+		set wz.getCodeAST
+			function
+				param mime
+				param snippet
+				param callback
+				_ wz.tools[mime + 'wizzifier'].getCodeAST
+					@ snippet
+					{
+					@ callback
+
+		set wz.mtree
+			function
+				param filePath
+				param context
+				param callback
+
+				if typeof callback === 'undefined'
+					set callback = context
+					set context = {}
+				
+				_ wz.wf.mtree
+					@ filePath
+					{
+						@ moduleContext context
+					@ callback
+
+		set wz.mtreeDebug
+			function
+				param filePath
+				param context
+				param callback
+
+				if typeof callback === 'undefined'
+					set callback = context
+					set context = {}
+				
+				_ wz.wf.mtreeDebug
+					@ filePath
+					{
+						@ moduleContext context
+					@ callback
+
+		#
+			# param
+			#   { options
+			#     { productionOptions
+			#     { globalContext
+		set wz.wizziJob
+			function
+				param filePath
+				param options
+				param callback
+
+				if typeof callback === 'undefined'
+					set callback = options
+					set options = {}
+				
+				_ wz.wf.wizziJob
+					@ filePath
+					@ options
+					@ callback
+
+		set wz.fsGit
+			function
+				param options
+				param callback
+				if typeof callback === 'undefined'
+					set callback = options
+					set options = {}
+				log 'wz.fsGit', options 
+				_ wz.git.fsGit
+					{
+						@ storeName options.storeName || wz.fs.storeName
+					f_cb( fsGit
+						log 'created fs', fsGit
+						r_cb( fsGit )
+
+		set wz.fs
+			{
+				@ kind 'browserfs'
+				@ storeName 'wizziRepo'
+				$$ @ storeName 'wizziRepo'
+
+		set wz.fs.infoByPath
+			function
+				param path
+				param isFolder
+
+				var basename = path.substr(path.lastIndexOf('/')+1)
+				var dirname = path.substr(0, path.lastIndexOf('/'))
+				# TODO isFolder must be set by wizzi-utils.vfile.getFolders(..)
+				var ss = basename.split('.')
+				if ss[ss.length-1] === 'ittf'
+					return
+						{
+							@ path path
+							@ fullPath path
+							@ name basename
+							@ basename basename
+							@ dirname dirname
+							@ isFolder isFolder
+							@ isIttfDocument true
+							@ isFragment path.indexOf('/t/') > -1 
+							@ schema ss[ss.length-2]
+							@ isJob ss[ss.length-2] === 'wfjob'
+							@ isSchema ss[ss.length-2] === 'wfschema'
+							@ mime isFolder ? '' : ss[ss.length-2]
+				else
+					return
+						{
+							@ path path
+							@ fullPath path
+							@ name basename
+							@ basename basename
+							@ dirname dirname
+							@ isFolder isFolder
+							@ mime isFolder ? '' : ss[ss.length-1]
+
+		set wz.fs.getFs
+			function
+				param options
+				param callback
+				if typeof callback === 'undefined'
+					set callback = options
+					set options = {}
+				# log 'wz.fs.getFs', options 
+				_ wz.utils.vfile
+					{
+						@ storeName options.storeName || wz.fs.storeName
+					f_cb( fs
+						# log 'created fs', fs
+						r_cb( fs )
+
+		set wz.fs.getFolders
+			function
+				param folderPath
+				param options
+				param callback
+				if typeof callback === 'undefined'
+					set callback = options
+					set options = {}
+				_ wz.fs.getFs
+					f_cb( fs
+						_ fs.getFolders
+							@ folderPath
+							@ options
+							@ callback
+		
+		set wz.fs.getFiles
+			function
+				param folderPath
+				param options
+				param callback
+				if typeof callback === 'undefined'
+					set callback = options
+					set options = {}
+				_ wz.fs.getFs
+					f_cb( fs
+						_ fs.getFiles
+							@ folderPath
+							@ options
+							@ callback
+		
+		set wz.fs.getTreeFolderView
+			function
+				param folderPath
+				param callback
+				var ret = []
+				_ wz.fs.getFolders
+					@ folderPath
+					{
+						@ deep false
+					f_cb( folders
+						foreach f in folders
+							_ ret.push
+								_ wz.fs.infoByPath
+									@ f.fullPath
+									@ true
+						_ wz.fs.getFiles
+							@ folderPath
+							{
+								@ documentContent true
+								@ deep false
+							f_cb( files
+								foreach f in files
+									var temp
+										_ wz.fs.infoByPath
+											@ f.fullPath
+											@ false
+									set temp.content = f.content
+									_ ret.push
+										@ temp
+								r_cb( ret )
+		(

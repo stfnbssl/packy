@@ -1,0 +1,16 @@
+{
+
+	$
+		var opt = {
+			name: 'tooltips',
+			label: 'Tooltip',
+			experimentsWith: 'javascript tooltips',
+			path: [
+				{
+					name: 'javascript',
+					label: 'Javascript',
+				},
+			]
+		};
+
+	ttech-frame(&opt)

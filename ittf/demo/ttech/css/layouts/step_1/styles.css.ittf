@@ -1,0 +1,72 @@
+﻿css
+
+	$
+		var l_colors = "#B9D2DE;#919FA6;#3C7590;#D1E5EE;#D9E7EE;#C0C4E3;#9799AA;#3E4893;#D5D9F1;#DDDFF1;#BDE5CE;#95AC9F;#3D9563;#D2F2E0;#DBF2E5;#FFEAD2;#BFB4A6;#A67944;#FFF0DE;#FFF4E7".split(';')
+
+	$if mpage.theme.fontAwesome
+		import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
+
+    < html
+		font-size ${mpage.html.fontSize}px
+
+	< body
+        background-color ${mpage.body.backgroundColor}
+        margin 0
+		padding 0
+		$if mpage.body.fontFamily === 'roboto'
+			font-family 'Roboto', arial, verdana, sans-serif;
+		$else
+			font-family arial, verdana
+		font-size ${mpage.body.fontSize}px
+
+	< ul
+		margin 0
+		padding 0
+
+	< li
+		list-style-type none
+		margin 0
+		padding 0
+
+	< a
+		text-decoration none
+		color #000
+
+
+	$include s/navTop
+	
+	$include s/navLeft
+
+	$include s/wrapMain
+	
+	. cont-main
+		$if mpage.contMain.padding
+			padding ${mpage.contMain.padding}rem
+	
+	. pad-2
+		$$ padding 2rem
+
+	. nav-top-text-1
+		font-size 1rem
+		line-height 3rem
+		color rgba(0,0,0,.54)
+		font-weight 400
+		padding 0 2rem
+		< a
+			color rgba(0,0,0,.54)
+			
+	. nav-sub-top-text-1
+		font-size 2rem
+		color #fff
+		text-transform uppercase
+
+	. nav-left-text-1
+		font-size 0.8rem
+
+	. flex-row
+		display flex
+		flex-direction row
+		justify-content space-around
+		align-items center
+
+	$include s/cards

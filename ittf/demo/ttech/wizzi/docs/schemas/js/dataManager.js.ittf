@@ -1,0 +1,57 @@
+﻿$group
+
+	class DataManager
+		ctor
+			param props
+			set this.props = props
+			set this.schemaDatas = {}
+			set this.selectedSchema = null
+			_ this.initialize
+
+		m initialize
+			
+			on( schema-selected
+				set this.selectedSchema = data.name
+				_ this.getSchemaData
+					@ data.name
+
+		m getSchemaData
+			param name
+			
+			if this.schemaDatas[name]
+			
+				emit( schema-selected-ready
+						@ name name
+						@ data this.schemaDatas[name]
+			
+			else
+			
+				_ fetch
+					@ 'https://wizzifactory.github.io/schemas/' + name + '-schema.g.json'
+					._ then
+						=>
+							param response
+							return response.json()
+					._ then
+						=>
+							param json
+							set json = this.setIds(json)
+							set this.schemaDatas[name] = json
+							emit( schema-selected-ready
+								@ name name
+								@ json json
+					._ catch
+						=>
+							param err
+							# FIXME
+							log 'getSchemaData error', err
+							throw err
+
+		m setIds
+			param json
+			set json.elementsDict = {}
+			var c = 1
+			foreach e in json.elements
+				set e._id = 'k' + c++
+				set json.elementsDict[e._id] = e
+			return json

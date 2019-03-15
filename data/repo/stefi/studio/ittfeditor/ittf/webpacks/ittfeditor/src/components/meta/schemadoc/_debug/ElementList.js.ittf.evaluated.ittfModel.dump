@@ -1,0 +1,25 @@
+  module  ids: undefined undefined
+    kind react ids: undefined undefined
+    +  ids: undefined undefined
+    import React, { Component, PropTypes } from 'react' ids: undefined undefined
+    import ElementListItem from './ElementListItem' ids: undefined undefined
+    class ElementList ids: undefined undefined
+      super Component ids: undefined undefined
+      m render ids: undefined undefined
+        const { elements, selectedName, onElementSelected } = this.props ids: undefined undefined
+        return  ids: undefined undefined
+          . list-group ids: undefined undefined
+            {  ids: undefined undefined
+              _ elements.map ids: undefined undefined
+                =>  ids: undefined undefined
+                  param element ids: undefined undefined
+                  return  ids: undefined undefined
+                    < ElementListItem ids: undefined undefined
+                      @ key {element.name} ids: undefined undefined
+                      @ name {element.name} ids: undefined undefined
+                      @ selectedName {selectedName} ids: undefined undefined
+                      onClick  ids: undefined undefined
+                        =>  ids: undefined undefined
+                          _ onElementSelected ids: undefined undefined
+                            @ element ids: undefined undefined
+    export default ElementList ids: undefined undefined

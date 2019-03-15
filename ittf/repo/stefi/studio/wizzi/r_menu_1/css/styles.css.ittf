@@ -1,0 +1,195 @@
+﻿css
+
+	$include meta
+    
+	import url(https://fonts.googleapis.com/css?family=Oswald:400,700)
+    
+	- Base Styles
+	< body
+        background-color ${c_bg_0}
+        color ${c_0}
+        font-family 'Oswald', sans-serif
+        line-height 2em
+        $$ text-transform uppercase
+    
+	< h1
+        font-size 3em
+        padding 3em 0 1em 0
+
+	- We ensure that the navigation stays at the top of the browser window by giving it a position: fixed property. 
+		- Setting its width to min-width: 100% will ensure that the navigation spans the full width of the browser window.
+	. navBar
+		background-color ${c_0}
+		position fixed
+		min-width 100%
+
+	- Our content is centered by giving the .navMain class the property margin: 0 auto. 
+		- We limit its width by giving it the property max-width: 960px.
+	. navMain
+		margin 0 auto
+		max-width 1280px
+		padding 0 2%
+
+	. logo
+        background-color ${c_0}
+		< img:hover
+			background-color ${c_1}
+
+	. mainContent
+
+	. navBar
+	
+		. navMain
+			- flex for logo and menu UL
+			display flex
+			align-items center
+			- space-between evenly distributes the child elements within the parent flex container
+			justify-content space-between
+
+			< ul
+				display flex
+				justify-content space-between
+				list-style-type none
+				- width is required for justify-content to take effect
+				width 50%
+				< li
+					color ${c_bg_0}
+					< a
+						color ${c_bg_0}
+						text-decoration none
+						transition all .5s ease
+						& :hover
+							color ${c_2}
+
+				. nav1selected
+					display inline-block
+					padding 1em
+					$$ height 45px
+					background-color ${c_bg_1}
+					color ${c_0}
+					< a
+						color ${c_0}
+						text-decoration none
+						transition all .5s ease
+						& :hover
+							color ${c_0}
+
+			< li
+				display inline-block
+				padding 1em
+				$$ height 45px
+
+
+		# menu-toggle
+			display none
+
+		. label-toggle
+			display none
+
+		. label-toggle-close
+			display none
+
+		. navSub1
+			background-color ${c_bg_1}
+			padding 0 2em
+			margin 0 auto
+			max-width 1280px
+			< ul
+				display flex
+				justify-content space-between
+				list-style-type none
+				width 50%
+				< li
+					< a
+						color ${c_0}
+						text-decoration none
+						transition all .5s ease
+						& :hover
+							color ${c_2}
+
+		. navSub1_mobile
+			display none
+
+
+	media screen and (max-width: 768px)
+		. navBar
+
+			height 100vh
+			overflow-y scroll
+
+			. logo
+				display inline-block
+
+
+			. navMain
+				display block
+				< ul
+					background-color ${c_bg_0}
+					display block
+					$$ height 0
+					list-style-type none
+					opacity 0
+					text-align center
+					transition all 1s ease
+					width 100%
+					visibility hidden
+					< li
+						border-bottom 2px solid ${c_0}
+						color ${c_0}
+						display block
+						font-size 1.5em
+						padding 2em 0
+						< a
+							color ${c_0}
+					. nav1selected
+						display block
+						
+			. navSub1
+				display none
+
+			. navSub1_mobile
+				display block
+
+			. label-toggle
+				background linear-gradient( to bottom, 
+					\b ${c_bg_0} 0%, ${c_bg_0} 15%, transparent 15%, transparent 35%, 
+					\b ${c_bg_0} 35%, ${c_bg_0} 50%, transparent 50%, transparent 70%, 
+					\b ${c_bg_0} 70%, ${c_bg_0} 85%, transparent 85%, transparent 100%)
+				cursor pointer
+				display block
+				float right
+				height 35px
+				margin-top 1em
+				width 35px
+
+			# menu-toggle:checked ~ ul
+				opacity 1
+				visibility visible
+				< li .navSub1_mobile ul
+					opacity 1
+					visibility visible
+					margin-top 0.5em
+					background-color ${c_bg_2}
+					< li
+						font-size 14px
+						padding 0.5em 0
+			
+
+			# menu-toggle:checked ~ .label-toggle
+				display none
+
+			# menu-toggle:checked ~ .label-toggle-close
+				color ${c_bg_0}
+				font-size 80px
+				cursor pointer
+				display block
+				float right
+				height 35px
+				margin-top 0.1em
+				width 35px
+
+
+
+
+
+

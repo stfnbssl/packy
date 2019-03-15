@@ -1,0 +1,29 @@
+﻿$group
+
+	class SectionPanel
+		super React.Component
+
+		m render
+			const { data } = this.props
+			const { id, style: elementStyle } = data
+			return
+				div
+					@ id { id }
+					@style { this.style(elementStyle) }
+					{
+						_ data.panels.map
+							=>
+								param panel
+								var PanelComponent = builder.create(panel)
+								return
+									< PanelComponent
+										@ data { panel }    
+
+
+		m style
+			param elementStyle
+			return
+				_ Object.assign
+					{
+					{
+					@ elementStyle

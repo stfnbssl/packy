@@ -1,0 +1,53 @@
+﻿$group
+	bb_model Spa.CssRuleModel
+		__o defaults
+			__p name
+		method toRuleText
+			var ruleStyles = new Spa.CssRuleStyles({
+				id: this.get('id')
+			});
+			ruleStyles.fetch();
+			ruleStyles.set('__rulename', this.get('name'));
+			return ruleStyles.toRuleText();
+		method toRuleWmt
+			var ruleStyles = new Spa.CssRuleStyles({
+				id: this.get('id')
+			});
+			ruleStyles.fetch();
+			ruleStyles.set('__rulename', this.get('name'));
+			return ruleStyles.toRuleWmt();
+
+	bb_collection Spa.CssRuleCollection
+		__p model:object Spa.CssRuleModel
+		__p localStorage:object new Backbone.LocalStorage("ce-cssrule")
+		method modelsByCssId cssid
+			return this.filter(function(model) {
+				return model.get("cssid") === cssid;
+			});
+		method byCssId cssid
+			var self = this
+				, filtered = this.modelsByCssId(cssid);
+			var ctype = Backbone.Collection.extend({
+				model: Spa.CssRuleModel,
+				localStorage: new Backbone.LocalStorage("ce-cssrule"),
+				reload: function() {
+					this.reset(self.modelsByCssId(cssid));
+				} 
+			});
+			return new ctype(filtered);
+		method toCssRulesText cssid
+			var rules = this.byCssId(cssid);
+			var styles = [];
+			rules.each(function(rule) {
+				styles.push(rule.toRuleText());
+			});
+			return styles.join( '\n' );
+		method toCssRulesWmt cssid
+			var rules = this.byCssId(cssid);
+			var styles = [];
+			rules.each(function(rule) {
+				styles.push(rule.toRuleWmt());
+			});
+			return styles.join( '\n' );
+
+

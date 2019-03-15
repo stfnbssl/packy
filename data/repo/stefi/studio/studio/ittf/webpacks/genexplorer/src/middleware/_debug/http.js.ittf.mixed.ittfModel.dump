@@ -1,0 +1,126 @@
+  module  ids: 1 81
+    kind react ids: 2 82
+    +  ids: 3 83
+    import util ids: 4 84
+    import querystring ids: 5 85
+    import axios ids: 6 86
+    import _ from 'lodash' ids: 7 87
+    # import { pushState } from 'redux-react-router' ids: 8 88
+    import utils from '../lib/utils' ids: 9 89
+    import config from './config' ids: 10 90
+    import { normalize } from 'normalizr' ids: 11 91
+    +  ids: 12 92
+    const { notEmptyString } = utils ids: 13 93
+    const error = utils.error('dashredux/middleware/http') ids: 14 94
+    const throwError = utils.throwError('dashredux/middleware/http') ids: 15 95
+    +  ids: 16 96
+    $group  ids: 161 208
+      +  ids: 162 209
+      const methods = ['get', 'post', 'put', 'delete', 'create'] ids: 163 210
+      const trueMethods = ['get', 'post'] ids: 164 211
+      +  ids: 165 212
+      function validateCreateAxiosConfig ids: 166 213
+        param actionHttpRequest ids: 167 214
+        +  ids: 168 215
+        var { url } = actionHttpRequest ids: 169 216
+        const { method, queryParams, payload, responseType, timeout } = actionHttpRequest ids: 170 217
+        +  ids: 171 218
+        if typeof url !== 'string' ids: 172 219
+          _ throwError ids: 173 220
+            @ 'Specify a string endpoint URL. actionHttpRequest: ' + util.inspect(actionHttpRequest, { depth:null }) ids: 174 221
+            @ 'validateCreateAxiosConfig' ids: 175 222
+        +  ids: 176 223
+        var urlHasParams = url.indexOf('?') > -1 ids: 177 224
+        +  ids: 178 225
+        if queryParams ids: 179 226
+          if !_.isObject(queryParams) ids: 180 227
+            _ throwError ids: 181 228
+              @ 'The property queryParams must be an object. actionHttpRequest: ' + util.inspect(actionHttpRequest, { depth:null }) ids: 182 229
+              @ 'validateCreateAxiosConfig' ids: 183 230
+          set url = url + (urlHasParams ? '&' : '?') + querystring.stringify(queryParams, '&', '=') ids: 184 231
+          set urlHasParams = true ids: 185 232
+        +  ids: 186 233
+        if methods.indexOf(actionHttpRequest.method) === -1 ids: 187 234
+          _ throwError ids: 188 235
+            @ 'Invalid http method: "' + actionHttpRequest.method + '" actionHttpRequest:' + util.inspect(actionHttpRequest, { depth:null }) ids: 189 236
+            @ 'validateAxiosConfig' ids: 190 237
+        if trueMethods.indexOf(actionHttpRequest.method) === -1 ids: 191 238
+          set url = url + (urlHasParams ? '&' : '?') + '_method=' + actionHttpRequest.method ids: 192 239
+          set actionHttpRequest.method = 'post' ids: 193 240
+          set urlHasParams = true ids: 194 241
+        +  ids: 195 242
+        var ret ids: 196 243
+          {  ids: 197 244
+            @ url url ids: 198 245
+            @ method method ids: 199 246
+        if method === 'post' && payload ids: 200 247
+          set ret.data = payload ids: 201 248
+        set ret.responseType = responseType || config.defaultResponseType ids: 202 249
+        set ret.timeout = timeout || config.defaultTimeout ids: 203 250
+        +  ids: 204 251
+        log 'validateCreateAxiosConfig.ret', ret ids: 205 252
+        +  ids: 206 253
+        return ret ids: 207 254
+    +  ids: 18 98
+    function createReceiveAction ids: 19 99
+      param actionType ids: 20 100
+      param initialAction ids: 21 101
+      param response ids: 22 102
+      param schema ids: 23 103
+      +  ids: 24 104
+      log 'createReceiveAction.response.data', response.data, response.status ids: 25 105
+      const payload = schema ? normalize(response.data.data, schema) : response.data.data ids: 26 106
+      log 'createReceiveAction.payload', payload ids: 27 107
+      +  ids: 28 108
+      var finalAction ids: 29 109
+        _ _.assign ids: 30 110
+          {  ids: 31 111
+          @ initialAction ids: 32 112
+          {  ids: 33 113
+            @ type actionType ids: 34 114
+            @ payload payload ids: 35 115
+            @ status response.status ids: 36 116
+            @ statusText response.statusText ids: 37 117
+            @ headers response.headers ids: 38 118
+      delete finalAction[config.HTTP_REQUEST] ids: 39 119
+      return finalAction ids: 40 120
+    +  ids: 41 121
+    wz-function sendRequest ids: 42 122
+      param actionHttpRequest ids: 43 123
+      param initialAction ids: 44 124
+      param dispatch ids: 45 125
+      const { schema, types } = actionHttpRequest ids: 46 126
+      const [ requestType, successType, failureType ] = types ids: 47 127
+      +  ids: 48 128
+      var axiosConfig ids: 49 129
+        _ validateCreateAxiosConfig(actionHttpRequest) ids: 50 130
+      +  ids: 51 131
+      log 'middleware/http/sendRequest.axiosConfig', axiosConfig ids: 52 132
+      +  ids: 53 133
+      if notEmptyString(requestType) ids: 54 134
+        _ dispatch ids: 55 135
+          {  ids: 56 136
+            @ type requestType ids: 57 137
+      return  ids: 58 138
+        _ axios ids: 59 139
+          @ axiosConfig ids: 60 140
+          ._ then ids: 61 141
+            function  ids: 62 142
+              param response ids: 63 143
+              _ dispatch ids: 64 144
+                _ createReceiveAction ids: 65 145
+                  @ successType ids: 66 146
+                  @ initialAction ids: 67 147
+                  @ response ids: 68 148
+                  @ schema ids: 69 149
+              log 'sendRequest.then actionHttpRequest.next', actionHttpRequest.next ids: 70 150
+              if actionHttpRequest.next != null ids: 71 151
+                _ dispatch(actionHttpRequest.next) ids: 72 152
+            ._ catch ids: 73 153
+              function  ids: 74 154
+                param response ids: 75 155
+                _ dispatch ids: 76 156
+                  _ createReceiveAction ids: 77 157
+                    @ failureType ids: 78 158
+                    @ initialAction ids: 79 159
+                    @ response ids: 80 160

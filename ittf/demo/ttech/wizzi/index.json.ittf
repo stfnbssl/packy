@@ -1,0 +1,11 @@
+{
+
+	$
+		var opt = {
+			name: 'wizzi',
+			label: 'Wizzi',
+			experimentsWith: 'Wizzi Factory technology',
+			path: []
+		};
+
+	ttech-frame(&opt)

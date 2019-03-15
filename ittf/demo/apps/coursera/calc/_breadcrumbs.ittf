@@ -1,0 +1,7 @@
+$append breadcrumb
+	h/bs/breadcrumb()
+		h/bs/li_a_divider( Wizzi, /ittf/home/index.html.ittf )
+		h/bs/li_a_divider( Demo apps, /ittf/demo/apps/index.html.ittf )
+		h/bs/li_a_divider( Coursera, /ittf/demo/apps/coursera/index.html.ittf )
+		h/bs/li_active( Calculus )
+

@@ -1,0 +1,238 @@
+﻿module
+    kind jsfile
+
+	var uuid = require('node-uuid')
+	var _ = require('./utils')
+	var search = require('./searcharray')
+
+	var CRUD = {}
+
+	set CRUD.insert
+		function
+			param list
+			param obj
+			param callback
+			
+			check_listIsArray()
+			check_objIsObject()
+
+			set obj._id = uuid.v1()
+			_ list.push(obj)
+			_ callback
+				@ null
+				@ obj
+
+	set CRUD.insertUnique
+		function
+			param list
+			param objkey
+			param obj
+			param callback
+			
+			check_listIsArray()
+			check_objkey()
+			check_objIsObject()
+		
+			_ CRUD.findOne
+				@ list
+				@ objkey
+				cb_with_err(foundObj)
+					if foundObj
+						_ callback
+							_ CRUD.keyAlreadyExistsError
+								_ _.objkeyToString
+									@ objkey
+					else
+						set obj._id = uuid.v1()
+						_ list.push(obj)
+						_ callback
+							@ null
+							@ obj
+
+	set CRUD.update
+		function
+			param list
+			param objkey
+			param obj
+			param callback
+			
+			check_listIsArray()
+			check_objkey()
+			check_objIsObject()
+
+			var found = false
+			foreach item in list
+				set found = true
+				foreach key in keys
+					if item[key] !== objkey[key]
+						set found = false
+				if found
+					set obj._id = item._id
+					set list[i] = obj
+					return
+						_ callback
+							@ null
+							@ list[i]
+			_ callback
+				_ CRUD.keyNotFoundError
+					_ _.objkeyToString
+						@ objkey
+
+	set CRUD.delete
+		function
+			param list
+			param objkey
+			param callback
+
+			check_listIsArray()
+			check_objkey()
+
+			var found = false
+			foreach item in list
+				set found = true
+				foreach key in keys
+					if item[key] !== objkey[key]
+						set found = false
+				if found
+					log 'CRUD.delete. found : ', keys[0], item[keys[0]]
+					_ list.splice(i, 1);
+					return
+						_ callback
+							@ null
+							@ item
+			log 'CRUD.delete. not found : ', keys[0]
+			_ callback
+				_ CRUD.keyNotFoundError
+					_ _.objkeyToString
+						@ objkey
+
+	set CRUD.find
+		function
+			param list
+			param objkey
+			param paging
+			param callback
+
+			var keys = _.keys(objkey)
+			var foundList = []
+			var found = false
+			var foundCount = 0
+			foreach item in list
+				set found = true
+				foreach key in keys
+					if item[key] !== objkey[key]
+						set found = false
+				if found
+					set foundCount++
+					if !paging.on || ( foundCount >= paging.firstItem && foundCount <= paging.lastItem )
+						_ foundList.push(item)
+			log 'arraycrud.find.foundList', foundList
+			_ callback
+				@ null
+				{
+					@ items foundList
+					@ paging
+						{
+							@ totalItems foundCount
+							@ pageSize paging.pageSize || foundCount
+							@ pageCurrent paging.pageCurrent || 1
+
+	set CRUD.findOne
+		function
+			param list
+			param objkey
+			param callback
+
+			check_listIsArray()
+			check_objkey()
+		
+			var found = false
+			foreach item in list
+				set found = true
+				foreach key in keys
+					if item[key] !== objkey[key]
+						set found = false
+				if found
+					return
+						_ callback
+							@ null
+							@ item
+			_ callback
+				@ null
+				@ null
+
+	set CRUD.search
+		function
+			param list
+			param objkey
+			param query
+			param paging
+			param callback
+
+			# find without paging
+			_ CRUD.find
+				@ list
+				@ objkey
+				{
+					@ on false
+				function
+					param err
+					param result
+					if err
+						return
+							_ callback
+								@ err
+					# search with paging
+					_ search.pagedSearch
+						@ query
+						@ result.items
+						@ paging
+						@ callback
+	
+	set CRUD.dump
+		function
+			param list
+
+			log 'dump list, items', list.length
+			foreach item in list
+				var keys = _.keys(item)
+				log ' item ', i
+				foreach key in keys
+					log '  ', key, item[key]
+					
+	set CRUD.generateError
+		function
+			param code
+			param message
+			return
+				{
+					@ code code
+					@ message message
+
+	set CRUD.notFoundError
+		function
+			return CRUD.generateError("404", "The requested resource does not exist.")
+
+	set CRUD.missingObjectKeyError
+		function
+			return CRUD.generateError("400", "Missing object key.")
+
+	set CRUD.missingArrayError
+		function
+			return CRUD.generateError("400", "The list parameter must be an array.")
+
+	set CRUD.missingObjectError
+		function
+			return CRUD.generateError("400", "Missing object parameter.")
+
+	set CRUD.keyAlreadyExistsError
+		function
+			param keystring
+			return CRUD.generateError("400", "Insert failed. The object key already exists : " + keystring)
+
+	set CRUD.keyNotFoundError
+		function
+			param keystring
+			return CRUD.generateError("400", "Operation failed. The object key does not exists : " + keystring)
+
+	set module.exports = CRUD

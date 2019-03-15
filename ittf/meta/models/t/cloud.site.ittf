@@ -1,0 +1,26 @@
+$group
+
+	category Cloud
+
+		category GitHub
+		    
+		    demo login
+				label Login
+
+		    demo reads
+				label Reads
+
+		    demo commits
+				label Commits
+				
+		category Firebase
+		    
+		    demo first
+				label First
+				
+		    demo second
+				label Second
+
+		    demo fbfsclient
+				label fbFsClient 
+		    

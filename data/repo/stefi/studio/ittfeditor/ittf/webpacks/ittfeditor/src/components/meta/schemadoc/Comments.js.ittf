@@ -1,0 +1,10 @@
+﻿r-function( Comments )
+	
+	prop comments
+		[
+	
+	if !comments || !comments.length
+		return null
+	else
+		return
+			pre {comments.join('\n')}

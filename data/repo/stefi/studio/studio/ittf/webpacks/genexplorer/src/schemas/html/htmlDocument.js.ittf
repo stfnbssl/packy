@@ -1,0 +1,6 @@
+﻿module
+	kind react
+
+	export const artifactGenerator = 'html/document'
+	export const displayName = 'html document'
+	export const showInMenu = true

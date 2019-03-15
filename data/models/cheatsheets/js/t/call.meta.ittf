@@ -1,0 +1,37 @@
+﻿element call
+	tag _
+	ast CallExpression
+	category call-statements
+	
+	item
+		title Call with no parameters
+		ittf
+			_ execute
+
+	item
+		title Call with string and number parameters
+		ittf
+			_ display
+				@ 'name'
+				@ 3
+	
+	item
+		title Call with string and call parameters
+		ittf
+			_ showUserName
+				@ userId
+				_ getName
+					@ userId
+
+	item
+		title Call with string and object parameters
+		ittf
+			_ showUserProfile
+				@ userId
+				{
+					@ showEmail
+						_ isEmailVisible
+							@ userId
+					[ sections
+						@ 'about-me'
+						@ 'projects'

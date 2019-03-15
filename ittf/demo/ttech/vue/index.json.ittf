@@ -1,0 +1,11 @@
+{
+
+	$
+		var opt = {
+			name: 'vue',
+			label: 'Vue',
+			experimentsWith: 'the javascript Vue progressive framework',
+			path: []
+		};
+
+	ttech-frame(&opt)

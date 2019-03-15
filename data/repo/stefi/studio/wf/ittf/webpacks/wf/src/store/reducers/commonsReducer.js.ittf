@@ -1,0 +1,15 @@
+﻿module 
+    kind react
+	+
+	import { GET_COMMONS_SUCCESS } from '../actions'
+	+
+	const commonsInitialState
+		{
+			@ items []
+	+
+	r( commons, commonsInitialState )
+	
+		c( GET_COMMONS_SUCCESS
+			{
+				@ ...state
+				@ items Object.values(action.payload.items)

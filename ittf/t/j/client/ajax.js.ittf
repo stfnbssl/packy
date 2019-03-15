@@ -1,0 +1,83 @@
+$group
+
+	function ajax
+		param METHOD
+		param url
+		param data
+		param opt
+
+		var r20 = /%20/g
+		
+		set opt = opt || {}
+
+		set METHOD = METHOD.toUpperCase()
+		var hasBody = "|GET|HEAD|".indexOf('|'+METHOD+'|') < 0
+
+		if !hasBody && data
+			var prms = []
+			if typeof data === 'string'
+				_ prms.push(data)
+			else
+				var k, value
+				for var k in data
+					set value = data[k]
+					set value = typeof value === 'function' ? value() : ( value == null ? "" : value )
+					_ prms.push( encodeURIComponent( k ) + "=" + encodeURIComponent( value ) )
+			var x = url.indexOf('?') > 0 ? '&' : '?'
+			set url += x + prms.join('&').replace( r20, "+" )
+
+		log 'called ajax', url
+
+		var XHR = XMLHttpRequest || ActiveXObject
+		var xmlhttp = new XHR('MSXML2.XMLHTTP.3.0')
+
+		set xmlhttp.onreadystatechange
+			function
+				if xmlhttp.readyState === 4
+
+					var ret = xmlhttp.responseText
+					if opt.json
+						try
+							set ret = JSON.parse(ret + '')
+						catch ex
+							set ret = xmlhttp.responseText
+
+					if xmlhttp.status >= 200 && xmlhttp.status < 300
+						log 'ajax onready', ret
+						foreach cb in successCallbacks
+							_ cb.apply(this, [ret])
+					else
+						foreach cb in failCallbacks
+							_ cb.apply(this, [ret])
+				
+		_ xmlhttp.open(METHOD, url, true)
+		log 'hasBody && data', hasBody && data
+		_ xmlhttp.send( hasBody && data || null)
+
+		var successCallbacks = []
+		var failCallbacks = []
+		var promise
+			{
+				@ then
+					function
+						param callback
+						_ successCallbacks.push(callback)
+						return promise;
+				@ fail
+					function
+						param callback
+						_ failCallbacks.push(callback)
+						return promise;
+		return promise
+
+	set ajax.get
+		function
+			param url
+			param data
+			return new ajax('GET', url, data, { json: true})
+
+	set ajax.post
+		function
+			param url
+			param data
+			return new ajax('POST', url, data, { json: true})

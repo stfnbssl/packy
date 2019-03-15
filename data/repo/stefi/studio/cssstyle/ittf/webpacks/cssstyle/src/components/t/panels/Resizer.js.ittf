@@ -1,0 +1,71 @@
+﻿$group
+    
+    class Resizer
+        super React.Component
+        m render
+            var {className, @ onClick, onDoubleClick, onMouseDown, onTouchEnd, onTouchStart, prefixer, resizerClassName, split, style} = this.props
+            var classes
+                [ 
+                    @ resizerClassName
+                    @ split
+                    @ className
+
+			return
+				span
+					class {classes.join(' ')}
+					@style {prefixer.prefix(style) || {}}
+					@ onMouseDown
+						=>
+							param event
+							onMouseDown(event)
+					@ onTouchStart
+						=>
+							param event
+							_ event.preventDefault()
+							_ onTouchStart(event)
+					@ onTouchEnd
+						=>
+							param event
+							_ event.preventDefault()
+							_ onTouchEnd(event)
+					@ onClick
+							=>
+								param event
+								if onClick
+									_ event.preventDefault()
+									_ onClick(event)
+					@ onDoubleClick
+							=>
+								param event
+								if onDoubleClick
+									_ event.preventDefault()
+									_ onDoubleClick(event)
+                
+	
+	set Resizer.propTypes
+        { 
+            @ className PropTypes.string.isRequired
+            @ onClick PropTypes.func
+            @ onDoubleClick PropTypes.func
+            @ onMouseDown PropTypes.func.isRequired
+            @ onTouchStart PropTypes.func.isRequired
+            @ onTouchEnd PropTypes.func.isRequired
+            @ prefixer
+                _ PropTypes.instanceOf(Prefixer)
+                    . isRequired
+            @ split
+                _ PropTypes.oneOf
+                    [ 
+                        @ 'vertical'
+                        @ 'horizontal'
+            @ style stylePropType
+            @ resizerClassName PropTypes.string.isRequired
+    
+	set Resizer.defaultProps
+        { 
+            @ prefixer
+                new Prefixer
+                    { 
+                        @ userAgent USER_AGENT
+            @ resizerClassName 'Resizer'
+

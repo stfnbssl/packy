@@ -1,0 +1,123 @@
+﻿$group
+
+	var win = typeof window != 'undefined' && window
+	var doc = typeof document != 'undefined' && document
+	var docElem = doc && doc.documentElement
+	var matchMedia = win['matchMedia'] || win['msMatchMedia']
+    var mq
+		iif matchMedia
+			then
+				function
+					param q
+					return !!matchMedia.call(win, q).matches
+			else
+				function
+					return false
+	log 'win', win
+	log 'doc', doc
+	log 'docElem', docElem
+    
+	class ElementPosition
+		ctor
+			param element
+			set this.$element = $(element)
+
+		m getPositionData
+			var elem = this.$element[0]
+			var win = elem.ownerDocument.defaultView
+			var rect = elem.getBoundingClientRect()
+			log 'rect', rect
+			#
+				return
+					{
+						@ top rect.top + win.pageYOffset
+						@ left rect.left + win.pageXOffset
+			var ret 
+				{
+					@ winLeft win.screenX || win.screenLeft
+					@ winTop win.screenY || win.screenTop
+					@ winScreenWidth win.screen.width
+					@ winScreenHeight win.screen.height
+					@ winScreenAvailWidth win.screen.availWidth
+					@ winScreenAvailHeight win.screen.availHeight
+					@ winInnerWidth win.innerWidth
+					@ winInnerHeight win.innerHeight
+					@ winOuterWidth win.outerWidth
+					@ winOuterHeight win.outerHeight
+					@ winScrollX win.pageXOffset || docElem.scrollLeft 
+					@ winScrollY win.pageYOffset || docElem.scrollTop
+					@ docBodyClientWidth doc.body.clientWidth
+					@ docBodyClientHeight doc.body.clientHeight
+					@ docBodyOffsetWidth doc.body.offsetWidth
+					@ docBodyOffsetHeight doc.body.offsetHeight
+					@ docBodyScrollWidth doc.body.scrollWidth
+					@ docBodyScrollHeight doc.body.scrollHeight
+					@ docElemClientWidth docElem.clientWidth
+					@ docElemClientHeight docElem.clientHeight
+					@ docElemOffsetWidth docElem.offsetWidth
+					@ docElemOffsetHeight docElem.offsetHeight
+					@ docElemScrollWidth docElem.scrollWidth
+					@ docElemScrollHeight docElem.scrollHeight
+					@ docInnerWidth docElem.innerWidth
+					@ docInnerHeight docElem.innerHeight
+					@ offset
+						{
+							@ left elem.offsetLeft 
+							@ top elem.offsetTop
+					@ elemRectLeft rect.left
+					@ elemRectTop rect.top
+					@ elemRectRight rect.right
+					@ elemRectBottom rect.bottom
+					@ elemRectWidth rect.width
+					@ elemRectHeight rect.height
+					@ documentRect document.body.getBoundingClientRect()
+			return ret
+
+		m popupStyle
+			param options
+			var width = options.width || (16 * 30)
+			var padMarginWidth = options.padMarginWidth || 0
+			var height = options.height || (9 * 30)
+			var event = options.event
+			if event
+				log event
+				return
+					{
+						@ position "absolute"
+						@ display "inline"
+						@ top this.topCheckedFromEvent(event, height + padMarginHeight)
+						@ left this.leftCheckedFromEvent(event, width + padMarginWidth)
+						@ width (width + "px")
+						@ height (height + "px")
+			else
+				return
+					{
+						@ position "absolute"
+						@ top "50%"
+						@ left "50%"
+						@ width (width + "px")
+						@ height (height + "px")
+						@ marginLeft ((-1 * width/2) + "px")
+						@ marginTop ((-1 * height/2) + "px")
+
+		m topCheckedFromEvent
+			param event
+			param height
+			var top = event.pageY - (height / 2)
+			if top < 0
+				return 0
+			elif (top + height) > win.innerHeight
+				return win.innerHeight - height
+			else
+				return top
+		
+		m leftCheckedFromEvent
+			param event
+			param width
+			var left = event.pageX - (width / 2)
+			if left < 0
+				return 0
+			elif (left + width) > doc.body.clientWidth
+				return doc.body.clientWidth - width
+			else
+				return left

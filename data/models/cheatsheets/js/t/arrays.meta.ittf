@@ -1,0 +1,71 @@
+﻿element array
+	tag _
+	ast 
+	category arrays
+	
+	item
+		title array concat single line statement
+		ittf
+			concat myarray 0, 1, 2, [3, 4]
+
+	item
+		title array concat multi line statement
+		ittf
+			concat myarray
+				@ 0
+				@ 1
+				@ 2
+				[
+					@ 3
+					@ 4
+
+	item
+		title array concat mixed line statement
+		ittf
+			concat myarray 0, 1
+				@ 2
+				[
+					@ 3
+					@ 4
+
+	item
+		title array forEach statement with default thisArg
+		ittf
+			each item in myarray
+				set item.a = item.b / 2
+
+	item
+		title array forEach statement with explicit thisArg
+		ittf
+			each item in myarray myinstance
+				set item.a = item.b / 2
+	
+	item
+		title array filter statement with default thisArg
+		ittf
+			filter item in myarray
+				return item.a == 10
+
+	item
+		title array filter statement with explicit thisArg
+		ittf
+			filter item in myarray myinstance
+				return item.a == this.maxAge
+
+	item
+		title array find statement with default thisArg
+		ittf
+			find item in myarray
+				return item.a == 10
+
+	item
+		title array find statement with explicit thisArg
+		ittf
+			find item in myarray myinstance
+				return item.a == this.maxAge
+
+	item
+		title array reduce statement
+		ittf
+			reduce item in myarray 0
+				return acc + item.a

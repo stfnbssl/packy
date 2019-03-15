@@ -1,0 +1,25 @@
+﻿$group
+
+	$
+		var app = {};
+		app.name = 'CssStyle';
+		app.version = '0.0.1';
+		app.title = 'Css style builder';
+		app.description = 'Building react styles the wizzi way';
+		app.keywords = 'wizzi ui react style';
+		app.rootContainer = 'MuiThemeContainer';
+		app.initialLoad = false;
+		app.primaryColor = 'orange';
+		app.accentColor = 'red';
+		app.sheetOrder = [];
+		app.useRedux = true;
+		app.useApiMiddleware = true;
+		app.useDevTools = false;
+		app.useNormalizr = false;
+		app.githubLink = false;
+		app.useSearch  = false;
+		app.useDrawer = false;
+		app.useMarkdownApi = false;
+		app.useMarkdownDemo = false;
+		app.useRouter = false;
+		app.routeBasepath = '/app/cssplay';

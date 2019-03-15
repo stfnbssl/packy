@@ -1,0 +1,358 @@
+﻿$group
+    
+	function unFocus
+        param document
+        param window
+        if document.selection
+            _ document.selection.empty()
+        else 
+            try 
+                _ window.getSelection()
+                    ._ removeAllRanges()
+            catch e
+    
+	wz-class SplitPane
+        super React.Component
+        
+		ctor 
+            set this.onMouseDown = this.onMouseDown.bind(this)
+            set this.onTouchStart = this.onTouchStart.bind(this)
+            set this.onMouseMove = this.onMouseMove.bind(this)
+            set this.onTouchMove = this.onTouchMove.bind(this)
+            set this.onMouseUp = this.onMouseUp.bind(this)
+            set this.state =
+                { 
+                    @ active false
+                    @ resized false
+        
+		m componentDidMount
+            _ this.setSize
+                @ this.props
+                @ this.state
+            _ document.addEventListener
+                @ 'mouseup'
+                @ this.onMouseUp
+            _ document.addEventListener
+                @ 'mousemove'
+                @ this.onMouseMove
+            _ document.addEventListener
+                @ 'touchmove'
+                @ this.onTouchMove
+        
+		m componentWillReceiveProps
+            param props
+            _ this.setSize
+                @ props
+                @ this.state
+        
+		m componentWillUnmount
+            _ document.removeEventListener
+                @ 'mouseup'
+                @ this.onMouseUp
+            _ document.removeEventListener
+                @ 'mousemove'
+                @ this.onMouseMove
+            _ document.removeEventListener
+                @ 'touchmove'
+                @ this.onTouchMove
+        
+		m onMouseDown
+            param event
+            var eventWithTouches
+                _ Object.assign
+                    { 
+                    @ event
+                    { 
+                        @ touches
+                            [ 
+                                { 
+                                    @ clientX event.clientX
+                                    @ clientY event.clientY
+            _ this.onTouchStart(eventWithTouches)
+        
+		m onTouchStart
+            param event
+            var {allowResize, onDragStarted, split} = this.props
+            if allowResize
+                _ unFocus(document, window)
+                var position
+                    iif split === 'vertical'
+                        then 
+                            set event.touches[0].clientX
+                        else 
+                            set event.touches[0].clientY
+                if typeof(onDragStarted) === 'function'
+                    _ onDragStarted()
+                _ this.setState
+                    { 
+                        @ active true
+                        @ position position
+        
+		m onMouseMove
+            param event
+            var eventWithTouches
+                _ Object.assign
+                    { 
+                    @ event
+                    { 
+                        @ touches
+                            [ 
+                                { 
+                                    @ clientX event.clientX
+                                    @ clientY event.clientY
+            _ this.onTouchMove(eventWithTouches)
+        
+		m onTouchMove
+            param event
+            var {allowResize, maxSize, minSize, onChange, split} = this.props
+            var {active, position} = this.state
+            if allowResize && active
+                _ unFocus(document, window)
+                var isPrimaryFirst = this.props.primary === 'first'
+                var ref
+                    iif isPrimaryFirst
+                        then 
+                            set this.pane_1
+                        else 
+                            set this.pane_2
+                if ref
+                    var node = ReactDOM.findDOMNode(ref)
+                    if node.getBoundingClientRect
+                        var width
+                            _ node.getBoundingClientRect()
+                                . width
+                        var height
+                            _ node.getBoundingClientRect()
+                                . height
+                        var current
+                            iif split === 'vertical'
+                                then 
+                                    set event.touches[0].clientX
+                                else 
+                                    set event.touches[0].clientY
+                        var size = split === 'vertical' ? width : height
+                        var newPosition = isPrimaryFirst ? (position - current) : (current - position)
+                        var newMaxSize = maxSize
+                        if maxSize !== undefined && maxSize <= 0
+                            var splPane = this.splitPane
+                            if split === 'vertical'
+                                set newMaxSize = splPane.getBoundingClientRect().width + maxSize
+                            else 
+                                set newMaxSize = splPane.getBoundingClientRect().height + maxSize
+                        var newSize = size - newPosition
+                        if newSize < minSize
+                            set newSize = minSize
+                        elif maxSize !== undefined && newSize > newMaxSize
+                            set newSize = newMaxSize
+                        else 
+                            _ this.setState
+                                { 
+                                    @ position current
+                                    @ resized true
+                        if onChange
+                            _ onChange(newSize)
+                        _ this.setState
+                            { 
+                                @ draggedSize newSize
+                        _ ref.setState
+                            { 
+                                @ size newSize
+        
+		m onMouseUp
+            var {allowResize, onDragFinished} = this.props
+            var {active, draggedSize} = this.state
+            if allowResize && active
+                if typeof (onDragFinished) === 'function'
+                    _ onDragFinished(draggedSize)
+                _ this.setState
+                    { 
+                        @ active false
+        
+		m setSize
+            param props
+            param state
+            var {primary} = this.props
+            var ref
+                iif primary === 'first'
+                    then 
+                        set this.pane_1
+                    else 
+                        set this.pane_2
+            var newSize
+            if ref
+                set newSize = props.size || (state && state.draggedSize) || props.defaultSize || props.minSize
+                _ ref.setState
+                    { 
+                        @ size newSize
+                if props.size !== state.draggedSize
+                    _ this.setState
+                        { 
+                            @ draggedSize newSize
+        
+		m render
+            var { allowResize, children, className, defaultSize, minSize, 
+				\b onResizerClick, onResizerDoubleClick, 
+				\b paneStyle, pane_1_Style: pane_1_StyleProps, 
+				\b pane_2_Style: pane_2_StyleProps, primary, prefixer, 
+				\b resizerClassName, resizerStyle, 
+				\b size, split, style: styleProps } = this.props
+            var disabledClass = allowResize ? '' : 'disabled'
+            var style
+                _ Object.assign
+                    { 
+                    @ (styleProps || {})
+                    { 
+                        @ display 'flex'
+                        @ flex 1
+                        @ height '100%'
+                        @ position 'absolute'
+                        @ outline 'none'
+                        @ overflow 'hidden'
+                        @ MozUserSelect 'text'
+                        @ WebkitUserSelect 'text'
+                        @ msUserSelect 'text'
+                        @ userSelect 'text'
+            
+			if split === 'vertical'
+                _ Object.assign
+                    @ style
+                    { 
+                        @ flexDirection 'row'
+                        @ left 0
+                        @ right 0
+            
+			else 
+            
+			    _ Object.assign
+                    @ style
+                    { 
+                        @ bottom 0
+                        @ flexDirection 'column'
+                        @ minHeight '100%'
+                        @ top 0
+                        @ width '100%'
+            
+			var classes
+                [ 
+                    @ 'SplitPane'
+                    @ className
+                    @ split
+                    @ disabledClass
+            
+			var pane_1_Style
+                _ prefixer.prefix
+                    _ Object.assign
+                        { 
+                        @ (paneStyle || {})
+                        @ (pane_1_StyleProps || {})
+            
+			
+			var pane_2_Style
+                _ prefixer.prefix
+                    _ Object.assign
+                        { 
+                        @ (paneStyle || {})
+                        @ (pane_2_StyleProps || {})
+
+			return
+				div
+					class {classes.join(' ')}
+					ref_node( this.splitPane )
+					@style {prefixer.prefix(style)}
+					
+					< Pane
+						class Pane1
+						@ key pane_1
+						ref_node( this.pane_1 )
+						size {primary === 'first' ? size || defaultSize || minSize : undefined}
+						@ split {split}
+						@ style {pane_1_Style}
+						+ {children[0]}
+					
+					< Resizer
+						class {disabledClass}
+						@ onClick {onResizerClick}
+						@ onDoubleClick {onResizerDoubleClick}
+						@ onMouseDown {this.onMouseDown}
+						@ onTouchStart {this.onTouchStart}
+						@ onTouchEnd {this.onMouseUp}
+						@ key resizer
+						ref_node( this.resizer )
+						resizerClassName {resizerClassName}
+						split {split}
+						@style {resizerStyle || {}}
+					
+					< Pane
+						class Pane2
+						@ key "pane_2"
+						ref_node( this.pane_2 )
+						size {primary === 'second' ? size || defaultSize || minSize : undefined}
+						split {split}
+						@ style {pane_2_Style}
+						+ {children[1]}
+    
+	set SplitPane.propTypes =
+        { 
+            @ allowResize PropTypes.bool
+            @ children
+                _ PropTypes.arrayOf
+                    @ PropTypes.node
+                    . isRequired
+            @ className PropTypes.string
+            @ primary
+                _ PropTypes.oneOf
+                    [ 
+                        @ 'first'
+                        @ 'second'
+            @ minSize
+                _ PropTypes.oneOfType
+                    [ 
+                        @ PropTypes.string
+                        @ PropTypes.number
+            @ maxSize
+                _ PropTypes.oneOfType
+                    [ 
+                        @ PropTypes.string
+                        @ PropTypes.number
+            @ defaultSize
+                _ PropTypes.oneOfType
+                    [ 
+                        @ PropTypes.string
+                        @ PropTypes.number
+            @ size
+                _ PropTypes.oneOfType
+                    [ 
+                        @ PropTypes.string
+                        @ PropTypes.number
+            @ split
+                _ PropTypes.oneOf
+                    [ 
+                        @ 'vertical'
+                        @ 'horizontal'
+            @ onDragStarted PropTypes.func
+            @ onDragFinished PropTypes.func
+            @ onChange PropTypes.func
+            @ onResizerClick PropTypes.func
+            @ onResizerDoubleClick PropTypes.func
+            @ prefixer
+                _ PropTypes.instanceOf(Prefixer)
+                    . isRequired
+            @ style stylePropType
+            @ resizerStyle stylePropType
+            @ paneStyle stylePropType
+            @ pane_1_Style stylePropType
+            @ pane_2_Style stylePropType
+            @ resizerClassName PropTypes.string
+    
+	set SplitPane.defaultProps =
+        { 
+            @ allowResize true
+            @ minSize 50
+            @ prefixer
+                new Prefixer
+                    { 
+                        @ userAgent USER_AGENT
+            @ primary 'first'
+            @ split 'vertical'
+
+

@@ -1,0 +1,12 @@
+﻿bb_view Spa.CssLayout : Backbone.Marionette.Layout
+	__p regions
+		__o
+			__p htmlList #html-list
+			__p cssList #css-list
+			__p cssruleList #cssrule-list
+			__p cssruleStyles #cssrule-styles
+	bb_template ctx
+		# html-list
+		# css-list
+		# cssrule-list
+		# cssrule-styles

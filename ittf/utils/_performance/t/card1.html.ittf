@@ -1,0 +1,10 @@
+﻿. card1 card1-${id}
+	$params id, teaser, title, href, subtitle|@@null
+	a
+		href ${href}
+		. card1-teaser 
+			+ ${teaser}
+		. card1-title
+			+ ${title}
+		. card1-sub-title
+			+ ${subtitle}

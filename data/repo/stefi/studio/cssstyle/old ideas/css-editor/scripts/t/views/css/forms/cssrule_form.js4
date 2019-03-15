@@ -1,0 +1,45 @@
+﻿bb_view Spa.CssRuleForm : WmtForm
+	__p className modal
+	
+	bb_action_click save
+		event.preventDefault();
+		this.model.set(this.getValue());
+		this.close();
+		this.save(this.model);
+	
+	bb_action_click delete
+		event.preventDefault();
+		this.close();
+		this.delete(this.model);
+
+	bb_action_click cancel
+		event.preventDefault();
+		this.close();
+
+	jf/schema
+		jf/text name
+	
+	method initialize options
+		this.app = options.app;
+		this.mode = options.mode;
+		this.save = options.save;
+		this.delete = options.delete;
+		WmtForm.prototype.initialize.call(this, options);
+
+	bb_template ctx
+		. panel
+			id css-edit-dlg
+			. panel-heading
+				h4 Edit css rule
+					id cssrule-edit-title
+			. panel-body
+				form
+					fieldset
+						div
+							data-field name
+			. panel-footer
+				bb/b_action save Save
+				bb/b_action delete Delete
+				bb/b_action cancel Cancel
+
+

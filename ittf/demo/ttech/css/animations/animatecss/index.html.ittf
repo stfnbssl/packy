@@ -1,0 +1,442 @@
+h/std/empty_layout()
+	
+    header 
+        class site__header island
+        . wrap
+            span 
+                id animationSandbox
+                style display: block;
+                h1 Animate.css
+                    class site__title mega
+            span Just-add-water CSS animations
+                class beta subhead
+    main 
+        class site__content island
+        role content
+        . wrap
+            form 
+                select 
+                    class input input--dropdown js--animations
+                    optgroup 
+                        label Attention Seekers
+                        option bounce
+                            value bounce
+                        option flash
+                            value flash
+                        option pulse
+                            value pulse
+                        option rubberBand
+                            value rubberBand
+                        option shake
+                            value shake
+                        option swing
+                            value swing
+                        option tada
+                            value tada
+                        option wobble
+                            value wobble
+                        option jello
+                            value jello
+                    optgroup 
+                        label Bouncing Entrances
+                        option bounceIn
+                            value bounceIn
+                        option bounceInDown
+                            value bounceInDown
+                        option bounceInLeft
+                            value bounceInLeft
+                        option bounceInRight
+                            value bounceInRight
+                        option bounceInUp
+                            value bounceInUp
+                    optgroup 
+                        label Bouncing Exits
+                        option bounceOut
+                            value bounceOut
+                        option bounceOutDown
+                            value bounceOutDown
+                        option bounceOutLeft
+                            value bounceOutLeft
+                        option bounceOutRight
+                            value bounceOutRight
+                        option bounceOutUp
+                            value bounceOutUp
+                    optgroup 
+                        label Fading Entrances
+                        option fadeIn
+                            value fadeIn
+                        option fadeInDown
+                            value fadeInDown
+                        option fadeInDownBig
+                            value fadeInDownBig
+                        option fadeInLeft
+                            value fadeInLeft
+                        option fadeInLeftBig
+                            value fadeInLeftBig
+                        option fadeInRight
+                            value fadeInRight
+                        option fadeInRightBig
+                            value fadeInRightBig
+                        option fadeInUp
+                            value fadeInUp
+                        option fadeInUpBig
+                            value fadeInUpBig
+                    optgroup 
+                        label Fading Exits
+                        option fadeOut
+                            value fadeOut
+                        option fadeOutDown
+                            value fadeOutDown
+                        option fadeOutDownBig
+                            value fadeOutDownBig
+                        option fadeOutLeft
+                            value fadeOutLeft
+                        option fadeOutLeftBig
+                            value fadeOutLeftBig
+                        option fadeOutRight
+                            value fadeOutRight
+                        option fadeOutRightBig
+                            value fadeOutRightBig
+                        option fadeOutUp
+                            value fadeOutUp
+                        option fadeOutUpBig
+                            value fadeOutUpBig
+                    optgroup 
+                        label Flippers
+                        option flip
+                            value flip
+                        option flipInX
+                            value flipInX
+                        option flipInY
+                            value flipInY
+                        option flipOutX
+                            value flipOutX
+                        option flipOutY
+                            value flipOutY
+                    optgroup 
+                        label Lightspeed
+                        option lightSpeedIn
+                            value lightSpeedIn
+                        option lightSpeedOut
+                            value lightSpeedOut
+                    optgroup 
+                        label Rotating Entrances
+                        option rotateIn
+                            value rotateIn
+                        option rotateInDownLeft
+                            value rotateInDownLeft
+                        option rotateInDownRight
+                            value rotateInDownRight
+                        option rotateInUpLeft
+                            value rotateInUpLeft
+                        option rotateInUpRight
+                            value rotateInUpRight
+                    optgroup 
+                        label Rotating Exits
+                        option rotateOut
+                            value rotateOut
+                        option rotateOutDownLeft
+                            value rotateOutDownLeft
+                        option rotateOutDownRight
+                            value rotateOutDownRight
+                        option rotateOutUpLeft
+                            value rotateOutUpLeft
+                        option rotateOutUpRight
+                            value rotateOutUpRight
+                    optgroup 
+                        label Sliding Entrances
+                        option slideInUp
+                            value slideInUp
+                        option slideInDown
+                            value slideInDown
+                        option slideInLeft
+                            value slideInLeft
+                        option slideInRight
+                            value slideInRight
+                    optgroup 
+                        label Sliding Exits
+                        option slideOutUp
+                            value slideOutUp
+                        option slideOutDown
+                            value slideOutDown
+                        option slideOutLeft
+                            value slideOutLeft
+                        option slideOutRight
+                            value slideOutRight
+                    optgroup 
+                        label Zoom Entrances
+                        option zoomIn
+                            value zoomIn
+                        option zoomInDown
+                            value zoomInDown
+                        option zoomInLeft
+                            value zoomInLeft
+                        option zoomInRight
+                            value zoomInRight
+                        option zoomInUp
+                            value zoomInUp
+                    optgroup 
+                        label Zoom Exits
+                        option zoomOut
+                            value zoomOut
+                        option zoomOutDown
+                            value zoomOutDown
+                        option zoomOutLeft
+                            value zoomOutLeft
+                        option zoomOutRight
+                            value zoomOutRight
+                        option zoomOutUp
+                            value zoomOutUp
+                    optgroup 
+                        label Specials
+                        option hinge
+                            value hinge
+                        option jackInTheBox
+                            value jackInTheBox
+                        option rollIn
+                            value rollIn
+                        option rollOut
+                            value rollOut
+                select 
+                    class input input--dropdown speed--animations
+                    option default
+                        value default
+                    option slow
+                        value slow
+                    option fast
+                        value fast
+                    option slower
+                        value slower
+                    option faster
+                        value faster
+                            
+                button Animate it
+                    class butt js--triggerAnimation
+                hr
+                h4
+                    id animate-class
+                hr 
+                p 
+                    class meta
+                    a View on GitHub
+                        href //github.com/daneden/animate.css
+                        
+                . social-likes
+                    span 
+                        class btn btn-social facebook
+                        title Share link on Facebook
+                        i 
+                            class socicon socicon-facebook
+                    span 
+                        class btn btn-social twitter
+                        title Share link on Twitter
+                        i 
+                            class socicon socicon-twitter
+                    span 
+                        class btn btn-social plusone
+                        title Share link on Google+
+                        i 
+                            class socicon socicon-googleplus
+                        
+
+    $append body-scripts
+        script 
+            module
+                function testAnim
+                    param x
+                    param speed
+                    log 'testAnim', x
+                    _ $('#animate-class').html(x + ' animated' + ' ' + speed)
+                    _ $('#animationSandbox').removeClass().addClass(x + ' animated' + ' ' + speed).one
+                        @ 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend'
+                        function 
+                            _ $(this).removeClass
+                 
+                _ $(document).ready
+                    function 
+                        _ $('.js--triggerAnimation').click
+                            function 
+                                param e
+                                _ e.preventDefault
+                                var anim = $('.js--animations').val()
+                                var speed = $('.speed--animations').val()
+                                _ testAnim(anim, speed)
+                        _ $('.js--animations').change
+                            function 
+                                var anim = $(this).val()
+                                _ testAnim(anim, $('.speed--animations').val())
+                        _ $('.speed--animations').change
+                            function 
+                                var speed = $(this).val()
+                                _ testAnim($('.js--animations').val(), speed)
+
+	$append head-styles
+		@style 
+			css
+                #
+                    # -----------------------------------*\
+                    # $RESET
+                    # \*-----------------------------------
+                < body
+                    overflow-x hidden
+                < *
+                    + :before
+                    + :after
+                    margin 0
+                    padding 0
+                    position relative
+                    -webkit-box-sizing border-box
+                    -moz-box-sizing border-box
+                    box-sizing border-box
+                < input
+                    + select
+                    + button
+                    + textarea
+                    -webkit-appearance none
+                    -moz-appearance none
+                    appearance none
+                    font inherit
+                    color inherit
+                #
+                    # -----------------------------------*\
+                    # $OBJECTS
+                    # \*-----------------------------------
+                . butt
+                    + .input
+                    padding .75rem
+                    margin .375rem
+                    background-color transparent
+                    border-radius 4px
+                . butt:focus
+                    + .input:focus
+                    outline none
+                . butt
+                    border 2px solid #f35626
+                    line-height 1.375
+                    padding-left 1.5rem
+                    padding-right 1.5rem
+                    font-weight 700
+                    color #f35626
+                    cursor pointer
+                    -webkit-animation hue 60s infinite linear
+                . butt--primary
+                    background-color #f35626
+                    color #fff
+                . input
+                    border 1px solid #c0c8c9
+                    border-radius 4px
+                . input--dropdown
+                    background-image url("images/ddown.png")
+                    background-image url("images/ddown.svg?3"), none
+                    background-repeat no-repeat
+                    background-size 1.5rem 1rem
+                    background-position right center
+                #
+                    # -----------------------------------*\
+                    # $TYPOGRAPHY
+                    # \*-----------------------------------
+                < h1
+                    + .alpha
+                    margin-bottom 1.5rem
+                    font-size 3rem
+                    font-weight 100
+                    line-height 1
+                    letter-spacing -.05em
+                < h2
+                    + .beta
+                    margin-bottom .75rem
+                    font-weight 400
+                    font-size 1.5rem
+                    line-height 1
+                media (min-width: 650px)
+                    . mega
+                        font-size 6rem
+                        line-height 1
+                . subhead
+                    + .meta
+                    color #7b8993
+                . promo
+                    text-align center
+                < p
+                    + hr
+                    + form
+                    margin-bottom 1.5rem
+                < hr
+                    border none
+                    margin-top -1px
+                    height 1px
+                    background-color #c0c8c9
+                    @ background-image -webkit-linear-gradient(0deg, #fff, #c0c8c9, #fff)
+                < a
+                    color inherit
+                    text-decoration underline
+                    -webkit-animation hue 60s infinite linear
+                < a:hover
+                    color #f35626
+                #
+                    # -----------------------------------*\
+                    # $LAYOUT
+                    # \*-----------------------------------
+                . wrap
+                    max-width 38rem
+                    margin 0 auto
+                . island
+                    padding 1.5rem
+                . isle
+                    padding .75rem
+                . spit
+                    padding .375rem
+                #
+                    # -----------------------------------*\
+                    # $BASE
+                    # \*-----------------------------------
+                < html
+                    font 100%/1.5 "Roboto", Verdana, sans-serif
+                    color #3d464d
+                    background-color #fff
+                    -webkit-font-smoothing antialiased
+                    width 100%
+                    overflow hidden-x
+                    # Centering in The Unknown
+                    text-align center
+                media (min-width: 650px)
+                    < html
+                        height 100%
+                    < html:before
+                        content ''
+                        display inline-block
+                        height 100%
+                        vertical-align middle
+                        margin-right -0.25em
+                    < body
+                        display inline-block
+                        vertical-align middle
+                        max-width 38rem
+                #
+                    # -----------------------------------*\
+                    # $HEADER
+                    # \*-----------------------------------
+                . site__header
+                    -webkit-animation bounceInUp 1s
+                . site__title
+                    color #f35626
+                    @ background-image -webkit-linear-gradient(92deg,#f35626,#feab3a)
+                    -webkit-background-clip text
+                    -webkit-text-fill-color transparent
+                    -webkit-animation hue 60s infinite linear
+                . site__content
+                    -webkit-animation bounceInUp 1s
+                    -webkit-animation-delay .1s
+                . site__content form
+                    -webkit-animation bounceInUp 1s
+                    -webkit-animation-delay .1s
+                #
+                    # -----------------------------------*\
+                    # $ANIMATIONS
+                    # \*-----------------------------------
+                keyframes hue
+                    vendor -webkit-
+                    keyframe from
+                        -webkit-filter hue-rotate(0deg)
+                    keyframe to
+                        -webkit-filter hue-rotate(-360deg)

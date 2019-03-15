@@ -1,0 +1,6 @@
+﻿h/root/layout( Documentation )
+
+	h2 Documentation
+
+	h/bs/list_group()
+		h/bs/li_a( Wizzi cheat sheets, /ittf/docs/cheatsheets/index.html.ittf )

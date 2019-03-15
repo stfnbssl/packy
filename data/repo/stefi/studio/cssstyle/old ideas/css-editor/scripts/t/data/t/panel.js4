@@ -1,0 +1,5 @@
+﻿__o
+	$args name label|@@null
+	__p name ${name}
+	__p label ${label}
+	__p type:object Wmteditor.PanelWidget

@@ -1,0 +1,46 @@
+﻿var Attribute
+	=>
+		param { attribute: a }
+
+		var xrestricts = null
+		if a.restricts.length > 0
+			var facets = []
+			foreach r in a.restricts
+				foreach f in r.facets
+					_ facets.push(f)
+			set xrestricts
+				div
+					span Restrict facets
+						class schema-e-subtitle-2
+					div
+						class schema-restricts-box
+						table
+							class schema-table
+							{
+								_ facets.map
+									=>
+										param facet
+										param index
+										const type = facet.type.substr(0, facet.type.length - 5)
+										return
+											tr
+												@ key {index}
+												td {type}
+												td {facet.value}
+												td 
+													< Comments
+														@ comments {facet.comments}
+	
+		return
+			tr
+				td {a.name}
+				td {showTags(a.name, a.tags).join(' | ')}
+				td {a.type}
+				td {a.default}
+				td
+					< Flags
+						@ flags {a.flags}
+				td 
+					< Comments
+						@ comments {a.comments}
+					+ {xrestricts}	

@@ -1,0 +1,71 @@
+﻿h/root/empty_layout()
+
+	iframe
+		id my-iframe
+		width 100%
+		height 100
+		frameborder 0
+		allowfullscreen
+		$$ sandbox
+
+	form 
+		action /ittf/meta/models/t/html.site.ittf
+		target my-iframe
+		method post
+		label Some text:
+			for text
+		input 
+			type text
+			name text
+			id text
+		input 
+			type submit
+			value post
+
+	iframe
+		id iframe
+		width 100%
+		height 300
+		src /ittf/demo/ttech/html/index.html.ittf
+		
+	$append body-scripts
+	
+		script
+			module
+				let oldDoc = iframe.contentDocument
+				# every 100 ms check if the document is the new one
+				let timer
+					_ setInterval
+						=> 
+							if iframe.contentDocument == oldDoc
+								return 
+							# new document, let's set handlers
+							_ iframe.contentDocument.addEventListener
+								@ 'DOMContentLoaded'
+								=> 
+									_ iframe.contentDocument.body.prepend('Hello, world!')
+							_ clearInterval(timer)
+						@ 100
+
+				$*
+				set iframe.onload =
+					function 
+						# we can get the reference to the inner window
+						let iframeWindow = iframe.contentWindow
+						try 
+							# ...but not to the document inside it
+							let doc = iframe.contentDocument
+							_ doc.body.prepend("Hello, world!");
+						catch e
+							_ alert(e)
+						# also we can't read the URL of the page in it
+						try 
+							_ alert(iframe.contentWindow.location)
+						catch e
+							_ alert(e)
+						# ...but we can change it (and thus load something else into the iframe)!
+						# set iframe.contentWindow.location = '/ittf/demo/ttech/index.html.ittf'
+						# works
+						set iframe.onload = null
+				*$
+

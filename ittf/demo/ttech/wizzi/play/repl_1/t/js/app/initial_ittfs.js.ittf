@@ -1,0 +1,7 @@
+﻿$group
+
+	var initialIttfs
+		{
+			@ js 'module\n\tkind react\n\treact Mycomponent'
+			@ html 'html\n\thead\n\tbody\n\t\th1 hello world'
+			@ css 'css\n\t< body\n\t\tmargin 0'

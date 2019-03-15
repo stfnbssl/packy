@@ -1,0 +1,12 @@
+﻿wfjob
+
+	$
+		var folder = 'c:/my/wizzi/next/solutions';
+		
+	title v3-wizzi solutions
+	
+	exec-file v3-wizzi-studio
+		title wizzi-studio v.3 web app
+		exe-path node
+		cwd ${folder}/v3-wizzi-studio
+		arg generate

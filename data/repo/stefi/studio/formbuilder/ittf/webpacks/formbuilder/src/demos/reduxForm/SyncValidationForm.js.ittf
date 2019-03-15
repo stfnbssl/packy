@@ -1,0 +1,35 @@
+﻿r-form( SyncValidationForm, validate )
+
+	$append imports
+		
+		const validate
+			=>
+				param values
+				const errors = {}
+				if !values.username
+					set errors.username = 'Required'
+				elif values.username.length > 15
+					set errors.username = 'Must be 15 characters or less'
+				if !values.email
+					set errors.email = 'Required'
+				elif !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+					set errors.email = 'Invalid email address'
+				if !values.age
+					set errors.age = 'Required'
+				elif isNaN(Number(values.age))
+					set errors.age = 'Must be a number'
+				elif Number(values.age) < 18
+					set errors.age = 'Sorry, you must be at least 18 years old'
+				return errors
+ 
+	return
+		form
+			@ onSubmit {handleSubmit}
+
+			text( username, Username )
+			email( email, Email )
+			number( age, Age )
+			
+			div
+				button-submit()
+				button-clear()

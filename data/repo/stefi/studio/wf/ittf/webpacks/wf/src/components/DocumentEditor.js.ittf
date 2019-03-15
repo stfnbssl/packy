@@ -1,0 +1,33 @@
+﻿r-component( DocumentEditor )
+
+	$append imports
+		# import Textarea from 'material-ui/Input/Textarea'
+		# import CodeEditor from './CodeEditor'
+		import AceCodeEditor from './AceCodeEditor'
+
+	prop value
+
+	prop onChange
+		func
+
+	style
+	
+	render
+		prop value
+		prop onChange
+		prop onEditorRef
+
+		return
+			div
+				{
+					&& 
+						+ {value}
+						< AceCodeEditor
+							@ value {value}
+							@ onChange {onChange}
+							@ onEditorRef
+								=>
+									param node
+									if onEditorRef
+										_ onEditorRef
+											@ node

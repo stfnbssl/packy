@@ -1,0 +1,2377 @@
+<!doctype html>
+<html>
+<head>
+    <title>Schema cheat sheet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wz-content-1">
+        <nav class="tn-bar" style="display: flex; margin: 0.5rem;">
+            <div class="logo">
+                <img src="/images/logo.svg" width="70px" height="30px" />
+            </div>
+        </nav>
+        <div class="mc-wrapper-layout" id="mc-wrapper">
+            <div class="mc-frame-bar">
+                <div class="mc-frame-bar-item">Schema cheat sheet</div>
+            </div>
+            <div class="mc-frame">
+                <div class="mc-sidebar-left">
+                    <ul>
+                        <li><a href="#variables">variables</a>
+                        <ul>
+                            <li><a href="#Boolean, Number, String">Boolean, Number, String</a>
+                            </li>
+                            <li><a href="#Array, Tuple">Array, Tuple</a>
+                            </li>
+                            <li><a href="#Enum">Enum</a>
+                            </li>
+                            <li><a href="#Any, Void, Null, Undefined">Any, Void, Null, Undefined</a>
+                            </li>
+                            <li><a href="#Never">Never</a>
+                            </li>
+                            <li><a href="#Object">Object</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#function">function</a>
+                        <ul>
+                            <li><a href="#Typed functions">Typed functions</a>
+                            </li>
+                            <li><a href="#Typed functions">Typed functions</a>
+                            </li>
+                            <li><a href="#Optional parameters">Optional parameters</a>
+                            </li>
+                            <li><a href="#Rest parameters">Rest parameters</a>
+                            </li>
+                            <li><a href="#This and arrow functions">This and arrow functions</a>
+                            </li>
+                            <li><a href="#This parameters in callbacks">This parameters in callbacks</a>
+                            </li>
+                            <li><a href="#Overloads 1">Overloads 1</a>
+                            </li>
+                            <li><a href="#Overloads 2">Overloads 2</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#class">class</a>
+                        <ul>
+                            <li><a href="#Simple class">Simple class</a>
+                            </li>
+                            <li><a href="#Class extension">Class extension</a>
+                            </li>
+                            <li><a href="#Complex class example">Complex class example</a>
+                            </li>
+                            <li><a href="#Class accessors">Class accessors</a>
+                            </li>
+                            <li><a href="#Readonly modifier">Readonly modifier</a>
+                            </li>
+                            <li><a href="#Static members">Static members</a>
+                            </li>
+                            <li><a href="#Abstract classes">Abstract classes</a>
+                            </li>
+                            <li><a href="#Static members">Static members</a>
+                            </li>
+                            <li><a href="#Class extended by interface">Class extended by interface</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#interfaces">interfaces</a>
+                        <ul>
+                            <li><a href="#Simple interface">Simple interface</a>
+                            </li>
+                            <li><a href="#Optional properties">Optional properties</a>
+                            </li>
+                            <li><a href="#Optional properties 2">Optional properties 2</a>
+                            </li>
+                            <li><a href="#Readonly properties">Readonly properties</a>
+                            </li>
+                            <li><a href="#Readonly vs const">Readonly vs const</a>
+                            </li>
+                            <li><a href="#"></a>
+                            </li>
+                            <li><a href="#Function Types">Function Types</a>
+                            </li>
+                            <li><a href="#Indexable Types">Indexable Types</a>
+                            </li>
+                            <li><a href="#Class Types">Class Types</a>
+                            </li>
+                            <li><a href="#static and instance sides of classes">static and instance sides of classes</a>
+                            </li>
+                            <li><a href="#Extending Interfaces">Extending Interfaces</a>
+                            </li>
+                            <li><a href="#Hybrid Types">Hybrid Types</a>
+                            </li>
+                            <li><a href="#Interfaces Extending Classes">Interfaces Extending Classes</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#generics">generics</a>
+                        <ul>
+                            <li><a href="#Introduction">Introduction</a>
+                            </li>
+                            <li><a href="#Array argument">Array argument</a>
+                            </li>
+                            <li><a href="#Generic Types">Generic Types</a>
+                            </li>
+                            <li><a href="#Call signature">Call signature</a>
+                            </li>
+                            <li><a href="#Generic Classes">Generic Classes</a>
+                            </li>
+                            <li><a href="#Generic Constraints">Generic Constraints</a>
+                            </li>
+                            <li><a href="#Type Parameters in Generic Constraints">Type Parameters in Generic Constraints</a>
+                            </li>
+                            <li><a href="#Class Types in Generics">Class Types in Generics</a>
+                            </li>
+                            <li><a href="#Advanced example">Advanced example</a>
+                            </li>
+                        </ul>
+                        </li>
+                        <li><a href="#advanced">advanced</a>
+                        <ul>
+                            <li><a href="#Intersection Types">Intersection Types</a>
+                            </li>
+                            <li><a href="#Union Types">Union Types</a>
+                            </li>
+                            <li><a href="#Type Guards and Differentiating Types">Type Guards and Differentiating Types</a>
+                            </li>
+                            <li><a href="#User - Defined Type Guards">User - Defined Type Guards</a>
+                            </li>
+                            <li><a href="#Instanceof type guards">Instanceof type guards</a>
+                            </li>
+                            <li><a href="#Nullable types">Nullable types</a>
+                            </li>
+                            <li><a href="#Type Aliases">Type Aliases</a>
+                            </li>
+                            <li><a href="#Interfaces vs.Type Aliases">Interfaces vs.Type Aliases</a>
+                            </li>
+                            <li><a href="#String Literal Types">String Literal Types</a>
+                            </li>
+                            <li><a href="#Numeric Literal Types">Numeric Literal Types</a>
+                            </li>
+                            <li><a href="#Enum Member Types">Enum Member Types</a>
+                            </li>
+                            <li><a href="#Exhaustiveness checking">Exhaustiveness checking</a>
+                            </li>
+                            <li><a href="#Polymorphic this types">Polymorphic this types</a>
+                            </li>
+                            <li><a href="#Index types">Index types</a>
+                            </li>
+                            <li><a href="#Mapped types">Mapped types</a>
+                            </li>
+                            <li><a href="#Mapped types 2">Mapped types 2</a>
+                            </li>
+                            <li><a href="#Inference from mapped types">Inference from mapped types</a>
+                            </li>
+                            <li><a href="#Conditional Types">Conditional Types</a>
+                            </li>
+                            <li><a href="#Distributive conditional types">Distributive conditional types</a>
+                            </li>
+                            <li><a href="#Conditional types combined with mapped types:">Conditional types combined with mapped types:</a>
+                            </li>
+                            <li><a href="#Type inference in conditional types">Type inference in conditional types</a>
+                            </li>
+                            <li><a href="#Predefined conditional types">Predefined conditional types</a>
+                            </li>
+                        </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mc-content">
+                    <div style="display: flex;" id="variables">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">variables</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Boolean, Number, String">Boolean, Number, String</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">let</span><span class="pp-pln"> isDone</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:boolean</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">:=</span><span class="pp-pln"> false</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+let isDone: boolean = false;
+let decimal: number = 6;
+let hex: number = 61453;
+let binary: number = 10;
+let octal: number = 484;
+let color: string = "blue";
+ (
+    &lt;set&gt;
+    color = 'red'
+    &lt;/set&gt;
+)
+let fullName: string = `Bob Bobbington`;
+let age: number = 37;
+let sentence: string = `Hello, my name is${fullName}`;
+let sentence: string =  (
+    &lt;set&gt;
+    "Hello, my name is " + fullName + ".\n\n" + "I'll be " + (age + 1) + " years old next month."
+    &lt;/set&gt;
+)
+;
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Array, Tuple">Array, Tuple</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">let</span><span class="pp-pln"> list</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:[</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">[</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> 1</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> 2</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> 3</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+let list: number[] = [
+    1, 
+    2, 
+    3
+];
+let Array: number = [
+    1, 
+    2, 
+    3
+];
+let x = string | number;
+ (
+    &lt;set&gt;
+    x =
+    [
+        "hello", 
+        10
+    ]&lt;/set&gt;
+)
+ (
+    &lt;set&gt;
+    x =
+    [
+        10, 
+        "hello"
+    ]&lt;/set&gt;
+)
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Enum">Enum</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:enum</span><span class="pp-pln"> Color</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">@</span><span class="pp-pln"> Red</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">@</span><span class="pp-pln"> Green</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">@</span><span class="pp-pln"> Blue</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+@Red
+, @Green
+, @Blue
+let c: Color = Color.Green;
+@Red 1
+, @Green
+, @Blue
+let c: Color = Color.Green;
+@Red 1
+, @Green 2
+, @Blue 4
+let c: Color = Color.Green;
+@Red 1
+, @Green
+, @Blue
+let colorName: string = Color[2];
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Any, Void, Null, Undefined">Any, Void, Null, Undefined</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">let</span><span class="pp-pln"> notSure</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:any</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">:=</span><span class="pp-pln"> 4</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+let notSure: any = 4;
+ (
+    &lt;set&gt;
+    notSure = "maybe a string instead"
+    &lt;/set&gt;
+)
+ (
+    &lt;set&gt;
+    notSure = false
+    &lt;/set&gt;
+)
+let notSure: any = 4;
+notSure.ifItExists();
+notSure.toFixed();
+let prettySure: Object = 4;
+prettySure.toFixed();
+let list: any[] = [
+    1, 
+    true, 
+    "free"
+];
+ (
+    &lt;set&gt;
+    list[1] = 100
+    &lt;/set&gt;
+)
+function warnUser():  void {
+    console.log("This is my warning message");
+}
+let unusable: void = undefined;
+let u: void = undefined;
+let n: null = null;
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Never">Never</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> error</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> message</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:never</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">throw</span><span class="pp-pln"> new Error(message)</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function error(message: string):  never {
+    throw new Error(message);
+}
+function fail() {
+    return error("Something failed");
+}
+function infiniteLoop():  never {
+    while (true) {
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Object">Object</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:function</span><span class="pp-pln"> create</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> o</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:union</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">:object</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:null</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:void</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: :object, wzElement: undefined, wzName:, row:5, col:17, source:c:/basefolder/temp.ts.ittf\nIn ts Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.ts.ittf",
+  "errorLines": [
+    "0002     :function create",
+    "0003         param o",
+    "0004             :union ",
+    "0005                 :object ",
+    "                     ^ Tag not recognized: :object  &lt;--- --- --- --- --- ERROR",
+    "0006                 :null ",
+    "0007         :return ",
+    "0008             :void ",
+    "0009     let strLength"
+  ],
+  "stack": "Error\n    at new tsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7879:23)\n    at typeUnion.statement.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1053:23)\n    at param.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at param.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:735:29)\n    at param.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:2783:48)\n    at param.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:2793:27)\n    at typeFunctionDeclare.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at typeFunctionDeclare.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:3307:29)\n    at typeFunctionDeclare.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:3325:27)\n    at module.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)"
+}</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="function">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">function</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">function</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Typed functions">Typed functions</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> add</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> x</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> y</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> x + y</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function add(x: number, y: number):  number {
+    return x + y;
+}
+let myAdd = function(x: number, y: number):  number {
+    return x + y;
+};
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Typed functions">Typed functions</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">let</span><span class="pp-pln"> myAdd</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:=></span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> x</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> y</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">function</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> x</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> y</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">        </span><span class="pp-tag">:return</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">        </span><span class="pp-tag">return</span><span class="pp-pln"> x + y</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+let myAdd: (x: number = function(x: number, y: number, y: number)):  number {
+    return x + y;
+};
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Optional parameters">Optional parameters</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> buildName</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> firstName</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">param</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">:optional</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">if</span><span class="pp-pln"> lastName</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">return</span><span class="pp-pln"> firstName + " " + lastName</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">else</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">        </span><span class="pp-tag">return</span><span class="pp-pln"> firstName</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function buildName(firstName: string, : string) {
+    if (lastName) {
+        return firstName + " " + lastName;
+    }
+    else {
+        return firstName;
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Rest parameters">Rest parameters</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> buildName</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> firstName</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> ...restOfName</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:[</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">:string</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> firstName + " " + restOfName.join(" ")</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function buildName(firstName: string, ...restOfName: string[]) {
+    return firstName + " " + restOfName.join(" ");
+}
+function buildName(firstName: string, ...restOfName: string[]) {
+    return firstName + " " + restOfName.join(" ");
+}
+let buildNameFun: (fname: string = buildName;
+, ...rest: string[]
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="This and arrow functions">This and arrow functions</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">let</span><span class="pp-pln"> deck</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">{</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">[</span><span class="pp-pln"> suits</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> "hearts"</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> "spades"</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> "clubs"</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> "diamonds"</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> cards Array(52)</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> createCardPicker</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">            </span><span class="pp-tag">function</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">                </span><span class="pp-tag">return</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">                    </span><span class="pp-tag">function</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">                        </span><span class="pp-tag">let</span><span class="pp-pln"> pickedCard = Math.floor(Math.random() * 52)</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">                        </span><span class="pp-tag">let</span><span class="pp-pln"> pickedSuit = Math.floor(pickedCard / 13)</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">                        </span><span class="pp-tag">return</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">                            </span><span class="pp-tag">{</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">                                </span><span class="pp-tag">@</span><span class="pp-pln"> suit this.suits[pickedSuit]</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">                                </span><span class="pp-tag">@</span><span class="pp-pln"> card pickedCard % 13</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+let deck = {
+    suits: [
+        "hearts", 
+        "spades", 
+        "clubs", 
+        "diamonds"
+    ], 
+    cards: Array(52), 
+    createCardPicker: function() {
+        return function() {
+                let pickedCard = Math.floor(Math.random() * 52);
+                let pickedSuit = Math.floor(pickedCard / 13);
+                return {
+                        suit: this.suits[pickedSuit], 
+                        card: pickedCard % 13
+                    };
+            };
+    }
+};
+let deck = {
+    suits: [
+        "hearts", 
+        "spades", 
+        "clubs", 
+        "diamonds"
+    ], 
+    cards: Array(52), 
+    createCardPicker: function() {
+        // NOTE: the line below is now an arrow function, allowing us to capture 'this' right here
+        return () =&gt; {
+                let pickedCard = Math.floor(Math.random() * 52);
+                let pickedSuit = Math.floor(pickedCard / 13);
+                return {
+                        suit: this.suits[pickedSuit], 
+                        card: pickedCard % 13
+                    };
+            };
+    }
+};
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="This parameters in callbacks">This parameters in callbacks</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> UIElement</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:m</span><span class="pp-pln"> addClickListener</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:void</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> onclick</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:=></span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">                </span><span class="pp-tag">:void</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">                </span><span class="pp-tag">param</span><span class="pp-pln"> this</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">                    </span><span class="pp-tag">:void</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">                </span><span class="pp-tag">param</span><span class="pp-pln"> e</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">                    </span><span class="pp-tag">:ref</span><span class="pp-pln"> Event</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface UIElement {
+    addClickListener(onclick: (this: void, e: Event)): void;
+}
+class Handler {
+    info: string;
+    onClickBad(this: Handler, e: Event) {
+         (
+            &lt;set&gt;
+            this.info = e.message
+            &lt;/set&gt;
+        )
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Overloads 1">Overloads 1</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">let</span><span class="pp-pln"> suits</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">[</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> "hearts"</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> "spades"</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> "clubs"</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> "diamonds"</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+let suits = [
+    "hearts", 
+    "spades", 
+    "clubs", 
+    "diamonds"
+];
+function pickCard(x):  any {
+    if (typeof x == "object") {
+        let pickedCard = Math.floor(Math.random() * x.length);
+        return pickedCard;
+    }
+    else {
+        // Otherwise just let them pick the card
+        if (typeof x == "number") {
+            let pickedSuit = Math.floor(x / 13);
+            return {
+                    suit: suits[pickedSuit], 
+                    card: x % 13
+                };
+        }
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Overloads 2">Overloads 2</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">let</span><span class="pp-pln"> suits</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">[</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> "hearts"</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> "spades"</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> "clubs"</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">@</span><span class="pp-pln"> "diamonds"</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+let suits = [
+    "hearts", 
+    "spades", 
+    "clubs", 
+    "diamonds"
+];
+function pickCard(x: {suit: string;
+    card: number;
+}[]):  number;
+function pickCard(x: number):  {suit: string;
+    ;
+    card: number;
+    function pickCard(x}):  any {
+    // if so, they gave us the deck and we'll pick the card
+    if (typeof x == "object") {
+        let pickedCard = Math.floor(Math.random() * x.length);
+        return pickedCard;
+    }
+    else {
+        // Otherwise just let them pick the card
+        if (typeof x == "number") {
+            let pickedSuit = Math.floor(x / 13);
+            return {
+                    suit: suits[pickedSuit], 
+                    card: x % 13
+                };
+        }
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="class">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">class</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value">class</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Simple class">Simple class</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> Greeter</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> greeting</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">ctor</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> message</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">:string</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">set</span><span class="pp-pln"> this.greeting = message</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">m</span><span class="pp-pln"> greet</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">return</span><span class="pp-pln"> "Hello, " + this.greeting</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class Greeter {
+    constructor(message: string) { (
+            &lt;set&gt;
+            this.greeting = message
+            &lt;/set&gt;
+        )
+    }
+    greeting: string;
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}
+let greeter = new Greeter("world");
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Class extension">Class extension</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> Animal</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">m</span><span class="pp-pln"> move</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> distanceInMeters</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:=</span><span class="pp-pln"> 0</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">_</span><span class="pp-pln"> console.log</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-tag">`lit</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">                </span><span class="pp-tag">+</span><span class="pp-pln"> Animal moved</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">                </span><span class="pp-tag">@</span><span class="pp-pln"> distanceInMeters</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">                </span><span class="pp-tag">+</span><span class="pp-pln"> m.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class Animal {
+    move( = 0) {
+        console.log(`Animal moved${distanceInMeters}m.`);
+    }
+}
+class Dog extends Animal {
+    bark() {
+        console.log('Woof! Woof!');
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Complex class example">Complex class example</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> Animal</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> name</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">ctor</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> theName</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">:string</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">set</span><span class="pp-pln"> this.name = theName</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">m</span><span class="pp-pln"> move</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> distanceInMeters</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-tag">:=</span><span class="pp-pln"> 0</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">        </span><span class="pp-tag">_</span><span class="pp-pln"> console.log</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">            </span><span class="pp-tag">`lit</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">                </span><span class="pp-tag">+</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">                </span><span class="pp-tag">@</span><span class="pp-pln"> this.name</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">                </span><span class="pp-tag">+</span><span class="pp-pln"> moved</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">                </span><span class="pp-tag">@</span><span class="pp-pln"> distanceInMeters</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">                </span><span class="pp-tag">+</span><span class="pp-pln"> m.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class Animal {
+    constructor(theName: string) { (
+            &lt;set&gt;
+            this.name = theName
+            &lt;/set&gt;
+        )
+    }
+    name: string;
+    move( = 0) {
+        console.log(`${this.name}moved${distanceInMeters}m.`);
+    }
+}
+class Snake extends Animal {
+    constructor(name: string) {super(name);
+    }
+    move(distanceInMeters = 5) {
+        console.log("Slithering...");
+        super.move(distanceInMeters);
+    }
+}
+class Horse extends Animal {
+    constructor(name: string) {super(name);
+    }
+    move(distanceInMeters = 45) {
+        console.log("Galloping...");
+        super.move(distanceInMeters);
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Class accessors">Class accessors</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> Animal</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> name</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:private</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">ctor</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> theName</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-tag">:string</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">set</span><span class="pp-pln"> this.name = theName</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class Animal {
+    constructor(theName: string) { (
+            &lt;set&gt;
+            this.name = theName
+            &lt;/set&gt;
+        )
+    }
+    name: string;
+}
+class Rhino extends Animal {
+    constructor() {super("Rhino");
+    }
+}
+class Person {
+    constructor(name: string) { (
+            &lt;set&gt;
+            this.name = name
+            &lt;/set&gt;
+        )
+    }
+    name: string;
+}
+class Employee extends Person {
+    constructor(name: string, department: string) {super(name);
+         (
+            &lt;set&gt;
+            this.department = department
+            &lt;/set&gt;
+        )
+    }
+    department: string;
+    getElevatorPitch() {
+        return `Hello, my name is${this.name}and I work in${this.department}.`;
+    }
+}
+class Person {
+    constructor(theName: string) { (
+            &lt;set&gt;
+            this.name = theName
+            &lt;/set&gt;
+        )
+    }
+    name: string;
+}
+class Employee extends Person {
+    constructor(name: string, department: string) {super(name);
+         (
+            &lt;set&gt;
+            this.department = department
+            &lt;/set&gt;
+        )
+    }
+    department: string;
+    getElevatorPitch() {
+        return `Hello, my name is${this.name}and I work in${this.department}.`;
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Readonly modifier">Readonly modifier</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> Octopus</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> name</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:readonly</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> numberOfLegs</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">:readonly</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">:=</span><span class="pp-pln"> 8</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">ctor</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> theName</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-tag">:string</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">        </span><span class="pp-tag">set</span><span class="pp-pln"> this.name = theName</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class Octopus {
+    constructor(theName: string) { (
+            &lt;set&gt;
+            this.name = theName
+            &lt;/set&gt;
+        )
+    }
+    name: string;
+    numberOfLegs: number = 8;
+}
+class Octopus {
+    constructor(: string) {}
+    numberOfLegs: number = 8;
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Static members">Static members</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> Grid</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> origin</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">static</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">{</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> x 0</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> y 0</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">m</span><span class="pp-pln"> calculateDistanceFromOrigin</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> point</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">            </span><span class="pp-tag">:{</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">                </span><span class="pp-tag">:p</span><span class="pp-pln"> x</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">                    </span><span class="pp-tag">:number</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">                </span><span class="pp-tag">:p</span><span class="pp-pln"> y</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">                    </span><span class="pp-tag">:number</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">        </span><span class="pp-tag">let</span><span class="pp-pln"> xDist = (point.x - Grid.origin.x)</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">        </span><span class="pp-tag">let</span><span class="pp-pln"> yDist = (point.y - Grid.origin.y)</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">        </span><span class="pp-tag">return</span><span class="pp-pln"> Math.sqrt(xDist * xDist + yDist * yDist) / this.scale</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class Grid {
+    static originorigin: {
+            {
+                x: 0, 
+                y: 0calculateDistanceFromOrigin(point: {x: number;
+                    
+                }y: number;
+                
+            }
+    }) {
+        let xDist = (point.x - Grid.origin.x);
+        let yDist = (point.y - Grid.origin.y);
+        return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Abstract classes">Abstract classes</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> Animal</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:abstract</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">:m</span><span class="pp-pln"> makeSound</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:abstract</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:return</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">:void</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">m</span><span class="pp-pln"> move</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">_</span><span class="pp-pln"> console.log("roaming the earth...")</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class Animal {
+    makeSoundmakeSound: {
+             void
+        }
+    move() {
+        console.log("roaming the earth...");
+    }
+}
+class Department {
+    constructor(name: string) {}
+    printName() {
+        console.log("Department name: " + this.name);
+    }
+    printMeetingprintMeeting: {
+             void
+        }
+}
+class AccountingDepartment extends Department {
+    constructor() {super("Accounting and Auditing");
+    }
+    printMeeting() {
+        console.log("The Accounting Department meets each Monday at 10am.");
+    }
+    generateReports() {
+        console.log("Generating accounting reports...");
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Static members">Static members</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> Greeter</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> standardGreeting</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">static</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:=</span><span class="pp-pln"> "Hello, there"</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> greeting</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">m</span><span class="pp-pln"> greet</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">if</span><span class="pp-pln"> this.greeting</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">            </span><span class="pp-tag">return</span><span class="pp-pln"> "Hello, " + this.greeting</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">        </span><span class="pp-tag">else</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-tag">return</span><span class="pp-pln"> Greeter.standardGreeting</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class Greeter {
+    static standardGreeting = "Hello, there";
+    greeting: string;
+    greet() {
+        if (this.greeting) {
+            return "Hello, " + this.greeting;
+        }
+        else {
+            return Greeter.standardGreeting;
+        }
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Class extended by interface">Class extended by interface</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> Point</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> x</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> y</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class Point {
+    x: number;
+    y: number;
+}
+interface Point3d implements Point {
+    z: number;
+}
+let point3d: Point3d = {
+    x: 1, 
+    y: 2, 
+    z: 3
+};
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="interfaces">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">interfaces</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Simple interface">Simple interface</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> LabelledValue</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> label</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface LabelledValue {
+    label: string;
+}
+function printLabel(labelledObj: LabelledValue) {
+    console.log(labelledObj.label);
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Optional properties">Optional properties</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> SquareConfig</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> color</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:optional</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> width</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">:optional</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+function createSquare(config: SquareConfig):  {color: string;
+     {
+        let newSquare = {
+            color: "white"area: number;
+            , 
+            area: 100}
+    };
+    if (config.color) {
+         (
+            &lt;set&gt;
+            newSquare.color = config.color
+            &lt;/set&gt;
+        )
+    }
+    if (config.width) {
+         (
+            &lt;set&gt;
+            newSquare.area = config.width * config.width
+            &lt;/set&gt;
+        )
+    }
+    return newSquare;
+}
+let mySquare = createSquare({
+    color: "black"
+});
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Optional properties 2">Optional properties 2</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> SquareConfig</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> color</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:optional</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> width</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">:optional</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+function createSquare(config: SquareConfig):  {color: string;
+     {
+        let newSquare = {
+            color: "white"area: number;
+            , 
+            area: 100}
+    };
+    if (config.clor) {
+        // Error: Property 'clor' does not exist on type 'SquareConfig'
+         (
+            &lt;set&gt;
+            newSquare.color = config.clor
+            &lt;/set&gt;
+        )
+    }
+    if (config.width) {
+         (
+            &lt;set&gt;
+            newSquare.area = config.width * config.width
+            &lt;/set&gt;
+        )
+    }
+    return newSquare;
+}
+let mySquare = createSquare({
+    color: "black"
+});
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Readonly properties">Readonly properties</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> Point</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> x</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> y</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: ident, wzElement: undefined, wzName:, row:32, col:13, source:c:/basefolder/temp.ts.ittf\nIn ts Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.ts.ittf",
+  "errorLines": [
+    "0029         :as ",
+    "0030             :[ ",
+    "0031                 :number ",
+    "0032             ident ro",
+    "                 ^ Tag not recognized: ident  &lt;--- --- --- --- --- ERROR"
+  ],
+  "stack": "Error\n    at new tsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7879:23)\n    at typeAs.typeSimple.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7165:23)\n    at htmlelement.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at htmlelement.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:359:29)\n    at htmlelement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:6713:48)\n    at htmlelement.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:6723:27)\n    at module.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at module.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:207:29)\n    at module.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1127:48)\n    at module.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1137:27)"
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="Readonly vs const">Readonly vs const</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> SquareConfig</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> color</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:optional</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> width</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">:optional</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+function createSquare(config: SquareConfig):  {color: string;
+     {
+    }
+    area: number;
+    let mySquare = createSquare({
+        colour: "red"}, 
+    width: 100
+});
+</code>
+                        </pre>
+                    </div>
+                    <h3 id></h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">let</span><span class="pp-pln"> mySquare</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">_</span><span class="pp-pln"> createSquare</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">{</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> colour "red"</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">@</span><span class="pp-pln"> width 100</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+let mySquare = createSquare({
+    colour: "red", 
+    width: 100
+});
+let mySquare = createSquare(( as SquareConfig){
+    width: 100, 
+    opacity: 0.5
+});
+interface SquareConfig {
+    color?: string;
+    width?: number;
+    *** :index }
+let squareOptions = {
+    colour: "red", 
+    width: 100
+};
+let mySquare = createSquare(squareOptions);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Function Types">Function Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> SearchFunc</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:call</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:boolean</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> source</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:string</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> subString</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-tag">:string</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface SearchFunc {
+    (source: string, subString: string): boolean
+}
+let mySearch: SearchFunc;
+ (
+    &lt;set&gt;
+    mySearch =
+    function(source: string, subString: string) {
+        let result = source.search(subString);
+        return result &gt; -1;
+    }&lt;/set&gt;
+)
+let mySearch: SearchFunc;
+ (
+    &lt;set&gt;
+    mySearch =
+    function(src: string, sub: string):  boolean {
+        let result = src.search(sub);
+        return result &gt; -1;
+    }&lt;/set&gt;
+)
+let mySearch: SearchFunc;
+ (
+    &lt;set&gt;
+    mySearch =
+    function(src, sub) {
+        let result = src.search(sub);
+        return result &gt; -1;
+    }&lt;/set&gt;
+)
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Indexable Types">Indexable Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> StringArray</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:index</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> index</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface StringArray {
+    *** :index }
+let myArray: StringArray;
+ (
+    &lt;set&gt;
+    myArray =
+    [
+        "Bob", 
+        "Fred"
+    ]&lt;/set&gt;
+)
+let myStr: string = myArray[0];
+class Animal {
+    name: string;
+}
+class Dog extends Animal {
+    breed: string;
+}
+interface NotOkay {
+    *** :index *** :index }
+interface NumberDictionary {
+    *** :index length: number;
+    name: string;
+}
+interface ReadonlyStringArray {
+    *** :index }
+let myArray: ReadonlyStringArray = [
+    "Alice", 
+    "Bob"
+];
+ (
+    &lt;set&gt;
+    myArray[2] = "Mallory"
+    &lt;/set&gt;
+)
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Class Types">Class Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> ClockInterface</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> currentTime</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> Date</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface ClockInterface {
+    currentTime: Date;
+}
+class Clock implements ClockInterface {
+    constructor(h: number, m: number) {}
+    currentTime: Date;
+}
+interface ClockInterface {
+    currentTime: Date;
+    setTime(d: Date);
+}
+class Clock implements ClockInterface {
+    constructor(h: number, m: number) {}
+    currentTime: Date;
+    setTime(d: Date) {
+         (
+            &lt;set&gt;
+            this.currentTime = d
+            &lt;/set&gt;
+        )
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="static and instance sides of classes">static and instance sides of classes</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> ClockConstructor</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:new</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> hour</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> minute</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface ClockConstructor {
+    *** :new ;
+}
+class Clock implements ClockConstructor {
+    constructor(h: number, m: number) {}
+    currentTime: Date;
+}
+interface ClockConstructor {
+    *** :new ;
+}
+interface ClockInterface {
+    tick();
+}
+function createClock(ctor: ClockConstructor, hour: number, minute: number):  ClockInterface {
+    return new ctor(hour, minute);
+}
+class DigitalClock implements ClockInterface {
+    constructor(h: number, m: number) {}
+    tick() {
+        console.log("beep beep");
+    }
+}
+class AnalogClock implements ClockInterface {
+    constructor(h: number, m: number) {}
+    tick() {
+        console.log("tick tock");
+    }
+}
+let digital = createClock(DigitalClock, 12, 17);
+let analog = createClock(AnalogClock, 7, 32);
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Extending Interfaces">Extending Interfaces</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> Shape</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> color</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface Shape {
+    color: string;
+}
+interface Square implements Shape {
+    sideLength: number;
+}
+ (
+    &lt;set&gt;
+    square.color = "blue"
+    &lt;/set&gt;
+)
+ (
+    &lt;set&gt;
+    square.sideLength = 10
+    &lt;/set&gt;
+)
+interface Shape {
+    color: string;
+}
+interface PenStroke {
+    penWidth: number;
+}
+interface Square implements Shape, PenStroke {
+    sideLength: number;
+}
+ (
+    &lt;set&gt;
+    square.color = "blue"
+    &lt;/set&gt;
+)
+ (
+    &lt;set&gt;
+    square.sideLength = 10
+    &lt;/set&gt;
+)
+ (
+    &lt;set&gt;
+    square.penWidth = 5
+    &lt;/set&gt;
+)
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Hybrid Types">Hybrid Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> Counter</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:call</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> start</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> interval</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">:m</span><span class="pp-pln"> reset</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">:void</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface Counter {
+    (start: number): string
+    interval: number;
+    reset(): void;
+}
+function getCounter():  Counter {
+     (
+        &lt;set&gt;
+        counter.interval = 123
+        &lt;/set&gt;
+    )
+     (
+        &lt;set&gt;
+        counter.reset =
+        function() {
+        }&lt;/set&gt;
+    )
+    return counter;
+}
+let c = getCounter();
+c(10);
+c.reset();
+ (
+    &lt;set&gt;
+    c.interval = 5
+    &lt;/set&gt;
+)
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Interfaces Extending Classes">Interfaces Extending Classes</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> Control</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> state</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:private</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:any</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class Control {
+    state: any;
+}
+interface SelectableControl implements Control {
+    select(): void;
+}
+class Button implements SelectableControl extends Control {
+    select() {
+    }
+}
+class TextBox extends Control {
+    select() {
+    }
+}
+class Image implements SelectableControl {
+    select() {
+    }
+}
+class Location {
+}
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="generics">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">generics</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Introduction">Introduction</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> identity</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> arg</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:any</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:any</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> arg</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function identity(arg: any):  any {
+    return arg;
+}
+function identity&lt;T&gt;(arg: T):  T {
+    return arg;
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Array argument">Array argument</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> loggingIdentity</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> arg</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:[</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:[</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">_</span><span class="pp-pln"> console.log(arg.length)</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> arg</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function loggingIdentity&lt;T&gt;(arg: T[]):  T[] {
+    console.log(arg.length);
+    return arg;
+}
+function loggingIdentity&lt;T&gt;(arg: &lt;Array&gt;T):  &lt;Array&gt;T {
+    console.log(arg.length);
+    return arg;
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Generic Types">Generic Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> identity</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> arg</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> arg</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function identity&lt;T&gt;(arg: T):  T {
+    return arg;
+}
+let myIdentity: (arg: T = identity;
+)function identity&lt;T&gt;(arg: T):  T {
+    return arg;
+}
+let myIdentity: (arg: U = identity;
+)function identity&lt;T&gt;(arg: T):  T {
+    return arg;
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Call signature">Call signature</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">let</span><span class="pp-pln"> myIdentity</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:{</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:call</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">param</span><span class="pp-pln"> arg</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">                </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">:=</span><span class="pp-pln"> identity</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+let myIdentity: {(arg: T = identity;
+    ): T
+    function identity&lt;T&gt;(arg: T}):  T {
+    return arg;
+}
+let myIdentity: GenericIdentityFn = identity;
+interface GenericIdentityFn&lt;T&gt; {
+    (arg: T): T
+}
+function identity&lt;T&gt;(arg: T):  T {
+    return arg;
+}
+let GenericIdentityFn: number = identity;
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Generic Classes">Generic Classes</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> GenericNumber</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> zeroValue</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> add</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">:=></span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-tag">param</span><span class="pp-pln"> x</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">                </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">            </span><span class="pp-tag">param</span><span class="pp-pln"> y</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">                </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class GenericNumber&lt;T&gt; {
+    zeroValue: T;
+    add: (x: T;
+    , y: T}
+)let myGenericNumber = new GenericNumber();
+ (
+    &lt;set&gt;
+    myGenericNumber.zeroValue = 0
+    &lt;/set&gt;
+)
+ (
+    &lt;set&gt;
+    myGenericNumber.add =
+    function(x, y) {
+        return x + y;
+    }&lt;/set&gt;
+)
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Generic Constraints">Generic Constraints</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> loggingIdentity</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> arg</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">_</span><span class="pp-pln"> console.log(arg.length)</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> arg</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function loggingIdentity&lt;T&gt;(arg: T):  T {
+    console.log(arg.length);
+    return arg;
+}
+interface Lengthwise {
+    length: number;
+}
+function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T):  T {
+    console.log(arg.length);
+    return arg;
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Type Parameters in Generic Constraints">Type Parameters in Generic Constraints</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> getProperty</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> K</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:keyof</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> obj</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> key</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> K</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> obj[key]</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function getProperty&lt;T, K keyof T&gt;(obj: T, key: K) {
+    return obj[key];
+}
+let x = {
+    a: 1, 
+    b: 2, 
+    c: 3, 
+    d: 4
+};
+getProperty(x, "a");
+getProperty(x, "m");
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Class Types in Generics">Class Types in Generics</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> create</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> c</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:{</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:new</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">                </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> new c()</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function create&lt;T&gt;(c: {*** :new ;
+}):  T {
+    return new c();
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Advanced example">Advanced example</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> BeeKeeper</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">p</span><span class="pp-pln"> hasMask</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:boolean</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class BeeKeeper {
+    hasMask: boolean;
+}
+class ZooKeeper {
+    nametag: string;
+}
+class Animal {
+    numLegs: number;
+}
+class Bee extends Animal {
+    keeper: BeeKeeper;
+}
+class Lion extends Animal {
+    keeper: ZooKeeper;
+}
+function createInstance&lt;A extends Animal&gt;( = *** :ctor ;
+):  A {
+    return new c();
+}
+ (
+    &lt;var&gt;
+    x = createInstance(Lion).keeper.nametag
+    &lt;/var&gt;
+)
+ (
+    &lt;var&gt;
+    y = createInstance(Bee).keeper.hasMask
+    &lt;/var&gt;
+)
+</code>
+                        </pre>
+                    </div>
+                    <div style="display: flex;" id="advanced">
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">element</h3>
+                            <p class="head-bar-value">advanced</p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">tag</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">ast</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                        <div class="head-bar-item">
+                            <h3 class="head-bar-title">category</h3>
+                            <p class="head-bar-value"></p>
+                        </div>
+                    </div>
+                    <h3 id="Intersection Types">Intersection Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> extend</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> U</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> first</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> second</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> U</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">:intersect</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> U</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">    </span><span class="pp-tag">let</span><span class="pp-pln"> result</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">        </span><span class="pp-tag">:as</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">            </span><span class="pp-tag">:intersect</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">                </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">                </span><span class="pp-tag">:ref</span><span class="pp-pln"> U</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">            </span><span class="pp-tag">{</span><span class="pp-pln"> {}</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">    </span><span class="pp-tag">for</span></div><div class="L9"><span class="pp-ln">  19 </span><span class="pp-pln">        </span><span class="pp-tag">left</span></div><div class="L0"><span class="pp-ln">  20 </span><span class="pp-pln">            </span><span class="pp-tag">let</span><span class="pp-pln"> id</span></div><div class="L1"><span class="pp-ln">  21 </span><span class="pp-pln">        </span><span class="pp-tag">right</span><span class="pp-pln"> first</span></div><div class="L2"><span class="pp-ln">  22 </span><span class="pp-pln">        </span><span class="pp-tag">set</span><span class="pp-pln"> =</span></div><div class="L3"><span class="pp-ln">  23 </span><span class="pp-pln">            </span><span class="pp-tag">:as</span></div><div class="L4"><span class="pp-ln">  24 </span><span class="pp-pln">                </span><span class="pp-mix frag-to-link-a">(</span><span class="pp-mix">)</span></div><div class="L5"><span class="pp-ln">  25 </span><span class="pp-pln">                    </span><span class="pp-tag">:any</span></div><div class="L6"><span class="pp-ln">  26 </span><span class="pp-pln">                    </span><span class="pp-tag">ident</span><span class="pp-pln"> first</span></div><div class="L7"><span class="pp-ln">  27 </span><span class="pp-pln">                </span><span class="pp-tag">.[</span><span class="pp-pln"> id</span></div><div class="L8"><span class="pp-ln">  28 </span><span class="pp-pln">    </span><span class="pp-tag">for</span></div><div class="L9"><span class="pp-ln">  29 </span><span class="pp-pln">        </span><span class="pp-tag">left</span></div><div class="L0"><span class="pp-ln">  30 </span><span class="pp-pln">            </span><span class="pp-tag">let</span><span class="pp-pln"> id</span></div><div class="L1"><span class="pp-ln">  31 </span><span class="pp-pln">        </span><span class="pp-tag">right</span><span class="pp-pln"> second</span></div><div class="L2"><span class="pp-ln">  32 </span><span class="pp-pln">        </span><span class="pp-tag">if</span><span class="pp-pln"> !result.hasOwnProperty(id)</span></div><div class="L3"><span class="pp-ln">  33 </span><span class="pp-pln">            </span><span class="pp-tag">set</span><span class="pp-pln"> =</span></div><div class="L4"><span class="pp-ln">  34 </span><span class="pp-pln">                </span><span class="pp-tag">:as</span></div><div class="L5"><span class="pp-ln">  35 </span><span class="pp-pln">                    </span><span class="pp-mix frag-to-link-a">(</span><span class="pp-mix">)</span></div><div class="L6"><span class="pp-ln">  36 </span><span class="pp-pln">                        </span><span class="pp-tag">:any</span></div><div class="L7"><span class="pp-ln">  37 </span><span class="pp-pln">                        </span><span class="pp-tag">ident</span><span class="pp-pln"> second</span></div><div class="L8"><span class="pp-ln">  38 </span><span class="pp-pln">                    </span><span class="pp-tag">.[</span><span class="pp-pln"> id</span></div><div class="L9"><span class="pp-ln">  39 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> result</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: left, wzElement: undefined, wzName:, row:20, col:13, source:c:/basefolder/temp.ts.ittf\nIn ts Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.ts.ittf",
+  "errorLines": [
+    "0017                     :ref U",
+    "0018                 { {}",
+    "0019         for ",
+    "0020             left ",
+    "                 ^ Tag not recognized: left  &lt;--- --- --- --- --- ERROR",
+    "0021                 let id",
+    "0022             right first",
+    "0023             set =",
+    "0024                 :as "
+  ],
+  "stack": "Error\n    at new tsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7879:23)\n    at xfor.statement.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1053:23)\n    at xfunction.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at xfunction.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:377:29)\n    at xfunction.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:2871:48)\n    at xfunction.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:2881:27)\n    at module.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at module.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:904:29)\n    at module.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1127:48)\n    at module.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1137:27)"
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="Union Types">Union Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> padLeft</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> value</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> padding</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:any</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">if</span><span class="pp-pln"> typeof padding === "number"</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">return</span><span class="pp-pln"> Array(padding + 1).join(" ") + value</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">if</span><span class="pp-pln"> typeof padding === "string"</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">return</span><span class="pp-pln"> padding + value</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">throw</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">        </span><span class="pp-tag">new</span><span class="pp-pln"> Error</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">            </span><span class="pp-tag">`lit</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">                </span><span class="pp-tag">+</span><span class="pp-pln"> Expected string or number, got '</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">                </span><span class="pp-tag">@</span><span class="pp-pln"> padding</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">                </span><span class="pp-tag">+</span><span class="pp-pln"> '.</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function padLeft(value: string, padding: any) {
+    if (typeof padding === "number") {
+        return Array(padding + 1).join(" ") + value;
+    }
+    if (typeof padding === "string") {
+        return padding + value;
+    }
+    throw new Error(`Expected string or number, got '${padding}'.`);
+}
+padLeft("Hello world", 4);
+let indentedString = padLeft("Hello world", true);
+function padLeft(value: string, padding: string | number) {
+}
+let indentedString = padLeft("Hello world", true);
+interface Bird {
+    fly();
+    layEggs();
+}
+interface Fish {
+    swim();
+    layEggs();
+}
+function getSmallPet():  Fish | Bird {
+}
+let pet = getSmallPet();
+pet.layEggs();
+pet.swim();
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Type Guards and Differentiating Types">Type Guards and Differentiating Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">let</span><span class="pp-pln"> pet = getSmallPet()</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: ident, wzElement: undefined, wzName:, row:14, col:21, source:c:/basefolder/temp.ts.ittf\nIn ts Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.ts.ittf",
+  "errorLines": [
+    "0011             :as ",
+    "0012                 ( ",
+    "0013                     :ref Fish",
+    "0014                     ident pet",
+    "                         ^ Tag not recognized: ident  &lt;--- --- --- --- --- ERROR",
+    "0015                 . swim",
+    "0016         _ ",
+    "0017             ( ",
+    "0018                 :ref Fish"
+  ],
+  "stack": "Error\n    at new tsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7879:23)\n    at callOnValue.statement.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1053:23)\n    at typeAs.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at typeAs.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:187:29)\n    at typeAs.typeSimple.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7153:48)\n    at typeAs.typeSimple.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7163:27)\n    at test.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at test.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:359:29)\n    at test.statement.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1051:27)\n    at xif.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)"
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="User - Defined Type Guards">User - Defined Type Guards</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> isFish</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> pet</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:union</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> Fish</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> Bird</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:predicate</span><span class="pp-pln"> pet</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> Fish</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">    </span><span class="pp-tag">return</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">        </span><span class="pp-tag">!==</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-tag">:as</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">                </span><span class="pp-mix frag-to-link-a">(</span><span class="pp-mix">)</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">                    </span><span class="pp-tag">:ref</span><span class="pp-pln"> Fish</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">                    </span><span class="pp-tag">ident</span><span class="pp-pln"> pet</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">                </span><span class="pp-tag">.</span><span class="pp-pln"> swim</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">            </span><span class="pp-tag">+</span><span class="pp-pln"> undefined</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: ident, wzElement: undefined, wzName:, row:15, col:25, source:c:/basefolder/temp.ts.ittf\nIn ts Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.ts.ittf",
+  "errorLines": [
+    "0012                 :as ",
+    "0013                     ( ",
+    "0014                         :ref Fish",
+    "0015                         ident pet",
+    "                             ^ Tag not recognized: ident  &lt;--- --- --- --- --- ERROR",
+    "0016                     . swim",
+    "0017                 + undefined",
+    "0018     if isFish(pet)",
+    "0019         _ pet.swim"
+  ],
+  "stack": "Error\n    at new tsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7879:23)\n    at callOnValue.statement.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1053:23)\n    at typeAs.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at typeAs.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:187:29)\n    at typeAs.typeSimple.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7153:48)\n    at typeAs.typeSimple.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7163:27)\n    at op_noteq_strict.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at op_noteq_strict.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:359:29)\n    at op_noteq_strict.statement.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1051:27)\n    at xreturn.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)"
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="Instanceof type guards">Instanceof type guards</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> Padder</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:m</span><span class="pp-pln"> getPaddingString</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: ident, wzElement: undefined, wzName:, row:28, col:9, source:c:/basefolder/temp.ts.ittf\nIn ts Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.ts.ittf",
+  "errorLines": [
+    "0025         :ref Padder",
+    "0026         _ getRandomPadder",
+    "0027     if padder instanceof SpaceRepeatingPadder",
+    "0028         ident padder",
+    "             ^ Tag not recognized: ident  &lt;--- --- --- --- --- ERROR",
+    "0029         # type narrowed to 'SpaceRepeatingPadder'",
+    "0030     if padder instanceof StringPadder",
+    "0031         ident padder"
+  ],
+  "stack": "Error\n    at new tsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7879:23)\n    at xif.statement.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1053:23)\n    at module.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at module.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:321:29)\n    at module.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1127:48)\n    at module.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1137:27)\n    at loadModelFromMTree (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-factory.g.js:66:29)\n    at C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-factory.g.js:176:21\n    at C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\index.js:82:25\n    at finalize (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\evaluator.js:106:5)"
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="Nullable types">Nullable types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">let</span><span class="pp-pln"> s = "foo"</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+let s = "foo";
+ (
+    &lt;set&gt;
+    s = null
+    &lt;/set&gt;
+)
+let sn: string | null = "bar";
+ (
+    &lt;set&gt;
+    sn = null
+    &lt;/set&gt;
+)
+ (
+    &lt;set&gt;
+    sn = undefined
+    &lt;/set&gt;
+)
+function f(x: number, : number) {
+    return x + y || 0;
+}
+f(1, 2);
+f(1);
+f(1, undefined);
+f(1, null);
+class C {
+    a: number;
+    b: number;
+}
+let c = new C();
+ (
+    &lt;set&gt;
+    c.a = 12
+    &lt;/set&gt;
+)
+ (
+    &lt;set&gt;
+    c.a = undefined
+    &lt;/set&gt;
+)
+ (
+    &lt;set&gt;
+    c.b = 13
+    &lt;/set&gt;
+)
+ (
+    &lt;set&gt;
+    c.b = undefined
+    &lt;/set&gt;
+)
+ (
+    &lt;set&gt;
+    c.b = null
+    &lt;/set&gt;
+)
+function f(sn: string | null):  string {
+    if (sn == null) {
+        return "default";
+    }
+    else {
+        return sn;
+    }
+}
+function f(sn: string | null):  string {
+    return sn || "default";
+}
+function broken(name: string | null):  string {
+    function postfix(epithet: string) {
+        return name.charAt(0) + '.  the ' + epithet;
+    }
+     (
+        &lt;set&gt;
+        name = name || "Bob"
+        &lt;/set&gt;
+    )
+    return postfix("great");
+}
+function fixed(name: string | null):  string {
+    function postfix(epithet: string) {
+        return ((().charAt(0)
+            ) + '.  the ') + epithet;
+    }
+     (
+        &lt;set&gt;
+        name = name || "Bob"
+        &lt;/set&gt;
+    )
+    return postfix("great");
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Type Aliases">Type Aliases</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:type</span><span class="pp-pln"> Name</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:string</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+type Name = string;
+type NameResolver = ();
+type NameOrResolver = Name | NameResolver;
+function getName(n: NameOrResolver):  Name {
+    if (typeof n === "string") {
+        return n;
+    }
+    else {
+        return n();
+    }
+}
+type Container&lt;T&gt; = {value: T;
+};
+type Tree&lt;T&gt; = {value: T;
+    left: &lt;Tree&gt;T;
+    right: &lt;Tree&gt;T;
+};
+type LinkedList&lt;T&gt; = T & {next: &lt;LinkedList&gt;T;
+    ;
+}interface Person {
+    name: string;
+}
+ (
+    &lt;var&gt;
+    people
+    &lt;LinkedList&gt;Person&lt;/var&gt;
+)
+ (
+    &lt;var&gt;
+    s = people.name
+    &lt;/var&gt;
+)
+ (
+    &lt;var&gt;
+    s = people.next.name
+    &lt;/var&gt;
+)
+ (
+    &lt;var&gt;
+    s = people.next.next.name
+    &lt;/var&gt;
+)
+ (
+    &lt;var&gt;
+    s = people.next.next.next.name
+    &lt;/var&gt;
+)
+type Yikes = &lt;Array&gt;Yikes;
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Interfaces vs.Type Aliases">Interfaces vs.Type Aliases</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:type</span><span class="pp-pln"> Alias</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:{</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:p</span><span class="pp-pln"> num</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+type Alias = {num: number;
+};
+interface Interface {
+    num: number;
+}
+function aliased(arg: Alias):  Alias;
+function interfaced(arg: Interface):  Interface;
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="String Literal Types">String Literal Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:type</span><span class="pp-pln"> Easing</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:union</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:literal</span><span class="pp-pln"> "ease-in"</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:literal</span><span class="pp-pln"> "ease-out"</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:literal</span><span class="pp-pln"> "ease-in-out"</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+type Easing = "ease-in" | "ease-out" | "ease-in-out";
+class UIElement {
+    animate(dx: number, dy: number, easing: Easing) {
+        if (easing === "ease-in") {
+        }
+        else {
+            if (easing === "ease-out") {
+            }
+            else {
+                if (easing === "ease-in-out") {
+                }
+                else {
+                }
+            }
+        }
+    }
+}
+let button = new UIElement();
+button.animate(0, 0, "ease-in");
+button.animate(0, 0, "uneasy");
+function createElement(tagName: "img"):  HTMLImageElement;
+function createElement(tagName: "input"):  HTMLInputElement;
+function createElement(tagName: string):  Element {
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Numeric Literal Types">Numeric Literal Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> rollDie</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:union</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> 1</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> 2</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> 3</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> 4</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> 5</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> 6</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function rollDie():  1 | 2 | 3 | 4 | 5 | 6 {
+}
+function foo(x: number) {
+    if (x !== 1 || x !== 2) {
+    }
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Enum Member Types">Enum Member Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> Square</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> kind</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:literal</span><span class="pp-pln"> "square"</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> size</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface Square {
+    kind: "square";
+    size: number;
+}
+interface Rectangle {
+    kind: "rectangle";
+    width: number;
+    height: number;
+}
+interface Circle {
+    kind: "circle";
+    radius: number;
+}
+type Shape = Square | Rectangle | Circle;
+function area(s: Shape) {
+     (
+        &lt;switch&gt;
+        s.kind
+        case "square": {
+            return s.size * s.size;
+        }
+        case "rectangle": {
+            return s.height * s.width;
+        }
+        case "circle": {
+            return Math.PI * s.radius ** 2;
+        }
+        &lt;/switch&gt;
+    )
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Exhaustiveness checking">Exhaustiveness checking</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:type</span><span class="pp-pln"> Shape</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:union</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> Square</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> Rectangle</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> Circle</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> Triangle</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+type Shape = Square | Rectangle | Circle | Triangle;
+function area(s: Shape) {
+     (
+        &lt;switch&gt;
+        s.kind
+        case "square": {
+            return s.size * s.size;
+        }
+        case "rectangle": {
+            return s.height * s.width;
+        }
+        case "circle": {
+            return Math.PI * s.radius ** 2;
+        }
+        &lt;/switch&gt;
+    )
+}
+function area(s: Shape):  number {
+     (
+        &lt;switch&gt;
+        s.kind
+        case "square": {
+            return s.size * s.size;
+        }
+        case "rectangle": {
+            return s.height * s.width;
+        }
+        case "circle": {
+            return Math.PI * s.radius ** 2;
+        }
+        &lt;/switch&gt;
+    )
+}
+function assertNever( = never):  never {
+    throw new Error("Unexpected object: " + x);
+}
+function area(s: Shape) {
+     (
+        &lt;switch&gt;
+        s.kind
+        case "square": {
+            return s.size * s.size;
+        }
+        case "rectangle": {
+            return s.height * s.width;
+        }
+        case "circle": {
+            return Math.PI * s.radius ** 2;
+        }
+        default: {
+            return assertNever(s);
+        }
+        &lt;/switch&gt;
+    )
+}
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Polymorphic this types">Polymorphic this types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">class</span><span class="pp-pln"> BasicCalculator</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">ctor</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:public</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> value</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">:=</span><span class="pp-pln"> 0</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">    </span><span class="pp-tag">m</span><span class="pp-pln"> currentValue</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">:public</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">return</span><span class="pp-pln"> this.value</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">    </span><span class="pp-tag">m</span><span class="pp-pln"> add</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">        </span><span class="pp-tag">:public</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> operand</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">        </span><span class="pp-tag">set</span><span class="pp-pln"> this.value += operand</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">        </span><span class="pp-tag">return</span><span class="pp-pln"> this</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">    </span><span class="pp-tag">m</span><span class="pp-pln"> multiply</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">        </span><span class="pp-tag">:public</span></div><div class="L8"><span class="pp-ln">  18 </span><span class="pp-pln">        </span><span class="pp-tag">param</span><span class="pp-pln"> operand</span></div><div class="L9"><span class="pp-ln">  19 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div><div class="L0"><span class="pp-ln">  20 </span><span class="pp-pln">        </span><span class="pp-tag">set</span><span class="pp-pln"> this.value *= operand</span></div><div class="L1"><span class="pp-ln">  21 </span><span class="pp-pln">        </span><span class="pp-tag">return</span><span class="pp-pln"> this</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+class BasicCalculator {
+    constructor( = 0) {}
+    currentValue() {
+        return this.value;
+    }
+    add(operand: number) {
+         (
+            &lt;set&gt;
+            this.value += operand
+            &lt;/set&gt;
+        )
+        return this;
+    }
+    multiply(operand: number) {
+         (
+            &lt;set&gt;
+            this.value *= operand
+            &lt;/set&gt;
+        )
+        return this;
+    }
+}
+let v = new BasicCalculator(2).multiply(5).add(1).currentValue();
+class ScientificCalculator extends BasicCalculator {
+    constructor(value = 0) {super(value);
+    }
+    sin() {
+         (
+            &lt;set&gt;
+            this.value = Math.sin(this.value)
+            &lt;/set&gt;
+        )
+        return this;
+    }
+}
+let v = new ScientificCalculator(2).multiply(5).sin().add(1).currentValue();
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Index types">Index types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> pluck</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> o</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> names</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">return</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">_</span><span class="pp-pln"> names.map</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">=></span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">                </span><span class="pp-tag">param</span><span class="pp-pln"> n</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">                </span><span class="pp-tag">+</span><span class="pp-pln"> o[n]</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+function pluck(o, names) {
+    return names.map((n) =&gt;
+            o[n]);
+}
+function pluck&lt;T, K keyof T&gt;(o: T, names: K[]):  T[K][] {
+    return names.map((n) =&gt;
+            o[n]);
+}
+interface Person {
+    name: string;
+    age: number;
+}
+let person: Person = {
+    name: 'Jarid', 
+    age: 35
+};
+let strings: string[] = pluck(person, [
+    'name'
+]);
+let personProps =  keyof Person;
+pluck(person, [
+    'age', 
+    'unknown'
+]);
+function getProperty&lt;T, K keyof T&gt;(o: T, name: K):  T[K] {
+    return o[name];
+}
+let name: string = getProperty(person, 'name');
+let age: number = getProperty(person, 'age');
+let unknown = getProperty(person, 'unknown');
+interface Map&lt;T&gt; {
+    *** :index }
+let keys =  keyof &lt;Map&gt;number;
+let value = &lt;Map&gt;number['foo'];
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Mapped types">Mapped types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:interface</span><span class="pp-pln"> PersonPartial</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> name</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:optional</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:string</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">    </span><span class="pp-tag">:p</span><span class="pp-pln"> age</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">        </span><span class="pp-tag">:optional</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:number</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+interface PersonPartial {
+    name?: string;
+    age?: number;
+}
+interface PersonReadonly {
+    name: string;
+    age: number;
+}
+type Readonly&lt;T&gt; = [P in  keyof T] : T[P];
+type Partial&lt;T&gt; = [P in  keyof T] : T[P];
+type PersonPartial = &lt;Partial&gt;Person;
+type ReadonlyPerson = &lt;Readonly&gt;Person;
+type Keys = 'option1' | 'option2';
+type Flags = [K extends Keys] : boolean;
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Mapped types 2">Mapped types 2</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:type</span><span class="pp-pln"> Flags</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:{</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:p</span><span class="pp-pln"> option1</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">:boolean</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:p</span><span class="pp-pln"> option2</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">:boolean</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+type Flags = {option1: boolean;
+    option2: boolean;
+};
+type NullablePerson = [P in  keyof Person] : Person[P] | null;
+type PartialPerson = [P in  keyof Person] : Person[P];
+type Nullable&lt;T&gt; = [P in  keyof T] : T[P] | null;
+type Partial&lt;T&gt; = [P in  keyof T] : T[P];
+type Proxy&lt;T&gt; = {get(): T;
+    set(value: T): void;
+};
+type Proxify&lt;T&gt; = [P in  keyof T] : &lt;Proxy&gt;T[P];
+function proxify&lt;T&gt;(o: T):  &lt;Proxify&gt;T {
+}
+let proxyProps = proxify(props);
+type Pick&lt;T, K keyof T&gt; = [P extends K] : T[P];
+type Record&lt;Kstring, T&gt; = [P extends K] : T;
+type ThreeStringProps = Record;
+</code>
+                        </pre>
+                    </div>
+                    <h3 id="Inference from mapped types">Inference from mapped types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">function</span><span class="pp-pln"> unproxify</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> t</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> Proxify</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">    </span><span class="pp-tag">let</span><span class="pp-pln"> result</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">        </span><span class="pp-tag">:as</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-tag">{</span><span class="pp-pln"> {}</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">    </span><span class="pp-tag">for</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">        </span><span class="pp-tag">left</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">            </span><span class="pp-tag">const</span><span class="pp-pln"> k</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">        </span><span class="pp-tag">right</span><span class="pp-pln"> t</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">        </span><span class="pp-tag">set</span><span class="pp-pln"> result[k] = t[k].get()</span></div><div class="L7"><span class="pp-ln">  17 </span><span class="pp-pln">    </span><span class="pp-tag">return</span><span class="pp-pln"> result</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: left, wzElement: undefined, wzName:, row:14, col:13, source:c:/basefolder/temp.ts.ittf\nIn ts Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.ts.ittf",
+  "errorLines": [
+    "0011                 :ref T",
+    "0012                 { {}",
+    "0013         for ",
+    "0014             left ",
+    "                 ^ Tag not recognized: left  &lt;--- --- --- --- --- ERROR",
+    "0015                 const k",
+    "0016             right t",
+    "0017             set result[k] = t[k].get()",
+    "0018         return result"
+  ],
+  "stack": "Error\n    at new tsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7879:23)\n    at xfor.statement.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1053:23)\n    at xfunction.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at xfunction.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:377:29)\n    at xfunction.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:2871:48)\n    at xfunction.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:2881:27)\n    at module.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at module.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:904:29)\n    at module.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1127:48)\n    at module.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1137:27)"
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="Conditional Types">Conditional Types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:function</span><span class="pp-pln"> f</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:boolean</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">    </span><span class="pp-tag">param</span><span class="pp-pln"> x</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">    </span><span class="pp-tag">:return</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">        </span><span class="pp-tag">:conditional</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> true</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">            </span><span class="pp-tag">:string</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-tag">:number</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: :conditional, wzElement: undefined, wzName:, row:8, col:13, source:c:/basefolder/temp.ts.ittf\nIn ts Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.ts.ittf",
+  "errorLines": [
+    "0005         param x",
+    "0006             :ref T",
+    "0007         :return ",
+    "0008             :conditional ",
+    "                 ^ Tag not recognized: :conditional  &lt;--- --- --- --- --- ERROR",
+    "0009                 :literal true",
+    "0010                 :ref T",
+    "0011                 :string ",
+    "0012                 :number "
+  ],
+  "stack": "Error\n    at new tsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7879:23)\n    at typeReturn.statement.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1053:23)\n    at typeFunctionDeclare.tsBase.wzLoadOneToOne (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:127:18)\n    at typeFunctionDeclare.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:3312:29)\n    at typeFunctionDeclare.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:3325:27)\n    at module.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at module.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:925:29)\n    at module.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1127:48)\n    at module.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1137:27)\n    at loadModelFromMTree (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-factory.g.js:66:29)"
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="Distributive conditional types">Distributive conditional types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:type</span><span class="pp-pln"> T10</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:ref</span><span class="pp-pln"> TypeName</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:union</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">:string</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:paren</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">                </span><span class="pp-tag">:=></span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">                    </span><span class="pp-tag">:void</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: :conditional, wzElement: undefined, wzName:, row:36, col:9, source:c:/basefolder/temp.ts.ittf\nIn ts Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.ts.ittf",
+  "errorLines": [
+    "0033                     :ref T",
+    "0034     :type Boxed",
+    "0035         :&lt; T",
+    "0036         :conditional ",
+    "             ^ Tag not recognized: :conditional  &lt;--- --- --- --- --- ERROR",
+    "0037             :[ ",
+    "0038                 :any ",
+    "0039             :ref T",
+    "0040             :ref BoxedArray"
+  ],
+  "stack": "Error\n    at new tsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7879:23)\n    at typeTypeAlias.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:3229:23)\n    at module.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at module.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:605:29)\n    at module.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1127:48)\n    at module.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1137:27)\n    at loadModelFromMTree (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-factory.g.js:66:29)\n    at C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-factory.g.js:176:21\n    at C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\index.js:82:25\n    at finalize (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\evaluator.js:106:5)"
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="Conditional types combined with mapped types:">Conditional types combined with mapped types:</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:type</span><span class="pp-pln"> FunctionPropertyNames</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">:[]</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:mapped</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:<</span><span class="pp-pln"> K</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">                </span><span class="pp-tag">:keyof</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">                    </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">            </span><span class="pp-tag">:conditional</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">                </span><span class="pp-tag">:ref</span><span class="pp-pln"> Function</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">                </span><span class="pp-tag">:[]</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">                    </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">                    </span><span class="pp-tag">:ref</span><span class="pp-pln"> K</span></div><div class="L3"><span class="pp-ln">  13 </span><span class="pp-pln">                </span><span class="pp-tag">:ref</span><span class="pp-pln"> K</span></div><div class="L4"><span class="pp-ln">  14 </span><span class="pp-pln">                </span><span class="pp-tag">:never</span></div><div class="L5"><span class="pp-ln">  15 </span><span class="pp-pln">        </span><span class="pp-tag">:keyof</span></div><div class="L6"><span class="pp-ln">  16 </span><span class="pp-pln">            </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: :conditional, wzElement: undefined, wzName:, row:9, col:17, source:c:/basefolder/temp.ts.ittf\nIn ts Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.ts.ittf",
+  "errorLines": [
+    "0006                 :&lt; K",
+    "0007                     :keyof ",
+    "0008                         :ref T",
+    "0009                 :conditional ",
+    "                     ^ Tag not recognized: :conditional  &lt;--- --- --- --- --- ERROR",
+    "0010                     :ref Function",
+    "0011                     :[] ",
+    "0012                         :ref T",
+    "0013                         :ref K"
+  ],
+  "stack": "Error\n    at new tsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7879:23)\n    at typeMapped.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:3645:23)\n    at typeIndexedAccess.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at typeIndexedAccess.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:824:29)\n    at typeIndexedAccess.statement.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1051:27)\n    at typeTypeAlias.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at typeTypeAlias.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:362:29)\n    at typeTypeAlias.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:3217:48)\n    at typeTypeAlias.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:3227:27)\n    at module.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)"
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="Type inference in conditional types">Type inference in conditional types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:type</span><span class="pp-pln"> ReturnType</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:<</span><span class="pp-pln"> T</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">    </span><span class="pp-tag">:conditional</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">        </span><span class="pp-tag">:=></span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:infer</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">                </span><span class="pp-tag">:<</span><span class="pp-pln"> R</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-tag">param</span><span class="pp-pln"> ...args</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">                </span><span class="pp-tag">:[</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">                    </span><span class="pp-tag">:any</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> T</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">        </span><span class="pp-tag">:ref</span><span class="pp-pln"> R</span></div><div class="L2"><span class="pp-ln">  12 </span><span class="pp-pln">        </span><span class="pp-tag">:any</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+{
+  "name": "WizziModelLoadError",
+  "message": "Error: Tag not recognized: :conditional, wzElement: undefined, wzName:, row:4, col:9, source:c:/basefolder/temp.ts.ittf\nIn ts Factory, calling loadFromNode.\nLoading ittf document c:/basefolder/temp.ts.ittf",
+  "errorLines": [
+    "0001 module ",
+    "0002     :type ReturnType",
+    "0003         :&lt; T",
+    "0004         :conditional ",
+    "             ^ Tag not recognized: :conditional  &lt;--- --- --- --- --- ERROR",
+    "0005             :=&gt; ",
+    "0006                 :infer ",
+    "0007                     :&lt; R",
+    "0008                 param ...args"
+  ],
+  "stack": "Error\n    at new tsModelException (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:7879:23)\n    at typeTypeAlias.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:3229:23)\n    at module.tsBase.wzLoadToChildColl (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:100:18)\n    at module.statement.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:605:29)\n    at module.loadChild (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1127:48)\n    at module.loadFromNode (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-model.g.js:1137:27)\n    at loadModelFromMTree (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-factory.g.js:66:29)\n    at C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-js\\lib\\wizzi\\models\\ts-factory.g.js:176:21\n    at C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\index.js:82:25\n    at finalize (C:\\my\\wizzi\\v5\\apps\\node_modules\\wizzi-mtree\\lib\\loader\\evaluator.js:106:5)"
+}</code>
+                        </pre>
+                    </div>
+                    <h3 id="Predefined conditional types">Predefined conditional types</h3>
+                    <div style="display: flex;">
+                        <pre style="width: 45%;" class="prettyprint">
+<div class="L1"><span class="pp-ln">   1 </span><span class="pp-pln"></span><span class="pp-tag">:type</span><span class="pp-pln"> T00</span></div><div class="L2"><span class="pp-ln">   2 </span><span class="pp-pln">    </span><span class="pp-tag">:ref</span><span class="pp-pln"> Exclude</span></div><div class="L3"><span class="pp-ln">   3 </span><span class="pp-pln">        </span><span class="pp-tag">:union</span></div><div class="L4"><span class="pp-ln">   4 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> "a"</span></div><div class="L5"><span class="pp-ln">   5 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> "b"</span></div><div class="L6"><span class="pp-ln">   6 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> "c"</span></div><div class="L7"><span class="pp-ln">   7 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> "d"</span></div><div class="L8"><span class="pp-ln">   8 </span><span class="pp-pln">        </span><span class="pp-tag">:union</span></div><div class="L9"><span class="pp-ln">   9 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> "a"</span></div><div class="L0"><span class="pp-ln">  10 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> "c"</span></div><div class="L1"><span class="pp-ln">  11 </span><span class="pp-pln">            </span><span class="pp-tag">:literal</span><span class="pp-pln"> "f"</span></div></pre>
+                        <pre style="width: 45%;">
+<code class="language-ts">
+    
+type T00 = Exclude;
+type T01 = Extract;
+type T02 = Exclude;
+type T03 = Extract;
+type T04 = &lt;NonNullable&gt;string | number | void;
+type T05 = &lt;NonNullable&gt;(()) | string[] | null | void;
+function f1(s: string) {
+    return {
+            a: 1, 
+            b: s
+        };
+}
+class C {
+    x = 0;
+    y = 0;
+}
+type T10 = &lt;ReturnType&gt;();
+type T11 = &lt;ReturnType&gt;(s: string;
+)type T12 = &lt;ReturnType&gt;(());
+type T13 = &lt;ReturnType&gt;(());
+type T14 = &lt;ReturnType&gt;typeof f1;
+type T15 = &lt;ReturnType&gt;any;
+type T16 = &lt;ReturnType&gt;never;
+type T17 = &lt;ReturnType&gt;string;
+type T18 = &lt;ReturnType&gt;Function;
+type T20 = &lt;InstanceType&gt;typeof C;
+type T21 = &lt;InstanceType&gt;any;
+type T22 = &lt;InstanceType&gt;never;
+type T23 = &lt;InstanceType&gt;string;
+type T24 = &lt;InstanceType&gt;Function;
+</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+</body>
+
+</html>

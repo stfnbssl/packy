@@ -1,0 +1,201 @@
+﻿$group
+
+	#
+	# implements getEditContent, editSave
+	# params
+	# { ctx
+	#
+	class DataManager
+		ctor
+			param ctx
+			set this.ctx = ctx
+
+		m createFolder
+			param folderName
+			param callback
+			var currentFolder
+				_ this.ctx.storeManager.getCurrentFolder
+			_ this.ctx.fileManager.createFolder
+				@ currentFolder + '/' + folderName
+				@ callback
+
+		m deleteFolder
+			param folderPath
+			param callback
+			_ this.ctx.fileManager.deleteFolder
+				@ folderPath
+				@ callback
+
+		m renameFolder
+			param oldFolderPath
+			param newFolderPath
+			param callback
+			_ this.ctx.fileManager.renameFolder
+				@ oldFolderPath
+				@ newFolderPath
+				@ callback
+
+		m createFile
+			param fileName
+			param callback
+			var that = this
+			_ this.getInitialContent
+				@ fileName
+				f_cb( content )
+					var currentFolder
+						_ that.ctx.storeManager.getCurrentFolder
+					_ that.ctx.fileManager.createFile
+						@ currentFolder + '/' + fileName
+						@ content
+						@ callback
+
+		m deleteFile
+			param filePath
+			param callback
+			_ this.ctx.fileManager.deleteFile
+				@ filePath
+				@ callback
+
+		m renameFile
+			param oldFilePath
+			param newFilePath
+			param callback
+			_ this.ctx.fileManager.renameFile
+				@ oldFilePath
+				@ newFilePath
+				@ callback
+
+		m duplicateFile
+			param oldFilePath
+			param newFilePath
+			param callback
+			_ this.ctx.fileManager.duplicateFile
+				@ oldFilePath
+				@ newFilePath
+				@ callback
+
+		m paste
+			param callback
+			var currentFolder = this.ctx.storeManager.getCurrentFolder()
+			var clipboard = this.ctx.storeManager.getClipboard()
+			if clipboard.command === 'copy' && clipboard.filePath
+				var sourcePinfo = ittfPathInfo(clipboard.filePath)
+				var destFile = currentFolder + '/' + sourcePinfo.basename
+				log 'dataManager.paste.source', clipboard.filePath
+				log 'dataManager.paste.dest', destFile
+				_ this.ctx.fileManager.copyFile
+					@ clipboard.filePath
+					@ destFile
+					@ callback
+			elif clipboard.command === 'copy' && clipboard.folderPath
+				var sourcePinfo = ittfPathInfo(clipboard.folderPath)
+				var destFolder = currentFolder + '/' + sourcePinfo.basename
+				log 'dataManager.paste.source', clipboard.folderPath
+				log 'dataManager.paste.dest', destFolder
+				_ this.ctx.fileManager.copyFolder
+					@ clipboard.folderPath
+					@ destFolder
+					@ callback
+			elif clipboard.command === 'cut' && clipboard.filePath
+				var sourcePinfo = ittfPathInfo(clipboard.filePath)
+				var destFile = currentFolder + '/' + sourcePinfo.basename
+				log 'dataManager.paste.source', clipboard.filePath
+				log 'dataManager.paste.dest', destFile
+				_ this.ctx.fileManager.moveFile
+					@ clipboard.filePath
+					@ destFile
+					@ callback
+			elif clipboard.command === 'cut' && clipboard.folderPath
+				var sourcePinfo = ittfPathInfo(clipboard.folderPath)
+				var destFolder = currentFolder + '/' + sourcePinfo.basename
+				log 'dataManager.paste.source', clipboard.folderPath
+				log 'dataManager.paste.dest', destFolder
+				_ this.ctx.fileManager.moveFolder
+					@ clipboard.folderPath
+					@ destFolder
+					@ callback
+
+		m getEditContent
+			param fileName
+			param callback
+			_ this.ctx.fileManager.readFile
+				@ fileName
+				@ callback
+
+		m editSave
+			param fileName
+			param content
+			param callback
+			var that = this
+			_ this.ctx.fileManager.writeFile
+				@ fileName
+				@ content
+				f_cb( result )
+					_ that.ctx.fileManager.prettifyContent
+						@ content
+						f_cb( prettified )
+							log 'DataManager.editSave.pretty', prettified
+							_ that.ctx.editManager.onSave
+								{
+									@ content content
+									@ prettified prettified
+							r_cb()
+
+		m getInitialContent
+			param filePath
+			param callback
+			var pinfo
+				_ ittfPathInfo
+					@ filePath
+			if pinfo.isIttf
+				if pinfo.mime === 'js'
+					r_cb_sb()
+						@ 'module'
+						@ '    kind es6'
+						@ '    class MyClass'
+						@ '        ctor'
+						@ '            param p1'
+						@ '        m method1'
+						@ '            param p1'
+				elif pinfo.mime === 'html'
+					r_cb_sb()
+						@ 'html'
+						@ '    head'
+						@ '      css ./styles.js.ittf'
+						@ '    body'
+						@ '      # wrapper'
+						@ '      js ./main.js.ittf'
+				elif pinfo.mime === 'css'
+					r_cb_sb()
+						@ 'css'
+						@ '    < body'
+						@ '      font-size 14px'
+						@ '      margin 0'
+						@ '      padding 0'
+						@ '    # wrapper'
+						@ '    . content'
+				else
+					r_cb_sb()
+						@ pinfo.mime
+			else
+				r_cb_sb()
+					@ ""
+	
+	function ittfPathInfo
+		param ittfPath
+		set ittfPath = ittfPath.toLowerCase()
+		var ss = ittfPath.split('/')
+		var basename = ss.pop()
+		var dirname = ss.join('/')
+		set ss = basename.split('.')
+		var isIttf = ss.pop() === 'ittf'
+		var mime = isIttf ? ss[ss.length-1] : ss.pop()
+		return
+			{
+				@ basename basename
+				@ dirname dirname
+				@ isIttf isIttf
+				@ mime mime
+				$*
+				@ contentType contentTypes[mime]
+				*$

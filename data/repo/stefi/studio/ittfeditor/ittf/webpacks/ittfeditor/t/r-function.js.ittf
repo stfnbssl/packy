@@ -1,0 +1,15 @@
+﻿module
+	$params name
+	kind react
+
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import classNames from 'classnames'
+
+	$hook imports
+
+	react-f ${name}
+		$hook
+
+	+
+	export default ${name}

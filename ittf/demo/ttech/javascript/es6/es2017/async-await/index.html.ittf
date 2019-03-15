@@ -1,0 +1,80 @@
+h/root/empty_layout()
+
+	script
+		module
+			kind es6
+			# Normal Function
+			function add
+				param x
+				param y
+				return x + y
+
+			# Async Function
+			function add
+				async
+				param x
+				param y
+				return x + y
+			
+			function doubleAfter2Seconds
+			    param x
+			    return
+			        new Promise
+			            =>
+			                param resolve
+			                _ setTimeout
+			                    =>
+			                        _ resolve(x * 2)
+                                @ 2000
+                                
+            _ doubleAfter2Seconds
+                @ 10
+                ._ then
+                    =>
+                        param r
+                        log r
+                        
+            function addPromise
+                param x
+			    return
+			        new Promise
+			            =>
+			                param resolve
+                            _ doubleAfter2Seconds
+                                @ 10
+                                ._ then
+                                    =>
+                                        param a
+                                        _ doubleAfter2Seconds
+                                            @ 20
+                                            ._ then
+                                                =>
+                                                    param b
+                                                    _ doubleAfter2Seconds
+                                                        @ 30
+                                                        ._ then
+                                                            =>
+                                                                param c
+                                                                _ resolve(x + a + b + c)
+                                                                
+            _ addPromise
+                @ 10
+                ._ then
+                    =>
+                        param sum
+                        log sum     
+                        
+            function addAsync
+                async
+                param x
+                const a = await doubleAfter2Seconds(10)
+                const b = await doubleAfter2Seconds(20)
+                const c = await doubleAfter2Seconds(30)
+                return x + a + b + c
+                
+            _ addAsync
+                @ 10
+                ._ then
+                    =>
+                        param sum
+                        log sum

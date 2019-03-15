@@ -1,0 +1,143 @@
+{
+    "title": "Schema cheat sheet",
+    "language": "javascript",
+    "elements": [
+        {
+            "name": "function",
+            "tag": "function, =>, m",
+            "ast": "FunctionDeclaration, FunctionExpression",
+            "category": "function-statements",
+            "items": [
+                {
+                    "title": "Function with no params",
+                    "ittfWrapped": "module \\n    kind react\\n    function sayHello\\n        log 'Hello'",
+                    "generated": "\\nfunction sayHello() {\\n    console.log('Hello');\\n}\\n"
+                },
+                {
+                    "title": "Function with unchecked params",
+                    "ittfWrapped": "module \\n    kind react\\n    function sayHello\\n        param name\\n        log 'Hello ' + name",
+                    "generated": "\\nfunction sayHello(name) {\\n    console.log('Hello ' + name);\\n}\\n"
+                },
+                {
+                    "title": "Function with checked params",
+                    "ittfWrapped": "module \\n    kind react\\n    function sayHello\\n        string name\\n        log 'Hello ' + name",
+                    "generated": "\\nvar verify = require('wizzi-utils-webpack').verify;\\nfunction sayHello(name) {\\n    if (verify.isNotEmpty(name) === false) {\\n        return error(\\n            'InvalidArgument', 'sayHello', { parameter: 'name', message: 'The name parameter must be a string. Received: ' + name }\\n        );\\n    }\\n    console.log('Hello ' + name);\\n}\\n/**\\n  params\\n    string code\\n      # the error name or number\\n    string method\\n    string message\\n      # optional\\n    { innerError\\n      # optional\\n*/\\nfunction error(code, method, message, innerError) {\\n    var parameter = null;\\n    if (verify.isObject(message)) {\\n        parameter = message.parameter;\\n        message = message.message;\\n    }\\n    return verify.error(innerError, {\\n        name: ( verify.isNumber(code) ? 'Err-' + code : code ),\\n        method: '.' + method,\\n        parameter: parameter,\\n        sourcePath: __filename\\n    }, message || 'Error message unavailable');\\n}\\n"
+                },
+                {
+                    "title": "Function with checked params and callback",
+                    "ittfWrapped": "module \\n    kind react\\n    function sayHello\\n        string name\\n        callback \\n        log 'Hello ' + name",
+                    "generated": "\\nvar verify = require('wizzi-utils-webpack').verify;\\nfunction sayHello(name, callback) {\\n    if (typeof(callback) !== 'function') {\\n        throw new Error(\\n            error('InvalidArgument', 'sayHello', 'The callback parameter must be a function. Received: ' + callback)\\n        );\\n    };\\n    if (verify.isNotEmpty(name) === false) {\\n        return callback(error(\\n            'InvalidArgument', 'sayHello', { parameter: 'name', message: 'The name parameter must be a string. Received: ' + name }\\n        ));\\n    }\\n    console.log('Hello ' + name);\\n}\\n/**\\n  params\\n    string code\\n      # the error name or number\\n    string method\\n    string message\\n      # optional\\n    { innerError\\n      # optional\\n*/\\nfunction error(code, method, message, innerError) {\\n    var parameter = null;\\n    if (verify.isObject(message)) {\\n        parameter = message.parameter;\\n        message = message.message;\\n    }\\n    return verify.error(innerError, {\\n        name: ( verify.isNumber(code) ? 'Err-' + code : code ),\\n        method: '.' + method,\\n        parameter: parameter,\\n        sourcePath: __filename\\n    }, message || 'Error message unavailable');\\n}\\n"
+                },
+                {
+                    "title": "Function with checked params and callback",
+                    "ittfWrapped": "module \\n    kind react\\n    function sayHello\\n        string name\\n        any greetings\\n        gotcha fiona\\n        callback \\n        log 'Hello ' + name",
+                    "generated": "\\n{\\n  \\\"name\\\": \\\"WizziModelLoadError\\\",\\n  \\\"message\\\": \\\"Error: Tag not recognized: gotcha, wzElement: undefined, wzName:, row:6, col:9, source:c:/basefolder/temp.js.ittf\\nIn js Factory, calling loadFromNode.\\nLoading ittf document c:/basefolder/temp.js.ittf\\\",\\n  \\\"stack\\\": \\\"Error\\n    at new jsModelException (C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi-js\\\\lib\\\\wizzi\\\\models\\\\js-model.g.js:14314:23)\\n    at xfunction.loadFromNode (C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi-js\\\\lib\\\\wizzi\\\\models\\\\js-model.g.js:6464:23)\\n    at module.jsBase.wzLoadToChildColl (C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi-js\\\\lib\\\\wizzi\\\\models\\\\js-model.g.js:97:18)\\n    at module.statement.loadChild (C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi-js\\\\lib\\\\wizzi\\\\models\\\\js-model.g.js:1538:29)\\n    at module.loadChild (C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi-js\\\\lib\\\\wizzi\\\\models\\\\js-model.g.js:2601:48)\\n    at module.loadFromNode (C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi-js\\\\lib\\\\wizzi\\\\models\\\\js-model.g.js:2611:27)\\n    at loadModelFromMTree (C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi-js\\\\lib\\\\wizzi\\\\models\\\\js-factory.g.js:70:29)\\n    at C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi-js\\\\lib\\\\wizzi\\\\models\\\\js-factory.g.js:188:21\\n    at C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi-mtree\\\\lib\\\\loader\\\\index.js:82:25\\n    at finalize (C:\\\\my\\\\wizzi\\\\v5\\\\apps\\\\node_modules\\\\wizzi-mtree\\\\lib\\\\loader\\\\evaluator.js:106:5)\\\"\\n}"
+                }
+            ]
+        },
+        {
+            "name": "call",
+            "tag": "_",
+            "ast": "CallExpression",
+            "category": "call-statements",
+            "items": [
+                {
+                    "title": "Call with no parameters",
+                    "ittfWrapped": "module \\n    kind react\\n    _ execute",
+                    "generated": "\\nexecute();\\n"
+                },
+                {
+                    "title": "Call with string and number parameters",
+                    "ittfWrapped": "module \\n    kind react\\n    _ display\\n        @ 'name'\\n        @ 3",
+                    "generated": "\\ndisplay('name', 3);\\n"
+                },
+                {
+                    "title": "Call with string and call parameters",
+                    "ittfWrapped": "module \\n    kind react\\n    _ showUserName\\n        @ userId\\n        _ getName\\n            @ userId",
+                    "generated": "\\nshowUserName(userId, getName(userId));\\n"
+                },
+                {
+                    "title": "Call with string and object parameters",
+                    "ittfWrapped": "module \\n    kind react\\n    _ showUserProfile\\n        @ userId\\n        { \\n            @ showEmail\\n                _ isEmailVisible\\n                    @ userId\\n            [ sections\\n                @ 'about-me'\\n                @ 'projects'",
+                    "generated": "\\nshowUserProfile(userId, {\\n    showEmail: isEmailVisible(userId), \\n    sections: [\\n        'about-me', \\n        'projects'\\n    ]\\n});\\n"
+                }
+            ]
+        },
+        {
+            "name": "loops",
+            "tag": "_",
+            "ast": "",
+            "category": "arrays",
+            "items": [
+                {
+                    "title": "foreach loop",
+                    "ittfWrapped": "module \\n    kind react\\n    foreach item in myarray\\n        set item.a = item.b / 2",
+                    "generated": "\\nvar i, i_items=myarray, i_len=myarray.length, item;\\nfor (i=0; i&lt;i_len; i++) {\\n    item = myarray[i];\\n    item.a = item.b / 2;\\n}\\n"
+                },
+                {
+                    "title": "while loop",
+                    "ittfWrapped": "module \\n    kind react\\n    while item.parent\\n        set item = item.parent",
+                    "generated": "\\nwhile (item.parent) {\\n    item = item.parent;\\n}\\n"
+                }
+            ]
+        },
+        {
+            "name": "array",
+            "tag": "_",
+            "ast": "",
+            "category": "arrays",
+            "items": [
+                {
+                    "title": "array concat single line statement",
+                    "ittfWrapped": "module \\n    kind react\\n    concat myarray 0, 1, 2, [3, 4]",
+                    "generated": "\\nmyarray.concat(0, 1, 2, [3, 4]);\\n"
+                },
+                {
+                    "title": "array concat multi line statement",
+                    "ittfWrapped": "module \\n    kind react\\n    concat myarray\\n        @ 0\\n        @ 1\\n        @ 2\\n        [ \\n            @ 3\\n            @ 4",
+                    "generated": "\\nmyarray.concat(0, 1, 2, [\\n    3, \\n    4\\n]);\\n"
+                },
+                {
+                    "title": "array concat mixed line statement",
+                    "ittfWrapped": "module \\n    kind react\\n    concat myarray 0, 1\\n        @ 2\\n        [ \\n            @ 3\\n            @ 4",
+                    "generated": "\\nmyarray.concat(0, 1, 2, [\\n    3, \\n    4\\n]);\\n"
+                },
+                {
+                    "title": "array forEach statement with default thisArg",
+                    "ittfWrapped": "module \\n    kind react\\n    each item in myarray\\n        set item.a = item.b / 2",
+                    "generated": "\\nmyarray.forEach(function(item, item_index, array) {\\n    item.a = item.b / 2;\\n}, this);\\n"
+                },
+                {
+                    "title": "array forEach statement with explicit thisArg",
+                    "ittfWrapped": "module \\n    kind react\\n    each item in myarray myinstance\\n        set item.a = item.b / 2",
+                    "generated": "\\nmyarray.forEach(function(item, item_index, array) {\\n    item.a = item.b / 2;\\n}, myinstance);\\n"
+                },
+                {
+                    "title": "array filter statement with default thisArg",
+                    "ittfWrapped": "module \\n    kind react\\n    filter item in myarray\\n        return item.a == 10",
+                    "generated": "\\nmyarray.filter(function(item, item_index, array) {\\n    return item.a == 10;\\n}, this);\\n"
+                },
+                {
+                    "title": "array filter statement with explicit thisArg",
+                    "ittfWrapped": "module \\n    kind react\\n    filter item in myarray myinstance\\n        return item.a == this.maxAge",
+                    "generated": "\\nmyarray.filter(function(item, item_index, array) {\\n    return item.a == this.maxAge;\\n}, myinstance);\\n"
+                },
+                {
+                    "title": "array find statement with default thisArg",
+                    "ittfWrapped": "module \\n    kind react\\n    find item in myarray\\n        return item.a == 10",
+                    "generated": "\\nmyarray.find(function(item, item_index, array) {\\n    return item.a == 10;\\n}, this);\\n"
+                },
+                {
+                    "title": "array find statement with explicit thisArg",
+                    "ittfWrapped": "module \\n    kind react\\n    find item in myarray myinstance\\n        return item.a == this.maxAge",
+                    "generated": "\\nmyarray.find(function(item, item_index, array) {\\n    return item.a == this.maxAge;\\n}, myinstance);\\n"
+                },
+                {
+                    "title": "array reduce statement",
+                    "ittfWrapped": "module \\n    kind react\\n    reduce item in myarray 0\\n        return acc + item.a",
+                    "generated": "\\nmyarray.reduce( (acc, item, item_index, array) =&gt; {\\n    return acc + item.a;\\n}, 0);\\n"
+                }
+            ]
+        }
+    ]
+}

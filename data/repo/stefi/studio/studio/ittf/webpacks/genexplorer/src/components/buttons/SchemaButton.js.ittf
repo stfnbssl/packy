@@ -1,0 +1,65 @@
+﻿module
+	kind react
+	
+	import React from 'react'
+	import PropTypes from 'prop-types'
+	import classNames from 'classnames'
+	import { withStyles, createStyleSheet } from 'material-ui/styles'
+	import {getSchemaByID, schemas} from '../../schemas'
+
+	const schemaIcon
+		{
+			@ js 'fa-jsfiddle'
+			@ css 'fa-css3'
+			@ html 'fa-html5'
+	
+	react SchemaButton
+
+		prop onSchemaChange
+			func
+			required
+		
+		prop schema
+			{
+			required
+
+		=> _onClick
+			param {currentTarget}
+			let schemaID = currentTarget.getAttribute('data-id')
+			_ this.props.onSchemaChange
+				_ getSchemaByID
+					@ schemaID
+
+		render
+			return
+				. button menuButton schemaButton
+					span
+						i
+							@ className
+								_ classNames
+									@ schemaIcon[this.props.schema.id] || 'fa-file-o'
+									{
+										@ fa true
+										@ 'fa-lg' true
+										@ 'fa-fw' true
+						+ &nbsp;{this.props.schema.displayName}
+				ul
+					{
+						_ schemas.map
+							=>
+								param schema
+								return
+									li
+										@ key {schema.id}
+										@ onClick {this._onClick}
+										@ data-id {schema.id}
+										button
+											@ type button
+											i
+												@ className
+													_ classNames
+														@ schemaIcon[schema.id] || 'fa-file-o'
+														{
+															@ fa true
+															@ 'fa-fw' true
+											+ &nbsp;{schema.displayName}

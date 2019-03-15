@@ -1,0 +1,88 @@
+﻿module
+	kind react
+
+	const { StyleSheet } = jss
+	const jss = jss.default
+
+	_ jss.setup
+		_ jssPreset.default()
+
+	_ exec
+		@ 'media print button'
+		{
+			@ button
+				{
+					@ width 100
+					@ height 100
+					@ '& .alpha'
+						{
+							@ color 'red'
+							@ '& > b'
+								{
+									@ font 'Times'
+		{
+			@ media 'print'
+
+
+	_ exec
+		@ 'splitter'
+		{
+			@ splitter
+				{
+					@ position 'absolute'
+					@ display 'flex'
+					@ flexDirection 'row'
+					@ width '100%'
+					@ height '100%'
+					@ overflow 'hidden'
+					@ '& .changing'
+						{
+							@ cursor 'col-resize'
+							@ '& > $splitter-resizer'
+								{
+									@ backgroundColor '#aaa'
+					@ '& .vertical'
+						{
+							@ flexDirection 'column'
+							@ '& .changing'
+								{
+									@ cursor 'row-resize'
+							@ '& > $splitter-resizer'
+								{
+									@ width '100%'
+									@ height '4px'
+									@ cursor 'row-resize'
+			@ ['splitter-pane']
+				{
+					@ position 'relative'
+					@ flex '0 0 auto'
+					@ overflow 'auto'
+					@ '& .primary'
+						{
+							@ flex '1 1 auto'
+			@ ['splitter-resizer']
+				{
+					@ flex '0 0 auto'
+					@ width '6px'
+					@ height '100%'
+					@ cursor 'col-resize'
+					@ backgroundColor '#ccc'
+					@ '&:hover'
+						{
+							@ backgroundColor '#bbb'
+
+
+	function exec
+		param name
+		param styles
+		param options = {}
+		const sheet
+			_ jss.createStyleSheet
+				@ styles
+				@ options
+				._ attach
+		log '-----------' + name
+		log 'styles, options', styles, options
+		log 'classes', sheet.classes
+		log 'css', sheet.toString()
+

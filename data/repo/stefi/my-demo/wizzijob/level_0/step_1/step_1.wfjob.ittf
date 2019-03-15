@@ -1,0 +1,23 @@
+﻿wfjob simple_level_0_step_1
+
+	# The step_1 wizzi job generates a sample javascript module
+	# from a single ittf document of type `js`
+
+	$
+		var ittf_lib_folder  = path.join(__dirname, 'ittf', 'lib');
+		var dest_folder      = path.join(__dirname, 'outputs');
+
+	line one
+		cwd-folder ${ittf_lib_folder}
+
+		# Generates a single javascript module
+		# The `js` wizzi schema is described here: TODO
+		artifact step_0 javascript module
+			src step_1.js.ittf
+			schema js
+			generator js/module
+			extension js
+
+	production
+		dest-folder ${dest_folder}
+		line-ref one

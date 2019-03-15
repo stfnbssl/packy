@@ -1,0 +1,176 @@
+﻿$group
+	$params &opt
+	
+	head
+		@title ${opt.title}
+		meta
+			charset utf-8
+		meta
+			name viewport
+			content user-scalable=0, initial-scale=1, minimum-scale=1, width=device-width, height=device-height
+
+		css https://fonts.googleapis.com/css?family=Roboto:300,400,500
+		css https://fonts.googleapis.com/icon?family=Material+Icons
+		css ./styles.css.ittf
+	
+	body
+		# root
+
+		$hook scripts-1
+
+		$if opt.local
+			script
+				src /static/lib/react/prop-types.min.15.6.2.js
+				crossorigin anonymous
+		$else
+			script
+				src https://unpkg.com/prop-types@15.6/prop-types.min.js
+				crossorigin anonymous
+		$if opt.local
+			$if opt.production
+				script
+					src /static/lib/react/react.production.min.16.4.2.js
+					crossorigin anonymous
+			$else
+				script
+					src /static/lib/react/react.development.16.4.2.js
+					crossorigin anonymous
+		$else
+			script
+				src https://unpkg.com/react@latest/umd/react.development.js
+				crossorigin anonymous
+		$if opt.local
+			$if opt.production
+				script
+					src /static/lib/react/react-dom.production.min.16.5.1.js
+					crossorigin anonymous
+			$else
+				script
+					src /static/lib/react/react-dom.development.16.5.1.js
+					crossorigin anonymous
+		$else
+			script
+				src https://unpkg.com/react-dom@latest/umd/react-dom.development.js
+				crossorigin anonymous
+		$if opt.useMaterialUi
+			$if opt.local
+				script
+					src /static/lib/material-ui/material-ui.development.3.1.2.js
+					crossorigin anonymous
+			$else
+				script
+					src https://unpkg.com/@material-ui/core/umd/material-ui.development.js
+					crossorigin anonymous
+		
+		$if opt.local
+			script
+				src /static/lib/babel/babel.min.6.26.0.js
+				crossorigin anonymous
+		$else
+			script
+				src https://unpkg.com/babel-standalone@latest/babel.min.js
+				crossorigin anonymous
+		$if opt.useKeycode
+			$if opt.local
+				script
+					src /static/lib/material-ui/keycode.min.2.2.0.js
+					crossorigin anonymous
+			$else
+				script
+					$$ src https://cdn.jsdelivr.net/npm/keycode@2.2.0/index.min.js
+					src https://cdn.jsdelivr.net/npm/keycode.js
+					crossorigin anonymous
+		$if opt.mainJs
+			script
+				src js/react-grid-layout.min.js
+				crossorigin anonymous
+		$if opt.useRouter
+			$if opt.local
+				script
+					src /static/lib/react/react-router.min.4.3.1.js
+					crossorigin anonymous
+			$else
+				script
+					$$ src https://unpkg.com/react-router/umd/ReactRouter.min.js
+					src https://unpkg.com/react-router-dom@4.3.1/umd/react-router-dom.js
+					crossorigin anonymous
+		$if opt.useDownshift
+			$if opt.local
+				script
+					src /static/lib/react/downshift.umd.min.2.0.10.js
+					crossorigin anonymous
+			$else
+				script
+					src https://cdn.jsdelivr.net/npm/downshift@2.0.10/dist/downshift.umd.min.js
+					crossorigin anonymous
+		
+		$if opt.useMonaco
+			j( /static/lib/monaco-editor/package/min/vs/loader.js
+
+		
+		$if opt.mainJs
+			
+			script
+				src js/main.js.ittf
+				type text/babel
+
+		$else
+
+			script
+				type text/babel
+				module
+					kind react
+
+					$if opt.useMaterialUi
+						const {
+							\b colors,
+							\b createMuiTheme,
+							\b CssBaseline,
+							\b MuiThemeProvider,
+							\b withStyles,
+							\b } = window['material-ui']
+
+					$hook imports
+
+					$if opt.useMaterialUi
+						const theme
+							_ createMuiTheme
+								{
+									{ palette
+										{ primary
+											@ light colors.purple[300]
+											@ main colors.purple[500]
+											@ dark colors.purple[700]
+										{ secondary
+											@ light colors.green[300]
+											@ main colors.green[500]
+											@ dark colors.green[700]
+
+					$hook components
+
+					react App
+						style
+						$hook
+
+					$if opt.useMaterialUi
+						const StyledApp
+							_ withStyles
+								@ styles
+								(
+									@ App
+
+						_ ReactDOM.render
+							< StyledApp
+							_ document.getElementById
+								@ 'root'
+					
+					$else
+
+						_ ReactDOM.render
+							< App
+							_ document.getElementById
+								@ 'root'
+
+		$hook scripts-2
+
+			

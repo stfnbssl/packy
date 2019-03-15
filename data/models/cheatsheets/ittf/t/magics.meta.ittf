@@ -1,0 +1,27 @@
+﻿$group
+
+	element Ittf magic tricks
+		tag
+		ast 
+		category
+
+		item 
+			title Embedding statements in interpolated expressions
+			ittf
+				root
+					${d}
+						var commands = [ { name: 'alpha' }, { name: 'beta' }, { name: 'gamma' } ];
+					node We perform an interpolation of a multistatement jsWizzi expression.
+					node We intersperse command names with dashes.
+					${d}foreach command in commands
+						node  ${d}{ command.name.toUpperCase()[0] + ' - ' + command.name }
+						node  This is quite crazy. But it works! -> ${d}{
+							${contb} var len = command.name.length, output = '';
+							${contb} for (var i=0; i<len; i++) {
+							${contb}   output += command.name[i];
+							${contb}   if (i < len -1) { output += ' - '};
+							${contb} }
+							${contb} return output;
+							${contb} }
+					node  That is why mTree stays for "magical tree".
+					node  See in wizzi-mtree/loader/ittfinterpolate.js how this works.

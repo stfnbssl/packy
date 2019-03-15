@@ -1,0 +1,28 @@
+﻿demo wf_overview
+
+	# Sample json-ld description of the wizzi factory kernel components
+
+	context
+		@ xsd http://www.w3.org/2001/XMLSchema#
+		@ foaf http://xmlns.com/foaf/0.1/
+		@ org http://schema.org/
+		@ wf http://wizzifactory.com/0.1/
+
+	graph
+	
+		+ https://github.com/wizzifactory/wizzi
+			type wf:Package
+			@ org:description The core package of the wizzi factory.
+	
+		+ https://github.com/wizzifactory/wizzi-utils
+			type wf:Package
+			@ org:description Utility library for wizzi factory
+
+		+ https://github.com/wizzifactory/wizzi-mtree
+			type wf:Package
+			@ org:description Loader for wizzi indented text tree format (ittf) documents.
+
+		+ https://github.com/wizzifactory/wizzi-repo
+			type wf:Package
+			@ org:description Repository manager for the wizzi factory.
+

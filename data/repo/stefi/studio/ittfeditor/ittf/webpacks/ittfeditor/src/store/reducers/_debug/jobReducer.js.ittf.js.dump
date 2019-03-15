@@ -1,0 +1,81 @@
+// 13/5/2017:11:21:54  by C:\My\wizzi\next\node_modules\wizzi\lib\ittf\evaluator.js
+$.n(); // set the context state to NodeContext
+var $0 = {}; // the root node of the IttfModel buildup
+var $1 = { n: "module", v: "", r: 1, c: 1, s: "f1", u: "f1",  }; //20
+$.a($0, $1, 5);
+var $2 = { n: "kind", v: "react", r: 2, c: 5, s: "f1", u: "f1",  }; //21
+$.a($1, $2, 7);
+var $3 = { n: "+", v: "", r: 3, c: 5, s: "f1", u: "f1",  }; //22
+$.a($1, $3, 9);
+var $4 = { n: "import", v: "{ EXEC_JOB_REQUEST, EXEC_JOB_SUCCESS, EXEC_JOB_FAILURE } from '../actions'", r: 4, c: 5, s: "f1", u: "f1",  }; //23
+$.a($1, $4, 11);
+var $5 = { n: "+", v: "", r: 5, c: 5, s: "f1", u: "f1",  }; //24
+$.a($1, $5, 13);
+var $6 = { n: "function", v: $.ip("f2", "${name}Reducer", "string", 14), r: 4, c: 5, s: "f2", u: "f2",  }; //52
+$.a($1, $6, 15);
+var $7 = { n: "param", v: "state", r: 5, c: 9, s: "f2", u: "f2",  }; //53
+$.a($6, $7, 17);
+var $8 = { n: "param", v: "action", r: 6, c: 9, s: "f2", u: "f2",  }; //54
+$.a($6, $8, 19);
+var $9 = { n: "#", v: $.ip("f2", "log ${name}Reducer, state, action", "string", 20), r: 7, c: 9, s: "f2", u: "f2",  }; //55
+$.a($6, $9, 21);
+var $10 = { n: "if", v: "typeof state === 'undefined'", r: 8, c: 9, s: "f2", u: "f2",  }; //56
+$.a($6, $10, 23);
+var $11 = { n: "return", v: $.ip("f2", "${initialState}", "string", 24), r: 9, c: 13, s: "f2", u: "f2",  }; //57
+$.a($10, $11, 25);
+var $12 = { n: "switch", v: "action.type", r: 10, c: 9, s: "f2", u: "f2",  }; //58
+$.a($6, $12, 27);
+var $13 = { n: "case", v: $.ip("f3", "${name}", "string", 28), r: 4, c: 5, s: "f3", u: "f3",  }; //72
+$.a($12, $13, 29);
+var $14 = { n: "#", v: $.ip("f3", "log '${name}', 'initial state:', state", "string", 30), r: 5, c: 9, s: "f3", u: "f3",  }; //73
+$.a($13, $14, 31);
+var $15 = { n: "var", v: "temp", r: 7, c: 9, s: "f3", u: "f3",  }; //75
+$.a($13, $15, 33);
+var $16 = { n: "{", v: "", r: 9, c: 13, s: "f1", u: "f1",  }; //27
+$.a($15, $16, 35);
+var $17 = { n: "@", v: "...state", r: 10, c: 17, s: "f1", u: "f1",  }; //28
+$.a($16, $17, 37);
+var $18 = { n: "@", v: "isLoading true", r: 11, c: 17, s: "f1", u: "f1",  }; //29
+$.a($16, $18, 39);
+var $19 = { n: "log", v: $.ip("f3", "'${name}', 'final state:', temp", "string", 40), r: 9, c: 9, s: "f3", u: "f3",  }; //77
+$.a($13, $19, 41);
+var $20 = { n: "return", v: "temp", r: 10, c: 9, s: "f3", u: "f3",  }; //78
+$.a($13, $20, 43);
+var $21 = { n: "case", v: $.ip("f4", "${name}", "string", 44), r: 4, c: 5, s: "f4", u: "f3",  }; //80
+$.a($12, $21, 45);
+var $22 = { n: "#", v: $.ip("f4", "log '${name}', 'initial state:', state", "string", 46), r: 5, c: 9, s: "f4", u: "f3",  }; //81
+$.a($21, $22, 47);
+var $23 = { n: "var", v: "temp", r: 7, c: 9, s: "f4", u: "f3",  }; //83
+$.a($21, $23, 49);
+var $24 = { n: "{", v: "", r: 14, c: 13, s: "f1", u: "f1",  }; //31
+$.a($23, $24, 51);
+var $25 = { n: "@", v: "isLoading false", r: 15, c: 17, s: "f1", u: "f1",  }; //32
+$.a($24, $25, 53);
+var $26 = { n: "@", v: "error null", r: 16, c: 17, s: "f1", u: "f1",  }; //33
+$.a($24, $26, 55);
+var $27 = { n: "log", v: $.ip("f4", "'${name}', 'final state:', temp", "string", 56), r: 9, c: 9, s: "f4", u: "f3",  }; //85
+$.a($21, $27, 57);
+var $28 = { n: "return", v: "temp", r: 10, c: 9, s: "f4", u: "f3",  }; //86
+$.a($21, $28, 59);
+var $29 = { n: "case", v: $.ip("f5", "${name}", "string", 60), r: 4, c: 5, s: "f5", u: "f3",  }; //88
+$.a($12, $29, 61);
+var $30 = { n: "#", v: $.ip("f5", "log '${name}', 'initial state:', state", "string", 62), r: 5, c: 9, s: "f5", u: "f3",  }; //89
+$.a($29, $30, 63);
+var $31 = { n: "var", v: "temp", r: 7, c: 9, s: "f5", u: "f3",  }; //91
+$.a($29, $31, 65);
+var $32 = { n: "{", v: "", r: 19, c: 13, s: "f1", u: "f1",  }; //35
+$.a($31, $32, 67);
+var $33 = { n: "@", v: "isLoading false", r: 20, c: 17, s: "f1", u: "f1",  }; //36
+$.a($32, $33, 69);
+var $34 = { n: "@", v: "error action.failure", r: 21, c: 17, s: "f1", u: "f1",  }; //37
+$.a($32, $34, 71);
+var $35 = { n: "log", v: $.ip("f5", "'${name}', 'final state:', temp", "string", 72), r: 9, c: 9, s: "f5", u: "f3",  }; //93
+$.a($29, $35, 73);
+var $36 = { n: "return", v: "temp", r: 10, c: 9, s: "f5", u: "f3",  }; //94
+$.a($29, $36, 75);
+var $37 = { n: "default", v: "", r: 12, c: 13, s: "f2", u: "f2",  }; //60
+$.a($12, $37, 77);
+var $38 = { n: "return", v: "state", r: 13, c: 17, s: "f2", u: "f2",  }; //61
+$.a($37, $38, 79);
+var $39 = { n: "export", v: "default jobReducer", r: 23, c: 5, s: "f1", u: "f1",  }; //38
+$.a($1, $39, 81);
