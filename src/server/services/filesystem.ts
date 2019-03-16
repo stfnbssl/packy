@@ -17,7 +17,7 @@ export default async function start(config: ConfigType): Promise<FsDb> {
     const {
         packyTemplatesFolder,
     } = config;
-    var packyTemplatesPath = path.join(__dirname, '..', '..', packyTemplatesFolder);
+    var packyTemplatesPath = path.join(__dirname, '..', '..', '..', packyTemplatesFolder);
     console.log('Packy templates path: ', packyTemplatesPath);
     
     return new Promise((resolve, rejects)=> {

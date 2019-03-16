@@ -10,8 +10,8 @@ import { wizziProds } from '../features/wizzi';
 import { WizziModel } from 'wizzi';
 
 export const IttfDocumentsMiddleware: MiddlewareType = (app: Application) => {
-    console.log('IttfDocumentsMiddleware. Folder served from ', path.resolve(__dirname, '..', '..', 'ittf'))
-    app.use('/ittf', ittfMiddleware(path.resolve(__dirname, '..', '..', 'ittf'), '/ittf'));
+    console.log('IttfDocumentsMiddleware. Folder served from ', path.resolve(__dirname, '..', '..', '..', 'ittf'))
+    app.use('/ittf', ittfMiddleware(path.resolve(__dirname, '..', '..', '..', 'ittf'), '/ittf'));
 }
 
 const extContentTypeMap: {[k: string]: string} = {

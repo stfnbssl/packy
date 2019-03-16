@@ -9,6 +9,7 @@ import { CompressionMiddleware } from './compression';
 import { HelmetMiddleware } from './helmet';
 import { PassportAuth0Middleware } from './passportAuth0';
 import { UserInViewMiddleware } from './userInViews';
+import { PackyAppMiddleware } from './packyApp';
 import { checkJwt, checkScopes } from './auth0';
 import auth0Secured from './auth0Secured';
 
@@ -20,6 +21,7 @@ const appMiddlewares: MiddlewareType[] = [
     PassportAuth0Middleware,
     CorsMiddleware,
     UserInViewMiddleware,
+    PackyAppMiddleware,
     IttfDocumentsMiddleware,
     StaticFilesMiddleware,
     WizziViewEngineMiddleware,

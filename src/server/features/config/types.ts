@@ -16,5 +16,6 @@ export type ConfigType = {
     MetaHtmlIttfPath: string;
     MetaFolderIttfPath: string;
     MetaHtmlTextPath: string;
+    PackyApiEndpoint: string;
 }
 

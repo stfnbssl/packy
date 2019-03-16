@@ -1,7 +1,7 @@
 export async function callApi(method: string, url: string, path: string, data?: any) {
     console.log('callApi', method, url, path, data);
-    console.log('url', `${url}/api/${path}`);
-    const res = await fetch(`${url}/api/${path}`, {
+    console.log('url', `${url}/${path}`);
+    const res = await fetch(`${url}/${path}`, {
       method,
       headers: {
         Accept: 'application/json',

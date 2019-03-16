@@ -54,6 +54,7 @@ export default class Router extends React.Component<Props> {
         <Route exact path="/@:username/:projectName+" render={this._renderRoute} />
         <Route exact path="/:id" render={this._renderRoute} />
         <Route exact path="/" render={this._renderRoute} />
+        <Route exact path="/packy/app" render={this._renderRoute} />
         <Route component={NonExistent} />
       </Switch>
     );

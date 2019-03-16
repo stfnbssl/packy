@@ -22,6 +22,13 @@ const store = createStore({
   app: {splitTestSettings: __INITIAL_DATA__.splitTestSettings},
   packy: {
     loading: false
+  },
+  wizzi: {
+    loading: false,
+    errors: undefined,
+    generatedArtifact: undefined,
+    jobGeneratedArtifacts: {},
+    timedServices: {},
   }
 });
 

@@ -3,6 +3,7 @@ import { cleanEnv, str, bool, port } from 'envalid';
 import { ConfigType } from './types';
 
 function validateEnv() {
+    console.log('config/env.ts, PACKY_API_ENDPOINT before', process.env.PACKY_API_ENDPOINT);
     let checkedEnv = cleanEnv(process.env, {
         PORT: port(),
         SESSION_SECRET: str(),
@@ -18,7 +19,10 @@ function validateEnv() {
         AUTH0_PACKY_BACKEND_APP_ID: str(),
         AUTH0_PACKY_BACKEND_APP_SECRET: str(),
         IS_WIZZI_DEV: bool(),
+        PACKY_API_ENDPOINT: str(),
     });
+    process.env.PACKY_API_ENDPOINT = checkedEnv.PACKY_API_ENDPOINT;
+    console.log('config/env.ts, PACKY_API_ENDPOINT after', process.env.PACKY_API_ENDPOINT);
     return checkedEnv;
 }
 
@@ -31,6 +35,7 @@ export default function create(): ConfigType {
 
     if (config == null) {
         const checkedEnv = validateEnv();
+        
         config = {
             port: checkedEnv.PORT,
             packyTemplatesFolder: checkedEnv.PACKY_TEMPLATES_FOLDER,
@@ -45,6 +50,7 @@ export default function create(): ConfigType {
             Auth0PackyApiId: checkedEnv.AUTH0_PACKY_API_ID,
             Auth0PackyBackendAppId: checkedEnv.AUTH0_PACKY_BACKEND_APP_ID,
             Auth0PackyBackendAppSecret: checkedEnv.AUTH0_PACKY_BACKEND_APP_SECRET,
+            PackyApiEndpoint: checkedEnv.PACKY_API_ENDPOINT,
             IsWizziDev: checkedEnv.IS_WIZZI_DEV,
             MetaHtmlIttfPath: path.join(__ittfPath, 'meta', 'html', 'index.html.ittf'),
             MetaFolderIttfPath: path.join(__ittfPath, 'meta', 'folder', 'index.html.ittf'),

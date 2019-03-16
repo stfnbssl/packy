@@ -11,12 +11,11 @@ html
             href https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css
         js http://gc.kis.v2.scr.kaspersky-labs.com/3BF13565-6D4A-8F45-A825-79F51EFC2666/main.js
         @style 
-            type text/css
+            @ type text/css
             css
                 < :root
                     --font-normal 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif
-                    --font-monospace 'Fira Code', 'Fira Mono', Monaco, Menlo, 'Ubuntu Mono', Consolas,
-        source-code-pro, monospace
+                    --font-monospace 'Fira Code', 'Fira Mono', Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace
                 < html
                     box-sizing border-box
                 < *
@@ -36,7 +35,7 @@ html
                     font-family var(--font-normal)
                     font-size 14px
                     line-height 1.42857143
-                    overscroll-behavior none
+                    @ overscroll-behavior none
                 < button
                     + input
                     + select

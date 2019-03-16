@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"allowJs": true,
 		// "baseUrl": "./",
-		"checkJs": true,
+		// "checkJs": true,
 		"forceConsistentCasingInFileNames": true,
 		"lib": [
 			"es6", "dom"
@@ -18,7 +18,7 @@
 		"strictFunctionTypes": false,
 		"strictNullChecks": true,
 		"target": "es2017",
-		"typeRoots": [ "node_modules/@types", "src/typings" ],
+		"typeRoots": [ "node_modules/@types", "./typings" ],
 		"types": [
 			"node"
 		], 
@@ -28,6 +28,6 @@
 		"src/**/*.ts"
 	],
 	"exclude": [
-		"node_modules"
+		"node_modules", "./typings"
 	]
 }

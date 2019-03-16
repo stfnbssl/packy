@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { StatsWriterPlugin } = require('webpack-stats-plugin');
+// const { StatsWriterPlugin } = require('webpack-stats-plugin');
 // const WorkerPlugin = require('worker-plugin');
 
 function env(key, def) {
@@ -16,6 +16,8 @@ function env(key, def) {
 
   throw new Error(`Environment variable ${key} isn't specified`);
 }
+
+console.log('webpack.config.js, PACKY_API_ENDPOINT', process.env.PACKY_API_ENDPOINT);
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -48,6 +50,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        PACKY_API_ENDPOINT: JSON.stringify(process.env.PACKY_API_ENDPOINT),
         // API_SERVER_URL: JSON.stringify(env('API_SERVER_URL')),
         // SNACK_SEGMENT_KEY: JSON.stringify(env('SNACK_SEGMENT_KEY')),
         // IMPORT_SERVER_URL: JSON.stringify(env('IMPORT_SERVER_URL')),
@@ -63,6 +66,7 @@ module.exports = {
     ),
     // new WorkerPlugin(),
     new MiniCssExtractPlugin(),
+    /*
     new StatsWriterPlugin({
       filename: 'build-stats.js',
       fields: ['hash', 'assets', 'assetsByChunkName'],
@@ -75,6 +79,7 @@ module.exports = {
         })}
       `,
     }),
+    */
   ],
   module: {
     rules: [
