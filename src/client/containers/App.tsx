@@ -5,6 +5,7 @@ import { storeTypes } from '../store';
 import { getEventServiceInstance } from '../services';
 import { appTypes } from '../features/app'
 import { authTypes } from '../features/auth'
+import { commonTypes } from '../../common';
 import { prefTypes, withPreferences } from '../features/preferences';
 import { packyTypes, packyDefaults, packyActions } from '../features/packy'
 import { wizziTypes, wizziActions } from '../features/wizzi'
@@ -32,6 +33,8 @@ interface StateProps {
   currentPacky?: packyTypes.Packy,
   packyTemplateNames?: string[],
   currentPackyTemplate?: packyTypes.PackyTemplate,
+  ownedGitRepositories?: commonTypes.GitRepositoryMeta[],
+  clonedGitRepository?: commonTypes.ClonedGitRepository,
   generatedArtifact?: wizziTypes.GeneratedArtifact;
   jobGeneratedArtifacts: packyTypes.PackyFiles;
 }
@@ -41,8 +44,10 @@ interface DispatchProps {
   dispatchFetchPacky: (packyName: string) => void;
   dispatchSavePacky: (packyName: string, code: packyTypes.PackyFiles) => void;
   dispatchCreatePacky: (packyName: string, packyKind: string) => void;
+  dispatchCloneGitRepository: (owner: string, name: string, branch: string) => void;
   dispatchFetchPackyTemplateList: () => void;
   dispatchFetchPackyTemplate: (packyName: string) => void;
+  dispatchFetchOwnedGitRepositories: () => void;
   dispatchGenerateArtifact: (fileName: string, code: packyTypes.PackyFiles) => void;
   dispatchExecuteJob: (code: packyTypes.PackyFiles) => void;
   dispatchSetTimedService: (name: string, onOff:boolean, payload?: any, frequence?: number) => void;
@@ -54,6 +59,8 @@ const mapStateToProps = (state: storeTypes.StoreState) => ({
   currentPacky: state.packy.currentPacky,
   packyTemplateNames: state.packy.packyTemplateNames,
   currentPackyTemplate: state.packy.currentPackyTemplate,
+  ownedGitRepositories: state.packy.ownedGitRepositories,
+  clonedGitRepository: state.packy.clonedGitRepository,
   generatedArtifact: state.wizzi.generatedArtifact,
   jobGeneratedArtifacts: state.wizzi.jobGeneratedArtifacts,
 });
@@ -80,11 +87,21 @@ const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
       options: { data: packyKind}
     }));
   },
+  dispatchCloneGitRepository: (owner: string, name: string, branch: string) => {
+    dispatch(packyActions.cloneGitRepositoryRequest({
+      owner: owner,
+      name: name,
+      branch: 'master', // TODO
+    }));
+  },
   dispatchFetchPackyTemplateList: () => {
     dispatch(packyActions.fetchPackyTemplateListRequest());
   },
   dispatchFetchPackyTemplate: (packyName: string) => {
     dispatch(packyActions.fetchPackyTemplateRequest({name: packyName}));
+  },
+  dispatchFetchOwnedGitRepositories: () => {
+    dispatch(packyActions.fetchOwnedGitRepositoriesRequest());
   },
   dispatchGenerateArtifact: (filePath: string, code: packyTypes.PackyFiles) => {
     if (filePath.endsWith('.ittf') && !filePath.endsWith('wfjob.ittf')) {
@@ -169,6 +186,19 @@ class App extends React.Component<Props, State> {
         return {
           fileEntries,
           packyStoreName: props.currentPacky.id,
+          isWizziJobWaiting: fileEntries.filter(e => e.item.path.endsWith('.wfjob.ittf')).length > 0 ? true : false,
+          lastJobfileEntries: fileEntries,
+        };
+      }
+    }
+    if (props.clonedGitRepository && props.clonedGitRepository.name !== state.packyStoreName) {
+      const { files } = props.clonedGitRepository;
+      if (files) {
+        const fileEntries = packyToEntryArray(files);
+        console.log("App.getDerivedStateFromProps.Loaded packy", props.clonedGitRepository.name);
+        return {
+          fileEntries,
+          packyStoreName: props.clonedGitRepository.name,
           isWizziJobWaiting: fileEntries.filter(e => e.item.path.endsWith('.wfjob.ittf')).length > 0 ? true : false,
           lastJobfileEntries: fileEntries,
         };
@@ -307,6 +337,7 @@ class App extends React.Component<Props, State> {
     this.props.dispatchFetchPackyList();
     // this.props.dispatchFetchPacky(packyDefaults.DEFAULT_PACKY_NAME);
     this.props.dispatchFetchPackyTemplateList();
+    this.props.dispatchFetchOwnedGitRepositories();
     if (this.props.preferences.timedJobRunning) {
       this.props.dispatchSetTimedService(
         'EXECUTE_JOB', true, this.state.fileEntries, 3000
@@ -382,6 +413,9 @@ class App extends React.Component<Props, State> {
   _handleCreatePacky = async (packyName: string, packyKind: string) => {
     // const packyFiles = packyDefaults.INITIAL_PACKY_KINDS[packyKind];
     this.props.dispatchCreatePacky(packyName, packyKind);
+  }
+  _handleCloneGitRepository = async (owner: string, name: string, branch: string) => {
+    this.props.dispatchCloneGitRepository(owner, name, branch);
   }
 
   _findFocusedEntry = (entries: FileSystemEntry[]): TextFileEntry | AssetFileEntry | undefined =>
@@ -536,6 +570,7 @@ class App extends React.Component<Props, State> {
               packy={this.props.packy}
               packyNames={this.props.packyNames || []}
               packyTemplateNames={this.props.packyTemplateNames || []}
+              ownedGitRepositories={this.props.ownedGitRepositories || []}
               createdAt={this.props.packy ? this.props.packy.created : undefined}
               generatedArtifact={this.props.generatedArtifact}
               autosaveEnabled={this.state.autosaveEnabled}
@@ -558,6 +593,7 @@ class App extends React.Component<Props, State> {
               params={this.state.params}
               onSelectPacky={this._handleSelectPacky}
               onCreatePacky={this._handleCreatePacky}
+              onCloneGitRepository={this._handleCloneGitRepository}
               onSendCode={this._sendCodeNotDebounced}
               onFileEntriesChange={this._handleFileEntriesChange}
               onChangeCode={this._handleChangeCode}

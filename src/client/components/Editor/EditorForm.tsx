@@ -12,6 +12,7 @@ export type FormField = {
     label?: string;
     type?: string;
     default?: string;
+    defaultOption?: {label: string, value: string};
     options?: {label: string, value: string}[];
     // options?: any;
     onValidate?: (value: string)=> Error | null;
@@ -56,6 +57,11 @@ function stateDefaultValues(fields: { [key: string]: FormField }): { [key: strin
     return ret;
 }
 
+function optionsSelected(options: {label: string, value: string}[], value: string): {label: string, value: string} {
+    return options.find(option=>option.value === value);
+}
+
+
 // @ts-ignore
 const FormButton = withStatus(Button);
 // @ts-ignore
@@ -99,13 +105,14 @@ class EditorForm extends React.Component<Props, State> {
                     {
                         Object.keys(fields).map((k,i) => {
                             const field = fields[k];
+                            const value = this.state.values[k];
                             const Title = () => field.label ? (<h4 className={css(styles.subtitle)}>{field.label}</h4>) : null;
                             return field.type === 'text' ? (
                               <div key={i}>
                                   <Title />
                                   <ValidatedInput
                                       autoFocus
-                                      value={this.state.values[k]}
+                                      value={value}
                                       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                                           this.setState({ values: { ...this.state.values,  [k]: e.target.value} })
                                       }
@@ -116,6 +123,7 @@ class EditorForm extends React.Component<Props, State> {
                               <div key={i}>
                                 <Title />
                                 <Select 
+                                  value={optionsSelected(field.options, value)}
                                   options={field.options} 
                                   onChange={(value) =>{
                                     console.log('onChange', k, value);

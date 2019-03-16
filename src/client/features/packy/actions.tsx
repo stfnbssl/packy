@@ -1,6 +1,6 @@
 import { createStandardAction } from 'typesafe-actions';
 import { storeTypes } from '../../store';
-import { Packy, PackyTemplate, CreatePackyOptions } from './types';
+import { Packy, PackyTemplate, CreatePackyOptions, GitRepositoryMeta, ClonedGitRepository } from './types';
 const FETCH_PACKY_LIST_REQUEST = '@@packy/FETCH_PACKY_LIST_REQUEST';
 const FETCH_PACKY_LIST_SUCCESS = '@@packy/FETCH_PACKY_LIST_SUCCESS';
 const FETCH_PACKY_LIST_ERROR = '@@packy/FETCH_PACKY_LIST_ERROR';
@@ -22,6 +22,12 @@ const FETCH_PACKY_TEMPLATE_LIST_ERROR = '@@packy/FETCH_PACKY_TEMPLATE_LIST_ERROR
 const FETCH_PACKY_TEMPLATE_REQUEST = '@@packy/FETCH_PACKY_TEMPLATE_REQUEST';
 const FETCH_PACKY_TEMPLATE_SUCCESS = '@@packy/FETCH_PACKY_TEMPLATE_SUCCESS';
 const FETCH_PACKY_TEMPLATE_ERROR = '@@packy/FETCH_PACKY_TEMPLATE_ERROR';
+const FETCH_OWNED_GIT_REPOSITORIES_REQUEST = '@@packy/FETCH_OWNED_GIT_REPOSITORIES_REQUEST';
+const FETCH_OWNED_GIT_REPOSITORIES_SUCCESS = '@@packy/FETCH_OWNED_GIT_REPOSITORIES_SUCCESS';
+const FETCH_OWNED_GIT_REPOSITORIES_ERROR = '@@packy/FETCH_OWNED_GIT_REPOSITORIES_ERROR';
+const CLONE_GIT_REPOSITORY_REQUEST = '@@packy/CLONE_GIT_REPOSITORY_REQUEST';
+const CLONE_GIT_REPOSITORY_SUCCESS = '@@packy/CLONE_GIT_REPOSITORY_SUCCESS';
+const CLONE_GIT_REPOSITORY_ERROR = '@@packy/CLONE_GIT_REPOSITORY_ERROR';
 
 export interface PackyListPayload extends storeTypes.ResponsePayload {
     packyNames: string[];
@@ -42,6 +48,20 @@ export interface PackyPayload extends storeTypes.ResponsePayload {
 
 export interface PackyTemplatePayload extends storeTypes.ResponsePayload {
     packy: PackyTemplate;
+};
+
+export interface GitRepositoryListPayload extends storeTypes.ResponsePayload {
+    repositories: GitRepositoryMeta[];
+};
+
+export interface CloneGitRepositoryPayload {
+    owner: string;
+    name: string;
+    branch: string;
+};
+
+export interface ClonedGitRepositoryPayload extends storeTypes.ResponsePayload {
+    repository: ClonedGitRepository;
 };
 
 export const fetchPackyListRequest = createStandardAction(FETCH_PACKY_LIST_REQUEST)<void>();
@@ -65,3 +85,9 @@ export const fetchPackyTemplateListError = createStandardAction(FETCH_PACKY_TEMP
 export const fetchPackyTemplateRequest = createStandardAction(FETCH_PACKY_TEMPLATE_REQUEST)<FetchPackyPayload>();
 export const fetchPackyTemplateSuccess = createStandardAction(FETCH_PACKY_TEMPLATE_SUCCESS)<PackyTemplatePayload>();
 export const fetchPackyTemplateError = createStandardAction(FETCH_PACKY_TEMPLATE_ERROR)<any>();
+export const fetchOwnedGitRepositoriesRequest = createStandardAction(FETCH_OWNED_GIT_REPOSITORIES_REQUEST)<void>();
+export const fetchOwnedGitRepositoriesSuccess = createStandardAction(FETCH_OWNED_GIT_REPOSITORIES_SUCCESS)<GitRepositoryListPayload>();
+export const fetchOwnedGitRepositoriesError = createStandardAction(FETCH_OWNED_GIT_REPOSITORIES_ERROR)<any>();
+export const cloneGitRepositoryRequest = createStandardAction(CLONE_GIT_REPOSITORY_REQUEST)<CloneGitRepositoryPayload>();
+export const cloneGitRepositorySuccess = createStandardAction(CLONE_GIT_REPOSITORY_SUCCESS)<ClonedGitRepositoryPayload>();
+export const cloneGitRepositoryError = createStandardAction(CLONE_GIT_REPOSITORY_ERROR)<any>();

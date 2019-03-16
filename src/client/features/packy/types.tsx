@@ -1,4 +1,9 @@
 // import { persist } from 'web-worker-proxy';
+import { commonTypes } from '../../../common'
+
+export type PackyFiles = commonTypes.PackyFiles;
+export type GitRepositoryMeta = commonTypes.GitRepositoryMeta;
+export type ClonedGitRepository = commonTypes.ClonedGitRepository;
 
 export type Packy = {
     id: string;
@@ -24,16 +29,7 @@ export type PackyTemplate = {
   };
 };
 
-type RequiredPackyFileAttributes = {
-    contents: string;
-    type: 'ASSET' | 'CODE';
-    generated?: boolean;
-    bothRealAndGenerated?: boolean;
-};
-  
-export type PackyFiles = {
-    [x: string]: RequiredPackyFileAttributes;
-};
+
 
 export type PackyFilesOrKind = PackyFiles | string;
 export type CreatePackyOptions = {

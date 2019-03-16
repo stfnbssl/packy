@@ -162,7 +162,7 @@ class EditorTitle extends React.Component<Props, State> {
           </div>
         </div>
         <ModalEditTitleAndDescription
-          title="Edit Snack Details"
+          title="Edit Packy Details"
           action="Done"
           visible={isEditModalVisible}
           onDismiss={onDismissEditModal}

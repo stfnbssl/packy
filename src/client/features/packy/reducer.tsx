@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';
 import {
-    Packy, PackyTemplate,
+    Packy, PackyTemplate, GitRepositoryMeta, ClonedGitRepository
 } from './types';
 import * as packyActions from './actions';
 
@@ -12,6 +12,8 @@ export interface PackyState {
     readonly currentPacky?: Packy;
     readonly packyTemplateNames?: string[];
     readonly currentPackyTemplate?: PackyTemplate;
+    readonly ownedGitRepositories?: GitRepositoryMeta[];
+    readonly clonedGitRepository?: ClonedGitRepository;
     readonly generatedArtifactContent?: string;
 }
 
@@ -19,9 +21,11 @@ const initialState: PackyState = {
     loading: false,
     errors: undefined,
     packyNames: undefined,
-    packyTemplateNames: undefined,
     currentPacky: undefined,
+    packyTemplateNames: undefined,
     currentPackyTemplate: undefined,
+    ownedGitRepositories: undefined,
+    clonedGitRepository: undefined,
     generatedArtifactContent: undefined,
 };
 
@@ -92,6 +96,30 @@ const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action)
         }
         case getType(packyActions.fetchPackyTemplateError): {
             console .log("packyActions.fetchPackyTemplateError", action);
+            return { ...state, loading: false, errors: action.payload };
+        } 
+        case getType(packyActions.fetchOwnedGitRepositoriesRequest): {
+            console .log("packyActions.fetchOwnedGitRepositoriesRequest");
+            return { ...state, loading: true };
+        }
+        case getType(packyActions.fetchOwnedGitRepositoriesSuccess): {
+            console .log("packyActions.fetchOwnedGitRepositoriesSuccess", action);
+            return { ...state, loading: false, ownedGitRepositories: action.payload.repositories };
+        }
+        case getType(packyActions.fetchOwnedGitRepositoriesError): {
+            console .log("packyActions.fetchOwnedGitRepositoriesError", action);
+            return { ...state, loading: false, errors: action.payload };
+        }
+        case getType(packyActions.cloneGitRepositoryRequest): {
+            console .log("packyActions.cloneGitRepositoryRequest");
+            return { ...state, loading: true };
+        }
+        case getType(packyActions.cloneGitRepositorySuccess): {
+            console .log("packyActions.cloneGitRepositorySuccess", action);
+            return { ...state, loading: false, clonedGitRepository: action.payload.repository };
+        }
+        case getType(packyActions.cloneGitRepositoryError): {
+            console .log("packyActions.cloneGitRepositoryError", action);
             return { ...state, loading: false, errors: action.payload };
         } 
         default: {

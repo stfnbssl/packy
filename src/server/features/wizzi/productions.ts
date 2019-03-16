@@ -87,7 +87,7 @@ export async function executeJob(filePath: string, files: packyTypes.PackyFiles)
 export async function executeJobs(files: packyTypes.PackyFiles): Promise<FsJson> {
     return new Promise(async (resolve, reject)=> {
         const jobDocumentUris = Object.keys(files).filter(k=> k.endsWith('.wfjob.ittf'));
-        console.log('Executing jobs', jobDocumentUris);
+        console.log('Executing jobs', jobDocumentUris, 'files', Object.keys(files));
         const jsonwf = await createFsJsonAndFactory(files);
         const execJob = (index: number): void => {
             if (index == jobDocumentUris.length) {

@@ -53,7 +53,7 @@
 
 	# showcase .bg-logo
 		position absolute
-		background ${c_bg_0} url('images/logo.svg.ittf')
+		background ${c_bg_0} url('/ittf/site/images/logo.svg.ittf')
 		background-position center
 		background-repeat no-repeat
 		background-size cover

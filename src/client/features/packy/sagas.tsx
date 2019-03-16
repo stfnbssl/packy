@@ -133,12 +133,45 @@ function* handleFetchPackyTemplateRequest(action: ReturnType<typeof packyActions
     } 
 } 
 
+function* handleFetchOwnedGitRepositoriesRequest(action: ReturnType<typeof packyActions.fetchOwnedGitRepositoriesRequest>) {
+    try {
+        console.log('sagas.handleFetchOwnedGitRepositoriesRequest.action', action);
+        const res = yield call(callApi, 'get', API_ENDPOINT, 'github/ownedrepos');
+        console.log('sagas.handleFetchOwnedGitRepositoriesRequest.res', res);
+        yield put(packyActions.fetchOwnedGitRepositoriesSuccess({repositories: res}));
+    } catch (err) {
+        if (err instanceof Error) {
+            yield put(packyActions.fetchOwnedGitRepositoriesError(err.stack!));
+        } else {
+            yield put(packyActions.fetchOwnedGitRepositoriesError('An unknown error occured.'));
+        } 
+    } 
+} 
+
+function* handleCloneGitRepositoryRequest(action: ReturnType<typeof packyActions.cloneGitRepositoryRequest>) {
+    try {
+        console.log('sagas.handleCloneGitRepositoryRequest.action', action);
+        const res = yield call(callApi, 'get', API_ENDPOINT, 
+            `github/clone/${action.payload.owner}/${action.payload.name}/${action.payload.branch}`
+        );
+        console.log('sagas.handleCloneGitRepositoryRequest.res', res);
+        yield put(packyActions.cloneGitRepositorySuccess({repository: res}));
+    } catch (err) {
+        if (err instanceof Error) {
+            yield put(packyActions.fetchOwnedGitRepositoriesError(err.stack!));
+        } else {
+            yield put(packyActions.fetchOwnedGitRepositoriesError('An unknown error occured.'));
+        } 
+    } 
+}
 
 function* watchFetchRequest() {
     yield takeEvery(getType(packyActions.fetchPackyListRequest), handleFetchPackyListRequest);
     yield takeEvery(getType(packyActions.fetchPackyRequest), handleFetchPackyRequest);
     yield takeEvery(getType(packyActions.fetchPackyTemplateListRequest), handleFetchPackyTemplateListRequest);
     yield takeEvery(getType(packyActions.fetchPackyTemplateRequest), handleFetchPackyTemplateRequest);
+    yield takeEvery(getType(packyActions.fetchOwnedGitRepositoriesRequest), handleFetchOwnedGitRepositoriesRequest);
+    yield takeEvery(getType(packyActions.cloneGitRepositoryRequest), handleCloneGitRepositoryRequest);
 }
 
 function* watchCrudRequest() {

@@ -78,14 +78,14 @@ export default class ModalEditTitleAndDescription extends React.Component<Props,
     return (
       <ModalDialog visible={visible} title={title} onDismiss={onDismiss}>
         <Form onSubmit={this._handleSubmit}>
-          <h4 className={css(styles.subtitle)}>Project name</h4>
+          <h4 className={css(styles.subtitle)}>Package name</h4>
           <ValidatedInput
             autoFocus
             value={this.state.name}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               this.setState({ name: e.target.value })
             }
-            placeholder={'Unnamed Snack'}
+            placeholder={'Unnamed Packy'}
             validate={this._validateName}
           />
           <h4 className={css(styles.subtitle)}>Description</h4>

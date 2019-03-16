@@ -1,4 +1,4 @@
-import { PackyFiles } from '../packy/types'
+import { commonTypes } from '../../../common'
 export type GithubRepoOptions = {
     name: string;
     owner?: string;
@@ -28,10 +28,6 @@ export type CreateGithubBranchOptions = {
     revisionFromHash: string;
 }
 
-export type GithubRepoCloned = {
-    commitHistory: any;
-    files: PackyFiles
-}
 
 export type IsoGitCommitter = {
     name: string;
@@ -56,11 +52,13 @@ export type GithubApiRepository = {
     url: string;
     html_url: string;
     clone_url: string;
-    login: {
+    owner: {
         login: string;
         url: string;
         html_url: string;
         avatar_url: string;
     }
 }
+
+export type ClonedGitRepository = commonTypes.ClonedGitRepository;
 

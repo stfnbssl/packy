@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
+import { commonTypes } from '../../../common';
 import { appTypes, Segment } from '../../features/app';
 import { prefTypes, prefColors, withPreferences } from '../../features/preferences';
 import { filelistTypes, fileActions, fileUtils } from '../../features/filelist'
@@ -36,6 +37,7 @@ type EditorProps = {
     creatorUsername?: string;
     packyNames: string[];
     packyTemplateNames: string[];
+    ownedGitRepositories: commonTypes.GitRepositoryMeta[];
     fileEntries: filelistTypes.FileSystemEntry[];
     entry: filelistTypes.TextFileEntry | filelistTypes.AssetFileEntry | undefined;
     name: string;
@@ -60,6 +62,7 @@ type EditorProps = {
     isWizziJobWaiting: boolean;
     onSelectPacky: (packyName: string) => void;
     onCreatePacky: (packyName: string, packyKind: string) => void;
+    onCloneGitRepository: (owner: string, name: string, branch: string) => void;
     onSendCode: () => void;
     onToggleSendCode: () => void;
     // onClearDeviceLogs: () => void;
@@ -245,6 +248,11 @@ class EditorView extends React.Component<Props, State> {
       this.props.onCreatePacky && this.props.onCreatePacky(name, kind);
     };
 
+    _handleCloneGitRepository = (owner: string, name: string, branch: string) => {
+      this._handleDismissEditModal();
+      this.props.onCloneGitRepository && this.props.onCloneGitRepository(owner, name, branch);
+    };
+
     _handleOpenPath = (path: string): Promise<void> =>
       this.props.onFileEntriesChange(fileActions.openEntry(this.props.fileEntries, path, true));
   
@@ -353,6 +361,7 @@ class EditorView extends React.Component<Props, State> {
         // channel,
         packyNames,
         packyTemplateNames,
+        ownedGitRepositories,
         entry,
         // params,
         createdAt,
@@ -489,6 +498,7 @@ class EditorView extends React.Component<Props, State> {
                   );
 
                   // Fallback to simple editor if monaco editor takes too long to load
+                  /*
                   const SimpleEditorPromise = new Promise((resolve, reject) => {
                     timeout = setTimeout(() => {
                       //this._showBanner('slow-connection', BANNER_TIMEOUT_LONG);
@@ -496,17 +506,18 @@ class EditorView extends React.Component<Props, State> {
                       import('./SimpleEditor').then(resolve, reject);
                     }, EDITOR_LOAD_FALLBACK_TIMEOUT);
                   }).then(editor => ({ editor, type: 'simple' }));
+                  */
 
-                  return Promise.race([
+                  /*return Promise.race([
                     MonacoEditorPromise.catch(() => SimpleEditorPromise),
                     SimpleEditorPromise,
-                  ]).then(({ editor, type }: any) => {
+                  ])*/return MonacoEditorPromise.then(({ editor, type }: any) => {
                     this.setState({ loadedEditor: type });
 
                     clearTimeout(timeout);
 
                     return editor;
-                  });
+                  }).catch(err=>{ console.log(err); alert('Failed to load Monaco Editor. See console error.')});
                 }}>
                 {({ loaded, data: Comp }) => {
                   this._EditorComponent = Comp;
@@ -597,8 +608,10 @@ class EditorView extends React.Component<Props, State> {
               <PackyManager 
                 packyNames={packyNames}
                 packyTemplateNames={packyTemplateNames}
+                ownedGitRepositories={ownedGitRepositories}
                 onSelectPacky={this._handleSelectPacky}
                 onCreatePacky={this._handleCreatePacky}
+                onCloneGitRepository={this._handleCloneGitRepository}
               />
             </ModalDialog>
             <ModalDialog

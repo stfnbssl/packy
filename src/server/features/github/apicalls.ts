@@ -10,7 +10,7 @@ import {
     GithubRepoOptions,
     CreateGithubRepoOptions,
     CreateGithubBranchOptions,
-    GithubRepoCloned,
+    ClonedGitRepository,
     GithubApiRepository
 } from './types';
 
@@ -23,7 +23,7 @@ type cb<T> = (err: any, result: T) => void;
 
 // const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'test-'));
 
-export async function getRepositories(accessToken: string) : Promise<any> {
+export async function getRepositories(accessToken: string) : Promise<GithubApiRepository[]> {
     return fetch(`https://api.github.com/user/repos`, getOptions(accessToken))
         .then((response) => response.json())
         .then((responseData) => {
@@ -92,7 +92,7 @@ export async function createBranch(accessToken: string, owner: string, repo: str
     });
 }
 
-export async function cloneBranch(repo: GithubRepoOptions, branch: string = 'master'): Promise<GithubRepoCloned> {
+export async function cloneBranch(repo: GithubRepoOptions, branch: string = 'master'): Promise<ClonedGitRepository> {
     volume.reset();
     const dir = '/' + repo.name;
     return new Promise((resolve, reject)=>{
@@ -104,7 +104,8 @@ export async function cloneBranch(repo: GithubRepoOptions, branch: string = 'mas
                 url: `https://github.com/${repo.owner}/${repo.name}`,
                 ref: `${branch}`,
                 singleBranch: true,
-                depth: 10
+                depth: 10,
+                token: repo.token,
             });
             let files = wizzifs.getFiles(dir, {deep:true, documentContent: true})
             const packies: PackyFiles = {}
@@ -121,6 +122,10 @@ export async function cloneBranch(repo: GithubRepoOptions, branch: string = 'mas
                 dir
             });
             resolve({
+                owner: repo.owner as string,
+                name: repo.name,
+                description: '',
+                branch: branch,
                 files: packies,
                 commitHistory: log
             });

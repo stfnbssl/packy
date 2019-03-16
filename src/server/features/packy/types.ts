@@ -1,14 +1,7 @@
 import { Document } from "mongoose";
+import { commonTypes } from '../../../common';
 
-type RequiredPackyFileAttributes = {
-    contents: string;
-    type: 'ASSET' | 'CODE';
-    generated?: true;
-};
-  
-export type PackyFiles = {
-    [x: string]: RequiredPackyFileAttributes;
-};
+export type PackyFiles = commonTypes.PackyFiles;
 
 export type TemplateList = string[];
 

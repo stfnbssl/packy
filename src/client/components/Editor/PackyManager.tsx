@@ -1,53 +1,65 @@
 import * as React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import { commonTypes } from '../../../common';
 import { prefTypes, withThemeName, prefColors } from '../../features/preferences';
-import { packyValids } from '../../features/packy';
+import { packyTypes, packyValids } from '../../features/packy';
 import Button from '../shared/Button';
 import EditorForm from './EditorForm';
 
 type PackyManagerProps = {
   packyNames: string[];
   packyTemplateNames: string[];
+  ownedGitRepositories: commonTypes.GitRepositoryMeta[];
   onSelectPacky: (name: string) => void;
   onCreatePacky: (name: string, kind: string) => void;
+  onCloneGitRepository: (owner: string, name: string, branch: string) => void;
 };
 
 type Props = PackyManagerProps & {
   theme: prefTypes.ThemeName;
 };
 
+type modalKind = 'create' | 'clone' | 'none'; 
+
 type State = {
-  isEditModalVisible: boolean;
+  modalVisible: modalKind;
 }
 
 class PackyManager extends React.PureComponent<Props, State> {
 
   state = {
-    isEditModalVisible: false,
+    modalVisible: 'none' as modalKind,
   }
   
-  _handleDismissEditModal = () => {
-    console.log('_handleDismissEditModal');
-    this.setState({ isEditModalVisible: false });
+  _handleDismissModal = () => {
+    console.log('_handleDismissModal');
+    this.setState({ modalVisible: 'none' });
   };
   
-  _handleShowModal = () => {
-    this.setState({ isEditModalVisible: true });
+  _handleShowModal = (kind: modalKind) => {
+    this.setState({ modalVisible: kind });
   };
 
   _handleCreatePacky = (name: string, kind: string) => {
-    this.setState({ isEditModalVisible: false });
+    this._handleDismissModal();
     alert('Create packy ' + name + ' of kind ' + kind);
     this.props.onCreatePacky(name, kind);
   };
 
+  _handleClonePacky = (id: string, branch: string) => {
+    this._handleDismissModal();
+    alert('Clone package ' + id + ' branch ' + branch);
+    this.props.onCloneGitRepository(id.split('/')[0], id.split('/')[1], branch);
+  };
+
   render() {
-    const { packyNames, packyTemplateNames, onSelectPacky } = this.props;
-    const { isEditModalVisible } = this.state;
+    const { packyNames, packyTemplateNames, ownedGitRepositories, onSelectPacky } = this.props;
+    const { modalVisible } = this.state;
+    const gitBranchesTODO = ['master'];
 
     return (
       <div>
-        { isEditModalVisible ? null : (
+        { modalVisible !== 'none' ? null : (
           <div>
             <div className={css(styles.title)}>Your Packies</div>
             <table className={css(styles.shortcutList)}>
@@ -66,9 +78,15 @@ class PackyManager extends React.PureComponent<Props, State> {
             <div className={css(styles.buttons)}>
               <Button
                 variant="accent"
-                onClick={this._handleShowModal}
+                onClick={()=>this._handleShowModal('create')}
                 className={css(styles.saveButton)}>
                 Create new
+              </Button>
+              <Button
+                variant="accent"
+                onClick={()=>this._handleShowModal('clone')}
+                className={css(styles.saveButton)}>
+                Clone package
               </Button>
             </div>
           </div>)
@@ -76,16 +94,32 @@ class PackyManager extends React.PureComponent<Props, State> {
         <EditorForm
             title="Create New Packy"
             action="Done"
-            visible={isEditModalVisible}
-            onDismiss={this._handleDismissEditModal}
+            visible={modalVisible==='create'}
+            onDismiss={this._handleDismissModal}
             onSubmit={values => {
               alert(JSON.stringify(values));
               this._handleCreatePacky(values['name'], values['kind']);
-              this._handleDismissEditModal();
             }}
             fields={{
               name: {type: 'text', label: 'Name', onValidate: packyValids.validatePackyName },
               kind: {type: 'select', label: 'Kind', options: packyTemplateNames.map((name)=> {
+                return { label: name, value: name };
+              })},
+            }} />
+        <EditorForm
+            title="Clone git package"
+            action="Done"
+            visible={modalVisible==='clone'}
+            onDismiss={this._handleDismissModal}
+            onSubmit={values => {
+              alert(JSON.stringify(values));
+              this._handleClonePacky(values['id'], values['branch']);
+            }}
+            fields={{
+              id: {type: 'select', label: 'Package', options: ownedGitRepositories.map((item)=> {
+                return { label: `${item.owner}/${item.name}`, value: `${item.owner}/${item.name}` };
+              })},
+              branch: {type: 'select', label: 'Branch', options: gitBranchesTODO.map((name)=> {
                 return { label: name, value: name };
               })},
             }} />
