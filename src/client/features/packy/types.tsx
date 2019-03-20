@@ -6,30 +6,31 @@ export type GitRepositoryMeta = commonTypes.GitRepositoryMeta;
 export type ClonedGitRepository = commonTypes.ClonedGitRepository;
 
 export type Packy = {
-    id: string;
-    created: string;
-    code?: PackyFiles;
-    manifest?: {
-      name: string;
-      description: string;
-      // sdkVersion?: SDKVersion;
-    };
-    dependencies?: {
-      [key: string]: string;
-    };
-    history?: SaveHistory;
-    isDraft?: boolean;
+  id: string;
+  // created: string;
+  files?: PackyFiles;
+  /*
+  manifest?: {
+    name: string;
+    description: string;
+    // sdkVersion?: SDKVersion;
+  };
+  */
+  dependencies?: {
+    [key: string]: string;
+  };
+  history?: SaveHistory;
+  isDraft?: boolean;
+  localPackyData: LocalPackyData;
 };
 
 export type PackyTemplate = {
   id: string;
-  code: PackyFiles;
+  files: PackyFiles;
   dependencies?: {
     [key: string]: string;
   };
 };
-
-
 
 export type PackyFilesOrKind = PackyFiles | string;
 export type CreatePackyOptions = {
@@ -44,6 +45,7 @@ export type SaveHistory = Array<{
   isDraft?: boolean;
 }>;
 
+/*
 export type PackySessionState = {
     name: string;
     description: string;
@@ -54,6 +56,7 @@ export type PackySessionState = {
     isResolving: boolean;
     loadingMessage: string | undefined;
 };
+*/
 
 type Listener = ReturnType<typeof Object/*persist*/>;
 
@@ -80,6 +83,7 @@ export type PackySessionOptions = {
     // deviceId?: string | null;
 };
 
+/*
 export type PackySessionProxy = {
     create: (options: PackySessionOptions) => Promise<void>;
     session: {
@@ -115,4 +119,16 @@ export type PackySessionProxy = {
     addLogListener: (listener: Listener) => Promise<void>;
     setDependencyErrorListener: (listener: Listener) => Promise<void>;
 };
-  
+*/
+
+export type LocalPackyData = {
+  origin: string,
+  id: string,
+  owner?: string,
+  repoName?: string,
+  branch?: string,
+  description?: string;
+  localCreatedAt: number,
+  githubCreatedAt: number,
+  lastCommitAt: number,
+}

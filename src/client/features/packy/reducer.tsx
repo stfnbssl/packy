@@ -1,19 +1,27 @@
 import { Reducer } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';
 import {
-    Packy, PackyTemplate, GitRepositoryMeta, ClonedGitRepository
+    Packy, GitRepositoryMeta, LocalPackyData
 } from './types';
+import {
+    packyCreatedFromTemplate, 
+    packyCreatedFromGithubClone, 
+    getPackyData, 
+    savePackyData, 
+    deletePackyData, 
+    setSelectedPacky
+} from './localManager';
 import * as packyActions from './actions';
+import { deletePacky } from './data';
 
 export interface PackyState {
     readonly loading: boolean;
     readonly errors?: string;
     readonly packyNames?: string[];
     readonly currentPacky?: Packy;
+    readonly localPackyData?: LocalPackyData;
     readonly packyTemplateNames?: string[];
-    readonly currentPackyTemplate?: PackyTemplate;
     readonly ownedGitRepositories?: GitRepositoryMeta[];
-    readonly clonedGitRepository?: ClonedGitRepository;
     readonly generatedArtifactContent?: string;
 }
 
@@ -23,9 +31,7 @@ const initialState: PackyState = {
     packyNames: undefined,
     currentPacky: undefined,
     packyTemplateNames: undefined,
-    currentPackyTemplate: undefined,
     ownedGitRepositories: undefined,
-    clonedGitRepository: undefined,
     generatedArtifactContent: undefined,
 };
 
@@ -45,33 +51,94 @@ const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action)
             console .log("packyActions.fetchPackyListError", action);
             return { ...state, loading: false, errors: action.payload };
         }
-        case getType(packyActions.fetchPackyRequest): {
-            console .log("packyActions.fetchPackyRequest");
+        case getType(packyActions.initPackyRequest): {
+            console .log("packyActions.initPackyRequest");
             return { ...state, loading: true };
         }
-        case getType(packyActions.fetchPackySuccess): {
-            console .log("packyActions.fetchPackySuccess", action);
-            return { ...state, loading: false, currentPacky: action.payload.packy };
+        case getType(packyActions.initPackySuccess): {
+            console .log("packyActions.initPackySuccess");
+            return { ...state, loading: false };
         }
-        case getType(packyActions.fetchPackyError): {
-            console .log("packyActions.fetchPackyError", action);
+        case getType(packyActions.initPackyError): {
+            console .log("packyActions.initPackyRequest");
+            return { ...state, loading: false };
+        }
+        case getType(packyActions.selectPackyRequest): {
+            console .log("packyActions.selectPackyRequest");
+            return { ...state, loading: true };
+        }
+        case getType(packyActions.selectPackySuccess): {
+            console .log("packyActions.selectPackySuccess", action);
+            let localPackyData = getPackyData(action.payload.id);
+            if (!localPackyData) {
+                localPackyData = {
+                    origin: 'template',
+                    id: action.payload.id,
+                    owner: undefined,
+                    repoName: undefined,
+                    branch: undefined,
+                    description: undefined,
+                    localCreatedAt: Date.now(),
+                    githubCreatedAt: -1,
+                    lastCommitAt: -1
+                };
+                savePackyData(action.payload.id, localPackyData);
+            }
+            setSelectedPacky(action.payload.id);
+            return { 
+                ...state, 
+                loading: false, 
+                currentPacky: {
+                    id: action.payload.id,
+                    files: action.payload.files,
+                    localPackyData: localPackyData
+                }
+            };
+        }
+        case getType(packyActions.selectPackyError): {
+            console .log("packyActions.selectPackyError", action);
             return { ...state, loading: false, errors: action.payload };
         } 
         case getType(packyActions.createPackyRequest): {
             console .log("packyActions.createPackyRequest", action);
-            return { ...state, loading: true, tobeCreatedPackyName: action.payload.name };
+            return { ...state, loading: true, tobeCreatedPackyName: action.payload.id };
         } 
         case getType(packyActions.createPackySuccess): {
             console .log("packyActions.createPackySuccess", action);
+            const localPackyData = packyCreatedFromTemplate(action.payload.id);
+            savePackyData(action.payload.id, localPackyData);
+            setSelectedPacky(action.payload.id);
             return { 
                 ...state, 
                 loading: false, 
-                currentPacky: action.payload.packy,
-                packyNames: [...state.packyNames || [], action.payload.packy.id ]
+                currentPacky: {
+                    id: action.payload.id,
+                    files: action.payload.files,
+                    localPackyData: localPackyData
+                },
+                packyNames: [...state.packyNames || [], action.payload.id ]
             };
         } 
         case getType(packyActions.createPackyError): {
             console .log("packyActions.createPackyError", action);
+            return { ...state, loading: false, errors: action.payload };
+        } 
+        case getType(packyActions.deletePackyRequest): {
+            console .log("packyActions.deletePackyRequest", action);
+            return { ...state, loading: true, tobeDeletedPackyId: action.payload.id };
+        } 
+        case getType(packyActions.deletePackySuccess): {
+            console .log("packyActions.createPackySuccess", action);
+            deletePacky(action.payload.id);
+            deletePackyData(action.payload.id);
+            return {
+                ...state,
+                loading: false, 
+                packyNames: state.packyNames.filter(item => item !== action.payload.id)
+            };
+        }
+        case getType(packyActions.deletePackyError): {
+            console .log("packyActions.deletePackyError", action);
             return { ...state, loading: false, errors: action.payload };
         } 
         case getType(packyActions.fetchPackyTemplateListRequest): {
@@ -86,18 +153,6 @@ const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action)
             console .log("packyActions.fetchPackyTemplateListError", action);
             return { ...state, loading: false, errors: action.payload };
         }
-        case getType(packyActions.fetchPackyTemplateRequest): {
-            console .log("packyActions.fetchPackyTemplateRequest");
-            return { ...state, loading: true };
-        }
-        case getType(packyActions.fetchPackyTemplateSuccess): {
-            console .log("packyActions.fetchPackyTemplateSuccess", action);
-            return { ...state, loading: false, currentPackyTemplate: action.payload.packy };
-        }
-        case getType(packyActions.fetchPackyTemplateError): {
-            console .log("packyActions.fetchPackyTemplateError", action);
-            return { ...state, loading: false, errors: action.payload };
-        } 
         case getType(packyActions.fetchOwnedGitRepositoriesRequest): {
             console .log("packyActions.fetchOwnedGitRepositoriesRequest");
             return { ...state, loading: true };
@@ -116,15 +171,26 @@ const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action)
         }
         case getType(packyActions.cloneGitRepositorySuccess): {
             console .log("packyActions.cloneGitRepositorySuccess", action);
-            return { ...state, loading: false, clonedGitRepository: action.payload.repository };
+            const localPackyData = packyCreatedFromGithubClone(action.payload.repository.owner, action.payload.repository.name);
+            setSelectedPacky(localPackyData.id);
+            return {
+                ...state,
+                loading: false, 
+                currentPacky: {
+                    id: `${action.payload.repository.owner}_${action.payload.repository.name}`,
+                    files: action.payload.repository.files,
+                    localPackyData: localPackyData,
+                },
+                currentPackyTemplate: undefined,
+            };
         }
         case getType(packyActions.cloneGitRepositoryError): {
             console .log("packyActions.cloneGitRepositoryError", action);
             return { ...state, loading: false, errors: action.payload };
-        } 
+        }
         default: {
             return state;
-        } 
-    } 
-}; 
+        }
+    }
+};
 export default reducer;

@@ -55,8 +55,8 @@ class EditorTitle extends React.Component<Props, State> {
 
   render() {
     const {
-      description,
       name,
+      description,
       createdAt,
       saveHistory,
       saveStatus,
@@ -134,7 +134,7 @@ class EditorTitle extends React.Component<Props, State> {
               content={
                 <React.Fragment>
                   <p className={css(styles.description)}>
-                    {description || packyDefaults.DEFAULT_DESCRIPTION}
+                    {/* description || packyDefaults.DEFAULT_DESCRIPTION */}
                   </p>
                   <button onClick={onShowEditModal} className={css(styles.editButton)}>
                     Edit details

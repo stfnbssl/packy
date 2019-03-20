@@ -77,7 +77,7 @@ const enhanceWithAuthMethods = (Comp: React.ComponentType<AuthProps>) => {
           return { success: true };
         }
       } catch (e) {
-        // TODO(jim): Tie in the error banner on Snack.
+        // TODO(jim): Tie in the error banner on Packy.
         return { success: false };
       }
     };

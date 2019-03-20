@@ -112,21 +112,21 @@ export const entryArrayToObject = (entryArray: FileSystemEntry[]): { [key: strin
 export const entryArrayDiff = (a: FileSystemEntry[], b: FileSystemEntry[]): {[k: string] : FileSystemEntryDiff} => {
   const diff: {[k: string] : FileSystemEntryDiff} = {};
   a.forEach(entry => {
-    console.log('-', entry.item.path)
+    // console.log('-', entry.item.path)
     diff[entry.item.path] = { kind: '-', a: entry.item };
   });
   b.forEach(entry => {
     if (diff[entry.item.path]) {
       if (diff[entry.item.path].a === entry.item){
-        console.log('delete', entry.item.path)
+        // console.log('delete', entry.item.path)
         delete diff[entry.item.path];
       } else {
-        console.log('<>', entry.item.path)
+        // console.log('<>', entry.item.path)
         diff[entry.item.path].kind === '<>';
         diff[entry.item.path].b === entry.item;
       }
     } else {
-      console.log('+', entry.item.path)
+      // console.log('+', entry.item.path)
       diff[entry.item.path] = { kind: '+', b: entry.item };
     }
   });

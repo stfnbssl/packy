@@ -7,7 +7,6 @@ import * as appActions from './actions';
 
 export interface AppState {
     readonly viewer?: Viewer;
-    readonly splitTestSettings?: object;
 }
 
 const initialState: AppState = {
@@ -22,10 +21,6 @@ const reducer: Reducer<AppState, AppAction> = (state = initialState, action) => 
             console .log("appActions.updateViewer");
             return { ...state, viewer: action.payload };
         }
-        case getType(appActions.splitTestSettings): {
-            console .log("appActions.splitTestSettings");
-            return { ...state };
-        } 
         default: {
             return state;
         } 

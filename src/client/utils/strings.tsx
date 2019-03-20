@@ -1,4 +1,4 @@
-// TODO(jim): Snack and Web should share this file.
+// TODO(jim): Packy and Web should share this file.
 export const isEmptyOrNull = (text: string | null | undefined): text is null | undefined => {
   return !text || !text.trim();
 };

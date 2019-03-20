@@ -9,17 +9,8 @@ import Router from './containers/Router';
 import createStore from './store/createStore';
 // import { HelmetProvider } from 'react-helmet-async';
 
-/*declare const __INITIAL_DATA__: {
-  data: any;
-  splitTestSettings: any;
-}*/
-const __INITIAL_DATA__ = {
-  data: {},
-  splitTestSettings: {}
-};
-
 const store = createStore({ 
-  app: {splitTestSettings: __INITIAL_DATA__.splitTestSettings},
+  app: {},
   packy: {
     loading: false
   },
@@ -42,7 +33,7 @@ class FileListEntry extends React.Component {
             <PreferencesProvider cookies={cookies} search={window.location.search}>
               <ColorsProvider>
                 <BrowserRouter>
-                  <Router data={{type:'success', pacmodel:{}}/*__INITIAL_DATA__.data*/} userAgent={navigator.userAgent} />
+                  <Router userAgent={navigator.userAgent} />
                 </BrowserRouter>
               </ColorsProvider>
             </PreferencesProvider>

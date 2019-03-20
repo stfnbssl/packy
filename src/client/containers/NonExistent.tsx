@@ -8,7 +8,7 @@ export default function NonExistent() {
       <div className={css(styles.content)}>
         <h1 className={css(styles.heading)}>Oops!</h1>
         <p className={css(styles.message)}>
-          We couldn't find the Snack you're looking for. Go to <Link to="/">the homepage</Link>.
+          We couldn't find the Packy you're looking for. Go to <Link to="/">the homepage</Link>.
         </p>
       </div>
     </div>

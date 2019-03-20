@@ -4,6 +4,8 @@ import { API_ENDPOINT } from '../../configs/data';
 import * as packyActions from './actions';
 import * as packyData from './data';
 import * as packyTypes from './types';
+import { getSelectedPacky } from './localManager';
+import { INITIAL_CODE, DEFAULT_PACKY_NAME } from './defaults';
 import { callApi } from '../../utils/api';
 
 function* handleFetchPackyListRequest(action: ReturnType<typeof packyActions.fetchPackyListRequest>) {
@@ -21,26 +23,44 @@ function* handleFetchPackyListRequest(action: ReturnType<typeof packyActions.fet
     } 
 } 
 
-function* handleFetchPackyRequest(action: ReturnType<typeof packyActions.fetchPackyRequest>) {
+function* handleInitPackyRequest(action: ReturnType<typeof packyActions.initPackyRequest>) {
     try {
-        console.log('sagas.handleFetchPackyRequest', action);
-        const res: packyTypes.PackyFiles = yield packyData.getPackyFiles(action.payload.name);
-        if (res.error) {
-            yield put(packyActions.fetchPackyError(res.message));
+        console.log('sagas.handleInitPackyRequest', action);
+        const packyId = getSelectedPacky();
+        if (packyId) {
+            yield put(packyActions.selectPackyRequest({ id: packyId}));
         } else {
-            yield put(packyActions.fetchPackySuccess({
-                packy: {
-                    id: action.payload.name,
-                    created: 'unavailable',
-                    code: res
-                }
+            yield put(packyActions.selectPackySuccess({
+                id: DEFAULT_PACKY_NAME,
+                files: INITIAL_CODE,
             }));
         } 
     } catch (err) {
         if (err instanceof Error) {
-            yield put(packyActions.fetchPackyError(err.stack!));
+            yield put(packyActions.initPackyError(err.stack!));
         } else {
-            yield put(packyActions.fetchPackyError('An unknown error occured.'));
+            yield put(packyActions.initPackyError('An unknown error occured.'));
+        } 
+    } 
+} 
+
+function* handleSelectPackyRequest(action: ReturnType<typeof packyActions.selectPackyRequest>) {
+    try {
+        console.log('sagas.handleFetchPackyRequest', action);
+        const res: packyTypes.PackyFiles = yield packyData.getPackyFiles(action.payload.id);
+        if (res.error) {
+            yield put(packyActions.selectPackyError(res.message));
+        } else {
+            yield put(packyActions.selectPackySuccess({
+                id: action.payload.id,
+                files: res,
+            }));
+        } 
+    } catch (err) {
+        if (err instanceof Error) {
+            yield put(packyActions.selectPackyError(err.stack!));
+        } else {
+            yield put(packyActions.selectPackyError('An unknown error occured.'));
         } 
     } 
 } 
@@ -48,16 +68,13 @@ function* handleFetchPackyRequest(action: ReturnType<typeof packyActions.fetchPa
 function* handleCreatePackyRequest(action: ReturnType<typeof packyActions.createPackyRequest>) {
     try {
         console.log('sagas.handleCreatePackyRequest', action);
-        const res: packyTypes.PackyFiles = yield packyData.createPacky(action.payload.name, action.payload.options);
+        const res: packyTypes.PackyFiles = yield packyData.createPacky(action.payload.id, action.payload.options);
         if (res.error) {
             yield put(packyActions.createPackyError(res.message));
         } else {
             yield put(packyActions.createPackySuccess({
-                packy: {
-                    id: action.payload.name,
-                    created: 'unavailable',
-                    code: res
-                }
+                id: action.payload.id,
+                files: res,
             }));
         } 
     } catch (err) {
@@ -69,12 +86,32 @@ function* handleCreatePackyRequest(action: ReturnType<typeof packyActions.create
     } 
 } 
 
+function* handleDeletePackyRequest(action: ReturnType<typeof packyActions.deletePackyRequest>) {
+    try {
+        console.log('sagas.handleDeletePackyRequest', action);
+        const res: packyTypes.PackyFiles = yield packyData.deletePacky(action.payload.id);
+        if (res && res.error) {
+            yield put(packyActions.deletePackyError(res.message));
+        } else {
+            yield put(packyActions.deletePackySuccess({
+                id: action.payload.id,
+            }));
+        } 
+    } catch (err) {
+        if (err instanceof Error) {
+            yield put(packyActions.deletePackyError(err.stack!));
+        } else {
+            yield put(packyActions.deletePackyError('An unknown error occured.'));
+        } 
+    } 
+} 
+
 function* handleSavePackyRequest(action: ReturnType<typeof packyActions.savePackyRequest>) {
     try {
         console.log('sagas.handleSavePackyRequest', action);
         yield packyData.savePackyFiles(
-            action.payload.packy.id,
-            action.payload.packy.code as packyTypes.PackyFiles 
+            action.payload.id,
+            action.payload.files as packyTypes.PackyFiles 
         );
         yield put(packyActions.savePackySuccess({
             message: 'Packy files saved'
@@ -99,36 +136,6 @@ function* handleFetchPackyTemplateListRequest(action: ReturnType<typeof packyAct
             yield put(packyActions.fetchPackyTemplateListError(err.stack!));
         } else {
             yield put(packyActions.fetchPackyTemplateListError('An unknown error occured.'));
-        } 
-    } 
-} 
-
-function* handleFetchPackyTemplateRequest(action: ReturnType<typeof packyActions.fetchPackyTemplateRequest>) {
-    try {
-        console.log('sagas.handleFetchPackyTemplateRequest', action);
-        const res = yield call(callApi, 'get', API_ENDPOINT, 'templates/' + action.payload.name);
-        if (res.error) {
-            yield put(packyActions.fetchPackyTemplateError(res.message));
-        } else {
-            const code: packyTypes.PackyFiles = {};
-            res.array.forEach((element: any) => {
-                code[element.relPath] = {
-                    contents: element.content,
-                    type: 'CODE'
-                }
-            });
-            yield put(packyActions.fetchPackyTemplateSuccess({
-                packy: {
-                    id: action.payload.name,
-                    code: code
-                }
-            }));
-        } 
-    } catch (err) {
-        if (err instanceof Error) {
-            yield put(packyActions.fetchPackyTemplateError(err.stack!));
-        } else {
-            yield put(packyActions.fetchPackyTemplateError('An unknown error occured.'));
         } 
     } 
 } 
@@ -158,18 +165,36 @@ function* handleCloneGitRepositoryRequest(action: ReturnType<typeof packyActions
         yield put(packyActions.cloneGitRepositorySuccess({repository: res}));
     } catch (err) {
         if (err instanceof Error) {
-            yield put(packyActions.fetchOwnedGitRepositoriesError(err.stack!));
+            yield put(packyActions.cloneGitRepositoryError(err.stack!));
         } else {
-            yield put(packyActions.fetchOwnedGitRepositoriesError('An unknown error occured.'));
+            yield put(packyActions.cloneGitRepositoryError('An unknown error occured.'));
         } 
+    } 
+}
+
+function* handleCommitGitRepositoryRequest(action: ReturnType<typeof packyActions.commitGitRepositoryRequest>) {
+    try {
+        console.log('sagas.handleCommitGitRepositoryRequest.action', action);
+        const res = yield call(callApi, 'post', API_ENDPOINT, 
+            `github/commit/${action.payload.owner}/${action.payload.name}/${action.payload.branch}`,
+            { files: action.payload.files }
+        );
+        console.log('sagas.handleCommitGitRepositoryRequest.res', res);
+        yield put(packyActions.commitGitRepositorySuccess({}));
+    } catch (err) {
+        if (err instanceof Error) {
+            yield put(packyActions.commitGitRepositoryError(err.stack!));
+        } else {
+            yield put(packyActions.commitGitRepositoryError('An unknown error occured.'));
+        }
     } 
 }
 
 function* watchFetchRequest() {
     yield takeEvery(getType(packyActions.fetchPackyListRequest), handleFetchPackyListRequest);
-    yield takeEvery(getType(packyActions.fetchPackyRequest), handleFetchPackyRequest);
+    yield takeEvery(getType(packyActions.initPackyRequest), handleInitPackyRequest);
+    yield takeEvery(getType(packyActions.selectPackyRequest), handleSelectPackyRequest);
     yield takeEvery(getType(packyActions.fetchPackyTemplateListRequest), handleFetchPackyTemplateListRequest);
-    yield takeEvery(getType(packyActions.fetchPackyTemplateRequest), handleFetchPackyTemplateRequest);
     yield takeEvery(getType(packyActions.fetchOwnedGitRepositoriesRequest), handleFetchOwnedGitRepositoriesRequest);
     yield takeEvery(getType(packyActions.cloneGitRepositoryRequest), handleCloneGitRepositoryRequest);
 }
@@ -177,7 +202,9 @@ function* watchFetchRequest() {
 function* watchCrudRequest() {
     yield takeEvery(getType(packyActions.createPackyRequest), handleCreatePackyRequest);
     yield takeEvery(getType(packyActions.savePackyRequest), handleSavePackyRequest);
-} 
+    yield takeEvery(getType(packyActions.deletePackyRequest), handleDeletePackyRequest);
+    yield takeEvery(getType(packyActions.commitGitRepositoryRequest), handleCommitGitRepositoryRequest);
+}
 
 function* packySaga() {
     yield all([

@@ -1,12 +1,16 @@
 import { createStandardAction } from 'typesafe-actions';
 import { storeTypes } from '../../store';
-import { Packy, PackyTemplate, CreatePackyOptions, GitRepositoryMeta, ClonedGitRepository } from './types';
+import { PackyFiles, PackyTemplate, CreatePackyOptions, GitRepositoryMeta, ClonedGitRepository } from './types';
+
 const FETCH_PACKY_LIST_REQUEST = '@@packy/FETCH_PACKY_LIST_REQUEST';
 const FETCH_PACKY_LIST_SUCCESS = '@@packy/FETCH_PACKY_LIST_SUCCESS';
 const FETCH_PACKY_LIST_ERROR = '@@packy/FETCH_PACKY_LIST_ERROR';
-const FETCH_PACKY_REQUEST = '@@packy/FETCH_PACKY_REQUEST';
-const FETCH_PACKY_SUCCESS = '@@packy/FETCH_PACKY_SUCCESS';
-const FETCH_PACKY_ERROR = '@@packy/FETCH_PACKY_ERROR';
+const INIT_PACKY_REQUEST = '@@packy/INIT_PACKY_REQUEST';
+const INIT_PACKY_SUCCESS = '@@packy/INIT_PACKY_SUCCESS';
+const INIT_PACKY_ERROR = '@@packy/INIT_PACKY_ERROR';
+const SELECT_PACKY_REQUEST = '@@packy/SELECT_PACKY_REQUEST';
+const SELECT_PACKY_SUCCESS = '@@packy/SELECT_PACKY_SUCCESS';
+const SELECT_PACKY_ERROR = '@@packy/SELECT_PACKY_ERROR';
 const CREATE_PACKY_REQUEST = '@@packy/CREATE_PACKY_REQUEST';
 const CREATE_PACKY_SUCCESS = '@@packy/CREATE_PACKY_SUCCESS';
 const CREATE_PACKY_ERROR = '@@packy/CREATE_PACKY_ERROR';
@@ -19,31 +23,37 @@ const DELETE_PACKY_ERROR = '@@packy/DELETE_PACKY_ERROR';
 const FETCH_PACKY_TEMPLATE_LIST_REQUEST = '@@packy/FETCH_PACKY_TEMPLATE_LIST_REQUEST';
 const FETCH_PACKY_TEMPLATE_LIST_SUCCESS = '@@packy/FETCH_PACKY_TEMPLATE_LIST_SUCCESS';
 const FETCH_PACKY_TEMPLATE_LIST_ERROR = '@@packy/FETCH_PACKY_TEMPLATE_LIST_ERROR';
-const FETCH_PACKY_TEMPLATE_REQUEST = '@@packy/FETCH_PACKY_TEMPLATE_REQUEST';
-const FETCH_PACKY_TEMPLATE_SUCCESS = '@@packy/FETCH_PACKY_TEMPLATE_SUCCESS';
-const FETCH_PACKY_TEMPLATE_ERROR = '@@packy/FETCH_PACKY_TEMPLATE_ERROR';
 const FETCH_OWNED_GIT_REPOSITORIES_REQUEST = '@@packy/FETCH_OWNED_GIT_REPOSITORIES_REQUEST';
 const FETCH_OWNED_GIT_REPOSITORIES_SUCCESS = '@@packy/FETCH_OWNED_GIT_REPOSITORIES_SUCCESS';
 const FETCH_OWNED_GIT_REPOSITORIES_ERROR = '@@packy/FETCH_OWNED_GIT_REPOSITORIES_ERROR';
 const CLONE_GIT_REPOSITORY_REQUEST = '@@packy/CLONE_GIT_REPOSITORY_REQUEST';
 const CLONE_GIT_REPOSITORY_SUCCESS = '@@packy/CLONE_GIT_REPOSITORY_SUCCESS';
 const CLONE_GIT_REPOSITORY_ERROR = '@@packy/CLONE_GIT_REPOSITORY_ERROR';
+const COMMIT_GIT_REPOSITORY_REQUEST = '@@packy/COMMIT_GIT_REPOSITORY_REQUEST';
+const COMMIT_GIT_REPOSITORY_SUCCESS = '@@packy/COMMIT_GIT_REPOSITORY_SUCCESS';
+const COMMIT_GIT_REPOSITORY_ERROR = '@@packy/COMMIT_GIT_REPOSITORY_ERROR';
 
 export interface PackyListPayload extends storeTypes.ResponsePayload {
     packyNames: string[];
 };
 
-export interface FetchPackyPayload {
-    name: string;
+export interface PackyIdPayload {
+    id: string;
+};
+
+export interface SelectedPackyPayload extends storeTypes.ResponsePayload {
+    id: string;
+    files: PackyFiles;
 };
 
 export interface CreatePackyPayload {
-    name: string;
+    id: string;
     options: CreatePackyOptions;
 };
 
-export interface PackyPayload extends storeTypes.ResponsePayload {
-    packy: Packy;
+export interface CreatedPackyPayload extends storeTypes.ResponsePayload {
+    id: string;
+    files: PackyFiles;
 };
 
 export interface PackyTemplatePayload extends storeTypes.ResponsePayload {
@@ -64,30 +74,48 @@ export interface ClonedGitRepositoryPayload extends storeTypes.ResponsePayload {
     repository: ClonedGitRepository;
 };
 
+export interface CommitGitRepositoryPayload {
+    owner: string;
+    name: string;
+    branch: string;
+    files: PackyFiles;
+};
+
+export interface CommittedGitRepositoryPayload extends storeTypes.ResponsePayload {
+};
+
+export interface SavePackyPayload extends storeTypes.ResponsePayload {
+    id: string;
+    files: PackyFiles,
+};
+
 export const fetchPackyListRequest = createStandardAction(FETCH_PACKY_LIST_REQUEST)<void>();
 export const fetchPackyListSuccess = createStandardAction(FETCH_PACKY_LIST_SUCCESS)<PackyListPayload>();
 export const fetchPackyListError = createStandardAction(FETCH_PACKY_LIST_ERROR)<any>();
-export const fetchPackyRequest = createStandardAction(FETCH_PACKY_REQUEST)<FetchPackyPayload>();
-export const fetchPackySuccess = createStandardAction(FETCH_PACKY_SUCCESS)<PackyPayload>();
-export const fetchPackyError = createStandardAction(FETCH_PACKY_ERROR)<any>();
+export const initPackyRequest = createStandardAction(INIT_PACKY_REQUEST)<void>();
+export const initPackySuccess = createStandardAction(INIT_PACKY_SUCCESS)<SelectedPackyPayload>();
+export const initPackyError = createStandardAction(INIT_PACKY_ERROR)<any>();
+export const selectPackyRequest = createStandardAction(SELECT_PACKY_REQUEST)<PackyIdPayload>();
+export const selectPackySuccess = createStandardAction(SELECT_PACKY_SUCCESS)<SelectedPackyPayload>();
+export const selectPackyError = createStandardAction(SELECT_PACKY_ERROR)<any>();
 export const createPackyRequest = createStandardAction(CREATE_PACKY_REQUEST)<CreatePackyPayload>();
-export const createPackySuccess = createStandardAction(CREATE_PACKY_SUCCESS)<PackyPayload>();
+export const createPackySuccess = createStandardAction(CREATE_PACKY_SUCCESS)<CreatedPackyPayload>();
 export const createPackyError = createStandardAction(CREATE_PACKY_ERROR)<any>();
-export const savePackyRequest = createStandardAction(SAVE_PACKY_REQUEST)<PackyPayload>();
+export const savePackyRequest = createStandardAction(SAVE_PACKY_REQUEST)<SavePackyPayload>();
 export const savePackySuccess = createStandardAction(SAVE_PACKY_SUCCESS)<storeTypes.ResponsePayload>();
 export const savePackyError = createStandardAction(SAVE_PACKY_ERROR)<any>();
-export const deletePackyRequest = createStandardAction(DELETE_PACKY_REQUEST)<PackyPayload>();
-export const deletePackySuccess = createStandardAction(DELETE_PACKY_SUCCESS)<storeTypes.ResponsePayload>();
+export const deletePackyRequest = createStandardAction(DELETE_PACKY_REQUEST)<PackyIdPayload>();
+export const deletePackySuccess = createStandardAction(DELETE_PACKY_SUCCESS)<PackyIdPayload>();
 export const deletePackyError = createStandardAction(DELETE_PACKY_ERROR)<any>();
 export const fetchPackyTemplateListRequest = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_REQUEST)<void>();
 export const fetchPackyTemplateListSuccess = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_SUCCESS)<PackyListPayload>();
 export const fetchPackyTemplateListError = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_ERROR)<any>();
-export const fetchPackyTemplateRequest = createStandardAction(FETCH_PACKY_TEMPLATE_REQUEST)<FetchPackyPayload>();
-export const fetchPackyTemplateSuccess = createStandardAction(FETCH_PACKY_TEMPLATE_SUCCESS)<PackyTemplatePayload>();
-export const fetchPackyTemplateError = createStandardAction(FETCH_PACKY_TEMPLATE_ERROR)<any>();
 export const fetchOwnedGitRepositoriesRequest = createStandardAction(FETCH_OWNED_GIT_REPOSITORIES_REQUEST)<void>();
 export const fetchOwnedGitRepositoriesSuccess = createStandardAction(FETCH_OWNED_GIT_REPOSITORIES_SUCCESS)<GitRepositoryListPayload>();
 export const fetchOwnedGitRepositoriesError = createStandardAction(FETCH_OWNED_GIT_REPOSITORIES_ERROR)<any>();
 export const cloneGitRepositoryRequest = createStandardAction(CLONE_GIT_REPOSITORY_REQUEST)<CloneGitRepositoryPayload>();
 export const cloneGitRepositorySuccess = createStandardAction(CLONE_GIT_REPOSITORY_SUCCESS)<ClonedGitRepositoryPayload>();
 export const cloneGitRepositoryError = createStandardAction(CLONE_GIT_REPOSITORY_ERROR)<any>();
+export const commitGitRepositoryRequest = createStandardAction(COMMIT_GIT_REPOSITORY_REQUEST)<CommitGitRepositoryPayload>();
+export const commitGitRepositorySuccess = createStandardAction(COMMIT_GIT_REPOSITORY_SUCCESS)<CommittedGitRepositoryPayload>();
+export const commitGitRepositoryError = createStandardAction(COMMIT_GIT_REPOSITORY_ERROR)<any>();

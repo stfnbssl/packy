@@ -6,7 +6,7 @@ export class PackyController implements ControllerType {
     public router = Router();
 
     public initialize = (initValues: AppInitializerType) => {
-        this.router.get(`${this.path}/app`, this.app);
+        this.router.get(`${this.path}`, this.app);
     }
 
     private app = async (request: Request, response: Response) => {

@@ -14,6 +14,7 @@ export class GithubController implements ControllerType {
     public initialize = (initValues: AppInitializerType) => {
         this.router.get(`${this.path}/ownedrepos`, this.getOwnedRepositories);
         this.router.get(`${this.path}/clone/:owner/:name/:branch`, this.getRepository);
+        this.router.post(`${this.path}/commit/:owner/:name/:branch`, this.commitRepository);
     }
 
     private getOwnedRepositories = async (request: Request, response: Response) => {
@@ -37,4 +38,26 @@ export class GithubController implements ControllerType {
             repo
         );
     }
+
+    private commitRepository = async (request: Request, response: Response) => {
+        const owner = request.params.owner;
+        const name = request.params.name;
+        const branch = request.params.branch;
+        const accessToken = (request.session as any).github_accessToken;
+        const files: PackyFiles = request.body.files;
+        const repo = await githubApiCalls.updateBranch(
+            files,
+            { 
+                owner,
+                name, 
+                token: accessToken 
+            }, 
+            branch
+        );
+        sendSuccess(
+            response,
+            repo
+        );
+    }
+
 }

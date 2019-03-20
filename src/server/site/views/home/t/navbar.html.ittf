@@ -18,8 +18,8 @@ nav
         href /ittf
         class top-link
 
-    a App
-        href /packy/app
+    a Packy
+        href /packy
         class top-link
 
     $if locals.user

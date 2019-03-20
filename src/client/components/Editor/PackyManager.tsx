@@ -7,19 +7,22 @@ import Button from '../shared/Button';
 import EditorForm from './EditorForm';
 
 type PackyManagerProps = {
+  currentPacky: packyTypes.Packy;
   packyNames: string[];
   packyTemplateNames: string[];
   ownedGitRepositories: commonTypes.GitRepositoryMeta[];
-  onSelectPacky: (name: string) => void;
-  onCreatePacky: (name: string, kind: string) => void;
+  onSelectPacky: (id: string) => void;
+  onDeletePacky: (id: string) => void;
+  onCreatePacky: (id: string, kind: string) => void;
   onCloneGitRepository: (owner: string, name: string, branch: string) => void;
+  onCommitGitRepository: (owner: string, name: string, branch: string) => void;
 };
 
 type Props = PackyManagerProps & {
   theme: prefTypes.ThemeName;
 };
 
-type modalKind = 'create' | 'clone' | 'none'; 
+type modalKind = 'create' | 'clone' | 'commit' | 'none'; 
 
 type State = {
   modalVisible: modalKind;
@@ -42,18 +45,31 @@ class PackyManager extends React.PureComponent<Props, State> {
 
   _handleCreatePacky = (name: string, kind: string) => {
     this._handleDismissModal();
-    alert('Create packy ' + name + ' of kind ' + kind);
+    // alert('Create packy ' + name + ' of kind ' + kind);
     this.props.onCreatePacky(name, kind);
   };
 
   _handleClonePacky = (id: string, branch: string) => {
     this._handleDismissModal();
-    alert('Clone package ' + id + ' branch ' + branch);
-    this.props.onCloneGitRepository(id.split('/')[0], id.split('/')[1], branch);
+    // alert('Clone package ' + id + ' branch ' + branch);
+    this.props.onCloneGitRepository(id.split('_')[0], id.split('_')[1], branch);
+  };
+
+  _handleCommitPacky = (id: string, branch: string) => {
+    this._handleDismissModal();
+    alert('Commit package ' + id + ' branch ' + branch);
+    this.props.onCommitGitRepository(id.split('_')[0], id.split('_')[1], branch);
   };
 
   render() {
-    const { packyNames, packyTemplateNames, ownedGitRepositories, onSelectPacky } = this.props;
+    const { 
+      currentPacky,
+      packyNames, 
+      packyTemplateNames, 
+      ownedGitRepositories, 
+      onSelectPacky, 
+      onDeletePacky,
+    } = this.props;
     const { modalVisible } = this.state;
     const gitBranchesTODO = ['master'];
 
@@ -71,6 +87,11 @@ class PackyManager extends React.PureComponent<Props, State> {
                         <span>{name}</span>
                       </kbd>
                     </td>
+                    <td className={css(styles.shortcutCell, styles.shortcutLabelCell)} onClick={()=>onDeletePacky(name)}>
+                      <kbd className={css(styles.shortcutLabel)}>
+                        <span>delete</span>
+                      </kbd>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -86,7 +107,13 @@ class PackyManager extends React.PureComponent<Props, State> {
                 variant="accent"
                 onClick={()=>this._handleShowModal('clone')}
                 className={css(styles.saveButton)}>
-                Clone package
+                Git clone
+              </Button>
+              <Button
+                variant="accent"
+                onClick={()=>this._handleShowModal('commit')}
+                className={css(styles.saveButton)}>
+                Git commit/push
               </Button>
             </div>
           </div>)
@@ -117,12 +144,28 @@ class PackyManager extends React.PureComponent<Props, State> {
             }}
             fields={{
               id: {type: 'select', label: 'Package', options: ownedGitRepositories.map((item)=> {
-                return { label: `${item.owner}/${item.name}`, value: `${item.owner}/${item.name}` };
+                return { label: `${item.owner}_${item.name}`, value: `${item.owner}_${item.name}` };
               })},
               branch: {type: 'select', label: 'Branch', options: gitBranchesTODO.map((name)=> {
                 return { label: name, value: name };
               })},
             }} />
+        {currentPacky && (
+          <EditorForm
+              title="Commit/push git package"
+              action="Done"
+              visible={modalVisible==='commit'}
+              onDismiss={this._handleDismissModal}
+              onSubmit={values => {
+                alert(JSON.stringify(values));
+                this._handleCommitPacky(`${values['owner']}_${values['repoName']}`, values['branch']);
+              }}
+              fields={{
+                owner: {type: 'text', label: 'Owner', default:currentPacky.localPackyData.owner, onValidate: packyValids.validatePackyName },
+                repoName: {type: 'text', label: 'Repo', default: currentPacky.localPackyData.repoName,  onValidate: packyValids.validatePackyName },
+                branch: {type: 'text', label: 'Branch', default: currentPacky.localPackyData.branch, onValidate: packyValids.validatePackyName },
+              }} />
+        )}
       </div>
     );
   }
@@ -162,12 +205,10 @@ const styles = StyleSheet.create({
     marginTop: '6px',
     borderTop: '1px black solid',
   },
-
   shortcutList: {
     fontSize: '1.2em',
     tableLayout: 'fixed',
   },
-
   shortcutCell: {
     padding: '6px 8px',
     color: c('primary'),
@@ -177,11 +218,9 @@ const styles = StyleSheet.create({
       color: 'white',
     },
   },
-
   shortcutLabelCell: {
     textAlign: 'right',
   },
-
   shortcutDescriptionCell: {
     textAlign: 'left',
   },
@@ -194,6 +233,7 @@ const styles = StyleSheet.create({
     padding: 0,
     display: 'inline-block',
   },
+
   saveButton: {
     minWidth: 100,
   },

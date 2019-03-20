@@ -16124,7 +16124,7 @@
     }
   }
   /**
-   * The Slide transition is used by the [Snackbar](/demos/snackbars) component.
+   * The Slide transition is used by the [Packybar](/demos/snackbars) component.
    * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
    */
 
@@ -28222,7 +28222,7 @@
     };
   };
 
-  function SnackbarContent(props) {
+  function PackybarContent(props) {
     var action = props.action,
         classes = props.classes,
         className = props.className,
@@ -28245,7 +28245,7 @@
     }, action) : null);
   }
 
-  SnackbarContent.propTypes = {
+  PackybarContent.propTypes = {
     /**
      * The action to display.
      */
@@ -28267,9 +28267,9 @@
      */
     message: propTypes.node
   };
-  var SnackbarContent$1 = withStyles(styles$1a, {
-    name: 'MuiSnackbarContent'
-  })(SnackbarContent);
+  var PackybarContent$1 = withStyles(styles$1a, {
+    name: 'MuiPackybarContent'
+  })(PackybarContent);
 
   var styles$1b = function styles(theme) {
     var gutter = 24;
@@ -28347,23 +28347,23 @@
     throw new Error('Material-UI: react@16.3.0 or greater is required.');
   }
 
-  var Snackbar =
+  var Packybar =
   /*#__PURE__*/
   function (_React$Component) {
-    inherits(Snackbar, _React$Component);
+    inherits(Packybar, _React$Component);
 
-    function Snackbar() {
+    function Packybar() {
       var _getPrototypeOf2;
 
       var _this;
 
-      classCallCheck(this, Snackbar);
+      classCallCheck(this, Packybar);
 
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
 
-      _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Snackbar)).call.apply(_getPrototypeOf2, [this].concat(args)));
+      _this = possibleConstructorReturn(this, (_getPrototypeOf2 = getPrototypeOf(Packybar)).call.apply(_getPrototypeOf2, [this].concat(args)));
       _this.state = {};
 
       _this.handleMouseEnter = function (event) {
@@ -28413,7 +28413,7 @@
       return _this;
     }
 
-    createClass(Snackbar, [{
+    createClass(Packybar, [{
       key: "componentDidMount",
       value: function componentDidMount() {
         if (this.props.open) {
@@ -28517,7 +28517,7 @@
           onExiting: onExiting,
           timeout: transitionDuration,
           direction: vertical === 'top' ? 'down' : 'up'
-        }, TransitionProps), children || React.createElement(SnackbarContent$1, _extends_1({
+        }, TransitionProps), children || React.createElement(PackybarContent$1, _extends_1({
           message: message,
           action: action
         }, ContentProps)))));
@@ -28541,17 +28541,17 @@
       }
     }]);
 
-    return Snackbar;
+    return Packybar;
   }(React.Component);
 
-  Snackbar.propTypes = {
+  Packybar.propTypes = {
     /**
      * The action to display.
      */
     action: propTypes.node,
 
     /**
-     * The anchor of the `Snackbar`.
+     * The anchor of the `Packybar`.
      */
     anchorOrigin: propTypes.shape({
       horizontal: propTypes.oneOf(['left', 'center', 'right']).isRequired,
@@ -28561,14 +28561,14 @@
     /**
      * The number of milliseconds to wait before automatically calling the
      * `onClose` function. `onClose` should then set the state of the `open`
-     * prop to hide the Snackbar. This behavior is disabled by default with
+     * prop to hide the Packybar. This behavior is disabled by default with
      * the `null` value.
      */
     autoHideDuration: propTypes.number,
 
     /**
      * If you wish the take control over the children of the component you can use this property.
-     * When used, you replace the `SnackbarContent` component with the children.
+     * When used, you replace the `PackybarContent` component with the children.
      */
     children: propTypes.element,
 
@@ -28589,7 +28589,7 @@
     ClickAwayListenerProps: propTypes.object,
 
     /**
-     * Properties applied to the [`SnackbarContent`](/api/snackbar-content) element.
+     * Properties applied to the [`PackybarContent`](/api/snackbar-content) element.
      */
     ContentProps: propTypes.object,
 
@@ -28599,9 +28599,9 @@
     disableWindowBlurListener: propTypes.bool,
 
     /**
-     * When displaying multiple consecutive Snackbars from a parent rendering a single
-     * <Snackbar/>, add the key property to ensure independent treatment of each message.
-     * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
+     * When displaying multiple consecutive Packybars from a parent rendering a single
+     * <Packybar/>, add the key property to ensure independent treatment of each message.
+     * e.g. <Packybar key={message} />, otherwise, the message may update-in-place and
      * features such as autoHideDuration may be canceled.
      */
     key: propTypes.any,
@@ -28614,7 +28614,7 @@
     /**
      * Callback fired when the component requests to be closed.
      * Typically `onClose` is used to set state in the parent component,
-     * which is used to control the `Snackbar` `open` prop.
+     * which is used to control the `Packybar` `open` prop.
      * The `reason` parameter can optionally be used to control the response to `onClose`,
      * for example ignoring `clickaway`.
      *
@@ -28664,7 +28664,7 @@
     onMouseLeave: propTypes.func,
 
     /**
-     * If true, `Snackbar` is open.
+     * If true, `Packybar` is open.
      */
     open: propTypes.bool,
 
@@ -28695,7 +28695,7 @@
      */
     TransitionProps: propTypes.object
   };
-  Snackbar.defaultProps = {
+  Packybar.defaultProps = {
     anchorOrigin: {
       vertical: 'bottom',
       horizontal: 'center'
@@ -28707,10 +28707,10 @@
       exit: duration.leavingScreen
     }
   };
-  var Snackbar$1 = withStyles(styles$1b, {
+  var Packybar$1 = withStyles(styles$1b, {
     flip: false,
-    name: 'MuiSnackbar'
-  })(Snackbar);
+    name: 'MuiPackybar'
+  })(Packybar);
 
   var styles$1c = {
     /* Styles applied to the root element. */
@@ -33877,8 +33877,8 @@
   exports.RootRef = RootRef;
   exports.Select = Select$1;
   exports.Slide = Slide$1;
-  exports.Snackbar = Snackbar$1;
-  exports.SnackbarContent = SnackbarContent$1;
+  exports.Packybar = Packybar$1;
+  exports.PackybarContent = PackybarContent$1;
   exports.Step = Step$1;
   exports.StepButton = StepButton$1;
   exports.StepConnector = StepConnector$1;

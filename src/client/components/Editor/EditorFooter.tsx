@@ -15,7 +15,7 @@ import { Shortcuts } from './KeyboardShortcuts';
 import ShortcutLabel from '../shared/ShortcutLabel';
 
 type Props = {
-  loadingMessage: string | undefined;
+  // loadingMessage: string | undefined;
   // annotations: Annotation[];
   /*
   connectedDevices: Array<{
@@ -47,7 +47,7 @@ type Props = {
 
 export default function Footer(props: Props) {
   const {
-    loadingMessage,
+    // loadingMessage,
     // annotations,
     // connectedDevices,
     fileTreeShown,
@@ -72,13 +72,13 @@ export default function Footer(props: Props) {
   } = props;
 
   const isErrorFatal = false/*annotations.some(a => a.severity > 3)*/;
-  const isLoading = Boolean(loadingMessage);
+  const isLoading = false; /*Boolean(loadingMessage);*/
 
   return (
     <FooterShell type={isErrorFatal && !isLoading ? 'error' : isLoading ? 'loading' : null}>
       <div className={css(styles.left)}>
         {isLoading ? (
-          <LoadingText className={css(styles.loadingText)}>{loadingMessage}</LoadingText>
+          <LoadingText className={css(styles.loadingText)}>{/*loadingMessage*/}</LoadingText>
         ) : null /*(
           <button
             onClick={onTogglePanels}

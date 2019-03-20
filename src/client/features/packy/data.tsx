@@ -23,8 +23,8 @@ export async function getPackyList(): Promise<string[]> {
     });
 }
 
-export async function getPackyFiles(packyName: string): Promise<PackyFiles> {
-    const folderPath = path.join(BROWSERFS_PACKIES_FOLDER, packyName);
+export async function getPackyFiles(packyId: string): Promise<PackyFiles> {
+    const folderPath = path.join(BROWSERFS_PACKIES_FOLDER, packyId);
     return new Promise(async (resolve) => {
         const files = await bfs.getFiles(folderPath, {deep: true, documentContent: true});
         const ret:PackyFiles = {}
@@ -44,32 +44,37 @@ export async function getPackyTemplate(templateName: string): Promise<PackyTempl
         const res = await callApi('get', API_ENDPOINT, 'templates/' + templateName);
         console.log('packy.data.getPackyTemplate.res', res);
         if (res.error) { return reject(res.error); }
-        const code: PackyFiles = {};
+        const files: PackyFiles = {};
         res.forEach((element: any) => {
-            code[element.relPath] = {
+            files[element.relPath] = {
                 contents: element.content,
                 type: 'CODE'
             }
         });
         resolve({
             id: templateName,
-            code: code
+            files: files
         });
     });
 } 
 
-
-export async function createPacky(packyName: string, options: CreatePackyOptions): Promise<PackyFiles> {
+export async function createPacky(packyId: string, options: CreatePackyOptions): Promise<PackyFiles> {
     return new Promise(async (resolve) => {
         if (typeof(options.data) === 'string') {
             const packyTemplate = await getPackyTemplate(options.data as string);
-            await savePackyFiles(packyName, packyTemplate.code);
-            return resolve(packyTemplate.code);
+            await savePackyFiles(packyId, packyTemplate.files);
+            return resolve(packyTemplate.files);
         } else {
-            await savePackyFiles(packyName, options.data);
+            await savePackyFiles(packyId, options.data);
             return resolve(options.data);
         }
     });
+}
+
+export async function deletePacky(packyId: string): Promise<any> {
+    const folderPath = path.join(BROWSERFS_PACKIES_FOLDER, packyId);
+    console.log('deletingPackyFiles', packyId);
+    return bfs.deleteFolder(folderPath);
 }
 
 async function asyncmap (coll: any[], mapper: any, callback: cb<any>) {
@@ -91,9 +96,9 @@ async function asyncmap (coll: any[], mapper: any, callback: cb<any>) {
     repeat(0);
 }
 
-export async function savePackyFiles(packyName: string, files: PackyFiles): Promise<void> {
-    const folderPath = path.join(BROWSERFS_PACKIES_FOLDER, packyName);
-    console.log('savingPackyFiles', packyName);
+export async function savePackyFiles(packyId: string, files: PackyFiles): Promise<void> {
+    const folderPath = path.join(BROWSERFS_PACKIES_FOLDER, packyId);
+    console.log('savingPackyFiles', packyId);
     return new Promise(async (resolve) => {
         await bfs.deleteFolder(folderPath);
         const keys = Object.keys(files);
@@ -102,10 +107,10 @@ export async function savePackyFiles(packyName: string, files: PackyFiles): Prom
             const file = files[k];
             console.log('savePackyFiles file', file);
             await bfs.writeFile(
-                path.join(BROWSERFS_PACKIES_FOLDER, packyName, k), 
+                path.join(BROWSERFS_PACKIES_FOLDER, packyId, k), 
                 file.contents
             );
-            console.log('savePackyFiles.written', path.join(BROWSERFS_PACKIES_FOLDER, packyName, k), file.contents)
+            console.log('savePackyFiles.written', path.join(BROWSERFS_PACKIES_FOLDER, packyId, k), file.contents)
             callback(null);
         }, async (err, result)=> {
             const isDirectory = await bfs.isDirectory(folderPath);
