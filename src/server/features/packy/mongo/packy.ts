@@ -1,7 +1,6 @@
 import { Schema, Model, model } from "mongoose";
 import { ModelBuilderType } from "../../app/types";
 import { IPackyModel } from "../types";
-import { UserModel } from "./user";
 
 const PackySchema: Schema<IPackyModel> = new Schema({
     userId: {
@@ -20,7 +19,7 @@ const PackySchema: Schema<IPackyModel> = new Schema({
 // controllers call PackyModel() when initialized, after buildModel() has benn called
 export type PackyModelType = Model<IPackyModel>;
 let packyModel: PackyModelType;
-export function PackyModel() : PackyModelType {
+export function GetPackyModel() : PackyModelType {
     return packyModel;
 }
 export const PackyModelBuilder: ModelBuilderType = {

@@ -23,12 +23,12 @@ const store = createStore({
   }
 });
 
-class FileListEntry extends React.Component {
+class Index extends React.Component {
   render() {
     return (
-      <React.StrictMode>
+      <React.Fragment>
         {/*<ServiceWorkerManager />
-        <HelmetProvider>*/}
+        <React.StrictMode><HelmetProvider>*/}
           <Provider store={store}>
             <PreferencesProvider cookies={cookies} search={window.location.search}>
               <ColorsProvider>
@@ -38,10 +38,10 @@ class FileListEntry extends React.Component {
               </ColorsProvider>
             </PreferencesProvider>
           </Provider>
-        {/*</HelmetProvider>*/}
-      </React.StrictMode>
+        {/*</HelmetProvider></React.StrictMode>*/}
+      </React.Fragment>
     );
   }
 }
 
-ReactDOM.render(<FileListEntry />, document.getElementById('root'));
+ReactDOM.render(<Index />, document.getElementById('root'));

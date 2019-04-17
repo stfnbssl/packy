@@ -1,15 +1,14 @@
 import { prefTypes } from '../preferences';
 
-export type Viewer = {
-    username: string;
-    nickname: string;
-    picture?: string;
-    user_metadata?: {
-      appetize_code: string;
-    };
-  };
+export type LoggedUser = {
+  id: string;  
+  uid: string;  
+  username: string;
+  displayName: string;
+  picture?: string;
+};
 
-export type QueryParams = {
+export type QueryParams_VIA = {
     session_id?: string;
     // TODO local packy provider ?
     // local_packyger?: 'true' | 'false';

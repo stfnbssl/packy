@@ -1,6 +1,6 @@
 import { all, fork, put, takeEvery, call/*, takeLatest */} from 'redux-saga/effects';
 import { getType } from 'typesafe-actions';
-import { API_ENDPOINT } from '../../configs/data';
+import { config } from '../config';
 import * as packyActions from './actions';
 import * as packyData from './data';
 import * as packyTypes from './types';
@@ -48,14 +48,10 @@ function* handleSelectPackyRequest(action: ReturnType<typeof packyActions.select
     try {
         console.log('sagas.handleFetchPackyRequest', action);
         const res: packyTypes.PackyFiles = yield packyData.getPackyFiles(action.payload.id);
-        if (res.error) {
-            yield put(packyActions.selectPackyError(res.message));
-        } else {
-            yield put(packyActions.selectPackySuccess({
-                id: action.payload.id,
-                files: res,
-            }));
-        } 
+        yield put(packyActions.selectPackySuccess({
+            id: action.payload.id,
+            files: res,
+        }));
     } catch (err) {
         if (err instanceof Error) {
             yield put(packyActions.selectPackyError(err.stack!));
@@ -69,14 +65,10 @@ function* handleCreatePackyRequest(action: ReturnType<typeof packyActions.create
     try {
         console.log('sagas.handleCreatePackyRequest', action);
         const res: packyTypes.PackyFiles = yield packyData.createPacky(action.payload.id, action.payload.options);
-        if (res.error) {
-            yield put(packyActions.createPackyError(res.message));
-        } else {
-            yield put(packyActions.createPackySuccess({
-                id: action.payload.id,
-                files: res,
-            }));
-        } 
+        yield put(packyActions.createPackySuccess({
+            id: action.payload.id,
+            files: res,
+        }));
     } catch (err) {
         if (err instanceof Error) {
             yield put(packyActions.createPackyError(err.stack!));
@@ -90,13 +82,9 @@ function* handleDeletePackyRequest(action: ReturnType<typeof packyActions.delete
     try {
         console.log('sagas.handleDeletePackyRequest', action);
         const res: packyTypes.PackyFiles = yield packyData.deletePacky(action.payload.id);
-        if (res && res.error) {
-            yield put(packyActions.deletePackyError(res.message));
-        } else {
-            yield put(packyActions.deletePackySuccess({
-                id: action.payload.id,
-            }));
-        } 
+        yield put(packyActions.deletePackySuccess({
+            id: action.payload.id,
+        }));
     } catch (err) {
         if (err instanceof Error) {
             yield put(packyActions.deletePackyError(err.stack!));
@@ -128,7 +116,7 @@ function* handleSavePackyRequest(action: ReturnType<typeof packyActions.savePack
 function* handleFetchPackyTemplateListRequest(action: ReturnType<typeof packyActions.fetchPackyTemplateListRequest>) {
     try {
         console.log('sagas.handleFetchPackyTemplateListRequest.action', action);
-        const res = yield call(callApi, 'get', API_ENDPOINT, 'templates');
+        const res = yield call(callApi, 'get', config.API_URL, 'templates');
         console.log('sagas.handleFetchPackyTemplateListRequest.res', res);
         yield put(packyActions.fetchPackyTemplateListSuccess({packyNames: res}));
     } catch (err) {
@@ -143,7 +131,9 @@ function* handleFetchPackyTemplateListRequest(action: ReturnType<typeof packyAct
 function* handleFetchOwnedGitRepositoriesRequest(action: ReturnType<typeof packyActions.fetchOwnedGitRepositoriesRequest>) {
     try {
         console.log('sagas.handleFetchOwnedGitRepositoriesRequest.action', action);
-        const res = yield call(callApi, 'get', API_ENDPOINT, 'github/ownedrepos');
+        const res = yield call(callApi, 'get', config.API_URL,
+         `github/ownedrepos/${action.payload.uid}`
+        );
         console.log('sagas.handleFetchOwnedGitRepositoriesRequest.res', res);
         yield put(packyActions.fetchOwnedGitRepositoriesSuccess({repositories: res}));
     } catch (err) {
@@ -158,7 +148,7 @@ function* handleFetchOwnedGitRepositoriesRequest(action: ReturnType<typeof packy
 function* handleCloneGitRepositoryRequest(action: ReturnType<typeof packyActions.cloneGitRepositoryRequest>) {
     try {
         console.log('sagas.handleCloneGitRepositoryRequest.action', action);
-        const res = yield call(callApi, 'get', API_ENDPOINT, 
+        const res = yield call(callApi, 'get', config.API_URL, 
             `github/clone/${action.payload.owner}/${action.payload.name}/${action.payload.branch}`
         );
         console.log('sagas.handleCloneGitRepositoryRequest.res', res);
@@ -175,7 +165,7 @@ function* handleCloneGitRepositoryRequest(action: ReturnType<typeof packyActions
 function* handleCommitGitRepositoryRequest(action: ReturnType<typeof packyActions.commitGitRepositoryRequest>) {
     try {
         console.log('sagas.handleCommitGitRepositoryRequest.action', action);
-        const res = yield call(callApi, 'post', API_ENDPOINT, 
+        const res = yield call(callApi, 'post', config.API_URL, 
             `github/commit/${action.payload.owner}/${action.payload.name}/${action.payload.branch}`,
             { files: action.payload.files }
         );

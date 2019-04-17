@@ -1,4 +1,4 @@
-import { Application, Request, Response, RequestHandler, CookieOptions } from 'express';
+import { Application, CookieOptions } from 'express';
 import { MiddlewareType } from '../features/app/types';
 import * as session from 'express-session';
 import * as mongoSessionStore from 'connect-mongo';

@@ -58,13 +58,13 @@ class UserMenu extends React.Component<Props, State> {
   _avatar = React.createRef<HTMLButtonElement>();
 
   render() {
-    const { viewer, logout } = this.props;
+    const { loggedUser, logout } = this.props;
 
     return (
       <div className={css(styles.container)}>
         <button ref={this._avatar} className={css(styles.button)}>
           <Avatar
-            source={viewer && viewer.picture ? viewer.picture : require('../assets/avatar.svg')}
+            source={loggedUser && loggedUser.picture ? loggedUser.picture : require('../assets/avatar.svg')}
             size={40}
           />
         </button>
@@ -72,15 +72,15 @@ class UserMenu extends React.Component<Props, State> {
           ref={this._menu}
           visible={this.state.visible}
           actions={
-            viewer
+            loggedUser
               ? [
                   {
                     label: 'View profile',
-                    handler: () => window.open(`https://expo.io/@${viewer.username}/`),
+                    handler: () => window.open(`https://expo.io/@${loggedUser.username}/`),
                   },
                   {
                     label: 'View snacks',
-                    handler: () => window.open(`https://expo.io/snacks/@${viewer.username}/`),
+                    handler: () => window.open(`https://expo.io/snacks/@${loggedUser.username}/`),
                   },
                   {
                     label: 'Edit account',

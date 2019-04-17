@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import { storeTypes } from '../store';
 import { getEventServiceInstance } from '../services';
-import { appTypes } from '../features/app';
+import { appTypes, appActions } from '../features/app';
 import { authTypes } from '../features/auth';
 import { commonTypes } from '../../common';
 import { prefTypes, withPreferences } from '../features/preferences';
@@ -14,6 +15,7 @@ import { packyToEntryArray, entryArrayToPacky, realAndGeneratedPackyToEntryArray
 import updateEntry from '../features/filelist/actions/updateEntry';
 import debounce from 'lodash/debounce';
 import EditorView from '../components/Editor/EditorView';
+import THEME from '../styles/muiTheme';
 
 // TODO: App container specific or app feature ?
 type Params = {
@@ -23,7 +25,7 @@ type Params = {
 };
 
 interface StateProps {
-  viewer?: appTypes.Viewer,
+  loggedUser?: appTypes.LoggedUser,
   packyNames?: string[],
   currentPacky?: packyTypes.Packy,
   packyTemplateNames?: string[],
@@ -33,23 +35,20 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  dispatchFetchPackyList: () => void;
+  dispatchLoggedOn: (user: appTypes.LoggedUser) => void;
+  dispatchLoggedOff: () => void;
   dispatchInitPacky: () => void;
   dispatchSelectPacky: (packyId: string) => void;
   dispatchSavePacky: (packyId: string, code: packyTypes.PackyFiles) => void;
   dispatchCreatePacky: (packyId: string, packyKind: string) => void;
   dispatchDeletePacky: (packyId: string) => void;
-  dispatchFetchPackyTemplateList: () => void;
-  dispatchFetchOwnedGitRepositories: () => void;
-  dispatchCloneGitRepository: (owner: string, name: string, branch: string) => void;
-  dispatchCommitGitRepository: (owner: string, name: string, branch: string, files: packyTypes.PackyFiles) => void;
   dispatchGenerateArtifact: (fileName: string, files: packyTypes.PackyFiles) => void;
   dispatchExecuteJob: (files: packyTypes.PackyFiles) => void;
   dispatchSetTimedService: (name: string, onOff:boolean, payload?: any, frequence?: number) => void;
 }
 
-const mapStateToProps = (state: storeTypes.StoreState) => ({
-  viewer: state.app.viewer,
+const mapStateToProps = (state: storeTypes.StoreState) : StateProps => ({
+  loggedUser: state.app.loggedUser,
   currentPacky: state.packy.currentPacky,
   packyNames: state.packy.packyNames,
   packyTemplateNames: state.packy.packyTemplateNames,
@@ -59,8 +58,11 @@ const mapStateToProps = (state: storeTypes.StoreState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
-  dispatchFetchPackyList: () => {
-    dispatch(packyActions.fetchPackyListRequest());
+  dispatchLoggedOn: (user: appTypes.LoggedUser) => {
+    dispatch(appActions.updateLoggedUser(user));
+  },
+  dispatchLoggedOff: () => {
+    dispatch(appActions.updateLoggedUser(null));
   },
   dispatchInitPacky: () => {
     dispatch(packyActions.initPackyRequest());
@@ -84,27 +86,6 @@ const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
     dispatch(packyActions.deletePackyRequest({
       id: packyId,
     }));
-  },
-  dispatchCloneGitRepository: (owner: string, name: string, branch: string) => {
-    dispatch(packyActions.cloneGitRepositoryRequest({
-      owner: owner,
-      name: name,
-      branch: 'master', // TODO
-    }));
-  },
-  dispatchCommitGitRepository: (owner: string, name: string, branch: string, files: packyTypes.PackyFiles) => {
-    dispatch(packyActions.commitGitRepositoryRequest({
-      owner: owner,
-      name: name,
-      branch: 'master', // TODO
-      files: files
-    }));
-  },
-  dispatchFetchPackyTemplateList: () => {
-    dispatch(packyActions.fetchPackyTemplateListRequest());
-  },
-  dispatchFetchOwnedGitRepositories: () => {
-    dispatch(packyActions.fetchOwnedGitRepositoriesRequest());
   },
   dispatchGenerateArtifact: (filePath: string, code: packyTypes.PackyFiles) => {
     if (filePath.endsWith('.ittf') && !filePath.endsWith('wfjob.ittf')) {
@@ -217,16 +198,8 @@ class App extends React.Component<Props, State> {
     // Raven
     // Session worker
     this._initializePackySession();
-    this.props.dispatchFetchPackyList();
     // this.props.dispatchFetchPacky(packyDefaults.DEFAULT_PACKY_NAME);
-    this.props.dispatchFetchPackyTemplateList();
-    this.props.dispatchFetchOwnedGitRepositories();
     this.props.dispatchInitPacky();
-    if (this.props.preferences.timedJobRunning) {
-      this.props.dispatchSetTimedService(
-        'EXECUTE_JOB', true, this.state.fileEntries, 3000
-      )
-    }
     getEventServiceInstance().on('EXECUTE_JOB', (payload: any) => {
       // this.props.dispatchExecuteJob();
     });
@@ -290,6 +263,14 @@ class App extends React.Component<Props, State> {
     });
   }
 
+  _handleLoggedOn = async (user: appTypes.LoggedUser) => {
+    this.props.dispatchLoggedOn(user);
+  }
+
+  _handleLoggedOff = async () => {
+    this.props.dispatchLoggedOff();
+  }
+
   _handleSelectPacky = async (packyId: string) => {
     this.props.dispatchSelectPacky(packyId);
   }
@@ -300,15 +281,6 @@ class App extends React.Component<Props, State> {
 
   _handleDeletePacky = async (packyId: string) => {
     this.props.dispatchDeletePacky(packyId);
-  }
-
-  _handleCloneGitRepository = async (owner: string, name: string, branch: string) => {
-    this.props.dispatchCloneGitRepository(owner, name, branch);
-  }
-
-  _handleCommitGitRepository = async (owner: string, name: string, branch: string) => {
-    const files = entryArrayToPacky(this.state.fileEntries.filter(e=> !e.item.generated));
-    this.props.dispatchCommitGitRepository(owner, name, branch, files);
   }
 
   _findFocusedEntry = (entries: FileSystemEntry[]): TextFileEntry | AssetFileEntry | undefined =>
@@ -391,7 +363,7 @@ class App extends React.Component<Props, State> {
   _sendCode = debounce(this._sendCodeNotDebounced, 1000);
 
   _handleSaveDraftNotDebounced = () => {
-    if (this.props.viewer) {
+    if (this.props.loggedUser) {
       // We can save draft only if the user is logged in
       throw new Error("_handleSaveDraftNotDebounced not implemented");
       // this._savePacky({ isDraft: true, allowedOnProfile: true });
@@ -409,38 +381,42 @@ class App extends React.Component<Props, State> {
     // console.log('App container', this.props.generatedArtifact);
 
     return (
-      <EditorView
-        currentPacky={this.props.currentPacky}
-        packyNames={this.props.packyNames || []}
-        packyTemplateNames={this.props.packyTemplateNames || []}
-        ownedGitRepositories={this.props.ownedGitRepositories || []}
-        generatedArtifact={this.props.generatedArtifact}
-        autosaveEnabled={this.state.autosaveEnabled}
-        sendCodeOnChangeEnabled={this.state.sendCodeOnChangeEnabled}
-        saveHistory={this.state.saveHistory}
-        saveStatus={this.state.saveStatus}
-        creatorUsername={this.state.params.username}
-        fileEntries={this.state.fileEntries}
-        entry={this._findFocusedEntry(this.state.fileEntries)}
-        isWizziJobWaiting={this.state.isWizziJobWaiting}
-        // loadingMessage={this.state.packySessionState.loadingMessage}
-        // dependencies={this.state.packySessionState.dependencies}
-        params={this.state.params}
-        onSelectPacky={this._handleSelectPacky}
-        onCreatePacky={this._handleCreatePacky}
-        onDeletePacky={this._handleDeletePacky}
-        onCloneGitRepository={this._handleCloneGitRepository}
-        onCommitGitRepository={this._handleCommitGitRepository}
-        onSendCode={this._sendCodeNotDebounced}
-        onFileEntriesChange={this._handleFileEntriesChange}
-        onChangeCode={this._handleChangeCode}
-        onExecuteWizziJob={this._executeJobNotDebounced}
-        userAgent={this.props.userAgent}
-      />
+      <MuiThemeProvider theme={THEME}>
+        <EditorView
+          params={this.state.params}
+          userAgent={this.props.userAgent}
+          loggedUser={this.props.loggedUser}
+          currentPacky={this.props.currentPacky}
+          packyNames={this.props.packyNames || []}
+          packyTemplateNames={this.props.packyTemplateNames || []}
+          ownedGitRepositories={this.props.ownedGitRepositories || []}
+          generatedArtifact={this.props.generatedArtifact}
+          autosaveEnabled={this.state.autosaveEnabled}
+          sendCodeOnChangeEnabled={this.state.sendCodeOnChangeEnabled}
+          saveHistory={this.state.saveHistory}
+          saveStatus={this.state.saveStatus}
+          creatorUsername={this.state.params.username}
+          fileEntries={this.state.fileEntries}
+          entry={this._findFocusedEntry(this.state.fileEntries)}
+          isWizziJobWaiting={this.state.isWizziJobWaiting}
+          // loadingMessage={this.state.packySessionState.loadingMessage}
+          // dependencies={this.state.packySessionState.dependencies}
+          onLoggedOn={this._handleLoggedOn}
+          onLoggedOff={this._handleLoggedOff}
+          onSelectPacky={this._handleSelectPacky}
+          onCreatePacky={this._handleCreatePacky}
+          onDeletePacky={this._handleDeletePacky}
+          onSendCode={this._sendCodeNotDebounced}
+          onFileEntriesChange={this._handleFileEntriesChange}
+          onChangeCode={this._handleChangeCode}
+          onExecuteWizziJob={this._executeJobNotDebounced}
+        />
+      </MuiThemeProvider>
     );
   }
 }
 
-export default connect<storeTypes.StoreState, DispatchProps>(
-  mapStateToProps, mapDispatchToProps
-)(withPreferences(App/*withAuth(App)*/));
+export default connect<StateProps, DispatchProps>(
+  mapStateToProps,
+  mapDispatchToProps
+)(withPreferences(App));

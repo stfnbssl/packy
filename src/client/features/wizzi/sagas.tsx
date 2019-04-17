@@ -1,14 +1,14 @@
 import { all, fork, put, takeEvery, call/*, takeLatest */} from 'redux-saga/effects';
 import { getType } from 'typesafe-actions';
-import { API_ENDPOINT } from '../../configs/data';
+import { config } from '../config';
 import * as wizziActions from './actions';
 import { callApi } from '../../utils/api';
-import { getInstance } from '../../services/EventService';
+// import { getInstance } from '../../services/EventService';
 
 function* handleGenerateArtifactRequest(action: ReturnType<typeof wizziActions.generateArtifactRequest>) {
     try {
         console.log('sagas.handleGenerateArtifactRequest.action', action);
-        const res = yield call(callApi, 'post', API_ENDPOINT, 'productions/artifact/' + encodeURIComponent(action.payload.filePath), action.payload.files);
+        const res = yield call(callApi, 'post', config.API_URL, 'productions/artifact/' + encodeURIComponent(action.payload.filePath), action.payload.files);
         console.log('sagas.handleGenerateArtifactRequest.res', res);
         yield put(wizziActions.generateArtifactSuccess(res));
     } catch (err) {
@@ -23,7 +23,7 @@ function* handleGenerateArtifactRequest(action: ReturnType<typeof wizziActions.g
 function* handleExecuteJobRequest(action: ReturnType<typeof wizziActions.executeJobRequest>) {
     try {
         console.log('sagas.handleExecuteJobRequest.action', action);
-        const res = yield call(callApi, 'post', API_ENDPOINT, 'productions/job/', action.payload.files);
+        const res = yield call(callApi, 'post', config.API_URL, 'productions/job/', action.payload.files);
         console.log('sagas.handleExecuteJobRequest.res', res);
         yield put(wizziActions.executeJobSuccess(res));
     } catch (err) {

@@ -1,12 +1,25 @@
 import * as React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import {withStyles, createStyles, Theme} from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import IconButton from '@material-ui/core/IconButton';
+import Fab from '@material-ui/core/Fab';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 import { commonTypes } from '../../../common';
 import { prefTypes, withThemeName, prefColors } from '../../features/preferences';
 import { packyTypes, packyValids } from '../../features/packy';
+
 import Button from '../shared/Button';
 import EditorForm from './EditorForm';
 
 type PackyManagerProps = {
+  classes: any;
   currentPacky: packyTypes.Packy;
   packyNames: string[];
   packyTemplateNames: string[];
@@ -63,6 +76,7 @@ class PackyManager extends React.PureComponent<Props, State> {
 
   render() {
     const { 
+      classes,
       currentPacky,
       packyNames, 
       packyTemplateNames, 
@@ -77,45 +91,42 @@ class PackyManager extends React.PureComponent<Props, State> {
       <div>
         { modalVisible !== 'none' ? null : (
           <div>
-            <div className={css(styles.title)}>Your Packies</div>
-            <table className={css(styles.shortcutList)}>
-              <tbody>
-                {packyNames.map((name, i) => (
-                  <tr key={i}>
-                    <td className={css(styles.shortcutCell, styles.shortcutLabelCell)} onClick={()=>onSelectPacky(name)}>
-                      <kbd className={css(styles.shortcutLabel)}>
-                        <span>{name}</span>
-                      </kbd>
-                    </td>
-                    <td className={css(styles.shortcutCell, styles.shortcutLabelCell)} onClick={()=>onDeletePacky(name)}>
-                      <kbd className={css(styles.shortcutLabel)}>
-                        <span>delete</span>
-                      </kbd>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
             <div className={css(styles.buttons)}>
-              <Button
-                variant="accent"
+              <Fab
+                variant="extended" 
                 onClick={()=>this._handleShowModal('create')}
-                className={css(styles.saveButton)}>
+                className={classes.fabButton}>
                 Create new
-              </Button>
-              <Button
-                variant="accent"
+              </Fab>
+              <Fab
+                variant="extended" 
                 onClick={()=>this._handleShowModal('clone')}
-                className={css(styles.saveButton)}>
+                className={classes.fabButton}>
                 Git clone
-              </Button>
-              <Button
-                variant="accent"
+              </Fab>
+              <Fab
+                variant="extended" 
                 onClick={()=>this._handleShowModal('commit')}
-                className={css(styles.saveButton)}>
+                className={classes.fabButton}>
                 Git commit/push
-              </Button>
+              </Fab>
             </div>
+            <div className={css(styles.title)}>Your Packies</div>
+            <List dense={true}>
+              {packyNames.map((name, i) => (
+                  <ListItem key={i} button>
+                    <ListItemText
+                      primary={name}
+                      onClick={()=>onSelectPacky(name)}
+                    />
+                    <ListItemSecondaryAction>
+                      <IconButton aria-label="Delete" onClick={()=>onDeletePacky(name)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                  ))}
+              </List>            
           </div>)
         }
         <EditorForm
@@ -170,8 +181,6 @@ class PackyManager extends React.PureComponent<Props, State> {
     );
   }
 }
-
-export default withThemeName(PackyManager);
 
 const c = prefColors.c;
 
@@ -239,3 +248,12 @@ const styles = StyleSheet.create({
   },
 
 });
+
+const muiStyles =  (theme: Theme) => createStyles({
+  fabButton: {
+    margin: theme.spacing.unit,
+  }, 
+});
+
+const StyledComp = withStyles(muiStyles)(PackyManager);
+export default withThemeName(StyledComp);

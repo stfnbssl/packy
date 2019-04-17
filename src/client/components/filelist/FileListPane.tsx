@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, css } from 'aphrodite';
+import { prefTypes } from '../../features/preferences';
 
 type Props = {
   title: string;
@@ -8,9 +9,11 @@ type Props = {
   buttons?: React.ReactNode[];
   children?: React.ReactNode;
   className?: string;
+  theme: prefTypes.ThemeName;
 };
 
 export default function FileListPane({
+  theme,
   title,
   expanded,
   buttons,
@@ -20,7 +23,11 @@ export default function FileListPane({
 }: Props) {
   return (
     <div className={`${className || ''} ${css(styles.container)}`}>
-      <div className={css(styles.header)}>
+      <div className={css(
+        styles.header,
+        theme === 'dark' ? styles.foreDark : styles.foreLight,            
+        theme === 'dark' ? styles.backDark : styles.backLight,            
+        )}>
         <div
           className={css(styles.left)}
           onClick={onClick}
@@ -61,6 +68,20 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     margin: '8px 0',
+  },
+  backLight: {
+    backgroundColor: 'rgba(0, 0, 0, .08)',
+    borderBottom: '2px solid rgba(0, 0, 0, .09)',
+  },
+  backDark: {
+    backgroundColor: 'rgba(255, 255, 255, .08)',
+    borderBottom: '2px solid rgba(255, 255, 255, .09)',
+  },
+  foreLight: {
+    backgroundColor: 'rgba(255, 255, 255, .08)',
+  },
+  foreDark: {
+    backgroundColor: 'rgba(0, 0, 0, .08)',
   },
   header: {
     display: 'flex',

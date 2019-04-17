@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { callApi } from '../../utils/api';
 import * as bfs from '../../db/browserfs';
-import { BROWSERFS_PACKIES_FOLDER, BROWSERFS_PACKIES_ROOT, API_ENDPOINT } from '../../configs/data';
+import { config } from '../config';
 import { PackyFiles, CreatePackyOptions, PackyTemplate } from './types';
 import { INITIAL_CODE, DEFAULT_PACKY_NAME } from './defaults';
 
@@ -11,9 +11,9 @@ export async function getPackyList(): Promise<string[]> {
     return new Promise(async (resolve) => {
         console.log('getPackyList')
         await assertDefaultPacky();
-        const allFiles = await bfs.getFiles(BROWSERFS_PACKIES_ROOT, {deep: true});
+        const allFiles = await bfs.getFiles(config.BROWSERFS_PACKIES_ROOT, {deep: true});
         console.log('getPackyList.forDebug.allFiles', allFiles)
-        const folders = await bfs.getFolders(BROWSERFS_PACKIES_FOLDER, {deep: false});
+        const folders = await bfs.getFolders(config.BROWSERFS_PACKIES_FOLDER, {deep: false});
         console.log('getPackyList', folders)
         const ret:string[] = []
         folders.forEach((folder)=>{
@@ -24,7 +24,7 @@ export async function getPackyList(): Promise<string[]> {
 }
 
 export async function getPackyFiles(packyId: string): Promise<PackyFiles> {
-    const folderPath = path.join(BROWSERFS_PACKIES_FOLDER, packyId);
+    const folderPath = path.join(config.BROWSERFS_PACKIES_FOLDER, packyId);
     return new Promise(async (resolve) => {
         const files = await bfs.getFiles(folderPath, {deep: true, documentContent: true});
         const ret:PackyFiles = {}
@@ -41,7 +41,7 @@ export async function getPackyFiles(packyId: string): Promise<PackyFiles> {
 export async function getPackyTemplate(templateName: string): Promise<PackyTemplate> {
     console.log('packy.data.getPackyTemplate', templateName);
     return new Promise(async (resolve, reject) =>{
-        const res = await callApi('get', API_ENDPOINT, 'templates/' + templateName);
+        const res = await callApi('get', config.API_URL, 'templates/' + templateName);
         console.log('packy.data.getPackyTemplate.res', res);
         if (res.error) { return reject(res.error); }
         const files: PackyFiles = {};
@@ -72,7 +72,7 @@ export async function createPacky(packyId: string, options: CreatePackyOptions):
 }
 
 export async function deletePacky(packyId: string): Promise<any> {
-    const folderPath = path.join(BROWSERFS_PACKIES_FOLDER, packyId);
+    const folderPath = path.join(config.BROWSERFS_PACKIES_FOLDER, packyId);
     console.log('deletingPackyFiles', packyId);
     return bfs.deleteFolder(folderPath);
 }
@@ -97,7 +97,7 @@ async function asyncmap (coll: any[], mapper: any, callback: cb<any>) {
 }
 
 export async function savePackyFiles(packyId: string, files: PackyFiles): Promise<void> {
-    const folderPath = path.join(BROWSERFS_PACKIES_FOLDER, packyId);
+    const folderPath = path.join(config.BROWSERFS_PACKIES_FOLDER, packyId);
     console.log('savingPackyFiles', packyId);
     return new Promise(async (resolve) => {
         await bfs.deleteFolder(folderPath);
@@ -107,10 +107,10 @@ export async function savePackyFiles(packyId: string, files: PackyFiles): Promis
             const file = files[k];
             console.log('savePackyFiles file', file);
             await bfs.writeFile(
-                path.join(BROWSERFS_PACKIES_FOLDER, packyId, k), 
+                path.join(config.BROWSERFS_PACKIES_FOLDER, packyId, k), 
                 file.contents
             );
-            console.log('savePackyFiles.written', path.join(BROWSERFS_PACKIES_FOLDER, packyId, k), file.contents)
+            console.log('savePackyFiles.written', path.join(config.BROWSERFS_PACKIES_FOLDER, packyId, k), file.contents)
             callback(null);
         }, async (err, result)=> {
             const isDirectory = await bfs.isDirectory(folderPath);
@@ -123,7 +123,7 @@ export async function savePackyFiles(packyId: string, files: PackyFiles): Promis
 }
 
 export async function assertDefaultPacky(): Promise<void> {
-    const folderPath = path.join(BROWSERFS_PACKIES_FOLDER, DEFAULT_PACKY_NAME);
+    const folderPath = path.join(config.BROWSERFS_PACKIES_FOLDER, DEFAULT_PACKY_NAME);
     console.log('assertDefaultPacky.folderPath', folderPath);
     return new Promise(async (resolve) => {
         const isDirectory = await bfs.isDirectory(folderPath);

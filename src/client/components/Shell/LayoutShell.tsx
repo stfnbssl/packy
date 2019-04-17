@@ -6,7 +6,11 @@ type Props = {
 };
 
 export default function LayoutShell({ children }: Props) {
-  return <div className={css(styles.layout)}>{children}</div>;
+  return (
+    <div>
+      <div className={css(styles.layout)}>{children}</div>
+    </div>
+  );
 }
 
 const styles = StyleSheet.create({

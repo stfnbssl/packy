@@ -338,6 +338,7 @@ class FileList extends React.PureComponent<Props, State> {
                 */}
                 <FileListPane
                   title="Open files"
+                  theme={this.props.theme}
                   expanded={this.state.openFilesPane}
                   onClick={this._toggleOpenFilesPane}>
                   <ul className={css(styles.tabs)} data-test-id="file-list-open-files-content">
@@ -357,6 +358,7 @@ class FileList extends React.PureComponent<Props, State> {
                 </FileListPane>
                 <FileListPane
                   className={css(styles.project)}
+                  theme={this.props.theme}
                   title="Project"
                   expanded={this.state.projectPane}
                   onClick={this._toggleProjectPane}

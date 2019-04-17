@@ -7,9 +7,10 @@ import { IttfDocumentsMiddleware } from './ittf';
 import { SessionMiddleware } from './session';
 import { CompressionMiddleware } from './compression';
 import { HelmetMiddleware } from './helmet';
-import { PassportAuth0Middleware } from './passportAuth0';
+// import { PassportAuth0Middleware } from './passportAuth0';
+import { PassportMiddleware } from './passport';
 import { UserInViewMiddleware } from './userInViews';
-import { PackyAppMiddleware } from './packyApp';
+// import { PackyAppMiddleware } from './packyApp';
 import { checkJwt, checkScopes } from './auth0';
 import auth0Secured from './auth0Secured';
 
@@ -18,10 +19,11 @@ const appMiddlewares: MiddlewareType[] = [
     CompressionMiddleware,
     HelmetMiddleware,
     SessionMiddleware,
-    PassportAuth0Middleware,
+    PassportMiddleware,
+    // PassportAuth0Middleware,
     CorsMiddleware,
     UserInViewMiddleware,
-    PackyAppMiddleware,
+    // PackyAppMiddleware,
     IttfDocumentsMiddleware,
     StaticFilesMiddleware,
     WizziViewEngineMiddleware,

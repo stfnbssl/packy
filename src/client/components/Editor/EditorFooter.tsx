@@ -30,11 +30,9 @@ type Props = {
   panelsShown: boolean;
   // sendCodeOnChangeEnabled: boolean;
   // sdkVersion: SDKVersion;
-  timedJobRunning: boolean;
   onToggleTheme: () => void;
   onTogglePanels: () => void;
   onToggleFileTree: () => void;
-  onToggleTimedJob: () => void;
   // onToggleDevicePreview: () => void;
   // onToggleSendCode: () => void;
   // onToggleVimMode?: () => void;
@@ -56,7 +54,6 @@ export default function Footer(props: Props) {
     // sendCodeOnChangeEnabled,
     // editorMode,
     // sdkVersion,
-    timedJobRunning,
     // onSendCode,
     onToggleTheme,
     onTogglePanels,
@@ -65,7 +62,6 @@ export default function Footer(props: Props) {
     // onToggleSendCode,
     // onToggleVimMode,
     // onChangeSDKVersion,
-    onToggleTimedJob,
     onShowShortcuts,
     // onPrettifyCode,
     theme,
@@ -100,15 +96,6 @@ export default function Footer(props: Props) {
       {/*<FooterButton icon={require('../assets/prettify-icon.png')} onClick={onPrettifyCode}>
         <span className={css(styles.buttonLabel)}>Prettier</span>
           </FooterButton>*/}
-      <MenuButton
-        icon={require('../../assets/settings-icon.png')}
-        label={<span className={css(styles.buttonLabel)}>Wizzi</span>}
-        content={
-          <React.Fragment>
-            <ToggleSwitch checked={timedJobRunning} onChange={onToggleTimedJob} label="BackgroundJob" />
-          </React.Fragment>
-        }
-      />
       <MenuButton
         icon={require('../../assets/settings-icon.png')}
         label={<span className={css(styles.buttonLabel)}>Editor</span>}

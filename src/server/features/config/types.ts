@@ -12,6 +12,9 @@ export type ConfigType = {
     Auth0PackyBackendAppId: string;
     Auth0PackyBackendAppSecret: string;
     Auth0PackyApiId: string;
+    GithubClientID: string;
+    GithubClientSecret: string;
+    GithubCallbackURL: string;
     IsWizziDev: boolean;
     MetaHtmlIttfPath: string;
     MetaFolderIttfPath: string;

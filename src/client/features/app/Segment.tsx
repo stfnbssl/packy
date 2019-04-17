@@ -52,9 +52,9 @@ export default class Segment {
     }
   }
 
-  identify = (viewer: object) => {
-    if (viewer) {
-      analytics.identify(viewer);
+  identify = (loggedUser: object) => {
+    if (loggedUser) {
+      analytics.identify(loggedUser);
     }
   };
 

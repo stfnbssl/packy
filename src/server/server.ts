@@ -7,6 +7,7 @@ import wizziStart from './services/wizzi';
 import { siteControllers } from './site';
 import { accountControllers } from './features/account';
 import { auth0Controllers } from './features/auth0';
+import { authModelBuilders, authControllers } from './features/auth';
 import { packyModelBuilders, packyControllers } from './features/packy';
 import { appMiddlewares, auth0Secured } from './middleware';
 import App from './App';
@@ -18,6 +19,7 @@ async function start() {
   await wizziStart(config);
 
   let modelBuilders: ModelBuilderType[] = [
+    ...authModelBuilders,
     ...packyModelBuilders
   ];
   
@@ -26,6 +28,7 @@ async function start() {
   let controllers: ControllerType[] = [
     ...siteControllers,
     ...accountControllers,
+    ...authControllers,
     ...auth0Controllers,
     ...packyControllers, 
   ];

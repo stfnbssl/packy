@@ -9,7 +9,12 @@ html
         link 
             rel stylesheet
             href https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css
-        js http://gc.kis.v2.scr.kaspersky-labs.com/3BF13565-6D4A-8F45-A825-79F51EFC2666/main.js
+        link
+            href https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+            rel stylesheet
+        link
+            href https://cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.min.css
+            rel stylesheet
         @style 
             @ type text/css
             css

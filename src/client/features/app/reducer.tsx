@@ -1,25 +1,25 @@
 import { Reducer } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';
 import {
-    Viewer,
+    LoggedUser,
 } from './types';
 import * as appActions from './actions';
 
 export interface AppState {
-    readonly viewer?: Viewer;
+    readonly loggedUser?: LoggedUser;
 }
 
 const initialState: AppState = {
-    viewer: undefined,
+    loggedUser: undefined,
 };
 
 export type AppAction = ActionType<typeof appActions>;
 
 const reducer: Reducer<AppState, AppAction> = (state = initialState, action) => {
     switch (action.type) {
-        case getType(appActions.updateViewer): {
-            console .log("appActions.updateViewer");
-            return { ...state, viewer: action.payload };
+        case getType(appActions.updateLoggedUser): {
+            console .log("appActions.updateLoggedUser");
+            return { ...state, loggedUser: action.payload };
         }
         default: {
             return state;

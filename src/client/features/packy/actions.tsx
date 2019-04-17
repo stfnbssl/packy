@@ -33,6 +33,10 @@ const COMMIT_GIT_REPOSITORY_REQUEST = '@@packy/COMMIT_GIT_REPOSITORY_REQUEST';
 const COMMIT_GIT_REPOSITORY_SUCCESS = '@@packy/COMMIT_GIT_REPOSITORY_SUCCESS';
 const COMMIT_GIT_REPOSITORY_ERROR = '@@packy/COMMIT_GIT_REPOSITORY_ERROR';
 
+export interface AuthRequestPayload {
+    uid: string;
+};
+
 export interface PackyListPayload extends storeTypes.ResponsePayload {
     packyNames: string[];
 };
@@ -64,7 +68,7 @@ export interface GitRepositoryListPayload extends storeTypes.ResponsePayload {
     repositories: GitRepositoryMeta[];
 };
 
-export interface CloneGitRepositoryPayload {
+export interface CloneGitRepositoryPayload extends AuthRequestPayload {
     owner: string;
     name: string;
     branch: string;
@@ -74,7 +78,7 @@ export interface ClonedGitRepositoryPayload extends storeTypes.ResponsePayload {
     repository: ClonedGitRepository;
 };
 
-export interface CommitGitRepositoryPayload {
+export interface CommitGitRepositoryPayload extends AuthRequestPayload {
     owner: string;
     name: string;
     branch: string;
@@ -91,31 +95,31 @@ export interface SavePackyPayload extends storeTypes.ResponsePayload {
 
 export const fetchPackyListRequest = createStandardAction(FETCH_PACKY_LIST_REQUEST)<void>();
 export const fetchPackyListSuccess = createStandardAction(FETCH_PACKY_LIST_SUCCESS)<PackyListPayload>();
-export const fetchPackyListError = createStandardAction(FETCH_PACKY_LIST_ERROR)<any>();
+export const fetchPackyListError = createStandardAction(FETCH_PACKY_LIST_ERROR)<string>();
 export const initPackyRequest = createStandardAction(INIT_PACKY_REQUEST)<void>();
 export const initPackySuccess = createStandardAction(INIT_PACKY_SUCCESS)<SelectedPackyPayload>();
-export const initPackyError = createStandardAction(INIT_PACKY_ERROR)<any>();
+export const initPackyError = createStandardAction(INIT_PACKY_ERROR)<string>();
 export const selectPackyRequest = createStandardAction(SELECT_PACKY_REQUEST)<PackyIdPayload>();
 export const selectPackySuccess = createStandardAction(SELECT_PACKY_SUCCESS)<SelectedPackyPayload>();
-export const selectPackyError = createStandardAction(SELECT_PACKY_ERROR)<any>();
+export const selectPackyError = createStandardAction(SELECT_PACKY_ERROR)<string>();
 export const createPackyRequest = createStandardAction(CREATE_PACKY_REQUEST)<CreatePackyPayload>();
 export const createPackySuccess = createStandardAction(CREATE_PACKY_SUCCESS)<CreatedPackyPayload>();
-export const createPackyError = createStandardAction(CREATE_PACKY_ERROR)<any>();
+export const createPackyError = createStandardAction(CREATE_PACKY_ERROR)<string>();
 export const savePackyRequest = createStandardAction(SAVE_PACKY_REQUEST)<SavePackyPayload>();
 export const savePackySuccess = createStandardAction(SAVE_PACKY_SUCCESS)<storeTypes.ResponsePayload>();
-export const savePackyError = createStandardAction(SAVE_PACKY_ERROR)<any>();
+export const savePackyError = createStandardAction(SAVE_PACKY_ERROR)<string>();
 export const deletePackyRequest = createStandardAction(DELETE_PACKY_REQUEST)<PackyIdPayload>();
 export const deletePackySuccess = createStandardAction(DELETE_PACKY_SUCCESS)<PackyIdPayload>();
-export const deletePackyError = createStandardAction(DELETE_PACKY_ERROR)<any>();
+export const deletePackyError = createStandardAction(DELETE_PACKY_ERROR)<string>();
 export const fetchPackyTemplateListRequest = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_REQUEST)<void>();
 export const fetchPackyTemplateListSuccess = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_SUCCESS)<PackyListPayload>();
-export const fetchPackyTemplateListError = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_ERROR)<any>();
-export const fetchOwnedGitRepositoriesRequest = createStandardAction(FETCH_OWNED_GIT_REPOSITORIES_REQUEST)<void>();
+export const fetchPackyTemplateListError = createStandardAction(FETCH_PACKY_TEMPLATE_LIST_ERROR)<string>();
+export const fetchOwnedGitRepositoriesRequest = createStandardAction(FETCH_OWNED_GIT_REPOSITORIES_REQUEST)<AuthRequestPayload>();
 export const fetchOwnedGitRepositoriesSuccess = createStandardAction(FETCH_OWNED_GIT_REPOSITORIES_SUCCESS)<GitRepositoryListPayload>();
-export const fetchOwnedGitRepositoriesError = createStandardAction(FETCH_OWNED_GIT_REPOSITORIES_ERROR)<any>();
+export const fetchOwnedGitRepositoriesError = createStandardAction(FETCH_OWNED_GIT_REPOSITORIES_ERROR)<string>();
 export const cloneGitRepositoryRequest = createStandardAction(CLONE_GIT_REPOSITORY_REQUEST)<CloneGitRepositoryPayload>();
 export const cloneGitRepositorySuccess = createStandardAction(CLONE_GIT_REPOSITORY_SUCCESS)<ClonedGitRepositoryPayload>();
-export const cloneGitRepositoryError = createStandardAction(CLONE_GIT_REPOSITORY_ERROR)<any>();
+export const cloneGitRepositoryError = createStandardAction(CLONE_GIT_REPOSITORY_ERROR)<string>();
 export const commitGitRepositoryRequest = createStandardAction(COMMIT_GIT_REPOSITORY_REQUEST)<CommitGitRepositoryPayload>();
 export const commitGitRepositorySuccess = createStandardAction(COMMIT_GIT_REPOSITORY_SUCCESS)<CommittedGitRepositoryPayload>();
-export const commitGitRepositoryError = createStandardAction(COMMIT_GIT_REPOSITORY_ERROR)<any>();
+export const commitGitRepositoryError = createStandardAction(COMMIT_GIT_REPOSITORY_ERROR)<string>();

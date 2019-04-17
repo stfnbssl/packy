@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
+import {withStyles, createStyles, Theme} from '@material-ui/core/styles';
 import { commonTypes } from '../../../common';
 import { appTypes, Segment } from '../../features/app';
+import { authTypes } from '../../features/auth';
 import { prefTypes, prefColors, withPreferences } from '../../features/preferences';
 import { filelistTypes, fileActions, fileUtils } from '../../features/filelist'
 import { packyTypes, packyValids /*, packyDefaults*/ } from '../../features/packy';
@@ -10,7 +11,7 @@ import { wizziTypes } from '../../features/wizzi';
 import FileList from '../filelist/FileList'
 import KeybindingsManager from '../shared/KeybindingsManager'
 import LazyLoad from '../shared/LazyLoad'
-import ModalDialog from '../shared/ModalDialog'
+import ModalDialog from '../shared/MuiModalDialog'
 import ProgressIndicator from '../shared/ProgressIndicator'
 import ContentShell from '../Shell/ContentShell'
 import LayoutShell from '../Shell/LayoutShell'
@@ -22,14 +23,15 @@ import EditorFooter from './EditorFooter'
 import EditorForm from './EditorForm'
 import NoFileSelected from './NoFileSelected'
 import KeyboardShortcuts, { Shortcuts } from './KeyboardShortcuts';
-import PackyManager from './PackyManager';
+import PackyManager from '../../containers/PackyManager';
 import PreviousSaves from './PreviousSaves';
 import SimpleEditor from './SimpleEditor';
 import mockFn from '../../mocks/functions'
 
 const EDITOR_LOAD_FALLBACK_TIMEOUT = 3000;
 
-type EditorProps = {
+type EditorProps = authTypes.AuthProps & {
+    classes: any,
     currentPacky?: packyTypes.Packy;
     generatedArtifact?: wizziTypes.GeneratedArtifact;
     saveHistory: packyTypes.SaveHistory;
@@ -50,8 +52,6 @@ type EditorProps = {
     onSelectPacky: (packyId: string) => void;
     onCreatePacky: (packyId: string, packyKind: string) => void;
     onDeletePacky: (packyId: string) => void;
-    onCloneGitRepository: (owner: string, name: string, branch: string) => void;
-    onCommitGitRepository: (owner: string, name: string, branch: string) => void;
     onSendCode: () => void;
     // onToggleSendCode: () => void;
     onFileEntriesChange: (entries: filelistTypes.FileSystemEntry[]) => Promise<void>;
@@ -79,10 +79,11 @@ type EditorProps = {
 
 export type Props = prefTypes.PreferencesContextType &
   EditorProps & {
-    viewer?: appTypes.Viewer;
+    loggedUser?: appTypes.LoggedUser;
   };
 
 type ModalName =
+  | 'auth'  
   | 'packy-manager'
   | 'github-commit'
   | 'github-create'
@@ -126,11 +127,10 @@ class EditorView extends React.Component<Props, State> {
           (entry.item.type === 'file' &&
             entry.item.path.endsWith('.md') &&
             !entry.item.asset &&
-            !entry.item.content)
+            !(entry as filelistTypes.TextFileEntry).item.content)
         ) {
           isMarkdownPreview = false;
         }
-  
         return {
           isMarkdownPreview,
           previousEntry: entry,
@@ -151,8 +151,6 @@ class EditorView extends React.Component<Props, State> {
     };
 
     componentDidMount() {
-      if (this.props.preferences.timedJobRunning) {
-      }
     }
 
     _handleDismissEditModal = () => {
@@ -178,11 +176,9 @@ class EditorView extends React.Component<Props, State> {
       this.setState({ currentModal: 'github-create' });
     };
 
-    /*
     _handleShowAuthModal = () => {
       this.setState({ currentModal: 'auth' });
     };
-    */
   
     _handleShowShortcuts = () => {
       console.log("_handleShowShortcuts");
@@ -213,16 +209,6 @@ class EditorView extends React.Component<Props, State> {
 
     _handleDeletePacky = (id: string) => {
       this.props.onDeletePacky && this.props.onDeletePacky(id);
-    };
-
-    _handleCloneGitRepository = (owner: string, name: string, branch: string) => {
-      this._handleDismissEditModal();
-      this.props.onCloneGitRepository && this.props.onCloneGitRepository(owner, name, branch);
-    };
-
-    _handleCommitGitRepository = (owner: string, name: string, branch: string) => {
-      this._handleDismissEditModal();
-      this.props.onCommitGitRepository && this.props.onCommitGitRepository(owner, name, branch);
     };
 
     _handleCreateGitRepository = (owner: string, name: string, branch: string) => {
@@ -288,15 +274,11 @@ class EditorView extends React.Component<Props, State> {
     _toggleMarkdownPreview = () =>
       this.setState(state => ({ isMarkdownPreview: !state.isMarkdownPreview }));
   
-    _toggleTimedJob = () =>
-      this.props.setPreferences({
-        timedJobRunning: !this.props.preferences.timedJobRunning,
-    });
-
     render() {
       const { currentModal/*, currentBanner*/, isDownloading/*, lintErrors*/ } = this.state;
 
       const {
+        classes,
         currentPacky,
         packyNames,
         packyTemplateNames,
@@ -306,9 +288,11 @@ class EditorView extends React.Component<Props, State> {
         generatedArtifact,
         saveHistory,
         saveStatus,
-        viewer,
+        loggedUser,
         // loadingMessage,
         isWizziJobWaiting,
+        onLoggedOn,
+        onLoggedOff,
         onSendCode,
         onExecuteWizziJob,
         // onToggleSendCode,
@@ -366,9 +350,7 @@ class EditorView extends React.Component<Props, State> {
                   shortcuts: this._handleShowShortcuts,
                   update: onSendCode,
                 };
-
                 const fn = commands[type];
-
                 if (fn) {
                   fn();
                 }
@@ -377,106 +359,107 @@ class EditorView extends React.Component<Props, State> {
             <EditorToolbar
               // name={name}
               // description={description}
+              creatorUsername={this.props.creatorUsername}
+              loggedUser={loggedUser}
               currentPacky={currentPacky}
               saveHistory={saveHistory}
               saveStatus={saveStatus}
-              viewer={viewer}
               isDownloading={isDownloading}
               // isResolving={this.props.isResolving}
               isEditModalVisible={currentModal === 'edit-info'}
               isAuthModalVisible={currentModal === 'auth'}
               isWizziJobWaiting={isWizziJobWaiting}
+              onLoggedOn={onLoggedOn}
+              onLoggedOff={onLoggedOff}
               onShowPreviousSaves={this._handleShowPreviousSaves}
               onShowEditModal={this._handleShowTitleDescriptionModal}
               onDismissEditModal={this._handleDismissEditModal}
               // onSubmitMetadata={this.props.onSubmitMetadata}
-              // onShowAuthModal={this._handleShowAuthModal}
-              // onDismissAuthModal={this._handleHideModal}
+              onShowAuthModal={this._handleShowAuthModal}
+              onDismissAuthModal={this._handleHideModal}
               onExecuteWizziJob={onExecuteWizziJob}
               onShowPackyManager={this._handleShowPackyManager}
               onShowGithubCommit={this._handleShowGithubCommit}
               onShowGithubCreate={this._handleShowGithubCreate}
               // onDownloadCode={handleDownloadCode}
               // onPublishAsync={onPublishAsync}
-              creatorUsername={this.props.creatorUsername}
+              
             />
             <div className={css(styles.editorAreaOuterWrapper)}>
-            <div className={css(styles.editorAreaOuter)}>
-              <LayoutShell>
-              <FileList 
-                entries={fileEntries}
-                visible={true}
-                onEntriesChange={this.props.onFileEntriesChange}
-                onRemoveFile={(path: string) => path}
-                onRenameFile={(oldPath: string, newPath: string) => { oldPath && newPath }}
-                uploadFileAsync={(file: File) =>  mockFn.promise<string>(file)}
-                onDownloadCode={() => mockFn.promise<void>()}
-                hasSnackId={false}
-                saveStatus={'changed'}
-                // sdkVersion: SDKVersion;
-                // theme={'light'}
-                preventRedirectWarning={() => null}
-                >
-              </FileList>
-              {/* Don't load it conditionally since we need the _EditorComponent object to be available */}
-              <LazyLoad
-                load={(): Promise<typeof import('./MonacoEditor')> => {
-                  let timeout: any;
-
-                  const MonacoEditorPromise = import(/* webpackPreload: true */ './MonacoEditor').then(
-                    editor => ({ editor, type: 'monaco' })
-                  );
-
-                  return MonacoEditorPromise.then(({ editor, type }: any) => {
-                    this.setState({ loadedEditor: type });
-                    clearTimeout(timeout);
-                    return editor;
-                  }).catch(err=>{ console.log(err); alert('Failed to load Monaco Editor. See console error.')});
-                }}>
-                {({ loaded, data: Comp }) => {
-                  this._EditorComponent = Comp;
-
-                  if (entry && entry.item.type === 'file') {
-                    if (entry.item.asset) {
-                      return <AssetViewer entry={(entry as any) as filelistTypes.AssetFileEntry} />;
-                    }
-
-                    const { content } = entry.item;
-                    // const isMarkdown = entry.item.path.endsWith('.md');
-                  
-                    if (loaded && Comp) {
-                      return (
-                        <React.Fragment>
-                          <Comp
-                            dependencies={{}/*this.props.dependencies*/}
-                            //sdkVersion={sdkVersion}
-                            entries={fileEntries/*this.props.fileEntries*/}
-                            autoFocus={!entry.state.isCreating}
-                            annotations={[]/*annotations*/}
-                            path={entry.item.path}
-                            value={content}
-                            // mode={preferences.editorMode}
-                            onValueChange={this.props.onChangeCode}
-                            onOpenPath={this._handleOpenPath}
-                          />
-                        </React.Fragment>
+                <div className={css(styles.editorAreaOuter)}>
+                  <LayoutShell>
+                  <FileList 
+                    entries={fileEntries}
+                    visible={true}
+                    onEntriesChange={this.props.onFileEntriesChange}
+                    onRemoveFile={(path: string) => path}
+                    onRenameFile={(oldPath: string, newPath: string) => { oldPath && newPath }}
+                    uploadFileAsync={(file: File) =>  mockFn.promise<string>(file)}
+                    onDownloadCode={() => mockFn.promise<void>()}
+                    hasSnackId={false}
+                    saveStatus={'changed'}
+                    // sdkVersion: SDKVersion;
+                    // theme={'light'}
+                    preventRedirectWarning={() => null}
+                    >
+                  </FileList>
+                  {/* Don't load it conditionally since we need the _EditorComponent object to be available */}
+                  <LazyLoad
+                    load={(): Promise<typeof import('./MonacoEditor')> => {
+                      let timeout: any;
+                      const MonacoEditorPromise = import(/* webpackPreload: true */ './MonacoEditor').then(
+                        editor => ({ editor, type: 'monaco' })
                       );
-                    }
-                  } else {
-                    return <NoFileSelected />;
-                  }
-                  return <EditorShell />;
-                }}
-              </LazyLoad>
-              { generatedArtifact ? (
-                <SimpleEditor
-                    path=""
-                    value={generatedArtifact.artifactContent}
-                    onValueChange={()=>null}
-                    lineNumbers="on"
-                  />) : null }
-              </LayoutShell>
-              {preferences.panelsShown ? (
+                      return MonacoEditorPromise.then(({ editor, type }: any) => {
+                        this.setState({ loadedEditor: type });
+                        clearTimeout(timeout);
+                        return editor;
+                      }).catch(err=>{ console.log(err); alert('Failed to load Monaco Editor. See console error.')});
+                    }}>
+                    {({ loaded, data: Comp }) => {
+                      this._EditorComponent = Comp;
+
+                      if (entry && entry.item.type === 'file') {
+                        if (entry.item.asset) {
+                          return <AssetViewer entry={(entry as any) as filelistTypes.AssetFileEntry} />;
+                        }
+
+                        const { content } = (entry as filelistTypes.TextFileEntry).item ;
+                        // const isMarkdown = entry.item.path.endsWith('.md');
+                      
+                        if (loaded && Comp) {
+                          return (
+                            <React.Fragment>
+                              <Comp
+                                dependencies={{}/*this.props.dependencies*/}
+                                //sdkVersion={sdkVersion}
+                                entries={fileEntries/*this.props.fileEntries*/}
+                                autoFocus={!entry.state.isCreating}
+                                annotations={[]/*annotations*/}
+                                path={entry.item.path}
+                                value={content}
+                                // mode={preferences.editorMode}
+                                onValueChange={this.props.onChangeCode}
+                                onOpenPath={this._handleOpenPath}
+                              />
+                            </React.Fragment>
+                          );
+                        }
+                      } else {
+                        return <NoFileSelected />;
+                      }
+                      return <EditorShell />;
+                    }}
+                  </LazyLoad>
+                  { generatedArtifact ? (
+                    <SimpleEditor
+                        path=""
+                        value={generatedArtifact.artifactContent}
+                        onValueChange={()=>null}
+                        lineNumbers="on"
+                      />) : null }
+                  </LayoutShell>
+                  {preferences.panelsShown ? (
                       <EditorPanels
                         //annotations={annotations}
                         //deviceLogs={deviceLogs}
@@ -486,9 +469,8 @@ class EditorView extends React.Component<Props, State> {
                         //onClearDeviceLogs={onClearDeviceLogs}
                         panelType={preferences.panelType}
                       />
-                    ) : null}
-
-            </div>
+                  ) : null}
+              </div>
             </div>
             <EditorFooter
               // loadingMessage={loadingMessage}
@@ -496,7 +478,6 @@ class EditorView extends React.Component<Props, State> {
               fileTreeShown={preferences.fileTreeShown}
               panelsShown={preferences.panelsShown}
               // sendCodeOnChangeEnabled={sendCodeOnChangeEnabled}
-              timedJobRunning={preferences.timedJobRunning}
               // onSendCode={onSendCode}
               onToggleTheme={this._toggleTheme}
               onTogglePanels={this._togglePanels}
@@ -504,24 +485,16 @@ class EditorView extends React.Component<Props, State> {
               // onToggleSendCode={onToggleSendCode}
               onShowShortcuts={this._handleShowShortcuts}
               // onPrettifyCode={this._prettier}
-              onToggleTimedJob={this._toggleTimedJob}
               theme={this.props.preferences.theme}
             />
-            <ModalDialog
-              visible={currentModal === 'packy-manager'}
-              onDismiss={this._handleHideModal}>
-              <PackyManager 
-                currentPacky={currentPacky}
-                packyNames={packyNames}
-                packyTemplateNames={packyTemplateNames}
-                ownedGitRepositories={ownedGitRepositories}
-                onSelectPacky={this._handleSelectPacky}
-                onCreatePacky={this._handleCreatePacky}
-                onDeletePacky={this._handleDeletePacky}
-                onCloneGitRepository={this._handleCloneGitRepository}
-                onCommitGitRepository={this._handleCommitGitRepository}
-              />
-            </ModalDialog>
+            { loggedUser && (
+              <ModalDialog
+                title="Manage your packies"
+                visible={currentModal === 'packy-manager'}
+                onDismiss={this._handleHideModal}>
+                <PackyManager onClose={this._handleHideModal}> </PackyManager>
+              </ModalDialog>
+            )}
             <ModalDialog
               visible={currentModal === 'previous-saves'}
               title="Previous saves"
@@ -529,12 +502,14 @@ class EditorView extends React.Component<Props, State> {
               <PreviousSaves saveHistory={saveHistory} />
             </ModalDialog>
             <ModalDialog
+              title="Shortcuts"
               visible={currentModal === 'shortcuts'}
               onDismiss={this._handleHideModal}>
               <KeyboardShortcuts />
             </ModalDialog>
             { currentPacky && currentPacky.localPackyData && (
               <ModalDialog
+                title="Commit/push git package"
                 visible={currentModal === 'github-commit'}
                 onDismiss={this._handleHideModal}>
                 <EditorForm
@@ -544,7 +519,7 @@ class EditorView extends React.Component<Props, State> {
                   onDismiss={this._handleHideModal}
                   onSubmit={values => {
                     alert(JSON.stringify(values));
-                    this._handleCommitGitRepository(values['owner'], values['repoName'], values['branch']);
+                    //TODO this._handleCommitGitRepository(values['owner'], values['repoName'], values['branch']);
                   }}
                   fields={{
                     owner: {type: 'text', label: 'Owner', default:currentPacky.localPackyData.owner, onValidate: packyValids.validatePackyName },
@@ -555,6 +530,7 @@ class EditorView extends React.Component<Props, State> {
               )}
               { currentPacky && currentPacky.localPackyData && (
               <ModalDialog
+                title="Create git package"
                 visible={currentModal === 'github-create'}
                 onDismiss={this._handleHideModal}>
                 <EditorForm
@@ -580,12 +556,6 @@ class EditorView extends React.Component<Props, State> {
     }
 }
 
-export default withPreferences(
-  connect((state: any) => ({
-    viewer: state.app.viewer,
-  }))(EditorView)
-);
-
 const c = prefColors.c;
 const styles = StyleSheet.create({
   editorAreaOuter: {
@@ -602,6 +572,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     minHeight: 0,
     minWidth: 0,
+    marginLeft: '72px',
   },
 
   embedModal: {
@@ -637,4 +608,11 @@ const styles = StyleSheet.create({
   },
 });
 
+const muiStyles =  (theme: Theme) => createStyles({
+  drawerPaper: {
+    top: 0 // 'auto'
+  }, 
+});
 
+const StyledComp = withStyles(muiStyles)(EditorView);
+export default withPreferences(StyledComp);

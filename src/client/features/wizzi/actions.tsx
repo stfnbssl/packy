@@ -37,8 +37,8 @@ export interface SetTimedServicePayload  {
 
 export const generateArtifactRequest = createStandardAction(GENERATE_ARTIFACT_REQUEST)<ArtifactRequestPayload>();
 export const generateArtifactSuccess = createStandardAction(GENERATE_ARTIFACT_SUCCESS)<ArtifactResponsePayload>();
-export const generateArtifactError = createStandardAction(GENERATE_ARTIFACT_ERROR)<any>();
+export const generateArtifactError = createStandardAction(GENERATE_ARTIFACT_ERROR)<string>();
 export const executeJobRequest = createStandardAction(EXECUTE_JOB_REQUEST)<JobRequestPayload>();
 export const executeJobSuccess = createStandardAction(EXECUTE_JOB_SUCCESS)<JobResponsePayload>();
-export const executeJobError = createStandardAction(EXECUTE_JOB_ERROR)<any>();
+export const executeJobError = createStandardAction(EXECUTE_JOB_ERROR)<string>();
 export const setTimedService = createStandardAction(SET_TIMED_SERVICE)<SetTimedServicePayload>();

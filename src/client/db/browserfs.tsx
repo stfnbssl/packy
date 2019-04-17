@@ -1,6 +1,6 @@
 import * as wizziUtils from 'wizzi-browser';
 import { VFile, GetFoldersOptions, GetFilesOptions, FolderDef, FileDef } from 'wizzi-utils';
-import { BROWSERFS_PACKY_STORE } from '../configs/data';
+import { config } from '../features/config';
 
 type cb<T> = (err: any, result?: T) => void;
 
@@ -10,7 +10,7 @@ async function getFs(): Promise<wizziUtils.VFile> {
         if (typeof(fs) != 'undefined') {
             return resolve(fs);
         }
-        wizziUtils.vfile({storeName: BROWSERFS_PACKY_STORE}, (err: any, result) => {
+        wizziUtils.vfile({storeName: config.BROWSERFS_PACKY_STORE}, (err: any, result) => {
             if (err) { return reject(err); }
             console.log('db.browserfs.initialized', result);
             fs = result;

@@ -58,14 +58,5 @@ export type TextFileEntry = Readonly<{
     kind: string;
     a?: FileSystemEntry['item'];
     b?: FileSystemEntry['item'];
-  }
-  
-  export type Viewer = {
-    username: string;
-    nickname: string;
-    picture?: string;
-    user_metadata?: {
-      appetize_code: string;
-    };
-  };
+  }  
   

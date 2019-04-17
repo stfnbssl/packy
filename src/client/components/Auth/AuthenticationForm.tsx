@@ -76,8 +76,8 @@ class AuthenticationForm extends React.Component<Props, State> {
             </Button>
           </div>
           <p className={css(styles.caption)}>
-            <a className={css(styles.link)} href="https://expo.io/signup" target="blank">
-              Sign up for Expo
+            <a className={css(styles.link)} href="https://packy.org/signup" target="blank">
+              Sign up for Packy
             </a>
           </p>
         </form>

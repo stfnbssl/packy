@@ -15,7 +15,7 @@ type Props = {
   createdAt: string | undefined;
   saveHistory: packyTypes.SaveHistory;
   saveStatus: packyTypes.SaveStatus;
-  viewer: appTypes.Viewer | undefined;
+  loggedUser: appTypes.LoggedUser | undefined;
   isEditModalVisible: boolean;
   onShowPreviousSaves: () => void;
   onShowEditModal: () => void;
@@ -60,7 +60,7 @@ class EditorTitle extends React.Component<Props, State> {
       createdAt,
       saveHistory,
       saveStatus,
-      viewer,
+      loggedUser,
       theme,
       isEditModalVisible,
       onShowPreviousSaves,
@@ -76,7 +76,7 @@ class EditorTitle extends React.Component<Props, State> {
 
     let statusText;
 
-    if (viewer) {
+    if (loggedUser) {
       // User is logged in
       if (saveStatus === 'saving-draft') {
         statusText = 'Saving changes…';
@@ -148,10 +148,10 @@ class EditorTitle extends React.Component<Props, State> {
           </div>
           <div className={css(styles.metadata)}>
             <p className={css(styles.status)}>{statusText}</p>
-            {viewer && saveStatus === 'saving-draft' ? (
+            {loggedUser && saveStatus === 'saving-draft' ? (
               <div className={css(styles.spinner)} />
             ) : null}
-            {(viewer && saveStatus === 'saved-draft') || saveStatus === 'published' ? (
+            {(loggedUser && saveStatus === 'saved-draft') || saveStatus === 'published' ? (
               <svg className={css(styles.check)} width="11px" height="8px" viewBox="0 0 11 8">
                 <polygon
                   fill="#4CAF50"

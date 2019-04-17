@@ -7,7 +7,7 @@ export const WizziViewEngineMiddleware: MiddlewareType = (app: Application) => {
     app.engine('ittf', async function (filePath: string, options: any, callback: any) { // define the template engine
         const twinJsonContext = await wizziProds.inferAndLoadContext(filePath, 'mpage')
         const context = { ...options, locals: options._locals, ...twinJsonContext };
-        console.log('WizziViewEngineMiddleware.context', JSON.stringify(context, null, 2));
+        // console.log('WizziViewEngineMiddleware.context', JSON.stringify(context, null, 2));
         wizziProds.generateArtifactFs(filePath, context).then(generated=>{
             callback(null, generated.artifactContent);
         }).catch(err=>{
