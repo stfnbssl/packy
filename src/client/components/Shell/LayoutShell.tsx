@@ -7,9 +7,7 @@ type Props = {
 
 export default function LayoutShell({ children }: Props) {
   return (
-    <div>
       <div className={css(styles.layout)}>{children}</div>
-    </div>
   );
 }
 

@@ -59,6 +59,27 @@ export async function getAccessTokenFromAccount(uid: string, domain: string): Pr
         });
     })
 }
+export async function getLoggedUserFromAccount(uid: string, domain: string): Promise<any> {
+    const AccountModel = GetAccountModel();
+    return new Promise((resolve, reject) => {
+        AccountModel.findOne({
+            uid, domain
+        }, (err, account) => {
+            if (err) {return reject(err);}
+            if (account) {
+                return resolve({
+                    _id: 'Unavailable',
+                    uid: uid,
+                    username: account.username,
+                    displayName: account.displayName,
+                    picture: account.avatar_url
+                });
+            } else {
+                return reject('Account not found');
+            }
+        });
+    })
+}
 export const jwtAuth = {
     required: jwt({
         secret: 'secret', 

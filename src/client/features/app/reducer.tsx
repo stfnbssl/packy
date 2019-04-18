@@ -21,6 +21,10 @@ const reducer: Reducer<AppState, AppAction> = (state = initialState, action) => 
             console .log("appActions.updateLoggedUser");
             return { ...state, loggedUser: action.payload };
         }
+        case getType(appActions.loginUserByStoredUidSuccess): {
+            console .log("appActions.loginUserByStoredUidSuccess");
+            return { ...state, loggedUser: action.payload };
+        }
         default: {
             return state;
         } 

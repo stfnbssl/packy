@@ -27,6 +27,8 @@ export function getConfig() {
             BROWSERFS_PACKIES_ROOT: '/ixdb',
             BROWSERFS_PACKIES_FOLDER: '/ixdb/packies',
             BROWSERFS_PACKY_CONFIG_FILE: 'packy.config.json',
+            PREFERENCES_KEY: 'packy.preferences.config',
+            DEFAULT_PACKY_NAME: 'MyStarterPacky',
         };
         console.log('features.config', _config);
     }

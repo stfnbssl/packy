@@ -8,4 +8,6 @@ export type ConfigType = {
     BROWSERFS_PACKIES_FOLDER: string;
     BROWSERFS_PACKIES_ROOT: string;
     BROWSERFS_PACKY_CONFIG_FILE: string;
+    PREFERENCES_KEY: string;
+    DEFAULT_PACKY_NAME: string;
 }

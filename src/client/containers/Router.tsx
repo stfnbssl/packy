@@ -7,6 +7,7 @@ import Usage from '../docs/pages/getting-started/usage';
 import FirstPacky from '../docs/pages/getting-started/firstpacky';
 import WizziIttf from '../docs/pages/wizzi/ittf';
 import WizziJobs from '../docs/pages/wizzi/jobs';
+import TestEditorForm from '../features/form/TestEditorForm';
 
 type Props = {
   userAgent: string;
@@ -24,6 +25,7 @@ export default class Router extends React.Component<Props> {
         <Route exact path="/getting-started/firstpacky" component={FirstPacky} />
         <Route exact path="/wizzi/ittf" component={WizziIttf} />
         <Route exact path="/wizzi/jobs" component={WizziJobs} />
+        <Route exact path="/test/editorform" component={TestEditorForm} />
         <Route component={NonExistent} />
       </Switch>
     );

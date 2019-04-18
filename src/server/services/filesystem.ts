@@ -50,7 +50,9 @@ const FsDbDriver: fsTypes.FsDb = {
                 if (err) { rejects(err); }
                 const ret: string[] = [];
                 result.forEach((item) => {
-                    ret.push(item.relPath);
+                    if (item.relPath.startsWith('__') == false) {
+                        ret.push(item.relPath);
+                    }
                 });
                 resolve(ret);
             })
@@ -59,6 +61,14 @@ const FsDbDriver: fsTypes.FsDb = {
     getPackyTemplate: async function (id: string): Promise<FileDef[]> {
         return new Promise((resolve, rejects) => {
             vfile.getFiles(`${packyTemplatesJsonUri}/${id}`, {deep: true, documentContent: true}, (err, result)=> {
+                if (err) { rejects(err); }
+                resolve(result);
+            })
+        });
+    },
+    getStarterTemplate: async function (): Promise<FileDef[]> {
+        return new Promise((resolve, rejects) => {
+            vfile.getFiles(`${packyTemplatesJsonUri}/__starter`, {deep: true, documentContent: true}, (err, result)=> {
                 if (err) { rejects(err); }
                 resolve(result);
             })

@@ -7,10 +7,10 @@ import withPreferences from './withPreferences';
 import withThemeName from './withThemeName';
 
 export { 
-    prefTypes, 
-    prefColors, 
-    PreferencesProvider, 
-    PreferencesContext, 
+    prefTypes,
+    prefColors,
+    PreferencesProvider,
+    PreferencesContext,
     ColorsProvider, 
     usePreferences, 
     withPreferences, 

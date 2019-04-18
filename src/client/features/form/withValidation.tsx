@@ -7,6 +7,7 @@ type Props = {
   value: any;
   validate: (value: any) => Error | null;
   validation: FormValidation;
+  helperText: string;
 };
 
 type State = {
@@ -16,7 +17,8 @@ type State = {
 };
 
 type InjectedProps = {
-  error: Error | null | undefined;
+  error: boolean;
+  helperText: any;
 };
 
 export default function withValidation<P extends InjectedProps>(
@@ -76,7 +78,11 @@ export default function withValidation<P extends InjectedProps>(
 
     render() {
       // @ts-ignore
-      return <Comp ref={this._root} error={this.state.error} {...this.props} />;
+      const { helperText, validate, ...other} = this.props;
+      const { error } = this.state;
+      
+      return <Comp ref={this._root} error={error ? true : false} 
+        helperText={(error && error.message) || helperText} {...other} />;
     }
   }
 

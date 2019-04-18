@@ -20,12 +20,12 @@ import AssetViewer from './AssetViewer';
 import EditorPanels from './EditorPanels'
 import EditorToolbar from './EditorToolbar'
 import EditorFooter from './EditorFooter'
-import EditorForm from './EditorForm'
+import EditorForm from '../../features/form/EditorForm'
 import NoFileSelected from './NoFileSelected'
 import KeyboardShortcuts, { Shortcuts } from './KeyboardShortcuts';
 import PackyManager from '../../containers/PackyManager';
 import PreviousSaves from './PreviousSaves';
-import SimpleEditor from './SimpleEditor';
+import GeneratedView from './GeneratedView';
 import mockFn from '../../mocks/functions'
 
 const EDITOR_LOAD_FALLBACK_TIMEOUT = 3000;
@@ -47,13 +47,11 @@ type EditorProps = authTypes.AuthProps & {
       // platform?: 'android' | 'ios';
     };
     // loadingMessage: string | undefined;
-    sendCodeOnChangeEnabled: boolean;
     isWizziJobWaiting: boolean;
     onSelectPacky: (packyId: string) => void;
     onCreatePacky: (packyId: string, packyKind: string) => void;
     onDeletePacky: (packyId: string) => void;
-    onSendCode: () => void;
-    // onToggleSendCode: () => void;
+    onSaveCode: () => void;
     onFileEntriesChange: (entries: filelistTypes.FileSystemEntry[]) => Promise<void>;
     onChangeCode: (code: string) => void;
     onExecuteWizziJob: () => void;
@@ -73,7 +71,6 @@ type EditorProps = authTypes.AuthProps & {
       onError: (name: string, e: Error) => void
     ) => Promise<void>;
     */
-    autosaveEnabled: boolean;
     userAgent: string;
 }
 
@@ -146,7 +143,6 @@ class EditorView extends React.Component<Props, State> {
       currentBanner: null,
       isDownloading: false,
       isMarkdownPreview: true,
-      // lintErrors: [],
       previousEntry: undefined,
     };
 
@@ -275,7 +271,7 @@ class EditorView extends React.Component<Props, State> {
       this.setState(state => ({ isMarkdownPreview: !state.isMarkdownPreview }));
   
     render() {
-      const { currentModal/*, currentBanner*/, isDownloading/*, lintErrors*/ } = this.state;
+      const { currentModal/*, currentBanner*/, isDownloading } = this.state;
 
       const {
         classes,
@@ -293,15 +289,14 @@ class EditorView extends React.Component<Props, State> {
         isWizziJobWaiting,
         onLoggedOn,
         onLoggedOff,
-        onSendCode,
+        onSaveCode,
         onExecuteWizziJob,
-        // onToggleSendCode,
         // uploadFileAsync,
         preferences,
       } = this.props;
 
       // console.log('EditorView', generatedArtifact);
-      console.log('EditorView.currentPacky', currentPacky);
+      // console.log('EditorView.currentPacky', currentPacky);
   
       // const annotations: Annotation[] = [];
   
@@ -309,7 +304,6 @@ class EditorView extends React.Component<Props, State> {
       if (deviceError) {
         annotations.push(convertErrorToAnnotation(deviceError));
       }
-      annotations.push(...lintErrors);
       */
   
       //const hasPackyId = !!params.id;
@@ -348,7 +342,6 @@ class EditorView extends React.Component<Props, State> {
                   panels: this._togglePanels,
                   // format: this._prettier,
                   shortcuts: this._handleShowShortcuts,
-                  update: onSendCode,
                 };
                 const fn = commands[type];
                 if (fn) {
@@ -438,7 +431,6 @@ class EditorView extends React.Component<Props, State> {
                                 annotations={[]/*annotations*/}
                                 path={entry.item.path}
                                 value={content}
-                                // mode={preferences.editorMode}
                                 onValueChange={this.props.onChangeCode}
                                 onOpenPath={this._handleOpenPath}
                               />
@@ -452,21 +444,15 @@ class EditorView extends React.Component<Props, State> {
                     }}
                   </LazyLoad>
                   { generatedArtifact ? (
-                    <SimpleEditor
-                        path=""
-                        value={generatedArtifact.artifactContent}
-                        onValueChange={()=>null}
-                        lineNumbers="on"
+                    <GeneratedView
+                        generatedContent={generatedArtifact.artifactContent}
                       />) : null }
                   </LayoutShell>
                   {preferences.panelsShown ? (
                       <EditorPanels
                         //annotations={annotations}
-                        //deviceLogs={deviceLogs}
                         onShowErrorPanel={this._showErrorPanel}
-                        // onShowDeviceLogs={this._showDeviceLogs}
                         onTogglePanels={this._togglePanels}
-                        //onClearDeviceLogs={onClearDeviceLogs}
                         panelType={preferences.panelType}
                       />
                   ) : null}
@@ -475,14 +461,13 @@ class EditorView extends React.Component<Props, State> {
             <EditorFooter
               // loadingMessage={loadingMessage}
               // annotations={annotations}
+              loggedUid={preferences.loggedUid}
+              trustLocalStorage={preferences.trustLocalStorage}
               fileTreeShown={preferences.fileTreeShown}
               panelsShown={preferences.panelsShown}
-              // sendCodeOnChangeEnabled={sendCodeOnChangeEnabled}
-              // onSendCode={onSendCode}
               onToggleTheme={this._toggleTheme}
               onTogglePanels={this._togglePanels}
               onToggleFileTree={this._toggleFileTree}
-              // onToggleSendCode={onToggleSendCode}
               onShowShortcuts={this._handleShowShortcuts}
               // onPrettifyCode={this._prettier}
               theme={this.props.preferences.theme}
@@ -564,6 +549,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     minWidth: 0,
     minHeight: 0,
+    height: '100%',
   },
 
   editorAreaOuterWrapper: {
@@ -572,39 +558,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     minHeight: 0,
     minWidth: 0,
+    marginTop: '12px',
     marginLeft: '72px',
-  },
-
-  embedModal: {
-    minWidth: 0,
-    minHeight: 0,
-    maxWidth: 'calc(100% - 48px)',
-    maxHeight: 'calc(100% - 48px)',
-  },
-
-  previewToggle: {
-    appearance: 'none',
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    margin: 32,
-    padding: 12,
-    height: 48,
-    width: 48,
-    border: 0,
-    borderRadius: '50%',
-    backgroundColor: c('accent'),
-    color: c('accent-text'),
-    outline: 0,
-
-    ':focus-visible': {
-      outline: 'auto',
-    },
-  },
-
-  previewToggleIcon: {
-    fill: 'currentColor',
-    verticalAlign: -1,
+    height: '100%',
   },
 });
 

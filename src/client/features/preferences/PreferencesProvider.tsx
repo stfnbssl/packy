@@ -2,10 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
 import { parse } from 'query-string';
-// import { isMobile } from '../../utils/detectPlatform';
-// import { ConnectionMethod } from '../DeviceInstructions/DeviceInstructionsModal';
+import { config } from '../config';
 import { PreferencesContextType, PreferencesType } from './types';
-
 
 type Props = {
   search: string;
@@ -13,8 +11,6 @@ type Props = {
     get: (key: string) => string | undefined;
     set?: (key: string, value: string) => void;
   };
-  // testConnectionMethod?: ConnectionMethod;
-  // testPreviewPlatform?: 'android' | 'ios';
   children: React.ReactNode;
 };
 
@@ -22,14 +18,12 @@ type State = {
   preferences: PreferencesType;
 };
 
-const EDITOR_CONFIG_KEY = 'snack-editor-config';
+const PREFERENCES_KEY = config.PREFERENCES_KEY;
 
 const defaults: PreferencesType = {
-  // deviceConnectionMethod: 'device-id',
-  // devicePreviewPlatform: 'android',
-  // devicePreviewShown: true,
-  // editorMode: 'normal',
-  fileTreeShown: true /*!isMobile()*/,
+  loggedUid: undefined,
+  trustLocalStorage: false,
+  fileTreeShown: true,
   panelsShown: false,
   panelType: 'errors',
   theme: 'light',
@@ -47,7 +41,7 @@ class PreferencesProvider extends React.Component<Props, State> {
 
     try {
       // Restore editor preferences from saved data
-      overrides = JSON.parse(cookies.get(EDITOR_CONFIG_KEY) || '') || {};
+      overrides = JSON.parse(cookies.get(PREFERENCES_KEY) || '') || {};
     } catch (e) {
       // Ignore error
     }
@@ -55,13 +49,8 @@ class PreferencesProvider extends React.Component<Props, State> {
     try {
       // Set theme if passed in query params
       const { theme, platform } = parse(search);
-
       if (theme === 'light' || theme === 'dark') {
         overrides.theme = theme;
-      }
-
-      if (platform === 'android' || platform === 'ios') {
-        // overrides.devicePreviewPlatform = platform;
       }
     } catch (e) {
       // Ignore error
@@ -71,27 +60,14 @@ class PreferencesProvider extends React.Component<Props, State> {
       preferences: {
         ...defaults,
         ...overrides,
-
-        // Set the values according to the priority: saved preference, test value, default value
-        /*
-        deviceConnectionMethod:
-          overrides.deviceConnectionMethod ||
-          this.props.testConnectionMethod ||
-          defaults.deviceConnectionMethod,
-        devicePreviewPlatform:
-          overrides.devicePreviewPlatform ||
-          this.props.testPreviewPlatform ||
-          defaults.devicePreviewPlatform,
-          */
       },
     };
   }
 
   _persistPreferences = debounce(() => {
     const { cookies } = this.props;
-
     try {
-      cookies.set && cookies.set(EDITOR_CONFIG_KEY, JSON.stringify(this.state.preferences));
+      cookies.set && cookies.set(PREFERENCES_KEY, JSON.stringify(this.state.preferences));
     } catch (e) {
       // Ignore
     }
@@ -122,7 +98,4 @@ class PreferencesProvider extends React.Component<Props, State> {
   }
 }
 
-export default connect((state: any) => ({
-  //testPreviewPlatform: state.splitTestSettings.defaultPreviewPlatform,
-  //testConnectionMethod: state.splitTestSettings.defaultConnectionMethod,
-}))(PreferencesProvider);
+export default connect((state: any) => ({}))(PreferencesProvider);

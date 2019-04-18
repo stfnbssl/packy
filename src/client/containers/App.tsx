@@ -37,7 +37,7 @@ interface StateProps {
 interface DispatchProps {
   dispatchLoggedOn: (user: appTypes.LoggedUser) => void;
   dispatchLoggedOff: () => void;
-  dispatchInitPacky: () => void;
+  dispatchInitPacky: (preferences: prefTypes.PreferencesType) => void;
   dispatchSelectPacky: (packyId: string) => void;
   dispatchSavePacky: (packyId: string, code: packyTypes.PackyFiles) => void;
   dispatchCreatePacky: (packyId: string, packyKind: string) => void;
@@ -64,8 +64,8 @@ const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
   dispatchLoggedOff: () => {
     dispatch(appActions.updateLoggedUser(null));
   },
-  dispatchInitPacky: () => {
-    dispatch(packyActions.initPackyRequest());
+  dispatchInitPacky: (preferences: prefTypes.PreferencesType) => {
+    dispatch(packyActions.initPackyRequest({preferences}));
   },
   dispatchSelectPacky: (packyId: string) => {
     dispatch(packyActions.selectPackyRequest({id: packyId}));
@@ -109,7 +109,7 @@ type Props = authTypes.AuthProps &
       prefTypes.PreferencesContextType & 
       StateProps & 
       DispatchProps & {
-    // from router
+  // from router
   history: {
     push: (props: { pathname: string; search: string }) => void;
   };
@@ -128,8 +128,6 @@ type Props = authTypes.AuthProps &
 type State = StateProps & {
   packyStoreId?: string;
   packySessionReady: boolean;
-  sendCodeOnChangeEnabled: boolean;
-  autosaveEnabled: boolean;
   isSavedOnce: boolean;
   saveHistory: packyTypes.SaveHistory;
   saveStatus: packyTypes.SaveStatus;
@@ -178,10 +176,8 @@ class App extends React.Component<Props, State> {
     this.state = {
       packyStoreId: undefined,
       packySessionReady: false,
-      sendCodeOnChangeEnabled: true,
       // We don't have any UI for autosave in embed
       // In addition, enabling autosave in embed will disable autosave in editor when embed dialog is open
-      autosaveEnabled: true /*!this.props.isEmbedded*/,
       isSavedOnce: false,
       saveHistory: props.currentPacky && props.currentPacky.history ? props.currentPacky.history : [],
       saveStatus: props.currentPacky && props.currentPacky.isDraft ? 'saved-draft' : params.id ? 'published' : 'changed',
@@ -199,7 +195,9 @@ class App extends React.Component<Props, State> {
     // Session worker
     this._initializePackySession();
     // this.props.dispatchFetchPacky(packyDefaults.DEFAULT_PACKY_NAME);
-    this.props.dispatchInitPacky();
+    this.props.dispatchInitPacky(
+      this.props.preferences
+    );
     getEventServiceInstance().on('EXECUTE_JOB', (payload: any) => {
       // this.props.dispatchExecuteJob();
     });
@@ -235,17 +233,12 @@ class App extends React.Component<Props, State> {
     });
 
     if (didFilesChange) {
-      if (this.state.sendCodeOnChangeEnabled) {
-        this._sendCode();
-      }
+      this._saveCode();
       if (didIttfFilesChange) {
-        // this._generateArtifact();
-        // this._executeJob();
         this.setState({
           isWizziJobWaiting: true
         })
       }
-      this._handleSaveDraft();
     }
   }
 
@@ -257,18 +250,22 @@ class App extends React.Component<Props, State> {
   _initializePackySession = async () => {
     // lots of inits
     this.setState({
-      // channel,
-      // snackSessionState: sessionState,
       packySessionReady: true,
     });
   }
 
   _handleLoggedOn = async (user: appTypes.LoggedUser) => {
     this.props.dispatchLoggedOn(user);
+    this.props.setPreferences({
+      loggedUid: user.uid,
+    });
   }
 
   _handleLoggedOff = async () => {
     this.props.dispatchLoggedOff();
+    this.props.setPreferences({
+      loggedUid: undefined,
+    });
   }
 
   _handleSelectPacky = async (packyId: string) => {
@@ -310,8 +307,6 @@ class App extends React.Component<Props, State> {
   _handleFileEntriesChange = (nextFileEntries: FileSystemEntry[]): Promise<void> => {
     return new Promise(resolve =>
       this.setState(state => {
-        // const previousFocusedEntry = this._findFocusedEntry(state.fileEntries);
-        // const nextFocusedEntry = this._findFocusedEntry(nextFileEntries);
         let fileEntries = nextFileEntries;
         return { fileEntries };
       }, resolve)
@@ -321,7 +316,7 @@ class App extends React.Component<Props, State> {
   _generateArtifactNotDebounced = () => {
     const focusedEntry = this._findFocusedEntry(this.state.fileEntries);
     if (focusedEntry) {
-      // TODO send only fileEntries of the same schema of focusedEntry
+      // TODO send only fileEntries of the same schema of focusedEntry + json schema
       this.props.dispatchGenerateArtifact(
         focusedEntry.item.path,
         entryArrayToPacky(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
@@ -346,39 +341,16 @@ class App extends React.Component<Props, State> {
 
   _executeJob = debounce(this._executeJobNotDebounced, 5000);
 
-  _sendCodeNotDebounced = () => {
-    // throw new Error("_sendCodeNotDebounced not implemented");
+  _saveCodeNotDebounced = () => {
     this.props.dispatchSavePacky(
       this.state.packyStoreId as string,
       entryArrayToPacky(this.state.fileEntries.filter(e => !e.item.virtual && !e.item.generated))
     );
-    /*
-    this._packy.session.sendCodeAsync(
-      // map state.fileEntries to the correct type before sending to snackSession
-      entryArrayToPacky(this.state.fileEntries.filter(e => !e.item.virtual))
-    );
-    */
   }
 
-  _sendCode = debounce(this._sendCodeNotDebounced, 1000);
+  _saveCode = debounce(this._saveCodeNotDebounced, 1000);
 
-  _handleSaveDraftNotDebounced = () => {
-    if (this.props.loggedUser) {
-      // We can save draft only if the user is logged in
-      throw new Error("_handleSaveDraftNotDebounced not implemented");
-      // this._savePacky({ isDraft: true, allowedOnProfile: true });
-    }
-  };
-
-  _handleSaveDraft = debounce(this._handleSaveDraftNotDebounced, 3000);
-
-  
   render() {
-    const title =
-      this.props.currentPacky && this.props.currentPacky.localPackyData ? this.props.currentPacky.localPackyData.repoName : null;
-
-    // console.log('App.currentPacky', this.props.currentPacky);
-    // console.log('App container', this.props.generatedArtifact);
 
     return (
       <MuiThemeProvider theme={THEME}>
@@ -391,24 +363,20 @@ class App extends React.Component<Props, State> {
           packyTemplateNames={this.props.packyTemplateNames || []}
           ownedGitRepositories={this.props.ownedGitRepositories || []}
           generatedArtifact={this.props.generatedArtifact}
-          autosaveEnabled={this.state.autosaveEnabled}
-          sendCodeOnChangeEnabled={this.state.sendCodeOnChangeEnabled}
           saveHistory={this.state.saveHistory}
           saveStatus={this.state.saveStatus}
           creatorUsername={this.state.params.username}
           fileEntries={this.state.fileEntries}
           entry={this._findFocusedEntry(this.state.fileEntries)}
           isWizziJobWaiting={this.state.isWizziJobWaiting}
-          // loadingMessage={this.state.packySessionState.loadingMessage}
-          // dependencies={this.state.packySessionState.dependencies}
           onLoggedOn={this._handleLoggedOn}
           onLoggedOff={this._handleLoggedOff}
+          onChangeCode={this._handleChangeCode}
+          onFileEntriesChange={this._handleFileEntriesChange}
+          onSaveCode={this._saveCodeNotDebounced}
           onSelectPacky={this._handleSelectPacky}
           onCreatePacky={this._handleCreatePacky}
           onDeletePacky={this._handleDeletePacky}
-          onSendCode={this._sendCodeNotDebounced}
-          onFileEntriesChange={this._handleFileEntriesChange}
-          onChangeCode={this._handleChangeCode}
           onExecuteWizziJob={this._executeJobNotDebounced}
         />
       </MuiThemeProvider>

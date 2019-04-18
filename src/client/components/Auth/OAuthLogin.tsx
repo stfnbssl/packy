@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {withStyles, createStyles, Theme} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -128,7 +128,7 @@ class OAuthLogin extends React.Component<Props, State> {
                           </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button variant="extendedFab" onClick={this.closeCard}>Logoff</Button>
+                            <Fab variant="extended" onClick={this.closeCard}>Logoff</Fab>
                         </CardActions>
                       </Card>
                     ) : (

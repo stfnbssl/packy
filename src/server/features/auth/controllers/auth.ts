@@ -1,14 +1,15 @@
 import { Router, Request, Response } from 'express';
 import { ControllerType, AppInitializerType } from '../../app/types';
 import { GetAccountModel, AccountModelType } from '../mongo/account';
-import {authenticate, jwtAuth} from '../manager';
+import {authenticate, jwtAuth, getLoggedUserFromAccount} from '../manager';
+import { sendPromiseResult, sendSuccess } from '../../../utils/response';
 
 interface AuthRequest extends Request {
     session: any;
 }
 
 export class AuthController implements ControllerType {
-    public path = '/api/v1/auth0test';
+    public path = '/api/v1/auth';
     public router = Router();
 
     public initialize = (initValues: AppInitializerType) => {
@@ -29,6 +30,7 @@ export class AuthController implements ControllerType {
         this.router.get(`/auth/github/callback`, authenticate('github', {
             failureRedirect: `${this.path}/account`
         }), this.githubConnectCallback.bind(this));
+        this.router.get(`${this.path}/github/loggedin/:uid`,  this.getGithubLoggedIn);
     }
     private githubConnect(req: Request, res: Response) {
         // The request will be redirected to GitHub for authentication,
@@ -66,5 +68,14 @@ export class AuthController implements ControllerType {
         const result = await account.save();
         console.log('features.auth.controllers.auth.githubCallback.account.save.result', result);
         res.end();
+    }
+    private getGithubLoggedIn = async (req: AuthRequest, res: Response) => {
+        const uid = req.params.uid;
+        console.log('features.auth.controllers.auth.getGithubLoggedIn.uid', uid);
+        const user = await getLoggedUserFromAccount(uid, 'github.com');
+        sendSuccess(
+            res,
+            user
+        );
     }
 }

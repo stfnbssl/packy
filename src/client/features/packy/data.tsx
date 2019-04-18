@@ -3,14 +3,13 @@ import { callApi } from '../../utils/api';
 import * as bfs from '../../db/browserfs';
 import { config } from '../config';
 import { PackyFiles, CreatePackyOptions, PackyTemplate } from './types';
-import { INITIAL_CODE, DEFAULT_PACKY_NAME } from './defaults';
+import { INITIAL_CODE } from './defaults';
 
 type cb<T> = (err: any | null, result?: T) => void;
 
 export async function getPackyList(): Promise<string[]> {
     return new Promise(async (resolve) => {
         console.log('getPackyList')
-        await assertDefaultPacky();
         const allFiles = await bfs.getFiles(config.BROWSERFS_PACKIES_ROOT, {deep: true});
         console.log('getPackyList.forDebug.allFiles', allFiles)
         const folders = await bfs.getFolders(config.BROWSERFS_PACKIES_FOLDER, {deep: false});
@@ -38,11 +37,11 @@ export async function getPackyFiles(packyId: string): Promise<PackyFiles> {
     });
 }
 
-export async function getPackyTemplate(templateName: string): Promise<PackyTemplate> {
-    console.log('packy.data.getPackyTemplate', templateName);
+export async function downloadPackyTemplate(templateName: string): Promise<PackyTemplate> {
+    console.log('packy.data.downloadPackyTemplate', templateName);
     return new Promise(async (resolve, reject) =>{
         const res = await callApi('get', config.API_URL, 'templates/' + templateName);
-        console.log('packy.data.getPackyTemplate.res', res);
+        console.log('packy.data.downloadPackyTemplate.res', res);
         if (res.error) { return reject(res.error); }
         const files: PackyFiles = {};
         res.forEach((element: any) => {
@@ -61,7 +60,7 @@ export async function getPackyTemplate(templateName: string): Promise<PackyTempl
 export async function createPacky(packyId: string, options: CreatePackyOptions): Promise<PackyFiles> {
     return new Promise(async (resolve) => {
         if (typeof(options.data) === 'string') {
-            const packyTemplate = await getPackyTemplate(options.data as string);
+            const packyTemplate = await downloadPackyTemplate(options.data as string);
             await savePackyFiles(packyId, packyTemplate.files);
             return resolve(packyTemplate.files);
         } else {
@@ -123,7 +122,7 @@ export async function savePackyFiles(packyId: string, files: PackyFiles): Promis
 }
 
 export async function assertDefaultPacky(): Promise<void> {
-    const folderPath = path.join(config.BROWSERFS_PACKIES_FOLDER, DEFAULT_PACKY_NAME);
+    const folderPath = path.join(config.BROWSERFS_PACKIES_FOLDER, config.DEFAULT_PACKY_NAME);
     console.log('assertDefaultPacky.folderPath', folderPath);
     return new Promise(async (resolve) => {
         const isDirectory = await bfs.isDirectory(folderPath);
@@ -134,6 +133,7 @@ export async function assertDefaultPacky(): Promise<void> {
             console.log('assertDefaultPacky.already exists', folderPath)
             return resolve();
         }
-        return savePackyFiles(DEFAULT_PACKY_NAME, INITIAL_CODE);
+        const starterPacky = await downloadPackyTemplate('__starter')
+        return savePackyFiles(config.DEFAULT_PACKY_NAME, starterPacky.files);
     })
 }

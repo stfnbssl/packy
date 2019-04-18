@@ -93,9 +93,11 @@ class PackyManagerContainer extends React.Component<Props, State> {
     componentDidMount() {
         this.props.dispatchFetchPackyList();
         this.props.dispatchFetchPackyTemplateList();
+        /* STOPPED
         this.props.dispatchFetchOwnedGitRepositories(
             this.props.loggedUser.uid
         );
+        */
     }  
 
     _handleSelectPacky = async (packyId: string) => {
@@ -125,13 +127,13 @@ class PackyManagerContainer extends React.Component<Props, State> {
             ownedGitRepositories
         } = this.props;
         console.log('PackyManagerContainer.render.props', this.props);
-        if (packyNames && packyTemplateNames && ownedGitRepositories) {
+        if (packyNames && packyTemplateNames /* STOPPED && ownedGitRepositories */) {
             return (
                 <PackyManager 
                     currentPacky={currentPacky}
-                    packyNames={packyNames}
-                    packyTemplateNames={packyTemplateNames}
-                    ownedGitRepositories={ownedGitRepositories}
+                    packyNames={packyNames || []}
+                    packyTemplateNames={packyTemplateNames || []}
+                    ownedGitRepositories={ownedGitRepositories || []}
                     onSelectPacky={this._handleSelectPacky}
                     onCreatePacky={this._handleCreatePacky}
                     onDeletePacky={this._handleDeletePacky}

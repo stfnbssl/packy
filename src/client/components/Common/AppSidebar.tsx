@@ -9,10 +9,12 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import HelpIcon from '@material-ui/icons/Help';
+import InfoIcon from '@material-ui/icons/Info';
 import {Layout} from './Constants';
 
 const FilesLink = props => <Link to="/" {...props} />
 const DocLink = props => <Link to="/getting-started/usage" {...props} />
+const TestEditorFormLink = props => <Link to="/test/editorform" {...props} />
 
 type Props = {
     classes: any;
@@ -33,6 +35,13 @@ function AppSidebar(props: Props) {
                 <Tooltip title="View packy guide">
                   <IconButton component={DocLink} classes={{root: props.classes.iconButton}}>
                     <HelpIcon />
+                  </IconButton>
+                </Tooltip>
+            </ListItem>
+            <ListItem disableGutters={true}>
+                <Tooltip title="Test edit form">
+                  <IconButton component={TestEditorFormLink} classes={{root: props.classes.iconButton}}>
+                    <InfoIcon />
                   </IconButton>
                 </Tooltip>
             </ListItem>

@@ -16,7 +16,7 @@ import { prefTypes, withThemeName, prefColors } from '../../features/preferences
 import { packyTypes, packyValids } from '../../features/packy';
 
 import Button from '../shared/Button';
-import EditorForm from './EditorForm';
+import EditorForm from '../../features/form/EditorForm';
 
 type PackyManagerProps = {
   classes: any;

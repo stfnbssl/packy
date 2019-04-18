@@ -1,6 +1,7 @@
 import { all, fork, put, takeEvery, call/*, takeLatest */} from 'redux-saga/effects';
 import { getType } from 'typesafe-actions';
 import { config } from '../config';
+import { appActions } from '../app';
 import * as packyActions from './actions';
 import * as packyData from './data';
 import * as packyTypes from './types';
@@ -27,14 +28,18 @@ function* handleInitPackyRequest(action: ReturnType<typeof packyActions.initPack
     try {
         console.log('sagas.handleInitPackyRequest', action);
         const packyId = getSelectedPacky();
-        if (packyId) {
-            yield put(packyActions.selectPackyRequest({ id: packyId}));
-        } else {
-            yield put(packyActions.selectPackySuccess({
-                id: DEFAULT_PACKY_NAME,
-                files: INITIAL_CODE,
+        if (action.payload.preferences.trustLocalStorage && action.payload.preferences.loggedUid)
+        {
+            console.log('sagas.handleInitPackyRequest.uid', action.payload.preferences.loggedUid);
+            yield put(appActions.loginUserByStoredUid({ 
+                uid: action.payload.preferences.loggedUid,
+                selectedPackyId: packyId
             }));
-        } 
+        } else {
+            console.log('sagas.handleInitPackyRequest.starterPAcky', config.DEFAULT_PACKY_NAME);
+            yield packyData.assertDefaultPacky();
+            yield put(packyActions.selectPackyRequest({ id: config.DEFAULT_PACKY_NAME}))
+        }
     } catch (err) {
         if (err instanceof Error) {
             yield put(packyActions.initPackyError(err.stack!));
@@ -46,7 +51,7 @@ function* handleInitPackyRequest(action: ReturnType<typeof packyActions.initPack
 
 function* handleSelectPackyRequest(action: ReturnType<typeof packyActions.selectPackyRequest>) {
     try {
-        console.log('sagas.handleFetchPackyRequest', action);
+        console.log('sagas.handleSelectPackyRequest', action);
         const res: packyTypes.PackyFiles = yield packyData.getPackyFiles(action.payload.id);
         yield put(packyActions.selectPackySuccess({
             id: action.payload.id,

@@ -16,6 +16,7 @@ export class TemplatesController implements ControllerType {
         this.fsDb = initValues.fsDb;
         this.router.get(this.path, this.getAllTemplates);
         this.router.get(`${this.path}/:id`, this.getTemplateById);
+        this.router.get(`${this.path}/__starter`, this.getStarterTemplate);
     }
 
     private getAllTemplates = async (request: Request, response: Response) => {
@@ -28,6 +29,14 @@ export class TemplatesController implements ControllerType {
     private getTemplateById = async (request: Request, response: Response) => {
         const id = request.params.id;
         const template = await (this.fsDb as fsTypes.FsDb).getPackyTemplate(id)
+        sendSuccess(
+            response,
+            template
+        );
+    }
+    private getStarterTemplate = async (request: Request, response: Response) => {
+        const id = request.params.id;
+        const template = await (this.fsDb as fsTypes.FsDb).getStarterTemplate()
         sendSuccess(
             response,
             template

@@ -1,8 +1,6 @@
 export type PreferencesType = {
-    // deviceConnectionMethod: ConnectionMethod;
-    // devicePreviewPlatform: 'android' | 'ios';
-    // devicePreviewShown: boolean;
-    // editorMode: 'normal' | 'vim';
+    loggedUid: string;
+    trustLocalStorage: boolean;
     fileTreeShown: boolean;
     panelsShown: boolean;
     panelType: 'errors' | 'logs';

@@ -1,5 +1,6 @@
 import { createStandardAction } from 'typesafe-actions';
 import { storeTypes } from '../../store';
+import { prefTypes } from '../../features/preferences';
 import { PackyFiles, PackyTemplate, CreatePackyOptions, GitRepositoryMeta, ClonedGitRepository } from './types';
 
 const FETCH_PACKY_LIST_REQUEST = '@@packy/FETCH_PACKY_LIST_REQUEST';
@@ -35,6 +36,10 @@ const COMMIT_GIT_REPOSITORY_ERROR = '@@packy/COMMIT_GIT_REPOSITORY_ERROR';
 
 export interface AuthRequestPayload {
     uid: string;
+};
+
+export interface InitPackyRequestPayload {
+    preferences: prefTypes.PreferencesType
 };
 
 export interface PackyListPayload extends storeTypes.ResponsePayload {
@@ -96,7 +101,7 @@ export interface SavePackyPayload extends storeTypes.ResponsePayload {
 export const fetchPackyListRequest = createStandardAction(FETCH_PACKY_LIST_REQUEST)<void>();
 export const fetchPackyListSuccess = createStandardAction(FETCH_PACKY_LIST_SUCCESS)<PackyListPayload>();
 export const fetchPackyListError = createStandardAction(FETCH_PACKY_LIST_ERROR)<string>();
-export const initPackyRequest = createStandardAction(INIT_PACKY_REQUEST)<void>();
+export const initPackyRequest = createStandardAction(INIT_PACKY_REQUEST)<InitPackyRequestPayload>();
 export const initPackySuccess = createStandardAction(INIT_PACKY_SUCCESS)<SelectedPackyPayload>();
 export const initPackyError = createStandardAction(INIT_PACKY_ERROR)<string>();
 export const selectPackyRequest = createStandardAction(SELECT_PACKY_REQUEST)<PackyIdPayload>();
