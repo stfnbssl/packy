@@ -1,6 +1,4 @@
 import * as express from 'express';
-import * as cors from 'cors';
-import * as bodyParser from 'body-parser';
 import * as http from 'http';
 import * as socketio from 'socket.io';
 import { ConfigType } from './features/config';
@@ -17,8 +15,6 @@ class App {
         this.port = this.config.port;
         this.app = express();
         this.server = http.createServer(this.app);
-        this.app.use(cors())
-        this.app.use(bodyParser.json())
         initValues.middlewares.forEach((middleware) => {
             middleware(this.app);
         });
@@ -45,7 +41,7 @@ class App {
         this.server.listen(this.port, () => {
             console.log(`App listening at http://localhost:${this.port}`);
         });
-        /* no socket
+        /* if there are no socket
         this.app.listen(this.port, () => {
             console.log(`App listening at http://localhost:${this.port}`);
         }); */

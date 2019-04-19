@@ -4,7 +4,7 @@ import { ControllerType, AppInitializerType } from '../../app/types';
 import { fsTypes } from '../../filesystem'
 import { wizziTypes, wizziProds, wizziFactory } from '../../wizzi'
 import { PackyFiles, TemplateList, Template } from '../types';
-import { sendPromiseResult, sendSuccess } from '../../../utils/response';
+import { sendPromiseResult, sendSuccess, sendFailure } from '../../../utils/response';
 import { file } from 'wizzi';
 
 var jsonParser = bodyParser.json()
@@ -29,8 +29,9 @@ export class ProductionsController implements ControllerType {
             sendSuccess(response, {
                 generatedArtifact: value
             })
-        }).catch((err)=>{
+        }).catch((err)=> {
             console.log('err', err);
+            sendFailure(response, err, 501);
         });
     }
 
@@ -45,6 +46,7 @@ export class ProductionsController implements ControllerType {
             })
         }).catch((err)=>{
             console.log('err', err);
+            sendFailure(response, err, 501);
         });
     }
 }

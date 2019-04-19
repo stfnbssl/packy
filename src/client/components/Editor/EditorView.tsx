@@ -26,6 +26,7 @@ import KeyboardShortcuts, { Shortcuts } from './KeyboardShortcuts';
 import PackyManager from '../../containers/PackyManager';
 import PreviousSaves from './PreviousSaves';
 import GeneratedView from './GeneratedView';
+import GenerationErrors from './GenerationErrors';
 import mockFn from '../../mocks/functions'
 
 const EDITOR_LOAD_FALLBACK_TIMEOUT = 3000;
@@ -37,9 +38,6 @@ type EditorProps = authTypes.AuthProps & {
     saveHistory: packyTypes.SaveHistory;
     saveStatus: packyTypes.SaveStatus;
     creatorUsername?: string;
-    packyNames: string[];
-    packyTemplateNames: string[];
-    ownedGitRepositories: commonTypes.GitRepositoryMeta[];
     fileEntries: filelistTypes.FileSystemEntry[];
     entry: filelistTypes.TextFileEntry | filelistTypes.AssetFileEntry | undefined;
     params: {
@@ -54,6 +52,7 @@ type EditorProps = authTypes.AuthProps & {
     onSaveCode: () => void;
     onFileEntriesChange: (entries: filelistTypes.FileSystemEntry[]) => Promise<void>;
     onChangeCode: (code: string) => void;
+    onEntrySelected: (entry: filelistTypes.FileSystemEntry) => void;
     onExecuteWizziJob: () => void;
     /*
     onSubmitMetadata: (
@@ -114,6 +113,8 @@ class EditorView extends React.Component<Props, State> {
       if (props.entry !== state.previousEntry) {
         const { entry } = props;
         const { previousEntry } = state;
+
+        props.onEntrySelected(entry);
   
         let isMarkdownPreview = state.isMarkdownPreview;
   
@@ -276,9 +277,6 @@ class EditorView extends React.Component<Props, State> {
       const {
         classes,
         currentPacky,
-        packyNames,
-        packyTemplateNames,
-        ownedGitRepositories,
         entry,
         // params,
         generatedArtifact,
@@ -443,9 +441,16 @@ class EditorView extends React.Component<Props, State> {
                       return <EditorShell />;
                     }}
                   </LazyLoad>
-                  { generatedArtifact ? (
+                  { generatedArtifact && generatedArtifact.artifactContent ? (
                     <GeneratedView
                         generatedContent={generatedArtifact.artifactContent}
+                        generatedSourcePath={generatedArtifact.sourcePath}
+                      />) : generatedArtifact && generatedArtifact.errorLines ? (
+                    <GenerationErrors
+                        errorName={generatedArtifact.errorName}
+                        errorLines={generatedArtifact.errorLines}
+                        errorMessage={generatedArtifact.errorMessage}
+                        errorStack={generatedArtifact.errorStack}
                       />) : null }
                   </LayoutShell>
                   {preferences.panelsShown ? (
@@ -462,6 +467,9 @@ class EditorView extends React.Component<Props, State> {
               // loadingMessage={loadingMessage}
               // annotations={annotations}
               loggedUid={preferences.loggedUid}
+              autoGenSingleDoc={preferences.autoGenSingleDoc}
+              autoExecJob={preferences.autoExecJob}
+              connectGithubRepos={preferences.connectGithubRepos}
               trustLocalStorage={preferences.trustLocalStorage}
               fileTreeShown={preferences.fileTreeShown}
               panelsShown={preferences.panelsShown}
@@ -520,7 +528,7 @@ class EditorView extends React.Component<Props, State> {
                 onDismiss={this._handleHideModal}>
                 <EditorForm
                   title="Create git package"
-                  action="Done"
+                  action="Confirm"
                   visible={currentModal==='github-create'}
                   onDismiss={this._handleHideModal}
                   onSubmit={values => {

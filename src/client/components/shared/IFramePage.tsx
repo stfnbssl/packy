@@ -102,6 +102,7 @@ class IFramePage extends React.Component<Props> {
         return (
             <div style={{ width: '100%', height: '100%' }}>
                 <iframe
+                frameBorder={0}
                 sandbox="allow-scripts"
                 style={{ width: '100%', height: '100%' }}
                 ref={(f) => { this.ifr = f; }}

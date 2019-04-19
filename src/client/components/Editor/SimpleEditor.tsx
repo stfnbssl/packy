@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, css } from 'aphrodite';
+import {withStyles, createStyles, Theme} from '@material-ui/core/styles';
 import classnames from 'classnames';
 import Editor from 'react-simple-code-editor';
 import escape from 'escape-html';
@@ -15,6 +15,7 @@ import { prefTypes, withThemeName } from '../../features/preferences';
 import { light, dark } from './themes/simple-editor';
 
 type Props = {
+  classes: any;
   path: string;
   value: string;
   onValueChange: (value: string) => void;
@@ -82,11 +83,11 @@ class SimpleEditor extends React.Component<Props> {
   _editor = React.createRef<Editor>();
 
   render() {
-    const { value, lineNumbers, theme, onValueChange } = this.props;
+    const { classes, value, lineNumbers, theme, onValueChange } = this.props;
 
     return (
       <div
-        className={css(styles.container, lineNumbers === 'on' && styles.containerWithLineNumbers)}>
+        className={classnames(classes.container, lineNumbers === 'on' && classes.containerWithLineNumbers)}>
         <Editor
           // @ts-ignore
           ref={this._editor}
@@ -96,12 +97,12 @@ class SimpleEditor extends React.Component<Props> {
             lineNumbers === 'on'
               ? this._highlight(code)
                   .split('\n')
-                  .map((line: string) => `<span class="${css(styles.line)}">${line}</span>`)
+                  .map((line: string) => `<span class="${classes.line}">${line}</span>`)
                   .join('\n')
               : this._highlight(code)
           }
           padding={lineNumbers === 'on' ? 0 : 8}
-          className={classnames(css(styles.editor), 'prism-code')}
+          className={classnames(classes.editor, 'prism-code')}
         />
         <style
           type="text/css"
@@ -112,11 +113,11 @@ class SimpleEditor extends React.Component<Props> {
   }
 }
 
-export default withThemeName(SimpleEditor);
-
-const styles = StyleSheet.create({
+const muiStyles =  (theme: Theme) => createStyles({
   container: {
     flex: 1,
+    height: '100%',
+    width: '100%',
     overflow: 'auto',
   },
   containerWithLineNumbers: {
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     counterReset: 'line',
   },
   line: {
-    ':before': {
+    '&:before': {
       position: 'absolute',
       right: '100%',
       marginRight: 26,
@@ -141,3 +142,4 @@ const styles = StyleSheet.create({
     },
   },
 });
+export default withStyles(muiStyles)(withThemeName(SimpleEditor));

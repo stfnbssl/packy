@@ -1,0 +1,126 @@
+html 
+    lang en
+    dir ltr
+    head 
+        @title My Material-UI example page
+        meta 
+            charset utf-8
+        meta 
+            name viewport
+            content minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no
+        js https://unpkg.com/react@latest/umd/react.development.js
+        js https://unpkg.com/react-dom@latest/umd/react-dom.development.js
+        js https://unpkg.com/@material-ui/core/umd/material-ui.development.js
+        js https://unpkg.com/babel-standalone@latest/babel.min.js
+        link 
+            rel stylesheet
+            href https://fonts.googleapis.com/css?family=Roboto:300,400,500
+        link 
+            rel stylesheet
+            href https://fonts.googleapis.com/icon?family=Material+Icons
+    body 
+        div 
+            id root
+        script 
+            type text/babel
+            const 
+                { 
+                    @ Button
+                    @ colors
+                    @ createMuiTheme
+                    @ CssBaseline
+                    @ Dialog
+                    @ DialogActions
+                    @ DialogContent
+                    @ DialogContentText
+                    @ DialogTitle
+                    @ Icon
+                    @ MuiThemeProvider
+                    @ Typography
+                    @ withStyles
+                = window['material-ui']
+            const theme
+                _ createMuiTheme
+                    { 
+                        { palette
+                            { primary
+                                @ light colors.purple[300]
+                                @ main colors.purple[500]
+                                @ dark colors.purple[700]
+                            { secondary
+                                @ light colors.green[300]
+                                @ main colors.green[500]
+                                @ dark colors.green[700]
+                        { typography
+                            @ useNextVariants true
+            const styles
+                => 
+                    param theme
+                    (
+                        { 
+                            { root
+                                @ textAlign 'center'
+                                @ paddingTop theme.spacing.unit * 20
+                            { icon
+                                @ marginRight theme.spacing.unit
+            class Index
+                super React.Component
+                p state
+                    { 
+                        @ open false
+                => handleClose
+                    _ this.setState
+                        { 
+                            @ open false
+                => handleClick
+                    _ this.setState
+                        { 
+                            @ open true
+                m render
+                    const 
+                        { 
+                            @ classes
+                        = this.props
+                    const 
+                        { 
+                            @ open
+                        = this.state
+                    return 
+                        < MuiThemeProvider 
+                            @ theme {theme}
+                            < div 
+                                @ className {classes.root}
+                                < CssBaseline 
+                                < Dialog 
+                                    @ open {open}
+                                    @ onClose {this.handleClose}
+                                    < DialogTitle 
+                                        + Super Secret Password
+                                    < DialogContent 
+                                        < DialogContentText 
+                                            + 1-2-3-4-5
+                                    < DialogActions 
+                                        < Button 
+                                            @ color "primary"
+                                            @ onClick {this.handleClose}
+                                            + OK
+                                < Typography 
+                                    @ variant "h4"
+                                    @ gutterBottom
+                                    + Material-UI
+                                < Typography 
+                                    @ variant "subtitle1"
+                                    @ gutterBottom
+                                    + example project
+                                < Button 
+                                    @ variant "contained"
+                                    @ color "secondary"
+                                    @ onClick {this.handleClick}
+                                    < Icon 
+                                        @ className {classes.icon}
+                                        + fingerprint
+                                    + Super Secret Password
+            const App = withStyles(styles)(Index)
+            _ ReactDOM.render
+                < App 
+                _ document.getElementById('root')

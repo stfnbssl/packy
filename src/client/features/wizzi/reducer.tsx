@@ -9,7 +9,6 @@ import * as wizziActions from './actions';
 
 export interface WizziState {
     readonly loading: boolean;
-    readonly errors?: string;
     readonly generatedArtifact?: GeneratedArtifact;
     readonly jobGeneratedArtifacts?: packyTypes.PackyFiles;
     readonly timedServices: { [k : string]: serviceTypes.TimedServiceState }
@@ -17,7 +16,6 @@ export interface WizziState {
 
 const initialState: WizziState = {
     loading: false,
-    errors: undefined,
     generatedArtifact: undefined,
     jobGeneratedArtifacts: {},
     timedServices: {},
@@ -33,7 +31,28 @@ const reducer: Reducer<WizziState, WizziAction> = (state = initialState, action)
         }
         case getType(wizziActions.generateArtifactSuccess): {
             console .log("wizziActions.generateArtifactSuccess", action);
-            return { ...state, loading: false, generatedArtifact: action.payload.generatedArtifact };
+            if (action.payload.errorLines || action.payload.stack) {
+               return { 
+                    ...state, 
+                    loading: false, 
+                    generatedArtifact: {
+                        isError: true,    
+                        errorLines: action.payload.errorLines, 
+                        errorMessage: action.payload.message, 
+                        errorName: action.payload.name, 
+                        errorStack: action.payload.stack, 
+                    }
+                };
+            } else {
+               return { 
+                    ...state, 
+                    loading: false, 
+                    generatedArtifact: {
+                        isError: false,
+                        ...action.payload.generatedArtifact,
+                    }
+                };
+            }
         }
         case getType(wizziActions.generateArtifactError): {
             console .log("wizziActions.generateArtifactError", action);

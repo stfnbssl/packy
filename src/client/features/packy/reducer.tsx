@@ -123,6 +123,18 @@ const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action)
             console .log("packyActions.createPackyError", action);
             return { ...state, loading: false, errors: action.payload };
         } 
+        case getType(packyActions.savePackySuccess): {
+            console .log("packyActions.createPackySuccess", action);
+            const localPackyData = packyCreatedFromTemplate(action.payload.id);
+            return {
+                ...state,
+                currentPacky: {
+                    id: action.payload.id,
+                    files: action.payload.files,
+                    localPackyData: localPackyData
+                }
+            };
+        }
         case getType(packyActions.deletePackyRequest): {
             console .log("packyActions.deletePackyRequest", action);
             return { ...state, loading: true, tobeDeletedPackyId: action.payload.id };

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { storeTypes } from '../store';
 import { appTypes, appActions } from '../features/app';
 import { packyTypes, packyDefaults, packyActions } from '../features/packy';
+import { prefTypes, withPreferences } from '../features/preferences';
 import { commonTypes } from '../../common';
 import PackyManager from '../components/Editor/PackyManager';
 import Spinner from '../components/shared/Spinner';
@@ -80,9 +81,10 @@ interface DispatchProps {
     },
 });
 
-type Props = StateProps & 
-      DispatchProps & {
-    onClose: ()=> void;
+type Props = prefTypes.PreferencesContextType & 
+  StateProps & 
+  DispatchProps & {
+  onClose: ()=> void;
 }
 
 type State = StateProps & {
@@ -91,13 +93,13 @@ type State = StateProps & {
 class PackyManagerContainer extends React.Component<Props, State> {
 
     componentDidMount() {
-        this.props.dispatchFetchPackyList();
-        this.props.dispatchFetchPackyTemplateList();
-        /* STOPPED
+      this.props.dispatchFetchPackyList();
+      this.props.dispatchFetchPackyTemplateList();
+      if (this.props.preferences.connectGithubRepos) {
         this.props.dispatchFetchOwnedGitRepositories(
             this.props.loggedUser.uid
         );
-        */
+      }
     }  
 
     _handleSelectPacky = async (packyId: string) => {
@@ -119,6 +121,17 @@ class PackyManagerContainer extends React.Component<Props, State> {
         this.props.onClose();
     }
 
+    _handleCommitGitRepository = async (owner: string, name: string, branch: string) => {
+      this.props.dispatchCommitGitRepository(
+        this.props.loggedUser.uid,
+        owner,
+        name,
+        branch,
+        this.props.currentPacky.files
+      );
+      this.props.onClose();
+    }
+
     render() {
         const {
             currentPacky, 
@@ -138,7 +151,7 @@ class PackyManagerContainer extends React.Component<Props, State> {
                     onCreatePacky={this._handleCreatePacky}
                     onDeletePacky={this._handleDeletePacky}
                     onCloneGitRepository={this._handleCloneGitRepository}
-                    onCommitGitRepository={()=> {throw new Error('PackyManager.onCommitGitRepository not Implemented yet');}}
+                    onCommitGitRepository={this._handleCommitGitRepository}
                 />
             );
         } else {
@@ -150,5 +163,5 @@ class PackyManagerContainer extends React.Component<Props, State> {
 export default connect<StateProps, DispatchProps>(
     mapStateToProps,
     mapDispatchToProps
-) (PackyManagerContainer);
+) (withPreferences(PackyManagerContainer));
   

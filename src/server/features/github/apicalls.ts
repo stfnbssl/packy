@@ -146,6 +146,7 @@ export async function updateBranch(packyFiles: PackyFiles, repo: GithubRepoOptio
             depth: 10
         });
         let files = fs.readdirSync(dir);
+        console.log('updateBranch - packyFiles', packyFiles);
         console.log('updateBranch - cloned files', files);
         /*
         Object.keys(packyFiles).forEach(filePath=> {
@@ -158,53 +159,61 @@ export async function updateBranch(packyFiles: PackyFiles, repo: GithubRepoOptio
         // console.log(msg);
         filesDiff(dir, packyFiles, async (err, result)=> {
             // console.log ('updateBranch - diff', result);
-            Object.keys(result).forEach(entryName=> {
-                if (result[entryName].kind === '+' || result[entryName].kind === '<>') {
-                    console.log('updateBranch - write file', path.join(dir, entryName))
-                    fs.writeFileSync(path.join(dir, entryName), (result[entryName].b as FileDiffItem).content);
-                } else {
-                    if (['.gitignore', 'LICENSE', 'README.md'].indexOf(entryName) < 0) {
-                        console.log('updateBranch - delete file', path.join(dir, entryName))
-                        fs.unlinkSync(path.join(dir, entryName));
+            try
+            {
+                Object.keys(result).forEach(entryName=> {
+                    if (result[entryName].kind === '+' || result[entryName].kind === '<>') {
+                        console.log('updateBranch - write file', path.join(dir, entryName))
+                        fs.writeFileSync(path.join(dir, entryName), (result[entryName].b as FileDiffItem).content);
+                    } else {
+                        if (['.gitignore', 'LICENSE', 'README.md'].indexOf(entryName) < 0) {
+                            console.log('updateBranch - delete file', path.join(dir, entryName))
+                            fs.unlinkSync(path.join(dir, entryName));
+                        }
                     }
-                }
-            })
-            console.log('updateBranch - 1 - status of files in work area');
-            await printStatus(dir);
-            Object.keys(result).forEach(async entryName=> {
-                if (result[entryName].kind === '+' || result[entryName].kind === '<>') {
-                    await git.add({ fs, dir, filepath: entryName})
-                } else {
-                    if (['.gitignore', 'LICENSE', 'README.md'].indexOf(entryName) < 0) {
-                        await git.remove({ fs, dir, filepath: entryName})
+                })
+                console.log('updateBranch - 1 - status of files in work area');
+                await printStatus(dir);
+                Object.keys(result).forEach(async entryName=> {
+                    if (result[entryName].kind === '+' || result[entryName].kind === '<>') {
+                        await git.add({ fs, dir, filepath: entryName})
+                    } else {
+                        if (['.gitignore', 'LICENSE', 'README.md'].indexOf(entryName) < 0) {
+                            await git.remove({ fs, dir, filepath: entryName})
+                        }
                     }
-                }
-            })
-            console.log('updateBranch - 2 - status of files in work area');
-            await printStatus(dir);
-            let msg = await git.commit({
-                fs,
-                dir,
-                message: 'Packy git export ' + new Date().toDateString(),
-                author: {
-                  name: 'packy',
-                  email: 'packy@gmail.com'
-                }
-              })
-            console.log (msg)
-            await printStatus(dir);
-            // let msg = await git.listFiles({fs, dir});
-            // console.log('updateBranch - listFiles after diff writes', msg);
-            let pushResponse = await git.push({
-                fs,
-                dir,
-                remote: 'origin',
-                ref: 'master',
-                username: repo.owner,
-                password: repo.password,
-                token: repo.token,
-            });
-            console.log(pushResponse);
+                })
+                console.log('updateBranch - 2 - status of files in work area');
+                await printStatus(dir);
+                let msg = await git.commit({
+                    fs,
+                    dir,
+                    message: 'Packy git export ' + new Date().toDateString(),
+                    author: {
+                    name: 'packy',
+                    email: 'packy@gmail.com'
+                    }
+                })
+                console.log (msg)
+                await printStatus(dir);
+                // let msg = await git.listFiles({fs, dir});
+                console.log('before push. repo,branch', repo, branch);
+                let pushResponse = await git.push({
+                    fs,
+                    dir,
+                    remote: 'origin',
+                    ref: `${branch}`,
+                    // username: repo.owner,
+                    // password: repo.password,
+                    // username: 'stfnbssl',
+                    // password: 'gi++++01',
+                    token: repo.token,
+                    oauth2format: 'github',
+                });
+                console.log(pushResponse);
+            } catch (ex) {
+                console.log('push. err', ex);
+            }
         });
     });
 }

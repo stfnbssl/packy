@@ -21,7 +21,10 @@ type State = {
 const PREFERENCES_KEY = config.PREFERENCES_KEY;
 
 const defaults: PreferencesType = {
+  autoGenSingleDoc: false,
+  autoExecJob: false,
   loggedUid: undefined,
+  connectGithubRepos: false,
   trustLocalStorage: false,
   fileTreeShown: true,
   panelsShown: false,

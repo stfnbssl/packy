@@ -141,7 +141,7 @@ class EditorToolbar extends React.PureComponent<Props, State> {
                     Manage Packies
                     <ExtensionIcon className={classes.rightIcon} />
                   </Button> ) : null }
-                { loggedUser && currentPacky && currentPacky.localPackyData && currentPacky.localPackyData.owner ? (
+                { false && loggedUser && currentPacky && currentPacky.localPackyData && currentPacky.localPackyData.owner ? (
                   <React.Fragment>
                   <Divider />
                   <Button variant="contained" size="small" className={classes.buttonIcon} onClick={onShowGithubCommit}>

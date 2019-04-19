@@ -233,7 +233,9 @@ class App extends React.Component<Props, State> {
     });
 
     if (didFilesChange) {
-      this._saveCode();
+      if (prevState.fileEntries.length > 0) {
+        this._saveCode();
+      }
       if (didIttfFilesChange) {
         this.setState({
           isWizziJobWaiting: true
@@ -313,6 +315,18 @@ class App extends React.Component<Props, State> {
     );
   };
 
+  _handleEntrySelected = (entry: FileSystemEntry) => {
+    console.log('containers.App._handleEntrySelected', this.props.preferences.autoGenSingleDoc, entry.item.path);
+    if (this.props.preferences.autoGenSingleDoc) {
+      if (entry.item.path.endsWith('.ittf') && entry.item.path.indexOf('/t/') < 0) {
+        this.props.dispatchGenerateArtifact(
+          entry.item.path,
+          entryArrayToPacky(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
+        );
+      }
+    }
+  }
+
   _generateArtifactNotDebounced = () => {
     const focusedEntry = this._findFocusedEntry(this.state.fileEntries);
     if (focusedEntry) {
@@ -359,9 +373,6 @@ class App extends React.Component<Props, State> {
           userAgent={this.props.userAgent}
           loggedUser={this.props.loggedUser}
           currentPacky={this.props.currentPacky}
-          packyNames={this.props.packyNames || []}
-          packyTemplateNames={this.props.packyTemplateNames || []}
-          ownedGitRepositories={this.props.ownedGitRepositories || []}
           generatedArtifact={this.props.generatedArtifact}
           saveHistory={this.state.saveHistory}
           saveStatus={this.state.saveStatus}
@@ -373,6 +384,7 @@ class App extends React.Component<Props, State> {
           onLoggedOff={this._handleLoggedOff}
           onChangeCode={this._handleChangeCode}
           onFileEntriesChange={this._handleFileEntriesChange}
+          onEntrySelected={this._handleEntrySelected}
           onSaveCode={this._saveCodeNotDebounced}
           onSelectPacky={this._handleSelectPacky}
           onCreatePacky={this._handleCreatePacky}

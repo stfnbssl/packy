@@ -159,6 +159,7 @@ const schemaModuleMap: {[k: string]: string} = {
     js: 'js/module',
     json: 'json/document',
     html: 'html/document',
+    md: 'md/document',
     scss: 'scss/document',
     svg: 'svg/document',
     text: 'text/document',

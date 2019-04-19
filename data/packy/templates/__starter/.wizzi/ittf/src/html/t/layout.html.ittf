@@ -1,0 +1,6 @@
+html
+	$params name
+	head
+	body
+		h1 hello ${name}
+		$hook

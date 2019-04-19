@@ -9,6 +9,7 @@ import HelpIcon from '@material-ui/icons/Help';
 import InfoIcon from '@material-ui/icons/Info';
 import SimpleEditor from './SimpleEditor';
 import IFramePage from '../shared/IFramePage';
+import MarkdownElement from '../../docs/MarkdownElement';
 
 type ViewKindType = 
     | 'generated' 
@@ -19,6 +20,7 @@ type ViewKindType =
 type Props = {
     classes: any;
     generatedContent: string;
+    generatedSourcePath: string;
 }
 
 type State = {
@@ -56,9 +58,15 @@ class GeneratedView extends React.Component<Props, State> {
                 )}
                 {view === 'browser' && (
                     <div className={classes.editor}>
-                    <IFramePage
-                        content={this.props.generatedContent}
-                    />
+                    {(this.props.generatedSourcePath.endsWith('.html.ittf') ||
+                        this.props.generatedSourcePath.endsWith('.svg.ittf')) ? (
+                        <IFramePage
+                            content={this.props.generatedContent}
+                        />) :
+                    this.props.generatedSourcePath.endsWith('.md.ittf') ? (
+                        <MarkdownElement
+                            text={this.props.generatedContent}
+                        />) : (<h1>No viewer for document {this.props.generatedSourcePath}</h1>)}
                     </div>
                 )}
                 <div className={classes.sidebar}>
@@ -103,7 +111,7 @@ const muiStyles =  (theme: Theme) => createStyles({
         display: 'flex',
         flexDirection: 'row',
         borderLeft: '1px solid #cccccc',
-        minWidth: '740px',
+        width: '44vw',
         height: '100%',
     },
     editor: {
@@ -114,7 +122,7 @@ const muiStyles =  (theme: Theme) => createStyles({
         display: 'flex',
         flexDirection: 'column',
         padding: '15px',
-        background: '#dd00ee'
+        background: theme.palette.primary.light
     },
     iconButton: {
         padding: '10px',

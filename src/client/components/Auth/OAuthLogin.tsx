@@ -101,6 +101,7 @@ class OAuthLogin extends React.Component<Props, State> {
             provider,
             classes
         } = this.props;
+        const username = this.state.user && this.state.user.username; 
         const displayName = this.state.user && this.state.user.displayName; 
         const picture = this.state.user && this.state.user.picture; 
         const {
@@ -110,7 +111,7 @@ class OAuthLogin extends React.Component<Props, State> {
         return  (
                 <div>
                 {
-                    displayName ?  (
+                    username ?  (
                         <Card className={classes.card}>
                         <CardActionArea>
                           <CardMedia

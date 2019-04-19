@@ -18,6 +18,9 @@ export type Props = prefTypes.PreferencesContextType & {
   // loadingMessage: string | undefined;
   // annotations: Annotation[];
   loggedUid: string;
+  autoGenSingleDoc: boolean;
+  autoExecJob: boolean;
+  connectGithubRepos: boolean;
   trustLocalStorage: boolean;
   fileTreeShown: boolean;
   panelsShown: boolean;
@@ -36,6 +39,9 @@ function Footer(props: Props) {
     // loadingMessage,
     // annotations,
     loggedUid,
+    autoGenSingleDoc,
+    autoExecJob,
+    connectGithubRepos,
     trustLocalStorage,
     fileTreeShown,
     panelsShown,
@@ -49,12 +55,27 @@ function Footer(props: Props) {
     theme,
   } = props;
 
+  const _toggleAutoGenSingleDoc = () =>
+    props.setPreferences({
+      autoGenSingleDoc: !props.preferences.autoGenSingleDoc,
+    });
+
+  const _toggleAutoExecJob = () =>
+    props.setPreferences({
+      autoExecJob: !props.preferences.autoExecJob,
+    });
+
   const _toggleTrustLocalStorage = () =>
     props.setPreferences({
       trustLocalStorage: !props.preferences.trustLocalStorage,
     });
 
-  const _toggleFileTree = () =>
+  const _toggleConnectGithubRepos = () =>
+    props.setPreferences({
+      connectGithubRepos: !props.preferences.connectGithubRepos,
+    });
+
+    const _toggleFileTree = () =>
     props.setPreferences({
       fileTreeShown: !props.preferences.fileTreeShown,
     });
@@ -95,6 +116,25 @@ function Footer(props: Props) {
           </FooterButton>*/}
       <MenuButton
         icon={require('../../assets/settings-icon.png')}
+        label={<span className={css(styles.buttonLabel)}>Auth</span>}
+        content={
+          <React.Fragment>
+            <div style={{paddingLeft: '15px'}}>Logged uid: {loggedUid}</div>
+            <ToggleSwitch checked={trustLocalStorage} onChange={_toggleTrustLocalStorage} label="Trust local storage" />
+            <ToggleSwitch checked={connectGithubRepos} onChange={_toggleConnectGithubRepos} label="Github repos connect" />
+          </React.Fragment>
+        } />
+      <MenuButton
+        icon={require('../../assets/settings-icon.png')}
+        label={<span className={css(styles.buttonLabel)}>Wizzi</span>}
+        content={
+          <React.Fragment>
+            <ToggleSwitch checked={autoGenSingleDoc} onChange={_toggleAutoGenSingleDoc} label="Auto gen single doc" />
+            <ToggleSwitch checked={autoExecJob} onChange={_toggleAutoExecJob} label="Auto exec job" />
+          </React.Fragment>
+        } />
+      <MenuButton
+        icon={require('../../assets/settings-icon.png')}
         label={<span className={css(styles.buttonLabel)}>Editor</span>}
         content={
           <React.Fragment>
@@ -109,8 +149,6 @@ function Footer(props: Props) {
               </IconButton>
               <ShortcutLabel combo={Shortcuts.shortcuts.combo} />
             </div>
-            <div style={{paddingLeft: '15px'}}>Logged uid: {loggedUid}</div>
-            <ToggleSwitch checked={trustLocalStorage} onChange={_toggleTrustLocalStorage} label="Trust local storage" />
             <ToggleSwitch checked={fileTreeShown} onChange={_toggleFileTree} label="Files" />
             <ToggleSwitch checked={panelsShown} onChange={onTogglePanels} label="Panel" />
             <ToggleSwitch checked={theme !== 'light'} onChange={_toggleTheme} label="Dark theme" />

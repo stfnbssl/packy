@@ -1,0 +1,36 @@
+html
+    $
+        var slot = 3, slotSize = 400, i = 0, x = 0;
+        var fontSize = 36;
+        function getChar(number) {
+            return String.fromCharCode(number);
+        }
+    head
+        @style
+            css
+                < td:hover
+                    font-size 54px
+    body
+        div
+            style padding:20px
+            table
+                $
+                    i = 32 + slot * slotSize;
+                    x = 0;
+                $while i < 232 + slot * slotSize
+                    $if x != 20
+                        td ${ getChar(i) }
+                            style font-size:${fontSize}px; color:darkred;
+                            span ${'(' + i + ')'}
+                                style font-size:10px
+                    $else
+                        tr
+                            td ${ getChar(i) }
+                                style font-size:${fontSize}px; color:darkred;
+                                span ${'(' + i + ')'}
+                                    style font-size:10px
+                            $
+                                x = 0;
+                    $
+                        i++;
+                        x++; 

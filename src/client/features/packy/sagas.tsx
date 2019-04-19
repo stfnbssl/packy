@@ -37,7 +37,8 @@ function* handleInitPackyRequest(action: ReturnType<typeof packyActions.initPack
             }));
         } else {
             console.log('sagas.handleInitPackyRequest.starterPAcky', config.DEFAULT_PACKY_NAME);
-            yield packyData.assertDefaultPacky();
+            const res = yield packyData.assertDefaultPacky();
+            console.log('sagas.handleInitPackyRequest.assertDefaultPacky.res', res);
             yield put(packyActions.selectPackyRequest({ id: config.DEFAULT_PACKY_NAME}))
         }
     } catch (err) {
@@ -107,7 +108,9 @@ function* handleSavePackyRequest(action: ReturnType<typeof packyActions.savePack
             action.payload.files as packyTypes.PackyFiles 
         );
         yield put(packyActions.savePackySuccess({
-            message: 'Packy files saved'
+            message: 'Packy files saved',
+            id: action.payload.id,
+            files: action.payload.files
         }));
     } catch (err) {
         if (err instanceof Error) {
@@ -154,7 +157,7 @@ function* handleCloneGitRepositoryRequest(action: ReturnType<typeof packyActions
     try {
         console.log('sagas.handleCloneGitRepositoryRequest.action', action);
         const res = yield call(callApi, 'get', config.API_URL, 
-            `github/clone/${action.payload.owner}/${action.payload.name}/${action.payload.branch}`
+            `github/clone/${action.payload.uid}/${action.payload.owner}/${action.payload.name}/${action.payload.branch}`
         );
         console.log('sagas.handleCloneGitRepositoryRequest.res', res);
         yield put(packyActions.cloneGitRepositorySuccess({repository: res}));
@@ -171,7 +174,7 @@ function* handleCommitGitRepositoryRequest(action: ReturnType<typeof packyAction
     try {
         console.log('sagas.handleCommitGitRepositoryRequest.action', action);
         const res = yield call(callApi, 'post', config.API_URL, 
-            `github/commit/${action.payload.owner}/${action.payload.name}/${action.payload.branch}`,
+            `github/commit/${action.payload.uid}/${action.payload.owner}/${action.payload.name}/${action.payload.branch}`,
             { files: action.payload.files }
         );
         console.log('sagas.handleCommitGitRepositoryRequest.res', res);

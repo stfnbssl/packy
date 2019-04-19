@@ -1,5 +1,6 @@
 import { MiddlewareType } from '../features/app/types';
 import { LoggerMiddleware } from './logger';
+import { BodyParserMiddleware } from './bodyParser';
 import { CorsMiddleware } from './cors';
 import { StaticFilesMiddleware } from './static';
 import { WizziViewEngineMiddleware } from './wizziViewEngine';
@@ -15,6 +16,7 @@ import { checkJwt, checkScopes } from './auth0';
 import auth0Secured from './auth0Secured';
 
 const appMiddlewares: MiddlewareType[] = [
+    BodyParserMiddleware,
     LoggerMiddleware,
     CompressionMiddleware,
     HelmetMiddleware,

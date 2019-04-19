@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import {withStyles, createStyles, Theme} from '@material-ui/core/styles';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -131,11 +132,11 @@ class PackyManager extends React.PureComponent<Props, State> {
         }
         <EditorForm
             title="Create New Packy"
-            action="Done"
+            action="Confirm"
             visible={modalVisible==='create'}
             onDismiss={this._handleDismissModal}
             onSubmit={values => {
-              alert(JSON.stringify(values));
+              // alert(JSON.stringify(values));
               this._handleCreatePacky(values['name'], values['kind']);
             }}
             fields={{
@@ -146,11 +147,11 @@ class PackyManager extends React.PureComponent<Props, State> {
             }} />
         <EditorForm
             title="Clone git package"
-            action="Done"
+            action="Confirm"
             visible={modalVisible==='clone'}
             onDismiss={this._handleDismissModal}
             onSubmit={values => {
-              alert(JSON.stringify(values));
+              // alert(JSON.stringify(values));
               this._handleClonePacky(values['id'], values['branch']);
             }}
             fields={{
@@ -164,13 +165,13 @@ class PackyManager extends React.PureComponent<Props, State> {
         {currentPacky && (
           <EditorForm
               title="Commit/push git package"
-              action="Done"
+              action="Confirm"
               visible={modalVisible==='commit'}
               onDismiss={this._handleDismissModal}
               onSubmit={values => {
-                alert(JSON.stringify(values));
+                // alert(JSON.stringify(values));
                 this._handleCommitPacky(`${values['owner']}_${values['repoName']}`, values['branch']);
-              }}
+              }} 
               fields={{
                 owner: {type: 'text', label: 'Owner', default:currentPacky.localPackyData.owner, onValidate: packyValids.validatePackyName },
                 repoName: {type: 'text', label: 'Repo', default: currentPacky.localPackyData.repoName,  onValidate: packyValids.validatePackyName },

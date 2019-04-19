@@ -4,6 +4,7 @@ import * as bfs from '../../db/browserfs';
 import { config } from '../config';
 import { PackyFiles, CreatePackyOptions, PackyTemplate } from './types';
 import { INITIAL_CODE } from './defaults';
+import { rejects } from 'assert';
 
 type cb<T> = (err: any | null, result?: T) => void;
 
@@ -98,7 +99,7 @@ async function asyncmap (coll: any[], mapper: any, callback: cb<any>) {
 export async function savePackyFiles(packyId: string, files: PackyFiles): Promise<void> {
     const folderPath = path.join(config.BROWSERFS_PACKIES_FOLDER, packyId);
     console.log('savingPackyFiles', packyId);
-    return new Promise(async (resolve) => {
+    return new Promise(async (resolve, reject) => {
         await bfs.deleteFolder(folderPath);
         const keys = Object.keys(files);
         console.log('files to load', keys);
@@ -109,9 +110,10 @@ export async function savePackyFiles(packyId: string, files: PackyFiles): Promis
                 path.join(config.BROWSERFS_PACKIES_FOLDER, packyId, k), 
                 file.contents
             );
-            console.log('savePackyFiles.written', path.join(config.BROWSERFS_PACKIES_FOLDER, packyId, k), file.contents)
+            console.log('savePackyFiles.written', path.join(config.BROWSERFS_PACKIES_FOLDER, packyId, k))
             callback(null);
         }, async (err, result)=> {
+            if (err) { return reject(err);}
             const isDirectory = await bfs.isDirectory(folderPath);
             console.log('savePackyFiles.isDirectory', isDirectory, folderPath);
             const savedfiles = await bfs.getFiles(folderPath, {deep: true});
@@ -133,7 +135,10 @@ export async function assertDefaultPacky(): Promise<void> {
             console.log('assertDefaultPacky.already exists', folderPath)
             return resolve();
         }
-        const starterPacky = await downloadPackyTemplate('__starter')
-        return savePackyFiles(config.DEFAULT_PACKY_NAME, starterPacky.files);
+        const downloaded = await downloadPackyTemplate('__starter')
+        console.log('assertDefaultPacky.saved', downloaded);
+        const saved = await savePackyFiles(config.DEFAULT_PACKY_NAME, downloaded.files);
+        console.log('assertDefaultPacky.saved', saved);
+        return resolve();
     })
 }
