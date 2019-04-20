@@ -7,15 +7,7 @@ export type ClonedGitRepository = commonTypes.ClonedGitRepository;
 
 export type Packy = {
   id: string;
-  // created: string;
   files?: PackyFiles;
-  /*
-  manifest?: {
-    name: string;
-    description: string;
-    // sdkVersion?: SDKVersion;
-  };
-  */
   dependencies?: {
     [key: string]: string;
   };

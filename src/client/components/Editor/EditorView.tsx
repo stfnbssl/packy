@@ -45,15 +45,16 @@ type EditorProps = authTypes.AuthProps & {
       // platform?: 'android' | 'ios';
     };
     // loadingMessage: string | undefined;
+    jobError: wizziTypes.JobError;
     isWizziJobWaiting: boolean;
     onSelectPacky: (packyId: string) => void;
     onCreatePacky: (packyId: string, packyKind: string) => void;
     onDeletePacky: (packyId: string) => void;
-    onSaveCode: () => void;
     onFileEntriesChange: (entries: filelistTypes.FileSystemEntry[]) => Promise<void>;
     onChangeCode: (code: string) => void;
     onEntrySelected: (entry: filelistTypes.FileSystemEntry) => void;
     onExecuteWizziJob: () => void;
+    onSaveCode: () => void;
     /*
     onSubmitMetadata: (
       details: {
@@ -114,7 +115,7 @@ class EditorView extends React.Component<Props, State> {
         const { entry } = props;
         const { previousEntry } = state;
 
-        props.onEntrySelected(entry);
+        if (entry) { props.onEntrySelected(entry); }
   
         let isMarkdownPreview = state.isMarkdownPreview;
   
@@ -284,11 +285,12 @@ class EditorView extends React.Component<Props, State> {
         saveStatus,
         loggedUser,
         // loadingMessage,
+        jobError,
         isWizziJobWaiting,
         onLoggedOn,
         onLoggedOff,
-        onSaveCode,
         onExecuteWizziJob,
+        onSaveCode,
         // uploadFileAsync,
         preferences,
       } = this.props;
@@ -372,6 +374,7 @@ class EditorView extends React.Component<Props, State> {
               onShowPackyManager={this._handleShowPackyManager}
               onShowGithubCommit={this._handleShowGithubCommit}
               onShowGithubCreate={this._handleShowGithubCreate}
+              onSaveCode={onSaveCode}
               // onDownloadCode={handleDownloadCode}
               // onPublishAsync={onPublishAsync}
               
@@ -451,6 +454,13 @@ class EditorView extends React.Component<Props, State> {
                         errorLines={generatedArtifact.errorLines}
                         errorMessage={generatedArtifact.errorMessage}
                         errorStack={generatedArtifact.errorStack}
+                      />) : null }
+                  { jobError ? (
+                    <GenerationErrors
+                        errorName={jobError.errorName}
+                        errorLines={[]}
+                        errorMessage={jobError.errorMessage}
+                        errorStack={jobError.errorStack}
                       />) : null }
                   </LayoutShell>
                   {preferences.panelsShown ? (

@@ -14,6 +14,7 @@ import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import CreateIcon from '@material-ui/icons/Create';
+import SaveIcon from '@material-ui/icons/Save';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import ExtensionIcon from '@material-ui/icons/Extension';
 import GithubIcon from '../../styles/svgIcons/Github';
@@ -71,6 +72,7 @@ type Props = authTypes.AuthProps & {
   onShowPackyManager: () => void;
   onShowGithubCommit: () => void;
   onShowGithubCreate: () => void;
+  onSaveCode: () => void;
   creatorUsername?: string;
   theme: prefTypes.ThemeName;
 };
@@ -115,6 +117,7 @@ class EditorToolbar extends React.PureComponent<Props, State> {
       onShowPackyManager,
       onShowGithubCommit,
       onShowGithubCreate,
+      onSaveCode,
       // onPublishAsync,
     } = this.props;
 
@@ -141,21 +144,12 @@ class EditorToolbar extends React.PureComponent<Props, State> {
                     Manage Packies
                     <ExtensionIcon className={classes.rightIcon} />
                   </Button> ) : null }
-                { false && loggedUser && currentPacky && currentPacky.localPackyData && currentPacky.localPackyData.owner ? (
+                { loggedUser && currentPacky ? (
                   <React.Fragment>
                   <Divider />
-                  <Button variant="contained" size="small" className={classes.buttonIcon} onClick={onShowGithubCommit}>
-                    Commit
-                    <CloudUploadIcon className={classes.rightIcon} />
-                  </Button>
-                  </React.Fragment>
-                ) : null }
-                { loggedUser && currentPacky && currentPacky.localPackyData && !currentPacky.localPackyData.owner ? (
-                  <React.Fragment>
-                  <Divider />
-                  <Button variant="contained" size="small" className={classes.buttonIcon} onClick={onShowGithubCreate}>
-                    Create
-                    <CreateIcon className={classes.rightIcon} />
+                  <Button variant="contained" size="small" className={classes.buttonIcon} onClick={onSaveCode}>
+                    Save
+                    <SaveIcon className={classes.rightIcon} />
                   </Button>
                   </React.Fragment>
                 ) : null }

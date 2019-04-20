@@ -13,6 +13,7 @@ import {
 } from './localManager';
 import * as packyActions from './actions';
 import { deletePacky } from './data';
+import { mixPreviousAndGeneratedPackyFiles } from './convertFileStructure';
 
 export interface PackyState {
     readonly loading: boolean;
@@ -124,14 +125,13 @@ const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action)
             return { ...state, loading: false, errors: action.payload };
         } 
         case getType(packyActions.savePackySuccess): {
-            console .log("packyActions.createPackySuccess", action);
-            const localPackyData = packyCreatedFromTemplate(action.payload.id);
+            console .log("packyActions.savePackySuccess", action);
             return {
                 ...state,
                 currentPacky: {
                     id: action.payload.id,
-                    files: action.payload.files,
-                    localPackyData: localPackyData
+                    files: action.payload.packyEntryFiles,
+                    localPackyData: state.currentPacky.localPackyData
                 }
             };
         }
@@ -140,7 +140,7 @@ const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action)
             return { ...state, loading: true, tobeDeletedPackyId: action.payload.id };
         } 
         case getType(packyActions.deletePackySuccess): {
-            console .log("packyActions.createPackySuccess", action);
+            console .log("packyActions.deletePackySuccess", action);
             deletePacky(action.payload.id);
             deletePackyData(action.payload.id);
             return {
@@ -199,6 +199,31 @@ const reducer: Reducer<PackyState, PackyAction> = (state = initialState, action)
         case getType(packyActions.cloneGitRepositoryError): {
             console .log("packyActions.cloneGitRepositoryError", action);
             return { ...state, loading: false, errors: action.payload };
+        }
+        case getType(packyActions.executeJobSuccess): {
+            console.log("packyActions.executeJobSuccess", action);
+            const newPacky =  {
+                ...state.currentPacky,
+                files: mixPreviousAndGeneratedPackyFiles(
+                    action.payload.previousArtifacts,
+                    action.payload.generatedArtifacts,
+                )
+            };
+            console.log("packyActions.executeJobSuccess.newPacky", newPacky);
+            if (!action.payload.__is_error) {
+                return { 
+                    ...state, 
+                    currentPacky: {
+                        ...state.currentPacky,
+                        files: mixPreviousAndGeneratedPackyFiles(
+                            action.payload.previousArtifacts,
+                            action.payload.generatedArtifacts,
+                        )
+                    },
+                };
+            } else {
+                return state;    
+            }
         }
         default: {
             return state;

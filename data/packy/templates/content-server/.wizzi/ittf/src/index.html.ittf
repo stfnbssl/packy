@@ -1,0 +1,5 @@
+html
+    head
+        @title ${site.title}
+    body
+        h1 ${site.title}

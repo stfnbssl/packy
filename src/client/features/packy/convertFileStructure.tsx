@@ -19,10 +19,10 @@ const getFolders = (path: string): string[] => {
   return result;
 };
                                                    
-export const packyToEntryArray = (sourceFormat: PackyFiles): FileSystemEntry[] => {
+export const packyToEntryArray = (files: PackyFiles): FileSystemEntry[] => {
   const fileSystem: FileSystemEntry[] = [];
   const foldersInFileSystem = new Set();
-  for (const filename of Object.keys(sourceFormat).sort()) {
+  for (const filename of Object.keys(files).sort()) {
     for (const folder of getFolders(filename)) {
       if (!foldersInFileSystem.has(folder)) {
         fileSystem.push({
@@ -39,12 +39,12 @@ export const packyToEntryArray = (sourceFormat: PackyFiles): FileSystemEntry[] =
     const isEntry = isEntryPoint(filename);
 
     fileSystem.push(
-      sourceFormat[filename].type === 'ASSET'
+      files[filename].type === 'ASSET'
         ? {
             item: {
               path: filename,
               type: 'file',
-              uri: sourceFormat[filename].contents,
+              uri: files[filename].contents,
               asset: true,
             },
             state: {},
@@ -53,8 +53,8 @@ export const packyToEntryArray = (sourceFormat: PackyFiles): FileSystemEntry[] =
             item: {
               path: filename,
               type: 'file',
-              content: sourceFormat[filename].contents,
-              generated: sourceFormat[filename].generated,
+              content: files[filename].contents,
+              generated: files[filename].generated,
             },
             state: {
               isOpen: isEntry,
@@ -67,15 +67,29 @@ export const packyToEntryArray = (sourceFormat: PackyFiles): FileSystemEntry[] =
   return fileSystem;
 };
 
-export const realAndGeneratedPackyToEntryArray = (real: PackyFiles, generated: PackyFiles): FileSystemEntry[] => {
-  const packyFiles = Object.assign({}, real);
+export const packyFilterIttf = (files: PackyFiles): PackyFiles => {
+  const ittfFiles: PackyFiles = {};
+  Object.keys(files).forEach(k=>{
+    if (k.endsWith('.ittf')) {
+      ittfFiles[k] = files[k];
+    }
+  });
+  return ittfFiles;
+}
+
+export const mixPreviousAndGeneratedPackyFilesToEntryArray = (previous: PackyFiles, generated: PackyFiles): FileSystemEntry[] => {
+  return packyToEntryArray(mixPreviousAndGeneratedPackyFiles(previous, generated));
+}
+
+export const mixPreviousAndGeneratedPackyFiles = (previous: PackyFiles, generated: PackyFiles): PackyFiles => {
+  const packyFiles = Object.assign({}, previous);
   Object.keys(generated).forEach(k=>{
-    if (real[k]) {
+    if (previous[k]) {
       generated[k].bothRealAndGenerated = true;
     }
     packyFiles[k] = generated[k]
   });
-  return packyToEntryArray(packyFiles);
+  return packyFiles;
 }
 
 export const entryArrayToPacky = (entryArray: FileSystemEntry[]): PackyFiles => {

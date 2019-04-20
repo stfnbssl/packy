@@ -15,7 +15,7 @@ export class GithubController implements ControllerType {
 
     public initialize = (initValues: AppInitializerType) => {
         this.router.get(`${this.path}/ownedrepos/:uid`, this.getOwnedRepositories);
-        this.router.get(`${this.path}/clone/:uid/:owner/:name/:branch`, this.getRepository);
+        this.router.get(`${this.path}/clone/:uid/:owner/:name/:branch/:kind`, this.cloneRepository);
         this.router.post(`${this.path}/commit/:uid/:owner/:name/:branch`, this.commitRepository);
     }
 
@@ -29,12 +29,13 @@ export class GithubController implements ControllerType {
         );
     }
     
-    private getRepository = async (request: Request, response: Response) => {
+    private cloneRepository = async (request: Request, response: Response) => {
         const owner = request.params.owner;
         const name = request.params.name;
         const branch = request.params.branch;
+        const kind = request.params.kind;
         const accessToken = await authManager.getAccessTokenFromAccount(request.params.uid, 'github.com');
-        const repo = await githubApiCalls.cloneBranch({ owner, name, token: accessToken }, branch);
+        const repo = await githubApiCalls.cloneBranch({ owner, name, token: accessToken }, branch, kind);
         sendSuccess(
             response,
             repo

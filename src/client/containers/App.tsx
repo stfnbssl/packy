@@ -11,7 +11,7 @@ import { prefTypes, withPreferences } from '../features/preferences';
 import { packyTypes, packyDefaults, packyActions } from '../features/packy';
 import { wizziTypes, wizziActions } from '../features/wizzi';
 import { FileSystemEntry, TextFileEntry, AssetFileEntry } from '../features/filelist/types';
-import { packyToEntryArray, entryArrayToPacky, realAndGeneratedPackyToEntryArray, entryArrayDiff } from '../features/packy/convertFileStructure';
+import { packyToEntryArray, entryArrayToPacky, mixPreviousAndGeneratedPackyFilesToEntryArray, entryArrayDiff } from '../features/packy/convertFileStructure';
 import updateEntry from '../features/filelist/actions/updateEntry';
 import debounce from 'lodash/debounce';
 import EditorView from '../components/Editor/EditorView';
@@ -32,6 +32,7 @@ interface StateProps {
   ownedGitRepositories?: commonTypes.GitRepositoryMeta[],
   generatedArtifact?: wizziTypes.GeneratedArtifact;
   jobGeneratedArtifacts: packyTypes.PackyFiles;
+  jobError: wizziTypes.JobError;
 }
 
 interface DispatchProps {
@@ -39,7 +40,7 @@ interface DispatchProps {
   dispatchLoggedOff: () => void;
   dispatchInitPacky: (preferences: prefTypes.PreferencesType) => void;
   dispatchSelectPacky: (packyId: string) => void;
-  dispatchSavePacky: (packyId: string, code: packyTypes.PackyFiles) => void;
+  dispatchSavePacky: (packyId: string, filesToSave: packyTypes.PackyFiles, packyEntryFiles: packyTypes.PackyFiles) => void;
   dispatchCreatePacky: (packyId: string, packyKind: string) => void;
   dispatchDeletePacky: (packyId: string) => void;
   dispatchGenerateArtifact: (fileName: string, files: packyTypes.PackyFiles) => void;
@@ -55,6 +56,7 @@ const mapStateToProps = (state: storeTypes.StoreState) : StateProps => ({
   ownedGitRepositories: state.packy.ownedGitRepositories,
   generatedArtifact: state.wizzi.generatedArtifact,
   jobGeneratedArtifacts: state.wizzi.jobGeneratedArtifacts,
+  jobError: state.wizzi.jobError,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
@@ -70,10 +72,11 @@ const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
   dispatchSelectPacky: (packyId: string) => {
     dispatch(packyActions.selectPackyRequest({id: packyId}));
   },
-  dispatchSavePacky: (packyId: string, files: packyTypes.PackyFiles) => {
+  dispatchSavePacky: (packyId: string, filesToSave: packyTypes.PackyFiles, packyEntryFiles: packyTypes.PackyFiles) => {
     dispatch(packyActions.savePackyRequest({
       id: packyId,
-      files: files
+      filesToSave: filesToSave,
+      packyEntryFiles: packyEntryFiles
     }));
   },
   dispatchCreatePacky: (packyId: string, packyKind: string) => {
@@ -87,13 +90,13 @@ const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
       id: packyId,
     }));
   },
-  dispatchGenerateArtifact: (filePath: string, code: packyTypes.PackyFiles) => {
+  dispatchGenerateArtifact: (filePath: string, files: packyTypes.PackyFiles) => {
     if (filePath.endsWith('.ittf') && !filePath.endsWith('wfjob.ittf')) {
-      dispatch(wizziActions.generateArtifactRequest({filePath: filePath, files:code}));
+      dispatch(wizziActions.generateArtifactRequest({filePath, files}));
     }
   },
-  dispatchExecuteJob: (code: packyTypes.PackyFiles) => {
-      dispatch(wizziActions.executeJobRequest({files:code}));
+  dispatchExecuteJob: (files: packyTypes.PackyFiles) => {
+      dispatch(wizziActions.executeJobRequest({files}));
   },
   dispatchSetTimedService: (name: string, onOff:boolean, payload?: any, frequence?: number) => {
     dispatch(wizziActions.setTimedService({
@@ -153,12 +156,17 @@ class App extends React.Component<Props, State> {
         };
       }
     }
-    if (props.jobGeneratedArtifacts !== state.jobGeneratedArtifacts) {
+    if (props.jobGeneratedArtifacts && props.jobGeneratedArtifacts !== state.jobGeneratedArtifacts) {
       const notGenerated = entryArrayToPacky(state.fileEntries.filter(e=> !e.item.generated));
       console.log("App.getDerivedStateFromProps.notGenerated", notGenerated, 'jobGeneratedArtifacts', props.jobGeneratedArtifacts);
       return {
-        fileEntries: realAndGeneratedPackyToEntryArray(notGenerated, props.jobGeneratedArtifacts),
+        fileEntries: mixPreviousAndGeneratedPackyFilesToEntryArray(notGenerated, props.jobGeneratedArtifacts),
         jobGeneratedArtifacts: props.jobGeneratedArtifacts,
+      };
+    }
+    if (props.jobError !== state.jobError) {
+      return {
+        jobError: props.jobError,
       };
     }
     return null;
@@ -183,7 +191,8 @@ class App extends React.Component<Props, State> {
       saveStatus: props.currentPacky && props.currentPacky.isDraft ? 'saved-draft' : params.id ? 'published' : 'changed',
       fileEntries: [],
       generatedArtifact: undefined,
-      jobGeneratedArtifacts: {},
+      jobGeneratedArtifacts: undefined,
+      jobError: undefined,
       isWizziJobWaiting: false,
       lastJobfileEntries: [],
       params,
@@ -234,7 +243,8 @@ class App extends React.Component<Props, State> {
 
     if (didFilesChange) {
       if (prevState.fileEntries.length > 0) {
-        this._saveCode();
+        // console.log('componentDidUpdate.changed,_saveCode');
+        // this._saveCode();
       }
       if (didIttfFilesChange) {
         this.setState({
@@ -348,7 +358,8 @@ class App extends React.Component<Props, State> {
         isWizziJobWaiting: false
       });
       this.props.dispatchExecuteJob(
-        entryArrayToPacky(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
+        // 20/4 entryArrayToPacky(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
+        entryArrayToPacky(this.state.fileEntries)
       );
     }
   }
@@ -358,7 +369,8 @@ class App extends React.Component<Props, State> {
   _saveCodeNotDebounced = () => {
     this.props.dispatchSavePacky(
       this.state.packyStoreId as string,
-      entryArrayToPacky(this.state.fileEntries.filter(e => !e.item.virtual && !e.item.generated))
+      entryArrayToPacky(this.state.fileEntries.filter(e => !e.item.virtual && !e.item.generated)),
+      entryArrayToPacky(this.state.fileEntries)
     );
   }
 
@@ -380,16 +392,17 @@ class App extends React.Component<Props, State> {
           fileEntries={this.state.fileEntries}
           entry={this._findFocusedEntry(this.state.fileEntries)}
           isWizziJobWaiting={this.state.isWizziJobWaiting}
+          jobError={this.state.jobError}
           onLoggedOn={this._handleLoggedOn}
           onLoggedOff={this._handleLoggedOff}
           onChangeCode={this._handleChangeCode}
           onFileEntriesChange={this._handleFileEntriesChange}
           onEntrySelected={this._handleEntrySelected}
-          onSaveCode={this._saveCodeNotDebounced}
           onSelectPacky={this._handleSelectPacky}
           onCreatePacky={this._handleCreatePacky}
           onDeletePacky={this._handleDeletePacky}
           onExecuteWizziJob={this._executeJobNotDebounced}
+          onSaveCode={this._saveCode}
         />
       </MuiThemeProvider>
     );

@@ -17,7 +17,7 @@ export type FormField = {
     label?: string;
     helperText?: string;
     type?: string;
-    default?: string;
+    default?: any;
     defaultOption?: {label: string, value: string};
     options?: {label: string, value: string}[];
     onValidate?: (value: string)=> Error | null;
@@ -58,7 +58,7 @@ type State = {
 function stateDefaultValues(fields: { [key: string]: FormField }): { [key: string]: string } {
     const ret: {[key: string]: string} = {}
     Object.keys(fields).map((k)=> {
-        ret[k] = fields[k].default || '';
+        ret[k] = fields[k].default;
     });
     return ret;
 }
@@ -100,7 +100,7 @@ class EditorForm extends React.Component<Props, State> {
 
     render() {
         const { classes, visible, title, action, fields, theme, className, onDismiss } = this.props;
-        console.log('EditForm.state.values', this.state.values);
+        // console.log('EditForm.state.values', this.state.values);
     
         return visible ?
             (<div className={classes.container}>
@@ -116,10 +116,11 @@ class EditorForm extends React.Component<Props, State> {
                         Object.keys(fields).map((k,i) => {
                             const field = fields[k];
                             const value = this.state.values[k];
-                            return field.type === 'text' ? (
+                            return ['text', 'checkbox'].indexOf(field.type) > -1 ? (
                               <div key={i} className={classes.fieldContainer}>
                                   <ValidatedInput
                                       autoFocus
+                                      type={field.type}
                                       className={classes.textField}
                                       margin="normal"
                                       label={field.label}
@@ -145,7 +146,7 @@ class EditorForm extends React.Component<Props, State> {
                                   margin="normal"
                                   value={value}
                                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                                    console.log('onChange', k, e.target.value);
+                                    // console.log('onChange', k, e.target.value);
                                     this.setState({ values: { ...this.state.values,  [k]: e.target.value} });
                                   }}
                                   placeholder={field.label}

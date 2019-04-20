@@ -105,12 +105,13 @@ function* handleSavePackyRequest(action: ReturnType<typeof packyActions.savePack
         console.log('sagas.handleSavePackyRequest', action);
         yield packyData.savePackyFiles(
             action.payload.id,
-            action.payload.files as packyTypes.PackyFiles 
+            action.payload.filesToSave as packyTypes.PackyFiles 
         );
         yield put(packyActions.savePackySuccess({
             message: 'Packy files saved',
             id: action.payload.id,
-            files: action.payload.files
+            filesToSave: action.payload.filesToSave,
+            packyEntryFiles: action.payload.packyEntryFiles
         }));
     } catch (err) {
         if (err instanceof Error) {
@@ -157,7 +158,7 @@ function* handleCloneGitRepositoryRequest(action: ReturnType<typeof packyActions
     try {
         console.log('sagas.handleCloneGitRepositoryRequest.action', action);
         const res = yield call(callApi, 'get', config.API_URL, 
-            `github/clone/${action.payload.uid}/${action.payload.owner}/${action.payload.name}/${action.payload.branch}`
+            `github/clone/${action.payload.uid}/${action.payload.owner}/${action.payload.name}/${action.payload.branch}/${action.payload.ittfOnly ? 'ittf' : 'all'}`
         );
         console.log('sagas.handleCloneGitRepositoryRequest.res', res);
         yield put(packyActions.cloneGitRepositorySuccess({repository: res}));

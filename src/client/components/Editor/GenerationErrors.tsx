@@ -15,12 +15,12 @@ class GenerationErrors extends React.Component<Props> {
         const {classes, errorName, errorMessage, errorLines, errorStack} = this.props;
         return (
             <div className={classes.container}>
-                <p className={classes.errorName}>{errorName}</p>
-                <p className={classes.message}>
+                <div className={classes.errorName}>{errorName}</div>
+                <div className={classes.message}>
                     {errorMessage && errorMessage.split(',').map((line, i)=>
-                        <div>{line}</div>
+                        <div key={i}>{line}</div>
                     )}
-                </p>
+                </div>
                 <pre className={classes.lines}>
                     {errorLines && errorLines.join('\n')}
                 </pre>

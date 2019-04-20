@@ -4,6 +4,7 @@ import { serviceTypes, getEventServiceInstance } from '../../services';
 import { packyTypes } from '../packy';
 import {
     GeneratedArtifact,
+    JobError
 } from './types';
 import * as wizziActions from './actions';
 
@@ -11,6 +12,7 @@ export interface WizziState {
     readonly loading: boolean;
     readonly generatedArtifact?: GeneratedArtifact;
     readonly jobGeneratedArtifacts?: packyTypes.PackyFiles;
+    readonly jobError?:  JobError;
     readonly timedServices: { [k : string]: serviceTypes.TimedServiceState }
 }
 
@@ -38,6 +40,7 @@ const reducer: Reducer<WizziState, WizziAction> = (state = initialState, action)
                     generatedArtifact: {
                         isError: true,    
                         errorLines: action.payload.errorLines, 
+                        errorInfo: action.payload.info, 
                         errorMessage: action.payload.message, 
                         errorName: action.payload.name, 
                         errorStack: action.payload.stack, 
@@ -64,7 +67,26 @@ const reducer: Reducer<WizziState, WizziAction> = (state = initialState, action)
         }
         case getType(wizziActions.executeJobSuccess): {
             console .log("wizziActions.executeJobSuccess", action);
-            return { ...state, loading: false, jobGeneratedArtifacts: action.payload.generatedArtifacts };
+            if (action.payload.__is_error) {
+                return {
+                    ...state, 
+                    loading: false, 
+                    jobGeneratedArtifacts: undefined,
+                    jobError: {
+                        errorInfo: action.payload.info, 
+                        errorMessage: action.payload.message, 
+                        errorName: action.payload.name, 
+                        errorStack: action.payload.stack, 
+                    }
+                };
+            } else {
+                return { 
+                    ...state, 
+                    loading: false, 
+                    jobGeneratedArtifacts: action.payload.generatedArtifacts,
+                    jobError: undefined
+                };
+            }
         }
         case getType(wizziActions.executeJobError): {
             console .log("wizziActions.executeJobError", action);

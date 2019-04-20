@@ -28,8 +28,8 @@ type PackyManagerProps = {
   onSelectPacky: (id: string) => void;
   onDeletePacky: (id: string) => void;
   onCreatePacky: (id: string, kind: string) => void;
-  onCloneGitRepository: (owner: string, name: string, branch: string) => void;
-  onCommitGitRepository: (owner: string, name: string, branch: string) => void;
+  onCloneGitRepository: (owner: string, name: string, branch: string, ittfOnly: boolean) => void;
+  onCommitGitRepository: (owner: string, name: string, branch: string, virtualFiles: boolean) => void;
 };
 
 type Props = PackyManagerProps & {
@@ -63,16 +63,16 @@ class PackyManager extends React.PureComponent<Props, State> {
     this.props.onCreatePacky(name, kind);
   };
 
-  _handleClonePacky = (id: string, branch: string) => {
+  _handleClonePacky = (id: string, branch: string, ittfOnly: boolean) => {
     this._handleDismissModal();
     // alert('Clone package ' + id + ' branch ' + branch);
-    this.props.onCloneGitRepository(id.split('_')[0], id.split('_')[1], branch);
+    this.props.onCloneGitRepository(id.split('_')[0], id.split('_')[1], branch, ittfOnly);
   };
 
-  _handleCommitPacky = (id: string, branch: string) => {
+  _handleCommitPacky = (id: string, branch: string, virtualFiles: boolean) => {
     this._handleDismissModal();
     alert('Commit package ' + id + ' branch ' + branch);
-    this.props.onCommitGitRepository(id.split('_')[0], id.split('_')[1], branch);
+    this.props.onCommitGitRepository(id.split('_')[0], id.split('_')[1], branch, virtualFiles);
   };
 
   render() {
@@ -150,9 +150,9 @@ class PackyManager extends React.PureComponent<Props, State> {
             action="Confirm"
             visible={modalVisible==='clone'}
             onDismiss={this._handleDismissModal}
-            onSubmit={values => {
+            onSubmit={(values: {[k: string]: any}) => {
               // alert(JSON.stringify(values));
-              this._handleClonePacky(values['id'], values['branch']);
+              this._handleClonePacky(values['id'], values['branch'], values['ittfOnly']);
             }}
             fields={{
               id: {type: 'select', label: 'Package', options: ownedGitRepositories.map((item)=> {
@@ -161,6 +161,7 @@ class PackyManager extends React.PureComponent<Props, State> {
               branch: {type: 'select', label: 'Branch', options: gitBranchesTODO.map((name)=> {
                 return { label: name, value: name };
               })},
+              ittfOnly: {type: 'checkbox', label: 'Clone ittf only', default: true },
             }} />
         {currentPacky && (
           <EditorForm
@@ -168,14 +169,15 @@ class PackyManager extends React.PureComponent<Props, State> {
               action="Confirm"
               visible={modalVisible==='commit'}
               onDismiss={this._handleDismissModal}
-              onSubmit={values => {
+              onSubmit={(values: {[k: string]: any}) => {
                 // alert(JSON.stringify(values));
-                this._handleCommitPacky(`${values['owner']}_${values['repoName']}`, values['branch']);
+                this._handleCommitPacky(`${values['owner']}_${values['repoName']}`, values['branch'], values['virtualFiles']);
               }} 
               fields={{
                 owner: {type: 'text', label: 'Owner', default:currentPacky.localPackyData.owner, onValidate: packyValids.validatePackyName },
                 repoName: {type: 'text', label: 'Repo', default: currentPacky.localPackyData.repoName,  onValidate: packyValids.validatePackyName },
                 branch: {type: 'text', label: 'Branch', default: currentPacky.localPackyData.branch, onValidate: packyValids.validatePackyName },
+                virtualFiles: {type: 'checkbox', label: 'Virtual files', default: true },
               }} />
         )}
       </div>

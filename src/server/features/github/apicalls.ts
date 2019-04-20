@@ -92,7 +92,7 @@ export async function createBranch(accessToken: string, owner: string, repo: str
     });
 }
 
-export async function cloneBranch(repo: GithubRepoOptions, branch: string = 'master'): Promise<ClonedGitRepository> {
+export async function cloneBranch(repo: GithubRepoOptions, branch: string = 'master', kind: string = 'all'): Promise<ClonedGitRepository> {
     volume.reset();
     const dir = '/' + repo.name;
     return new Promise((resolve, reject)=>{
@@ -111,10 +111,12 @@ export async function cloneBranch(repo: GithubRepoOptions, branch: string = 'mas
             const packies: PackyFiles = {}
             files.forEach(file=>{
                 if (file.relPath.startsWith('.git/') == false) {
-                    packies[file.relPath] = {
-                        type: "CODE",
-                        contents: file.content as string
-                    };
+                    if (kind === 'all' || kind === 'ittf' &&  file.relPath.endsWith('.ittf') == true) {
+                        packies[file.relPath] = {
+                            type: "CODE",
+                            contents: file.content as string
+                        };
+                    }
                 }
             })
             const log = await git.log({
@@ -146,7 +148,7 @@ export async function updateBranch(packyFiles: PackyFiles, repo: GithubRepoOptio
             depth: 10
         });
         let files = fs.readdirSync(dir);
-        console.log('updateBranch - packyFiles', packyFiles);
+        console.log('updateBranch - packyFiles', Object.keys(packyFiles));
         console.log('updateBranch - cloned files', files);
         /*
         Object.keys(packyFiles).forEach(filePath=> {
@@ -164,7 +166,8 @@ export async function updateBranch(packyFiles: PackyFiles, repo: GithubRepoOptio
                 Object.keys(result).forEach(entryName=> {
                     if (result[entryName].kind === '+' || result[entryName].kind === '<>') {
                         console.log('updateBranch - write file', path.join(dir, entryName))
-                        fs.writeFileSync(path.join(dir, entryName), (result[entryName].b as FileDiffItem).content);
+                        wizzifs.write(path.join(dir, entryName), (result[entryName].b as FileDiffItem).content)
+                        // fs.writeFileSync(path.join(dir, entryName), (result[entryName].b as FileDiffItem).content);
                     } else {
                         if (['.gitignore', 'LICENSE', 'README.md'].indexOf(entryName) < 0) {
                             console.log('updateBranch - delete file', path.join(dir, entryName))

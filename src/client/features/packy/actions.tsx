@@ -33,6 +33,7 @@ const CLONE_GIT_REPOSITORY_ERROR = '@@packy/CLONE_GIT_REPOSITORY_ERROR';
 const COMMIT_GIT_REPOSITORY_REQUEST = '@@packy/COMMIT_GIT_REPOSITORY_REQUEST';
 const COMMIT_GIT_REPOSITORY_SUCCESS = '@@packy/COMMIT_GIT_REPOSITORY_SUCCESS';
 const COMMIT_GIT_REPOSITORY_ERROR = '@@packy/COMMIT_GIT_REPOSITORY_ERROR';
+const EXECUTE_JOB_SUCCESS = '@@packy/EXECUTE_JOB_SUCCESS';
 
 export interface AuthRequestPayload {
     uid: string;
@@ -77,6 +78,7 @@ export interface CloneGitRepositoryPayload extends AuthRequestPayload {
     owner: string;
     name: string;
     branch: string;
+    ittfOnly: boolean;
 };
 
 export interface ClonedGitRepositoryPayload extends storeTypes.ResponsePayload {
@@ -95,7 +97,13 @@ export interface CommittedGitRepositoryPayload extends storeTypes.ResponsePayloa
 
 export interface SavePackyPayload extends storeTypes.ResponsePayload {
     id: string;
-    files: PackyFiles,
+    filesToSave: PackyFiles;
+    packyEntryFiles: PackyFiles;
+};
+
+export interface JobResponsePayload extends storeTypes.ResponsePayload {
+    generatedArtifacts: PackyFiles;
+    previousArtifacts: PackyFiles;
 };
 
 export const fetchPackyListRequest = createStandardAction(FETCH_PACKY_LIST_REQUEST)<void>();
@@ -128,3 +136,4 @@ export const cloneGitRepositoryError = createStandardAction(CLONE_GIT_REPOSITORY
 export const commitGitRepositoryRequest = createStandardAction(COMMIT_GIT_REPOSITORY_REQUEST)<CommitGitRepositoryPayload>();
 export const commitGitRepositorySuccess = createStandardAction(COMMIT_GIT_REPOSITORY_SUCCESS)<CommittedGitRepositoryPayload>();
 export const commitGitRepositoryError = createStandardAction(COMMIT_GIT_REPOSITORY_ERROR)<string>();
+export const executeJobSuccess = createStandardAction(EXECUTE_JOB_SUCCESS)<JobResponsePayload>();
