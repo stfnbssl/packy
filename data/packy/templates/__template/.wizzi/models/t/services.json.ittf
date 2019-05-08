@@ -1,0 +1,10 @@
+$group
+
+  $
+    var imagesFolder = "http://localhost:5000/static/demo/xxx/images/services";
+
+  [ services
+    {
+      Title "yyy"
+      Summary "yyy summary"
+      Permalink "#"

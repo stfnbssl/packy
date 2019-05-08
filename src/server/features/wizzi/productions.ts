@@ -8,15 +8,19 @@ import { createFsJsonAndFactory, ensurePackyFilePrefix, createFilesystemFactory 
 import { GeneratedArtifact } from './types';
 import { FsJson } from 'wizzi-repo';
 
-
 export async function generateArtifact(filePath: string, files: packyTypes.PackyFiles): Promise<GeneratedArtifact> {
     return new Promise(async (resolve, reject)=> {
         const generator = generatorFor(filePath);
         if (generator) {
-            const ittfDocumentUri = ensurePackyFilePrefix(filePath);
-            console.log('using artifact generator', generator);
+            const ittfDocumentUri = ensurePackyFilePrefix(filePath) as string;
+            const siteDocumentUri = Object.keys(files).find(k=> k.endsWith('site.json.ittf'));
+            console.log('wizzi.productions.using artifact generator', generator);
             const jsonwf = await createFsJsonAndFactory(files);
-            jsonwf.wf.loadModelAndGenerateArtifact(ittfDocumentUri, {}, generator, (err, result) =>{
+            const context = { 
+                site: siteDocumentUri ? await loadModelJson(jsonwf.wf, ensurePackyFilePrefix(siteDocumentUri), {}) : null 
+            };
+            console.log('wizzi.productions.generateArtifact.context', context);
+            jsonwf.wf.loadModelAndGenerateArtifact(ittfDocumentUri, { modelRequestContext: { mTreeBuildUpContext: context }}, generator, (err, result) =>{
                 if (err) { return reject(err); }
                 console.log('Generated artifact', result);
                 resolve({ 
@@ -26,6 +30,20 @@ export async function generateArtifact(filePath: string, files: packyTypes.Packy
         } else {
             reject('No artifact generator available for document ' + filePath);
         }
+    });
+}
+
+export async function loadModelJson(wf: wizzi.WizziFactory, filePath: string, context: any): Promise<wizzi.WizziModel> {
+    return new Promise(async (resolve, reject)=> {
+        const schemaName = schemaFromFilePath(filePath);
+        if (!schemaName) {
+            return reject('File is not a known ittf document: ' + filePath);
+        }
+        wf.loadModel(schemaName, filePath, {mTreeBuildUpContext: context}, (err, result) => {
+            if (err) { return reject(err); }
+            // console.log('Generated artifact', result);
+            resolve(result);
+        })
     });
 }
 

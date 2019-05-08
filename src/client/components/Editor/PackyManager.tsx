@@ -30,13 +30,14 @@ type PackyManagerProps = {
   onCreatePacky: (id: string, kind: string) => void;
   onCloneGitRepository: (owner: string, name: string, branch: string, ittfOnly: boolean) => void;
   onCommitGitRepository: (owner: string, name: string, branch: string, virtualFiles: boolean) => void;
+  onUploadPackyTemplate: (templateId: string, virtualFiles: boolean) => void;
 };
 
 type Props = PackyManagerProps & {
   theme: prefTypes.ThemeName;
 };
 
-type modalKind = 'create' | 'clone' | 'commit' | 'none'; 
+type modalKind = 'create' | 'clone' | 'commit' | 'saveTemplate' | 'none'; 
 
 type State = {
   modalVisible: modalKind;
@@ -75,6 +76,12 @@ class PackyManager extends React.PureComponent<Props, State> {
     this.props.onCommitGitRepository(id.split('_')[0], id.split('_')[1], branch, virtualFiles);
   };
 
+  _handleUploadPackyTemplate = (templateId: string, virtualFiles: boolean) => {
+    this._handleDismissModal();
+    alert('Save packy template ' + templateId);
+    this.props.onUploadPackyTemplate(templateId, virtualFiles);
+  };
+
   render() {
     const { 
       classes,
@@ -110,6 +117,12 @@ class PackyManager extends React.PureComponent<Props, State> {
                 onClick={()=>this._handleShowModal('commit')}
                 className={classes.fabButton}>
                 Git commit/push
+              </Fab>
+              <Fab
+                variant="extended" 
+                onClick={()=>this._handleShowModal('saveTemplate')}
+                className={classes.fabButton}>
+                Upload template
               </Fab>
             </div>
             <div className={css(styles.title)}>Your Packies</div>
@@ -177,6 +190,21 @@ class PackyManager extends React.PureComponent<Props, State> {
                 owner: {type: 'text', label: 'Owner', default:currentPacky.localPackyData.owner, onValidate: packyValids.validatePackyName },
                 repoName: {type: 'text', label: 'Repo', default: currentPacky.localPackyData.repoName,  onValidate: packyValids.validatePackyName },
                 branch: {type: 'text', label: 'Branch', default: currentPacky.localPackyData.branch, onValidate: packyValids.validatePackyName },
+                virtualFiles: {type: 'checkbox', label: 'Virtual files', default: true },
+              }} />
+        )}
+        {currentPacky && (
+          <EditorForm
+              title="Save packy template"
+              action="Confirm"
+              visible={modalVisible==='saveTemplate'}
+              onDismiss={this._handleDismissModal}
+              onSubmit={(values: {[k: string]: any}) => {
+                // alert(JSON.stringify(values));
+                this._handleUploadPackyTemplate(values['templateId'], values['virtualFiles']);
+              }} 
+              fields={{
+                templateId: {type: 'text', label: 'Template id', default:currentPacky.localPackyData.id, onValidate: packyValids.validatePackyName },
                 virtualFiles: {type: 'checkbox', label: 'Virtual files', default: true },
               }} />
         )}

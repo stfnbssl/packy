@@ -1,0 +1,14 @@
+$group
+    $params &page
+    lang ${ site.LanguageCode ? site.LanguageCode : 'en-US' }
+    head
+        includes/head(&page)
+        styles/main(&page)
+        $hook styles
+    body
+        includes/header(&page)
+        
+        $hook
+        
+        includes/footer(&page)
+        includes/scripts(&page)

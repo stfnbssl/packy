@@ -26,6 +26,7 @@ interface DispatchProps {
     dispatchFetchOwnedGitRepositories: (uid: string) => void;
     dispatchCloneGitRepository: (uid: string, owner: string, name: string, branch: string, ittfOnly: boolean) => void;
     dispatchCommitGitRepository: (uid: string, owner: string, name: string, branch: string, files: packyTypes.PackyFiles) => void;
+    dispatchUploadPackyTemplate: (uid:string,  templateId: string, files: packyTypes.PackyFiles) => void;
   }
   
   const mapStateToProps = (state: storeTypes.StoreState) : StateProps => ({
@@ -80,6 +81,13 @@ interface DispatchProps {
           uid
       }));
     },
+    dispatchUploadPackyTemplate: (uid:string,  templateId: string, files: packyTypes.PackyFiles) => {
+        dispatch(packyActions.uploadPackyTemplateRequest({
+          uid: uid,
+          templateId: templateId,
+          files: files,
+        }));
+      },
 });
 
 type Props = prefTypes.PreferencesContextType & 
@@ -135,6 +143,17 @@ class PackyManagerContainer extends React.Component<Props, State> {
       this.props.onClose();
     }
 
+    _handleUploadPackyTemplate = async (templateId: string, virtualFiles: boolean) => {
+        const files: packyTypes.PackyFiles = virtualFiles ? this.props.currentPacky.files : packyConversions.packyFilterIttf(this.props.currentPacky.files);
+        console.log('PackyManager._handleCommitGitRepository.virtualFiles', Object.keys(this.props.currentPacky.files), virtualFiles, Object.keys(files));
+        this.props.dispatchUploadPackyTemplate(
+          this.props.loggedUser.uid,
+          templateId,
+          files
+        );
+        this.props.onClose();
+    }
+  
     render() {
         const {
             currentPacky, 
@@ -155,6 +174,7 @@ class PackyManagerContainer extends React.Component<Props, State> {
                     onDeletePacky={this._handleDeletePacky}
                     onCloneGitRepository={this._handleCloneGitRepository}
                     onCommitGitRepository={this._handleCommitGitRepository}
+                    onUploadPackyTemplate={this._handleUploadPackyTemplate}
                 />
             );
         } else {

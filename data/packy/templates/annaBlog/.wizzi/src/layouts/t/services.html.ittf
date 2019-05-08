@@ -1,0 +1,17 @@
+. row section featured topspace
+    h2 
+        class section-title
+        span Services
+    $foreach page in site.Data.Pages
+        $if page.Section === "service"
+            div 
+                class 
+                . col-sm-6 col-md-3
+                    h3 ${ page.Title }
+                        class text-center
+                    p ${ page.Summary }
+                    p 
+                        class text-center
+                        a Read more
+                            href ${ page.Permalink }
+                            class btn btn-action

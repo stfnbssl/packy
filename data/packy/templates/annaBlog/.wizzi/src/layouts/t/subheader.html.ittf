@@ -1,0 +1,10 @@
+. row section topspace
+    . col-md-12
+        p Let me tell you something my friend. hope is a dangerous thing. hope can drive a man insane. you
+            class lead text-center text-muted
+            a measure
+                href #
+            + yourself by the people who measure themselves by you. it only took me \b
+            a six days
+                href #
+            + .

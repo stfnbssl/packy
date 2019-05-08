@@ -1,24 +1,28 @@
 {
     "version": "0.2.0",
     "configurations": [
-      {
-        "type": "node",
-        "request": "attach",
-        "name": "Attach",
-        "port": 9229
-      },
-      {
-        "cwd": "${workspaceFolder}",
-        "type": "chrome",
-        "request": "launch",
-        "name": "Launch Chrome Debugger",
-        "port": 9222,
-        "url": "http://localhost:8080/",
-        "webRoot": "${workspaceRoot}/src",
-        "sourceMaps": true,
-        "timeout": 15000,
-        "trace":"verbose"//,
-        //"preLaunchTask": "start_server_task"
-      }
+        {
+            "name": "Current TS File",
+            "type": "node",
+            "request": "launch",
+            "args": ["./src/server/server.ts"],
+            "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
+        },
+        {
+            "cwd": "${workspaceFolder}",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome Debugger",
+            "port": 9222,
+            "url": "http://localhost:8080/",
+            "webRoot": "${workspaceRoot}/src",
+            "sourceMaps": true,
+            "timeout": 15000,
+            "trace":"verbose"//,
+            //"preLaunchTask": "start_server_task"
+        }
     ]
 }

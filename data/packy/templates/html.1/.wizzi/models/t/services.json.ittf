@@ -1,0 +1,10 @@
+$group
+
+  $
+    var imagesFolder = "http://localhost:5000/static/demo/hugo-initio/images/services";
+
+  [ services
+    {
+      Title "one"
+      Summary "bla bla"
+      Permalink "#"

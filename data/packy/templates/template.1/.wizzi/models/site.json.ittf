@@ -1,0 +1,43 @@
+{
+    $
+      var imagesFolder = "http://localhost:5000/static/demo/xxx/images";
+    
+    baseURL "https://xxx.github.io/"
+    languageCode "en-us"
+    title "xxx"
+    theme "xxx.n"
+
+    { Params
+        name "xxx"
+        description "yyy"
+        author "zz"
+        email "zzz@fake.com"
+        phone "+039 0522 123456"
+        address "Fake street nn, 42123 Reggio Emilia, Italy"
+        year 2019
+        avatar "${imagesFolder}/xxx.jpg"
+        background ""
+        favicon "${imagesFolder}/xxx_favicon.png"
+        DateForm "January 2, 2006"
+
+        showXxx true
+        showYyy true
+
+        footerEnableXxx true
+        footerEnableYyy true
+    
+        { disqus
+            site "xxx.disqus.com"
+
+        { google
+            { analytics
+                trackerID "GA-000000000-0"
+        
+    { Features
+        bootstrap true
+    
+    { Styles
+
+    { Data
+        menus()
+        carousels()

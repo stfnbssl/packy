@@ -189,6 +189,24 @@ function* handleCommitGitRepositoryRequest(action: ReturnType<typeof packyAction
     } 
 }
 
+function* handleUploadPackyTemplateRequest(action: ReturnType<typeof packyActions.uploadPackyTemplateRequest>) {
+    try {
+        console.log('sagas.handleUploadPackyTemplateRequest.action', action);
+        const res = yield call(callApi, 'post', config.API_URL, 
+            `templates/${action.payload.uid}/${action.payload.templateId}`,
+            { files: action.payload.files }
+        );
+        console.log('sagas.handleUploadPackyTemplateRequest.res', res);
+        yield put(packyActions.uploadPackyTemplateSuccess({}));
+    } catch (err) {
+        if (err instanceof Error) {
+            yield put(packyActions.uploadPackyTemplateError(err.stack!));
+        } else {
+            yield put(packyActions.uploadPackyTemplateError('An unknown error occured.'));
+        }
+    }
+}
+
 function* watchFetchRequest() {
     yield takeEvery(getType(packyActions.fetchPackyListRequest), handleFetchPackyListRequest);
     yield takeEvery(getType(packyActions.initPackyRequest), handleInitPackyRequest);
@@ -203,6 +221,7 @@ function* watchCrudRequest() {
     yield takeEvery(getType(packyActions.savePackyRequest), handleSavePackyRequest);
     yield takeEvery(getType(packyActions.deletePackyRequest), handleDeletePackyRequest);
     yield takeEvery(getType(packyActions.commitGitRepositoryRequest), handleCommitGitRepositoryRequest);
+    yield takeEvery(getType(packyActions.uploadPackyTemplateRequest), handleUploadPackyTemplateRequest);
 }
 
 function* packySaga() {

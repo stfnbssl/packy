@@ -33,6 +33,9 @@ const CLONE_GIT_REPOSITORY_ERROR = '@@packy/CLONE_GIT_REPOSITORY_ERROR';
 const COMMIT_GIT_REPOSITORY_REQUEST = '@@packy/COMMIT_GIT_REPOSITORY_REQUEST';
 const COMMIT_GIT_REPOSITORY_SUCCESS = '@@packy/COMMIT_GIT_REPOSITORY_SUCCESS';
 const COMMIT_GIT_REPOSITORY_ERROR = '@@packy/COMMIT_GIT_REPOSITORY_ERROR';
+const UPLOAD_PACKY_TEMPLATE_REQUEST = '@@packy/UPLOAD_PACKY_TEMPLATE_REQUEST';
+const UPLOAD_PACKY_TEMPLATE_SUCCESS = '@@packy/UPLOAD_PACKY_TEMPLATE_SUCCESS';
+const UPLOAD_PACKY_TEMPLATE_ERROR = '@@packy/UPLOAD_PACKY_TEMPLATE_ERROR';
 const EXECUTE_JOB_SUCCESS = '@@packy/EXECUTE_JOB_SUCCESS';
 
 export interface AuthRequestPayload {
@@ -106,6 +109,17 @@ export interface JobResponsePayload extends storeTypes.ResponsePayload {
     previousArtifacts: PackyFiles;
 };
 
+export interface UploadPackyTemplatePayload extends AuthRequestPayload {
+    templateId: string;
+    files: PackyFiles;
+};
+export interface UploadPackyTemplateResponsePayload extends storeTypes.ResponsePayload {
+    writtenFiles?: number;
+    deletedFiles?: number;
+};
+
+
+
 export const fetchPackyListRequest = createStandardAction(FETCH_PACKY_LIST_REQUEST)<void>();
 export const fetchPackyListSuccess = createStandardAction(FETCH_PACKY_LIST_SUCCESS)<PackyListPayload>();
 export const fetchPackyListError = createStandardAction(FETCH_PACKY_LIST_ERROR)<string>();
@@ -136,4 +150,7 @@ export const cloneGitRepositoryError = createStandardAction(CLONE_GIT_REPOSITORY
 export const commitGitRepositoryRequest = createStandardAction(COMMIT_GIT_REPOSITORY_REQUEST)<CommitGitRepositoryPayload>();
 export const commitGitRepositorySuccess = createStandardAction(COMMIT_GIT_REPOSITORY_SUCCESS)<CommittedGitRepositoryPayload>();
 export const commitGitRepositoryError = createStandardAction(COMMIT_GIT_REPOSITORY_ERROR)<string>();
+export const uploadPackyTemplateRequest = createStandardAction(UPLOAD_PACKY_TEMPLATE_REQUEST)<UploadPackyTemplatePayload>();
+export const uploadPackyTemplateSuccess = createStandardAction(UPLOAD_PACKY_TEMPLATE_SUCCESS)<UploadPackyTemplateResponsePayload>();
+export const uploadPackyTemplateError = createStandardAction(UPLOAD_PACKY_TEMPLATE_ERROR)<string>();
 export const executeJobSuccess = createStandardAction(EXECUTE_JOB_SUCCESS)<JobResponsePayload>();

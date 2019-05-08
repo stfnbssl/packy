@@ -4,8 +4,9 @@ import * as wizzi from 'wizzi';
 import { ConfigType } from '../features/config';
 import { fsTypes } from '../features/filesystem';
 import { rejects } from 'assert';
-import { FileDef, VFile } from 'wizzi-utils';
-import { FsDb } from '../features/filesystem/types';
+import { FileDef, VFile, vfile as createVFileFS, VFileFS } from 'wizzi-utils';
+import { FsDb, FsDbResult } from '../features/filesystem/types';
+import { packyTypes } from '../features/packy';
 
 type cb<T> = (err: any, result: T) => void;
 
@@ -84,6 +85,50 @@ const FsDbDriver: fsTypes.FsDb = {
             });
         });
     },
+    savePackyTemplate: async function (id: string, files: packyTypes.PackyFiles): Promise<FsDbResult> {
+        const {
+            packyTemplatesFolder,
+        } = saveConfig;
+        var templateFolder = path.join(__dirname, '..', '..', '..', packyTemplatesFolder, id);
+        console.log('filesystem.savePackyTemplate.id,path: ', id, templateFolder);
+        try {
+            let result = await deleteFolder(templateFolder);
+            console.log('filesystem.savePackyTemplate.deleteFolder.result: ', result);
+            await asyncForEach(Object.keys(files), async (file: string) => {
+                console.log('filesystem.savePackyTemplate.writeFile.begin: ', path.join(templateFolder, file));
+                let result = await writeFile(path.join(templateFolder, file), files[file].contents);
+                console.log('filesystem.savePackyTemplate.writeFile.result: ', result);
+            })            
+            return Promise.resolve({writtenCount: Object.keys(files).length});
+        } catch (err) {
+            console.log('filesystem.savePackyTemplate.err: ', err);
+            return Promise.reject(err);
+        }
+    },
+}
+
+function deleteFolder(folderPath: string) : Promise<boolean> {
+    return new Promise((resolve, reject) => {
+        createVFileFS().deleteFolder(folderPath, (err, result) =>{
+            if (err) { 
+                console.log('filesystem.deleteFolder.err', err);
+                return reject(err); 
+            }
+            resolve(true);
+        })
+    });
+}
+
+function writeFile(filePath: string, content: string) : Promise<boolean> {
+    return new Promise((resolve, reject) => {
+        createVFileFS().write(filePath, content, (err, result) =>{
+            if (err) { 
+                console.log('filesystem.writeFile.err', err);
+                return reject(err); 
+            }
+            resolve(true);
+        })
+    });
 }
 
 function reloadTemplates(callback: Function) {
@@ -96,4 +141,9 @@ function reloadTemplates(callback: Function) {
         callback();
     }
 }
-  
+
+async function asyncForEach(array: string[], callback: Function) {
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index, array);
+    }
+}

@@ -1,0 +1,22 @@
+$group
+    -
+        - ********************************************************************
+        - PANELS
+        - *********************************************************************
+    . panel-cta
+        box-shadow 0 0 0 1px #e1e1e1, 0 0 0 3px #fff, 0 0 0 4px #e1e1e1
+        background #f3f3f3
+        -webkit-border-radius 0
+        -webkit-background-clip padding-box
+        -moz-border-radius 0
+        -moz-background-clip padding
+        border-radius 0
+        background-clip padding-box
+    . panel-cta p
+        + .panel-cta h3
+        + .panel-cta h4
+        + .panel-cta h5
+        + .panel-cta h6
+        margin 0
+    . panel-cta .panel-body
+        padding 35px

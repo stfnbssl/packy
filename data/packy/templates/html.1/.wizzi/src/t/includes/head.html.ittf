@@ -1,0 +1,28 @@
+$group 
+    meta 
+        charset utf-8
+    meta 
+        name viewport
+        content width=device-width, initial-scale=1.0
+    meta
+        name description
+        content ${ site.Description }
+    meta 
+        name author
+        content ${ site.Author }
+    @title ${ site.Title }
+    link 
+        rel shortcut icon
+        href ${ site.BaseURL }${ site.Params.favicon }
+    link 
+        href https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css
+        rel stylesheet
+    link 
+        href https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css
+        rel stylesheet
+    link 
+        rel stylesheet
+        href https://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700
+    link 
+        rel stylesheet
+        href ${ site.BaseURL }css/styles.css

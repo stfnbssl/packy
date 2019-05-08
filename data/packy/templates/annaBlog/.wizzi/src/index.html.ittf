@@ -1,0 +1,5 @@
+layouts/index()
+    head
+        @title ${site.title}
+    body
+        h1 ${site.title}  

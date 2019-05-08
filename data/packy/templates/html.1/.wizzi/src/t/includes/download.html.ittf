@@ -1,0 +1,25 @@
+$group 
+    . row section topspace
+        . panel panel-cta
+            . panel-body
+                . col-lg-8
+                    p A simple, nice-looking
+                        b call to action box
+                        ++ . Boxing is about respect. getting it for yourself,
+                        ++ and taking it away from the other guy. no, this is mount everest.
+                . col-lg-4 text-right
+                    a Download original template
+                        href http://www.gettemplate.com/downloads/initio.zip
+                        class btn btn-primary btn-lg
+    . row section topspace
+        . panel panel-cta
+            . panel-body
+                . col-lg-8
+                    p A simple, nice-looking
+                        b call to action box
+                        ++ . Boxing is about respect. getting it for yourself,
+                        ++ and taking it away from the other guy. no, this is mount everest.
+                . col-lg-4 text-right
+                    a Download HUGO template
+                        href https://github.com/miguelsimoni/hugo-initio/archive/master.zip
+                        class btn btn-primary btn-lg

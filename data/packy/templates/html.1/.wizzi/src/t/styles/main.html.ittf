@@ -1,0 +1,26 @@
+style
+
+    < html
+        font-size 100%
+    
+    < body
+        font-size 15px
+        font-size 0.9375rem
+        font-family "Open sans", Helvetica, Arial, sans-serif
+        color #666666
+        padding 0
+
+    headers/base()
+    navbars/base()
+    footers/base()
+    pagination/base()
+
+    blog/base()
+    comments/base()
+
+    typography/base()
+    images/base()
+    buttons/base()
+    panels/base()
+
+    recentworks()

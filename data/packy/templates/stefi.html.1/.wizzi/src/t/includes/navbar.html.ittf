@@ -1,0 +1,31 @@
+nav 
+    class navbar navbar-default navbar-sticky
+    . container-fluid
+        . navbar-header
+            button 
+                type button
+                class navbar-toggle
+                data-toggle collapse
+                data-target #bs-example-navbar-collapse-1
+                aria-expanded true
+                span Toggle navigation
+                    class sr-only
+                span 
+                    class icon-bar
+                span 
+                    class icon-bar
+                span 
+                    class icon-bar
+        . navbar-collapse collapse
+            id bs-example-navbar-collapse-1
+            ul 
+                class nav navbar-nav
+                li 
+                    a home
+                        href /hugo-initio-site/
+                li 
+                    a blog
+                        href /hugo-initio-site/post/
+                li 
+                    a About
+                        href /hugo-initio-site/about/

@@ -1,0 +1,31 @@
+. row section recentworks topspace
+    h2 
+        class section-title
+        span Recent Works
+    $foreach work in site.Data.recentworks
+        div
+            class thumbnails recentworks
+            . col-xs-12 col-sm-6 col-md-4 col-lg-4
+                a 
+                    class thumbnail
+                    href ${ work.url }
+                    span 
+                        class img
+                        img 
+                            src ${ work.image }
+                            alt 
+                        span 
+                            class cover
+                            span See details &rarr;
+                                class more
+                    span ${ work.name }
+                        class title
+                span 
+                    class details
+                    $ var $len = work.items.length - 1
+
+                    $foreach workItem in work.items
+                        a ${ workItem.name }
+                            href ${ workItem.url }
+                        span ${ $len > workItem_index ? ' | ' : ''}
+

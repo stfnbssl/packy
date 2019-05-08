@@ -1,0 +1,49 @@
+{
+    $
+      var imagesFolder = "http://localhost:5000/static/demo/hugo-initio/images";
+    baseURL "https://stfnbssl.github.io/"
+    languageCode "en-us"
+    title "Initio - Free, multipurpose html5 template by GetTemplate"
+    theme "bootstarp.1"
+    publishDir "docs"
+
+    { Params
+        name "Stefano Bassoli"
+        description "A mystery person"
+        email "stfn.bssl@fake.com"
+        phone "+039 0522 123456"
+        address "Fake street 17, 42123 Reggio Emilia, Italy"
+        year 2019
+        avatar "${imagesFolder}/stefano_avatar.jpg"
+        background ""
+        favicon "${imagesFolder}/gt_favicon.png"
+        DateForm "January 2, 2006"
+
+        showSubheader true
+        showServices true
+        showRecentWorks true
+        showDownload true
+        showClients true
+
+        footerEnableContact true
+        footerEnableFollowme true
+        footerEnableTextWidget true
+        footerEnableFormWidget true
+    
+        { disqus
+            site "hugo-initio-site.disqus.com"
+
+        { sharethis
+            property "123456789012345678901234"
+            custom true
+
+        { google
+            { analytics
+                trackerID "GA-000000000-0"
+        
+        social()
+
+
+    { Data
+        recent-works()
+        

@@ -1,0 +1,42 @@
+$group 
+    $params &page
+    meta 
+        charset utf-8
+    meta 
+        name viewport
+        content width=device-width, initial-scale=1, shrink-to-fit=no
+    meta
+        name description
+        content ${ page.description }
+    meta 
+        name author
+        content ${ page.author }
+    meta 
+        name generator
+        content Wizzi v0.7.1
+
+    @title ${ page.title }
+    
+    link 
+        rel shortcut icon
+        href ${ site.BaseURL }${ site.Params.favicon }
+    $if site.Features.bootstrap
+        link 
+            rel stylesheet
+            href https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css
+            @integrity sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T
+            crossorigin anonymous
+    link 
+        href https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css
+        rel stylesheet
+    link
+        rel stylesheet
+        href https://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700
+    $if site.Styles.css
+        link 
+            rel stylesheet
+            href ${ site.BaseURL }css/styles.css
+    $if page.css
+        link 
+            rel stylesheet
+            href ${ site.BaseURL }css/${page.css}

@@ -1,0 +1,12 @@
+$group
+
+    { menu
+        [ main
+            {
+                name "home"
+                url "/"
+                weight 1
+            {
+                name "blog"
+                url "/post/"
+                weight 5

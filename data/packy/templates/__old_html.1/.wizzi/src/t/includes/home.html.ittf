@@ -1,0 +1,13 @@
+main 
+    id main
+    . container
+        $if site.Params.showSubheader
+            $$ subheader()
+        $if site.Params.showServices
+            $$ services()
+        $if site.Params.showRecentWorks
+            $$ recentworks()
+        $if site.Params.showDownload
+            $$ download()
+        $if site.Params.showClients
+            $$ clients()

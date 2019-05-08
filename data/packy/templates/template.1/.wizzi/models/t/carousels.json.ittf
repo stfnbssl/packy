@@ -1,0 +1,28 @@
+$group
+
+    { carousels
+        [ main
+            {
+                id 0
+                title "Example headline."
+                para "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+                { link
+                    text "Sign up today"
+                    href "#"
+                fill "#777"
+            {
+                id 1
+                title "Another example headline."
+                para "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+                { link
+                    text "Learn more"
+                    href "#"
+                fill "#999"
+            {
+                id 2
+                title "One more for good measure."
+                para "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+                { link
+                    text "Browse gallery"
+                    href "#"
+                fill "#555"

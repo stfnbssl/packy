@@ -1,0 +1,343 @@
+html
+    
+    $
+        var page = {
+            id: 'form',
+            section: 'components',
+            title: 'Form Template',
+            description: 'Bootstrap form template example',
+            author: site.Params.author,
+        };
+    
+    layouts/page(&page)
+
+        $append styles
+            @style 
+                css
+                    . bd-placeholder-img
+                        font-size 1.125rem
+                        @ text-anchor middle
+                        -webkit-user-select none
+                        -moz-user-select none
+                        -ms-user-select none
+                        user-select none
+                    media (min-width: 768px)
+                        . bd-placeholder-img-lg
+                            font-size 3.5rem
+                    . container
+                        max-width 960px
+                    . lh-condensed
+                        line-height 1.25                            
+        . bg-light
+            . container
+                . py-5 text-center
+                    img 
+                        class d-block mx-auto mb-4
+                        src /docs/4.3/assets/brand/bootstrap-solid.svg
+                        alt 
+                        width 72
+                        height 72
+                    h2 Checkout form
+                    p Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.
+                        class lead
+                . row
+                    . col-md-4 order-md-2 mb-4
+                        h4 
+                            class d-flex justify-content-between align-items-center mb-3
+                            span Your cart
+                                class text-muted
+                            span 3
+                                class badge badge-secondary badge-pill
+                        ul 
+                            class list-group mb-3
+                            li 
+                                class list-group-item d-flex justify-content-between lh-condensed
+                                div 
+                                    h6 Product name
+                                        class my-0
+                                    small Brief description
+                                        class text-muted
+                                span $12
+                                    class text-muted
+                            li 
+                                class list-group-item d-flex justify-content-between lh-condensed
+                                div 
+                                    h6 Second product
+                                        class my-0
+                                    small Brief description
+                                        class text-muted
+                                span $8
+                                    class text-muted
+                            li 
+                                class list-group-item d-flex justify-content-between lh-condensed
+                                div 
+                                    h6 Third item
+                                        class my-0
+                                    small Brief description
+                                        class text-muted
+                                span $5
+                                    class text-muted
+                            li 
+                                class list-group-item d-flex justify-content-between bg-light
+                                . text-success
+                                    h6 Promo code
+                                        class my-0
+                                    small EXAMPLECODE
+                                span -$5
+                                    class text-success
+                            li 
+                                class list-group-item d-flex justify-content-between
+                                span Total (USD)
+                                strong $20
+                        form 
+                            class card p-2
+                            . input-group
+                                input 
+                                    type text
+                                    class form-control
+                                    placeholder Promo code
+                                . input-group-append
+                                    button Redeem
+                                        type submit
+                                        class btn btn-secondary
+                    . col-md-8 order-md-1
+                        h4 Billing address
+                            class mb-3
+                        form 
+                            class needs-validation
+                            novalidate 
+                            . row
+                                . col-md-6 mb-3
+                                    label First name
+                                        for firstName
+                                    input 
+                                        type text
+                                        class form-control
+                                        id firstName
+                                        placeholder 
+                                        value 
+                                        required 
+                                    div Valid first name is required.
+                                        class invalid-feedback
+                                . col-md-6 mb-3
+                                    label Last name
+                                        for lastName
+                                    input 
+                                        type text
+                                        class form-control
+                                        id lastName
+                                        placeholder 
+                                        value 
+                                        required 
+                                    div Valid last name is required.
+                                        class invalid-feedback
+                            . mb-3
+                                label Username
+                                    for username
+                                . input-group
+                                    . input-group-prepend
+                                        span @
+                                            class input-group-text
+                                    input 
+                                        type text
+                                        class form-control
+                                        id username
+                                        placeholder Username
+                                        required 
+                                    div Your username is required.
+                                        class invalid-feedback
+                                        style width: 100%;
+                            . mb-3
+                                label Email
+                                    for email
+                                    span (Optional)
+                                        class text-muted
+                                input 
+                                    type email
+                                    class form-control
+                                    id email
+                                    placeholder you@example.com
+                                div Please enter a valid email address for shipping updates.
+                                    class invalid-feedback
+                            . mb-3
+                                label Address
+                                    for address
+                                input 
+                                    type text
+                                    class form-control
+                                    id address
+                                    placeholder 1234 Main St
+                                    required 
+                                div Please enter your shipping address.
+                                    class invalid-feedback
+                            . mb-3
+                                label Address 2
+                                    for address2
+                                    span (Optional)
+                                        class text-muted
+                                input 
+                                    type text
+                                    class form-control
+                                    id address2
+                                    placeholder Apartment or suite
+                            . row
+                                . col-md-5 mb-3
+                                    label Country
+                                        for country
+                                    select 
+                                        class custom-select d-block w-100
+                                        id country
+                                        required 
+                                        option Choose...
+                                            value 
+                                        option United States
+                                    div Please select a valid country.
+                                        class invalid-feedback
+                                . col-md-4 mb-3
+                                    label State
+                                        for state
+                                    select 
+                                        class custom-select d-block w-100
+                                        id state
+                                        required 
+                                        option Choose...
+                                            value 
+                                        option California
+                                    div Please provide a valid state.
+                                        class invalid-feedback
+                                . col-md-3 mb-3
+                                    label Zip
+                                        for zip
+                                    input 
+                                        type text
+                                        class form-control
+                                        id zip
+                                        placeholder 
+                                        required 
+                                    div Zip code required.
+                                        class invalid-feedback
+                            hr 
+                                class mb-4
+                            . custom-control custom-checkbox
+                                input 
+                                    type checkbox
+                                    class custom-control-input
+                                    id same-address
+                                label Shipping address is the same as my billing address
+                                    class custom-control-label
+                                    for same-address
+                            . custom-control custom-checkbox
+                                input 
+                                    type checkbox
+                                    class custom-control-input
+                                    id save-info
+                                label Save this information for next time
+                                    class custom-control-label
+                                    for save-info
+                            hr 
+                                class mb-4
+                            h4 Payment
+                                class mb-3
+                            . d-block my-3
+                                . custom-control custom-radio
+                                    input 
+                                        id credit
+                                        name paymentMethod
+                                        type radio
+                                        class custom-control-input
+                                        checked 
+                                        required 
+                                    label Credit card
+                                        class custom-control-label
+                                        for credit
+                                . custom-control custom-radio
+                                    input 
+                                        id debit
+                                        name paymentMethod
+                                        type radio
+                                        class custom-control-input
+                                        required 
+                                    label Debit card
+                                        class custom-control-label
+                                        for debit
+                                . custom-control custom-radio
+                                    input 
+                                        id paypal
+                                        name paymentMethod
+                                        type radio
+                                        class custom-control-input
+                                        required 
+                                    label PayPal
+                                        class custom-control-label
+                                        for paypal
+                            . row
+                                . col-md-6 mb-3
+                                    label Name on card
+                                        for cc-name
+                                    input 
+                                        type text
+                                        class form-control
+                                        id cc-name
+                                        placeholder 
+                                        required 
+                                    small Full name as displayed on card
+                                        class text-muted
+                                    div Name on card is required
+                                        class invalid-feedback
+                                . col-md-6 mb-3
+                                    label Credit card number
+                                        for cc-number
+                                    input 
+                                        type text
+                                        class form-control
+                                        id cc-number
+                                        placeholder 
+                                        required 
+                                    div Credit card number is required
+                                        class invalid-feedback
+                            . row
+                                . col-md-3 mb-3
+                                    label Expiration
+                                        for cc-expiration
+                                    input 
+                                        type text
+                                        class form-control
+                                        id cc-expiration
+                                        placeholder 
+                                        required 
+                                    div Expiration date required
+                                        class invalid-feedback
+                                . col-md-3 mb-3
+                                    label CVV
+                                        for cc-cvv
+                                    input 
+                                        type text
+                                        class form-control
+                                        id cc-cvv
+                                        placeholder 
+                                        required 
+                                    div Security code required
+                                        class invalid-feedback
+                            hr 
+                                class mb-4
+                            button Continue to checkout
+                                class btn btn-primary btn-lg btn-block
+                                type submit
+                footer 
+                    class my-5 pt-5 text-muted text-center text-small
+                    p &copy; 2017-2019 Company Name
+                        class mb-1
+                    ul 
+                        class list-inline
+                        li 
+                            class list-inline-item
+                            a Privacy
+                                href #
+                        li 
+                            class list-inline-item
+                            a Terms
+                                href #
+                        li 
+                            class list-inline-item
+                            a Support
+                                href #

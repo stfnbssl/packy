@@ -1,0 +1,41 @@
+wfjob content-server
+
+  $
+    var ittf_models_folder     = path.join(__dirname, 'models');
+    var ittf_src_folder        = path.join(__dirname, 'src');
+    var dest_folder            = path.join(__dirname, '..');
+  
+  model site 
+    schema json
+    src ${ittf_models_folder}/site.json.ittf
+
+  line src
+		cwd-folder ${ittf_src_folder}
+
+		artifact html documents
+			src ./**/*.html.ittf
+			schema html
+			generator html/document
+			extension html
+            model-ref site
+                export-name site
+
+		artifact css style sheets
+			src ./**/*.css.ittf
+			schema css
+			generator css/document
+			extension css
+            model-ref site
+                export-name site
+
+		artifact javascript modules
+			src ./**/*.js.ittf
+			schema js
+			generator js/module
+			extension js
+            model-ref site
+                export-name site
+
+  production
+		dest-folder ${dest_folder}
+		line-ref src

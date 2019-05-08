@@ -1,0 +1,8 @@
+html
+    lang ${ site.LanguageCode ? site.LanguageCode : 'en-US' }
+    head
+        head()
+    body
+        header()
+        home()
+        footer()
