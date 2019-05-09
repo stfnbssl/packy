@@ -1,1 +1,0 @@
-function not(value) { return !value; }
