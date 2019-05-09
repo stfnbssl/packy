@@ -5,6 +5,9 @@ $group
     meta 
         name viewport
         content width=device-width, initial-scale=1, shrink-to-fit=no
+    meta 
+        http-equiv X-UA-Compatible
+        content IE=edge,chrome=1
     meta
         name description
         content ${ page.description }
@@ -20,23 +23,65 @@ $group
     link 
         rel shortcut icon
         href ${ site.BaseURL }${ site.Params.favicon }
-    $if site.Features.bootstrap
+    $if site.Features.useBootstrap
         link 
             rel stylesheet
-            href https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css
+            href https://stackpath.bootstrapcdn.com/bootstrap/${site.Features.bootstrap.useSlider}/css/bootstrap.min.css
             @integrity sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T
             crossorigin anonymous
-    link 
-        href https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css
-        rel stylesheet
-    link
-        rel stylesheet
-        href https://fonts.googleapis.com/css?family=Alice|Open+Sans:400,300,700
+    
+    $if site.Features.bootstrap.useSlider
+        link
+            rel stylesheet
+            href https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.min.css
+            crossorigin anonymous
+    
+    $if site.Features.useMaterialKit
+        $ 
+            var assetsBaseUri = site.Features.materialKit.assetsBaseUri
+        link 
+            href ${assetsBaseUri}/assets/css/material-kit.css?v=2.0.5
+            rel stylesheet
+
+    $if site.Features.useFontAwesome
+        link 
+            href https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css
+            rel stylesheet
+    
+    $if site.Features.useGoogleFonts
+        link
+            rel stylesheet
+            href https://fonts.googleapis.com/css?family=${site.Features.useGoogleFonts}
+    
     $if site.Styles.css
         link 
             rel stylesheet
             href ${ site.BaseURL }css/styles.css
+    
     $if page.css
         link 
             rel stylesheet
             href ${ site.BaseURL }css/${page.css}
+    
+    $if site.Features.useWebFontLoader
+        js https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js
+        script
+            set WebFontConfig =
+                { 
+                    $foreach prov in site.Features.webFontLoader.providers
+                        { ${prov.name}
+                            [ families
+                                $foreach fami in prov.families
+                                    @ '${fami}'
+            iife 
+                var wf = document.createElement('script')
+                set wf.src =
+                    op+ 
+                        iif 'https:' == document.location.protocol
+                            then 'https'
+                            else 'http'
+                        + '://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
+                set wf.type = 'text/javascript'
+                set wf.async = 'true'
+                var s = document.getElementsByTagName('script')[0]
+                _ s.parentNode.insertBefore(wf, s)

@@ -47,10 +47,12 @@ export async function createFsJsonAndFactory(files: packyTypes.PackyFiles): Prom
         if (files[value].type === 'CODE') {
             const filePath = ensurePackyFilePrefix(value);
             jsonDocuments.push({ path: filePath, content: files[value].contents});
-            const plugin = pluginFor(filePath);
-            if (plugin && plugins.indexOf(plugin) < 0) {
-                plugins.push(plugin);
-            }
+            const pluginList = pluginsFor(filePath);
+            pluginList.forEach(item=>{
+                if (plugins.indexOf(item) < 0) {
+                    plugins.push(item);
+                }
+            })
         }
     });
     console.log('createFactory', plugins, jsonDocuments);
@@ -108,29 +110,29 @@ export async function extractGeneratedFiles(fsJson: FsJson): Promise<packyTypes.
     })
 }
 
-const schemaPluginMap: {[k: string]: string} = {
-    json: 'wizzi-core',
-    text: 'wizzi-core',
-    xml: 'wizzi-core',
-    ittf: 'wizzi-core',
-    wfjob: 'wizzi-core',
-    wfschema: 'wizzi-core',
-    js: 'wizzi-js',
-    ts: 'wizzi-js',
-    html: 'wizzi-web',
-    css: 'wizzi-web',
-    scss: 'wizzi-web',
-    graphql: 'wizzi-web',
-    vml: 'wizzi-web',
-    vue: 'wizzi-web',
+const schemaPluginMap: {[k: string]: string[]} = {
+    json: ['wizzi-core'],
+    text: ['wizzi-core'],
+    xml: ['wizzi-core'],
+    ittf: ['wizzi-core'],
+    wfjob: ['wizzi-core'],
+    wfschema: ['wizzi-core'],
+    js: ['wizzi-js'],
+    ts: ['wizzi-js'],
+    html: ['wizzi-web', 'wizzi-js', 'wizzi-core'],
+    css: ['wizzi-web'],
+    scss: ['wizzi-web'],
+    graphql: ['wizzi-web'],
+    vml: ['wizzi-web'],
+    vue: ['wizzi-web'],
 }
 
-function pluginFor(file: string): string | undefined {
+function pluginsFor(file: string): string[] {
     const nameParts = path.basename(file).split('.');
     if (nameParts[nameParts.length-1] === 'ittf') {
-        return schemaPluginMap[nameParts[nameParts.length-2]];
+        return schemaPluginMap[nameParts[nameParts.length-2]] || [];
     }
-    return undefined;
+    return [];
 }
 
 export function ensurePackyFilePrefix(filePath: string) {

@@ -1,0 +1,347 @@
+html
+    
+    $ 
+        var page = {
+            id: 'login-page',
+            section: 'webstyles',
+            title: 'Material kit login page Template',
+            description: 'Material kit login page template example',
+            author: site.Params.author, 
+            bodyClass: 'landing-page sidebar-collapse'
+        };
+        var assetsBaseUri = site.Features.materialKit.assetsBaseUri;
+    
+    layouts/page(&page) 
+
+        $append styles
+            link 
+                rel apple-touch-icon
+                sizes 76x76
+                href ${assetsBaseUri}/assets/img/apple-icon.png
+            link 
+                rel icon
+                type image/png
+                href ${assetsBaseUri}/assets/img/favicon.png
+            link 
+                href ${assetsBaseUri}/assets/demo/demo.css
+                rel stylesheet
+        nav 
+            class navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg
+            color-on-scroll 100
+            id sectionsNav
+            . container
+                . navbar-translate
+                    a Material Kit
+                        class navbar-brand
+                        href https://demos.creative-tim.com/material-kit/index.html
+                    button 
+                        class navbar-toggler
+                        type button
+                        data-toggle collapse
+                        aria-expanded false
+                        aria-label Toggle navigation
+                        span Toggle navigation
+                            class sr-only
+                        span 
+                            class navbar-toggler-icon
+                        span 
+                            class navbar-toggler-icon
+                        span 
+                            class navbar-toggler-icon
+                . collapse navbar-collapse
+                    ul 
+                        class navbar-nav ml-auto
+                        li 
+                            class dropdown nav-item
+                            a 
+                                href #
+                                class dropdown-toggle nav-link
+                                data-toggle dropdown
+                                i apps
+                                    class material-icons
+                                + Components
+                            . dropdown-menu dropdown-with-icons
+                                a 
+                                    href ../index.html
+                                    class dropdown-item
+                                    i layers
+                                        class material-icons
+                                    + All Components
+                                a 
+                                    href https://demos.creative-tim.com/material-kit/docs/2.1/getting-started/introduction.html
+                                    class dropdown-item
+                                    i content_paste
+                                        class material-icons
+                                    + Documentation
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                href javascript:void(0)
+                                onclick scrollToDownload()
+                                i cloud_download
+                                    class material-icons
+                                + Download
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                rel tooltip
+                                title 
+                                data-placement bottom
+                                href https://twitter.com/CreativeTim
+                                target _blank
+                                data-original-title Follow us on Twitter
+                                i 
+                                    class fa fa-twitter
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                rel tooltip
+                                title 
+                                data-placement bottom
+                                href https://www.facebook.com/CreativeTim
+                                target _blank
+                                data-original-title Like us on Facebook
+                                i 
+                                    class fa fa-facebook-square
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                rel tooltip
+                                title 
+                                data-placement bottom
+                                href https://www.instagram.com/CreativeTimOfficial
+                                target _blank
+                                data-original-title Follow us on Instagram
+                                i 
+                                    class fa fa-instagram
+        . page-header header-filter
+            data-parallax true
+            style background-image: url('${assetsBaseUri}/assets/img/profile_city.jpg')
+            . container
+                . row
+                    . col-md-6
+                        h1 Your Story Starts With Us.
+                            class title
+                        h4 Every landing page needs a small description after the big bold title, that&apos;s why we added this text here. Add here all the information that can make you or your product create the first impression.
+                        br 
+                        a 
+                            href https://www.youtube.com/watch?v=dQw4w9WgXcQ
+                            target _blank
+                            class btn btn-danger btn-raised btn-lg
+                            i 
+                                class fa fa-play
+                            + Watch video
+        . main main-raised
+            . container
+                . section text-center
+                    . row
+                        . col-md-8 ml-auto mr-auto
+                            h2 Let&apos;s talk product
+                                class title
+                            h5 This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn&apos;t scroll to get here. Add a button if you want the user to see more.
+                                class description
+                    . features
+                        . row
+                            . col-md-4
+                                . info
+                                    . icon icon-info
+                                        i chat
+                                            class material-icons
+                                    h4 Free Chat
+                                        class info-title
+                                    p Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.
+                            . col-md-4
+                                . info
+                                    . icon icon-success
+                                        i verified_user
+                                            class material-icons
+                                    h4 Verified Users
+                                        class info-title
+                                    p Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.
+                            . col-md-4
+                                . info
+                                    . icon icon-danger
+                                        i fingerprint
+                                            class material-icons
+                                    h4 Fingerprint
+                                        class info-title
+                                    p Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.
+                . section text-center
+                    h2 Here is our team
+                        class title
+                    . team
+                        . row
+                            . col-md-4
+                                . team-player
+                                    . card card-plain
+                                        . col-md-6 ml-auto mr-auto
+                                            img 
+                                                src ${assetsBaseUri}/assets/img/faces/avatar.jpg
+                                                alt Thumbnail Image
+                                                class img-raised rounded-circle img-fluid
+                                        h4 Gigi Hadid
+                                            class card-title
+                                            br 
+                                            small Model
+                                                class card-description text-muted
+                                        . card-body
+                                            p You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                                                class card-description
+                                                a links
+                                                    href #
+                                                + for people to be able to follow them outside the site.
+                                        . card-footer justify-content-center
+                                            a 
+                                                href #pablo
+                                                class btn btn-link btn-just-icon
+                                                i 
+                                                    class fa fa-twitter
+                                            a 
+                                                href #pablo
+                                                class btn btn-link btn-just-icon
+                                                i 
+                                                    class fa fa-instagram
+                                            a 
+                                                href #pablo
+                                                class btn btn-link btn-just-icon
+                                                i 
+                                                    class fa fa-facebook-square
+                            . col-md-4
+                                . team-player
+                                    . card card-plain
+                                        . col-md-6 ml-auto mr-auto
+                                            img 
+                                                src ${assetsBaseUri}/assets/img/faces/christian.jpg
+                                                alt Thumbnail Image
+                                                class img-raised rounded-circle img-fluid
+                                        h4 Christian Louboutin
+                                            class card-title
+                                            br 
+                                            small Designer
+                                                class card-description text-muted
+                                        . card-body
+                                            p You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                                                class card-description
+                                                a links
+                                                    href #
+                                                + for people to be able to follow them outside the site.
+                                        . card-footer justify-content-center
+                                            a 
+                                                href #pablo
+                                                class btn btn-link btn-just-icon
+                                                i 
+                                                    class fa fa-twitter
+                                            a 
+                                                href #pablo
+                                                class btn btn-link btn-just-icon
+                                                i 
+                                                    class fa fa-linkedin
+                            . col-md-4
+                                . team-player
+                                    . card card-plain
+                                        . col-md-6 ml-auto mr-auto
+                                            img 
+                                                src ${assetsBaseUri}/assets/img/faces/kendall.jpg
+                                                alt Thumbnail Image
+                                                class img-raised rounded-circle img-fluid
+                                        h4 Kendall Jenner
+                                            class card-title
+                                            br 
+                                            small Model
+                                                class card-description text-muted
+                                        . card-body
+                                            p You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                                                class card-description
+                                                a links
+                                                    href #
+                                                + for people to be able to follow them outside the site.
+                                        . card-footer justify-content-center
+                                            a 
+                                                href #pablo
+                                                class btn btn-link btn-just-icon
+                                                i 
+                                                    class fa fa-twitter
+                                            a 
+                                                href #pablo
+                                                class btn btn-link btn-just-icon
+                                                i 
+                                                    class fa fa-instagram
+                                            a 
+                                                href #pablo
+                                                class btn btn-link btn-just-icon
+                                                i 
+                                                    class fa fa-facebook-square
+                . section section-contacts
+                    . row
+                        . col-md-8 ml-auto mr-auto
+                            h2 Work with us
+                                class text-center title
+                            h4 Divide details about your product or agency work into parts. Write a few lines about each one and contact us about any further collaboration. We will responde get back to you in a couple of hours.
+                                class text-center description
+                            form 
+                                class contact-form
+                                . row
+                                    . col-md-6
+                                        . form-group
+                                            label Your Name
+                                                class bmd-label-floating
+                                            input 
+                                                type email
+                                                class form-control
+                                    . col-md-6
+                                        . form-group
+                                            label Your Email
+                                                class bmd-label-floating
+                                            input 
+                                                type email
+                                                class form-control
+                                . form-group
+                                    label Your Message
+                                        for exampleMessage
+                                        class bmd-label-floating
+                                    textarea 
+                                        type email
+                                        class form-control
+                                        rows 4
+                                        id exampleMessage
+                                . row
+                                    . col-md-4 ml-auto mr-auto text-center
+                                        button Send Message
+                                            class btn btn-primary btn-raised
+        footer 
+            class footer footer-default
+            . container
+                nav 
+                    class float-left
+                    ul 
+                        li 
+                            a Creative Tim
+                                href https://www.creative-tim.com
+                        li 
+                            a About Us
+                                href https://creative-tim.com/presentation
+                        li 
+                            a Blog
+                                href http://blog.creative-tim.com
+                        li 
+                            a Licenses
+                                href https://www.creative-tim.com/license
+                div &copy;
+                    class copyright float-right
+                    script 
+                        module
+                            kind react
+                            _ document.write
+                                _ new Date().getFullYear
+                    + , made with
+                    i favorite
+                        class material-icons
+                    + by
+                    a Creative Tim
+                        href https://www.creative-tim.com
+                        target _blank
+                    + for a better web.

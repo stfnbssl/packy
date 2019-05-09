@@ -34,7 +34,30 @@
                 trackerID "GA-000000000-0"
         
     { Features
-        bootstrap true
+        useWebFontLoader true
+        { webFontLoader
+            [ providers
+                { 
+                    name "google" 
+                    [ families
+                        "Aclonica"
+                        "Acme"
+                        "Roboto"
+        useGoogleFonts true
+        { googleFonts
+            families "Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
+            $$ families "Alice|Open+Sans:400,300,700"
+        useFontAwesome true
+        { fontAwesome
+        useBootstrap true
+        { bootstrap
+            $$ slider require version 3. see https://github.com/seiyria/bootstrap-slider/issues/689
+            $$ version "4.3.1"
+            version "3.3.7"
+            useSlider true
+        useMaterialKit true
+        { materialKit
+            assetsBaseUri "http://localhost:5000/static/demo/material-kit"
     
     { Styles
 

@@ -1,0 +1,495 @@
+module
+    kind es6
+
+    # credits https://fontjoy.com/
+    
+    if !String.prototype.includes
+        set String.prototype.includes =
+            function 
+                param search
+                param start
+                if typeof start !== 'number'
+                    set start = 0
+                if start + search.length > this.length
+                    return false
+                else
+                    return this.indexOf(search, start) !== -1
+    
+    function ready
+        param fn
+        if document.readyState != 'loading'
+            _ fn
+        else
+            _ document.addEventListener('DOMContentLoaded', fn)
+    
+    function el
+        param id
+        return document.getElementById(id)
+    
+    var similarity = 0
+    
+    _ ready
+        function 
+            var title = el('h1')
+            var subtitle = el('h2')
+            var content = el('content')
+            var hidden = el('hidden')
+            var generate = el('generate')
+            set title.oninput = auto_grow_handler
+            set subtitle.oninput = auto_grow_handler
+            set content.oninput = auto_grow_handler
+            var generate_handler
+                function 
+                    if this.className.substr(-14) == 'font-progress'
+                        return false
+                    set this.className += ' font-progress'
+                    var button = this
+                    var http = new XMLHttpRequest()
+                    var url = "./api/"
+                    _ http.open("POST", url, true)
+                    set http.onreadystatechange =
+                        function 
+                            if http.readyState == 4 && http.status == 200
+                                var result = JSON.parse(http.responseText)
+                                _ WebFont.load
+                                    { 
+                                        { google
+                                            [ families
+                                                @ result.title.family + ':' + result.title.variant
+                                                @ result.subtitle.family + ':' + result.subtitle.variant
+                                                @ result.content.family + ':' + result.content.variant
+                                        @ active
+                                            function 
+                                                var title = el('h1')
+                                                var subtitle = el('h2')
+                                                var content = el('content')
+                                                var label1 = el('title-label')
+                                                var label2 = el('subtitle-label')
+                                                var label3 = el('content-label')
+                                                set title.style.fontFamily = result.title.family
+                                                var weight = result.title.variant.replace(/\D/g, '')
+                                                set title.style.fontWeight =
+                                                    iif weight
+                                                        then weight
+                                                        else 'normal'
+                                                if result.title.variant.includes('italic')
+                                                    set title.style.fontStyle = 'oblique'
+                                                else
+                                                    set title.style.fontStyle = 'normal'
+                                                _ title.setAttribute('data-family', result.title.family)
+                                                _ title.setAttribute('data-variant', result.title.variant)
+                                                set subtitle.style.fontFamily = result.subtitle.family
+                                                set weight = result.subtitle.variant.replace(/\D/g, '')
+                                                set subtitle.style.fontWeight =
+                                                    iif weight
+                                                        then weight
+                                                        else 'normal'
+                                                if result.subtitle.variant.includes('italic')
+                                                    set subtitle.style.fontStyle = 'oblique'
+                                                else
+                                                    set subtitle.style.fontStyle = 'normal'
+                                                _ subtitle.setAttribute('data-family', result.subtitle.family)
+                                                _ subtitle.setAttribute('data-variant', result.subtitle.variant)
+                                                set content.style.fontFamily = result.content.family
+                                                set weight = result.content.variant.replace(/\D/g, '')
+                                                set content.style.fontWeight =
+                                                    iif weight
+                                                        then weight
+                                                        else 'normal'
+                                                if result.content.variant.includes('italic')
+                                                    set content.style.fontStyle = 'oblique'
+                                                else
+                                                    set content.style.fontStyle = 'normal'
+                                                _ content.setAttribute('data-family', result.content.family)
+                                                _ content.setAttribute('data-variant', result.content.variant)
+                                                set label1.innerText = result.title.family
+                                                set label2.innerText = result.subtitle.family
+                                                set label3.innerText = result.content.family
+                                                var googlestring = 'https://fonts.google.com/specimen/'
+                                                set label1.href = googlestring + result.title.family.split(' ').join('+')
+                                                set label2.href = googlestring + result.subtitle.family.split(' ').join('+')
+                                                set label3.href = googlestring + result.content.family.split(' ').join('+')
+                                                _ resize_elements
+                                                if button
+                                                    _ setTimeout
+                                                        function 
+                                                            set button.className = 'btn btn-default generate'
+                                                        @ 200
+                    var postdata = {}
+                    set postdata.title = ''
+                    set postdata.subtitle = ''
+                    set postdata.content = ''
+                    set postdata.similarity = similarity
+                    if el('title-lock').getAttribute('data-locked') === 'true'
+                        set postdata.title =
+                            { 
+                                @ 'family' el('h1').getAttribute('data-family')
+                                @ 'variant' el('h1').getAttribute('data-variant')
+                    if el('subtitle-lock').getAttribute('data-locked') === 'true'
+                        set postdata.subtitle =
+                            { 
+                                @ 'family' el('h2').getAttribute('data-family')
+                                @ 'variant' el('h2').getAttribute('data-variant')
+                    if el('content-lock').getAttribute('data-locked') === 'true'
+                        set postdata.content =
+                            { 
+                                @ 'family' el('content').getAttribute('data-family')
+                                @ 'variant' el('content').getAttribute('data-variant')
+                    _ http.send(JSON.stringify(postdata))
+                    return false
+            set generate.onclick = generate_handler
+            # slider
+            var similarity_label
+                function 
+                    param val
+                    if val > 0.6
+                        return 'very similar'
+                    if val > 0.2
+                        return 'more similarity'
+                    if val < -0.6
+                        return 'high contrast'
+                    if val < -0.2
+                        return 'more contrast'
+                    return 'balanced contrast'
+            var slider
+                new Slider
+                    @ '#slider'
+                    { 
+                        @ formatter similarity_label
+            _ slider.on
+                @ "slide"
+                function 
+                    param val
+                    set similarity = val
+            # lock
+            var locks
+                [ 
+                    @ el('title-lock')
+                    @ el('subtitle-lock')
+                    @ el('content-lock')
+            for var i = 0; i < locks.length; i++
+                set locks[i].onclick =
+                    function 
+                        if this.getAttribute('data-locked') === 'true'
+                            set this.className = 'btn btn-default btn-circle lock'
+                            _ this.setAttribute('data-locked', false)
+                        else
+                            if el('h1').getAttribute('data-family')
+                                set this.className = 'btn btn-default btn-circle lock active'
+                                _ this.setAttribute('data-locked', true)
+                        return false
+            # render sprite
+            var sprite = new Image()
+            set sprite.onload =
+                function 
+                    var count = 0
+                    for var i = 0; i < fonts.items.length; i++
+                        var font = fonts.items[i]
+                        for var j = 0; j < font.variants.length; j++
+                            var item = document.createElement('span')
+                            var label = document.createElement('span')
+                            var canvas = document.createElement('canvas')
+                            set canvas.width = 145
+                            set canvas.height = 145
+                            var ctx = canvas.getContext('2d')
+                            _ ctx.drawImage(sprite, (count % 44) * 145, Math.floor(count / 44) * 145, 145, 145, 0, 0, 145, 145)
+                            set item.id = 'font-' + count
+                            set item.className = 'item'
+                            set label.innerText =
+                                op+ 
+                                    + font.family + ' ' + font.variants[j].replace(/\D/g, '') + ' '
+                                    iif font.variants[j].includes('italic')
+                                        then 'oblique'
+                                        else ''
+                            set label.className = 'font-name'
+                            _ item.appendChild(canvas)
+                            _ item.appendChild(label)
+                            _ item.setAttribute('data-family', font.family)
+                            _ item.setAttribute('data-variant', font.variants[j])
+                            _ el('list-content').appendChild(item)
+                            set count++
+                            set item.onclick =
+                                function 
+                                    var target = el('h1')
+                                    var button = el('title-edit')
+                                    if el('subtitle-edit').className == 'btn btn-default btn-circle edit active'
+                                        set target = el('h2')
+                                        set button = el('subtitle-edit')
+                                    else
+                                        if el('content-edit').className == 'btn btn-default btn-circle edit active'
+                                            set target = el('content')
+                                            set button = el('content-edit')
+                                    var family = this.getAttribute('data-family')
+                                    var variant = this.getAttribute('data-variant')
+                                    _ WebFont.load
+                                        { 
+                                            { google
+                                                [ families
+                                                    @ family + ':' + variant
+                                            @ active
+                                                function 
+                                                    var label = el('title-label')
+                                                    if target.id == 'h2'
+                                                        set label = el('subtitle-label')
+                                                    else
+                                                        if target.id == 'content'
+                                                            set label = el('content-label')
+                                                    set target.style.fontFamily = family
+                                                    var weight = variant.replace(/\D/g, '')
+                                                    set target.style.fontWeight =
+                                                        iif weight
+                                                            then weight
+                                                            else 'normal'
+                                                    if variant.includes('italic')
+                                                        set target.style.fontStyle = 'oblique'
+                                                    else
+                                                        set target.style.fontStyle = 'normal'
+                                                    _ target.setAttribute('data-family', family)
+                                                    _ target.setAttribute('data-variant', variant)
+                                                    set label.innerText = family
+                                                    var googlestring = 'https://fonts.google.com/specimen/'
+                                                    set label.href = googlestring + family.split(' ').join('+')
+                                                    _ resize_elements
+                                                    set button.className = 'btn btn-default btn-circle edit'
+                                                    set button.parentNode.className = 'controls col-md-2'
+                                                    set el('list').className = ''
+            set sprite.src = 'img/sprite.gif'
+            # toggle sprite
+            var editbuttons
+                [ 
+                    @ el('title-edit')
+                    @ el('subtitle-edit')
+                    @ el('content-edit')
+            for var i = 0; i < editbuttons.length; i++
+                var button = editbuttons[i]
+                set button.onclick =
+                    function 
+                        set el('search').value = ''
+                        if this.className == 'btn btn-default btn-circle edit'
+                            set this.className = 'btn btn-default btn-circle edit active'
+                            set this.parentNode.className = 'controls col-md-2 active'
+                            set el('list').className = 'active'
+                            var text = el('h1')
+                            if this.id == 'subtitle-edit'
+                                set text = el('h2')
+                            else
+                                if this.id == 'content-edit'
+                                    set text = el('content')
+                            var family = text.getAttribute('data-family')
+                            var weight = text.getAttribute('data-variant').replace(/\D/g, '')
+                            if !weight || weight == 'regular'
+                                set weight = 'normal'
+                            var style
+                                iif text.getAttribute('data-variant').includes('italic')
+                                    then 'oblique'
+                                    else 'normal'
+                            set el('list-name').innerText =
+                                op+ 
+                                    op+ 
+                                        + family + ' ' + weight + ' '
+                                        iif style == 'oblique'
+                                            then style
+                                            else ''
+                                    + ' (most to least similar)'
+                            set el('list-name').style.fontFamily = family
+                            set el('list-name').style.fontWeight = weight
+                            set el('list-name').style.fontStyle = style
+                            var http = new XMLHttpRequest()
+                            var url = "./api/recommend/"
+                            _ http.open("POST", url, true)
+                            set http.onreadystatechange =
+                                function 
+                                    if http.readyState == 4 && http.status == 200
+                                        var result = JSON.parse(http.responseText)
+                                        var list = el('list-content')
+                                        for var j = 0; j < result.length; j++
+                                            _ list.appendChild(el('font-' + result[j]))
+                                            set el('font-' + result[j]).className = 'item'
+                            var postdata = {}
+                            set postdata.family = text.getAttribute('data-family')
+                            set postdata.variant = text.getAttribute('data-variant')
+                            set postdata.similarity = 1
+                            _ http.send(JSON.stringify(postdata))
+                        else
+                            set this.className = 'btn btn-default btn-circle edit'
+                            set this.parentNode.className = 'controls col-md-2'
+                            set el('list').className = ''
+                        return false
+            # change contrast
+            set el('contrast').onclick =
+                function 
+                    if document.body.className == 'active'
+                        set document.body.className = ''
+                    else
+                        set document.body.className = 'active'
+                    return false
+            # search
+            var handle_input
+                function 
+                    param e
+                    var term
+                        _ e.target.value.toLowerCase
+                    var count = 0
+                    for var i = 0; i < fonts.items.length; i++
+                        var font = fonts.items[i]
+                        if 
+                            test
+                                _ font.family.toLowerCase
+                                    ._ includes
+                                        @ term
+                            for var j = 0; j < font.variants.length; j++
+                                set el('font-' + count).className = 'item'
+                                set count++
+                        else
+                            for var j = 0; j < font.variants.length; j++
+                                set el('font-' + count).className = 'item hidden'
+                                set count++
+            var throttled_input = _throttle(handle_input, 200)
+            set el('search').oninput = throttled_input
+            # display pairs
+            set el('pair').onclick =
+                function 
+                    set el('subtitle-edit').className = 'btn btn-default btn-circle edit active'
+                    set el('subtitle-edit').parentNode.className = 'controls col-md-2 active'
+                    set el('list').className = 'active'
+                    var family = el('h1').getAttribute('data-family')
+                    var weight = el('h1').getAttribute('data-variant').replace(/\D/g, '')
+                    if !weight || weight == 'regular'
+                        set weight = 'normal'
+                    var style
+                        iif el('h1').getAttribute('data-variant').includes('italic')
+                            then 'oblique'
+                            else 'normal'
+                    set el('list-name').innerText =
+                        op+ 
+                            op+ 
+                                op+ 
+                                    op+ 
+                                        op+ 
+                                            op+ 
+                                                + 'Top pairings for ' + family + ' '
+                                                iif style == 'oblique'
+                                                    then style
+                                                    else ''
+                                            + ' '
+                                        + weight
+                                    + ' ('
+                                + similarity_label(similarity)
+                            + ')'
+                    set el('list-name').style.fontFamily = family
+                    set el('list-name').style.fontWeight = weight
+                    set el('list-name').style.fontStyle = style
+                    var http = new XMLHttpRequest()
+                    var url = "./api/recommend/"
+                    _ http.open("POST", url, true)
+                    set http.onreadystatechange =
+                        function 
+                            if http.readyState == 4 && http.status == 200
+                                var result = JSON.parse(http.responseText)
+                                var list = el('list-content')
+                                for var j = 0; j < result.length; j++
+                                    _ list.appendChild(el('font-' + result[j]))
+                                    if j > 200
+                                        set el('font-' + result[j]).className = 'item hidden'
+                                    else
+                                        set el('font-' + result[j]).className = 'item'
+                    var postdata = {}
+                    set postdata.family = el('h1').getAttribute('data-family')
+                    set postdata.variant = el('h1').getAttribute('data-variant')
+                    set postdata.similarity = similarity
+                    _ http.send(JSON.stringify(postdata))
+                    return false
+    set window.onload = resize_elements
+    
+    set _now =
+        || 
+            + Date.now
+            function 
+                return 
+                    _ new Date().getTime
+    
+    set _throttle =
+        function 
+            param func
+            param wait
+            param options
+            var 
+                decl context
+                    undefined
+                decl args
+                    undefined
+                decl result
+                    undefined
+            var timeout = null
+            var previous = 0
+            if !options
+                set options = {}
+            var later
+                function 
+                    set previous =
+                        iif options.leading === false
+                            then 0
+                            else
+                                _ _now
+                    set timeout = null
+                    set result = func.apply(context, args)
+                    if !timeout
+                        set args = null
+            return 
+                function 
+                    var now
+                        _ _now
+                    if !previous && options.leading === false
+                        set previous = now
+                    var remaining = wait - (now - previous)
+                    set context = this
+                    set args = arguments
+                    if remaining <= 0 || remaining > wait
+                        if timeout
+                            _ clearTimeout(timeout)
+                            set timeout = null
+                        set previous = now
+                        set result = func.apply(context, args)
+                        if !timeout
+                            set args = null
+                    else
+                        if !timeout && options.trailing !== false
+                            set timeout = setTimeout(later, remaining)
+                    return result
+    
+    var throttled = _throttle(resize_elements, 100)
+    set window.onresize = throttled
+    
+    function resize_elements
+        var main = el('main')
+        var title = el('h1')
+        var hidden = el('hidden')
+        set hidden.style.fontFamily = title.style.fontFamily
+        set hidden.style.fontWeight = title.style.fontWeight
+        set hidden.style.fontStyle = title.style.fontStyle
+        var size = (Math.floor(55 * (main.offsetWidth / hidden.offsetWidth)) / 10)
+        if window.innerWidth < 480 && size < 2
+            set size = 2
+        else
+            if size < 3
+                set size = 3
+        set title.style.fontSize = size + 'em'
+        _ auto_grow(title)
+        _ auto_grow(el('h2'))
+        _ auto_grow(el('content'))
+        var style = title.currentStyle || window.getComputedStyle(title)
+        set el('title-controls').style.paddingTop = (title.offsetTop + parseInt(style.paddingTop)) + 'px'
+        if window.innerWidth < 480
+            set el('list').style.paddingLeft = '100px'
+        else
+            set el('list').style.paddingLeft = el('title-controls').offsetWidth + 'px'
+    
+    function auto_grow_handler
+        param e
+        _ auto_grow(e.target)
+    
+    function auto_grow
+        param element
+        set element.style.height = "5px"
+        set element.style.height = element.scrollHeight + "px"
+        set element.parentNode.previousSibling.style.height = element.parentNode.offsetHeight + 'px'

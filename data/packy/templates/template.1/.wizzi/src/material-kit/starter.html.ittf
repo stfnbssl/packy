@@ -1,0 +1,89 @@
+html
+    
+    $ 
+        var page = {
+            id: 'material-kit',
+            section: 'webstyles',
+            title: 'Material kit starter Template',
+            description: 'Material kit starter template example',
+            author: site.Params.author, 
+        };
+        var assetsBaseUri = site.Features.materialKit.assetsBaseUri;
+    
+    layouts/page(&page) 
+        $append styles
+            @style 
+                css
+
+        nav 
+            class navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg
+            @ color-on-scroll 100
+            . container
+                . navbar-translate
+                    a Material Kit
+                        class navbar-brand
+                        href https://demos.creative-tim.com/material-kit/index.html
+                    button 
+                        class navbar-toggler
+                        type button
+                        data-toggle collapse
+                        aria-expanded false
+                        aria-label Toggle navigation
+                        span Toggle navigation
+                            class sr-only
+                        span 
+                            class navbar-toggler-icon
+                        span 
+                            class navbar-toggler-icon
+                        span 
+                            class navbar-toggler-icon
+                . collapse navbar-collapse
+                    ul 
+                        class navbar-nav ml-auto
+                        li 
+                            class nav-item
+                            a 
+                                href #
+                                class nav-link
+                                i apps
+                                    class material-icons
+                                + Template
+        . page-header header-filter
+            data-parallax true
+            style background-image: url('${assetsBaseUri}/assets/img/bg3.jpg')
+            . container
+                . row
+                    . col-md-8 ml-auto mr-auto
+                        . brand text-center
+                            h1 Your title here
+                            h3 Subtitle
+                                class title text-center
+        . main main-raised
+            . container
+                . section text-center
+                    h2 Your main section here
+                        class title
+        footer 
+            class footer footer-default
+            . container
+                nav 
+                    class float-left
+                    ul 
+                        li 
+                            a Creative Tim
+                                href https://www.creative-tim.com/
+                div &copy;
+                    class copyright float-right
+                    script 
+                        module
+                            kind react
+                            _ document.write
+                                _ new Date().getFullYear
+                    + , made with \b
+                    i favorite
+                        class material-icons
+                    + by \b
+                    a Creative Tim \b
+                        href https://www.creative-tim.com/
+                        target blank
+                    + for a better web.

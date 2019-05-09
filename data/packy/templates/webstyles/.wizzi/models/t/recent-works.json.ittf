@@ -1,0 +1,15 @@
+$group
+
+    $
+      var imagesFolder = "http://localhost:5000/static/demo/xxx/images/recentworks";
+
+    [ recentworks
+        { 
+            id 0
+            name "xxx"
+            image "${imagesFolder}/img1.jpg"
+            url "#"
+            [ items
+                { 
+                    name "yyy"
+                    url "#"

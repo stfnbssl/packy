@@ -1,0 +1,219 @@
+html
+    
+    $ 
+        var page = {
+            id: 'login-page',
+            section: 'webstyles',
+            title: 'Material kit login page Template',
+            description: 'Material kit login page template example',
+            author: site.Params.author, 
+            bodyClass: 'login-page sidebar-collapse'
+        };
+        var assetsBaseUri = site.Features.materialKit.assetsBaseUri;
+    
+    layouts/page(&page) 
+
+        $append styles
+            link 
+                rel apple-touch-icon
+                sizes 76x76
+                href ${assetsBaseUri}/assets/img/apple-icon.png
+            link 
+                rel icon
+                type image/png
+                href ${assetsBaseUri}/assets/img/favicon.png
+            link 
+                href ${assetsBaseUri}/assets/demo/demo.css
+                rel stylesheet
+        nav 
+            class navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg
+            color-on-scroll 100
+            id sectionsNav
+            . container
+                . navbar-translate
+                    a Material Kit
+                        class navbar-brand
+                        href https://demos.creative-tim.com/material-kit/index.html
+                    button 
+                        class navbar-toggler
+                        type button
+                        data-toggle collapse
+                        aria-expanded false
+                        aria-label Toggle navigation
+                        span Toggle navigation
+                            class sr-only
+                        span 
+                            class navbar-toggler-icon
+                        span 
+                            class navbar-toggler-icon
+                        span 
+                            class navbar-toggler-icon
+                . collapse navbar-collapse
+                    ul 
+                        class navbar-nav ml-auto
+                        li 
+                            class dropdown nav-item
+                            a 
+                                href #
+                                class dropdown-toggle nav-link
+                                data-toggle dropdown
+                                i apps
+                                    class material-icons
+                                + Components
+                            . dropdown-menu dropdown-with-icons
+                                a 
+                                    href ../index.html
+                                    class dropdown-item
+                                    i layers
+                                        class material-icons
+                                    + All Components
+                                a 
+                                    href https://demos.creative-tim.com/material-kit/docs/2.1/getting-started/introduction.html
+                                    class dropdown-item
+                                    i content_paste
+                                        class material-icons
+                                    + Documentation
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                href javascript:void(0)
+                                onclick scrollToDownload()
+                                i cloud_download
+                                    class material-icons
+                                + Download
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                rel tooltip
+                                title 
+                                data-placement bottom
+                                href https://twitter.com/CreativeTim
+                                target _blank
+                                data-original-title Follow us on Twitter
+                                i 
+                                    class fa fa-twitter
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                rel tooltip
+                                title 
+                                data-placement bottom
+                                href https://www.facebook.com/CreativeTim
+                                target _blank
+                                data-original-title Like us on Facebook
+                                i 
+                                    class fa fa-facebook-square
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                rel tooltip
+                                title 
+                                data-placement bottom
+                                href https://www.instagram.com/CreativeTimOfficial
+                                target _blank
+                                data-original-title Follow us on Instagram
+                                i 
+                                    class fa fa-instagram
+        . page-header header-filter
+            style background-image: url('${assetsBaseUri}/assets/img/bg7.jpg'); background-size: cover; background-position: top center;
+            . container
+                . row
+                    . col-lg-4 col-md-6 ml-auto mr-auto
+                        . card card-login
+                            form 
+                                class form
+                                method 
+                                action 
+                                . card-header card-header-primary text-center
+                                    h4 Login
+                                        class card-title
+                                    . social-line
+                                        a 
+                                            href #pablo
+                                            class btn btn-just-icon btn-link
+                                            i 
+                                                class fa fa-facebook-square
+                                        a 
+                                            href #pablo
+                                            class btn btn-just-icon btn-link
+                                            i 
+                                                class fa fa-twitter
+                                        a 
+                                            href #pablo
+                                            class btn btn-just-icon btn-link
+                                            i 
+                                                class fa fa-google-plus
+                                p Or Be Classical
+                                    class description text-center
+                                . card-body
+                                    . input-group
+                                        . input-group-prepend
+                                            span 
+                                                class input-group-text
+                                                i face
+                                                    class material-icons
+                                        input 
+                                            type text
+                                            class form-control
+                                            placeholder First Name...
+                                    . input-group
+                                        . input-group-prepend
+                                            span 
+                                                class input-group-text
+                                                i mail
+                                                    class material-icons
+                                        input 
+                                            type email
+                                            class form-control
+                                            placeholder Email...
+                                    . input-group
+                                        . input-group-prepend
+                                            span 
+                                                class input-group-text
+                                                i lock_outline
+                                                    class material-icons
+                                        input 
+                                            type password
+                                            class form-control
+                                            placeholder Password...
+                                . footer text-center
+                                    a Get Started
+                                        href #pablo
+                                        class btn btn-primary btn-link btn-wd btn-lg
+            footer 
+                class footer
+                . container
+                    nav 
+                        class float-left
+                        ul 
+                            li 
+                                a Creative Tim
+                                    href https://www.creative-tim.com
+                            li 
+                                a About Us
+                                    href https://creative-tim.com/presentation
+                            li 
+                                a Blog
+                                    href http://blog.creative-tim.com
+                            li 
+                                a Licenses
+                                    href https://www.creative-tim.com/license
+                    div &copy;
+                        class copyright float-right
+                        script 
+                            module
+                                kind react
+                                _ document.write
+                                    _ new Date().getFullYear
+                        + , made with
+                        i favorite
+                            class material-icons
+                        + by
+                        a Creative Tim
+                            href https://www.creative-tim.com
+                            target _blank
+                        + for a better web.       

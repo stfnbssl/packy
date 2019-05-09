@@ -6,6 +6,8 @@ $group
         styles/main(&page)
         $hook styles
     body
+        $if page.bodyClass
+            class ${page.bodyClass}
         includes/header(&page)
         
         $hook

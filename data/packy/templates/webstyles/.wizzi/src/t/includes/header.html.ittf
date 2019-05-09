@@ -1,0 +1,20 @@
+header 
+    id header
+    . parallax
+        id head
+        @ parallax-speed 2
+        h1 
+            id logo
+            class text-center
+            img 
+                class img-circle
+                src ${ site.BaseURL }${ site.Params.avatar }
+                alt 
+            span ${ site.Params.name }
+                class title
+            span ${ site.Params.description }
+                class tagline
+                br 
+                a ${ site.Params.email }
+                    href mailto:${ site.Params.email }
+    navbar()
