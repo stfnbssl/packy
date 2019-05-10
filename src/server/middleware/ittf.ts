@@ -217,7 +217,7 @@ async function contextLoader(resourceFilePath: string, req: Request, callback: a
         repeat(0);
     } else {
         try {
-            const twinJsonContext = await wizziProds.inferAndLoadContext(resourceFilePath, 'mpage')
+            const twinJsonContext = await wizziProds.inferAndLoadContextFs(resourceFilePath, 'mpage')
             return(callback(null, twinJsonContext));
         } catch (ex) {
             return callback(ex);

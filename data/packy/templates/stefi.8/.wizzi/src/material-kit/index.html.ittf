@@ -1,0 +1,1813 @@
+html
+    
+    $ 
+        var page = {
+            id: 'material-kit-index',
+            section: 'webstyles',
+            title: 'Material kit index page Template',
+            description: 'Material kit index page template example',
+            author: site.Params.author, 
+            bodyClass: 'index-page sidebar-collapse'
+        };
+        var assetsBaseUri = site.Features.materialKit.assetsBaseUri;
+    
+    layouts/page(&page) 
+
+        $append styles
+            link 
+                rel apple-touch-icon
+                sizes 76x76
+                href ${assetsBaseUri}/assets/img/apple-icon.png
+            link 
+                rel icon
+                type image/png
+                href ${assetsBaseUri}/assets/img/favicon.png
+            link 
+                href ${assetsBaseUri}/assets/demo/demo.css
+                rel stylesheet
+        nav 
+            class navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg
+            @ color-on-scroll 100
+            id sectionsNav
+            . container
+                . navbar-translate
+                    a Material Kit
+                        class navbar-brand
+                        href https://demos.creative-tim.com/material-kit/index.html
+                    button 
+                        class navbar-toggler
+                        type button
+                        data-toggle collapse
+                        aria-expanded false
+                        aria-label Toggle navigation
+                        span Toggle navigation
+                            class sr-only
+                        span 
+                            class navbar-toggler-icon
+                        span 
+                            class navbar-toggler-icon
+                        span 
+                            class navbar-toggler-icon
+                . collapse navbar-collapse
+                    ul 
+                        class navbar-nav ml-auto
+                        li 
+                            class dropdown nav-item
+                            a 
+                                href #
+                                class dropdown-toggle nav-link
+                                data-toggle dropdown
+                                i apps
+                                    class material-icons
+                                + Components
+                            . dropdown-menu dropdown-with-icons
+                                a 
+                                    href ./index.html
+                                    class dropdown-item
+                                    i layers
+                                        class material-icons
+                                    + All Components
+                                a 
+                                    href https://demos.creative-tim.com/material-kit/docs/2.1/getting-started/introduction.html
+                                    class dropdown-item
+                                    i content_paste
+                                        class material-icons
+                                    + Documentation
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                href javascript:void(0)
+                                onclick scrollToDownload()
+                                i cloud_download
+                                    class material-icons
+                                + Download
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                rel tooltip
+                                title 
+                                data-placement bottom
+                                href https://twitter.com/CreativeTim
+                                target _blank
+                                data-original-title Follow us on Twitter
+                                i 
+                                    class fa fa-twitter
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                rel tooltip
+                                title 
+                                data-placement bottom
+                                href https://www.facebook.com/CreativeTim
+                                target _blank
+                                data-original-title Like us on Facebook
+                                i 
+                                    class fa fa-facebook-square
+                        li 
+                            class nav-item
+                            a 
+                                class nav-link
+                                rel tooltip
+                                title 
+                                data-placement bottom
+                                href https://www.instagram.com/CreativeTimOfficial
+                                target _blank
+                                data-original-title Follow us on Instagram
+                                i 
+                                    class fa fa-instagram
+        . page-header header-filter clear-filter purple-filter
+            data-parallax true
+            style background-image: url('${assetsBaseUri}/assets/img/bg2.jpg');
+            . container
+                . row
+                    . col-md-8 ml-auto mr-auto
+                        . brand
+                            h1 Material Kit.
+                            h3 A Badass Bootstrap 4 UI Kit based on Material Design.
+        . main main-raised
+            . section section-basic
+                . container
+                    . title
+                        h2 Basic Elements
+                    . cd-section
+                        id buttons
+                        . title
+                            h3 Buttons
+                                br 
+                                small Pick your style
+                        . row
+                            . col-md-8 ml-auto mr-auto
+                                button Default
+                                    class btn btn-primary
+                                button Round
+                                    class btn btn-primary btn-round
+                                button 
+                                    class btn btn-primary btn-round
+                                    i favorite
+                                        class material-icons
+                                    + With Icon
+                                button 
+                                    class btn btn-primary btn-fab btn-round
+                                    i favorite
+                                        class material-icons
+                                button Simple
+                                    class btn btn-primary btn-link
+                        . title
+                            h3 
+                                small Pick your size
+                        . row
+                            . col-md-8 ml-auto mr-auto
+                                button Small
+                                    class btn btn-primary btn-sm
+                                button Regular
+                                    class btn btn-primary
+                                button Large
+                                    class btn btn-primary btn-lg
+                        . title
+                            h3 
+                                small Pick your color
+                        . row
+                            . col-md-10 ml-auto
+                                button Default
+                                    class btn
+                                button Primary
+                                    class btn btn-primary
+                                button Info
+                                    class btn btn-info
+                                button Success
+                                    class btn btn-success
+                                button Warning
+                                    class btn btn-warning
+                                button Danger
+                                    class btn btn-danger
+                                button Rose
+                                    class btn btn-rose
+                    . space-50
+                    div 
+                        id inputs
+                        . title
+                            h3 Inputs
+                        . row
+                            . col-lg-3 col-sm-4
+                                . form-group has-default
+                                    input 
+                                        type text
+                                        class form-control
+                                        placeholder Regular
+                            . col-lg-3 col-sm-4
+                                . form-group
+                                    label With Floating Label
+                                        for exampleInput1
+                                        class bmd-label-floating
+                                    input 
+                                        type email
+                                        class form-control
+                                        id exampleInput1
+                                    span We'll never share your email with anyone else.
+                                        class bmd-help
+                            . col-lg-3 col-sm-4
+                                . form-group has-success
+                                    label Success input
+                                        for exampleInput2
+                                        class bmd-label-floating
+                                    input 
+                                        type text
+                                        class form-control
+                                        id exampleInput2
+                                    span 
+                                        class form-control-feedback
+                                        i done
+                                            class material-icons
+                            . col-lg-3 col-sm-4
+                                . form-group has-danger
+                                    label Error input
+                                        for exampleInput3
+                                        class bmd-label-floating
+                                    input 
+                                        type email
+                                        class form-control
+                                        id exampleInput3
+                                    span 
+                                        class form-control-feedback
+                                        i clear
+                                            class material-icons
+                            . col-lg-3 col-sm-4
+                                . form-group
+                                    . input-group
+                                        . input-group-prepend
+                                            span 
+                                                class input-group-text
+                                                i group
+                                                    class material-icons
+                                        input 
+                                            type text
+                                            class form-control
+                                            placeholder With Material Icons
+                            . col-lg-3 col-sm-4
+                                . form-group
+                                    . input-group
+                                        . input-group-prepend
+                                            span 
+                                                class input-group-text
+                                                i 
+                                                    class fa fa-group
+                                        input 
+                                            type text
+                                            class form-control
+                                            placeholder With Font Awesome Icons
+                    . space-70
+                    div 
+                        id checkRadios
+                        . row
+                            . col-lg-3 col-md-4 col-sm-6
+                                . title
+                                    h3 Checkboxes
+                                . form-check
+                                    label 
+                                        class form-check-label
+                                        input 
+                                            class form-check-input
+                                            type checkbox
+                                            value 
+                                        + Unchecked
+                                        span 
+                                            class form-check-sign
+                                            span 
+                                                class check
+                                . form-check
+                                    label 
+                                        class form-check-label
+                                        input 
+                                            class form-check-input
+                                            type checkbox
+                                            value 
+                                            checked 
+                                        + Checked
+                                        span 
+                                            class form-check-sign
+                                            span 
+                                                class check
+                                . form-check disabled
+                                    label 
+                                        class form-check-label
+                                        input 
+                                            class form-check-input
+                                            type checkbox
+                                            value 
+                                            disabled 
+                                        + Disabled unchecked
+                                        span 
+                                            class form-check-sign
+                                            span 
+                                                class check
+                                . form-check disabled
+                                    label 
+                                        class form-check-label
+                                        input 
+                                            class form-check-input
+                                            type checkbox
+                                            value 
+                                            disabled 
+                                            checked 
+                                        + Disabled checked
+                                        span 
+                                            class form-check-sign
+                                            span 
+                                                class check
+                            . col-lg-3 col-md-4 col-sm-6
+                                . title
+                                    h3 Radio Buttons
+                                . form-check
+                                    label 
+                                        class form-check-label
+                                        input 
+                                            class form-check-input
+                                            type radio
+                                            name exampleRadios
+                                            id exampleRadios1
+                                            value option1
+                                        + Radio is off
+                                        span 
+                                            class circle
+                                            span 
+                                                class check
+                                . form-check
+                                    label 
+                                        class form-check-label
+                                        input 
+                                            class form-check-input
+                                            type radio
+                                            name exampleRadios
+                                            id exampleRadios2
+                                            value option2
+                                            checked 
+                                        + Radio is on
+                                        span 
+                                            class circle
+                                            span 
+                                                class check
+                                . form-check disabled
+                                    label 
+                                        class form-check-label
+                                        input 
+                                            class form-check-input
+                                            type radio
+                                            name exampleRadios1
+                                            id exampleRadios11
+                                            value option1
+                                            disabled 
+                                        + Disabled radio is off
+                                        span 
+                                            class circle
+                                            span 
+                                                class check
+                                . form-check disabled
+                                    label 
+                                        class form-check-label
+                                        input 
+                                            class form-check-input
+                                            type radio
+                                            name exampleRadio1
+                                            id exampleRadios21
+                                            value option2
+                                            checked 
+                                            disabled 
+                                        + Disabled radio is on
+                                        span 
+                                            class circle
+                                            span 
+                                                class check
+                            . col-lg-3 col-md-4 col-sm-6
+                                . title
+                                    h3 Toggle Buttons
+                                . togglebutton
+                                    label 
+                                        input 
+                                            type checkbox
+                                            checked 
+                                        span 
+                                            class toggle
+                                        + Toggle is on
+                                . togglebutton
+                                    label 
+                                        input 
+                                            type checkbox
+                                        span 
+                                            class toggle
+                                        + Toggle is off
+                    . space-70
+                    div 
+                        id progress
+                        . row
+                            . col-md-6
+                                . title
+                                    h3 Progress Bars
+                                . progress progress-line-primary
+                                    . progress-bar progress-bar-primary
+                                        role progressbar
+                                        aria-valuenow 60
+                                        aria-valuemin 0
+                                        aria-valuemax 100
+                                        style width: 30%;
+                                        span 60% Complete
+                                            class sr-only
+                                . progress progress-line-info
+                                    . progress-bar progress-bar-info
+                                        role progressbar
+                                        aria-valuenow 60
+                                        aria-valuemin 0
+                                        aria-valuemax 100
+                                        style width: 60%;
+                                        span 60% Complete
+                                            class sr-only
+                                . progress progress-line-danger
+                                    . progress-bar progress-bar-success
+                                        style width: 35%
+                                        span 35% Complete (success)
+                                            class sr-only
+                                    . progress-bar progress-bar-warning
+                                        style width: 20%
+                                        span 20% Complete (warning)
+                                            class sr-only
+                                    . progress-bar progress-bar-danger
+                                        style width: 10%
+                                        span 10% Complete (danger)
+                                            class sr-only
+                            . col-md-6
+                                . title
+                                    h3 Pagination
+                                ul 
+                                    class pagination pagination-primary
+                                    li 
+                                        class page-item
+                                        a 1
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a ...
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a 5
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a 6
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class active page-item
+                                        a 7
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a 8
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a 9
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a ...
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a 12
+                                            href javascript:void(0);
+                                            class page-link
+                                ul 
+                                    class pagination pagination-info
+                                    li 
+                                        class page-item
+                                        a prev
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a 1
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a 2
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class active page-item
+                                        a 3
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a 4
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a 5
+                                            href javascript:void(0);
+                                            class page-link
+                                    li 
+                                        class page-item
+                                        a next
+                                            href javascript:void(0);
+                                            class page-link
+                    div 
+                        id sliders
+                        . row
+                            . col-md-6
+                                . title
+                                    h3 Sliders
+                                . slider
+                                    id sliderRegular
+                                . slider slider-info
+                                    id sliderDouble
+                            . col-md-6 ml-auto
+                                . title
+                                    h3 Badges
+                                span Default
+                                    class badge badge-pill badge-secondary
+                                span Primary
+                                    class badge badge-pill badge-primary
+                                span Info
+                                    class badge badge-pill badge-info
+                                span Success
+                                    class badge badge-pill badge-success
+                                span Warning
+                                    class badge badge-pill badge-warning
+                                span Danger
+                                    class badge badge-pill badge-danger
+                                span Rose
+                                    class badge badge-pill badge-rose
+            . section section-navbars cd-section
+                id navigation
+                . container
+                    . row
+                        . col-md-6
+                            . title
+                                h3 Menu
+                            nav 
+                                class navbar navbar-expand-lg bg-primary
+                                . container
+                                    . navbar-translate
+                                        a Menu
+                                            class navbar-brand
+                                            href /presentation.html
+                                        button 
+                                            class navbar-toggler
+                                            type button
+                                            data-toggle collapse
+                                            aria-expanded false
+                                            aria-label Toggle navigation
+                                            span Toggle navigation
+                                                class sr-only
+                                            span 
+                                                class navbar-toggler-icon
+                                            span 
+                                                class navbar-toggler-icon
+                                            span 
+                                                class navbar-toggler-icon
+                                    . collapse navbar-collapse
+                                        ul 
+                                            class navbar-nav
+                                            li 
+                                                class active nav-item
+                                                a Link
+                                                    href #pablo
+                                                    class nav-link
+                                            li 
+                                                class nav-item
+                                                a Link
+                                                    href #pablo
+                                                    class nav-link
+                                            li 
+                                                class dropdown nav-item
+                                                a Dropdown
+                                                    href #pablo
+                                                    class dropdown-toggle nav-link
+                                                    data-toggle dropdown
+                                                . dropdown-menu
+                                                    h6 Dropdown header
+                                                        class dropdown-header
+                                                    a Action
+                                                        href #pablo
+                                                        class dropdown-item
+                                                    a Another action
+                                                        href #pablo
+                                                        class dropdown-item
+                                                    a Something else here
+                                                        href #pablo
+                                                        class dropdown-item
+                                                    . dropdown-divider
+                                                    a Separated link
+                                                        href #pablo
+                                                        class dropdown-item
+                                                    . dropdown-divider
+                                                    a One more separated link
+                                                        href #pablo
+                                                        class dropdown-item
+                        . col-md-6
+                            . title
+                                h3 Menu with Icons
+                            nav 
+                                class navbar navbar-expand-lg bg-info
+                                . container
+                                    . navbar-translate
+                                        a Icons
+                                            class navbar-brand
+                                            href /presentation.html
+                                        button 
+                                            class navbar-toggler
+                                            type button
+                                            data-toggle collapse
+                                            aria-expanded false
+                                            aria-label Toggle navigation
+                                            span Toggle navigation
+                                                class sr-only
+                                            span 
+                                                class navbar-toggler-icon
+                                            span 
+                                                class navbar-toggler-icon
+                                            span 
+                                                class navbar-toggler-icon
+                                    . collapse navbar-collapse
+                                        ul 
+                                            class navbar-nav ml-auto
+                                            li 
+                                                class nav-item
+                                                a 
+                                                    href #pablo
+                                                    class nav-link
+                                                    i email
+                                                        class material-icons
+                                            li 
+                                                class nav-item
+                                                a 
+                                                    href #pablo
+                                                    class nav-link
+                                                    i face
+                                                        class material-icons
+                                            li 
+                                                class dropdown nav-item
+                                                a 
+                                                    href #pablo
+                                                    class dropdown-toggle nav-link
+                                                    data-toggle dropdown
+                                                    i settings
+                                                        class material-icons
+                                                    b 
+                                                        class caret
+                                                . dropdown-menu dropdown-menu-right
+                                                    h6 Dropdown header
+                                                        class dropdown-header
+                                                    a Action
+                                                        href #pablo
+                                                        class dropdown-item
+                                                    a Another action
+                                                        href #pablo
+                                                        class dropdown-item
+                                                    a Something else here
+                                                        href #pablo
+                                                        class dropdown-item
+                                                    . dropdown-divider
+                                                    a Separated link
+                                                        href #pablo
+                                                        class dropdown-item
+                                                    . dropdown-divider
+                                                    a One more separated link
+                                                        href #pablo
+                                                        class dropdown-item
+                    . title
+                        h3 Navigation
+                div 
+                    id navbar
+                    . navigation-example
+                        style background-image: url('${assetsBaseUri}/assets/img//bg.jpg');
+                        nav 
+                            class navbar navbar-expand-lg bg-rose
+                            . container
+                                . navbar-translate
+                                    a Brand
+                                        class navbar-brand
+                                        href #0
+                                    button 
+                                        class navbar-toggler
+                                        type button
+                                        data-toggle collapse
+                                        aria-expanded false
+                                        aria-label Toggle navigation
+                                        span Toggle navigation
+                                            class sr-only
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                . collapse navbar-collapse
+                                    ul 
+                                        class navbar-nav
+                                        li 
+                                            class nav-item active
+                                            a link
+                                                href #pablo
+                                                class nav-link
+                                        li 
+                                            class nav-item
+                                            a link
+                                                href #pablo
+                                                class nav-link
+                                    form 
+                                        class form-inline ml-auto
+                                        . form-group has-white
+                                            input 
+                                                type text
+                                                class form-control
+                                                placeholder Search
+                                        button 
+                                            type submit
+                                            class btn btn-white btn-raised btn-fab btn-round
+                                            i search
+                                                class material-icons
+                        nav 
+                            class navbar navbar-expand-lg bg-info
+                            . container
+                                . navbar-translate
+                                    a Info Color
+                                        class navbar-brand
+                                        href #0
+                                    button 
+                                        class navbar-toggler
+                                        type button
+                                        data-toggle collapse
+                                        aria-expanded false
+                                        aria-label Toggle navigation
+                                        span Toggle navigation
+                                            class sr-only
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                . collapse navbar-collapse
+                                    ul 
+                                        class navbar-nav ml-auto
+                                        li 
+                                            class active nav-item
+                                            a Discover
+                                                href #pablo
+                                                class nav-link
+                                        li 
+                                            class nav-item
+                                            a Profile
+                                                href #pablo
+                                                class nav-link
+                                        li 
+                                            class nav-item
+                                            a Settings
+                                                href #pablo
+                                                class nav-link
+                        nav 
+                            class navbar navbar-expand-lg bg-primary
+                            . container
+                                . navbar-translate
+                                    a Primary Color
+                                        class navbar-brand
+                                        href #0
+                                    button 
+                                        class navbar-toggler
+                                        type button
+                                        data-toggle collapse
+                                        aria-expanded false
+                                        aria-label Toggle navigation
+                                        span Toggle navigation
+                                            class sr-only
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                . collapse navbar-collapse
+                                    ul 
+                                        class navbar-nav ml-auto
+                                        li 
+                                            class active nav-item
+                                            a 
+                                                href #pablo
+                                                class nav-link
+                                                i explore
+                                                    class material-icons
+                                                + Discover
+                                        li 
+                                            class nav-item
+                                            a 
+                                                href #pablo
+                                                class nav-link
+                                                i account_circle
+                                                    class material-icons
+                                                + Profile
+                                        li 
+                                            class nav-item
+                                            a 
+                                                href #pablo
+                                                class nav-link
+                                                i settings
+                                                    class material-icons
+                                                + Settings
+                        nav 
+                            class navbar navbar-inverse navbar-expand-lg bg-dark
+                            role navigation-demo
+                            . container
+                                . navbar-translate
+                                    a Navbar with notification
+                                        class navbar-brand
+                                        href #0
+                                    button 
+                                        class navbar-toggler
+                                        type button
+                                        data-toggle collapse
+                                        aria-expanded false
+                                        aria-label Toggle navigation
+                                        span Toggle navigation
+                                            class sr-only
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                . collapse navbar-collapse
+                                    ul 
+                                        class navbar-nav ml-auto
+                                        li 
+                                            class nav-item
+                                            a Discover
+                                                href #pablo
+                                                class nav-link
+                                        li 
+                                            class nav-item
+                                            a Wishlist
+                                                href #pablo
+                                                class nav-link
+                                        li 
+                                            class nav-item
+                                            a 
+                                                href #pablo
+                                                class btn btn-rose btn-raised btn-fab btn-round
+                                                data-toggle dropdown
+                                                i email
+                                                    class material-icons
+                                        li 
+                                            class dropdown nav-item
+                                            a 
+                                                href #pablo
+                                                class profile-photo dropdown-toggle nav-link
+                                                data-toggle dropdown
+                                                . profile-photo-small
+                                                    img 
+                                                        src ${assetsBaseUri}/assets/img/faces/avatar.jpg
+                                                        alt Circle Image
+                                                        class rounded-circle img-fluid
+                                            . dropdown-menu dropdown-menu-right
+                                                h6 Dropdown header
+                                                    class dropdown-header
+                                                a Me
+                                                    href #pablo
+                                                    class dropdown-item
+                                                a Settings and other stuff
+                                                    href #pablo
+                                                    class dropdown-item
+                                                a Sign out
+                                                    href #pablo
+                                                    class dropdown-item
+                        nav 
+                            class navbar navbar-default navbar-expand-lg
+                            role navigation-demo
+                            . container
+                                . navbar-translate
+                                    a Navbar with profile
+                                        class navbar-brand
+                                        href #0
+                                    button 
+                                        class navbar-toggler
+                                        type button
+                                        data-toggle collapse
+                                        aria-expanded false
+                                        aria-label Toggle navigation
+                                        span Toggle navigation
+                                            class sr-only
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                . collapse navbar-collapse
+                                    ul 
+                                        class navbar-nav ml-auto
+                                        li 
+                                            class nav-item
+                                            a Discover
+                                                href #pablo
+                                                class nav-link
+                                        li 
+                                            class nav-item
+                                            a Wishlist
+                                                href #pablo
+                                                class nav-link
+                                        li 
+                                            class nav-item
+                                            a Register
+                                                href #pablo
+                                                class btn btn-rose btn-raised btn-round
+                                                data-toggle dropdown
+                        nav 
+                            class navbar navbar-transparent navbar-expand-lg
+                            . container
+                                . navbar-translate
+                                    a Transparent
+                                        class navbar-brand
+                                        href #pablo
+                                    button 
+                                        type button
+                                        class ml-auto navbar-toggler
+                                        data-toggle collapse
+                                        data-target #example-navbar-transparent
+                                        span Toggle navigation
+                                            class sr-only
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                        span 
+                                            class navbar-toggler-icon
+                                . collapse navbar-collapse
+                                    id example-navbar-transparent
+                                    ul 
+                                        class navbar-nav ml-auto
+                                        li 
+                                            class nav-item
+                                            a 
+                                                href #pablo
+                                                class nav-link
+                                                i 
+                                                    class fa fa-facebook-square
+                                                + Facebook
+                                        li 
+                                            class nav-item
+                                            a 
+                                                href #pablo
+                                                class nav-link
+                                                i 
+                                                    class fa fa-twitter
+                                                + Twitter
+                                        li 
+                                            class nav-item
+                                            a 
+                                                href #pablo
+                                                class nav-link
+                                                i 
+                                                    class fa fa-instagram
+                                                + Instagram
+            . section section-tabs
+                . container
+                    div 
+                        id nav-tabs
+                        h3 Navigation Tabs
+                        . row
+                            . col-md-6
+                                h3 
+                                    small Tabs with Icons on Card
+                                . card card-nav-tabs
+                                    . card-header card-header-primary
+                                        . nav-tabs-navigation
+                                            . nav-tabs-wrapper
+                                                ul 
+                                                    class nav nav-tabs
+                                                    data-tabs tabs
+                                                    li 
+                                                        class nav-item
+                                                        a 
+                                                            class nav-link active
+                                                            href #profile
+                                                            data-toggle tab
+                                                            i face
+                                                                class material-icons
+                                                            + Profile
+                                                    li 
+                                                        class nav-item
+                                                        a 
+                                                            class nav-link
+                                                            href #messages
+                                                            data-toggle tab
+                                                            i chat
+                                                                class material-icons
+                                                            + Messages
+                                                    li 
+                                                        class nav-item
+                                                        a 
+                                                            class nav-link
+                                                            href #settings
+                                                            data-toggle tab
+                                                            i build
+                                                                class material-icons
+                                                            + Settings
+                                    . card-body
+                                        . tab-content text-center
+                                            . tab-pane active
+                                                id profile
+                                                p I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+                                            . tab-pane
+                                                id messages
+                                                p I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+                                            . tab-pane
+                                                id settings
+                                                p I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it&#x2019;s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.
+                            . col-md-6
+                                h3 
+                                    small Tabs on Plain Card
+                                . card card-nav-tabs card-plain
+                                    . card-header card-header-danger
+                                        . nav-tabs-navigation
+                                            . nav-tabs-wrapper
+                                                ul 
+                                                    class nav nav-tabs
+                                                    data-tabs tabs
+                                                    li 
+                                                        class nav-item
+                                                        a Home
+                                                            class nav-link active
+                                                            href #home
+                                                            data-toggle tab
+                                                    li 
+                                                        class nav-item
+                                                        a Updates
+                                                            class nav-link
+                                                            href #updates
+                                                            data-toggle tab
+                                                    li 
+                                                        class nav-item
+                                                        a History
+                                                            class nav-link
+                                                            href #history
+                                                            data-toggle tab
+                                    . card-body
+                                        . tab-content text-center
+                                            . tab-pane active
+                                                id home
+                                                p I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it&#x2019;s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.
+                                            . tab-pane
+                                                id updates
+                                                p I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+                                            . tab-pane
+                                                id history
+                                                p I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+            . section section-white
+                . container
+                    div 
+                        id navigation-pills
+                        . title
+                            h3 Navigation Pills
+                        . title
+                            h3 
+                                small With Icons
+                        . row
+                            . col-lg-6 col-md-8
+                                ul 
+                                    class nav nav-pills nav-pills-icons
+                                    role tablist
+                                    li 
+                                        class nav-item
+                                        a 
+                                            class nav-link
+                                            href #dashboard-1
+                                            role tab
+                                            data-toggle tab
+                                            i dashboard
+                                                class material-icons
+                                            + Dashboard
+                                    li 
+                                        class nav-item
+                                        a 
+                                            class nav-link active
+                                            href #schedule-1
+                                            role tab
+                                            data-toggle tab
+                                            i schedule
+                                                class material-icons
+                                            + Schedule
+                                    li 
+                                        class nav-item
+                                        a 
+                                            class nav-link
+                                            href #tasks-1
+                                            role tab
+                                            data-toggle tab
+                                            i list
+                                                class material-icons
+                                            + Tasks
+                                . tab-content tab-space
+                                    div Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+                                        class tab-pane active
+                                        id dashboard-1
+                                        br 
+                                        br 
+                                        + Dramatically visualize customer directed convergence without revolutionary ROI.
+                                    div Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                                        class tab-pane
+                                        id schedule-1
+                                        br 
+                                        br 
+                                        + Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                                    div Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                                        class tab-pane
+                                        id tasks-1
+                                        br 
+                                        br 
+                                        + Dynamically innovate resource-leveling customer service for state of the art customer service.
+                            . col-lg-6 col-md-12
+                                . row
+                                    . col-md-3
+                                        ul 
+                                            class nav nav-pills nav-pills-icons flex-column
+                                            role tablist
+                                            li 
+                                                class nav-item
+                                                a 
+                                                    class nav-link active
+                                                    href #dashboard-2
+                                                    role tab
+                                                    data-toggle tab
+                                                    i dashboard
+                                                        class material-icons
+                                                    + Dashboard
+                                            li 
+                                                class nav-item
+                                                a 
+                                                    class nav-link
+                                                    href #schedule-2
+                                                    role tab
+                                                    data-toggle tab
+                                                    i schedule
+                                                        class material-icons
+                                                    + Schedule
+                                    . col-md-8
+                                        . tab-content
+                                            div Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.
+                                                class tab-pane active
+                                                id dashboard-2
+                                                br 
+                                                br 
+                                                + Dramatically visualize customer directed convergence without revolutionary ROI.
+                                            div Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                                                class tab-pane
+                                                id schedule-2
+                                                br 
+                                                br 
+                                                + Dramatically maintain clicks-and-mortar solutions without functional solutions.
+            . section cd-section section-notifications
+                id notifications
+                . container
+                    . title
+                        h3 Notifications
+                . alert alert-info
+                    . container
+                        . alert-icon
+                            i info_outline
+                                class material-icons
+                        button 
+                            type button
+                            class close
+                            data-dismiss alert
+                            aria-label Close
+                            span 
+                                aria-hidden true
+                                i clear
+                                    class material-icons
+                        b Info alert:
+                        + You&apos;ve got some friends nearby, stop looking at your phone and find them...
+                . alert alert-success
+                    . container
+                        . alert-icon
+                            i check
+                                class material-icons
+                        button 
+                            type button
+                            class close
+                            data-dismiss alert
+                            aria-label Close
+                            span 
+                                aria-hidden true
+                                i clear
+                                    class material-icons
+                        b Success Alert:
+                        + Yuhuuu! You&apos;ve got your $11.99 album from The Weeknd
+                . alert alert-warning
+                    . container
+                        . alert-icon
+                            i warning
+                                class material-icons
+                        button 
+                            type button
+                            class close
+                            data-dismiss alert
+                            aria-label Close
+                            span 
+                                aria-hidden true
+                                i clear
+                                    class material-icons
+                        b Warning Alert:
+                        + Hey, it looks like you still have the &quot;copyright &#xA9; 2015&quot; in your footer. Please update it!
+                . alert alert-danger
+                    . container
+                        . alert-icon
+                            i error_outline
+                                class material-icons
+                        button 
+                            type button
+                            class close
+                            data-dismiss alert
+                            aria-label Close
+                            span 
+                                aria-hidden true
+                                i clear
+                                    class material-icons
+                        b Error Alert:
+                        + Damn man! You screwed up the server this time. You should find a good excuse for your Boss...
+                . clearfix
+            . section
+                . container tim-container
+                    . cd-section
+                        id typography
+                        . title
+                            h2 Typography
+                        . row
+                            . tim-typo
+                                h1 
+                                    span Header 1
+                                        class tim-note
+                                    + The Life of Material Kit
+                            . tim-typo
+                                h2 
+                                    span Header 2
+                                        class tim-note
+                                    + The Life of Material Kit
+                            . tim-typo
+                                h3 
+                                    span Header 3
+                                        class tim-note
+                                    + The Life of Material Kit
+                            . tim-typo
+                                h4 
+                                    span Header 4
+                                        class tim-note
+                                    + The Life of Material Kit
+                            . tim-typo
+                                h5 
+                                    span Header 5
+                                        class tim-note
+                                    + The Life of Material Kit
+                            . tim-typo
+                                h6 
+                                    span Header 6
+                                        class tim-note
+                                    + The Life of Material Kit
+                            . tim-typo
+                                h1 
+                                    class title
+                                    span Header 1 Title
+                                        class tim-note
+                                    + The Life of Material Kit
+                            . tim-typo
+                                h2 
+                                    class title
+                                    span Header 2 Title
+                                        class tim-note
+                                    + The Life of Material Kit
+                            . tim-typo
+                                h3 
+                                    class title
+                                    span Header 3 Title
+                                        class tim-note
+                                    + The Life of Material Kit
+                            . tim-typo
+                                h4 
+                                    class title
+                                    span Header 4 Title
+                                        class tim-note
+                                    + The Life of Material Kit
+                            . tim-typo
+                                p 
+                                    span Paragraph
+                                        class tim-note
+                                    + I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+                            . tim-typo
+                                span Quote
+                                    class tim-note
+                                . blockquote undefined
+                                    p I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that&#x2019;s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.
+                                    small Kanye West, Musician
+                            . tim-typo
+                                span Muted Text
+                                    class tim-note
+                                p I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+                                    class text-muted
+                            . tim-typo
+                                span Primary Text
+                                    class tim-note
+                                p I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+                                    class text-primary
+                            . tim-typo
+                                span Info Text
+                                    class tim-note
+                                p I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+                                    class text-info
+                            . tim-typo
+                                span Success Text
+                                    class tim-note
+                                p I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+                                    class text-success
+                            . tim-typo
+                                span Warning Text
+                                    class tim-note
+                                p I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+                                    class text-warning
+                            . tim-typo
+                                span Danger Text
+                                    class tim-note
+                                p I will be the leader of a company that ends up being worth billions of dollars, because I got the answers...
+                                    class text-danger
+                            . tim-typo
+                                h2 
+                                    span Small Tag
+                                        class tim-note
+                                    + Header with small subtitle
+                                    br 
+                                    small Use &quot;small&quot; tag for the headers
+                    . space-50
+                    div 
+                        id images
+                        . title
+                            h2 Images
+                        br 
+                        . row
+                            . col-sm-2
+                                h4 Rounded Image
+                                img 
+                                    src ${assetsBaseUri}/assets/img/faces/avatar.jpg
+                                    alt Rounded Image
+                                    class rounded img-fluid
+                            . col-sm-2 ml-auto
+                                h4 Circle Image
+                                img 
+                                    src ${assetsBaseUri}/assets/img/faces/avatar.jpg
+                                    alt Circle Image
+                                    class rounded-circle img-fluid
+                            . col-sm-2 ml-auto
+                                h4 Rounded Raised
+                                img 
+                                    src ${assetsBaseUri}/assets/img/faces/avatar.jpg
+                                    alt Raised Image
+                                    class img-raised rounded img-fluid
+                            . col-sm-2 ml-auto
+                                h4 Circle Raised
+                                img 
+                                    src ${assetsBaseUri}/assets/img/faces/avatar.jpg
+                                    alt Thumbnail Image
+                                    class img-raised rounded-circle img-fluid
+                        . row
+                    . space-50
+            . section cd-section
+                id javascriptComponents
+                . container
+                    . title
+                        h2 Javascript components
+                    . row
+                        id modals
+                        . col-md-6
+                            . title
+                                h3 Modal
+                            . row
+                                . col-lg-4 col-md-6
+                                    button 
+                                        class btn btn-block btn-primary
+                                        data-toggle modal
+                                        data-target #myModal
+                                        i library_books
+                                            class material-icons
+                                        + Classic
+                            . col-md-12
+                                . title
+                                    h3 Datetime Picker
+                                . row
+                                    . col-md-6
+                                        . form-group
+                                            label Datetime Picker
+                                                class label-control
+                                            input 
+                                                type text
+                                                class form-control datetimepicker
+                                                value 10/05/2016
+                        . col-md-6
+                            . title
+                                h3 Popovers
+                            button On left
+                                type button
+                                class btn
+                                data-toggle popover
+                                data-placement left
+                                title Popover on left
+                                data-content Here will be some very useful information about his popover. Here will be some very useful information about his popover.
+                                data-container body
+                            button On top
+                                type button
+                                class btn
+                                data-toggle popover
+                                data-placement top
+                                title Popover on top
+                                data-content Here will be some very useful information about his popover.
+                                data-container body
+                            button On bottom
+                                type button
+                                class btn
+                                data-toggle popover
+                                data-placement bottom
+                                title Popover on bottom
+                                data-content Here will be some very useful information about his popover.
+                                data-container body
+                            button On right
+                                type button
+                                class btn
+                                data-toggle popover
+                                data-placement right
+                                title Popover on right
+                                data-content Here will be some very useful information about his popover.
+                                data-container body
+                            br 
+                            br 
+                            . title
+                                h3 Tooltips
+                            button On left
+                                type button
+                                class btn
+                                data-toggle tooltip
+                                data-placement left
+                                title Tooltip on left
+                                data-container body
+                            button On top
+                                type button
+                                class btn
+                                data-toggle tooltip
+                                data-placement top
+                                title Tooltip on top
+                                data-container body
+                            button On bottom
+                                type button
+                                class btn
+                                data-toggle tooltip
+                                data-placement bottom
+                                title Tooltip on bottom
+                                data-container body
+                            button On right
+                                type button
+                                class btn
+                                data-toggle tooltip
+                                data-placement right
+                                title Tooltip on right
+                                data-container body
+                    . title
+                        h3 Carousel
+            . section
+                id carousel
+                . container
+                    . row
+                        . col-md-8 mr-auto ml-auto
+                            . card card-raised card-carousel
+                                . carousel slide
+                                    id carouselExampleIndicators
+                                    data-ride carousel
+                                    data-interval 3000
+                                    ol 
+                                        class carousel-indicators
+                                        li 
+                                            data-target #carouselExampleIndicators
+                                            data-slide-to 0
+                                            class active
+                                        li 
+                                            data-target #carouselExampleIndicators
+                                            data-slide-to 1
+                                        li 
+                                            data-target #carouselExampleIndicators
+                                            data-slide-to 2
+                                    . carousel-inner
+                                        . carousel-item active
+                                            img 
+                                                class d-block w-100
+                                                src ${assetsBaseUri}/assets/img/bg2.jpg
+                                                alt First slide
+                                            . carousel-caption d-none d-md-block
+                                                h4 
+                                                    i location_on
+                                                        class material-icons
+                                                    + Yellowstone National Park, United States
+                                        . carousel-item
+                                            img 
+                                                class d-block w-100
+                                                src ${assetsBaseUri}/assets/img/bg3.jpg
+                                                alt Second slide
+                                            . carousel-caption d-none d-md-block
+                                                h4 
+                                                    i location_on
+                                                        class material-icons
+                                                    + Somewhere Beyond, United States
+                                        . carousel-item
+                                            img 
+                                                class d-block w-100
+                                                src ${assetsBaseUri}/assets/img/bg.jpg
+                                                alt Third slide
+                                            . carousel-caption d-none d-md-block
+                                                h4 
+                                                    i location_on
+                                                        class material-icons
+                                                    + Yellowstone National Park, United States
+                                    a 
+                                        class carousel-control-prev
+                                        href #carouselExampleIndicators
+                                        role button
+                                        data-slide prev
+                                        i keyboard_arrow_left
+                                            class material-icons
+                                        span Previous
+                                            class sr-only
+                                    a 
+                                        class carousel-control-next
+                                        href #carouselExampleIndicators
+                                        role button
+                                        data-slide next
+                                        i keyboard_arrow_right
+                                            class material-icons
+                                        span Next
+                                            class sr-only
+            . section
+                . container text-center
+                    . row
+                        . col-md-8 ml-auto mr-auto text-center
+                            h2 Completed with examples
+                            h4 The kit comes with three pre-built pages to help you get started faster. You can change the text and images and you're good to go. More importantly, looking at them will give you a picture of what you can built with this powerful kit.
+            . section section-signup page-header
+                style background-image: url('${assetsBaseUri}/assets/img/city.jpg');
+                . container
+                    . row
+                        . col-lg-4 col-md-6 ml-auto mr-auto
+                            . card card-login
+                                form 
+                                    class form
+                                    method 
+                                    action 
+                                    . card-header card-header-primary text-center
+                                        h4 Login
+                                            class card-title
+                                        . social-line
+                                            a 
+                                                href #pablo
+                                                class btn btn-just-icon btn-link
+                                                i 
+                                                    class fa fa-facebook-square
+                                            a 
+                                                href #pablo
+                                                class btn btn-just-icon btn-link
+                                                i 
+                                                    class fa fa-twitter
+                                            a 
+                                                href #pablo
+                                                class btn btn-just-icon btn-link
+                                                i 
+                                                    class fa fa-google-plus
+                                    p Or Be Classical
+                                        class description text-center
+                                    . card-body
+                                        . input-group
+                                            . input-group-prepend
+                                                span 
+                                                    class input-group-text
+                                                    i face
+                                                        class material-icons
+                                            input 
+                                                type text
+                                                class form-control
+                                                placeholder First Name...
+                                        . input-group
+                                            . input-group-prepend
+                                                span 
+                                                    class input-group-text
+                                                    i mail
+                                                        class material-icons
+                                            input 
+                                                type email
+                                                class form-control
+                                                placeholder Email...
+                                        . input-group
+                                            . input-group-prepend
+                                                span 
+                                                    class input-group-text
+                                                    i lock_outline
+                                                        class material-icons
+                                            input 
+                                                type password
+                                                class form-control
+                                                placeholder Password...
+                                    . footer text-center
+                                        a Get Started
+                                            href #pablo
+                                            class btn btn-primary btn-link btn-wd btn-lg
+            . col-md-12 text-center
+                a View Login Page
+                    href examples/login-page.html
+                    class btn btn-link btn-primary btn-lg
+                    target _blank
+            . section section-examples
+                . container-fluid text-center
+                    . row
+                        . col-md-6
+                            a 
+                                href examples/landing-page.html
+                                target _blank
+                                img 
+                                    src ${assetsBaseUri}/assets/img/landing.jpg
+                                    alt Rounded Image
+                                    class img-raised rounded img-fluid
+                                button View Landing Page
+                                    class btn  btn-link btn-primary btn-lg
+                        . col-md-6
+                            a 
+                                href examples/profile-page.html
+                                target _blank
+                                img 
+                                    src ${assetsBaseUri}/assets/img/profile.jpg
+                                    alt Rounded Image
+                                    class img-raised rounded img-fluid
+                                button View Profile Page
+                                    class btn btn-link btn-primary btn-lg
+            . section section-download
+                id downloadSection
+                . container
+                    . row text-center
+                        . col-md-8 ml-auto mr-auto
+                            h2 Do you love this UI Kit?
+                            h4 Cause if you do, it can be yours for FREE. Hit the buttons below to navigate to our website where you can find the kit. Our friends from
+                                a ThemeIsle
+                                    href https://themeisle.com/?utm_campaign=mkfree-hestia&amp;utm_source=creativetim&amp;utm_medium=website
+                                    target _blank
+                                + created a Wordpress Theme which can be also downloaded for free. Start a new project or give an old Bootstrap project a new look!
+                        . col-sm-8 col-md-6 ml-auto mr-auto
+                            a 
+                                href https://www.creative-tim.com/product/material-kit
+                                class btn btn-primary btn-lg
+                                i 
+                                    class fa fa-html5
+                                + Free HTML Download
+                            a 
+                                href https://themeisle.com/themes/hestia/?utm_campaign=mkfree-hestia&amp;utm_source=creativetim&amp;utm_medium=website
+                                target _blank
+                                class btn btn-primary btn-lg
+                                i 
+                                    class fa fa-wordpress
+                                + Wordpress Theme
+                    br 
+                    br 
+                    . row text-center
+                        . col-md-8 ml-auto mr-auto
+                            h2 Want more?
+                            h4 We've just launched
+                                a Material Kit PRO
+                                    href https://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-mk-demos
+                                    target _blank
+                                + . It has a huge number of components, sections and example pages. Start Your Development With A Badass Bootstrap UI Kit inspired by Material Design.
+                        . col-sm-8 col-md-5 ml-auto mr-auto
+                            a 
+                                href https://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-mk-demos
+                                class btn btn-rose btn-upgrade btn-lg
+                                target _blank
+                                i unarchive
+                                    class material-icons
+                                + Upgrade to PRO
+                    . sharing-area text-center
+                        . row justify-content-center
+                            h3 Thank you for supporting us!
+                        button 
+                            id twitter
+                            class btn btn-raised btn-twitter sharrre
+                            i 
+                                class fa fa-twitter
+                            + Tweet
+                        button 
+                            id facebook
+                            class btn btn-raised btn-facebook sharrre
+                            i 
+                                class fa fa-facebook-square
+                            + Share
+                        button 
+                            id googlePlus
+                            class btn btn-raised btn-google-plus sharrre
+                            i 
+                                class fa fa-google-plus
+                            + Share
+                        a 
+                            id github
+                            href https://github.com/creativetimofficial/material-kit
+                            target _blank
+                            class btn btn-raised btn-github
+                            i 
+                                class fa fa-github
+                            + Star
+        . modal fade
+            id myModal
+            tabindex -1
+            role dialog
+            . modal-dialog
+                role document
+                . modal-content
+                    . modal-header
+                        h5 Modal title
+                            class modal-title
+                        button 
+                            type button
+                            class close
+                            data-dismiss modal
+                            aria-label Close
+                            i clear
+                                class material-icons
+                    . modal-body
+                        p Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+                    . modal-footer
+                        button Nice Button
+                            type button
+                            class btn btn-link
+                        button Close
+                            type button
+                            class btn btn-danger btn-link
+                            data-dismiss modal
+        footer 
+            class footer
+            data-background-color black
+            . container
+                nav 
+                    class float-left
+                    ul 
+                        li 
+                            a Creative Tim
+                                href https://www.creative-tim.com
+                        li 
+                            a About Us
+                                href https://creative-tim.com/presentation
+                        li 
+                            a Blog
+                                href http://blog.creative-tim.com
+                        li 
+                            a Licenses
+                                href https://www.creative-tim.com/license
+                div &copy;
+                    class copyright float-right
+                    script 
+                        module
+                            kind react
+                            _ document.write
+                                _ new Date().getFullYear
+                    + , made with
+                    i favorite
+                        class material-icons
+                    + by
+                    a Creative Tim
+                        href https://www.creative-tim.com
+                        target _blank
+                    + for a better web.
+        
+        $append scripts
+            script 
+                _ $(document).ready
+                    function 
+                        # init DateTimePickers
+                        _ materialKit.initFormExtendedDatetimepickers
+                        # Sliders Init
+                        _ materialKit.initSliders
+                function scrollToDownload
+                    if $('.section-download').length != 0
+                        _ $("html, body").animate
+                            { 
+                                @ scrollTop
+                                    _ $('.section-download').offset
+                                        . top
+                            @ 1000

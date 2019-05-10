@@ -23,14 +23,14 @@ export class ProductionsController implements ControllerType {
     private generateArtifact = async (request: Request, response: Response) => {
         const id = request.params.id;
         const files: PackyFiles = request.body;
-        console.log('generateArtifact.received files', JSON.stringify(files, null, 2));
+        console.log('generateArtifact.received files', Object.keys(files));
         wizziProds.generateArtifact(id, files).then((value)=>{
             console.log('ga', value);
             sendSuccess(response, {
                 generatedArtifact: value
             })
         }).catch((err)=> {
-            console.log('err', err);
+            console.log('features.packy.controllers.production.generateArtifact.err', err);
             sendFailure(response, err, 501);
         });
     }
@@ -40,12 +40,12 @@ export class ProductionsController implements ControllerType {
         console.log('ProductionsController.executeJob.received files', Object.keys(files));
         wizziProds.executeJobs(files).then(async (fsJson)=>{
             const files = await wizziFactory.extractGeneratedFiles(fsJson);
-            console.log('executeJob.generatedArtifacts', files);
+            console.log('features.packy.controllers.production.executeJob.generatedArtifacts', Object.keys(files));
             sendSuccess(response, {
                 generatedArtifacts: files
             })
         }).catch((err)=>{
-            console.log('err', err);
+            console.log('features.packy.controllers.production.executeJob.err', err);
             sendFailure(response, err, 501);
         });
     }

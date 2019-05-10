@@ -1,22 +1,11 @@
 $group
     $params &page
     lang ${ site.LanguageCode ? site.LanguageCode : 'en-US' }
-    
     head
-    
         includes/head(&page)
         styles/main(&page)
-    
-        $hook styles
-    
     body
-        $if page.bodyClass
-            class ${page.bodyClass}
         includes/header(&page)
-        
-        $hook
-        
+        includes/home(&page)
         includes/footer(&page)
         includes/scripts(&page)
-        
-        $hook scripts

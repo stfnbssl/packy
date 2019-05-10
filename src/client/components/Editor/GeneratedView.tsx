@@ -21,6 +21,7 @@ type Props = {
     classes: any;
     generatedContent: string;
     generatedSourcePath: string;
+    splitViewKind: string;
 }
 
 type State = {
@@ -42,10 +43,10 @@ class GeneratedView extends React.Component<Props, State> {
         this.setState({view: 'browser'});
 
     render() {
-        const {classes} = this.props;
+        const {classes, splitViewKind} = this.props;
         const {view} = this.state;
         return (
-            <div className={classes.container}>
+            <div className={splitViewKind === 'right' ? classes.containerFull : classes.container}>
                 {view === 'generated' && (
                     <div className={classes.editor}>
                     <SimpleEditor
@@ -93,7 +94,7 @@ class GeneratedView extends React.Component<Props, State> {
                             </Tooltip>
                         </ListItem>
                         <ListItem disableGutters={true}>
-                            <Tooltip title="Show artifact">
+                            <Tooltip title="Browse artifact">
                             <IconButton onClick={this._handleBrowser} classes={{root: classes.iconButton}}>
                                 <InfoIcon />
                             </IconButton>
@@ -112,6 +113,13 @@ const muiStyles =  (theme: Theme) => createStyles({
         flexDirection: 'row',
         borderLeft: '1px solid #cccccc',
         width: '44vw',
+        height: '100%',
+    },
+    containerFull: {
+        display: 'flex',
+        flexDirection: 'row',
+        borderLeft: '1px solid #cccccc',
+        width: '100%',
         height: '100%',
     },
     editor: {

@@ -5,14 +5,18 @@ import { wizziProds } from '../features/wizzi';
 
 export const WizziViewEngineMiddleware: MiddlewareType = (app: Application) => {
     app.engine('ittf', async function (filePath: string, options: any, callback: any) { // define the template engine
-        const twinJsonContext = await wizziProds.inferAndLoadContext(filePath, 'mpage')
-        const context = { ...options, locals: options._locals, ...twinJsonContext };
-        // console.log('WizziViewEngineMiddleware.context', JSON.stringify(context, null, 2));
-        wizziProds.generateArtifactFs(filePath, context).then(generated=>{
-            callback(null, generated.artifactContent);
-        }).catch(err=>{
-            callback(err);
-        });
+        try {
+            const twinJsonContext = await wizziProds.inferAndLoadContextFs(filePath, 'mpage')
+            const context = { ...options, locals: options._locals, ...twinJsonContext };
+            // console.log('WizziViewEngineMiddleware.context', JSON.stringify(context, null, 2));
+            wizziProds.generateArtifactFs(filePath, context).then(generated=>{
+                return callback(null, generated.artifactContent);
+            }).catch(err=>{
+                return callback(err);
+            });
+        } catch (ex) {
+            callback(ex);
+        }
     });
     const viewsFolder = path.resolve(__dirname,  '..', 'site', 'views');
     console.log('WizziViewEngineMiddleware.views folder', viewsFolder);

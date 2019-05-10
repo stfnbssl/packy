@@ -1,0 +1,9 @@
+$group
+    $params &page
+    main 
+        id main
+        . container
+            $if site.Params.showXxx
+                $$ xxx()
+            $if site.Params.showXxx
+                $$ yyy()

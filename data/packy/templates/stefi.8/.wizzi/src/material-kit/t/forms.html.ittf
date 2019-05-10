@@ -1,0 +1,102 @@
+$group
+  form 
+    . form-row
+        . form-group col-md-6
+            label Email
+                for inputEmail4
+            input 
+                type email
+                class form-control
+                id inputEmail4
+                placeholder Email
+        . form-group col-md-6
+            label Password
+                for inputPassword4
+            input 
+                type password
+                class form-control
+                id inputPassword4
+                placeholder Password
+    . form-group
+        label Address
+            for inputAddress
+        input 
+            type text
+            class form-control
+            id inputAddress
+            placeholder 1234 Main St
+    . form-group
+        label Address 2
+            for inputAddress2
+        input 
+            type text
+            class form-control
+            id inputAddress2
+            placeholder Apartment, studio, or floor
+    . form-row
+        . form-group col-md-6
+            label City
+                for inputCity
+            input 
+                type text
+                class form-control
+                id inputCity
+        . form-group col-md-3
+            label State
+                for inputState
+            select 
+                id inputState
+                class form-control
+                option Choose...
+                    selected 
+                option ...
+        . form-group col-md-2 ml-auto
+            label Zip
+                for inputZip
+            input 
+                type text
+                class form-control
+                id inputZip
+    . form-group
+        . form-check
+            label 
+                class form-check-label
+                input 
+                    class form-check-input
+                    type checkbox
+                    value 
+                + Check me out
+                span 
+                    class form-check-sign
+                    span 
+                        class check
+    button Sign in
+        type submit
+        class btn btn-primary
+
+    . form-row          
+      . fileinput fileinput-new text-center
+          data-provides fileinput
+          . fileinput-new thumbnail img-raised
+              img 
+                  src http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png
+                  alt ...
+          . fileinput-preview fileinput-exists thumbnail img-raised
+          div 
+              span 
+                  class btn btn-raised btn-round btn-default btn-file
+                  span Select image
+                      class fileinput-new
+                  span Change
+                      class fileinput-exists
+                  input 
+                      type file
+                      name ...
+              a 
+                  href #pablo
+                  class btn btn-danger btn-round fileinput-exists
+                  data-dismiss fileinput
+                  i 
+                      class fa fa-times
+                  + Remove
+

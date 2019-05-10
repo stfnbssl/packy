@@ -1,0 +1,77 @@
+. container
+  $params name
+  $
+    var navbar = twin.navbars[name]
+  $if navbar.useToggler
+    . navbar-translate
+      a ${navbar.brand.title} 
+        class navbar-brand
+        href ${navbar.brand.href}
+      button 
+          class navbar-toggler
+          type button
+          data-toggle collapse
+          data-target #navbarNav
+          aria-controls navbarNav
+          aria-expanded false
+          aria-label Toggle navigation
+          span Toggle navigation
+              class sr-only
+          span 
+              class navbar-toggler-icon
+          span 
+              class navbar-toggler-icon
+          span 
+              class navbar-toggler-icon
+  $else
+    a ${navbar.brand.title} 
+      class navbar-brand
+      href ${navbar.brand.href}
+  . collapse navbar-collapse
+      id navbarNav
+      ul 
+          class navbar-nav
+          $foreach item in navbar.items
+            $if item.dropMenu
+              li 
+                  class nav-item dropdown
+                  a Dropdown link
+                      class nav-link dropdown-toggle
+                      href #
+                      id ${item.dropMenu.id}
+                      data-toggle dropdown
+                      aria-haspopup true
+                      aria-expanded false
+                  . dropdown-menu
+                      aria-labelledby ${item.dropMenu.id}
+                      $foreach dropItem in item.dropMenu.items
+                        a ${dropItem.title}
+                          class dropdown-item
+                          href ${dropItem.href}
+            $else
+              li
+                class nav-item
+                a ${item.title}
+                  $if item.disabled
+                    class nav-link disabled
+                  $else
+                    class nav-link
+                  href ${item.href}
+                  $if item.current
+                    span (current)
+                      class sr-only
+      
+      $if navbar.useSearch
+        form 
+            class form-inline ml-auto
+            . form-group no-border
+                input 
+                    type text
+                    class form-control
+                    placeholder Search
+            button 
+                type submit
+                class btn btn-white btn-just-icon btn-round
+                i search
+                    class material-icons
+

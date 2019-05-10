@@ -1,0 +1,91 @@
+$group
+  style
+    . bd-example-row
+      . row
+        > col, > [class^="col-"] 
+          padding-top .75rem
+          padding-bottom .75rem
+          background-color rgba(86, 61, 124, .15)
+          border 1px solid rgba(86, 61, 124, .2)
+
+      . row + .row
+        margin-top 1rem
+
+      . flex-items-top
+        + .flex-items-middle
+        + .flex-items-bottom
+        min-height 6rem
+        background-color rgba(255, 0, 0, .1)			
+          
+        
+    . bd-example-row-flex-cols .row
+      min-height 10rem
+      background-color rgba(255, 0, 0, .1)
+
+    . bd-highlight
+      background-color rgba($bd-purple, .15)
+      border 1px solid rgba($bd-purple, .15)  
+  
+  . bd-example-row
+    . container
+      h1 Grid system
+      a here
+        href https://getbootstrap.com/docs/4.3/layout/grid/
+    . container
+      h2 Three equal-width columns 
+      . row
+          div One of three columns
+              class col-sm
+          div One of three columns
+              class col-sm
+          div One of three columns
+              class col-sm
+
+    . container
+      h2 Nested grid
+      . row
+          div Level 1: .col-sm-9
+              class col-sm-9
+              . row
+                  div Level 2: .col-8 .col-sm-6
+                      class col-8 col-sm-6
+                  div Level 2: .col-4 .col-sm-6
+                      class col-4 col-sm-6
+
+    . container
+      h2 Margins
+      p
+        code .mr-auto
+        + \b forces sibling columns away from one another.
+      . row
+          div .col-md-4
+              class col-md-4
+          div .col-md-4 .ml-auto
+              class col-md-4 ml-auto
+      . row
+          div .col-md-3 .ml-md-auto
+              class col-md-3 ml-md-auto
+          div .col-md-3 .ml-md-auto
+              class col-md-3 ml-md-auto
+      . row
+          div .col-auto .mr-auto
+              class col-auto mr-auto
+          div .col-auto
+              class col-auto
+
+    . container
+      h2 Column wrapping
+      . row
+          div .col-9
+              class col-9
+          div .col-4
+              class col-4
+              br 
+              + Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.
+          div .col-6
+              class col-6
+              br 
+              + Subsequent columns continue along the new line.
+
+
+

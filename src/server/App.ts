@@ -26,7 +26,9 @@ class App {
         // Connecting sockets to the server and adding them to the request
         // so that we can access them later in the controller
         const io = socketio(this.server);
-        io.set('transports', [
+        //FIX ME: reinstalling package the set definition is missing. WHY?
+        //io.set('transports', [
+        (io as any).set('transports', [
             'websocket', 
             'polling'
         ]);

@@ -1,0 +1,25 @@
+$group
+    $params &page
+
+    $if site.Features.useBootstrap
+        js https://code.jquery.com/jquery-3.3.1.slim.min.js
+        js https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js
+        js https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js
+
+    $if site.Features.bootstrap.useSlider
+        js https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.min.js        
+
+    $if site.Features.useMaterialKit
+        $ 
+            var assetUri = site.Features.materialKit.assetsBaseUri
+        js ${assetUri}/assets/js/core/jquery.min.js
+        js ${assetUri}/assets/js/core/popper.min.js
+        js ${assetUri}/assets/js/core/bootstrap-material-design.min.js
+        js ${assetUri}/assets/js/plugins/moment.min.js
+        js ${assetUri}/assets/js/plugins/bootstrap-datetimepicker.js
+        js ${assetUri}/assets/js/plugins/nouislider.min.js
+        js https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE
+        js https://buttons.github.io/buttons.js
+        js ${assetUri}/assets/js/material-kit.js?v=2.0.5
+
+

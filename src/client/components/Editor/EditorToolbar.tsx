@@ -12,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import CreateIcon from '@material-ui/icons/Create';
 import SaveIcon from '@material-ui/icons/Save';
@@ -49,6 +51,7 @@ type Props = authTypes.AuthProps & {
   saveStatus: packyTypes.SaveStatus;
   saveHistory: packyTypes.SaveHistory;
   loggedUser: appTypes.LoggedUser | undefined;
+  splitViewKind: string;
   isDownloading: boolean;
   // isResolving: boolean;
   isAuthModalVisible: boolean;
@@ -68,6 +71,7 @@ type Props = authTypes.AuthProps & {
   onDismissEditModal: () => void;
   onShowAuthModal: () => void;
   onDismissAuthModal: () => void;
+  onChangeSplitViewKind: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onExecuteWizziJob: () => void;
   onShowPackyManager: () => void;
   onShowGithubCommit: () => void;
@@ -129,7 +133,7 @@ class EditorToolbar extends React.PureComponent<Props, State> {
       <React.Fragment>{/*<ToolbarShell>*/}
         <AppBar className={classes.appBar} position="static">
             <Toolbar>
-                <Typography variant="h4" color="inherit" className={classes.grow}>PACKY</Typography>
+                <Typography variant="h4" color="inherit" className={classes.grow}>WIZZIpac</Typography>
                 { loggedUser && currentPacky && currentPacky.localPackyData && currentPacky.localPackyData.owner ? (
                     <Typography variant="h6" color="inherit" className={classes.grow}>
                       {currentPacky.localPackyData.owner} / {currentPacky.localPackyData.repoName}
@@ -153,6 +157,14 @@ class EditorToolbar extends React.PureComponent<Props, State> {
                   </Button>
                   </React.Fragment>
                 ) : null }
+                <Select
+                    value={this.props.splitViewKind}
+                    onChange={this.props.onChangeSplitViewKind}
+                >
+                    <MenuItem value={'left'}>Left</MenuItem>
+                    <MenuItem value={'right'}>Right</MenuItem>
+                    <MenuItem value={'both'}>Both</MenuItem>
+                </Select>                
                 {/*<SearchButton />
                 {/* fill="#1DAEFF", fill="#1D94DD"*/}
                 {/*<UserMenu onLogInClick={this._handleShowAuthModal} />*/}

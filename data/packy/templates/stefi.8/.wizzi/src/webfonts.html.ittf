@@ -1,0 +1,66 @@
+html
+    
+    $ 
+        var page = {
+            id: 'webfonts',
+            section: 'webstyles',
+            title: 'Web fonts Template',
+            description: 'Web fonts template example',
+            author: site.Params.author, 
+        };
+    
+    layouts/page(&page) 
+        $append styles
+            @style 
+                css
+                  . wf-loading p
+                      font-family sans-serif
+                  . wf-inactive p
+                      font-family sans-serif
+                  . wf-active p
+                      font-family 'Alegreya', sans-serif
+                      width 400px
+                      margin-left 20px
+                  . wf-loading h1
+                      font-family sans-serif
+                      font-weight 400
+                      font-size 24px
+                  . wf-inactive h1
+                      font-family sans-serif
+                      font-weight 400
+                      font-size 24px
+                  . wf-active h1
+                      font-family 'Aclonica', sans-serif
+                      font-weight 400
+                      font-size 24px
+                  . wf-loading h2
+                      font-family sans-serif
+                      font-weight 300
+                      font-size 20px
+                      color #5E5E5E
+                  . wf-inactive h2
+                      font-family sans-serif
+                      font-weight 300
+                      font-size 20px
+                      color #5E5E5E
+                  . wf-active h2
+                      font-family 'Acme', sans-serif
+                      font-weight 300
+                      font-size 20px
+                      color #5E5E5E
+
+        . wf-loading
+            h1 wf-loading h1
+            h2 wf-loading h2
+            p
+              lorem 150
+        . wf-inactive
+            h1 wf-inactive h1
+            h2 wf-inactive h2
+            p
+              lorem 150
+        . wf-active
+            h1 wf-active h1
+            h2 wf-active h2
+            p
+              lorem 150

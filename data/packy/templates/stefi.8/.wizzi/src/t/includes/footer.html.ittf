@@ -1,0 +1,4 @@
+$group 
+    $params &page
+    footer 
+        id footer

@@ -1,0 +1,14 @@
+html
+    
+    $
+        var page = {
+            id: 'home',
+            section: 'home',
+            title: site.Params.name,
+            description: site.Params.description,
+            author: site.Params.author,
+        };
+    
+    layouts/default(&page)
+
+        h1 Hello

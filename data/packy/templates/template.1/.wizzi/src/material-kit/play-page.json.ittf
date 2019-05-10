@@ -1,0 +1,36 @@
+{
+  name "Hello"
+  { navbars
+    { main
+      useToggler true
+      useSearch true
+      { brand
+        title "Super Wizzi"
+        href "#"
+      [ items
+        {
+          title "Home"
+          href "#"
+          current true
+        {
+          title "Features"
+          href "#"
+          { dropMenu
+            id "dropMenu1"
+            [ items
+              {
+                title "Feature 1"
+                href "#"
+              {
+                title "Feature 2"
+                href "#"
+              {
+                title "Feature 3"
+                href "#"
+        {
+          title "Pricing"
+          href "#"
+        {
+          title "Disabled"
+          href "#"
+          disabled true

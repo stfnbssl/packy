@@ -1,0 +1,56 @@
+$group
+  . container
+    h2 Media heading
+    . media
+        img-placeholder() 
+        . media-body
+            h5 Media heading
+                class mt-0
+            + Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+  . container
+    h2 Media nesting
+    . media
+        img-placeholder() 
+        . media-body
+            h5 Media heading
+                class mt-0
+            + Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            . media mt-3
+                a 
+                    class mr-3
+                    href #
+                    img-placeholder() 
+                . media-body
+                    h5 Media heading
+                        class mt-0
+                    + Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+
+  . container
+    h2 Media list
+    ul 
+        class list-unstyled
+        li 
+            class media
+            img-placeholder() 
+            . media-body
+                h5 List-based media object
+                    class mt-0 mb-1
+                + Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        li 
+            class media my-4
+            img-placeholder() 
+            . media-body
+                h5 List-based media object
+                    class mt-0 mb-1
+                + Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        li 
+            class media
+            img-placeholder() 
+            . media-body
+                h5 List-based media object
+                    class mt-0 mb-1
+                + Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+

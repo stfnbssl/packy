@@ -1,0 +1,14 @@
+html
+    
+    $ 
+        var page = {
+            id: 'play-page',
+            section: 'webstyles',
+            title: 'Material kit play page Template',
+            description: 'Material kit play page template example',
+            author: site.Params.author, 
+        };
+        var assetsBaseUri = site.Features.materialKit.assetsBaseUri;
+    
+    layouts/page(&page) 
+

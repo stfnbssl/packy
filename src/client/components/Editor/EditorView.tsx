@@ -95,7 +95,12 @@ type BannerName =
   | 'autosave-disabled'
   | 'slow-connection';
 
-type State = {
+type SplitViewKind =
+  | 'left' 
+  | 'right' 
+  | 'both';
+
+  type State = {
   currentModal: ModalName | null;
   currentBanner: BannerName | null;
   loadedEditor: 'monaco' | 'simple' | null;
@@ -103,6 +108,7 @@ type State = {
   isMarkdownPreview: boolean;
   // lintErrors: Annotation[];
   previousEntry: filelistTypes.TextFileEntry | filelistTypes.AssetFileEntry | undefined;
+  splitViewKind: SplitViewKind;
 };
 
 // const BANNER_TIMEOUT_SHORT = 1500;
@@ -146,9 +152,14 @@ class EditorView extends React.Component<Props, State> {
       isDownloading: false,
       isMarkdownPreview: true,
       previousEntry: undefined,
+      splitViewKind: 'both' as SplitViewKind,
     };
 
     componentDidMount() {
+    }
+
+    _handleChangeSplitViewKind = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        this.setState({ splitViewKind: e.target.value as SplitViewKind});  
     }
 
     _handleDismissEditModal = () => {
@@ -355,6 +366,7 @@ class EditorView extends React.Component<Props, State> {
               creatorUsername={this.props.creatorUsername}
               loggedUser={loggedUser}
               currentPacky={currentPacky}
+              splitViewKind={this.state.splitViewKind}
               saveHistory={saveHistory}
               saveStatus={saveStatus}
               isDownloading={isDownloading}
@@ -362,6 +374,7 @@ class EditorView extends React.Component<Props, State> {
               isEditModalVisible={currentModal === 'edit-info'}
               isAuthModalVisible={currentModal === 'auth'}
               isWizziJobWaiting={isWizziJobWaiting}
+              onChangeSplitViewKind={this._handleChangeSplitViewKind}
               onLoggedOn={onLoggedOn}
               onLoggedOff={onLoggedOff}
               onShowPreviousSaves={this._handleShowPreviousSaves}
@@ -398,6 +411,7 @@ class EditorView extends React.Component<Props, State> {
                     >
                   </FileList>
                   {/* Don't load it conditionally since we need the _EditorComponent object to be available */}
+                  { (this.state.splitViewKind == 'both' || this.state.splitViewKind == 'left') &&
                   <LazyLoad
                     load={(): Promise<typeof import('./MonacoEditor')> => {
                       let timeout: any;
@@ -443,11 +457,13 @@ class EditorView extends React.Component<Props, State> {
                       }
                       return <EditorShell />;
                     }}
-                  </LazyLoad>
-                  { generatedArtifact && generatedArtifact.artifactContent ? (
+                  </LazyLoad> }
+                  { ((this.state.splitViewKind == 'both' || this.state.splitViewKind == 'right') &&
+                    generatedArtifact) && generatedArtifact.artifactContent ? (
                     <GeneratedView
                         generatedContent={generatedArtifact.artifactContent}
                         generatedSourcePath={generatedArtifact.sourcePath}
+                        splitViewKind={this.state.splitViewKind}
                       />) : generatedArtifact && generatedArtifact.errorLines ? (
                     <GenerationErrors
                         errorName={generatedArtifact.errorName}

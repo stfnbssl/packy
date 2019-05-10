@@ -55,7 +55,7 @@ export async function createFsJsonAndFactory(files: packyTypes.PackyFiles): Prom
             })
         }
     });
-    console.log('createFactory', plugins, jsonDocuments);
+    console.log('createFactory', plugins, 'jsonDocuments.length', jsonDocuments.length);
     return new Promise((resolve, reject)=>{
         JsonComponents.createFsJson(jsonDocuments, (err, fsJson) =>{
             if (err) { return reject(err); }
@@ -82,7 +82,7 @@ export async function createFsJson(files: packyTypes.PackyFiles): Promise<FsJson
             jsonDocuments.push({ path: filePath, content: files[value].contents});
         }
     });
-    console.log('createFsJson', jsonDocuments);
+    console.log('createFsJson', 'jsonDocuments.length', jsonDocuments.length);
     return new Promise((resolve, reject)=>{
         JsonComponents.createFsJson(jsonDocuments, (err, result) =>{
             if (err) { return reject(err); }
