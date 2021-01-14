@@ -2464,7 +2464,7 @@ class DataManager {
             });
         }
         else {
-            fetch('https://wizzifactory.github.io/cheatsheets/' + name + '.json').then((response) => {
+            fetch('https://stfnbssl.github.io/cheatsheets/' + name + '.json').then((response) => {
                 return response.json();
             }).then((json) => {
                 json = this.setIds(json);

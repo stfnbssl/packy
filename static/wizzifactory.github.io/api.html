@@ -53,11 +53,11 @@
                     <li><a href="#wizzi_light" class="mc-item-link">wizzi.light</a>
                     <label for="mc-toggle-api-wizzi_light" class="mc-label-toggle">&nbsp; wizzi.light</label>
                     </li>
-                    <li><a href="#wizzi_wizziFactoryModule" class="mc-item-link">wizzi.wizziFactoryModule</a>
-                    <label for="mc-toggle-api-wizzi_wizziFactoryModule" class="mc-label-toggle">&nbsp; wizzi.wizziFactoryModule</label>
+                    <li><a href="#wizzi_stfnbsslModule" class="mc-item-link">wizzi.stfnbsslModule</a>
+                    <label for="mc-toggle-api-wizzi_stfnbsslModule" class="mc-label-toggle">&nbsp; wizzi.stfnbsslModule</label>
                     </li>
-                    <li><a href="#wizzi_wizziFactory" class="mc-item-link">wizzi.wizziFactory</a>
-                    <label for="mc-toggle-api-wizzi_wizziFactory" class="mc-label-toggle">&nbsp; wizzi.wizziFactory</label>
+                    <li><a href="#wizzi_stfnbssl" class="mc-item-link">wizzi.stfnbssl</a>
+                    <label for="mc-toggle-api-wizzi_stfnbssl" class="mc-label-toggle">&nbsp; wizzi.stfnbssl</label>
                     </li>
                     <li><a href="#wizzi_pluginsManagerModule" class="mc-item-link">wizzi.pluginsManagerModule</a>
                     <label for="mc-toggle-api-wizzi_pluginsManagerModule" class="mc-label-toggle">&nbsp; wizzi.pluginsManagerModule</label>
@@ -194,8 +194,8 @@
                 <div>
                     <input type="checkbox" id="mc-toggle-api-wizzi" onchange="m_toggleChanged()" />
                     <input type="checkbox" id="mc-toggle-api-wizzi_light" onchange="m_toggleChanged()" />
-                    <input type="checkbox" id="mc-toggle-api-wizzi_wizziFactoryModule" onchange="m_toggleChanged()" />
-                    <input type="checkbox" id="mc-toggle-api-wizzi_wizziFactory" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-api-wizzi_stfnbsslModule" onchange="m_toggleChanged()" />
+                    <input type="checkbox" id="mc-toggle-api-wizzi_stfnbssl" onchange="m_toggleChanged()" />
                     <input type="checkbox" id="mc-toggle-api-wizzi_pluginsManagerModule" onchange="m_toggleChanged()" />
                     <input type="checkbox" id="mc-toggle-api-wizzi_pluginsManager" onchange="m_toggleChanged()" />
                     <input type="checkbox" id="mc-toggle-api-wizzi_runnerServerModule" onchange="m_toggleChanged()" />
@@ -259,12 +259,12 @@
                                 <span>async&nbsp;</span>
                                 <span>facade-function</span>
                                 <span>, implemented by
-                                    <a href="#wizzi.wizziFactory.createFactory">&nbsp;wizzi.wizziFactory.createFactory</a>
+                                    <a href="#wizzi.stfnbssl.createFactory">&nbsp;wizzi.stfnbssl.createFactory</a>
                                 </span>
                             </div>
                             <div class="gsf-smr-2 api-comment-method">
-                                <span>To execute artifact productions a wizzi.wizziFactory instance&nbsp;</span>
-                                <span>must be obtained. Many factories, with differents wizzi.wizziFactory.createOptions,&nbsp;</span>
+                                <span>To execute artifact productions a wizzi.stfnbssl instance&nbsp;</span>
+                                <span>must be obtained. Many factories, with differents wizzi.stfnbssl.createOptions,&nbsp;</span>
                                 <span>can be create by the same process.&nbsp;</span>
                             </div>
                             <div class="gsf-smr-2 api-method-section-title">
@@ -292,7 +292,7 @@
                                 <div class="gsf-smr-4">
                                     <span class="api-label-api-ref">api-ref</span>
                                     <span class="api-ref">
-                                        <a href="#wizzi.wizziFactory.createOptions">wizzi.wizziFactory.createOptions</a>
+                                        <a href="#wizzi.stfnbssl.createOptions">wizzi.stfnbssl.createOptions</a>
                                     </span>
                                 </div>
                             </div>
@@ -307,11 +307,11 @@
                                 </div>
                                 <div class="gsf-smr-5">
                                     <span class="api-property-type">{</span>
-                                    <span class="api-property-name">wizziFactory</span>
+                                    <span class="api-property-name">stfnbssl</span>
                                     <div class="gsf-smr-6">
                                         <span class="api-label-api-ref">api-ref</span>
                                         <span class="api-ref">
-                                            <a href="#wizzi.wizziFactory">wizzi.wizziFactory</a>
+                                            <a href="#wizzi.stfnbssl">wizzi.stfnbssl</a>
                                         </span>
                                     </div>
                                 </div>
@@ -354,7 +354,7 @@
                                     <div class="gsf-smr-6">
                                         <span class="api-label-api-ref">api-ref</span>
                                         <span class="api-ref">
-                                            <a href="#wizzi.wizziFactory.createOptions">wizzi.wizziFactory.createOptions</a>
+                                            <a href="#wizzi.stfnbssl.createOptions">wizzi.stfnbssl.createOptions</a>
                                         </span>
                                     </div>
                                 </div>
@@ -501,7 +501,7 @@
                             <div class="gsf-smr-3">
                                 <span class="api-info-tag">api-call</span>
                                 <span>
-                                    <a href="#wizzi.wizziFactory.executeJob">wizzi.wizziFactory.executeJob</a>
+                                    <a href="#wizzi.stfnbssl.executeJob">wizzi.stfnbssl.executeJob</a>
                                 </span>
                             </div>
                         </div>
@@ -550,10 +550,10 @@
                                     <span class="api-property-type">[</span>
                                     <span class="api-property-name">factoryCreateOptions</span>
                                     <div class="gsf-smr-6 api-comment-object-property">
-                                        <span>A collection of named wizzi.wizziFactory.createOptions that&nbsp;</span>
+                                        <span>A collection of named wizzi.stfnbssl.createOptions that&nbsp;</span>
                                         <span>allow models preloading from different store kinds and&nbsp;</span>
                                         <span>plugin configurations. The onStart and onPrepare methods&nbsp;</span>
-                                        <span>will be called for each wizzi.wizziFactory.createOptions item.&nbsp;</span>
+                                        <span>will be called for each wizzi.stfnbssl.createOptions item.&nbsp;</span>
                                     </div>
                                     <div class="gsf-smr-6">
                                         <span>{</span>
@@ -568,7 +568,7 @@
                                             <div class="gsf-smr-8">
                                                 <span class="api-label-api-ref">api-ref</span>
                                                 <span class="api-ref">
-                                                    <a href="#wizzi.wizziFactory.createOptions">wizzi.wizziFactory.createOptions</a>
+                                                    <a href="#wizzi.stfnbssl.createOptions">wizzi.stfnbssl.createOptions</a>
                                                 </span>
                                             </div>
                                         </div>
@@ -619,7 +619,7 @@
                                 <span>- a wizzi model type json documentation&nbsp;</span>
                                 <span>- a wizzi model type html documentation&nbsp;</span>
                                 <span>This method is a facade function that creates a new instance&nbsp;</span>
-                                <span>of the wizzi.wizziFactory class and executes&nbsp;</span>
+                                <span>of the wizzi.stfnbssl class and executes&nbsp;</span>
                                 <span>its `generateWizziModelTypes` method.&nbsp;</span>
                             </div>
                             <div class="gsf-smr-2 api-method-section-title">
@@ -1215,27 +1215,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mc-pane mc-pane-api-wizzi_wizziFactoryModule">
-                        <h1 name="wizzi.wizziFactoryModule" id="wizzi_wizziFactoryModule">wizzi.wizziFactoryModule</h1>
+                    <div class="mc-pane mc-pane-api-wizzi_stfnbsslModule">
+                        <h1 name="wizzi.stfnbsslModule" id="wizzi_stfnbsslModule">wizzi.stfnbsslModule</h1>
                         <div class="api-sub-1">
                             <span>kernel API</span>
                             <span>, module</span>
-                            <span>, source path: wizzi/lib/services/wizziFactory.js</span>
+                            <span>, source path: wizzi/lib/services/stfnbssl.js</span>
                         </div>
                         <div class="gsf-smr-0 api-comment-api">
                             <span>This module exports a single function, for creating a new instance of&nbsp;</span>
-                            <span>the wizzi.wizziFactory class.&nbsp;</span>
+                            <span>the wizzi.stfnbssl class.&nbsp;</span>
                             <span>&nbsp;</span>
-                            <span>The plugins of a wizzi.wizziFactory instance are registered once,&nbsp;</span>
+                            <span>The plugins of a wizzi.stfnbssl instance are registered once,&nbsp;</span>
                             <span>when calling the `initialize` method, and cannot be changed dinamycally.&nbsp;</span>
-                            <span>To use many different plugin configurations, many wizzi.wizziFactory instances&nbsp;</span>
+                            <span>To use many different plugin configurations, many wizzi.stfnbssl instances&nbsp;</span>
                             <span>must be created.&nbsp;</span>
                         </div>
                         <h3>Type</h3>
                         <h5>Methods</h5>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.wizziFactoryModule.createFactory" id="wizzi.wizziFactoryModule.createFactory">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.stfnbsslModule.createFactory" id="wizzi.stfnbsslModule.createFactory">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.wizziFactoryModule.createFactory(...)</span>
+                                <span>wizzi.stfnbsslModule.createFactory(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>async&nbsp;</span>
@@ -1261,7 +1261,7 @@
                                 <div class="gsf-smr-4">
                                     <span class="api-label-api-ref">api-ref</span>
                                     <span class="api-ref">
-                                        <a href="#wizzi.wizziFactory.createOptions">wizzi.wizziFactory.createOptions</a>
+                                        <a href="#wizzi.stfnbssl.createOptions">wizzi.stfnbssl.createOptions</a>
                                     </span>
                                 </div>
                             </div>
@@ -1281,15 +1281,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mc-pane mc-pane-api-wizzi_wizziFactory">
-                        <h1 name="wizzi.wizziFactory" id="wizzi_wizziFactory">wizzi.wizziFactory</h1>
+                    <div class="mc-pane mc-pane-api-wizzi_stfnbssl">
+                        <h1 name="wizzi.stfnbssl" id="wizzi_stfnbssl">wizzi.stfnbssl</h1>
                         <div class="api-sub-1">
                             <span>kernel API</span>
                             <span>, class-instance</span>
-                            <span>, source path: wizzi/lib/services/wizziFactory.js</span>
+                            <span>, source path: wizzi/lib/services/stfnbssl.js</span>
                         </div>
                         <div class="gsf-smr-0 api-comment-api">
-                            <span>The wizzi.wizziFactory class exposes the main services of the wizzi factory:&nbsp;</span>
+                            <span>The wizzi.stfnbssl class exposes the main services of the wizzi factory:&nbsp;</span>
                             <span>. mTree loading&nbsp;</span>
                             <span>. wizzi model loading&nbsp;</span>
                             <span>. model transformation&nbsp;</span>
@@ -1300,12 +1300,12 @@
                         <h3>Interface</h3>
                         <h5>Properties</h5>
                         <div class="gsf-smr-0 api-property-panel">
-                            <div class="gsf-smr-1 api-property" name="wizzi.wizziFactory.property.createOptions" id="wizzi.wizziFactory.property.createOptions">
+                            <div class="gsf-smr-1 api-property" name="wizzi.stfnbssl.property.createOptions" id="wizzi.stfnbssl.property.createOptions">
                                 <span class="api-property-type">{</span>
                                 <span class="api-property-name">createOptions</span>
                             </div>
                             <div class="gsf-smr-2 api-comment-property">
-                                <span>The configuration object of a wizzi.wizziFactory instance.&nbsp;</span>
+                                <span>The configuration object of a wizzi.stfnbssl instance.&nbsp;</span>
                                 <span>Cannot be changed after instance creation. For a new configuration&nbsp;</span>
                                 <span>a new instance must be created.&nbsp;</span>
                             </div>
@@ -1330,7 +1330,7 @@
                                         <span>When storeKind == 'mongodb'.&nbsp;</span>
                                         <span>The uri of the running instance of the MongoDB database&nbsp;</span>
                                         <span>containing the repository. The database must be started before&nbsp;</span>
-                                        <span>creating the wizzi.wizziFactory instance.&nbsp;</span>
+                                        <span>creating the wizzi.stfnbssl instance.&nbsp;</span>
                                     </div>
                                 </div>
                                 <div class="gsf-smr-4 api-param-panel">
@@ -1406,9 +1406,9 @@
                         <hr />
                         <h3>Type</h3>
                         <h5>Methods</h5>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.wizziFactory.initialize" id="wizzi.wizziFactory.initialize">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.stfnbssl.initialize" id="wizzi.stfnbssl.initialize">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.wizziFactory.initialize(...)</span>
+                                <span>wizzi.stfnbssl.initialize(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>async&nbsp;</span>
@@ -1424,7 +1424,7 @@
                                 <div class="gsf-smr-4">
                                     <span class="api-label-api-ref">api-ref</span>
                                     <span class="api-ref">
-                                        <a href="#wizzi.wizziFactory.createOptions">wizzi.wizziFactory.createOptions</a>
+                                        <a href="#wizzi.stfnbssl.createOptions">wizzi.stfnbssl.createOptions</a>
                                     </span>
                                 </div>
                             </div>
@@ -1439,11 +1439,11 @@
                                 </div>
                                 <div class="gsf-smr-5">
                                     <span class="api-property-type">{</span>
-                                    <span class="api-property-name">wizziFactory</span>
+                                    <span class="api-property-name">stfnbssl</span>
                                     <div class="gsf-smr-6">
                                         <span class="api-label-api-ref">api-ref</span>
                                         <span class="api-ref">
-                                            <a href="#wizzi.wizziFactory">wizzi.wizziFactory</a>
+                                            <a href="#wizzi.stfnbssl">wizzi.stfnbssl</a>
                                         </span>
                                     </div>
                                 </div>
@@ -1482,9 +1482,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.wizziFactory.loadMTree" id="wizzi.wizziFactory.loadMTree">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.stfnbssl.loadMTree" id="wizzi.stfnbssl.loadMTree">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.wizziFactory.loadMTree(...)</span>
+                                <span>wizzi.stfnbssl.loadMTree(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>async&nbsp;</span>
@@ -1562,9 +1562,9 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.wizziFactory.getLoadModel" id="wizzi.wizziFactory.getLoadModel">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.stfnbssl.getLoadModel" id="wizzi.stfnbssl.getLoadModel">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.wizziFactory.getLoadModel(...)</span>
+                                <span>wizzi.stfnbssl.getLoadModel(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>function</span>
@@ -1629,9 +1629,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.wizziFactory.loadModel" id="wizzi.wizziFactory.loadModel">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.stfnbssl.loadModel" id="wizzi.stfnbssl.loadModel">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.wizziFactory.loadModel(...)</span>
+                                <span>wizzi.stfnbssl.loadModel(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>async&nbsp;</span>
@@ -1714,9 +1714,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.wizziFactory.loadModelFromConfig" id="wizzi.wizziFactory.loadModelFromConfig">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.stfnbssl.loadModelFromConfig" id="wizzi.stfnbssl.loadModelFromConfig">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.wizziFactory.loadModelFromConfig(...)</span>
+                                <span>wizzi.stfnbssl.loadModelFromConfig(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>async&nbsp;</span>
@@ -1781,9 +1781,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.wizziFactory.transformModel" id="wizzi.wizziFactory.transformModel">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.stfnbssl.transformModel" id="wizzi.stfnbssl.transformModel">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.wizziFactory.transformModel(...)</span>
+                                <span>wizzi.stfnbssl.transformModel(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>async&nbsp;</span>
@@ -1854,9 +1854,9 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.wizziFactory.generateArtifact" id="wizzi.wizziFactory.generateArtifact">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.stfnbssl.generateArtifact" id="wizzi.stfnbssl.generateArtifact">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.wizziFactory.generateArtifact(...)</span>
+                                <span>wizzi.stfnbssl.generateArtifact(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>async&nbsp;</span>
@@ -1945,9 +1945,9 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.wizziFactory.loadModelAndGenerateArtifact" id="wizzi.wizziFactory.loadModelAndGenerateArtifact">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.stfnbssl.loadModelAndGenerateArtifact" id="wizzi.stfnbssl.loadModelAndGenerateArtifact">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.wizziFactory.loadModelAndGenerateArtifact(...)</span>
+                                <span>wizzi.stfnbssl.loadModelAndGenerateArtifact(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>async&nbsp;</span>
@@ -2019,9 +2019,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.wizziFactory.generateModelTypes" id="wizzi.wizziFactory.generateModelTypes">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.stfnbssl.generateModelTypes" id="wizzi.stfnbssl.generateModelTypes">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.wizziFactory.generateModelTypes(...)</span>
+                                <span>wizzi.stfnbssl.generateModelTypes(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>async&nbsp;</span>
@@ -2103,7 +2103,7 @@
                                 <span>async&nbsp;</span>
                                 <span>function</span>
                                 <span>, called by
-                                    <a href="#wizzi.wizziFactory.initialize">wizzi.wizziFactory.initialize</a>
+                                    <a href="#wizzi.stfnbssl.initialize">wizzi.stfnbssl.initialize</a>
                                 </span>
                             </div>
                             <div class="gsf-smr-2 api-comment-method">
@@ -3890,9 +3890,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.artifact.artifactInfo.isWizziFactoryJob" id="wizzi.artifact.artifactInfo.isWizziFactoryJob">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.artifact.artifactInfo.isstfnbsslJob" id="wizzi.artifact.artifactInfo.isstfnbsslJob">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.artifact.artifactInfo.isWizziFactoryJob(...)</span>
+                                <span>wizzi.artifact.artifactInfo.isstfnbsslJob(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>function</span>
@@ -4123,14 +4123,14 @@
                             </div>
                         </div>
                         <div class="gsf-smr-0 api-property-panel">
-                            <div class="gsf-smr-1 api-property" name="wizzi.artifact.genContext.property.wizziFactory" id="wizzi.artifact.genContext.property.wizziFactory">
+                            <div class="gsf-smr-1 api-property" name="wizzi.artifact.genContext.property.stfnbssl" id="wizzi.artifact.genContext.property.stfnbssl">
                                 <span class="api-property-type">{</span>
-                                <span class="api-property-name">wizziFactory</span>
+                                <span class="api-property-name">stfnbssl</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span class="api-label-api-ref">api-ref</span>
                                 <span class="api-ref">
-                                    <a href="#wizzi.wizziFactory">wizzi.wizziFactory</a>
+                                    <a href="#wizzi.stfnbssl">wizzi.stfnbssl</a>
                                 </span>
                             </div>
                         </div>
@@ -5169,7 +5169,7 @@
                         </div>
                         <div class="gsf-smr-0 api-comment-api">
                             <span>The productionManager is the executor of a wizzi job.&nbsp;</span>
-                            <span>For single simple tasks, one can use wizzi.wizziFactory&nbsp;</span>
+                            <span>For single simple tasks, one can use wizzi.stfnbssl&nbsp;</span>
                             <span>instance methods, but for complex tasks a wizzi job&nbsp;</span>
                             <span>run by the wizzi.production.productionManager is the&nbsp;</span>
                             <span>right solution.&nbsp;</span>
@@ -5191,14 +5191,14 @@
                         <h3>Type</h3>
                         <h5>Properties</h5>
                         <div class="gsf-smr-0 api-property-panel">
-                            <div class="gsf-smr-1 api-property" name="wizzi.production.productionManager.property.wizziFactory" id="wizzi.production.productionManager.property.wizziFactory">
+                            <div class="gsf-smr-1 api-property" name="wizzi.production.productionManager.property.stfnbssl" id="wizzi.production.productionManager.property.stfnbssl">
                                 <span class="api-property-type">{</span>
-                                <span class="api-property-name">wizziFactory</span>
+                                <span class="api-property-name">stfnbssl</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span class="api-label-api-ref">api-ref</span>
                                 <span class="api-ref">
-                                    <a href="#wizzi.wizziFactory">wizzi.wizziFactory</a>
+                                    <a href="#wizzi.stfnbssl">wizzi.stfnbssl</a>
                                 </span>
                             </div>
                         </div>
@@ -5311,11 +5311,11 @@
                             </div>
                             <div class="gsf-smr-3 api-param-panel">
                                 <span class="api-property-type">{</span>
-                                <span class="api-property-name">wizziFactory</span>
+                                <span class="api-property-name">stfnbssl</span>
                                 <div class="gsf-smr-4">
                                     <span class="api-label-api-ref">api-ref</span>
                                     <span class="api-ref">
-                                        <a href="#wizzi.wizziFactory">wizzi.wizziFactory</a>
+                                        <a href="#wizzi.stfnbssl">wizzi.stfnbssl</a>
                                     </span>
                                 </div>
                             </div>
@@ -5434,7 +5434,7 @@
                                 <span>function</span>
                             </div>
                             <div class="gsf-smr-2 api-comment-method">
-                                <span>This is a facade methods that calls wizzi.wizziFactory.getLoadModel.&nbsp;</span>
+                                <span>This is a facade methods that calls wizzi.stfnbssl.getLoadModel.&nbsp;</span>
                             </div>
                             <div class="gsf-smr-2 api-method-section-title">
                                 <span>Params</span>
@@ -5462,7 +5462,7 @@
                             <div class="gsf-smr-3">
                                 <span class="api-info-tag">api-call</span>
                                 <span>
-                                    <a href="#wizzi.wizziFactory.getLoadModel">wizzi.wizziFactory.getLoadModel</a>
+                                    <a href="#wizzi.stfnbssl.getLoadModel">wizzi.stfnbssl.getLoadModel</a>
                                 </span>
                             </div>
                         </div>
@@ -5474,7 +5474,7 @@
                                 <span>function</span>
                             </div>
                             <div class="gsf-smr-2 api-comment-method">
-                                <span>This is a facade methods that calls wizzi.wizziFactory.getSchemaDefinition.&nbsp;</span>
+                                <span>This is a facade methods that calls wizzi.stfnbssl.getSchemaDefinition.&nbsp;</span>
                             </div>
                             <div class="gsf-smr-2 api-method-section-title">
                                 <span>Params</span>
@@ -5495,7 +5495,7 @@
                                 <span>function</span>
                             </div>
                             <div class="gsf-smr-2 api-comment-method">
-                                <span>This is a facade methods that calls wizzi.wizziFactory.getModelTransformer.&nbsp;</span>
+                                <span>This is a facade methods that calls wizzi.stfnbssl.getModelTransformer.&nbsp;</span>
                             </div>
                             <div class="gsf-smr-2 api-method-section-title">
                                 <span>Params</span>
@@ -5526,7 +5526,7 @@
                                 <span>function</span>
                             </div>
                             <div class="gsf-smr-2 api-comment-method">
-                                <span>This is a facade methods that calls wizzi.wizziFactory.getArtifactGenerator.&nbsp;</span>
+                                <span>This is a facade methods that calls wizzi.stfnbssl.getArtifactGenerator.&nbsp;</span>
                             </div>
                             <div class="gsf-smr-2 api-method-section-title">
                                 <span>Params</span>
@@ -5746,7 +5746,7 @@
                             <span>. a wizzi job&nbsp;</span>
                             <span>- where generations are defined in a source ittf document of type 'wfjob'&nbsp;</span>
                             <span>. a wizzi model types generation&nbsp;</span>
-                            <span>- where generations are hard coded in the wizzi.wizziFactory.generatedModelTypes method&nbsp;</span>
+                            <span>- where generations are hard coded in the wizzi.stfnbssl.generatedModelTypes method&nbsp;</span>
                             <span>and the model types are defined in a source ittf document of type 'wfschema'.&nbsp;</span>
                         </div>
                         <h3>Type</h3>
@@ -6198,9 +6198,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="gsf-smr-0 api-method-panel" name="wizzi.production.Runner.runWizziFactoryJob" id="wizzi.production.Runner.runWizziFactoryJob">
+                        <div class="gsf-smr-0 api-method-panel" name="wizzi.production.Runner.runstfnbsslJob" id="wizzi.production.Runner.runstfnbsslJob">
                             <div class="gsf-smr-1 api-method">
-                                <span>wizzi.production.Runner.runWizziFactoryJob(...)</span>
+                                <span>wizzi.production.Runner.runstfnbsslJob(...)</span>
                             </div>
                             <div class="gsf-smr-2">
                                 <span>async&nbsp;</span>
@@ -6416,7 +6416,7 @@
                                 <span>async&nbsp;</span>
                                 <span>high-order-function</span>
                                 <span>, called by
-                                    <a href="#wizzi.wizziFactory.initialize">wizzi.wizziFactory.initialize</a>
+                                    <a href="#wizzi.stfnbssl.initialize">wizzi.stfnbssl.initialize</a>
                                 </span>
                             </div>
                             <div class="gsf-smr-2 api-method-section-title">
@@ -6720,7 +6720,7 @@
                         </div>
                         <div class="gsf-smr-0 api-comment-api">
                             <span>This module is the entry point of the mTree loader package.&nbsp;</span>
-                            <span>Usually it is managed by a wizzi.wizziFactory instance and&nbsp;</span>
+                            <span>Usually it is managed by a wizzi.stfnbssl instance and&nbsp;</span>
                             <span>a direct access to it is unnecessary.&nbsp;</span>
                         </div>
                         <h3>Interface</h3>
@@ -6823,7 +6823,7 @@
                             <div class="gsf-smr-2">
                                 <span>high-order-function</span>
                                 <span>, called by
-                                    <a href="#wizzi.wizziFactory.initialize">wizzi.wizziFactory.initialize</a>
+                                    <a href="#wizzi.stfnbssl.initialize">wizzi.stfnbssl.initialize</a>
                                 </span>
                             </div>
                             <div class="gsf-smr-2 api-comment-method">
@@ -6839,7 +6839,7 @@
                                 <div class="gsf-smr-4 api-comment-param">
                                     <span>A function that can be called to create a&nbsp;</span>
                                     <span>wizzi-repo.ittfDocumentStore already configured&nbsp;</span>
-                                    <span>by the current wizzi.wizziFactory instance.&nbsp;</span>
+                                    <span>by the current wizzi.stfnbssl instance.&nbsp;</span>
                                 </div>
                                 <div class="gsf-smr-4">
                                     <span class="api-label-api-ref">api-ref</span>
@@ -9040,9 +9040,9 @@
                                         <span>a (optional) context object for the trasformation.&nbsp;</span>
                                         <span>Its properties comes from:&nbsp;</span>
                                         <span>. the properties of the globalContext object of the&nbsp;</span>
-                                        <span>wizzi.wizziFactory instance;&nbsp;</span>
+                                        <span>wizzi.stfnbssl instance;&nbsp;</span>
                                         <span>. the properties of the `context` parameter passed to&nbsp;</span>
-                                        <span>the wizzi.wizziFactory.transformModel method.&nbsp;</span>
+                                        <span>the wizzi.stfnbssl.transformModel method.&nbsp;</span>
                                     </div>
                                 </div>
                             </div>
@@ -9110,9 +9110,9 @@
                                         <span>a (optional) secondary context object for the generation.&nbsp;</span>
                                         <span>Its properties comes from:&nbsp;</span>
                                         <span>. the properties of the globalContext object of the&nbsp;</span>
-                                        <span>wizzi.wizziFactory instance;&nbsp;</span>
+                                        <span>wizzi.stfnbssl instance;&nbsp;</span>
                                         <span>. the properties of the `context` parameter passed to&nbsp;</span>
-                                        <span>the wizzi.wizziFactory.generateArtifact method.&nbsp;</span>
+                                        <span>the wizzi.stfnbssl.generateArtifact method.&nbsp;</span>
                                     </div>
                                 </div>
                             </div>
@@ -9235,7 +9235,7 @@
                             <div class="gsf-smr-2 api-comment-method">
                                 <span>This handler is invoked when the runner server&nbsp;</span>
                                 <span>is ready for creating wizzi factories and registering plugins.&nbsp;</span>
-                                <span>Calling the wizzi.runnerServer.registerFactory(factoryToken, wizzi.wizziFactory.createOptions)&nbsp;</span>
+                                <span>Calling the wizzi.runnerServer.registerFactory(factoryToken, wizzi.stfnbssl.createOptions)&nbsp;</span>
                                 <span>imply the creation of a factory identified by `factoryToken`.&nbsp;</span>
                             </div>
                             <div class="gsf-smr-2 api-method-section-title">
@@ -9401,7 +9401,7 @@
             el_toc.checked = false;
         }
     </script>
-    <script src="wizzifactory.js"></script>
+    <script src="stfnbssl.js"></script>
 </body>
 
 </html>

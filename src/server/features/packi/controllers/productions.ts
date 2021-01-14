@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 import * as bodyParser from  'body-parser'
 import { ControllerType, AppInitializerType } from '../../app/types';
 import { fsTypes } from '../../filesystem'
-import { wizziTypes, wizziProds, wizziFactory } from '../../wizzi'
+import { wizziTypes, wizziProds, stfnbssl } from '../../wizzi'
 import { PackiFiles, TemplateList, Template } from '../types';
 import { sendPromiseResult, sendSuccess, sendFailure } from '../../../utils/response';
 import { file } from 'wizzi';
@@ -39,7 +39,7 @@ export class ProductionsController implements ControllerType {
         const files: PackiFiles = request.body;
         console.log('ProductionsController.executeJob.received files', Object.keys(files));
         wizziProds.executeJobs(files).then(async (fsJson)=>{
-            const files = await wizziFactory.extractGeneratedFiles(fsJson);
+            const files = await stfnbssl.extractGeneratedFiles(fsJson);
             console.log('features.packi.controllers.production.executeJob.generatedArtifacts', Object.keys(files));
             sendSuccess(response, {
                 generatedArtifacts: files

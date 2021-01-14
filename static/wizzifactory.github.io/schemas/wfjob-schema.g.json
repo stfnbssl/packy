@@ -161,7 +161,7 @@
       "restricts": [],
       "methods": [],
       "comments": [
-        "Requires a WizziFactoryPackage.",
+        "Requires a stfnbssl",
         "The IttfNodeValue is the package name.",
         "If the package is not globally installed must be a fully qualified path."
       ]

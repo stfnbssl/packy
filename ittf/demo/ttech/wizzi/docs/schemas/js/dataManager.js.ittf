@@ -27,7 +27,7 @@
 			else
 			
 				_ fetch
-					@ 'https://wizzifactory.github.io/schemas/' + name + '-schema.g.json'
+					@ 'https://stfnbssl.github.io/schemas/' + name + '-schema.g.json'
 					._ then
 						=>
 							param response

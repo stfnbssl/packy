@@ -168,8 +168,8 @@
 								@ dir
 								@ message 'Delete package.json and overwrite README.'
 								{ author
-									@ name 'wizzifactory'
-									@ email 'wizzifactory@gmail.com'
+									@ name 'stfnbssl'
+									@ email 'stfnbssl@gmail.com'
 					_ WizziBrowser.log
 						@ 'commit sha:' + sha
 					_ play_commit_log

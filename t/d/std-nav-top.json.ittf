@@ -19,11 +19,11 @@ $group
 						href "/"
 					{
 						label "Concepts"
-						href "/static/wizzifactory.github.io/concepts.html"
+						href "/static/stfnbsslhub.io/concepts.html"
 					{
 						label "Docs"
-						href "/static/wizzifactory.github.io/docs/intro.html"
+						href "/static/stfnbsslhub.io/docs/intro.html"
 					{
 						label "Project"
-						href "/static/wizzifactory.github.io/project.html"
+						href "/static/stfnbsslhub.io/project.html"
 

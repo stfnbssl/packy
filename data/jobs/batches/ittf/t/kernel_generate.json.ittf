@@ -31,7 +31,7 @@
 			commit true
 			push true
 			localPath 'c:\my\wizzi\${version}\github\${name}'
-			visitUrl 'https://github.com/wizzifactory/${name}'
+			visitUrl 'https://github.com/stfnbssl/${name}'
 		$hook
 
 

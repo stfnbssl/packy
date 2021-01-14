@@ -37261,14 +37261,14 @@ function escapename(value) {
 var genContext = __webpack_require__(182);
 var md = module.exports = {};
 md.repo = __webpack_require__(187);
-md.getGenContext = function(wizziFactory) {
+md.getGenContext = function(stfnbssl) {
     return new genContext({
             options: {
                 CRLF: '\n', 
                 indentSpaces: 4
             }, 
             pman: {
-                wizziFactory: wizziFactory
+                stfnbssl: stfnbssl
             }
         });
 };
@@ -37278,7 +37278,7 @@ md.getLoadModelContext = function(modelContext) {
 };
 md.getProductionManager = function() {
     return {
-            wizziFactory: {}, 
+            stfnbssl: {}, 
             productionContext: createProductionContext(), 
             globalContext: function() {
                 return {};
@@ -37354,7 +37354,7 @@ var GenContext = (function () {
         this.model = genconfig.model;
         this.srcPath = genconfig.srcPath;
         this.pman = genconfig.pman;
-        this.wizziFactory = genconfig.pman.wizziFactory;
+        this.stfnbssl = genconfig.pman.stfnbssl;
         this.block = new block(genconfig.options);
         this.values = genconfig.options.data || {};
         this.writeFilePath = null;

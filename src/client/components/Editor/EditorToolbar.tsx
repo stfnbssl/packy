@@ -173,7 +173,7 @@ class EditorToolbar extends React.PureComponent<Props, State> {
                       // edge="end"
                       component="a"
                       color="inherit"
-                      href="https://github.com/wizzifactory/packi"
+                      href="https://github.com/stfnbsslki"
                       aria-label={'View on github'}
                       data-ga-event-category="AppBar"
                       data-ga-event-action="github"

@@ -2,10 +2,10 @@
     #mc-toggle-api-wizzi:checked ~ .mc-pane-api-wizzi {
         display: block;
     }
-    #mc-toggle-api-wizzi.wizziFactoryModule:checked ~ .mc-pane-api-wizzi.wizziFactoryModule {
+    #mc-toggle-api-wizzi.stfnbsslModule:checked ~ .mc-pane-api-wizzi.stfnbsslModule {
         display: block;
     }
-    #mc-toggle-api-wizzi.wizziFactory:checked ~ .mc-pane-api-wizzi.wizziFactory {
+    #mc-toggle-api-wizzi.stfnbssl:checked ~ .mc-pane-api-wizzi.stfnbssl {
         display: block;
     }
     #mc-toggle-api-wizzi.pluginsManagerModule:checked ~ .mc-pane-api-wizzi.pluginsManagerModule {

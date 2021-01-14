@@ -22,7 +22,7 @@ h/root/empty_layout()
 				function examples
 					_ client.fetchUserRepositories
 						{
-							@ handle 'wizzifactory'
+							@ handle 'stfnbssl'
 						._ then
 							=> 
 								param result
@@ -34,7 +34,7 @@ h/root/empty_layout()
 
 					_ client.fetchContent
 						{
-							@ owner 'wizzifactory'
+							@ owner 'stfnbssl'
 							@ repository 'wizzi-web'
 							@ path 'index.js'
 							@ decode true
@@ -50,7 +50,7 @@ h/root/empty_layout()
 					_ client.fetchCommitBySHA
 						{ 
 							@ sha "71c15f5a336baba041f5abe4b03328570cf5766e"
-							@ owner 'wizzifactory'
+							@ owner 'stfnbssl'
 							@ repository 'wizzi-web'
 						._ then
 							=> 
@@ -64,7 +64,7 @@ h/root/empty_layout()
 					_ client.fetchTreeBySHA
 						{ 
 							@ sha "36bd261dbaa3b50a00f1224d27f00783f053055a"
-							@ owner 'wizzifactory'
+							@ owner 'stfnbssl'
 							@ repository 'wizzi-web'
 						._ then
 							=> 
@@ -77,7 +77,7 @@ h/root/empty_layout()
 
 					_ client.getReferences
 						{ 
-							@ owner 'wizzifactory'
+							@ owner 'stfnbssl'
 							@ repository 'wizzi-web'
 						._ then
 							=> 
@@ -90,7 +90,7 @@ h/root/empty_layout()
 
 					_ client.getReferencesHeads
 						{ 
-							@ owner 'wizzifactory'
+							@ owner 'stfnbssl'
 							@ repository 'wizzi-web'
 						._ then
 							=> 

@@ -1,7 +1,7 @@
 {
     $
       var imagesFolder = "http://localhost:5000/static/demo/hugo-initio/images";
-    baseURL "https://wizzifactory.github.io/"
+    baseURL "https://stfnbssl.github.io/"
     languageCode "en-us"
     title "Initio - Free, multipurpose html5 template by GetTemplate"
     theme "bootstarp.1"

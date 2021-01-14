@@ -4,7 +4,7 @@ html
 		var opt = {}
 		opt.title = 'Firebase fbFsClient';
 		opt.useFirebase = true;
-		opt.project = "wizzifactory";
+		opt.project = "stfnbssl";
 	
 	h/root/empty_layout_opt(&opt)
 

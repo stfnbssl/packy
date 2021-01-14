@@ -4,7 +4,7 @@ import { JsonComponents, JsonDocumentDto, FsJson } from 'wizzi-repo';
 import { packiFilePrefix } from '../config/env';
 import { packiTypes } from '../packi';
 import { config as appConfig } from '../config';
-import { JsonWizziFactory, FilesystemWizziFactory } from './types';
+import { Jsonstfnbssl, Filesystemstfnbssl } from './types';
 import { config } from 'isomorphic-git';
 
 export function packiFilesToJsonDocuments(files: packiTypes.PackiFiles): JsonDocumentDto[] {
@@ -18,7 +18,7 @@ export function packiFilesToJsonDocuments(files: packiTypes.PackiFiles): JsonDoc
     return jsonDocuments;
 }
 
-export async function createFilesystemFactory(globalContext?: {[k: string]: any}): Promise<wizzi.WizziFactory> {
+export async function createFilesystemFactory(globalContext?: {[k: string]: any}): Promise<wizzi.stfnbssl> {
     const gc: {[k: string]: any} = {};
     if (appConfig.IsWizziDev)  {
         gc['isWizziStudio'] = true;
@@ -40,7 +40,7 @@ export async function createFilesystemFactory(globalContext?: {[k: string]: any}
     });
 }
 
-export async function createFsJsonAndFactory(files: packiTypes.PackiFiles): Promise<JsonWizziFactory> {
+export async function createFsJsonAndFactory(files: packiTypes.PackiFiles): Promise<Jsonstfnbssl> {
     const plugins: string[] = [];
     const jsonDocuments: JsonDocumentDto[] = [];
     Object.keys(files).map(value=> {

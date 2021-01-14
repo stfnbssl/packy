@@ -92,14 +92,14 @@
 				button 
 					class navigation__search-icon icon-cross
 			a 
-				href https://github.com/wizzifactory
+				href https://github.com/stfnbssl
 				target _blank
 				class navigation__icon
 				title GitHub Repository
 				i 
 					class sidecar__icon icon-github
 			a 
-				href https://stackoverflow.com/questions/tagged/wizzifactory
+				href https://stackoverflow.com/questions/tagged/stfnbssl
 				target _blank
 				class navigation__icon
 				title See Questions on Stack Overflow

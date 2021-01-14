@@ -16,7 +16,7 @@
             hgroup 
                 class hgroup flex
                 a css grid playground
-                    href https://wizzifactory.github.io/cssexplorer
+                    href https://stfnbssl.github.io/cssexplorer
                 span &lsaquo;
                     class toggle-controls
                     id toggle-controls

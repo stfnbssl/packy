@@ -40,7 +40,7 @@ export async function generateArtifact(filePath: string, files: packiTypes.Packi
     });
 }
 
-export async function loadModelJson(wf: wizzi.WizziFactory, filePath: string, context: any): Promise<wizzi.WizziModel> {
+export async function loadModelJson(wf: wizzi.stfnbssl, filePath: string, context: any): Promise<wizzi.WizziModel> {
     return new Promise(async (resolve, reject)=> {
         const schemaName = schemaFromFilePath(filePath);
         if (!schemaName) {
@@ -154,7 +154,7 @@ export async function scanIttfFolder(filePath: string, rootFolder: string): Prom
     });
 }
 
-export async function inferAndLoadContextJson(wf: wizzi.WizziFactory, files: packiTypes.PackiFiles, filePath: string, exportName: string): Promise<any> {
+export async function inferAndLoadContextJson(wf: wizzi.stfnbssl, files: packiTypes.PackiFiles, filePath: string, exportName: string): Promise<any> {
     return new Promise((resolve, reject) => {
         const pf = parseFilePath(filePath);
         if (pf.isIttfDocument && pf.schema !== 'json') {

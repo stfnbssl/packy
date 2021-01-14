@@ -2,5 +2,5 @@
 	item 'The wizzi factory'
 	kind 'Software factory'
 	{ github
-		url 'https://github.com/wizzifactory'
+		url 'https://github.com/stfnbssl'
 	$include copy

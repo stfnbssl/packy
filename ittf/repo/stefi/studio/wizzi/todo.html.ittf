@@ -34,10 +34,10 @@ h/root/layout()
                 \b /gists/stefi/js/<gistname>.js.ittf
 
         h3 wizzi
-        p The source of true of the globalContext is the wizzi.wizziFactory instance?
+        p The source of true of the globalContext is the wizzi.stfnbssl instance?
                 \b It should be so.
                 \b If that is the case why the wizzi.productionManager that has a pointer
-                \b to the wizzi.wizziFactory since construction manages an its own
+                \b to the wizzi.stfnbssl since construction manages an its own
                 \b globalContext?
         p There is any reason to have a different globalContext for each
                 \b wfjob execution? It could be a jobContext.

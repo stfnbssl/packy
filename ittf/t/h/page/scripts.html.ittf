@@ -17,14 +17,14 @@ $group
 			module
 				kind es6
 				# Initialize Firebase
-				$if opt.project === 'wizzifactory'
+				$if opt.project === 'stfnbssl'
     				var config
     					{
     						@ apiKey "AIzaSyACBhxkQICMYxWeftA2DmsOzCAqVf3aTOQ"
-    						@ authDomain "wizzifactory.firebaseapp.com"
-    						@ databaseURL "https://wizzifactory.firebaseio.com"
-    						@ projectId "wizzifactory"
-    						# NOT YET storageBucket "wizzifactory.appspot.com"
+    						@ authDomain "stfnbssl.firebaseapp.com"
+    						@ databaseURL "https://stfnbssl.firebaseio.com"
+    						@ projectId "stfnbssl"
+    						# NOT YET storageBucket "stfnbssl.appspot.com"
     						@ storageBucket "" 
     						@ messagingSenderId "676985835415"
     				_ firebase.initializeApp(config)

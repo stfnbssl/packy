@@ -5,7 +5,7 @@
 		h1 The wizzi factory
 		p A Software factory
 		h3 github hosting
-			a https://github.com/wizzifactory
-				href https://github.com/wizzifactory
+			a https://github.com/stfnbssl
+				href https://github.com/stfnbssl
 		$include copy
 

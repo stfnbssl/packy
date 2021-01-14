@@ -9,17 +9,17 @@ var md = module.exports = {};
 md.name = 'npm fsJsonDb';
 md.wfjobPath = path.join(__dirname, 'fsjsondb.wfjob.ittf');
 
-md.executeWizziFactoryJob = function (path, wizziFactoryPackages) {
+md.executestfnbsslJob = function (path, stfnbsslPackages) {
     var pman = new ProductionManager(options({
         indentSpaces: 4,
         basedir: __dirname,
         verbose: 2
     }));
-    if (wizziFactoryPackages && wizzi.verify.isArray(wizziFactoryPackages)) {
-        var i, i_len = wizziFactoryPackages.length, wfp;
+    if (stfnbsslPackages && wizzi.verify.isArray(stfnbsslPackages)) {
+        var i, i_len = stfnbsslPackages.length, wfp;
         for (i = 0; i < i_len; i++) {
-            wfp = wizziFactoryPackages[i];
-            pman.registerWizziFactoryPackage(wfp);
+            wfp = stfnbsslPackages[i];
+            pman.registerstfnbsslPackage(wfp);
         }
     }
     pman.addWfJob({
@@ -48,7 +48,7 @@ md.executeWizziFactoryJob = function (path, wizziFactoryPackages) {
 
 md.execute = function () {
     var labsite = require('wizzi-lab-site');
-    md.executeWizziFactoryJob(md.wfjobPath, [
+    md.executestfnbsslJob(md.wfjobPath, [
         labsite
     ]);
 };

@@ -53,7 +53,7 @@
 			else
 			
 				_ fetch
-					@ 'https://wizzifactory.github.io/cheatsheets/' + name + '.json'
+					@ 'https://stfnbssl.github.io/cheatsheets/' + name + '.json'
 					._ then
 						=>
 							param response

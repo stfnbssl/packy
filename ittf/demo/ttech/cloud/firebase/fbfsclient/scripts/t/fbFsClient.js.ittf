@@ -17,7 +17,7 @@
 				set this.firestore
 					new Firestore
 						{
-							@ projectId 'wizzifactory'
+							@ projectId 'stfnbssl'
 							@ keyFilename
 								_ path.join
 									@ __dirname
@@ -30,9 +30,9 @@
 				_ firebase.initializeApp
 					{
 						@ apiKey "AIzaSyACBhxkQICMYxWeftA2DmsOzCAqVf3aTOQ"
-						@ authDomain "wizzifactory.firebaseapp.com"
-						@ databaseURL "https://wizzifactory.firebaseio.com"
-						@ projectId "wizzifactory"
+						@ authDomain "stfnbssl.firebaseapp.com"
+						@ databaseURL "https://stfnbssl.firebaseio.com"
+						@ projectId "stfnbssl"
 						@ storageBucket ""
 						@ messagingSenderId "676985835415"
 				+

@@ -11,10 +11,10 @@
 		css https://fonts.googleapis.com/css?family=Roboto
 		$if currentSubPage == null
 			css sanitize.css
-			css wizzifactory.css
+			css stfnbssl.css
 		$else
 			css ../sanitize.css
-			css ../wizzifactory.css
+			css ../stfnbssl.css
 		$hook styles
 
 	body
@@ -31,6 +31,6 @@
 		js jquery-3.2.1.js
 		
 		$if currentSubPage == null
-			js wizzifactory.js
+			js stfnbssl.js
 		$else
-			js ../wizzifactory.js
+			js ../stfnbssl.js

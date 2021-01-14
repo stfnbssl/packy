@@ -197,7 +197,7 @@
 		{
 			title 'Wizzi - ittf - wizzi factory'
 			method 'get'
-			url '/api/wizzi/ittf/wizzifactory'
+			url '/api/wizzi/ittf/stfnbssl'
 			[ parameters
 				{
 					type "text"

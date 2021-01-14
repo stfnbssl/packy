@@ -839,7 +839,7 @@
         "- css : the wzTag of the root node of the css wfschema",
         "Children nodes will be loaded by the model factory of the external schema,",
         "whose plugin must be listed in the plugin configuration when creating",
-        "the wizzi.wizziFactory instance."
+        "the wizzi.stfnbssle."
       ]
     },
     {

@@ -1,6 +1,6 @@
 /*
     artifact generator: C:\my\wizzi\v6\node_modules\wizzi-js\lib\artifacts\js\module\gen\main.js
-    primary source IttfDocument: c:\my\wizzi\v6\test\wizzi-docs\jobs\ittf\site\site\wizzifactory.js.ittf
+    primary source IttfDocument: c:\my\wizzi\v6\test\wizzi-docs\jobs\ittf\site\site\stfnbssl.js.ittf
     utc time: Mon, 14 Jan 2019 14:37:33 GMT
 */
 'use strict';

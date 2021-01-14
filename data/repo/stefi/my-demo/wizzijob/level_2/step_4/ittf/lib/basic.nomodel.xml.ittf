@@ -3,6 +3,6 @@
 		@ kind Software factory
 		title The wizzi factory
 		github
-			@ url https://github.com/wizzifactory
+			@ url https://github.com/stfnbssl
 		$include copy
 

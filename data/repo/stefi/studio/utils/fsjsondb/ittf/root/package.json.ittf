@@ -14,11 +14,11 @@
 		[
 			{
 				type "MIT"
-				url "https://github.com/wizzifactory/${pkgName}/blob/master/license.txt"
+				url "https://github.com/stfnbssl/${pkgName}/blob/master/license.txt"
 	repository
 		{
 			type "git"
-			url "https://github.com/wizzifactory/${pkgName}.git"
+			url "https://github.com/stfnbssl/${pkgName}.git"
 
 	engines
 		{

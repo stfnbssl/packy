@@ -170,7 +170,7 @@
 							@ component a
 							@ title GitHub
 							@ contrast
-							@ href https://github.com/wizzifactory
+							@ href https://github.com/stfnbssl
 							< Github
 				< AppDrawer
 					@ className {classes.drawer}

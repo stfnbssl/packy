@@ -104,7 +104,7 @@ h/root/empty_layout( )
 									opt( /api/wizzi/plugin/package
 									opt( /api/wizzi/plugin/schemas
 									opt( /api/wizzi/plugin/artifacts
-									opt( /api/wizzi/ittf/wizzifactory
+									opt( /api/wizzi/ittf/stfnbssl
 									opt( /api/wizzi/ittf/mtree
 									opt( /api/wizzi/ittf/mtreedebug
 									opt( /api/wizzi/ittf/defaultartifact 
@@ -214,7 +214,7 @@ h/root/empty_layout( )
 						set url += '&schema=' + schemaName
 					elif getApiId === "/api/wizzi/plugin/artifacts" || getApiId === "/api/wizzi/plugin/schemas"
 						set url += '?xpackage=' + pluginsPackageName
-					elif getApiId === "/api/wizzi/ittf/wizzifactory"
+					elif getApiId === "/api/wizzi/ittf/stfnbssl"
 						set url += '?storeKind=' + storeKind
 						set url += '&plugins=' + plugins
 						set url += '&globalContext=' + globalContext

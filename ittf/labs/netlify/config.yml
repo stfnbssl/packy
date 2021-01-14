@@ -1,6 +1,6 @@
 ﻿backend:
   name: github
-  repo: wizzifactory/netlify-cms-content
+  repo: stfnbssl/netlify-cms-content
 
 media_folder: media_folder
 
