@@ -1,8 +1,8 @@
 import { all, fork, put, takeEvery, call/*, takeLatest */} from 'redux-saga/effects';
 import { getType } from 'typesafe-actions';
 import { config } from '../config';
-import { packyActions } from '../packy';
-import { INITIAL_CODE, DEFAULT_PACKY_NAME } from '../packy/defaults';
+import { packiActions } from '../packi';
+import { INITIAL_CODE, DEFAULT_PACKI_NAME } from '../packi/defaults';
 import * as appActions from './actions';
 import { callApi } from '../../utils/api';
 
@@ -12,11 +12,11 @@ function* handleLoginUserByStoredUid(action: ReturnType<typeof appActions.loginU
         const res = yield call(callApi, 'get', config.API_URL, 'auth/github/loggedin/' + encodeURIComponent(action.payload.uid));
         console.log('sagas.handleLoginUserByStoredUid.res', res);
         yield put(appActions.loginUserByStoredUidSuccess(res));
-        if (action.payload.selectedPackyId) {
-            yield put(packyActions.selectPackyRequest({ id: action.payload.selectedPackyId}));
+        if (action.payload.selectedPackiId) {
+            yield put(packiActions.selectPackiRequest({ id: action.payload.selectedPackiId}));
         } else {
-            yield put(packyActions.selectPackySuccess({
-                id: DEFAULT_PACKY_NAME,
+            yield put(packiActions.selectPackiSuccess({
+                id: DEFAULT_PACKI_NAME,
                 files: INITIAL_CODE,
             }));
         } 

@@ -23,12 +23,12 @@ export function getConfig() {
             AUTH_URL: DATA[KEY].AUTH_URL, 
             AUTH_PROVIDERS_URL: DATA[KEY].AUTH_PROVIDERS_URL,
             VERSION: VERSION,
-            BROWSERFS_PACKY_STORE: 'packyStore',
+            BROWSERFS_PACKI_STORE: 'packyStore',
             BROWSERFS_PACKIES_ROOT: '/ixdb',
             BROWSERFS_PACKIES_FOLDER: '/ixdb/packies',
-            BROWSERFS_PACKY_CONFIG_FILE: 'packy.config.json',
-            PREFERENCES_KEY: 'packy.preferences.config',
-            DEFAULT_PACKY_NAME: 'MyStarterPacky',
+            BROWSERFS_PACKI_CONFIG_FILE: 'packi.config.json',
+            PREFERENCES_KEY: 'packi.preferences.config',
+            DEFAULT_PACKI_NAME: 'MyStarterPacki',
         };
         console.log('features.config', _config);
     }

@@ -1,0 +1,97 @@
+layouts/muiPage()
+
+  $append imports
+
+  $append components
+    const MuiExpansionPanel
+        _ withStyles
+            { 
+                { root
+                    @ border '1px solid rgba(0,0,0,.125)'
+                    @ boxShadow 'none'
+                    { '&:not(:last-child)'
+                        @ borderBottom 0
+                    { '&:before'
+                        @ display 'none'
+                { expanded
+                    @ margin 'auto'
+            (
+                @ ExpansionPanel
+    const MuiExpansionPanelSummary
+        _ withStyles
+            { 
+                { root
+                    @ backgroundColor 'rgba(0,0,0,.03)'
+                    @ borderBottom '1px solid rgba(0,0,0,.125)'
+                    @ marginBottom -1
+                    @ minHeight 56
+                    { '&$expanded'
+                        @ minHeight 56
+                { content
+                    { '&$expanded'
+                        @ margin '12px 0'
+                @ expanded {}
+            (
+                => 
+                    param props
+                    < ExpansionPanelSummary 
+                        @ {...props}
+    set ExpansionPanelSummary.muiName = 'ExpansionPanelSummary'
+    
+  $append styles
+    { root
+        @ padding theme.spacing.unit * 2
+
+  $append state
+    @ expanded 'panel1'
+
+  => handleChange
+      param panel
+      return
+        => 
+            param event
+            param expanded
+            _ this.setState
+                { 
+                    @ expanded
+                        iif expanded
+                            then panel
+                            else false
+  render
+      const 
+          { 
+              @ expanded
+          = this.state
+      return 
+          div 
+              $foreach p in site.Mui.expansionPanels.ep1.panels
+                < MuiExpansionPanel 
+                    @ square
+                    @ expanded {expanded === '${p.id}'}
+                    @ onChange {this.handleChange('${p.id}')}
+                    < ExpansionPanelSummary 
+                        < Typography 
+                            + ${p.label}
+                    < ExpansionPanelDetails 
+                        < Typography 
+                            + ${p.content}
+              < MuiExpansionPanel 
+                  @ square
+                  @ expanded {expanded === 'panel2'}
+                  @ onChange {this.handleChange('panel2')}
+                  < ExpansionPanelSummary 
+                      < Typography 
+                          + Collapsible Group Item #2
+                  < ExpansionPanelDetails 
+                      < Typography 
+                          + Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.
+              < MuiExpansionPanel 
+                  @ square
+                  @ expanded {expanded === 'panel3'}
+                  @ onChange {this.handleChange('panel3')}
+                  < ExpansionPanelSummary 
+                      < Typography 
+                          + Collapsible Group Item #3
+                  < ExpansionPanelDetails 
+                      < Typography 
+                          + Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.

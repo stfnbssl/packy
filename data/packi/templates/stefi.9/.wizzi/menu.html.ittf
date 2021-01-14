@@ -1,0 +1,59 @@
+layouts/muiPage()
+
+  $append styles
+    { menuItem
+        { '&:focus'
+            @ backgroundColor theme.palette.primary.main
+            { '& $primary, & $icon'
+                @ color theme.palette.common.white
+
+  $append state
+    @ anchorEl null
+
+  => handleClick
+      param event
+      _ this.setState
+          { 
+              @ anchorEl event.currentTarget
+  
+  => handleClose
+      _ this.setState
+          { 
+              @ anchorEl null
+
+  render
+    prop classes
+    const 
+        { 
+            @ anchorEl
+        = this.state
+    return 
+        div 
+            < Button 
+                @ aria-owns
+                    iif anchorEl
+                        then 'simple-menu'
+                        else undefined
+                @ aria-haspopup "true"
+                @ onClick {this.handleClick}
+                + Actions
+            < Menu
+                @ id "simple-menu"
+                @ anchorEl {anchorEl}
+                @ open {Boolean(anchorEl)}
+                @ onClose {this.handleClose}
+                < MenuItem 
+                    @ onClick {this.handleClose}
+                    + Profile
+                < MenuItem 
+                    @ onClick {this.handleClose}
+                    + My account
+                < MenuItem 
+                    @ onClick {this.handleClose}
+                    + Logout
+                menu_item_icon( Drafts, drafts )
+                    @ onClick {this.handleClose}
+                menu_item_icon( Inbox, inbox )
+                    @ onClick {this.handleClose}
+                menu_item_icon( Sent mail, send )
+                    @ onClick {this.handleClose}

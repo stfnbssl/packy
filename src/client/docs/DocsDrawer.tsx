@@ -75,7 +75,7 @@ function DocsDrawer(props: Props) {
                 <div className={classes.toolbarIe11}>
                     <div className={classes.toolbar}>
                         <Button component={FilesLink} className={classes.button}>
-                            <Typography variant="h6">Packy</Typography>
+                            <Typography variant="h6">Packi</Typography>
                         </Button>
                         {config.VERSION ? (
                             <Button component={VersionsLink} className={classes.button}>

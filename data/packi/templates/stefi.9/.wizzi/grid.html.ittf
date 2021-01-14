@@ -1,0 +1,158 @@
+layouts/muiPage()
+
+  $append imports
+
+  $append styles
+    { root
+        @ flexGrow 1
+    { paper
+        @ height 140
+        @ width 100
+    { control
+        @ padding theme.spacing.unit * 2
+    { paper2
+        @ padding theme.spacing.unit * 2
+        @ textAlign 'center'
+        @ color theme.palette.text.secondary
+
+  $append state
+    @ spacing '16'
+  
+  => handleChange
+      param key
+      return
+        => 
+            param event
+            param value
+            _ this.setState
+                { 
+                    @ [key] value
+  render
+    prop classes
+    const 
+        { 
+            @ spacing
+        = this.state
+    return 
+      < div
+        < Grid 
+            @ container
+            @ className {classes.root}
+            @ spacing {16}
+            < Grid 
+                @ item
+                @ xs {12}
+                < Grid 
+                    @ container
+                    @ className {classes.demo}
+                    @ justify "center"
+                    @ spacing {Number(spacing)}
+                    { 
+                        [ 
+                            @ 0
+                            @ 1
+                            @ 2
+                            ._ map
+                                => 
+                                    param value
+                                    < Grid 
+                                        @ key {value}
+                                        @ item
+                                        < Paper 
+                                            @ className {classes.paper}
+            < Grid 
+                @ item
+                @ xs {12}
+                < Paper 
+                    @ className {classes.control}
+                    < Grid 
+                        @ container
+                        < Grid 
+                            @ item
+                            < FormLabel 
+                                + spacing
+                            < RadioGroup 
+                                @ name "spacing"
+                                @ aria-label "Spacing"
+                                @ value {spacing}
+                                @ onChange {this.handleChange('spacing')}
+                                @ row
+                                < FormControlLabel 
+                                    @ value "0"
+                                    @ control
+                                        < Radio 
+                                    @ label "0"
+                                < FormControlLabel 
+                                    @ value "8"
+                                    @ control
+                                        < Radio 
+                                    @ label "8"
+                                < FormControlLabel 
+                                    @ value "16"
+                                    @ control
+                                        < Radio 
+                                    @ label "16"
+                                < FormControlLabel 
+                                    @ value "24"
+                                    @ control
+                                        < Radio 
+                                    @ label "24"
+                                < FormControlLabel 
+                                    @ value "32"
+                                    @ control
+                                        < Radio 
+                                    @ label "32"
+                                < FormControlLabel 
+                                    @ value "40"
+                                    @ control
+                                        < Radio 
+                                    @ label "40"
+
+        div 
+            @ className {classes.root}
+            < Grid 
+                @ container
+                @ spacing {24}
+                < Grid 
+                    @ item
+                    @ xs {12}
+                    < Paper 
+                        @ className {classes.paper2}
+                        + xs=12
+                < Grid 
+                    @ item
+                    @ xs {6}
+                    < Paper 
+                        @ className {classes.paper2}
+                        + xs=6
+                < Grid 
+                    @ item
+                    @ xs {6}
+                    < Paper 
+                        @ className {classes.paper2}
+                        + xs=6
+                < Grid 
+                    @ item
+                    @ xs {3}
+                    < Paper 
+                        @ className {classes.paper2}
+                        + xs=3
+                < Grid 
+                    @ item
+                    @ xs {3}
+                    < Paper 
+                        @ className {classes.paper2}
+                        + xs=3
+                < Grid 
+                    @ item
+                    @ xs {3}
+                    < Paper 
+                        @ className {classes.paper2}
+                        + xs=3
+                < Grid 
+                    @ item
+                    @ xs {3}
+                    < Paper 
+                        @ className {classes.paper2}
+                        + xs=3
+

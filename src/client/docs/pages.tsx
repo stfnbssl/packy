@@ -6,8 +6,8 @@ const pages = [
         pathname: '/getting-started/usage',
       },
       {
-        pathname: '/getting-started/firstpacky',
-        title: 'First packy',
+        pathname: '/getting-started/firstpacki',
+        title: 'First packi',
       },
     ],
   },

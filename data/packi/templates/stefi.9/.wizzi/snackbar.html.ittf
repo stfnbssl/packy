@@ -1,0 +1,101 @@
+layouts/muiPage()
+
+  $append styles
+    { close
+        @ padding theme.spacing.unit / 2
+
+  $append state
+    @ open false
+    @ messageInfo {}
+ 
+  will-mount
+    set this.queue = []
+  
+  => handleClick
+      param message
+      return
+        =>
+          log 'handleClick'
+          _ this.queue.push
+              { 
+                  @ message
+                  @ key
+                      _ new Date().getTime
+          if this.state.open
+              # immediately begin dismissing current message
+              # to start showing new one
+              _ this.setState
+                  { 
+                      @ open false
+          else
+              _ this.processQueue
+  
+  => processQueue
+      log 'processQueue'
+      if this.queue.length > 0
+          _ this.setState
+              { 
+                  @ messageInfo
+                      _ this.queue.shift
+                  @ open true
+  
+  => handleClose
+      param event
+      param reason
+      if reason === 'clickaway'
+          return 
+      _ this.setState
+          { 
+              @ open false
+  
+  => handleExited
+      _ this.processQueue
+  
+  render
+    prop classes
+    const 
+        { 
+            @ messageInfo
+        = this.state
+  
+    return 
+        div 
+            < Button 
+                @ onClick {this.handleClick('message a')}
+                + Show message A
+            < Button 
+                @ onClick {this.handleClick('message b')}
+                + Show message B
+            < Snackbar 
+                @ key {messageInfo.key}
+                @ anchorOrigin
+                    { 
+                        @ vertical 'bottom'
+                        @ horizontal 'left'
+                @ open {this.state.open}
+                @ autoHideDuration {6000}
+                @ onClose {this.handleClose}
+                @ onExited {this.handleExited}
+                @ ContentProps
+                    { 
+                        @ 'aria-describedby' 'message-id'
+                @ message
+                    span 
+                        @ id "message-id"
+                        + {messageInfo.message}
+                @ action
+                    [ 
+                        < Button 
+                            @ key "undo"
+                            @ color "secondary"
+                            @ size "small"
+                            @ onClick {this.handleClose}
+                            + UNDO
+                        < IconButton 
+                            @ key "close"
+                            @ aria-label "Close"
+                            @ color "inherit"
+                            @ className {classes.close}
+                            @ onClick {this.handleClose}
+                            < Icon 
+                              + close

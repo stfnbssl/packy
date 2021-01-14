@@ -10,8 +10,8 @@ export type LoggedUser = {
 
 export type QueryParams_VIA = {
     session_id?: string;
-    // TODO local packy provider ?
-    // local_packyger?: 'true' | 'false';
+    // TODO local packi provider ?
+    // local_packiger?: 'true' | 'false';
     // preview?: 'true' | 'false';
     code?: string;
     name?: string;

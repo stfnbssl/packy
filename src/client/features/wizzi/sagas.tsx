@@ -2,9 +2,9 @@ import { all, fork, put, takeEvery, call/*, takeLatest */} from 'redux-saga/effe
 import { getType } from 'typesafe-actions';
 import { config } from '../config';
 import * as wizziActions from './actions';
-import { packyActions } from '../packy';
+import { packiActions } from '../packi';
 import { callApi } from '../../utils/api';
-import { packyFilterIttf } from '../packy/convertFileStructure';
+import { packiFilterIttf } from '../packi/convertFileStructure';
 // import { getInstance } from '../../services/EventService';
 
 function* handleGenerateArtifactRequest(action: ReturnType<typeof wizziActions.generateArtifactRequest>) {
@@ -27,11 +27,11 @@ function* handleExecuteJobRequest(action: ReturnType<typeof wizziActions.execute
         console.log('sagas.handleExecuteJobRequest.action', action);
         const res = yield call(callApi, 'post', 
             config.API_URL, 'productions/job/',
-            packyFilterIttf(action.payload.files)
+            packiFilterIttf(action.payload.files)
         );
         console.log('sagas.handleExecuteJobRequest.res', res);
         yield put(wizziActions.executeJobSuccess(res));
-        yield put(packyActions.executeJobSuccess({
+        yield put(packiActions.executeJobSuccess({
             generatedArtifacts: res.generatedArtifacts, 
             previousArtifacts: action.payload.files
         }));

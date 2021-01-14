@@ -33,7 +33,7 @@ import {
 // import eslintrc from '../../configs/eslint.json';
 // import { SDKVersion } from '../../configs/sdk';
 import { FileSystemEntry/*, TextFileEntry, AssetFileEntry*/ } from '../../features/filelist/types';
-import { packyTypes } from '../../features/packy';
+import { packiTypes } from '../../features/packi';
 
 type Props = {
   visible: boolean;
@@ -44,7 +44,7 @@ type Props = {
   uploadFileAsync: (file: File) => Promise<string>;
   onDownloadCode: () => Promise<void>;
   hasSnackId: boolean;
-  saveStatus: packyTypes.SaveStatus;
+  saveStatus: packiTypes.SaveStatus;
   // sdkVersion: SDKVersion;
   theme: prefTypes.ThemeName;
   preventRedirectWarning: () => void;

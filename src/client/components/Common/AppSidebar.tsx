@@ -32,7 +32,7 @@ function AppSidebar(props: Props) {
                 </Tooltip>
             </ListItem>
             <ListItem disableGutters={true}>
-                <Tooltip title="View packy guide">
+                <Tooltip title="View packi guide">
                   <IconButton component={DocLink} classes={{root: props.classes.iconButton}}>
                     <HelpIcon />
                   </IconButton>

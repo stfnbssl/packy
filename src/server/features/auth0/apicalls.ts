@@ -5,8 +5,8 @@ export function getManagementApiToken() : Promise<any> {
     return getApiToken(`https://${config.Auth0Domain}/api/v2/`);
 }
 
-export function getPackyApiToken() : Promise<any> {
-    return getApiToken(config.Auth0PackyApiId);
+export function getPackiApiToken() : Promise<any> {
+    return getApiToken(config.Auth0PackiApiId);
 }
 
 export function getApiToken(audience: string) : Promise<any> {
@@ -17,8 +17,8 @@ export function getApiToken(audience: string) : Promise<any> {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-            client_id : config.Auth0PackyBackendAppId,
-            client_secret: config.Auth0PackyBackendAppSecret,
+            client_id : config.Auth0PackiBackendAppId,
+            client_secret: config.Auth0PackiBackendAppSecret,
             audience: audience,
             grant_type: "client_credentials"  
         })

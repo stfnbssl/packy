@@ -1,0 +1,56 @@
+const tileData
+    [ 
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/breakfast.jpg'
+            @ title 'Breakfast'
+            @ author 'jill111'
+            @ cols 2
+            @ featured true
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/burgers.jpg'
+            @ title 'Tasty burger'
+            @ author 'director90'
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/camera.jpg'
+            @ title 'Camera'
+            @ author 'Danson67'
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/morning.jpg'
+            @ title 'Morning'
+            @ author 'fancycrave1'
+            @ featured true
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/hats.jpg'
+            @ title 'Hats'
+            @ author 'Hans'
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/honey.jpg'
+            @ title 'Honey'
+            @ author 'fancycravel'
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/vegetables.jpg'
+            @ title 'Vegetables'
+            @ author 'jill111'
+            @ cols 2
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/plant.jpg'
+            @ title 'Water plant'
+            @ author 'BkrmadtyaKarki'
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/mushroom.jpg'
+            @ title 'Mushrooms'
+            @ author 'PublicDomainPictures'
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/olive.jpg'
+            @ title 'Olive oil'
+            @ author 'congerdesign'
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/star.jpg'
+            @ title 'Sea star'
+            @ cols 2
+            @ author '821292'
+        { 
+            @ img '${site.muiIamagesUrl}/grid-list/bike.jpg'
+            @ title 'Bike'
+            @ author 'danfador'
+

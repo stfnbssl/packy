@@ -27,10 +27,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import HelpIcon from '@material-ui/icons/Help';
 import { appTypes } from '../../features/app';
-import { packyTypes } from '../../features/packy';
+import { packiTypes } from '../../features/packi';
 //import Button from '../shared/Button';
 import ToolbarShell from '../Shell/ToolbarShell';
-import PackybarTitleShell from '../Shell/PackybarTitleShell';
+import PackibarTitleShell from '../Shell/PackibarTitleShell';
 import ToolbarTitleShell from '../Shell/ToolbarTitleShell';
 import IconButton2 from '../shared/IconButton';
 import AppSidebar from '../Common/AppSidebar'
@@ -47,9 +47,9 @@ type State = {
 
 type Props = authTypes.AuthProps & {
   classes: any;
-  currentPacky: packyTypes.Packy;
-  saveStatus: packyTypes.SaveStatus;
-  saveHistory: packyTypes.SaveHistory;
+  currentPacki: packiTypes.Packi;
+  saveStatus: packiTypes.SaveStatus;
+  saveHistory: packiTypes.SaveHistory;
   loggedUser: appTypes.LoggedUser | undefined;
   splitViewKind: string;
   isDownloading: boolean;
@@ -73,7 +73,7 @@ type Props = authTypes.AuthProps & {
   onDismissAuthModal: () => void;
   onChangeSplitViewKind: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onExecuteWizziJob: () => void;
-  onShowPackyManager: () => void;
+  onShowPackiManager: () => void;
   onShowGithubCommit: () => void;
   onShowGithubCreate: () => void;
   onSaveCode: () => void;
@@ -101,7 +101,7 @@ class EditorToolbar extends React.PureComponent<Props, State> {
       classes,
       creatorUsername,
       theme,
-      currentPacky,
+      currentPacki,
       saveHistory,
       saveStatus,
       loggedUser,
@@ -118,14 +118,14 @@ class EditorToolbar extends React.PureComponent<Props, State> {
       onDismissEditModal,
       // onDownloadCode,
       onExecuteWizziJob,
-      onShowPackyManager,
+      onShowPackiManager,
       onShowGithubCommit,
       onShowGithubCreate,
       onSaveCode,
       // onPublishAsync,
     } = this.props;
 
-    // console.log('EditorToolbar.currentPacky', currentPacky);
+    // console.log('EditorToolbar.currentPacki', currentPacki);
     const isPublishing = saveStatus === 'publishing';
     const isPublished = saveStatus === 'published';
 
@@ -133,22 +133,22 @@ class EditorToolbar extends React.PureComponent<Props, State> {
       <React.Fragment>{/*<ToolbarShell>*/}
         <AppBar className={classes.appBar} position="static">
             <Toolbar>
-                <Typography variant="h4" color="inherit" className={classes.grow}>WIZZIpac</Typography>
-                { loggedUser && currentPacky && currentPacky.localPackyData && currentPacky.localPackyData.owner ? (
+                <Typography variant="h4" color="inherit" className={classes.grow}>PACKI</Typography>
+                { loggedUser && currentPacki && currentPacki.localPackiData && currentPacki.localPackiData.owner ? (
                     <Typography variant="h6" color="inherit" className={classes.grow}>
-                      {currentPacky.localPackyData.owner} / {currentPacky.localPackyData.repoName}
+                      {currentPacki.localPackiData.owner} / {currentPacki.localPackiData.repoName}
                     </Typography>
-                  ) : loggedUser && currentPacky && currentPacky.localPackyData ? (
+                  ) : loggedUser && currentPacki && currentPacki.localPackiData ? (
                     <Typography variant="h6" color="inherit" className={classes.grow}>
-                      {currentPacky.localPackyData.id}
+                      {currentPacki.localPackiData.id}
                     </Typography>
                   ) : null}
                 { loggedUser ? (
-                  <Button variant="contained" size="small" className={classes.buttonIcon} onClick={onShowPackyManager}>
+                  <Button variant="contained" size="small" className={classes.buttonIcon} onClick={onShowPackiManager}>
                     Manage Packies
                     <ExtensionIcon className={classes.rightIcon} />
                   </Button> ) : null }
-                { loggedUser && currentPacky ? (
+                { loggedUser && currentPacki ? (
                   <React.Fragment>
                   <Divider />
                   <Button variant="contained" size="small" className={classes.buttonIcon} onClick={onSaveCode}>
@@ -173,7 +173,7 @@ class EditorToolbar extends React.PureComponent<Props, State> {
                       // edge="end"
                       component="a"
                       color="inherit"
-                      href="https://github.com/stfnbssl/packy"
+                      href="https://github.com/wizzifactory/packi"
                       aria-label={'View on github'}
                       data-ga-event-category="AppBar"
                       data-ga-event-action="github"

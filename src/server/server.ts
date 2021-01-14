@@ -8,7 +8,7 @@ import { siteControllers } from './site';
 import { accountControllers } from './features/account';
 import { auth0Controllers } from './features/auth0';
 import { authModelBuilders, authControllers } from './features/auth';
-import { packyModelBuilders, packyControllers } from './features/packy';
+import { packiModelBuilders, packiControllers } from './features/packi';
 import { appMiddlewares, auth0Secured } from './middleware';
 import App from './App';
 
@@ -20,7 +20,7 @@ async function start() {
 
   let modelBuilders: ModelBuilderType[] = [
     ...authModelBuilders,
-    ...packyModelBuilders
+    ...packiModelBuilders
   ];
   
   mongodbStart(config, modelBuilders);
@@ -30,7 +30,7 @@ async function start() {
     ...accountControllers,
     ...authControllers,
     ...auth0Controllers,
-    ...packyControllers, 
+    ...packiControllers, 
   ];
   
   const middlewares: MiddlewareType[] = appMiddlewares.concat();

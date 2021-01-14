@@ -10,7 +10,7 @@ async function getFs(): Promise<wizziUtils.VFile> {
         if (typeof(fs) != 'undefined') {
             return resolve(fs);
         }
-        wizziUtils.vfile({storeName: config.BROWSERFS_PACKY_STORE}, (err: any, result) => {
+        wizziUtils.vfile({storeName: config.BROWSERFS_PACKI_STORE}, (err: any, result) => {
             if (err) { return reject(err); }
             console.log('db.browserfs.initialized', result);
             fs = result;

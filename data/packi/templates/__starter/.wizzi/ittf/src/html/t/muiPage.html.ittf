@@ -1,0 +1,184 @@
+html 
+    lang en
+    dir ltr
+    head 
+        @title My Material-UI example page
+        meta 
+            charset utf-8 
+        meta 
+            name viewport 
+            content minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no
+        js https://unpkg.com/react@latest/umd/react.development.js
+        js https://unpkg.com/react-dom@latest/umd/react-dom.development.js
+        js https://unpkg.com/@material-ui/core/umd/material-ui.development.js
+        js https://unpkg.com/babel-standalone@latest/babel.min.js
+        link 
+            rel stylesheet
+            href https://fonts.googleapis.com/css?family=Roboto:300,400,500
+        link 
+            rel stylesheet
+            href https://fonts.googleapis.com/icon?family=Material+Icons
+    body 
+        # root
+        script
+            type text/babel
+            module
+              kind react
+              
+              const 
+                  { 
+                    @ colors
+                    @ createGenerateClassName
+                    @ createMuiTheme
+                    @ createStyles
+                    @ jssPreset
+                    @ MuiThemeProvider
+                    @ withStyles
+                    @ withTheme
+                    @ AppBar
+                    @ Avatar
+                    @ Backdrop
+                    @ Badge
+                    @ BottomNavigation
+                    @ BottomNavigationAction
+                    @ Button
+                    @ ButtonBase
+                    @ Card
+                    @ CardActionArea
+                    @ CardActions
+                    @ CardContent
+                    @ CardHeader
+                    @ CardMedia
+                    @ Checkbox
+                    @ Chip
+                    @ CircularProgress
+                    @ ClickAwayListener
+                    @ Collapse
+                    @ CssBaseline
+                    @ Dialog
+                    @ DialogActions
+                    @ DialogContent
+                    @ DialogContentText
+                    @ DialogTitle
+                    @ Divider
+                    @ Drawer
+                    @ ExpansionPanel
+                    @ ExpansionPanelActions
+                    @ ExpansionPanelDetails
+                    @ ExpansionPanelSummary
+                    @ Fab
+                    @ Fade
+                    @ FilledInput
+                    @ FormControl
+                    @ FormControlLabel
+                    @ FormGroup
+                    @ FormHelperText
+                    @ FormLabel
+                    @ Grid
+                    @ GridList
+                    @ GridListTile
+                    @ GridListTileBar
+                    @ Grow
+                    @ Hidden
+                    @ Icon
+                    @ IconButton
+                    @ Input
+                    @ InputAdornment
+                    @ InputBase
+                    @ InputLabel
+                    @ LinearProgress
+                    @ Link
+                    @ List
+                    @ ListItem
+                    @ ListItemAvatar
+                    @ ListItemIcon
+                    @ ListItemSecondaryAction
+                    @ ListItemText
+                    @ ListSubheader
+                    @ Menu
+                    @ MenuItem
+                    @ MenuList
+                    @ MobileStepper
+                    @ Modal
+                    @ ModalManager
+                    @ NativeSelect
+                    @ NoSsr
+                    @ OutlinedInput
+                    @ Paper
+                    @ Popover
+                    @ Popper
+                    @ Portal
+                    @ Radio
+                    @ RadioGroup
+                    @ RootRef
+                    @ Select
+                    @ Slide
+                    @ Snackbar
+                    @ SnackbarContent
+                    @ Step
+                    @ StepButton
+                    @ StepConnector
+                    @ StepContent
+                    @ StepIcon
+                    @ StepLabel
+                    @ Stepper
+                    @ SvgIcon
+                    @ SwipeableDrawer
+                    @ Switch
+                    @ Tab
+                    @ Table
+                    @ TableBody
+                    @ TableCell
+                    @ TableFooter
+                    @ TableHead
+                    @ TablePagination
+                    @ TableRow
+                    @ TableSortLabel
+                    @ Tabs
+                    @ TextField
+                    @ Toolbar
+                    @ Tooltip
+                    @ Typography
+                    @ withMobileDialog
+                    @ withWidth
+                    @ Zoom
+                  = window['material-ui']
+              
+              const theme
+                  _ createMuiTheme
+                      { 
+                          { palette
+                              { primary
+                                  @ light colors.purple[300]
+                                  @ main colors.purple[500]
+                                  @ dark colors.purple[700]
+                              { secondary
+                                  @ light colors.green[300]
+                                  @ main colors.green[500]
+                                  @ dark colors.green[700]
+                          { typography
+                              @ useNextVariants true
+              
+              $hook components
+              
+              react Index
+                  state
+                    $hook state
+                  style
+                    $hook styles
+                  => handleClose
+                      _ this.setState
+                          { 
+                              @ open false
+                  => handleClick
+                      _ this.setState
+                          { 
+                              @ open true
+                  render
+                      prop classes 
+                      $hook
+              
+              const App = withStyles(styles)(Index)
+              _ ReactDOM.render
+                  < App 
+                  _ document.getElementById('root') 

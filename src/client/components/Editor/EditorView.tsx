@@ -6,7 +6,7 @@ import { appTypes, Segment } from '../../features/app';
 import { authTypes } from '../../features/auth';
 import { prefTypes, prefColors, withPreferences } from '../../features/preferences';
 import { filelistTypes, fileActions, fileUtils } from '../../features/filelist'
-import { packyTypes, packyValids /*, packyDefaults*/ } from '../../features/packy';
+import { packiTypes, packiValids /*, packiDefaults*/ } from '../../features/packi';
 import { wizziTypes } from '../../features/wizzi';
 import FileList from '../filelist/FileList'
 import KeybindingsManager from '../shared/KeybindingsManager'
@@ -23,7 +23,7 @@ import EditorFooter from './EditorFooter'
 import EditorForm from '../../features/form/EditorForm'
 import NoFileSelected from './NoFileSelected'
 import KeyboardShortcuts, { Shortcuts } from './KeyboardShortcuts';
-import PackyManager from '../../containers/PackyManager';
+import PackiManager from '../../containers/PackiManager';
 import PreviousSaves from './PreviousSaves';
 import GeneratedView from './GeneratedView';
 import GenerationErrors from './GenerationErrors';
@@ -33,10 +33,10 @@ const EDITOR_LOAD_FALLBACK_TIMEOUT = 3000;
 
 type EditorProps = authTypes.AuthProps & {
     classes: any,
-    currentPacky?: packyTypes.Packy;
+    currentPacki?: packiTypes.Packi;
     generatedArtifact?: wizziTypes.GeneratedArtifact;
-    saveHistory: packyTypes.SaveHistory;
-    saveStatus: packyTypes.SaveStatus;
+    saveHistory: packiTypes.SaveHistory;
+    saveStatus: packiTypes.SaveStatus;
     creatorUsername?: string;
     fileEntries: filelistTypes.FileSystemEntry[];
     entry: filelistTypes.TextFileEntry | filelistTypes.AssetFileEntry | undefined;
@@ -47,9 +47,9 @@ type EditorProps = authTypes.AuthProps & {
     // loadingMessage: string | undefined;
     jobError: wizziTypes.JobError;
     isWizziJobWaiting: boolean;
-    onSelectPacky: (packyId: string) => void;
-    onCreatePacky: (packyId: string, packyKind: string) => void;
-    onDeletePacky: (packyId: string) => void;
+    onSelectPacki: (packiId: string) => void;
+    onCreatePacki: (packiId: string, packiKind: string) => void;
+    onDeletePacki: (packiId: string) => void;
     onFileEntriesChange: (entries: filelistTypes.FileSystemEntry[]) => Promise<void>;
     onChangeCode: (code: string) => void;
     onEntrySelected: (entry: filelistTypes.FileSystemEntry) => void;
@@ -81,7 +81,7 @@ export type Props = prefTypes.PreferencesContextType &
 
 type ModalName =
   | 'auth'  
-  | 'packy-manager'
+  | 'packi-manager'
   | 'github-commit'
   | 'github-create'
   | 'edit-info'
@@ -173,8 +173,8 @@ class EditorView extends React.Component<Props, State> {
       this.setState({ currentModal: 'edit-info' });
     };
   
-    _handleShowPackyManager = () => {
-      this.setState({ currentModal: 'packy-manager' });
+    _handleShowPackiManager = () => {
+      this.setState({ currentModal: 'packi-manager' });
     };
 
     _handleShowGithubCommit = () => {
@@ -206,18 +206,18 @@ class EditorView extends React.Component<Props, State> {
       this.setState({ currentModal: name });
     };
   
-    _handleSelectPacky = (id: string) => {
+    _handleSelectPacki = (id: string) => {
       this._handleDismissEditModal();
-      this.props.onSelectPacky && this.props.onSelectPacky(id);
+      this.props.onSelectPacki && this.props.onSelectPacki(id);
     };
 
-    _handleCreatePacky = (id: string, kind: string) => {
+    _handleCreatePacki = (id: string, kind: string) => {
       this._handleDismissEditModal();
-      this.props.onCreatePacky && this.props.onCreatePacky(id, kind);
+      this.props.onCreatePacki && this.props.onCreatePacki(id, kind);
     };
 
-    _handleDeletePacky = (id: string) => {
-      this.props.onDeletePacky && this.props.onDeletePacky(id);
+    _handleDeletePacki = (id: string) => {
+      this.props.onDeletePacki && this.props.onDeletePacki(id);
     };
 
     _handleCreateGitRepository = (owner: string, name: string, branch: string) => {
@@ -288,7 +288,7 @@ class EditorView extends React.Component<Props, State> {
 
       const {
         classes,
-        currentPacky,
+        currentPacki,
         entry,
         // params,
         generatedArtifact,
@@ -307,7 +307,7 @@ class EditorView extends React.Component<Props, State> {
       } = this.props;
 
       // console.log('EditorView', generatedArtifact);
-      // console.log('EditorView.currentPacky', currentPacky);
+      // console.log('EditorView.currentPacki', currentPacki);
   
       // const annotations: Annotation[] = [];
   
@@ -317,15 +317,15 @@ class EditorView extends React.Component<Props, State> {
       }
       */
   
-      //const hasPackyId = !!params.id;
-      //const metadataName = isIntentionallyNamed(name) ? packyDefaults.DEFAULT_METADATA_NAME : name;
+      //const hasPackiId = !!params.id;
+      //const metadataName = isIntentionallyNamed(name) ? packiDefaults.DEFAULT_METADATA_NAME : name;
       /*
-      const metadataName = name == packyDefaults.DEFAULT_PACKY_NAME ? packyDefaults.DEFAULT_METADATA_NAME : name;
+      const metadataName = name == packiDefaults.DEFAULT_PACKI_NAME ? packiDefaults.DEFAULT_METADATA_NAME : name;
       const metadataDescription =
-        description === packyDefaults.DEFAULT_DESCRIPTION
-          ? hasPackyId
-            ? packyDefaults.DEFAULT_METADATA_DESCRIPTION_SAVED
-            : packyDefaults.DEFAULT_METADATA_DESCRIPTION_EMPTY
+        description === packiDefaults.DEFAULT_DESCRIPTION
+          ? hasPackiId
+            ? packiDefaults.DEFAULT_METADATA_DESCRIPTION_SAVED
+            : packiDefaults.DEFAULT_METADATA_DESCRIPTION_EMPTY
           : description;*/
   
       const {fileEntries} = this.props;
@@ -365,7 +365,7 @@ class EditorView extends React.Component<Props, State> {
               // description={description}
               creatorUsername={this.props.creatorUsername}
               loggedUser={loggedUser}
-              currentPacky={currentPacky}
+              currentPacki={currentPacki}
               splitViewKind={this.state.splitViewKind}
               saveHistory={saveHistory}
               saveStatus={saveStatus}
@@ -384,7 +384,7 @@ class EditorView extends React.Component<Props, State> {
               onShowAuthModal={this._handleShowAuthModal}
               onDismissAuthModal={this._handleHideModal}
               onExecuteWizziJob={onExecuteWizziJob}
-              onShowPackyManager={this._handleShowPackyManager}
+              onShowPackiManager={this._handleShowPackiManager}
               onShowGithubCommit={this._handleShowGithubCommit}
               onShowGithubCreate={this._handleShowGithubCreate}
               onSaveCode={onSaveCode}
@@ -509,9 +509,9 @@ class EditorView extends React.Component<Props, State> {
             { loggedUser && (
               <ModalDialog
                 title="Manage your packies"
-                visible={currentModal === 'packy-manager'}
+                visible={currentModal === 'packi-manager'}
                 onDismiss={this._handleHideModal}>
-                <PackyManager onClose={this._handleHideModal}> </PackyManager>
+                <PackiManager onClose={this._handleHideModal}> </PackiManager>
               </ModalDialog>
             )}
             <ModalDialog
@@ -526,7 +526,7 @@ class EditorView extends React.Component<Props, State> {
               onDismiss={this._handleHideModal}>
               <KeyboardShortcuts />
             </ModalDialog>
-            { currentPacky && currentPacky.localPackyData && (
+            { currentPacki && currentPacki.localPackiData && (
               <ModalDialog
                 title="Commit/push git package"
                 visible={currentModal === 'github-commit'}
@@ -541,13 +541,13 @@ class EditorView extends React.Component<Props, State> {
                     //TODO this._handleCommitGitRepository(values['owner'], values['repoName'], values['branch']);
                   }}
                   fields={{
-                    owner: {type: 'text', label: 'Owner', default:currentPacky.localPackyData.owner, onValidate: packyValids.validatePackyName },
-                    repoName: {type: 'text', label: 'Repo', default: currentPacky.localPackyData.repoName,  onValidate: packyValids.validatePackyName },
-                    branch: {type: 'text', label: 'Branch', default: currentPacky.localPackyData.branch, onValidate: packyValids.validatePackyName },
+                    owner: {type: 'text', label: 'Owner', default:currentPacki.localPackiData.owner, onValidate: packiValids.validatePackiName },
+                    repoName: {type: 'text', label: 'Repo', default: currentPacki.localPackiData.repoName,  onValidate: packiValids.validatePackiName },
+                    branch: {type: 'text', label: 'Branch', default: currentPacki.localPackiData.branch, onValidate: packiValids.validatePackiName },
                   }} />
               </ModalDialog>
               )}
-              { currentPacky && currentPacky.localPackyData && (
+              { currentPacki && currentPacki.localPackiData && (
               <ModalDialog
                 title="Create git package"
                 visible={currentModal === 'github-create'}
@@ -562,9 +562,9 @@ class EditorView extends React.Component<Props, State> {
                     this._handleCreateGitRepository(values['owner'], values['repoName'], values['branch']);
                   }}
                   fields={{
-                    owner: {type: 'text', label: 'Owner', default:currentPacky.localPackyData.owner, onValidate: packyValids.validatePackyName },
-                    repoName: {type: 'text', label: 'Repo', default: currentPacky.localPackyData.repoName,  onValidate: packyValids.validatePackyName },
-                    branch: {type: 'text', label: 'Branch', default: currentPacky.localPackyData.branch, onValidate: packyValids.validatePackyName },
+                    owner: {type: 'text', label: 'Owner', default:currentPacki.localPackiData.owner, onValidate: packiValids.validatePackiName },
+                    repoName: {type: 'text', label: 'Repo', default: currentPacki.localPackiData.repoName,  onValidate: packiValids.validatePackiName },
+                    branch: {type: 'text', label: 'Branch', default: currentPacki.localPackiData.branch, onValidate: packiValids.validatePackiName },
                   }} />
               </ModalDialog>
               )}

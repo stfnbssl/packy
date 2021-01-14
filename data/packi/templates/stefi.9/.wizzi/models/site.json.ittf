@@ -1,0 +1,82 @@
+{
+  serverUrl "http://localhost:5000/"
+  assetsJsUrl "http://localhost:5000/static/lib"
+  assetsImagesUrl "http://localhost:5000/static/images"
+  muiIamagesUrl "http://localhost:5000/static/material-ui/images"
+  { Mui
+    { expansionPanels
+      { ep1
+        [ panels
+          {
+            id "panel-p1"
+            label "Collapsible p1"
+            content "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+          {
+            id "panel-p2"
+            label "Collapsible p2"
+            content "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."            
+          {
+            id "panel-p3"
+            label "Collapsible p3"
+            content "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."            
+          {
+            id "panel-p4"
+            label "Collapsible p4"
+            content "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."            
+    { tables
+      { t1
+        [ columns
+          {
+            id "id"
+            label "id"
+            type "string" 
+          {
+            id "name"
+            label "Dessert (100g serving)"
+            type "name" 
+          {
+            id "calories"
+            label "calories"
+            type "number" 
+          {
+            id "fat"
+            label "fat (g)"
+            type "number" 
+          {
+            id "carbs"
+            label "carbs (g)"
+            type "number" 
+          {
+            id "protein"
+            label "protein (g)"
+            type "number" 
+
+    { textfields
+      [ samples
+        {
+          label "Project"
+          id "projectName"
+          helper "Your project name"
+          placeholder "Your project name"
+          controlled true
+        {
+          label "Duration"
+          id "duration"
+          helper "Your project duration"
+          placeholder "Your project duration"          
+          controlled true
+          { adornment
+            position "start"
+            label "hours"
+        {
+          label "Kind"
+          id "kind"
+          helper "Your project kind"
+          placeholder "Your project kind"
+          controlled true
+          { select
+            [ items
+              "ui"
+              "database"
+              "network"
+              "messagging"

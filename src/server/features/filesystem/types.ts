@@ -1,5 +1,5 @@
 import { FileDef } from 'wizzi-utils';
-import { packyTypes} from '../packy'
+import { packiTypes} from '../packi'
 
 export type FsDbResult = {
     writtenCount?: number;
@@ -7,8 +7,8 @@ export type FsDbResult = {
 }
 
 export type FsDb = {
-    getPackyTemplatesList: () => Promise<string[]>;
-    getPackyTemplate: (name: string) => Promise<FileDef[]>;
+    getPackiTemplatesList: () => Promise<string[]>;
+    getPackiTemplate: (name: string) => Promise<FileDef[]>;
     getStarterTemplate: () => Promise<FileDef[]>;
-    savePackyTemplate: (id: string, files: packyTypes.PackyFiles) => Promise<FsDbResult>;
+    savePackiTemplate: (id: string, files: packiTypes.PackiFiles) => Promise<FsDbResult>;
 }

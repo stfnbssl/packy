@@ -1,0 +1,5 @@
+{
+  serverUrl "http://localhost:5000/"
+  assetsJsUrl "http://localhost:5000/static/lib"
+  assetsImagesUrl "http://localhost:5000/static/images"
+  muiIamagesUrl "http://localhost:5000/static/material-ui/images"

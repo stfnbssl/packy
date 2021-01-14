@@ -1,0 +1,5 @@
+text
+    17/5 in src/client/features/config/env.tsx 
+        \b BROWSERFS_PACKI_STORE: 'packyStore', should become
+        \b BROWSERFS_PACKI_STORE: 'packiStore',
+        \b after moving browserfs files from packyStore to packiStore

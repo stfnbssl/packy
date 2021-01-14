@@ -1,0 +1,71 @@
+layouts/muiPage()
+
+  $append imports
+
+  $append styles
+    { margin
+        @ margin theme.spacing.unit * 2
+    { padding
+        @ padding
+            `lit 
+                + 0\b
+                set theme.spacing.unit * 2
+                + px
+
+  $append state
+
+  render
+    prop classes
+    return 
+        div 
+            div 
+                < Badge 
+                    @ className {classes.margin}
+                    @ badgeContent {4}
+                    @ color "primary"
+                    < Icon 
+                      + mail
+                < Badge 
+                    @ className {classes.margin}
+                    @ badgeContent {10}
+                    @ color "secondary"
+                    < Icon 
+                      + mail
+                < IconButton 
+                    @ aria-label "4 pending messages"
+                    @ className {classes.margin}
+                    < Badge 
+                        @ badgeContent {4}
+                        @ color "primary"
+                        < Icon 
+                          + mail
+            < AppBar 
+                @ position "static"
+                @ className {classes.margin}
+                < Tabs 
+                    @ value {0}
+                    < Tab 
+                        @ label
+                            < Badge 
+                                @ className {classes.padding}
+                                @ color "secondary"
+                                @ badgeContent {4}
+                                + Item One
+                    < Tab 
+                        @ label "Item Two"
+                    < Tab 
+                        @ label "Item Three"
+            < Badge 
+                @ color "primary"
+                @ badgeContent {4}
+                @ className {classes.margin}
+                < Typography 
+                    @ className {classes.padding}
+                    + Typography
+            < Badge 
+                @ color "primary"
+                @ badgeContent {4}
+                @ className {classes.margin}
+                < Button 
+                    @ variant "contained"
+                    + Button

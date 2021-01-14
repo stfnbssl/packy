@@ -1,0 +1,53 @@
+layouts/muiPage()
+
+  $append imports
+
+  $append components
+    function ListItemLink
+      param props
+      return 
+          < ListItem 
+            @ button
+            @ component "a"
+            @ {...props}
+
+  $append styles
+    { root
+        @ width '100%'
+        @ maxWidth 360
+        @ backgroundColor theme.palette.background.paper
+
+  $append state
+
+  render
+    prop classes
+    return 
+        div 
+            @ className {classes.root}
+            < List 
+                @ component "nav"
+                < ListItem 
+                    @ button
+                    < ListItemIcon 
+                        < Icon 
+                          + inbox
+                    < ListItemText 
+                        @ primary "Inbox"
+                < ListItem 
+                    @ button
+                    < ListItemIcon 
+                        < Icon 
+                          + drafts
+                    < ListItemText 
+                        @ primary "Drafts"
+            < Divider 
+            < List 
+                @ component "nav"
+                < ListItem 
+                    @ button
+                    < ListItemText 
+                        @ primary "Trash"
+                < ListItemLink 
+                    @ href "#simple-list"
+                    < ListItemText 
+                        @ primary "Spam"

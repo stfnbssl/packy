@@ -26,7 +26,7 @@ function TestEditorForm(props: Props) {
     return (
         <div className={props.classes.container}>
         <EditorForm
-            title="Create New Packy"
+            title="Create New Packi"
             action="Done"
             visible={true}
             onDismiss={ () => {

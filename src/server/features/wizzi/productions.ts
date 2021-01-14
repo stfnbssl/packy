@@ -2,25 +2,25 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as wizzi from 'wizzi';
 import { ittfDocumentScanner, folderBrowse, IttfMTreeState, FolderBrowseResult } from 'wizzi-utils';
-import { packyTypes } from '../packy';
+import { packiTypes } from '../packi';
 import { config } from '../config';
-import { createFsJsonAndFactory, ensurePackyFilePrefix, createFilesystemFactory } from './factory';
+import { createFsJsonAndFactory, ensurePackiFilePrefix, createFilesystemFactory } from './factory';
 import { GeneratedArtifact } from './types';
 import { FsJson } from 'wizzi-repo';
 
-export async function generateArtifact(filePath: string, files: packyTypes.PackyFiles): Promise<GeneratedArtifact> {
+export async function generateArtifact(filePath: string, files: packiTypes.PackiFiles): Promise<GeneratedArtifact> {
     return new Promise(async (resolve, reject)=> {
         const generator = generatorFor(filePath);
         console.log('wizzi.productions.using artifact generator', generator);
         if (generator) {
             let jsonwf: any = {}
             let context: any = {}
-            const ittfDocumentUri = ensurePackyFilePrefix(filePath) as string;
+            const ittfDocumentUri = ensurePackiFilePrefix(filePath) as string;
             const siteDocumentUri = Object.keys(files).find(k=> k.endsWith('site.json.ittf'));
             try {
                 jsonwf = await createFsJsonAndFactory(files);
                 context = { 
-                    site: siteDocumentUri ? await loadModelJson(jsonwf.wf, ensurePackyFilePrefix(siteDocumentUri), {}) : null, 
+                    site: siteDocumentUri ? await loadModelJson(jsonwf.wf, ensurePackiFilePrefix(siteDocumentUri), {}) : null, 
                     ...await inferAndLoadContextJson(jsonwf.wf, files, ittfDocumentUri, 'twin')
                 };
                 console.log('wizzi.productions.generateArtifact.context', Object.keys(context));
@@ -93,9 +93,9 @@ export async function generateArtifactFs(filePath: string, context?: any): Promi
     });
 }
 
-export async function executeJob(filePath: string, files: packyTypes.PackyFiles): Promise<FsJson> {
+export async function executeJob(filePath: string, files: packiTypes.PackiFiles): Promise<FsJson> {
     return new Promise(async (resolve, reject)=> {
-        const ittfDocumentUri = ensurePackyFilePrefix(filePath);
+        const ittfDocumentUri = ensurePackiFilePrefix(filePath);
         const jsonwf = await createFsJsonAndFactory(files);
         jsonwf.wf.executeJob({ 
             name: '', 
@@ -109,7 +109,7 @@ export async function executeJob(filePath: string, files: packyTypes.PackyFiles)
         });
 }
 
-export async function executeJobs(files: packyTypes.PackyFiles): Promise<FsJson> {
+export async function executeJobs(files: packiTypes.PackiFiles): Promise<FsJson> {
     return new Promise(async (resolve, reject)=> {
         const jobDocumentUris = Object.keys(files).filter(k=> k.endsWith('.wfjob.ittf'));
         console.log('Executing jobs', jobDocumentUris, 'files', Object.keys(files));
@@ -119,7 +119,7 @@ export async function executeJobs(files: packyTypes.PackyFiles): Promise<FsJson>
                 console.log('Jobs executed.');
                 return resolve(jsonwf.fsJson);
             }
-            const ittfDocumentUri = ensurePackyFilePrefix(jobDocumentUris[index]);
+            const ittfDocumentUri = ensurePackiFilePrefix(jobDocumentUris[index]);
             console.log('Executing job', ittfDocumentUri);
             jsonwf.wf.executeJob({ 
                 name: '', 
@@ -154,7 +154,7 @@ export async function scanIttfFolder(filePath: string, rootFolder: string): Prom
     });
 }
 
-export async function inferAndLoadContextJson(wf: wizzi.WizziFactory, files: packyTypes.PackyFiles, filePath: string, exportName: string): Promise<any> {
+export async function inferAndLoadContextJson(wf: wizzi.WizziFactory, files: packiTypes.PackiFiles, filePath: string, exportName: string): Promise<any> {
     return new Promise((resolve, reject) => {
         const pf = parseFilePath(filePath);
         if (pf.isIttfDocument && pf.schema !== 'json') {
@@ -163,7 +163,7 @@ export async function inferAndLoadContextJson(wf: wizzi.WizziFactory, files: pac
             const twinDocumentUri = Object.keys(files).find(k=> k.endsWith('/' + twinJsonBaseName));
             console.log('features.wizzi.productions.inferAndLoadContextJson.twinDocumentUri', twinDocumentUri, Object.keys(files))
             if (twinDocumentUri) {
-                loadModelJson(wf, ensurePackyFilePrefix(twinDocumentUri), {})
+                loadModelJson(wf, ensurePackiFilePrefix(twinDocumentUri), {})
                     .then(model=> {
                         resolve({
                             [exportName]: model

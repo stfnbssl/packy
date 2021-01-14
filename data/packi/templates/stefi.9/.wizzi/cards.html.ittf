@@ -1,0 +1,111 @@
+layouts/muiPage()
+
+  $append styles
+    { card
+        @ maxWidth 400
+    { media
+        @ height 0
+        @ paddingTop '56.25%'
+        # 16:9
+    { actions
+        @ display 'flex'
+    { expand
+        @ transform 'rotate(0deg)'
+        @ marginLeft 'auto'
+        @ transition
+            _ theme.transitions.create
+                @ 'transform'
+                { 
+                    @ duration theme.transitions.duration.shortest
+    { expandOpen
+        @ transform 'rotate(180deg)'
+    { avatar
+        @ backgroundColor colors.red[500]
+
+  $append state
+    @ expanded false
+
+  => handleExpandClick
+      _ this.setState
+          => 
+              param state
+              (
+                  { 
+                      @ expanded !state.expanded
+  render
+    prop classes
+    return 
+        < Card 
+            @ className {classes.card}
+            < CardHeader 
+                @ avatar
+                    < Avatar 
+                        @ aria-label "Recipe"
+                        @ className {classes.avatar}
+                        + \n              R\n            \b
+                @ action
+                    < IconButton 
+                        < Icon 
+                          + more-vert
+                @ title "Shrimp and Chorizo Paella"
+                @ subheader "September 14, 2016"
+            < CardMedia 
+                @ className {classes.media}
+                @ image "${site.muiIamagesUrl}/cards/paella.jpg"
+                @ title "Paella dish"
+            < CardContent 
+                < Typography 
+                    @ component "p"
+                    + This impressive paella is a perfect party dish and a fun meal to cook together with your
+                      \b guests. Add 1 cup of frozen peas along with the mussels, if you like.
+            < CardActions 
+                @ className {classes.actions}
+                @ disableActionSpacing
+                < IconButton 
+                    @ aria-label "Add to favorites"
+                    < Icon 
+                      + favorite
+                < IconButton 
+                    @ aria-label "Share"
+                    < Icon 
+                      + share
+                < IconButton 
+                    @ className
+                        _ classnames
+                            @ classes.expand
+                            { 
+                                @ [classes.expandOpen] this.state.expanded
+                    @ onClick {this.handleExpandClick}
+                    @ aria-expanded {this.state.expanded}
+                    @ aria-label "Show more"
+                    < Icon 
+                      + expand-more
+            < Collapse 
+                @ in {this.state.expanded}
+                @ timeout "auto"
+                @ unmountOnExit
+                < CardContent 
+                    < Typography 
+                        @ paragraph
+                        + Method:
+                    < Typography 
+                        @ paragraph
+                        + Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+                          \b minutes.
+                    < Typography 
+                        @ paragraph
+                        + Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
+                          \b heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
+                          \b browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
+                          \b chicken and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion,
+                          \b salt and pepper, and cook, stirring often until thickened and fragrant, about 10
+                          \b minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+                    < Typography 
+                        @ paragraph
+                        + Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
+                          \b without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat
+                          \b to medium-low, add reserved shrimp and mussels, tucking them down into the rice, and
+                          \b cook again without stirring, until mussels have opened and rice is just tender, 5 to 7
+                          \b minutes more. (Discard any mussels that don’t open.)
+                    < Typography 
+                        + Set aside off of the heat to let rest for 10 minutes, and then serve.

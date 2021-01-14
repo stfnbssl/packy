@@ -15,7 +15,7 @@ export const checkJwt = jwt({
       jwksUri: `https://${config.Auth0Domain}/.well-known/jwks.json`
     }),
     // Validate the audience and the issuer.
-    audience: config.Auth0PackyApiId,
+    audience: config.Auth0PackiApiId,
     issuer: `https://${config.Auth0Domain}/`,
     algorithms: ['RS256']
 });

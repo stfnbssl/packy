@@ -2,10 +2,10 @@ import * as React from 'react';
 import format from 'date-fns/format';
 import { StyleSheet, css } from 'aphrodite';
 import { prefTypes, withThemeName } from '../../features/preferences';
-import { packyTypes } from '../../features/packy';
+import { packiTypes } from '../../features/packi';
 
 type Props = {
-  saveHistory: packyTypes.SaveHistory;
+  saveHistory: packiTypes.SaveHistory;
   theme: prefTypes.ThemeName;
 };
 

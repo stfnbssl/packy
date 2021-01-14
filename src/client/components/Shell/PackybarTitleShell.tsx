@@ -8,7 +8,7 @@ type Props = {
   theme: prefTypes.ThemeName;
 };
 
-function PackybarTitleShell({ children, theme }: Props) {
+function PackibarTitleShell({ children, theme }: Props) {
   return (
     <div
       className={css(styles.toolbar, theme === 'dark' ? styles.toolbarDark : styles.toolbarLight)}>
@@ -17,7 +17,7 @@ function PackybarTitleShell({ children, theme }: Props) {
   );
 }
 
-export default withThemeName(PackybarTitleShell);
+export default withThemeName(PackibarTitleShell);
 
 const styles = StyleSheet.create({
   toolbar: {

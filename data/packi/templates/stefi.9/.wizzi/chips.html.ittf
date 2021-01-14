@@ -1,0 +1,120 @@
+layouts/muiPage()
+
+  $append imports
+    function handleDelete
+        _ alert('You clicked the delete icon.')
+        # eslint-disable-line no-alert
+    function handleClick
+        _ alert('You clicked the Chip.')
+        # eslint-disable-line no-alert
+
+  $append styles
+    { root
+        @ display 'flex'
+        @ justifyContent 'center'
+        @ flexWrap 'wrap'
+    { chip
+        @ margin theme.spacing.unit
+
+  $append state
+    
+  render
+    prop classes
+    return 
+        div 
+            @ className {classes.root}
+            < Chip 
+                @ label "Basic Chip"
+                @ className {classes.chip}
+            < Chip 
+                @ avatar
+                    < Avatar 
+                        + MB
+                @ label "Clickable Chip"
+                @ onClick {handleClick}
+                @ className {classes.chip}
+            < Chip 
+                @ avatar
+                    < Avatar 
+                        @ alt "Natacha"
+                        @ src "${site.muiIamagesUrl}/avatar/1.jpg"
+                @ label "Deletable Chip"
+                @ onDelete {handleDelete}
+                @ className {classes.chip}
+            < Chip 
+                @ avatar
+                    < Avatar 
+                        < Icon 
+                          + face
+                @ label "Clickable Deletable Chip"
+                @ onClick {handleClick}
+                @ onDelete {handleDelete}
+                @ className {classes.chip}
+            < Chip 
+                @ icon
+                    < Icon 
+                      + face
+                @ label "Clickable Deletable Chip"
+                @ onClick {handleClick}
+                @ onDelete {handleDelete}
+                @ className {classes.chip}
+            < Chip 
+                @ label "Custom delete icon Chip"
+                @ onClick {handleClick}
+                @ onDelete {handleDelete}
+                @ className {classes.chip}
+                @ deleteIcon
+                    < Icon 
+                      + done
+            < Chip 
+                @ label "Clickable Link Chip"
+                @ className {classes.chip}
+                @ component "a"
+                @ href "#chip"
+                @ clickable
+            < Chip 
+                @ avatar
+                    < Avatar 
+                        + MB
+                @ label "Primary Clickable Chip"
+                @ clickable
+                @ className {classes.chip}
+                @ color "primary"
+                @ onDelete {handleDelete}
+                @ deleteIcon
+                    < Icon 
+                      + done
+            < Chip 
+                @ icon
+                    < Icon 
+                      + face
+                @ label "Primary Clickable Chip"
+                @ clickable
+                @ className {classes.chip}
+                @ color "primary"
+                @ onDelete {handleDelete}
+                @ deleteIcon
+                    < Icon 
+                      + done
+            < Chip 
+                @ label "Deletable Primary Chip"
+                @ onDelete {handleDelete}
+                @ className {classes.chip}
+                @ color "primary"
+            < Chip 
+                @ avatar
+                    < Avatar 
+                        < Icon 
+                          + face
+                @ label "Deletable Secondary Chip"
+                @ onDelete {handleDelete}
+                @ className {classes.chip}
+                @ color "secondary"
+            < Chip 
+                @ icon
+                    < Icon 
+                      + face
+                @ label "Deletable Secondary Chip"
+                @ onDelete {handleDelete}
+                @ className {classes.chip}
+                @ color "secondary"

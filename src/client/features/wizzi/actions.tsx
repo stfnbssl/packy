@@ -1,6 +1,6 @@
 import { createStandardAction } from 'typesafe-actions';
 import { storeTypes } from '../../store';
-import { packyTypes } from '../packy';
+import { packiTypes } from '../packi';
 import { GeneratedArtifact } from './types';
 
 const GENERATE_ARTIFACT_REQUEST = '@@wizzi/GENERATE_ARTIFACT_REQUEST';
@@ -13,7 +13,7 @@ const SET_TIMED_SERVICE = '@@wizzi/SET_TIMED_SERVICE';
 
 export interface ArtifactRequestPayload  {
     filePath: string;
-    files: packyTypes.PackyFiles;
+    files: packiTypes.PackiFiles;
 };
 
 export interface ArtifactResponsePayload extends storeTypes.ResponsePayload {
@@ -21,11 +21,11 @@ export interface ArtifactResponsePayload extends storeTypes.ResponsePayload {
 };
 
 export interface JobRequestPayload  {
-    files: packyTypes.PackyFiles;
+    files: packiTypes.PackiFiles;
 };
 
 export interface JobResponsePayload extends storeTypes.ResponsePayload {
-    generatedArtifacts: packyTypes.PackyFiles;
+    generatedArtifacts: packiTypes.PackiFiles;
 };
 
 export interface SetTimedServicePayload  {

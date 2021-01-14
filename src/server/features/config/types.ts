@@ -1,17 +1,17 @@
 export type ConfigType = {
     port: number;
     sessionSecret: string;
-    packyTemplatesFolder: string;
+    packiTemplatesFolder: string;
     mongoPath: string;
     mongoUser: string;
     mongoPassword: string;
     Auth0Domain: string;
-    Auth0PackyClientId: string;
-    Auth0PackyClientSecret: string;
-    Auth0PackyCallbackUrl: string;
-    Auth0PackyBackendAppId: string;
-    Auth0PackyBackendAppSecret: string;
-    Auth0PackyApiId: string;
+    Auth0PackiClientId: string;
+    Auth0PackiClientSecret: string;
+    Auth0PackiCallbackUrl: string;
+    Auth0PackiBackendAppId: string;
+    Auth0PackiBackendAppSecret: string;
+    Auth0PackiApiId: string;
     GithubClientID: string;
     GithubClientSecret: string;
     GithubCallbackURL: string;
@@ -19,6 +19,6 @@ export type ConfigType = {
     MetaHtmlIttfPath: string;
     MetaFolderIttfPath: string;
     MetaHtmlTextPath: string;
-    PackyApiEndpoint: string;
+    PackiApiEndpoint: string;
 }
 

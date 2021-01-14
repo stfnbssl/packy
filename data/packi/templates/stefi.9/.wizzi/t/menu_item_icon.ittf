@@ -1,0 +1,14 @@
+< MenuItem 
+  $params title, icon
+  @ className {classes.menuItemIcon}
+  < ListItemIcon 
+    @ className {classes.icon}
+    < Icon 
+      + ${icon}
+  < ListItemText 
+    @ classes
+      { 
+        @ primary classes.primary
+    @ inset
+    @ primary "${title}"
+  $hook

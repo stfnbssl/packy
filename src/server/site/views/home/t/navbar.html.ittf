@@ -18,8 +18,8 @@ nav
         href /ittf
         class top-link
 
-    a Packy
-        href /packy
+    a Packi
+        href /packi
         class top-link
 
     $if locals.user

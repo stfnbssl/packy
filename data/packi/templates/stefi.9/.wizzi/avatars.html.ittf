@@ -1,0 +1,39 @@
+layouts/muiPage()
+
+  $append imports
+    const pink = colors.pink
+    const green = colors.green
+  
+  $append styles
+    { avatar
+        @ margin 10
+    { pinkAvatar
+        @ margin 10
+        @ color '#fff'
+        @ backgroundColor pink[500]
+    { greenAvatar
+        @ margin 10
+        @ color '#fff'
+        @ backgroundColor green[500]
+
+  $append state
+
+  render
+    prop classes
+    return 
+      < Grid 
+        @ container
+        @ justify "center"
+        @ alignItems "center"
+        < Avatar 
+            @ className {classes.avatar}
+            < Icon 
+              + folder
+        < Avatar 
+            @ className {classes.pinkAvatar}
+            < Icon 
+              + pageview
+        < Avatar 
+            @ className {classes.greenAvatar}
+            < Icon 
+              + assignment

@@ -14,7 +14,7 @@ export const SessionMiddleware: MiddlewareType = (app: Application) => {
         maxAge: 14 * 24 * 60 * 60 * 1000, // expires in 14 days
     }
     const sessionOptions: session.SessionOptions = {
-        name: 'packy-backend.sid',
+        name: 'packi-backend.sid',
         secret: config.sessionSecret,
         store: new MongoStore({
             mongooseConnection: mongoose.connection,

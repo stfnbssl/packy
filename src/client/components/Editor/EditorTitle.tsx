@@ -3,7 +3,7 @@ import { StyleSheet, css } from 'aphrodite';
 import distanceInWords from 'date-fns/distance_in_words';
 import { appTypes } from '../../features/app';
 import { prefTypes, withThemeName } from '../../features/preferences';
-import { packyTypes, packyDefaults } from '../../features/packy';
+import { packiTypes, packiDefaults } from '../../features/packi';
 import Popover from '../shared/Popover';
 import EditableField from '../shared/EditableField';
 import ModalEditTitleAndDescription from './ModalEditTitleAndDescription';
@@ -13,8 +13,8 @@ type Props = {
   name: string;
   description: string | undefined;
   createdAt: string | undefined;
-  saveHistory: packyTypes.SaveHistory;
-  saveStatus: packyTypes.SaveStatus;
+  saveHistory: packiTypes.SaveHistory;
+  saveStatus: packiTypes.SaveStatus;
   loggedUser: appTypes.LoggedUser | undefined;
   isEditModalVisible: boolean;
   onShowPreviousSaves: () => void;
@@ -134,7 +134,7 @@ class EditorTitle extends React.Component<Props, State> {
               content={
                 <React.Fragment>
                   <p className={css(styles.description)}>
-                    {/* description || packyDefaults.DEFAULT_DESCRIPTION */}
+                    {/* description || packiDefaults.DEFAULT_DESCRIPTION */}
                   </p>
                   <button onClick={onShowEditModal} className={css(styles.editButton)}>
                     Edit details
@@ -162,7 +162,7 @@ class EditorTitle extends React.Component<Props, State> {
           </div>
         </div>
         <ModalEditTitleAndDescription
-          title="Edit Packy Details"
+          title="Edit Packi Details"
           action="Done"
           visible={isEditModalVisible}
           onDismiss={onDismissEditModal}

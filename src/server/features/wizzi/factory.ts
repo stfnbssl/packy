@@ -1,17 +1,17 @@
 import * as path from 'path';
 import * as wizzi from 'wizzi';
 import { JsonComponents, JsonDocumentDto, FsJson } from 'wizzi-repo';
-import { packyFilePrefix } from '../config/env';
-import { packyTypes } from '../packy';
+import { packiFilePrefix } from '../config/env';
+import { packiTypes } from '../packi';
 import { config as appConfig } from '../config';
 import { JsonWizziFactory, FilesystemWizziFactory } from './types';
 import { config } from 'isomorphic-git';
 
-export function packyFilesToJsonDocuments(files: packyTypes.PackyFiles): JsonDocumentDto[] {
+export function packiFilesToJsonDocuments(files: packiTypes.PackiFiles): JsonDocumentDto[] {
     const jsonDocuments: JsonDocumentDto[] = [];
     Object.keys(files).map(value=> {
         if (files[value].type === 'CODE') {
-            const filePath = ensurePackyFilePrefix(value);
+            const filePath = ensurePackiFilePrefix(value);
             jsonDocuments.push({ path: filePath, content: files[value].contents});
         }
     });
@@ -40,12 +40,12 @@ export async function createFilesystemFactory(globalContext?: {[k: string]: any}
     });
 }
 
-export async function createFsJsonAndFactory(files: packyTypes.PackyFiles): Promise<JsonWizziFactory> {
+export async function createFsJsonAndFactory(files: packiTypes.PackiFiles): Promise<JsonWizziFactory> {
     const plugins: string[] = [];
     const jsonDocuments: JsonDocumentDto[] = [];
     Object.keys(files).map(value=> {
-        if (files[value].type === 'CODE') {
-            const filePath = ensurePackyFilePrefix(value);
+        if (files[value].type === 'CODE' && files[value].contents && files[value].contents.length > 0) {
+            const filePath = ensurePackiFilePrefix(value);
             jsonDocuments.push({ path: filePath, content: files[value].contents});
             const pluginList = pluginsFor(filePath);
             pluginList.forEach(item=>{
@@ -74,11 +74,11 @@ export async function createFsJsonAndFactory(files: packyTypes.PackyFiles): Prom
     });
 }
 
-export async function createFsJson(files: packyTypes.PackyFiles): Promise<FsJson> {
+export async function createFsJson(files: packiTypes.PackiFiles): Promise<FsJson> {
     const jsonDocuments: JsonDocumentDto[] = [];
     Object.keys(files).map(value=> {
         if (files[value].type === 'CODE') {
-            const filePath = ensurePackyFilePrefix(value);
+            const filePath = ensurePackiFilePrefix(value);
             jsonDocuments.push({ path: filePath, content: files[value].contents});
         }
     });
@@ -91,10 +91,10 @@ export async function createFsJson(files: packyTypes.PackyFiles): Promise<FsJson
     });
 }
 
-export async function extractGeneratedFiles(fsJson: FsJson): Promise<packyTypes.PackyFiles> {
-    const files: packyTypes.PackyFiles = {};
+export async function extractGeneratedFiles(fsJson: FsJson): Promise<packiTypes.PackiFiles> {
+    const files: packiTypes.PackiFiles = {};
     return new Promise((resolve, reject)=>{
-        fsJson.toFiles({ removeRoot: packyFilePrefix }, (err, result)=>{
+        fsJson.toFiles({ removeRoot: packiFilePrefix }, (err, result)=>{
             if (err) { reject(err); }
             result.forEach(value=>{
                 if (value.relPath.endsWith('.ittf') == false) {
@@ -135,6 +135,6 @@ function pluginsFor(file: string): string[] {
     return [];
 }
 
-export function ensurePackyFilePrefix(filePath: string) {
-    return filePath.startsWith(packyFilePrefix) ? filePath : packyFilePrefix + filePath;
+export function ensurePackiFilePrefix(filePath: string) {
+    return filePath.startsWith(packiFilePrefix) ? filePath : packiFilePrefix + filePath;
 }

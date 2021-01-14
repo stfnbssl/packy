@@ -7,7 +7,7 @@ const LOGIN_USER_BY_STORED_UID_ERROR = '@@app/LOGIN_USER_BY_STORED_UID_ERROR';
 
 export interface LoginByStoredUidPayload {
     uid: string;
-    selectedPackyId: string;
+    selectedPackiId: string;
 };
 
 export const updateLoggedUser = createStandardAction(UPDATE_LOGGED_USER)<LoggedUser>();

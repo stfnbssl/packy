@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { ActionType, getType } from 'typesafe-actions';
 import { serviceTypes, getEventServiceInstance } from '../../services';
-import { packyTypes } from '../packy';
+import { packiTypes } from '../packi';
 import {
     GeneratedArtifact,
     JobError
@@ -11,7 +11,7 @@ import * as wizziActions from './actions';
 export interface WizziState {
     readonly loading: boolean;
     readonly generatedArtifact?: GeneratedArtifact;
-    readonly jobGeneratedArtifacts?: packyTypes.PackyFiles;
+    readonly jobGeneratedArtifacts?: packiTypes.PackiFiles;
     readonly jobError?:  JobError;
     readonly timedServices: { [k : string]: serviceTypes.TimedServiceState }
 }

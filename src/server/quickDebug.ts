@@ -1,29 +1,29 @@
 import { createFsJsonAndFactory } from './features/wizzi/factory';
 import { generateArtifact, executeJob } from './features/wizzi/productions';
-import { packyTypes } from './features/packy';
+import { packiTypes } from './features/packi';
 import { githubApiCalls } from './features/github';
 
 const github_access_token = '410a1368f1ba83cae84efac295b7ac0b4afe4b92';
 
 async function testCloneGithubRepo() {
     const result = await githubApiCalls.cloneBranch(
-        { name: 'packy-demo-strawberry', owner: 'stfnbssl', token: github_access_token },
+        { name: 'packi-demo-strawberry', owner: 'stfnbssl', token: github_access_token },
         'master'
     );
     console.log('testCloneGithubRepo.files', result.files);
     console.log('testCloneGithubRepo.commitHistory', result.commitHistory);
 }
 
-async function testUpdateGithubRepo(files: packyTypes.PackyFiles) {
+async function testUpdateGithubRepo(files: packiTypes.PackiFiles) {
     const result = await githubApiCalls.updateBranch(
         files,
-        { name: 'packy-demo-strawberry', owner: 'stfnbssl', token: github_access_token },
+        { name: 'packi-demo-strawberry', owner: 'stfnbssl', token: github_access_token },
         'master'
     );
 }
 
 async function testTemplateRepositories() {
-    const result = await githubApiCalls.getPackyTemplateRepositories();
+    const result = await githubApiCalls.getPackiTemplateRepositories();
     console.log('testTemplateRepositories', result);
 }
 

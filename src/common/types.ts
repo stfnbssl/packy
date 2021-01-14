@@ -1,12 +1,12 @@
-type RequiredPackyFileAttributes = {
+type RequiredPackiFileAttributes = {
     contents: string;
     type: 'ASSET' | 'CODE';
     generated?: boolean;
     bothRealAndGenerated?: boolean;
 };
   
-export type PackyFiles = {
-    [x: string]: RequiredPackyFileAttributes;
+export type PackiFiles = {
+    [x: string]: RequiredPackiFileAttributes;
 };
 
 export type GitRepositoryMeta = {
@@ -22,7 +22,7 @@ export type ClonedGitRepository = {
     description: string;
     branch: string;
     commitHistory: any;
-    files: PackyFiles;
+    files: PackiFiles;
 };
 
   

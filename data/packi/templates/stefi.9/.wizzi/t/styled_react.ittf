@@ -1,0 +1,20 @@
+$group
+  $params name
+  
+  var ${name}
+    iife
+      const styles
+          => 
+              param theme
+              return
+                  {
+                      $hook styles
+      react ${name}Comp
+        $hook
+      return
+        _ withStyles
+          @ styles
+          (
+              @ ${name}Comp
+
+        

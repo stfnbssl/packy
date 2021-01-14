@@ -1,0 +1,123 @@
+layouts/muiPage()
+
+  $append imports
+    
+    function getSteps
+        return 
+            [ 
+                @ 'Select campaign settings'
+                @ 'Create an ad group'
+                @ 'Create an ad'
+    
+    function getStepContent
+        param step
+        switch step
+            case 0
+                return 
+                    `lit 
+                        + For each ad campaign that you create, you can control how much
+                          \b you're willing to spend on clicks and conversions, which networks
+                          \b and geographical locations you want your ads to show on, and more.
+            case 1
+                return 'An ad group contains one or more ads which target a shared set of keywords.'
+            case 2
+                return 
+                    `lit 
+                        + Try out different ad text to see what brings in the most customers,
+                          \b and learn how to enhance your ads using features like ad extensions.
+                          \b If you run into any problems with your ads, find out how to tell if
+                          \b they're running and how to resolve approval issues.
+            default 
+                return 'Unknown step'
+
+  $append styles
+    { root
+        @ width '90%'
+    { button
+        @ marginTop theme.spacing.unit
+        @ marginRight theme.spacing.unit
+    { actionsContainer
+        @ marginBottom theme.spacing.unit * 2
+    { resetContainer
+        @ padding theme.spacing.unit * 3
+
+  $append state
+    @ activeStep 0
+
+  => handleNext
+      _ this.setState
+          => 
+              param state
+              (
+                  { 
+                      @ activeStep state.activeStep + 1
+  
+  => handleBack
+      _ this.setState
+          => 
+              param state
+              (
+                  { 
+                      @ activeStep state.activeStep - 1
+  
+  => handleReset
+      _ this.setState
+          { 
+              @ activeStep 0
+
+  render
+    prop classes
+    const steps
+        _ getSteps
+    const 
+        { 
+            @ activeStep
+        = this.state
+    return 
+        div 
+            @ className {classes.root}
+            < Stepper 
+                @ activeStep {activeStep}
+                @ orientation "vertical"
+                { 
+                    _ steps.map
+                        => 
+                            param label
+                            param index
+                            < Step 
+                                @ key {label}
+                                < StepLabel 
+                                    + {label}
+                                < StepContent 
+                                    < Typography 
+                                        + {getStepContent(index)}
+                                    div 
+                                        @ className {classes.actionsContainer}
+                                        div 
+                                            < Button 
+                                                @ disabled {activeStep === 0}
+                                                @ onClick {this.handleBack}
+                                                @ className {classes.button}
+                                                + Back
+                                            < Button 
+                                                @ variant "contained"
+                                                @ color "primary"
+                                                @ onClick {this.handleNext}
+                                                @ className {classes.button}
+                                                { 
+                                                    iif activeStep === steps.length - 1
+                                                        then 'Finish'
+                                                        else 'Next'
+            { 
+                && 
+                    + activeStep === steps.length
+                    < Paper 
+                        @ square
+                        @ elevation {0}
+                        @ className {classes.resetContainer}
+                        < Typography 
+                            + All steps completed - you're finished
+                        < Button 
+                            @ onClick {this.handleReset}
+                            @ className {classes.button}
+                            + Reset

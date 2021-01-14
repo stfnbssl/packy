@@ -8,10 +8,10 @@ import { appTypes, appActions } from '../features/app';
 import { authTypes } from '../features/auth';
 import { commonTypes } from '../../common';
 import { prefTypes, withPreferences } from '../features/preferences';
-import { packyTypes, packyDefaults, packyActions } from '../features/packy';
+import { packiTypes, packiDefaults, packiActions } from '../features/packi';
 import { wizziTypes, wizziActions } from '../features/wizzi';
 import { FileSystemEntry, TextFileEntry, AssetFileEntry } from '../features/filelist/types';
-import { packyToEntryArray, entryArrayToPacky, mixPreviousAndGeneratedPackyFilesToEntryArray, entryArrayDiff } from '../features/packy/convertFileStructure';
+import { packiToEntryArray, entryArrayToPacki, mixPreviousAndGeneratedPackiFilesToEntryArray, entryArrayDiff } from '../features/packi/convertFileStructure';
 import updateEntry from '../features/filelist/actions/updateEntry';
 import debounce from 'lodash/debounce';
 import EditorView from '../components/Editor/EditorView';
@@ -26,34 +26,34 @@ type Params = {
 
 interface StateProps {
   loggedUser?: appTypes.LoggedUser,
-  packyNames?: string[],
-  currentPacky?: packyTypes.Packy,
-  packyTemplateNames?: string[],
+  packiNames?: string[],
+  currentPacki?: packiTypes.Packi,
+  packiTemplateNames?: string[],
   ownedGitRepositories?: commonTypes.GitRepositoryMeta[],
   generatedArtifact?: wizziTypes.GeneratedArtifact;
-  jobGeneratedArtifacts: packyTypes.PackyFiles;
+  jobGeneratedArtifacts: packiTypes.PackiFiles;
   jobError: wizziTypes.JobError;
 }
 
 interface DispatchProps {
   dispatchLoggedOn: (user: appTypes.LoggedUser) => void;
   dispatchLoggedOff: () => void;
-  dispatchInitPacky: (preferences: prefTypes.PreferencesType) => void;
-  dispatchSelectPacky: (packyId: string) => void;
-  dispatchSavePacky: (packyId: string, filesToSave: packyTypes.PackyFiles, packyEntryFiles: packyTypes.PackyFiles) => void;
-  dispatchCreatePacky: (packyId: string, packyKind: string) => void;
-  dispatchDeletePacky: (packyId: string) => void;
-  dispatchGenerateArtifact: (fileName: string, files: packyTypes.PackyFiles) => void;
-  dispatchExecuteJob: (files: packyTypes.PackyFiles) => void;
+  dispatchInitPacki: (preferences: prefTypes.PreferencesType) => void;
+  dispatchSelectPacki: (packiId: string) => void;
+  dispatchSavePacki: (packiId: string, filesToSave: packiTypes.PackiFiles, packiEntryFiles: packiTypes.PackiFiles) => void;
+  dispatchCreatePacki: (packiId: string, packiKind: string) => void;
+  dispatchDeletePacki: (packiId: string) => void;
+  dispatchGenerateArtifact: (fileName: string, files: packiTypes.PackiFiles) => void;
+  dispatchExecuteJob: (files: packiTypes.PackiFiles) => void;
   dispatchSetTimedService: (name: string, onOff:boolean, payload?: any, frequence?: number) => void;
 }
 
 const mapStateToProps = (state: storeTypes.StoreState) : StateProps => ({
   loggedUser: state.app.loggedUser,
-  currentPacky: state.packy.currentPacky,
-  packyNames: state.packy.packyNames,
-  packyTemplateNames: state.packy.packyTemplateNames,
-  ownedGitRepositories: state.packy.ownedGitRepositories,
+  currentPacki: state.packi.currentPacki,
+  packiNames: state.packi.packiNames,
+  packiTemplateNames: state.packi.packiTemplateNames,
+  ownedGitRepositories: state.packi.ownedGitRepositories,
   generatedArtifact: state.wizzi.generatedArtifact,
   jobGeneratedArtifacts: state.wizzi.jobGeneratedArtifacts,
   jobError: state.wizzi.jobError,
@@ -66,36 +66,36 @@ const mapDispatchToProps = (dispatch: Dispatch) : DispatchProps => ({
   dispatchLoggedOff: () => {
     dispatch(appActions.updateLoggedUser(null));
   },
-  dispatchInitPacky: (preferences: prefTypes.PreferencesType) => {
-    dispatch(packyActions.initPackyRequest({preferences}));
+  dispatchInitPacki: (preferences: prefTypes.PreferencesType) => {
+    dispatch(packiActions.initPackiRequest({preferences}));
   },
-  dispatchSelectPacky: (packyId: string) => {
-    dispatch(packyActions.selectPackyRequest({id: packyId}));
+  dispatchSelectPacki: (packiId: string) => {
+    dispatch(packiActions.selectPackiRequest({id: packiId}));
   },
-  dispatchSavePacky: (packyId: string, filesToSave: packyTypes.PackyFiles, packyEntryFiles: packyTypes.PackyFiles) => {
-    dispatch(packyActions.savePackyRequest({
-      id: packyId,
+  dispatchSavePacki: (packiId: string, filesToSave: packiTypes.PackiFiles, packiEntryFiles: packiTypes.PackiFiles) => {
+    dispatch(packiActions.savePackiRequest({
+      id: packiId,
       filesToSave: filesToSave,
-      packyEntryFiles: packyEntryFiles
+      packiEntryFiles: packiEntryFiles
     }));
   },
-  dispatchCreatePacky: (packyId: string, packyKind: string) => {
-    dispatch(packyActions.createPackyRequest({
-      id: packyId,
-      options: { data: packyKind}
+  dispatchCreatePacki: (packiId: string, packiKind: string) => {
+    dispatch(packiActions.createPackiRequest({
+      id: packiId,
+      options: { data: packiKind}
     }));
   },
-  dispatchDeletePacky: (packyId: string) => {
-    dispatch(packyActions.deletePackyRequest({
-      id: packyId,
+  dispatchDeletePacki: (packiId: string) => {
+    dispatch(packiActions.deletePackiRequest({
+      id: packiId,
     }));
   },
-  dispatchGenerateArtifact: (filePath: string, files: packyTypes.PackyFiles) => {
+  dispatchGenerateArtifact: (filePath: string, files: packiTypes.PackiFiles) => {
     if (filePath.endsWith('.ittf') && !filePath.endsWith('wfjob.ittf')) {
       dispatch(wizziActions.generateArtifactRequest({filePath, files}));
     }
   },
-  dispatchExecuteJob: (files: packyTypes.PackyFiles) => {
+  dispatchExecuteJob: (files: packiTypes.PackiFiles) => {
       dispatch(wizziActions.executeJobRequest({files}));
   },
   dispatchSetTimedService: (name: string, onOff:boolean, payload?: any, frequence?: number) => {
@@ -129,11 +129,11 @@ type Props = authTypes.AuthProps &
 };
 
 type State = StateProps & {
-  packyStoreId?: string;
-  packySessionReady: boolean;
+  packiStoreId?: string;
+  packiSessionReady: boolean;
   isSavedOnce: boolean;
-  saveHistory: packyTypes.SaveHistory;
-  saveStatus: packyTypes.SaveStatus;
+  saveHistory: packiTypes.SaveHistory;
+  saveStatus: packiTypes.SaveStatus;
   params: Params;
   fileEntries: FileSystemEntry[];
   isWizziJobWaiting: boolean;
@@ -143,24 +143,24 @@ type State = StateProps & {
 class App extends React.Component<Props, State> {
 
   static getDerivedStateFromProps(props: Props, state: State) {
-    if (props.currentPacky && props.currentPacky.id !== state.packyStoreId) {
-      const { files } = props.currentPacky;
+    if (props.currentPacki && props.currentPacki.id !== state.packiStoreId) {
+      const { files } = props.currentPacki;
       if (files) {
-        const fileEntries = packyToEntryArray(files);
-        console.log("App.getDerivedStateFromProps.Loaded packy", props.currentPacky.id);
+        const fileEntries = packiToEntryArray(files);
+        console.log("App.getDerivedStateFromProps.Loaded packi", props.currentPacki.id);
         return {
           fileEntries,
-          packyStoreId: props.currentPacky.id,
+          packiStoreId: props.currentPacki.id,
           isWizziJobWaiting: fileEntries.filter(e => e.item.path.endsWith('.wfjob.ittf')).length > 0 ? true : false,
           lastJobfileEntries: fileEntries,
         };
       }
     }
     if (props.jobGeneratedArtifacts && props.jobGeneratedArtifacts !== state.jobGeneratedArtifacts) {
-      const notGenerated = entryArrayToPacky(state.fileEntries.filter(e=> !e.item.generated));
+      const notGenerated = entryArrayToPacki(state.fileEntries.filter(e=> !e.item.generated));
       console.log("App.getDerivedStateFromProps.notGenerated", notGenerated, 'jobGeneratedArtifacts', props.jobGeneratedArtifacts);
       return {
-        fileEntries: mixPreviousAndGeneratedPackyFilesToEntryArray(notGenerated, props.jobGeneratedArtifacts),
+        fileEntries: mixPreviousAndGeneratedPackiFilesToEntryArray(notGenerated, props.jobGeneratedArtifacts),
         jobGeneratedArtifacts: props.jobGeneratedArtifacts,
       };
     }
@@ -182,13 +182,13 @@ class App extends React.Component<Props, State> {
     };
 
     this.state = {
-      packyStoreId: undefined,
-      packySessionReady: false,
+      packiStoreId: undefined,
+      packiSessionReady: false,
       // We don't have any UI for autosave in embed
       // In addition, enabling autosave in embed will disable autosave in editor when embed dialog is open
       isSavedOnce: false,
-      saveHistory: props.currentPacky && props.currentPacky.history ? props.currentPacky.history : [],
-      saveStatus: props.currentPacky && props.currentPacky.isDraft ? 'saved-draft' : params.id ? 'published' : 'changed',
+      saveHistory: props.currentPacki && props.currentPacki.history ? props.currentPacki.history : [],
+      saveStatus: props.currentPacki && props.currentPacki.isDraft ? 'saved-draft' : params.id ? 'published' : 'changed',
       fileEntries: [],
       generatedArtifact: undefined,
       jobGeneratedArtifacts: undefined,
@@ -202,9 +202,9 @@ class App extends React.Component<Props, State> {
   componentDidMount() {
     // Raven
     // Session worker
-    this._initializePackySession();
-    // this.props.dispatchFetchPacky(packyDefaults.DEFAULT_PACKY_NAME);
-    this.props.dispatchInitPacky(
+    this._initializePackiSession();
+    // this.props.dispatchFetchPacki(packiDefaults.DEFAULT_PACKI_NAME);
+    this.props.dispatchInitPacki(
       this.props.preferences
     );
     getEventServiceInstance().on('EXECUTE_JOB', (payload: any) => {
@@ -259,10 +259,10 @@ class App extends React.Component<Props, State> {
     // close Session worker
   }
 
-  _initializePackySession = async () => {
+  _initializePackiSession = async () => {
     // lots of inits
     this.setState({
-      packySessionReady: true,
+      packiSessionReady: true,
     });
   }
 
@@ -280,16 +280,16 @@ class App extends React.Component<Props, State> {
     });
   }
 
-  _handleSelectPacky = async (packyId: string) => {
-    this.props.dispatchSelectPacky(packyId);
+  _handleSelectPacki = async (packiId: string) => {
+    this.props.dispatchSelectPacki(packiId);
   }
 
-  _handleCreatePacky = async (packyId: string, packyKind: string) => {
-    this.props.dispatchCreatePacky(packyId, packyKind);
+  _handleCreatePacki = async (packiId: string, packiKind: string) => {
+    this.props.dispatchCreatePacki(packiId, packiKind);
   }
 
-  _handleDeletePacky = async (packyId: string) => {
-    this.props.dispatchDeletePacky(packyId);
+  _handleDeletePacki = async (packiId: string) => {
+    this.props.dispatchDeletePacki(packiId);
   }
 
   _findFocusedEntry = (entries: FileSystemEntry[]): TextFileEntry | AssetFileEntry | undefined =>
@@ -331,7 +331,7 @@ class App extends React.Component<Props, State> {
       if (entry.item.path.endsWith('.ittf') && entry.item.path.indexOf('/t/') < 0) {
         this.props.dispatchGenerateArtifact(
           entry.item.path,
-          entryArrayToPacky(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
+          entryArrayToPacki(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
         );
       }
     }
@@ -343,7 +343,7 @@ class App extends React.Component<Props, State> {
       // TODO send only fileEntries of the same schema of focusedEntry + json schema
       this.props.dispatchGenerateArtifact(
         focusedEntry.item.path,
-        entryArrayToPacky(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
+        entryArrayToPacki(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
       );
     }
   }
@@ -358,8 +358,8 @@ class App extends React.Component<Props, State> {
         isWizziJobWaiting: false
       });
       this.props.dispatchExecuteJob(
-        // 20/4 entryArrayToPacky(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
-        entryArrayToPacky(this.state.fileEntries)
+        // 20/4 entryArrayToPacki(this.state.fileEntries.filter(e => e.item.path.endsWith('.ittf')))
+        entryArrayToPacki(this.state.fileEntries)
       );
     }
   }
@@ -367,10 +367,10 @@ class App extends React.Component<Props, State> {
   _executeJob = debounce(this._executeJobNotDebounced, 5000);
 
   _saveCodeNotDebounced = () => {
-    this.props.dispatchSavePacky(
-      this.state.packyStoreId as string,
-      entryArrayToPacky(this.state.fileEntries.filter(e => !e.item.virtual && !e.item.generated)),
-      entryArrayToPacky(this.state.fileEntries)
+    this.props.dispatchSavePacki(
+      this.state.packiStoreId as string,
+      entryArrayToPacki(this.state.fileEntries.filter(e => !e.item.virtual && !e.item.generated)),
+      entryArrayToPacki(this.state.fileEntries)
     );
   }
 
@@ -384,7 +384,7 @@ class App extends React.Component<Props, State> {
           params={this.state.params}
           userAgent={this.props.userAgent}
           loggedUser={this.props.loggedUser}
-          currentPacky={this.props.currentPacky}
+          currentPacki={this.props.currentPacki}
           generatedArtifact={this.props.generatedArtifact}
           saveHistory={this.state.saveHistory}
           saveStatus={this.state.saveStatus}
@@ -398,9 +398,9 @@ class App extends React.Component<Props, State> {
           onChangeCode={this._handleChangeCode}
           onFileEntriesChange={this._handleFileEntriesChange}
           onEntrySelected={this._handleEntrySelected}
-          onSelectPacky={this._handleSelectPacky}
-          onCreatePacky={this._handleCreatePacky}
-          onDeletePacky={this._handleDeletePacky}
+          onSelectPacki={this._handleSelectPacki}
+          onCreatePacki={this._handleCreatePacki}
+          onDeletePacki={this._handleDeletePacki}
           onExecuteWizziJob={this._executeJobNotDebounced}
           onSaveCode={this._saveCode}
         />

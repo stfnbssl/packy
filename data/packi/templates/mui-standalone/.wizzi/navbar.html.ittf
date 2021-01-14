@@ -1,0 +1,91 @@
+layouts/muiPage()
+
+  $append components
+
+  $append state
+    @ anchorEl null
+    @ mobileMoreAnchorEl null
+  
+  => handleProfileMenuOpen
+      param event
+      _ this.setState
+          { 
+              @ anchorEl event.currentTarget
+  
+  => handleMenuClose
+      _ this.setState
+          { 
+              @ anchorEl null
+      _ this.handleMobileMenuClose
+  
+  => handleMobileMenuOpen
+      param event
+      log 'handleMobileMenuOpen'
+      _ this.setState
+          { 
+              @ mobileMoreAnchorEl event.currentTarget
+  
+  => handleMobileMenuClose
+      _ this.setState
+          { 
+              @ mobileMoreAnchorEl null
+
+  render
+    prop classes
+    const 
+        { 
+            @ anchorEl
+            @ mobileMoreAnchorEl
+        = this.state
+    log 'mobileMoreAnchorEl', mobileMoreAnchorEl
+    const isMenuOpen = Boolean(anchorEl)
+    const isMobileMenuOpen = Boolean    (mobileMoreAnchorEl)
+    log 'isMobileMenuOpen', isMobileMenuOpen
+
+    const renderMenu
+        < Menu 
+            @ anchorEl {anchorEl}
+            @ anchorOrigin
+                { 
+                    @ vertical 'top'
+                    @ horizontal 'right'
+            @ transformOrigin
+                { 
+                    @ vertical 'top'
+                    @ horizontal 'right'
+            @ open {isMenuOpen}
+            @ onClose {this.handleMenuClose}
+            < MenuItem 
+                @ onClick {this.handleMenuClose}
+                + Profile
+            < MenuItem 
+                @ onClick {this.handleMenuClose}
+                + My account
+
+    return 
+      div 
+        < AppBar 
+          @ position "static"
+          < Toolbar 
+            < IconButton 
+              className {classes.menuButton}
+              @ color "inherit"
+              @ aria-label "Menu"
+              < Icon 
+                + menu
+            < Typography
+              + News
+              @ variant "h6"
+              @ color "inherit"
+            < Button
+              + Login3
+              @ color "inherit"
+            div 
+              @ className {classes.sectionMobile}
+              < IconButton 
+                  @ aria-haspopup "true"
+                  @ onClick {this.handleMobileMenuOpen}
+                  @ color "inherit"
+                  < Icon 
+                    + more
+          + {renderMenu}

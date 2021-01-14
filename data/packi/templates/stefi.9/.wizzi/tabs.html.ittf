@@ -1,0 +1,90 @@
+layouts/muiPage()
+
+  $append imports
+
+  $append components
+    function TabContainer
+        param props
+        return 
+            < Typography 
+                @ component "div"
+                @ style
+                    { 
+                        @ padding 8 * 3
+                + {props.children}
+    
+    function LinkTab
+        param props
+        return 
+            < Tab 
+                @ component "a"
+                @ onClick
+                    => 
+                        param event
+                        _ event.preventDefault
+                @ {...props}
+
+  $append styles
+    { root
+        @ flexGrow 1
+        @ maxWidth 500
+
+  $append state
+    @ value 0
+
+  => handleChange
+      param event
+      param value
+      _ this.setState
+          { 
+              @ value
+        
+  render
+    prop classes
+    const 
+        { 
+            @ value
+        = this.state
+
+    return 
+        < Paper 
+            @ square
+            @ className {classes.root}
+            < Tabs 
+                @ value {this.state.value}
+                @ onChange {this.handleChange}
+                @ variant "fullWidth"
+                @ indicatorColor "secondary"
+                @ textColor "secondary"
+                < Tab 
+                    @ icon
+                        < Icon 
+                          + phone
+                    @ label "RECENTS"
+                < Tab 
+                    @ icon
+                        < Icon 
+                          + favorite
+                    @ label "FAVORITES"
+                < Tab 
+                    @ icon
+                        < Icon 
+                          + person_pin
+                    @ label "NEARBY"
+              < Divider
+              { 
+                  && 
+                      + value === 0
+                      < TabContainer 
+                          + Page One
+              { 
+                  && 
+                      + value === 1
+                      < TabContainer 
+                          + Page Two
+              { 
+                  && 
+                      + value === 2
+                      < TabContainer 
+                          + Page Three
+

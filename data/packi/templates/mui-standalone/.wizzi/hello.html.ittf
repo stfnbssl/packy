@@ -1,0 +1,23 @@
+layouts/muiPage()
+
+  $append components
+
+    styled_react( SbPanel )
+      $append styles
+        { root
+          @ backgroundColor '#ff0000'
+          @ color '#00ffff'
+          @ padding '20px'
+
+      render
+        prop classes
+        return
+          . {classes.root}
+            h1 Hello
+              
+  render
+    return 
+      < SbPanel
+
+
+

@@ -11,7 +11,7 @@ import createStore from './store/createStore';
 
 const store = createStore({ 
   app: {},
-  packy: {
+  packi: {
     loading: false
   },
   wizzi: {

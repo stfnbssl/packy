@@ -1,0 +1,450 @@
+layouts/muiPage( theme )
+
+  $append imports
+    const ITEM_HEIGHT = 48
+    const ITEM_PADDING_TOP = 8
+    
+    const MenuProps
+        { 
+            { PaperProps
+                { style
+                    @ maxHeight ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP
+                    @ width 250
+    
+    const names
+        [ 
+            @ 'Oliver Hansen'
+            @ 'Van Henry'
+            @ 'April Tucker'
+            @ 'Ralph Hubbard'
+            @ 'Omar Alexander'
+            @ 'Carlos Abbott'
+            @ 'Miriam Wagner'
+            @ 'Bradley Wilkerson'
+            @ 'Virginia Andrews'
+            @ 'Kelly Snyder'
+    
+    function getStyles
+        param name
+        param that
+        return 
+            { 
+                @ fontWeight
+                    iif that.state.nameMulti.indexOf(name) === -1
+                        then that.props.theme.typography.fontWeightRegular
+                        else that.props.theme.typography.fontWeightMedium
+
+  $append styles
+    { root
+        @ display 'flex'
+        @ flexWrap 'wrap'
+    { formControl
+        @ margin theme.spacing.unit
+        @ minWidth 120
+    { selectEmpty
+        @ marginTop theme.spacing.unit * 2
+
+  $append state
+    @ age ''
+    @ name 'hai'
+    @ nameMulti []
+    @ labelWidth 0
+
+  did-mount
+    _ this.setState
+        { 
+            @ labelWidth ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth
+        
+  => handleChange
+      param event
+      _ this.setState
+          { 
+              @ [event.target.name] event.target.value
+
+  => handleChangeMulti
+      param event
+      _ this.setState
+          { 
+              @ nameMulti event.target.value
+
+  render
+    prop classes
+    return 
+        form 
+            @ className {classes.root}
+            @ autoComplete "off"
+            < FormControl 
+                @ className {classes.formControl}
+                < InputLabel 
+                    @ htmlFor "age-simple"
+                    + Age
+                < Select 
+                    @ value {this.state.age}
+                    @ onChange {this.handleChange}
+                    @ inputProps
+                        { 
+                            @ name 'age'
+                            @ id 'age-simple'
+                    < MenuItem 
+                        @ value ""
+                        em 
+                            + None
+                    < MenuItem 
+                        @ value {10}
+                        + Ten
+                    < MenuItem 
+                        @ value {20}
+                        + Twenty
+                    < MenuItem 
+                        @ value {30}
+                        + Thirty
+            < FormControl 
+                @ className {classes.formControl}
+                < InputLabel 
+                    @ htmlFor "age-helper"
+                    + Age
+                < Select 
+                    @ value {this.state.age}
+                    @ onChange {this.handleChange}
+                    @ input
+                        < Input 
+                            @ name "age"
+                            @ id "age-helper"
+                    < MenuItem 
+                        @ value ""
+                        em 
+                            + None
+                    < MenuItem 
+                        @ value {10}
+                        + Ten
+                    < MenuItem 
+                        @ value {20}
+                        + Twenty
+                    < MenuItem 
+                        @ value {30}
+                        + Thirty
+                < FormHelperText 
+                    + Some important helper text
+            < FormControl 
+                @ className {classes.formControl}
+                < Select 
+                    @ value {this.state.age}
+                    @ onChange {this.handleChange}
+                    @ displayEmpty
+                    @ name "age"
+                    @ className {classes.selectEmpty}
+                    < MenuItem 
+                        @ value ""
+                        em 
+                            + None
+                    < MenuItem 
+                        @ value {10}
+                        + Ten
+                    < MenuItem 
+                        @ value {20}
+                        + Twenty
+                    < MenuItem 
+                        @ value {30}
+                        + Thirty
+                < FormHelperText 
+                    + Without label
+            < FormControl 
+                @ className {classes.formControl}
+                < InputLabel 
+                    @ shrink
+                    @ htmlFor "age-label-placeholder"
+                    + Age
+                < Select 
+                    @ value {this.state.age}
+                    @ onChange {this.handleChange}
+                    @ input
+                        < Input 
+                            @ name "age"
+                            @ id "age-label-placeholder"
+                    @ displayEmpty
+                    @ name "age"
+                    @ className {classes.selectEmpty}
+                    < MenuItem 
+                        @ value ""
+                        em 
+                            + None
+                    < MenuItem 
+                        @ value {10}
+                        + Ten
+                    < MenuItem 
+                        @ value {20}
+                        + Twenty
+                    < MenuItem 
+                        @ value {30}
+                        + Thirty
+                < FormHelperText 
+                    + Label + placeholder
+            < FormControl 
+                @ className {classes.formControl}
+                @ disabled
+                < InputLabel 
+                    @ htmlFor "name-disabled"
+                    + Name
+                < Select 
+                    @ value {this.state.name}
+                    @ onChange {this.handleChange}
+                    @ input
+                        < Input 
+                            @ name "name"
+                            @ id "name-disabled"
+                    < MenuItem 
+                        @ value ""
+                        em 
+                            + None
+                    < MenuItem 
+                        @ value "hai"
+                        + Hai
+                    < MenuItem 
+                        @ value "olivier"
+                        + Olivier
+                    < MenuItem 
+                        @ value "kevin"
+                        + Kevin
+                < FormHelperText 
+                    + Disabled
+            < FormControl 
+                @ className {classes.formControl}
+                @ error
+                < InputLabel 
+                    @ htmlFor "name-error"
+                    + Name
+                < Select 
+                    @ value {this.state.name}
+                    @ onChange {this.handleChange}
+                    @ name "name"
+                    @ renderValue
+                        => 
+                            param value
+                            `lit 
+                                + ⚠️  -\b
+                                @ value
+                                + 
+                    @ input
+                        < Input 
+                            @ id "name-error"
+                    < MenuItem 
+                        @ value ""
+                        em 
+                            + None
+                    < MenuItem 
+                        @ value "hai"
+                        + Hai
+                    < MenuItem 
+                        @ value "olivier"
+                        + Olivier
+                    < MenuItem 
+                        @ value "kevin"
+                        + Kevin
+                < FormHelperText 
+                    + Error
+            < FormControl 
+                @ className {classes.formControl}
+                < InputLabel 
+                    @ htmlFor "name-readonly"
+                    + Name
+                < Select 
+                    @ value {this.state.name}
+                    @ onChange {this.handleChange}
+                    @ input
+                        < Input 
+                            @ name "name"
+                            @ id "name-readonly"
+                            @ readOnly
+                    < MenuItem 
+                        @ value ""
+                        em 
+                            + None
+                    < MenuItem 
+                        @ value "hai"
+                        + Hai
+                    < MenuItem 
+                        @ value "olivier"
+                        + Olivier
+                    < MenuItem 
+                        @ value "kevin"
+                        + Kevin
+                < FormHelperText 
+                    + Read only
+            < FormControl 
+                @ className {classes.formControl}
+                < InputLabel 
+                    @ htmlFor "age-auto-width"
+                    + Age
+                < Select 
+                    @ value {this.state.age}
+                    @ onChange {this.handleChange}
+                    @ input
+                        < Input 
+                            @ name "age"
+                            @ id "age-auto-width"
+                    @ autoWidth
+                    < MenuItem 
+                        @ value ""
+                        em 
+                            + None
+                    < MenuItem 
+                        @ value {10}
+                        + Ten
+                    < MenuItem 
+                        @ value {20}
+                        + Twenty
+                    < MenuItem 
+                        @ value {30}
+                        + Thirty
+                < FormHelperText 
+                    + Auto width
+            < FormControl 
+                @ className {classes.formControl}
+                < Select 
+                    @ value {this.state.age}
+                    @ onChange {this.handleChange}
+                    @ name "age"
+                    @ displayEmpty
+                    @ className {classes.selectEmpty}
+                    < MenuItem 
+                        @ value ""
+                        @ disabled
+                        + Placeholder
+                    < MenuItem 
+                        @ value {10}
+                        + Ten
+                    < MenuItem 
+                        @ value {20}
+                        + Twenty
+                    < MenuItem 
+                        @ value {30}
+                        + Thirty
+                < FormHelperText 
+                    + Placeholder
+            < FormControl 
+                @ required
+                @ className {classes.formControl}
+                < InputLabel 
+                    @ htmlFor "age-required"
+                    + Age
+                < Select 
+                    @ value {this.state.age}
+                    @ onChange {this.handleChange}
+                    @ name "age"
+                    @ inputProps
+                        { 
+                            @ id 'age-required'
+                    @ className {classes.selectEmpty}
+                    < MenuItem 
+                        @ value ""
+                        em 
+                            + None
+                    < MenuItem 
+                        @ value {10}
+                        + Ten
+                    < MenuItem 
+                        @ value {20}
+                        + Twenty
+                    < MenuItem 
+                        @ value {30}
+                        + Thirty
+                < FormHelperText 
+                    + Required
+            < FormControl 
+                @ variant "outlined"
+                @ className {classes.formControl}
+                < InputLabel 
+                    @ ref
+                        => 
+                            param ref
+                            set this.InputLabelRef = ref
+                    @ htmlFor "outlined-age-simple"
+                    + \n            Age\n          \b
+                < Select 
+                    @ value {this.state.age}
+                    @ onChange {this.handleChange}
+                    @ input
+                        < OutlinedInput 
+                            @ labelWidth {this.state.labelWidth}
+                            @ name "age"
+                            @ id "outlined-age-simple"
+                    < MenuItem 
+                        @ value ""
+                        em 
+                            + None
+                    < MenuItem 
+                        @ value {10}
+                        + Ten
+                    < MenuItem 
+                        @ value {20}
+                        + Twenty
+                    < MenuItem 
+                        @ value {30}
+                        + Thirty
+            < FormControl 
+                @ variant "filled"
+                @ className {classes.formControl}
+                < InputLabel 
+                    @ htmlFor "filled-age-simple"
+                    + Age
+                < Select 
+                    @ value {this.state.age}
+                    @ onChange {this.handleChange}
+                    @ input
+                        < FilledInput 
+                            @ name "age"
+                            @ id "filled-age-simple"
+                    < MenuItem 
+                        @ value ""
+                        em 
+                            + None
+                    < MenuItem 
+                        @ value {10}
+                        + Ten
+                    < MenuItem 
+                        @ value {20}
+                        + Twenty
+                    < MenuItem 
+                        @ value {30}
+                        + Thirty
+
+            div
+
+            < FormControl 
+                @ className {classes.formControl}
+                < InputLabel 
+                    @ htmlFor "select-multiple-chip"
+                    + Chip
+                < Select 
+                    @ multiple
+                    @ value {this.state.nameMulti}
+                    @ onChange {this.handleChangeMulti}
+                    @ input
+                        < Input 
+                            @ id "select-multiple-chip"
+                    @ renderValue
+                        => 
+                            param selected
+                            div 
+                                @ className {classes.chips}
+                                {
+                                  _ selected.map
+                                      => 
+                                          param value
+                                          log 'value', value
+                                          return
+                                            < Chip 
+                                                @ key {value}
+                                                @ label {value}
+                                                @ className {classes.chip}
+                    @ MenuProps {MenuProps}
+                    { 
+                        _ names.map
+                            => 
+                                param name
+                                < MenuItem 
+                                    @ key {name}
+                                    @ value {name}
+                                    @ style {getStyles(name, this)}
+                                    + {name}
+

@@ -8,9 +8,9 @@ import { config } from '../features/config';
 var strategy = new Auth0Strategy(
     {
         domain: config.Auth0Domain,
-        clientID: config.Auth0PackyClientId,
-        clientSecret: config.Auth0PackyClientSecret,
-        callbackURL: config.Auth0PackyCallbackUrl
+        clientID: config.Auth0PackiClientId,
+        clientSecret: config.Auth0PackiClientSecret,
+        callbackURL: config.Auth0PackiCallbackUrl
     },
     function (accessToken, refreshToken, extraParams, profile, done) {
         // accessToken is the token to call Auth0 API (not needed in the most cases)

@@ -25,7 +25,7 @@ class ModalAuthentication extends React.Component<Props, State> {
       <ModalDialog
         visible={this.props.visible}
         onDismiss={this.props.onDismiss}
-        title={this.props.loggedUser ? 'Your profile' : "Log in to Packy"}>
+        title={this.props.loggedUser ? 'Your profile' : "Log in to Packi"}>
         <SocialLogin 
           loggedUser={this.props.loggedUser} 
           onLoggedOn={this.props.onLoggedOn} 

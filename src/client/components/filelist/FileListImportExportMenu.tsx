@@ -98,7 +98,7 @@ export default class FileListImportExportMenu extends React.PureComponent<Props,
             {
               label: 'Export project',
               handler: this.props.onExportClick,
-              disabled: !(isSaved && this.props.hasPackyId),
+              disabled: !(isSaved && this.props.hasPackiId),
             },
           ]}
           onHide={this._hideContextMenu}

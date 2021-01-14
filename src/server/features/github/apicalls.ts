@@ -5,7 +5,7 @@ import {createFsFromVolume, Volume} from 'memfs';
 //import { fs } from 'memfs';
 import {vfile, FsImpl, FileDef} from 'wizzi-utils';
 import { FileDiff, FileDiffItem } from '../repo/types';
-import { PackyFiles } from '../packy/types';
+import { PackiFiles } from '../packi/types';
 import { 
     GithubRepoOptions,
     CreateGithubRepoOptions,
@@ -44,12 +44,12 @@ export async function getRepository(owner: string, repo: string, accessToken: st
     });
 }
 
-export async function getPackyTemplateRepositories() : Promise<any> {
+export async function getPackiTemplateRepositories() : Promise<any> {
     return fetch(`https://api.github.com/users/stfnbssl/repos`, getOptions())
         .then((response) => response.json())
         .then((responseData: GithubApiRepository[]) => {
             console.log('getRepositories.responseData',  responseData);
-            return responseData.filter(value=>value.name.startsWith('packy-template-'));
+            return responseData.filter(value=>value.name.startsWith('packi-template-'));
     });
 }
 
@@ -108,7 +108,7 @@ export async function cloneBranch(repo: GithubRepoOptions, branch: string = 'mas
                 token: repo.token,
             });
             let files = wizzifs.getFiles(dir, {deep:true, documentContent: true})
-            const packies: PackyFiles = {}
+            const packies: PackiFiles = {}
             files.forEach(file=>{
                 if (file.relPath.startsWith('.git/') == false) {
                     if (kind === 'all' || kind === 'ittf' &&  file.relPath.endsWith('.ittf') == true) {
@@ -135,7 +135,7 @@ export async function cloneBranch(repo: GithubRepoOptions, branch: string = 'mas
     })
 }
 
-export async function updateBranch(packyFiles: PackyFiles, repo: GithubRepoOptions, branch: string = 'master') {
+export async function updateBranch(packiFiles: PackiFiles, repo: GithubRepoOptions, branch: string = 'master') {
     volume.reset();
     const dir = '/' + repo.name;
     fs.mkdir(dir, async (err) => {
@@ -148,18 +148,18 @@ export async function updateBranch(packyFiles: PackyFiles, repo: GithubRepoOptio
             depth: 10
         });
         let files = fs.readdirSync(dir);
-        console.log('updateBranch - packyFiles', Object.keys(packyFiles));
+        console.log('updateBranch - packiFiles', Object.keys(packiFiles));
         console.log('updateBranch - cloned files', files);
         /*
-        Object.keys(packyFiles).forEach(filePath=> {
-            if (packyFiles[filePath].type === "CODE") {
-                fs.writeFileSync(path.join(dir, filePath), packyFiles[filePath].contents);
+        Object.keys(packiFiles).forEach(filePath=> {
+            if (packiFiles[filePath].type === "CODE") {
+                fs.writeFileSync(path.join(dir, filePath), packiFiles[filePath].contents);
             }
         })
         */
         // let msg = await git.log({fs, dir});
         // console.log(msg);
-        filesDiff(dir, packyFiles, async (err, result)=> {
+        filesDiff(dir, packiFiles, async (err, result)=> {
             // console.log ('updateBranch - diff', result);
             try
             {
@@ -191,10 +191,10 @@ export async function updateBranch(packyFiles: PackyFiles, repo: GithubRepoOptio
                 let msg = await git.commit({
                     fs,
                     dir,
-                    message: 'Packy git export ' + new Date().toDateString(),
+                    message: 'Packi git export ' + new Date().toDateString(),
                     author: {
-                    name: 'packy',
-                    email: 'packy@gmail.com'
+                    name: 'packi',
+                    email: 'packi@gmail.com'
                     }
                 })
                 console.log (msg)
@@ -239,7 +239,7 @@ export async function getContents(owner: string, repo: string, accessToken: stri
     });
 }
 
-function filesDiff(dir: string, packyFiles: PackyFiles, callback: cb<{[k: string] : FileDiff}>) : void {
+function filesDiff(dir: string, packiFiles: PackiFiles, callback: cb<{[k: string] : FileDiff}>) : void {
     wizzifs.getFiles(dir, {deep:true, documentContent: true}, (err, result)=>{
         const diff: {[k: string] : FileDiff} = {};
         result.forEach(entry => {
@@ -248,19 +248,19 @@ function filesDiff(dir: string, packyFiles: PackyFiles, callback: cb<{[k: string
             diff[entry.relPath] = { kind: '-', a: { path: entry.relPath, content: entry.content as string }};
           }
         });
-        Object.keys(packyFiles).forEach(entryName => {
+        Object.keys(packiFiles).forEach(entryName => {
           if (diff[entryName]) {
-            if (diff[entryName].a && (diff[entryName].a as FileDiffItem).content === packyFiles[entryName].contents) {
+            if (diff[entryName].a && (diff[entryName].a as FileDiffItem).content === packiFiles[entryName].contents) {
               console.log('delete', entryName)
               delete diff[entryName];
             } else {
               console.log('diff <>', entryName)
               diff[entryName].kind = '<>';
-              diff[entryName].b = { path: entryName, content: packyFiles[entryName].contents};
+              diff[entryName].b = { path: entryName, content: packiFiles[entryName].contents};
             }
           } else {
             console.log('diff +', entryName)
-            diff[entryName] = { kind: '+', b: { path: entryName, content: packyFiles[entryName].contents }};
+            diff[entryName] = { kind: '+', b: { path: entryName, content: packiFiles[entryName].contents }};
           }
         });
         callback(null, diff);

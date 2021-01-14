@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import { Form, withStatus, withValidation } from '../../features/form'
-import { packyDefaults } from '../../features/packy'
+import { packiDefaults } from '../../features/packi'
 import Button from '../shared/Button';
 import ModalDialog from '../shared/ModalDialog';
 import LargeInput from '../shared/LargeInput';
@@ -85,7 +85,7 @@ export default class ModalEditTitleAndDescription extends React.Component<Props,
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               this.setState({ name: e.target.value })
             }
-            placeholder={'Unnamed Packy'}
+            placeholder={'Unnamed Packi'}
             validate={this._validateName}
           />
           <h4 className={css(styles.subtitle)}>Description</h4>
@@ -93,7 +93,7 @@ export default class ModalEditTitleAndDescription extends React.Component<Props,
             value={this.state.description}
             onChange={e => this.setState({ description: e.target.value })}
             minRows={4}
-            placeholder={packyDefaults.DEFAULT_DESCRIPTION}
+            placeholder={packiDefaults.DEFAULT_DESCRIPTION}
           />
           <div className={css(styles.buttons)}>
             <FormButton type="submit" large variant="secondary" loading={isWorking}>

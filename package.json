@@ -1,7 +1,7 @@
 {
-  "name": "packy",
-  "version": "0.0.1",
-  "description": "Bootstrap new packages with Packy",
+  "name": "packi",
+  "version": "0.1.1",
+  "description": "Bootstrap new packages with Packi. Powered by Wizzi.",
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon -e json,js,ts,tsx --watch src/server src/server/server.ts --exec babel-node --extensions '.ts,.tsx'",
@@ -26,12 +26,12 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/stfnbssl/packy/blob/master/LICENSE"
+      "url": "https://github.com/wizzifactory/packi/blob/master/LICENSE"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/stfnbssl/packy.git"
+    "url": "https://github.com/wizzifactory/packi.git"
   },
   "dependencies": {
     "@material-ui/core": "^3.0.0",

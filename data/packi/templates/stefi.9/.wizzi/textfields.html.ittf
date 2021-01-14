@@ -1,0 +1,221 @@
+layouts/muiPage()
+
+  $append imports
+
+    const ranges
+        [ 
+            { 
+                @ value '0-20'
+                @ label '0 to 20'
+            { 
+                @ value '21-50'
+                @ label '21 to 50'
+            { 
+                @ value '51-100'
+                @ label '51 to 100'
+
+  $append styles
+    { container
+        @ display 'flex'
+        @ flexWrap 'wrap'
+    { textField
+        @ marginLeft theme.spacing.unit
+        @ marginRight theme.spacing.unit
+        @ width 200
+    { root
+        @ display 'flex'
+        @ flexWrap 'wrap'
+    { margin
+        @ margin theme.spacing.unit
+    { paperFlex
+      @ padding theme.spacing.unit * 3
+      @ display 'flex'
+      @ flexWrap 'wrap'
+    { divider
+        @ marginTop theme.spacing.unit * 3
+        @ marginBottom theme.spacing.unit * 3
+    { withoutLabel
+        @ marginTop theme.spacing.unit * 3
+    { textField
+        @ flexBasis 200
+        @ margin theme.spacing.unit
+
+  $append state
+    @ amount ''
+    @ password ''
+    @ weight ''
+    @ weightRange ''
+    @ showPassword false
+    $foreach tf in site.Mui.textfields.samples
+      $if tf.controlled
+        @ ${tf.id} ''
+  
+  => handleChange
+      param prop
+      _ alert(prop)
+      return
+        => 
+            param event
+            _ this.setState
+                { 
+                    @ [prop] event.target.value
+  
+  => handleClickShowPassword
+      _ this.setState
+          => 
+              param state
+              (
+                  { 
+                      @ showPassword !state.showPassword
+
+  render
+    prop classes
+    return 
+      div
+        < Paper
+            @ className {classes.paperFlex}
+            $foreach tf in site.Mui.textfields.samples
+              < TextField 
+                  $if tf.select
+                    @ select
+                  @ label "${tf.label}"
+                  @ id "${tf.id}"
+                  @ className {classes.textField}
+                  @ helperText "${tf.helper}"
+                  $if tf.controlled
+                    @ onChange {this.handleChange('${tf.id}')}
+                    @ value {this.state.${tf.id}}
+                  $else
+                    @ defaultValue "${tf.default}"
+                  $if tf.adornment
+                    @ InputProps
+                        { 
+                            @ startAdornment
+                                < InputAdornment 
+                                    @ position "${tf.adornment.position}"
+                                    + ${tf.adornment.label}
+                  $if tf.select
+                    $foreach option in tf.select.items
+                      < MenuItem
+                          @ key ${option}
+                          @ value ${option}
+                          + ${option}
+
+        < Divider
+          @ className {classes.divider}
+        < Paper
+            @ className {classes.paperFlex}
+            < TextField 
+                @ label "None"
+                @ id "margin-none"
+                @ defaultValue "Default Value"
+                @ className {classes.textField}
+                @ helperText "Some important text"
+            < TextField 
+                @ label "Dense"
+                @ id "margin-dense"
+                @ defaultValue "Default Value"
+                @ className {classes.textField}
+                @ helperText "Some important text"
+                @ margin "dense"
+            < TextField 
+                @ label "Normal"
+                @ id "margin-normal"
+                @ defaultValue "Default Value"
+                @ className {classes.textField}
+                @ helperText "Some important text"
+                @ margin "normal"
+        < Divider
+          @ className {classes.divider}
+        < Paper 
+            @ className {classes.paperFlex}
+            < TextField 
+                @ label "With normal TextField"
+                @ id "simple-start-adornment"
+                @ className {classNames(classes.margin, classes.textField)}
+                @ InputProps
+                    { 
+                        @ startAdornment
+                            < InputAdornment 
+                                @ position "start"
+                                + Kg
+            < TextField 
+                @ select
+                @ label "With Select"
+                @ className {classNames(classes.margin, classes.textField)}
+                @ value {this.state.weightRange}
+                @ onChange {this.handleChange('weightRange')}
+                @ InputProps
+                    { 
+                        @ startAdornment
+                            < InputAdornment 
+                                @ position "start"
+                                + Kg
+                { 
+                    _ ranges.map
+                        => 
+                            param option
+                            < MenuItem 
+                                @ key {option.value}
+                                @ value {option.value}
+                                + {option.label}
+            < FormControl 
+                @ fullWidth
+                @ className {classes.margin}
+                < InputLabel 
+                    @ htmlFor "adornment-amount"
+                    + Amount
+                < Input 
+                    @ id "adornment-amount"
+                    @ value {this.state.amount}
+                    @ onChange {this.handleChange('amount')}
+                    @ startAdornment
+                        < InputAdornment 
+                            @ position "start"
+                            + $
+            < FormControl 
+                @ className {classNames(classes.margin, classes.withoutLabel, classes.textField)}
+                < Input 
+                    @ id "adornment-weight"
+                    @ value {this.state.weight}
+                    @ onChange {this.handleChange('weight')}
+                    @ aria-describedby "weight-helper-text"
+                    @ endAdornment
+                        < InputAdornment 
+                            @ position "end"
+                            + Kg
+                    @ inputProps
+                        { 
+                            @ 'aria-label' 'Weight'
+                < FormHelperText 
+                    @ id "weight-helper-text"
+                    + Weight
+            < FormControl 
+                @ className {classNames(classes.margin, classes.textField)}
+                < InputLabel 
+                    @ htmlFor "adornment-password"
+                    + Password
+                < Input 
+                    @ id "adornment-password"
+                    @ type
+                        iif this.state.showPassword
+                            then 'text'
+                            else 'password'
+                    @ value {this.state.password}
+                    @ onChange {this.handleChange('password')}
+                    @ endAdornment
+                        < InputAdornment 
+                            @ position "end"
+                            { 
+                              iif this.state.showPassword
+                                then 
+                                  < Icon 
+                                      @ aria-label "Toggle password visibility"
+                                      @ onClick {this.handleClickShowPassword}
+                                      + visibility
+                                else
+                                  < Icon 
+                                      @ aria-label "Toggle password visibility"
+                                      @ onClick {this.handleClickShowPassword}
+                                      + visibility_off
+

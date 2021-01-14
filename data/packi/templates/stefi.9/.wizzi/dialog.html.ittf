@@ -1,0 +1,102 @@
+layouts/muiPage()
+
+  $append imports
+    const blue = colors.blue
+    log 'blue', blue
+    const emails
+      [ 
+          @ 'username@gmail.com'
+          @ 'user02@gmail.com'
+    const stylesComp
+      {
+        { avatar
+          @ backgroundColor blue[100]
+          @ color blue[600]
+
+  $append components
+    react SimpleDialog
+      => handleClose
+          _ this.props.onClose(this.props.selectedValue)
+      => handleListItemClick
+          param value
+          _ this.props.onClose(value)
+      render
+        const 
+            { 
+                @ classes
+                @ onClose
+                @ selectedValue
+                ... other
+            = this.props
+        return 
+            < Dialog 
+                @ onClose {this.handleClose}
+                @ aria-labelledby "simple-dialog-title"
+                @ {...other}
+                < DialogTitle 
+                    @ id "simple-dialog-title"
+                    + Set backup account
+                div 
+                    < List 
+                        { 
+                            _ emails.map
+                                => 
+                                    param email
+                                    < ListItem 
+                                        @ button
+                                        @ onClick
+                                            => 
+                                                _ this.handleListItemClick(email)
+                                        @ key {email}
+                                        < ListItemAvatar 
+                                            < Avatar 
+                                                @ className {classes.avatar}
+                                                < Icon 
+                                                  + person
+                                        < ListItemText 
+                                            @ primary {email}
+                        < ListItem 
+                            @ button
+                            @ onClick
+                                => 
+                                    _ this.handleListItemClick('addAccount')
+                            < ListItemAvatar 
+                                < Avatar 
+                                    < Icon 
+                                      + add
+                            < ListItemText 
+                                @ primary "add account"
+    const SimpleDialogWrapped = withStyles(stylesComp)(SimpleDialog)
+
+  $append state
+    @ open false
+    @ selectedValue emails[1]
+
+  => handleClickOpen
+      _ this.setState
+          { 
+              @ open true
+  
+  => handleClose
+      param value
+      _ this.setState
+          { 
+              @ selectedValue value
+              @ open false
+  render
+    return 
+        div 
+            < Typography 
+                @ variant "subtitle1"
+                + Selected: \b
+                + {this.state.selectedValue}
+            br 
+            < Button 
+                @ variant "outlined"
+                @ color "primary"
+                @ onClick {this.handleClickOpen}
+                + Open simple dialog
+            < SimpleDialogWrapped 
+                @ selectedValue {this.state.selectedValue}
+                @ open {this.state.open}
+                @ onClose {this.handleClose}

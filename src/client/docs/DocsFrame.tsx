@@ -58,7 +58,7 @@ function DocsFrame(props: Props) {
                         // edge="end"
                         component="a"
                         color="inherit"
-                        href="https://github.com/stfnbssl/packy"
+                        href="https://github.com/wizzifactory/packi"
                         aria-label={'View on github'}
                         data-ga-event-category="AppBar"
                         data-ga-event-action="github"

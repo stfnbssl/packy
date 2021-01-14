@@ -1,0 +1,134 @@
+layouts/muiPage()
+
+  $append imports
+
+  $append styles
+    { margin
+        @ margin theme.spacing.unit
+    { extendedIcon
+        @ marginRight theme.spacing.unit
+
+  render
+    prop classes
+    return 
+        div 
+            div 
+                < Button 
+                    @ size "small"
+                    @ className {classes.margin}
+                    + Small
+                < Button 
+                    @ size "medium"
+                    @ className {classes.margin}
+                    + Medium
+                < Button 
+                    @ size "large"
+                    @ className {classes.margin}
+                    + Large
+            div 
+                < Button 
+                    @ variant "outlined"
+                    @ size "small"
+                    @ color "primary"
+                    @ className {classes.margin}
+                    + Small
+                < Button 
+                    @ variant "outlined"
+                    @ size "medium"
+                    @ color "primary"
+                    @ className {classes.margin}
+                    + Medium
+                < Button 
+                    @ variant "outlined"
+                    @ size "large"
+                    @ color "primary"
+                    @ className {classes.margin}
+                    + Large
+            div 
+                < Button 
+                    @ variant "contained"
+                    @ size "small"
+                    @ color "primary"
+                    @ className {classes.margin}
+                    + Small
+                < Button 
+                    @ variant "contained"
+                    @ size "medium"
+                    @ color "primary"
+                    @ className {classes.margin}
+                    + Medium
+                < Button 
+                    @ variant "contained"
+                    @ size "large"
+                    @ color "primary"
+                    @ className {classes.margin}
+                    + Large
+            div 
+                < Fab 
+                    @ size "small"
+                    @ color "secondary"
+                    @ aria-label "Add"
+                    @ className {classes.margin}
+                    < Icon 
+                      + add
+                < Fab 
+                    @ size "medium"
+                    @ color "secondary"
+                    @ aria-label "Add"
+                    @ className {classes.margin}
+                    < Icon 
+                      + add
+                < Fab 
+                    @ color "secondary"
+                    @ aria-label "Add"
+                    @ className {classes.margin}
+                    < Icon 
+                      + add
+            div 
+                < Fab 
+                    @ variant "extended"
+                    @ size "small"
+                    @ color "primary"
+                    @ aria-label "Add"
+                    @ className {classes.margin}
+                    < Icon 
+                        @ className {classes.extendedIcon}
+                        + navigation
+                    + Extended
+                < Fab 
+                    @ variant "extended"
+                    @ size "medium"
+                    @ color "primary"
+                    @ aria-label "Add"
+                    @ className {classes.margin}
+                    < Icon 
+                        @ className {classes.extendedIcon}
+                        + navigation
+                    + Extended
+                < Fab 
+                    @ variant "extended"
+                    @ color "primary"
+                    @ aria-label "Add"
+                    @ className {classes.margin}
+                    < Icon 
+                        @ className {classes.extendedIcon}
+                        + navigation
+                    + Extended
+            div 
+                < IconButton 
+                    @ aria-label "Delete"
+                    @ className {classes.margin}
+                    < Icon 
+                      @ fontSize "small"
+                      + delete
+                < IconButton 
+                    @ aria-label "Delete"
+                    @ className {classes.margin}
+                    < Icon 
+                      + delete
+                < IconButton 
+                    @ aria-label "Delete"
+                    @ className {classes.margin}
+                    < Icon 
+                        @ fontSize "large"
+                        + delete
