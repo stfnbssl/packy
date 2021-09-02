@@ -61,7 +61,7 @@
     "hashids": "latest",
     "helmet": "^3.16.0",
     "hoist-non-react-statics": "^3.3.0",
-    "isomorphic-git": "^0.51.12",
+    "isomorphic-git": "^1.8.2",
     "jwks-rsa": "^1.4.0",
     "js-cookie": "^2.2.0",
     "json-stringify-safe": "^5.0.1",
